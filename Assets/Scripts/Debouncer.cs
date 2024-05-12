@@ -1,19 +1,24 @@
 using System;
-using System.Timers;
+using System.Collections;
+using UnityEngine;
 
-public class Debouncer {
-    private readonly Timer _timer;
+public class Debouncer : MonoBehaviour {
+    private Action action;
+    private Coroutine debounceCoroutine;
+    private float delayInSeconds;
 
-    public Debouncer(Action action, double intervalInMilliseconds) {
-        _timer = new Timer(intervalInMilliseconds) {
-            AutoReset = false // Ensure the timer only triggers once
-        };
-        _timer.Elapsed += (sender, args) => action();
+    public void Setup(float _delayInSeconds, Action _action) {
+        delayInSeconds = _delayInSeconds;
+        action = _action;
     }
 
     public void Debounce() {
-        // Reset the timer on every invocation to wait for the specified interval again
-        _timer.Stop();
-        _timer.Start();
+        if (debounceCoroutine != null) StopCoroutine(debounceCoroutine);
+        debounceCoroutine = StartCoroutine(DebounceRoutine());
+    }
+
+    private IEnumerator DebounceRoutine() {
+        yield return new WaitForSeconds(delayInSeconds);
+        action?.Invoke();
     }
 }

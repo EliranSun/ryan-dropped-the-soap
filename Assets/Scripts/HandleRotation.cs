@@ -1,4 +1,3 @@
-using Observer;
 using UnityEngine;
 
 public class HandleRotation : ObserverSubject {
@@ -11,8 +10,10 @@ public class HandleRotation : ObserverSubject {
 
     private void Start() {
         _mainCamera = Camera.main;
-        notifyFaucetOpen = new Debouncer(() => Notify(GameEvents.FaucetOpening), 1000);
-        notifyFaucetClose = new Debouncer(() => Notify(GameEvents.FaucetClosing), 1000);
+        notifyFaucetOpen = gameObject.AddComponent<Debouncer>();
+        notifyFaucetClose = gameObject.AddComponent<Debouncer>();
+        notifyFaucetOpen.Setup(1, () => Notify(GameEvents.FaucetOpening));
+        notifyFaucetClose.Setup(1, () => Notify(GameEvents.FaucetClosing));
     }
 
 
@@ -29,8 +30,10 @@ public class HandleRotation : ObserverSubject {
         transform.RotateAround(_objectCenter, Vector3.forward, angleDifference);
 
         if (newAngle != _currentAngle)
-            if (newAngle < _currentAngle) notifyFaucetOpen.Debounce();
-            else notifyFaucetClose.Debounce();
+            if (newAngle < _currentAngle)
+                notifyFaucetOpen.Debounce();
+            else
+                notifyFaucetClose.Debounce();
 
         _currentAngle = newAngle;
     }

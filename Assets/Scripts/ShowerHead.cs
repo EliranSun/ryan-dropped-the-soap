@@ -1,5 +1,5 @@
 using System.Collections;
-using Observer;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
@@ -10,6 +10,15 @@ public class ShowerHead : MonoBehaviour {
     [SerializeField] private int waterDropCount;
     [SerializeField] private int faucetLevel = 1;
     [SerializeField] private float waterDropInterval;
+    private readonly List<GameObject> _waterPool = new();
+
+    private void Awake() {
+        for (var i = 0; i < waterDropCount; i++) {
+            var tmp = Instantiate(waterDrop);
+            tmp.SetActive(false);
+            _waterPool.Add(tmp);
+        }
+    }
 
     private void Start() {
         StartCoroutine(DropWater());
@@ -19,20 +28,24 @@ public class ShowerHead : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.R))
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
-        if (Input.GetKeyDown(KeyCode.Alpha0))
-            faucetLevel = 0;
+        if (faucetLevel > 0 && waterDropInterval != GetWaterLevel())
+            waterDropInterval = GetWaterLevel();
+    }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-            faucetLevel = 1;
+    public GameObject GetPooledWaterDrop() {
+        foreach (var drop in _waterPool)
+            if (!drop.activeInHierarchy)
+                return drop;
 
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-            faucetLevel = 2;
+        print("NEW");
+        var obj = Instantiate(waterDrop);
+        obj.SetActive(false);
+        _waterPool.Add(obj);
+        return obj;
+    }
 
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-            faucetLevel = 3;
-
-        if (faucetLevel > 0 && waterDropInterval != (float)1 / faucetLevel)
-            waterDropInterval = (float)1 / faucetLevel;
+    private float GetWaterLevel() {
+        return (float)1 / (faucetLevel * 10);
     }
 
     private IEnumerator DropWater() {
@@ -45,13 +58,19 @@ public class ShowerHead : MonoBehaviour {
             position.y -= 0.5f;
             position.x += Random.Range(-0.2f, 0.2f);
 
-            var newWater = Instantiate(waterDrop, position, Quaternion.identity);
+            var newWater = GetPooledWaterDrop();
             newWater.transform.parent = waterContainerParent;
+            newWater.transform.position = position;
+            newWater.SetActive(true);
             waterDropCount--;
         }
     }
 
     public void OnNotify(GameEvents eventName) {
-        print(eventName);
+        if (eventName == GameEvents.FaucetClosing)
+            faucetLevel--;
+
+        if (eventName == GameEvents.FaucetOpening)
+            faucetLevel++;
     }
 }
