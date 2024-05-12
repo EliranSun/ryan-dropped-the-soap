@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,6 @@ public class ShowerHead : MonoBehaviour {
     [SerializeField] private Transform waterContainerParent;
     [SerializeField] private GameObject waterDrop;
     [SerializeField] private int waterDropCount;
-    [SerializeField] private int faucetLevel = 1;
     [SerializeField] private float waterDropInterval;
     private readonly List<GameObject> _waterPool = new();
 
@@ -16,6 +16,7 @@ public class ShowerHead : MonoBehaviour {
         for (var i = 0; i < waterDropCount; i++) {
             var tmp = Instantiate(waterDrop);
             tmp.SetActive(false);
+            tmp.transform.parent = waterContainerParent;
             _waterPool.Add(tmp);
         }
     }
@@ -28,8 +29,8 @@ public class ShowerHead : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.R))
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
-        if (faucetLevel > 0 && waterDropInterval != GetWaterLevel())
-            waterDropInterval = GetWaterLevel();
+        // if (faucetLevel > 0 && waterDropInterval != GetWaterLevel())
+        //     waterDropInterval = GetWaterLevel();
     }
 
     public GameObject GetPooledWaterDrop() {
@@ -37,40 +38,61 @@ public class ShowerHead : MonoBehaviour {
             if (!drop.activeInHierarchy)
                 return drop;
 
-        print("NEW");
-        var obj = Instantiate(waterDrop);
-        obj.SetActive(false);
-        _waterPool.Add(obj);
-        return obj;
+        // print("NEW");
+        // var obj = Instantiate(waterDrop);
+        // obj.SetActive(false);
+        // _waterPool.Add(obj);
+        // return obj;
+        return null;
     }
 
-    private float GetWaterLevel() {
-        return (float)1 / (faucetLevel * 10);
-    }
+    // private float GetWaterLevel() {
+    //     return (float)1 / (faucetLevel * 10);
+    // }
 
     private IEnumerator DropWater() {
-        while (waterDropCount > 0) {
-            if (faucetLevel == 0)
-                yield return new WaitUntil(() => faucetLevel > 0);
+        while (GetPooledWaterDrop()) {
+            if (waterDropInterval is <= 0.01f or >= 1)
+                yield return new WaitUntil(() => waterDropInterval is > 0.01f and < 1);
 
             yield return new WaitForSeconds(waterDropInterval);
             var position = transform.position;
-            position.y -= 0.5f;
-            position.x += Random.Range(-0.2f, 0.2f);
 
-            var newWater = GetPooledWaterDrop();
-            newWater.transform.parent = waterContainerParent;
-            newWater.transform.position = position;
-            newWater.SetActive(true);
-            waterDropCount--;
+
+            for (var i = 0; i < 3; i++) {
+                var newWaterDrop = GetPooledWaterDrop();
+                if (!newWaterDrop)
+                    yield break;
+
+                position.y -= Random.Range(0, 0.5f);
+                position.x += Random.Range(-0.2f, 0.2f);
+                newWaterDrop.transform.position = position;
+                newWaterDrop.SetActive(true);
+                StartCoroutine(DisableWaterDrop(newWaterDrop));
+            }
         }
     }
 
-    public void OnNotify(GameEvents eventName) {
-        if (eventName == GameEvents.FaucetClosing)
-            faucetLevel--;
+    private IEnumerator DisableWaterDrop(GameObject waterDrop) {
+        yield return new WaitForSeconds(1);
+        waterDrop.SetActive(false);
+    }
 
-        if (eventName == GameEvents.FaucetOpening)
-            faucetLevel++;
+    public void OnNotify(GameEvents eventName) {
+        switch (eventName) {
+            case GameEvents.FaucetClosing:
+                waterDropInterval *= 2;
+                break;
+
+            case GameEvents.FaucetOpening:
+                waterDropInterval /= 2;
+                break;
+
+            case GameEvents.None:
+                break;
+
+            default:
+                throw new ArgumentOutOfRangeException(nameof(eventName), eventName, null);
+        }
     }
 }
