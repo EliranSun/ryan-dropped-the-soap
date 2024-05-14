@@ -4,7 +4,12 @@ using UnityEngine.Events;
 public enum GameEvents {
     None,
     FaucetOpening,
-    FaucetClosing
+    FaucetClosing,
+    TriggerNonStick,
+    TriggerStick,
+    DownwardsControllerMotion,
+    UpwardsControllerMotion,
+    StrongPull
 }
 
 public class ObserverSubject : MonoBehaviour {

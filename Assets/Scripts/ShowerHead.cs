@@ -38,7 +38,6 @@ public class ShowerHead : MonoBehaviour {
             if (!drop.activeInHierarchy)
                 return drop;
 
-        // print("NEW");
         // var obj = Instantiate(waterDrop);
         // obj.SetActive(false);
         // _waterPool.Add(obj);
@@ -55,19 +54,22 @@ public class ShowerHead : MonoBehaviour {
             if (waterDropInterval is <= 0.01f or >= 1)
                 yield return new WaitUntil(() => waterDropInterval is > 0.01f and < 1);
 
-            yield return new WaitForSeconds(waterDropInterval);
-            var position = transform.position;
 
+            for (var i = 0; i < 20; i++) {
+                yield return new WaitForSeconds(Random.Range(waterDropInterval, waterDropInterval + 0.1f));
 
-            for (var i = 0; i < 3; i++) {
                 var newWaterDrop = GetPooledWaterDrop();
+
                 if (!newWaterDrop)
                     yield break;
 
-                position.y -= Random.Range(0, 0.5f);
+                var position = transform.position;
+                position.y -= 0.1f;
+
                 position.x += Random.Range(-0.2f, 0.2f);
                 newWaterDrop.transform.position = position;
                 newWaterDrop.SetActive(true);
+                newWaterDrop.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(50, -50), 1));
                 StartCoroutine(DisableWaterDrop(newWaterDrop));
             }
         }
