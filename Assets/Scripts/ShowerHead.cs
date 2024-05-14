@@ -8,6 +8,7 @@ using Random = UnityEngine.Random;
 public class ShowerHead : MonoBehaviour {
     [SerializeField] private Transform waterContainerParent;
     [SerializeField] private GameObject waterDrop;
+    [SerializeField] private int dropletsPerInterval = 1;
     [SerializeField] private int waterDropCount;
     [SerializeField] private float waterDropInterval;
     private readonly List<GameObject> _waterPool = new();
@@ -54,34 +55,38 @@ public class ShowerHead : MonoBehaviour {
             if (waterDropInterval is <= 0.01f or >= 1)
                 yield return new WaitUntil(() => waterDropInterval is > 0.01f and < 1);
 
+            yield return new WaitForSeconds(Random.Range(waterDropInterval, waterDropInterval + 0.1f));
 
-            for (var i = 0; i < 20; i++) {
-                yield return new WaitForSeconds(Random.Range(waterDropInterval, waterDropInterval + 0.1f));
-
+            for (var i = 0; i < dropletsPerInterval; i++) {
                 var newWaterDrop = GetPooledWaterDrop();
 
                 if (!newWaterDrop)
                     yield break;
 
-                var position = transform.position;
-                position.y -= 0.1f;
-
-                position.x += Random.Range(-0.2f, 0.2f);
-                newWaterDrop.transform.position = position;
-                newWaterDrop.SetActive(true);
-                newWaterDrop.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(50, -50), 1));
+                ActivateWaterDrop(newWaterDrop);
                 StartCoroutine(DisableWaterDrop(newWaterDrop));
             }
         }
     }
 
-    private IEnumerator DisableWaterDrop(GameObject waterDrop) {
-        yield return new WaitForSeconds(1);
-        waterDrop.SetActive(false);
+    private void ActivateWaterDrop(GameObject droplet) {
+        var position = transform.position;
+        position.x += Random.Range(-0.2f, 0.2f);
+
+        var dropletRigidBody = droplet.GetComponent<Rigidbody2D>();
+        dropletRigidBody.AddForce(new Vector2(Random.Range(50, -50), Random.Range(10, -10)));
+        dropletRigidBody.gravityScale = Random.Range(2, 5);
+        droplet.transform.position = position;
+        droplet.SetActive(true);
     }
 
-    public void OnNotify(GameEvents eventName) {
-        switch (eventName) {
+    private IEnumerator DisableWaterDrop(GameObject droplet) {
+        yield return new WaitForSeconds(1);
+        droplet.SetActive(false);
+    }
+
+    public void OnNotify(GameEventData eventData) {
+        switch (eventData.name) {
             case GameEvents.FaucetClosing:
                 waterDropInterval *= 2;
                 break;
@@ -94,7 +99,7 @@ public class ShowerHead : MonoBehaviour {
                 break;
 
             default:
-                throw new ArgumentOutOfRangeException(nameof(eventName), eventName, null);
+                throw new ArgumentOutOfRangeException(nameof(eventData.name), eventData.name, null);
         }
     }
 }

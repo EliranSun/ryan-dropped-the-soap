@@ -1,10 +1,10 @@
 using System;
 using UnityEngine;
 
-public class VerticalGestureDetector : ObserverSubject {
+public class VerticalPlungingDetector : ObserverSubject {
+    [SerializeField] private int strongPullThreshold = 8;
     [SerializeField] private float gesturesMagnitudeThreshold = 0.5f; // Threshold of movement difference for a gestures
-    [SerializeField] private float gesturesTimeThreshold = 1f; // Time threshold to reset gestures detection
-    private int _gesturesCount;
+    [SerializeField] private float gesturesTimeThreshold = 2f; // Time threshold to reset gestures detection
     private float _lastGestureTime;
     private Vector3 _lastPosition;
     private Camera _mainCamera;
@@ -21,32 +21,26 @@ public class VerticalGestureDetector : ObserverSubject {
         var mousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
         var gestureMagnitude = (mousePosition - _lastPosition).magnitude;
 
-
         if (gestureMagnitude > gesturesMagnitudeThreshold) {
-            var isVerticalGesture = IsVerticalGesture(_lastPosition, mousePosition);
-
             if (Time.time - _lastGestureTime < gesturesTimeThreshold)
-                if (isVerticalGesture)
-                    _gesturesCount++;
+                if (IsVerticalGesture(_lastPosition, mousePosition))
+                    Notify(GameEvents.Pumping);
 
             _lastGestureTime = Time.time;
         }
 
         _lastPosition = mousePosition;
-
-        // Optionally, you can reset the gestures count after some inactivity
-        if (Time.time - _lastGestureTime > gesturesTimeThreshold && _gesturesCount > 0) _gesturesCount = 0;
     }
 
     private bool IsVerticalGesture(Vector3 lastPosition, Vector3 currentPosition) {
         var xChange = Math.Round(Mathf.Abs(lastPosition.x - currentPosition.x), 2);
         var yChange = Math.Round(Mathf.Abs(lastPosition.y - currentPosition.y), 2);
-        var isBigUpwardsMotions = currentPosition.y - lastPosition.y > 2;
+        var isBigUpwardsMotions = currentPosition.y - lastPosition.y > strongPullThreshold;
         var downwardsMotion = currentPosition.y < lastPosition.y;
-        print($"{yChange}");
         var isVertical = xChange < 1 && yChange > 0.5f;
 
         if (isBigUpwardsMotions) {
+            print("STRONG PULL!");
             Notify(GameEvents.StrongPull);
             Notify(GameEvents.TriggerNonStick);
         }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FaucetRotation : ObserverSubject {
+public class FaucetChange : ObserverSubject {
     [SerializeField] private float rotateNotifyDebounce = 0.5f;
     [SerializeField] private float sensitivity = 1;
     private float _currentAngle;
@@ -13,8 +13,10 @@ public class FaucetRotation : ObserverSubject {
         _mainCamera = Camera.main;
         notifyFaucetOpen = gameObject.AddComponent<Debouncer>();
         notifyFaucetClose = gameObject.AddComponent<Debouncer>();
-        notifyFaucetOpen.Setup(rotateNotifyDebounce, () => Notify(GameEvents.FaucetOpening));
-        notifyFaucetClose.Setup(rotateNotifyDebounce, () => Notify(GameEvents.FaucetClosing));
+        notifyFaucetOpen.Setup(rotateNotifyDebounce, () =>
+            Notify(GameEvents.FaucetOpening));
+        notifyFaucetClose.Setup(rotateNotifyDebounce, () =>
+            Notify(GameEvents.FaucetClosing));
     }
 
     private void OnMouseDown() {

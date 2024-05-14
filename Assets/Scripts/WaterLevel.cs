@@ -1,35 +1,50 @@
-using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class WaterLevel : MonoBehaviour {
+    [SerializeField] private float minWaterLevel;
+    [SerializeField] private float pumpingLevelChange = 0.05f;
     [SerializeField] private float waterLevelChange = 0.01f;
-    [SerializeField] private float waterThrottle;
+
+    [FormerlySerializedAs("waterThrottle")] [SerializeField]
+    private float waterVerticalTransition;
 
     private void Update() {
-        if (waterThrottle == 0)
+        if (waterVerticalTransition == 0)
             return;
 
-        transform.Translate(new Vector2(0, waterThrottle * Time.deltaTime));
+        transform.Translate(new Vector2(0, waterVerticalTransition * Time.deltaTime));
     }
 
-    public void OnNotify(GameEvents eventName) {
-        switch (eventName) {
+    public void OnNotify(GameEventData eventData) {
+        switch (eventData.name) {
+            case GameEvents.Pumping:
+                if (transform.localPosition.y <= minWaterLevel)
+                    break;
+
+                print("Pumping, temp subtract from water level change");
+                StartCoroutine(TemporaryWaterChange(-pumpingLevelChange));
+                break;
+
             case GameEvents.FaucetOpening:
-                waterThrottle += waterLevelChange;
+                print("faucet opening, adding to water level change");
+                waterVerticalTransition += waterLevelChange;
                 break;
 
             case GameEvents.FaucetClosing:
-                if (waterThrottle <= 0)
+                if (waterVerticalTransition <= 0)
                     return;
 
-                waterThrottle -= waterLevelChange;
+                print("Faucet close, subtract from water level change");
+                waterVerticalTransition -= waterLevelChange;
                 break;
-
-            case GameEvents.None:
-                break;
-
-            default:
-                throw new ArgumentOutOfRangeException(nameof(eventName), eventName, null);
         }
+    }
+
+    private IEnumerator TemporaryWaterChange(float levelChange) {
+        waterVerticalTransition += levelChange;
+        yield return new WaitForSeconds(1);
+        waterVerticalTransition -= levelChange;
     }
 }

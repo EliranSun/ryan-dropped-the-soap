@@ -39,11 +39,11 @@ public class DraggableObject : ObserverSubject {
         _isDragging = false;
     }
 
-    public void OnNotify(GameEvents gameEventName) {
-        if (gameEventName == GameEvents.TriggerStick)
-            _isSticky = true;
-
-        if (gameEventName == GameEvents.TriggerNonStick)
-            _isSticky = false;
+    public void OnNotify(GameEventData gameEventData) {
+        _isSticky = gameEventData.name switch {
+            GameEvents.TriggerStick => true,
+            GameEvents.TriggerNonStick => false,
+            _ => _isSticky
+        };
     }
 }

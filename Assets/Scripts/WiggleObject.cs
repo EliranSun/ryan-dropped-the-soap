@@ -4,7 +4,7 @@ using UnityEngine;
 public class WiggleObject : MonoBehaviour {
     [SerializeField] private float scaleMin = 0.95f;
     [SerializeField] private float scaleMax = 1.055f;
-    [SerializeField] private float growth = 1.01f;
+    // [SerializeField] private float growth = 1.01f;
     [SerializeField] private float rate = 0.1f;
     [SerializeField] private float waitBetween = 2;
     private bool _breathIn = true;

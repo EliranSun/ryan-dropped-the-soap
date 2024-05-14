@@ -29,21 +29,21 @@ public class StickyPlungerTrigger : ObserverSubject {
         Notify(GameEvents.TriggerNonStick);
     }
 
-    public void OnNotify(GameEvents gameEventName) {
+    public void OnNotify(GameEventData eventData) {
         if (!_isSticky)
             return;
 
-        if (gameEventName == GameEvents.StrongPull) {
+        if (eventData.name == GameEvents.StrongPull) {
             print("STRONG PULL!");
             _spriteRenderer.sprite = defaultPlungerSprite;
             _rigidbody2D.AddForce(new Vector2(-1, 2) * pullForce);
             return;
         }
 
-        if (gameEventName == GameEvents.DownwardsControllerMotion)
+        if (eventData.name == GameEvents.DownwardsControllerMotion)
             _spriteRenderer.sprite = defaultPlungerSprite;
 
-        if (gameEventName == GameEvents.UpwardsControllerMotion)
+        if (eventData.name == GameEvents.UpwardsControllerMotion)
             _spriteRenderer.sprite = stickyPlungerSprite;
     }
 }
