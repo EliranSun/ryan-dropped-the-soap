@@ -15,6 +15,7 @@ public class SpriteState
 {
     public Sprite sprite;
     public State state;
+    public GameObject gameObjectPosition;
 }
 
 [RequireComponent(typeof(SpriteRenderer))]
@@ -36,8 +37,9 @@ public class RyanChangeStateOnClick : MonoBehaviour {
             _ => State.Dressed
         };
 
-        _spriteRenderer.sprite = spritesStates.First(item => item.state == state).sprite;
+        var newSpriteState = spritesStates.First(item => item.state == state);
+        
+        _spriteRenderer.sprite = newSpriteState.sprite;
+        transform.position = newSpriteState.gameObjectPosition.transform.position;
     }
-
-
 }
