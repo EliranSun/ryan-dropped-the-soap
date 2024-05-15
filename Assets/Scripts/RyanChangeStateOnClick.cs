@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
 public enum State {
@@ -16,9 +17,17 @@ public class SpriteState
     public State state;
 }
 
+[RequireComponent(typeof(SpriteRenderer))]
+
 public class RyanChangeStateOnClick : MonoBehaviour {
     [SerializeField] private State state;
     [SerializeField] private SpriteState[] spritesStates;
+    private SpriteRenderer _spriteRenderer;
+
+    private void Start()
+    {
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+    }
 
     private void OnMouseDown() {
         state = state switch {
@@ -26,6 +35,8 @@ public class RyanChangeStateOnClick : MonoBehaviour {
             State.Shower => State.Dressed,
             _ => State.Dressed
         };
+
+        _spriteRenderer.sprite = spritesStates.First(item => item.state == state).sprite;
     }
 
 
