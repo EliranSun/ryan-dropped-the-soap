@@ -1,8 +1,24 @@
+using System;
 using UnityEngine;
+
+public enum State {
+    None,
+    Dressed,
+    Shower,
+    Drown,
+    Dead
+}
+
+[Serializable]
+public class SpriteState
+{
+    public Sprite sprite;
+    public State state;
+}
 
 public class RyanChangeStateOnClick : MonoBehaviour {
     [SerializeField] private State state;
-    [SerializeField] private Sprite[] stateSprites;
+    [SerializeField] private SpriteState[] spritesStates;
 
     private void OnMouseDown() {
         state = state switch {
@@ -12,10 +28,5 @@ public class RyanChangeStateOnClick : MonoBehaviour {
         };
     }
 
-    private enum State {
-        Dressed,
-        Shower,
-        Drown,
-        Dead
-    }
+
 }
