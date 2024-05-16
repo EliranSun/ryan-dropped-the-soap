@@ -11,7 +11,12 @@ public enum GameEvents {
     UpwardsControllerMotion,
     StrongPull,
     Pumping,
-    TimerUpdate
+    TimerUpdate,
+    InShower,
+    OutOfShower,
+    TimeIsUp,
+    LevelWon,
+    LevelLost
 }
 
 public class GameEventData {

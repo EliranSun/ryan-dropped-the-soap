@@ -22,6 +22,8 @@ public class Timer : ObserverSubject {
             timeInSeconds--;
             UpdateTimerText();
         }
+
+        Notify(GameEvents.TimeIsUp);
     }
 
     private void UpdateTimerText() {
