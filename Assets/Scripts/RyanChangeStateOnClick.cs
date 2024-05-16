@@ -11,22 +11,19 @@ public enum State {
 }
 
 [Serializable]
-public class SpriteState
-{
-    public Sprite sprite;
+public class SpriteState {
     public State state;
     public GameObject gameObjectPosition;
+    public Sprite sprite;
 }
 
 [RequireComponent(typeof(SpriteRenderer))]
-
 public class RyanChangeStateOnClick : MonoBehaviour {
     [SerializeField] private State state;
     [SerializeField] private SpriteState[] spritesStates;
     private SpriteRenderer _spriteRenderer;
 
-    private void Start()
-    {
+    private void Start() {
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -38,8 +35,10 @@ public class RyanChangeStateOnClick : MonoBehaviour {
         };
 
         var newSpriteState = spritesStates.First(item => item.state == state);
-        
+
         _spriteRenderer.sprite = newSpriteState.sprite;
-        transform.position = newSpriteState.gameObjectPosition.transform.position;
+
+        if (newSpriteState.gameObjectPosition)
+            transform.position = newSpriteState.gameObjectPosition.transform.position;
     }
 }

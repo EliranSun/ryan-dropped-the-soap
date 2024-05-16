@@ -25,7 +25,7 @@ public class Timer : ObserverSubject {
     }
 
     private void UpdateTimerText() {
-        var minutes = Mathf.Round((float)timeInSeconds / 60);
+        var minutes = Mathf.Floor((float)timeInSeconds / 60);
         var reminderSeconds = Mathf.Round((float)timeInSeconds % 60);
 
         timerText.text = $"{PrefixTime(minutes)}:{PrefixTime(reminderSeconds)}";
