@@ -11,6 +11,8 @@ public class ShowerHead : MonoBehaviour
     [SerializeField] private int dropletsPerInterval = 1;
     [SerializeField] private int waterDropCount;
     [SerializeField] private float waterDropInterval;
+    [SerializeField] private float dropXForce = -50;
+    [SerializeField] private float dropYForce;
     private readonly List<GameObject> _waterPool = new();
 
     private void Awake()
@@ -83,13 +85,18 @@ public class ShowerHead : MonoBehaviour
         position.x += Random.Range(-0.2f, 0.2f);
 
         var dropletRigidBody = droplet.GetComponent<Rigidbody2D>();
-        dropletRigidBody.AddForce(new Vector2(Random.Range(50, -50), Random.Range(10, -10)));
-        dropletRigidBody.gravityScale = Random.Range(2, 5);
+
+        var randomXForce = Random.Range(dropXForce / 2, dropXForce);
+        var randomYForce = Random.Range(dropYForce / 2, dropYForce);
+
         droplet.transform.position = position;
         droplet.SetActive(true);
+
+        dropletRigidBody.AddForce(new Vector2(randomXForce, randomYForce));
+        dropletRigidBody.gravityScale = Random.Range(1, 5);
     }
 
-    private IEnumerator DisableWaterDrop(GameObject droplet)
+    private static IEnumerator DisableWaterDrop(GameObject droplet)
     {
         yield return new WaitForSeconds(1);
         droplet.SetActive(false);

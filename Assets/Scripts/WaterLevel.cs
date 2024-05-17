@@ -23,12 +23,10 @@ public class WaterLevel : MonoBehaviour {
                 if (transform.localPosition.y <= minWaterLevel)
                     break;
 
-                print("Pumping, temp subtract from water level change");
                 StartCoroutine(TemporaryWaterChange(-pumpingLevelChange));
                 break;
 
             case GameEvents.FaucetOpening:
-                print("faucet opening, adding to water level change");
                 waterVerticalTransition += waterLevelChange;
                 break;
 
@@ -36,7 +34,6 @@ public class WaterLevel : MonoBehaviour {
                 if (waterVerticalTransition <= 0)
                     return;
 
-                print("Faucet close, subtract from water level change");
                 waterVerticalTransition -= waterLevelChange;
                 break;
         }
