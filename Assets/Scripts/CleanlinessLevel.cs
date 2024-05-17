@@ -2,23 +2,26 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
-public class CleanlinessLevel : ObserverSubject {
-    [SerializeField] private int timeToDeath;
+public class CleanlinessLevel : ObserverSubject
+{
     [SerializeField] private TextMeshProUGUI cleanlinessLevelText;
     [SerializeField] private int faucetLevel;
     [SerializeField] private int dirtinessLevel = 100;
-    private bool _isOutOfShower = true;
+    private bool _isInShower;
 
-    private void Start() {
+    private void Start()
+    {
         UpdateText(dirtinessLevel);
         StartCoroutine(Cleaning());
     }
 
-    public void OnNotify(GameEventData gameEventData) {
-        switch (gameEventData.name) {
-            case GameEvents.TimerUpdate:
-                timeToDeath = (int)gameEventData.data;
-                break;
+    public void OnNotify(GameEventData gameEventData)
+    {
+        switch (gameEventData.name)
+        {
+            // case GameEvents.TimerUpdate:
+            //     timeToDeath = (int)gameEventData.data;
+            //     break;
 
             case GameEvents.FaucetOpening when faucetLevel >= 5:
                 return;
@@ -35,36 +38,33 @@ public class CleanlinessLevel : ObserverSubject {
                 break;
 
             case GameEvents.OutOfShower:
-                _isOutOfShower = true;
+                _isInShower = false;
                 break;
 
             case GameEvents.InShower:
-                _isOutOfShower = false;
-                break;
-
-            case GameEvents.TimeIsUp:
-                Invoke(nameof(HandleTimeUp), 3);
+                _isInShower = true;
                 break;
         }
     }
 
-    private void HandleTimeUp() {
-        Notify(dirtinessLevel == 0 ? GameEvents.LevelWon : GameEvents.LevelLost);
-    }
-
-    private IEnumerator Cleaning() {
-        while (dirtinessLevel > 0) {
-            if (faucetLevel == 0 || _isOutOfShower)
-                yield return new WaitUntil(() => faucetLevel > 0 && !_isOutOfShower);
+    private IEnumerator Cleaning()
+    {
+        while (dirtinessLevel > 0)
+        {
+            if (faucetLevel == 0 || !_isInShower)
+                yield return new WaitUntil(() => faucetLevel > 0 && _isInShower);
 
             yield return new WaitForSeconds((float)1 / faucetLevel);
 
             dirtinessLevel--;
             UpdateText(dirtinessLevel);
         }
+
+        Notify(GameEvents.IsClean);
     }
 
-    private void UpdateText(int level) {
+    private void UpdateText(int level)
+    {
         cleanlinessLevelText.text = $"{level}% DIRTY";
     }
 }

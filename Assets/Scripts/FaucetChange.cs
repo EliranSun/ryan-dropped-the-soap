@@ -1,30 +1,51 @@
 using UnityEngine;
 
-public class FaucetChange : ObserverSubject {
+public class FaucetChange : ObserverSubject
+{
     [SerializeField] private float rotateNotifyDebounce = 0.5f;
     [SerializeField] private float sensitivity = 1;
     private float _currentAngle;
+    private int _faucetOpenLevel;
     private Camera _mainCamera;
     private Vector3 _objectCenter;
     private Debouncer notifyFaucetClose;
     private Debouncer notifyFaucetOpen;
 
-    private void Start() {
+    private void Start()
+    {
         _mainCamera = Camera.main;
+
         notifyFaucetOpen = gameObject.AddComponent<Debouncer>();
         notifyFaucetClose = gameObject.AddComponent<Debouncer>();
+
         notifyFaucetOpen.Setup(rotateNotifyDebounce, () =>
-            Notify(GameEvents.FaucetOpening));
+        {
+            if (_faucetOpenLevel > 5)
+                return;
+
+            Notify(GameEvents.FaucetOpening);
+            _faucetOpenLevel++;
+        });
         notifyFaucetClose.Setup(rotateNotifyDebounce, () =>
-            Notify(GameEvents.FaucetClosing));
+        {
+            if (_faucetOpenLevel == 0)
+                return;
+
+            Notify(GameEvents.FaucetClosing);
+            _faucetOpenLevel--;
+
+            if (_faucetOpenLevel == 0) Notify(GameEvents.FaucetClosed);
+        });
     }
 
-    private void OnMouseDown() {
+    private void OnMouseDown()
+    {
         _objectCenter = transform.position;
         _currentAngle = AngleBetweenPoints(_mainCamera.ScreenToWorldPoint(Input.mousePosition), _objectCenter);
     }
 
-    private void OnMouseDrag() {
+    private void OnMouseDrag()
+    {
         var newMousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
         var newAngle = AngleBetweenPoints(newMousePosition, _objectCenter);
         var angleDifference = (newAngle - _currentAngle) * sensitivity;
@@ -40,7 +61,8 @@ public class FaucetChange : ObserverSubject {
         _currentAngle = newAngle;
     }
 
-    private float AngleBetweenPoints(Vector3 a, Vector3 b) {
+    private float AngleBetweenPoints(Vector3 a, Vector3 b)
+    {
         return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
     }
 }

@@ -1,7 +1,8 @@
 using System;
 using UnityEngine;
 
-public enum State {
+public enum State
+{
     None,
     Dressed,
     Shower,
@@ -10,23 +11,28 @@ public enum State {
 }
 
 [Serializable]
-public class GameObjectState {
+public class GameObjectState
+{
     public State state;
     public GameObject gameObject;
     public GameObject position;
 }
 
-public class PlayerChangeState : ObserverSubject {
+public class PlayerChangeState : ObserverSubject
+{
     [SerializeField] private State state;
     [SerializeField] private GameObjectState[] gameObjectStates;
 
-    private void Start() {
+    private void Start()
+    {
         ChangeSprite(state);
         Notify(GameEvents.OutOfShower);
     }
 
-    private void OnMouseDown() {
-        state = state switch {
+    private void OnMouseDown()
+    {
+        state = state switch
+        {
             State.Dressed => State.Shower,
             State.Shower => State.Dressed,
             _ => State.Dressed
@@ -39,19 +45,23 @@ public class PlayerChangeState : ObserverSubject {
         Notify(eventName);
     }
 
-    private void ChangeSprite(State newState) {
+    private void ChangeSprite(State newState)
+    {
         foreach (var gameObjectState in gameObjectStates)
-            if (gameObjectState.state == newState) {
+            if (gameObjectState.state == newState)
+            {
                 gameObjectState.gameObject.SetActive(true);
                 if (gameObjectState.position)
                     transform.position = gameObjectState.position.transform.position;
             }
-            else {
+            else
+            {
                 gameObjectState.gameObject.SetActive(false);
             }
     }
 
-    public void OnNotify(GameEventData eventData) {
+    public void OnNotify(GameEventData eventData)
+    {
         if (eventData.name == GameEvents.LevelLost)
             ChangeSprite(State.Dead);
     }

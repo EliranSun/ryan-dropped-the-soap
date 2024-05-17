@@ -1,11 +1,11 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
-public class ShowerHead : MonoBehaviour {
+public class ShowerHead : MonoBehaviour
+{
     [SerializeField] private Transform waterContainerParent;
     [SerializeField] private GameObject waterDrop;
     [SerializeField] private int dropletsPerInterval = 1;
@@ -13,8 +13,10 @@ public class ShowerHead : MonoBehaviour {
     [SerializeField] private float waterDropInterval;
     private readonly List<GameObject> _waterPool = new();
 
-    private void Awake() {
-        for (var i = 0; i < waterDropCount; i++) {
+    private void Awake()
+    {
+        for (var i = 0; i < waterDropCount; i++)
+        {
             var tmp = Instantiate(waterDrop);
             tmp.SetActive(false);
             tmp.transform.parent = waterContainerParent;
@@ -22,11 +24,13 @@ public class ShowerHead : MonoBehaviour {
         }
     }
 
-    private void Start() {
+    private void Start()
+    {
         StartCoroutine(DropWater());
     }
 
-    private void Update() {
+    private void Update()
+    {
         if (Input.GetKeyDown(KeyCode.R))
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
@@ -34,7 +38,8 @@ public class ShowerHead : MonoBehaviour {
         //     waterDropInterval = GetWaterLevel();
     }
 
-    public GameObject GetPooledWaterDrop() {
+    public GameObject GetPooledWaterDrop()
+    {
         foreach (var drop in _waterPool)
             if (!drop.activeInHierarchy)
                 return drop;
@@ -50,14 +55,17 @@ public class ShowerHead : MonoBehaviour {
     //     return (float)1 / (faucetLevel * 10);
     // }
 
-    private IEnumerator DropWater() {
-        while (GetPooledWaterDrop()) {
+    private IEnumerator DropWater()
+    {
+        while (GetPooledWaterDrop())
+        {
             if (waterDropInterval is <= 0.01f or >= 1)
                 yield return new WaitUntil(() => waterDropInterval is > 0.01f and < 1);
 
             yield return new WaitForSeconds(Random.Range(waterDropInterval, waterDropInterval + 0.1f));
 
-            for (var i = 0; i < dropletsPerInterval; i++) {
+            for (var i = 0; i < dropletsPerInterval; i++)
+            {
                 var newWaterDrop = GetPooledWaterDrop();
 
                 if (!newWaterDrop)
@@ -69,7 +77,8 @@ public class ShowerHead : MonoBehaviour {
         }
     }
 
-    private void ActivateWaterDrop(GameObject droplet) {
+    private void ActivateWaterDrop(GameObject droplet)
+    {
         var position = transform.position;
         position.x += Random.Range(-0.2f, 0.2f);
 
@@ -80,13 +89,16 @@ public class ShowerHead : MonoBehaviour {
         droplet.SetActive(true);
     }
 
-    private IEnumerator DisableWaterDrop(GameObject droplet) {
+    private IEnumerator DisableWaterDrop(GameObject droplet)
+    {
         yield return new WaitForSeconds(1);
         droplet.SetActive(false);
     }
 
-    public void OnNotify(GameEventData eventData) {
-        switch (eventData.name) {
+    public void OnNotify(GameEventData eventData)
+    {
+        switch (eventData.name)
+        {
             case GameEvents.FaucetClosing:
                 waterDropInterval *= 2;
                 break;
@@ -97,9 +109,6 @@ public class ShowerHead : MonoBehaviour {
 
             case GameEvents.None:
                 break;
-
-            default:
-                throw new ArgumentOutOfRangeException(nameof(eventData.name), eventData.name, null);
         }
     }
 }
