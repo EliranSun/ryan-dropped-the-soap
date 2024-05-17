@@ -3,6 +3,7 @@ using UnityEngine;
 public class LevelManager : ObserverSubject
 {
     [SerializeField] private GameObject[] uiElements;
+    
     private bool _isClean;
     private bool _isFaucetClosed = true;
     private bool _isInShower;
