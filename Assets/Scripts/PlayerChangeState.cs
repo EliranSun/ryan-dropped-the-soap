@@ -22,10 +22,11 @@ public class PlayerChangeState : ObserverSubject
 {
     [SerializeField] private State state;
     [SerializeField] private GameObjectState[] gameObjectStates;
+    private bool _isWaterLevel;
 
     private void Start()
     {
-        ChangeSprite(state);
+        ChangePlayerState(state);
         Notify(GameEvents.OutOfShower);
     }
 
@@ -33,19 +34,20 @@ public class PlayerChangeState : ObserverSubject
     {
         state = state switch
         {
-            State.Dressed => State.Shower,
-            State.Shower => State.Dressed,
+            State.Dressed => _isWaterLevel ? State.Drown : State.Shower,
+            State.Shower => _isWaterLevel ? State.Drown : State.Dressed,
             _ => State.Dressed
         };
+
         var eventName = state == State.Shower
             ? GameEvents.InShower
             : GameEvents.OutOfShower;
 
-        ChangeSprite(state);
+        ChangePlayerState(state);
         Notify(eventName);
     }
 
-    private void ChangeSprite(State newState)
+    private void ChangePlayerState(State newState)
     {
         foreach (var gameObjectState in gameObjectStates)
             if (gameObjectState.state == newState)
@@ -62,7 +64,41 @@ public class PlayerChangeState : ObserverSubject
 
     public void OnNotify(GameEventData eventData)
     {
-        if (eventData.name == GameEvents.LevelLost)
-            ChangeSprite(State.Dead);
+        switch (eventData.name)
+        {
+            case GameEvents.WaterLevel:
+            {
+                if (state == State.Dressed)
+                {
+                    ChangePlayerState(State.Drown);
+                    Invoke(nameof(PlayerAvoidableDeath), 5);
+                    break;
+                }
+
+                PlayerAvoidableDeath();
+                break;
+            }
+
+            case GameEvents.LevelLost:
+                ChangePlayerState(State.Dead);
+                break;
+
+            case GameEvents.Drowning:
+            {
+                if (state == State.Dressed)
+                    break;
+
+                ChangePlayerState(State.Drown);
+                break;
+            }
+        }
+    }
+
+    private void PlayerAvoidableDeath()
+    {
+        if (!_isWaterLevel && state == State.Dressed)
+            return;
+
+        ChangePlayerState(State.Dead);
     }
 }

@@ -19,7 +19,9 @@ public enum GameEvents
     LevelWon,
     LevelLost,
     IsClean,
-    FaucetClosed
+    FaucetClosed,
+    Drowning,
+    WaterLevel
 }
 
 public class GameEventData
