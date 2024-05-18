@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class LevelManager : ObserverSubject {
     [SerializeField] private GameObject[] uiElements;
@@ -39,6 +38,7 @@ public class LevelManager : ObserverSubject {
                 _isClean = true;
                 break;
 
+            case GameEvents.Dead:
             case GameEvents.TimeIsUp:
                 Invoke(nameof(HandleTimeUp), 2);
                 break;
@@ -57,11 +57,5 @@ public class LevelManager : ObserverSubject {
             uiElement.gameObject.SetActive(false);
 
         _notifiedLevelResolution = true;
-
-        if (isWin) Invoke(nameof(NextLevel), 5);
-    }
-
-    private void NextLevel() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

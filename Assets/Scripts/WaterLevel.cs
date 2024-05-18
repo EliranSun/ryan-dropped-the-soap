@@ -1,8 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class WaterLevel : ObserverSubject
-{
+public class WaterLevel : ObserverSubject {
     [SerializeField] private float minWaterLevel;
     [SerializeField] private float pumpingLevelChange = 0.05f;
     [SerializeField] private float waterLevelChange = 0.01f;
@@ -19,50 +18,42 @@ public class WaterLevel : ObserverSubject
     private bool _notifiedWaterLevel;
     private Transform _waterTransform;
 
-    private void Start()
-    {
+    private void Start() {
         normalPerspectiveGameObject.SetActive(true);
     }
 
-    private void Update()
-    {
+    private void Update() {
         if (waterVerticalTransition == 0)
             return;
 
         _waterTransform = transform;
 
-        if (_waterTransform.position.y >= perspectiveChangeHeight && !perspectiveChangeGameObject.activeSelf)
-        {
+        if (_waterTransform.position.y >= perspectiveChangeHeight && !perspectiveChangeGameObject.activeSelf) {
             normalPerspectiveGameObject.SetActive(false);
             perspectiveChangeGameObject.SetActive(true);
         }
 
-        if (_waterTransform.position.y >= maxHeight)
-        {
+        if (_waterTransform.position.y >= maxHeight) {
             outsideViewGameObject.SetActive(true);
             _waterTransform = outsideViewGameObject.transform;
         }
 
-        if (_waterTransform.position.y >= drowningWaterLevelHeight && !_notifiedDrowning)
-        {
+        if (_waterTransform.position.y >= drowningWaterLevelHeight && !_notifiedDrowning) {
             Notify(GameEvents.Drowning);
             _notifiedDrowning = true;
         }
 
-        if (_waterTransform.position.y >= waterLevelWaterLevelHeight && !_notifiedWaterLevel)
-        {
+        if (_waterTransform.position.y >= waterLevelWaterLevelHeight && !_notifiedWaterLevel) {
             // this is the outside water _waterTransform which should affect the entire level
-            Notify(GameEvents.WaterLevel);
+            Notify(GameEvents.WaterEverywhere);
             _notifiedWaterLevel = true;
         }
 
         _waterTransform.Translate(new Vector2(0, waterVerticalTransition * Time.deltaTime));
     }
 
-    public void OnNotify(GameEventData eventData)
-    {
-        switch (eventData.name)
-        {
+    public void OnNotify(GameEventData eventData) {
+        switch (eventData.name) {
             case GameEvents.Pumping:
                 if (transform.localPosition.y <= minWaterLevel)
                     break;
@@ -83,8 +74,7 @@ public class WaterLevel : ObserverSubject
         }
     }
 
-    private IEnumerator TemporaryWaterChange(float levelChange)
-    {
+    private IEnumerator TemporaryWaterChange(float levelChange) {
         waterVerticalTransition += levelChange;
         yield return new WaitForSeconds(1);
         waterVerticalTransition -= levelChange;

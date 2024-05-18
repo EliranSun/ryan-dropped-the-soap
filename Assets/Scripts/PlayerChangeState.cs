@@ -1,90 +1,84 @@
 using System;
 using UnityEngine;
 
-public enum State {
-    None,
-    Dressed,
-    Shower,
-    Drown,
+public enum StateName {
+    Default,
+    Showering,
+    Drowning,
     Dead
 }
 
 [Serializable]
-public class GameObjectState {
-    public State state;
-    public GameObject gameObject;
-    public GameObject position;
+public class States {
+    public StateName name;
+    public GameObject spriteObject;
 }
 
 public class PlayerChangeState : ObserverSubject {
     [SerializeField] private GameObject player;
-    [SerializeField] private State state;
-    [SerializeField] private GameObjectState[] gameObjectStates;
-    private bool _isWaterLevel;
+    [SerializeField] private StateName currentState;
+    [SerializeField] private States[] states;
+
+    private bool _isRoomWaterFilled;
+    private bool _isShowerWaterFilled;
 
     private void Start() {
-        ChangePlayerState(state);
-        Notify(GameEvents.OutOfShower);
+        ChangePlayerState(currentState);
     }
 
-    private void OnMouseDown() {
-        state = state switch {
-            State.Dressed => _isWaterLevel ? State.Drown : State.Shower,
-            State.Shower => _isWaterLevel ? State.Drown : State.Dressed,
-            _ => State.Dressed
-        };
-
-        var eventName = state == State.Shower
-            ? GameEvents.InShower
-            : GameEvents.OutOfShower;
-
-        ChangePlayerState(state);
-        Notify(eventName);
-    }
-
-    private void ChangePlayerState(State newState) {
-        foreach (var gameObjectState in gameObjectStates)
-            if (gameObjectState.state == newState) {
-                gameObjectState.gameObject.SetActive(true);
-                if (gameObjectState.position)
-                    player.transform.position = gameObjectState.position.transform.position;
-            }
-            else {
-                gameObjectState.gameObject.SetActive(false);
-            }
+    private void ChangePlayerState(StateName newState) {
+        foreach (var state in states)
+            state.spriteObject.gameObject.SetActive(state.name == newState);
     }
 
     public void OnNotify(GameEventData eventData) {
         switch (eventData.name) {
-            case GameEvents.WaterLevel: {
-                if (state == State.Dressed) {
-                    ChangePlayerState(State.Drown);
+            case GameEvents.FaucetClosed:
+                ChangePlayerState(StateName.Default);
+                break;
+
+            case GameEvents.FaucetOpening:
+                ChangePlayerState(StateName.Showering);
+                break;
+
+            case GameEvents.WaterEverywhere: {
+                _isRoomWaterFilled = true;
+
+                ChangePlayerState(StateName.Drowning);
+                Invoke(nameof(PlayerAvoidableDeath), 5);
+                break;
+            }
+
+            case GameEvents.Drowning: {
+                _isShowerWaterFilled = true;
+
+                if (currentState != StateName.Drowning) {
+                    ChangePlayerState(StateName.Drowning);
                     Invoke(nameof(PlayerAvoidableDeath), 5);
-                    break;
                 }
 
-                PlayerAvoidableDeath();
                 break;
             }
 
             case GameEvents.LevelLost:
-                ChangePlayerState(State.Dead);
+                HandleDeath();
                 break;
-
-            case GameEvents.Drowning: {
-                if (state == State.Dressed)
-                    break;
-
-                ChangePlayerState(State.Drown);
-                break;
-            }
         }
     }
 
     private void PlayerAvoidableDeath() {
-        if (!_isWaterLevel && state == State.Dressed)
-            return;
+        // if (!_isRoomWaterFilled && currentState == StateName.OutOfShower)
+        //     return;
 
-        ChangePlayerState(State.Dead);
+        HandleDeath();
+    }
+
+    private void HandleDeath() {
+        ChangePlayerState(StateName.Dead);
+        Invoke(nameof(NotifyDeath), 5);
+    }
+
+    private void NotifyDeath() {
+        Notify(GameEvents.Dead);
     }
 }

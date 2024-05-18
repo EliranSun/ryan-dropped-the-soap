@@ -20,8 +20,9 @@ public enum GameEvents {
     IsClean,
     FaucetClosed,
     Drowning,
-    WaterLevel,
-    IsScrubbing
+    WaterEverywhere,
+    IsScrubbing,
+    Dead
 }
 
 public class GameEventData {
