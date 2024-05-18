@@ -1,8 +1,7 @@
 using System;
 using UnityEngine;
 
-public enum State
-{
+public enum State {
     None,
     Dressed,
     Shower,
@@ -11,29 +10,25 @@ public enum State
 }
 
 [Serializable]
-public class GameObjectState
-{
+public class GameObjectState {
     public State state;
     public GameObject gameObject;
     public GameObject position;
 }
 
-public class PlayerChangeState : ObserverSubject
-{
+public class PlayerChangeState : ObserverSubject {
+    [SerializeField] private GameObject player;
     [SerializeField] private State state;
     [SerializeField] private GameObjectState[] gameObjectStates;
     private bool _isWaterLevel;
 
-    private void Start()
-    {
+    private void Start() {
         ChangePlayerState(state);
         Notify(GameEvents.OutOfShower);
     }
 
-    private void OnMouseDown()
-    {
-        state = state switch
-        {
+    private void OnMouseDown() {
+        state = state switch {
             State.Dressed => _isWaterLevel ? State.Drown : State.Shower,
             State.Shower => _isWaterLevel ? State.Drown : State.Dressed,
             _ => State.Dressed
@@ -47,29 +42,22 @@ public class PlayerChangeState : ObserverSubject
         Notify(eventName);
     }
 
-    private void ChangePlayerState(State newState)
-    {
+    private void ChangePlayerState(State newState) {
         foreach (var gameObjectState in gameObjectStates)
-            if (gameObjectState.state == newState)
-            {
+            if (gameObjectState.state == newState) {
                 gameObjectState.gameObject.SetActive(true);
                 if (gameObjectState.position)
-                    transform.position = gameObjectState.position.transform.position;
+                    player.transform.position = gameObjectState.position.transform.position;
             }
-            else
-            {
+            else {
                 gameObjectState.gameObject.SetActive(false);
             }
     }
 
-    public void OnNotify(GameEventData eventData)
-    {
-        switch (eventData.name)
-        {
-            case GameEvents.WaterLevel:
-            {
-                if (state == State.Dressed)
-                {
+    public void OnNotify(GameEventData eventData) {
+        switch (eventData.name) {
+            case GameEvents.WaterLevel: {
+                if (state == State.Dressed) {
                     ChangePlayerState(State.Drown);
                     Invoke(nameof(PlayerAvoidableDeath), 5);
                     break;
@@ -83,8 +71,7 @@ public class PlayerChangeState : ObserverSubject
                 ChangePlayerState(State.Dead);
                 break;
 
-            case GameEvents.Drowning:
-            {
+            case GameEvents.Drowning: {
                 if (state == State.Dressed)
                     break;
 
@@ -94,8 +81,7 @@ public class PlayerChangeState : ObserverSubject
         }
     }
 
-    private void PlayerAvoidableDeath()
-    {
+    private void PlayerAvoidableDeath() {
         if (!_isWaterLevel && state == State.Dressed)
             return;
 

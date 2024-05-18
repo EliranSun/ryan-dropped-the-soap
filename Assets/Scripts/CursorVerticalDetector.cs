@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class VerticalPlungingDetector : ObserverSubject {
+public class CursorVerticalDetector : ObserverSubject {
     [SerializeField] private int strongPullThreshold = 8;
     [SerializeField] private float gesturesMagnitudeThreshold = 0.5f; // Threshold of movement difference for a gestures
     [SerializeField] private float gesturesTimeThreshold = 2f; // Time threshold to reset gestures detection
@@ -23,8 +23,7 @@ public class VerticalPlungingDetector : ObserverSubject {
 
         if (gestureMagnitude > gesturesMagnitudeThreshold) {
             if (Time.time - _lastGestureTime < gesturesTimeThreshold)
-                if (IsVerticalGesture(_lastPosition, mousePosition))
-                    Notify(GameEvents.Pumping);
+                OnVerticalGesture(_lastPosition, mousePosition);
 
             _lastGestureTime = Time.time;
         }
@@ -32,24 +31,21 @@ public class VerticalPlungingDetector : ObserverSubject {
         _lastPosition = mousePosition;
     }
 
-    private bool IsVerticalGesture(Vector3 lastPosition, Vector3 currentPosition) {
+    private void OnVerticalGesture(Vector3 lastPosition, Vector3 currentPosition) {
         var xChange = Math.Round(Mathf.Abs(lastPosition.x - currentPosition.x), 2);
         var yChange = Math.Round(Mathf.Abs(lastPosition.y - currentPosition.y), 2);
         var isBigUpwardsMotions = currentPosition.y - lastPosition.y > strongPullThreshold;
         var downwardsMotion = currentPosition.y < lastPosition.y;
         var isVertical = xChange < 1 && yChange > 0.5f;
 
-        if (isBigUpwardsMotions) {
-            print("STRONG PULL!");
-            Notify(GameEvents.StrongPull);
-            Notify(GameEvents.TriggerNonStick);
-        }
+        if (isBigUpwardsMotions)
+            OnBigUpwardsMotion();
 
         if (isVertical)
-            Notify(downwardsMotion
-                ? GameEvents.DownwardsControllerMotion
-                : GameEvents.UpwardsControllerMotion);
-
-        return isVertical;
+            OnVerticalMotion(downwardsMotion);
     }
+
+    protected virtual void OnBigUpwardsMotion() { }
+
+    protected virtual void OnVerticalMotion(bool isDownwardMotion) { }
 }

@@ -2,26 +2,37 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
-public class CleanlinessLevel : ObserverSubject
-{
+public class CleanlinessLevel : ObserverSubject {
     [SerializeField] private TextMeshProUGUI cleanlinessLevelText;
     [SerializeField] private int faucetLevel;
-    [SerializeField] private int dirtinessLevel = 100;
+    [SerializeField] private float dirtinessLevel = 100;
     private bool _isInShower;
+    private int _maxDirtiness;
 
-    private void Start()
-    {
+    private void Start() {
+        _maxDirtiness = (int)dirtinessLevel;
         UpdateText(dirtinessLevel);
-        StartCoroutine(Cleaning());
+        // StartCoroutine(Cleaning());
     }
 
-    public void OnNotify(GameEventData gameEventData)
-    {
-        switch (gameEventData.name)
-        {
+    public void OnNotify(GameEventData gameEventData) {
+        switch (gameEventData.name) {
             // case GameEvents.TimerUpdate:
             //     timeToDeath = (int)gameEventData.data;
             //     break;
+
+            case GameEvents.IsScrubbing:
+                if (_isInShower && faucetLevel > 0) {
+                    if (dirtinessLevel <= 0) {
+                        Notify(GameEvents.IsClean);
+                        break;
+                    }
+
+                    dirtinessLevel -= 0.1f * faucetLevel;
+                    UpdateText(dirtinessLevel);
+                }
+
+                break;
 
             case GameEvents.FaucetOpening when faucetLevel >= 5:
                 return;
@@ -47,10 +58,8 @@ public class CleanlinessLevel : ObserverSubject
         }
     }
 
-    private IEnumerator Cleaning()
-    {
-        while (dirtinessLevel > 0)
-        {
+    private IEnumerator Cleaning() {
+        while (dirtinessLevel > 0) {
             if (faucetLevel == 0 || !_isInShower)
                 yield return new WaitUntil(() => faucetLevel > 0 && _isInShower);
 
@@ -63,8 +72,7 @@ public class CleanlinessLevel : ObserverSubject
         Notify(GameEvents.IsClean);
     }
 
-    private void UpdateText(int level)
-    {
-        cleanlinessLevelText.text = $"{level}% DIRTY";
+    private void UpdateText(float level) {
+        cleanlinessLevelText.text = $"{Mathf.Round(level / _maxDirtiness * 100)}% DIRTY";
     }
 }
