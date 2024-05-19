@@ -36,6 +36,8 @@ public class PlayerChangePosition : ObserverSubject {
             ? GameEvents.InShower
             : GameEvents.OutOfShower);
 
+        GameState.IsPlayerInShower = nextPositionName == PositionName.InShower;
+
         playerTransform.position = positions.First(item => item.name == nextPositionName).position.transform.position;
         _currentPositionName = nextPositionName;
     }

@@ -19,7 +19,7 @@ public enum GameEvents {
     LevelLost,
     IsClean,
     FaucetClosed,
-    Drowning,
+    WaterFilledShower,
     WaterEverywhere,
     IsScrubbing,
     Dead

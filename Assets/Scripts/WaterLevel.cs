@@ -14,8 +14,6 @@ public class WaterLevel : ObserverSubject {
     [SerializeField] private GameObject normalPerspectiveGameObject;
     [SerializeField] private GameObject perspectiveChangeGameObject;
     [SerializeField] private GameObject outsideViewGameObject;
-    private bool _notifiedDrowning;
-    private bool _notifiedWaterLevel;
     private Transform _waterTransform;
 
     private void Start() {
@@ -38,16 +36,21 @@ public class WaterLevel : ObserverSubject {
             _waterTransform = outsideViewGameObject.transform;
         }
 
-        if (_waterTransform.position.y >= drowningWaterLevelHeight && !_notifiedDrowning) {
-            Notify(GameEvents.Drowning);
-            _notifiedDrowning = true;
-        }
+        if (_waterTransform.position.y >= drowningWaterLevelHeight && !GameState.WaterFilledShower)
+            GameState.WaterFilledShower = true;
 
-        if (_waterTransform.position.y >= waterLevelWaterLevelHeight && !_notifiedWaterLevel) {
+        if (_waterTransform.position.y >= waterLevelWaterLevelHeight && !GameState.WaterFilledRoom)
             // this is the outside water _waterTransform which should affect the entire level
-            Notify(GameEvents.WaterEverywhere);
-            _notifiedWaterLevel = true;
-        }
+            GameState.WaterFilledRoom = true;
+
+        if (_waterTransform.position.y <= drowningWaterLevelHeight && GameState.WaterFilledShower)
+            GameState.WaterFilledShower = false;
+
+        if (_waterTransform.position.y <= waterLevelWaterLevelHeight && GameState.WaterFilledRoom)
+            GameState.WaterFilledRoom = false;
+
+        if (_waterTransform.position.y >= maxWaterLevelHeight)
+            return;
 
         _waterTransform.Translate(new Vector2(0, waterVerticalTransition * Time.deltaTime));
     }

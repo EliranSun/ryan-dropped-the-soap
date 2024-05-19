@@ -235,7 +235,7 @@ GameObject:
   - component: {fileID: 22959934}
   - component: {fileID: 22959933}
   m_Layer: 5
-  m_Name: Cleanliness
+  m_Name: Dirty Percentage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -502,7 +502,7 @@ GameObject:
   m_Component:
   - component: {fileID: 123341673}
   m_Layer: 0
-  m_Name: ====== FUNCTIONAL =======
+  m_Name: "\u2699 Functional"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -521,10 +521,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 474921254}
   - {fileID: 352206120}
   - {fileID: 630264463}
   - {fileID: 1323189655}
-  - {fileID: 474921254}
   - {fileID: 1166583344}
   - {fileID: 2143957422}
   m_Father: {fileID: 0}
@@ -746,7 +746,7 @@ Transform:
   m_LocalScale: {x: 1.46, y: 1.46, z: 1.46}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 1269451452}
+  m_Father: {fileID: 1846877050}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &286219081
 GameObject:
@@ -832,7 +832,7 @@ Transform:
   m_LocalScale: {x: 1.46, y: 1.46, z: 1.46}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 1269451452}
+  m_Father: {fileID: 1846877050}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &330030931
 GameObject:
@@ -1349,8 +1349,7 @@ MonoBehaviour:
   uiElements:
   - {fileID: 2059953814}
   - {fileID: 22959931}
-  - {fileID: 1269451451}
-  - {fileID: 1290477108}
+  - {fileID: 1846877049}
 --- !u!1 &477387778
 GameObject:
   m_ObjectHideFlags: 0
@@ -1672,8 +1671,8 @@ GameObject:
   m_Component:
   - component: {fileID: 535667100}
   - component: {fileID: 535667101}
-  - component: {fileID: 535667102}
   - component: {fileID: 535667103}
+  - component: {fileID: 535667104}
   m_Layer: 0
   m_Name: Ryan Position Change Arrow
   m_TagString: Untagged
@@ -1689,7 +1688,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 535667099}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2.82, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1713,60 +1712,6 @@ MonoBehaviour:
   speed: 0.05
   amount: 0.05
   direction: 1
---- !u!114 &535667102
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 535667099}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0a8e83317146d44ab1f5fbeb3227ef1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  observers:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1427969171}
-        m_TargetAssemblyTypeName: CleanlinessLevel, ScriptsAssembly
-        m_MethodName: OnNotify
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 474921255}
-        m_TargetAssemblyTypeName: LevelManager, ScriptsAssembly
-        m_MethodName: OnNotify
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  player: {fileID: 1427969163}
-  state: 1
-  gameObjectStates:
-  - state: 1
-    gameObject: {fileID: 330030931}
-    position: {fileID: 885105956}
-  - state: 2
-    gameObject: {fileID: 791193817}
-    position: {fileID: 902120036}
-  - state: 3
-    gameObject: {fileID: 1244359411}
-    position: {fileID: 0}
-  - state: 4
-    gameObject: {fileID: 1946719252}
-    position: {fileID: 0}
 --- !u!61 &535667103
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1813,6 +1758,51 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.8255577, y: 1.3569981}
   m_EdgeRadius: 0
+--- !u!114 &535667104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535667099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e21487bdb7e1424caddf2d9e20c64eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1427969175}
+        m_TargetAssemblyTypeName: PlayerChangeState, ScriptsAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1427969171}
+        m_TargetAssemblyTypeName: CleanlinessLevel, ScriptsAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  playerTransform: {fileID: 1427969165}
+  positions:
+  - name: 1
+    position: {fileID: 885105956}
+  - name: 2
+    position: {fileID: 902120036}
 --- !u!1 &630264462
 GameObject:
   m_ObjectHideFlags: 0
@@ -2694,7 +2684,7 @@ GameObject:
   m_Component:
   - component: {fileID: 954809925}
   m_Layer: 0
-  m_Name: ====== VISUAL =======
+  m_Name: "\U0001F441 Visual"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3952,42 +3942,6 @@ PolygonCollider2D:
       - {x: -0.050472457, y: 2.0133178}
       - {x: -0.064622074, y: 2.0451543}
   m_UseDelaunayMesh: 0
---- !u!1 &1269451451
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1269451452}
-  m_Layer: 0
-  m_Name: Scene Elements
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1269451452
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1269451451}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1336144125}
-  - {fileID: 1574900795}
-  - {fileID: 1453232061}
-  - {fileID: 286219083}
-  - {fileID: 250181011}
-  m_Father: {fileID: 1846877050}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1290477108
 GameObject:
   m_ObjectHideFlags: 0
@@ -4075,6 +4029,18 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: WaterLevel, ScriptsAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1427969175}
+        m_TargetAssemblyTypeName: PlayerChangeState, ScriptsAssembly
         m_MethodName: OnNotify
         m_Mode: 0
         m_Arguments:
@@ -4349,7 +4315,7 @@ Transform:
   m_LocalScale: {x: -1.46, y: 1.46, z: 1.46}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 1269451452}
+  m_Father: {fileID: 1846877050}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1410305530
 GameObject:
@@ -4500,6 +4466,8 @@ GameObject:
   - component: {fileID: 1427969171}
   - component: {fileID: 1427969173}
   - component: {fileID: 1427969174}
+  - component: {fileID: 1427969176}
+  - component: {fileID: 1427969175}
   m_Layer: 0
   m_Name: Ryan
   m_TagString: Player
@@ -4578,7 +4546,7 @@ Transform:
   - {fileID: 791193818}
   - {fileID: 1244359412}
   - {fileID: 1946719253}
-  m_Father: {fileID: 1846877050}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1427969168
 MonoBehaviour:
@@ -4668,7 +4636,7 @@ MonoBehaviour:
         m_CallState: 2
   cleanlinessLevelText: {fileID: 22959933}
   faucetLevel: 0
-  dirtinessLevel: 200
+  dirtinessLevel: 100
 --- !u!61 &1427969173
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4745,6 +4713,41 @@ MonoBehaviour:
   strongPullThreshold: 8
   gesturesMagnitudeThreshold: 0.5
   gesturesTimeThreshold: 2
+--- !u!114 &1427969175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1427969163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0a8e83317146d44ab1f5fbeb3227ef1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls: []
+  player: {fileID: 1427969163}
+  currentState: 0
+  states:
+  - name: 0
+    spriteObject: {fileID: 330030931}
+  - name: 1
+    spriteObject: {fileID: 791193817}
+  - name: 2
+    spriteObject: {fileID: 1244359411}
+  - name: 3
+    spriteObject: {fileID: 1946719252}
+--- !u!1652712579 &1427969176
+MultiplayerRolesData:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1427969163}
+  m_GameObjectRolesMask: 7
+  m_ComponentsRolesMasks: []
 --- !u!1 &1453232060
 GameObject:
   m_ObjectHideFlags: 0
@@ -4784,7 +4787,7 @@ Transform:
   - {fileID: 806175203}
   - {fileID: 1719311353}
   - {fileID: 1022379918}
-  m_Father: {fileID: 1269451452}
+  m_Father: {fileID: 1846877050}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1535187016
 GameObject:
@@ -4849,7 +4852,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1269451452}
+  m_Father: {fileID: 1846877050}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1618125901
 GameObject:
@@ -5189,7 +5192,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1846877050}
   m_Layer: 0
-  m_Name: '====== OBJECTS ======= '
+  m_Name: "\U0001F4E6 Objects"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5208,12 +5211,15 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1427969165}
-  - {fileID: 1290477109}
-  - {fileID: 1618125903}
-  - {fileID: 893840829}
   - {fileID: 535667100}
-  - {fileID: 1269451452}
+  - {fileID: 893840829}
+  - {fileID: 1290477109}
+  - {fileID: 1336144125}
+  - {fileID: 1574900795}
+  - {fileID: 1453232061}
+  - {fileID: 286219083}
+  - {fileID: 250181011}
+  - {fileID: 1618125903}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1946719252
@@ -5555,6 +5561,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
+  - {fileID: 1427969165}
   - {fileID: 1846877050}
   - {fileID: 123341673}
   - {fileID: 954809925}

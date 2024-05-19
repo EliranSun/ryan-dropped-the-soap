@@ -26,7 +26,46 @@ public class PlayerChangeState : ObserverSubject {
         ChangePlayerState(currentState);
     }
 
+    private void Update() {
+        switch (GameState.WaterFilledShower) {
+            case true when !_isShowerWaterFilled: {
+                _isShowerWaterFilled = true;
+                if (GameState.IsPlayerInShower && currentState != StateName.Drowning) {
+                    ChangePlayerState(StateName.Drowning);
+                    Invoke(nameof(PlayerAvoidableDeath), 5);
+                }
+
+                break;
+            }
+            case false when _isShowerWaterFilled: {
+                _isShowerWaterFilled = false;
+                if (GameState.IsPlayerInShower && currentState == StateName.Drowning)
+                    ChangePlayerState(StateName.Showering);
+                break;
+            }
+        }
+
+        switch (GameState.WaterFilledRoom) {
+            case true when !_isRoomWaterFilled: {
+                _isRoomWaterFilled = true;
+                if (currentState != StateName.Drowning) {
+                    ChangePlayerState(StateName.Drowning);
+                    Invoke(nameof(PlayerAvoidableDeath), 5);
+                }
+
+                break;
+            }
+            case false when _isRoomWaterFilled: {
+                _isRoomWaterFilled = false;
+                if (currentState == StateName.Drowning)
+                    ChangePlayerState(GameState.IsPlayerInShower ? StateName.Showering : StateName.Default);
+                break;
+            }
+        }
+    }
+
     private void ChangePlayerState(StateName newState) {
+        currentState = newState;
         foreach (var state in states)
             state.spriteObject.gameObject.SetActive(state.name == newState);
     }
@@ -34,28 +73,35 @@ public class PlayerChangeState : ObserverSubject {
     public void OnNotify(GameEventData eventData) {
         switch (eventData.name) {
             case GameEvents.FaucetClosed:
+                if (_isRoomWaterFilled)
+                    break;
+
+                if (_isShowerWaterFilled && GameState.IsPlayerInShower)
+                    break;
+
                 ChangePlayerState(StateName.Default);
                 break;
 
             case GameEvents.FaucetOpening:
+                if (_isRoomWaterFilled)
+                    break;
+
+                if (_isShowerWaterFilled && GameState.IsPlayerInShower)
+                    break;
+
                 ChangePlayerState(StateName.Showering);
                 break;
 
-            case GameEvents.WaterEverywhere: {
-                _isRoomWaterFilled = true;
+            case GameEvents.InShower: {
+                if (currentState == StateName.Default && _isShowerWaterFilled)
+                    ChangePlayerState(StateName.Drowning);
 
-                ChangePlayerState(StateName.Drowning);
-                Invoke(nameof(PlayerAvoidableDeath), 5);
                 break;
             }
 
-            case GameEvents.Drowning: {
-                _isShowerWaterFilled = true;
-
-                if (currentState != StateName.Drowning) {
-                    ChangePlayerState(StateName.Drowning);
-                    Invoke(nameof(PlayerAvoidableDeath), 5);
-                }
+            case GameEvents.OutOfShower: {
+                if (currentState == StateName.Drowning && !_isRoomWaterFilled)
+                    ChangePlayerState(StateName.Default);
 
                 break;
             }
@@ -67,8 +113,9 @@ public class PlayerChangeState : ObserverSubject {
     }
 
     private void PlayerAvoidableDeath() {
-        // if (!_isRoomWaterFilled && currentState == StateName.OutOfShower)
-        //     return;
+        if ((!_isRoomWaterFilled && !GameState.IsPlayerInShower) ||
+            (!_isShowerWaterFilled && GameState.IsPlayerInShower))
+            return;
 
         HandleDeath();
     }
