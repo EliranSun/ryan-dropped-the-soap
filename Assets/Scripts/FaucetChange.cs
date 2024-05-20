@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FaucetChange : ObserverSubject {
+public class FaucetChange : MonoBehaviour {
     [SerializeField] private float rotateNotifyDebounce = 0.5f;
     [SerializeField] private float sensitivity = 1;
     private float _currentAngle;
@@ -20,17 +20,18 @@ public class FaucetChange : ObserverSubject {
             if (_faucetOpenLevel > 5)
                 return;
 
-            Notify(GameEvents.FaucetOpening);
+            EventManager.Instance.Publish(GameEvents.FaucetOpening);
             _faucetOpenLevel++;
         });
         notifyFaucetClose.Setup(rotateNotifyDebounce, () => {
             if (_faucetOpenLevel == 0)
                 return;
 
-            Notify(GameEvents.FaucetClosing);
+            EventManager.Instance.Publish(GameEvents.FaucetClosing);
             _faucetOpenLevel--;
 
-            if (_faucetOpenLevel == 0) Notify(GameEvents.FaucetClosed);
+            if (_faucetOpenLevel == 0)
+                EventManager.Instance.Publish(GameEvents.FaucetClosed);
         });
     }
 
