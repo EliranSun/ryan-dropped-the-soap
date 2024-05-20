@@ -23,7 +23,11 @@ public class ArrowCallToAction : MonoBehaviour {
             if (IsBeyondThreshold())
                 direction *= -1;
 
-            transform.Translate(new Vector2(speed * direction * Time.deltaTime, transform.position.y));
+            var translation = new Vector3(speed * direction * Time.deltaTime, 0) {
+                z = transform.position.z
+            };
+
+            transform.Translate(translation);
         }
     }
 

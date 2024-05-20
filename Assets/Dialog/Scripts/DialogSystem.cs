@@ -75,6 +75,10 @@ namespace Dialog.Scripts {
                 case DialogAction.NextLevel:
                     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                     break;
+
+                case DialogAction.RestartLevel:
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                    break;
             }
         }
 

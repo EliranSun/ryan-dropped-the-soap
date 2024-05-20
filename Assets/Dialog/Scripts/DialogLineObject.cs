@@ -5,7 +5,8 @@ namespace Dialog.Scripts {
     [Serializable]
     public enum DialogAction {
         None,
-        NextLevel
+        NextLevel,
+        RestartLevel
     }
 
     [CreateAssetMenu(fileName = "Line", menuName = "Dialogue/Line")]

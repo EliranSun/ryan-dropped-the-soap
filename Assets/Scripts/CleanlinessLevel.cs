@@ -22,6 +22,8 @@ public class CleanlinessLevel : ObserverSubject {
             //     break;
 
             case GameEvents.IsScrubbing:
+                print(
+                    $"GameEvents.IsScrubbing _isInShower {_isInShower}, faucetLevel {faucetLevel}, dirtinessLevel {dirtinessLevel}");
                 if (_isInShower && faucetLevel > 0) {
                     if (dirtinessLevel <= 0) {
                         Notify(GameEvents.IsClean);
