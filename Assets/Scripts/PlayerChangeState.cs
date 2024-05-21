@@ -14,6 +14,7 @@ public enum StateName {
 public class States {
     public StateName name;
     public GameObject spriteObject;
+    public GameObject[] additionalObjects;
     public bool isControlledByPlayer;
 }
 
@@ -75,48 +76,29 @@ public class PlayerChangeState : MonoBehaviour {
             ? _activeStateIndex = 0
             : _activeStateIndex + 1;
 
-        ChangePlayerState(controlledByPlayerStates[_activeStateIndex].name);
+
+        var nextState = controlledByPlayerStates[_activeStateIndex];
+        ChangePlayerState(nextState.name);
     }
 
     private void ChangePlayerState(StateName newState) {
-        currentState = newState;
+        if (newState == StateName.Naked)
+            clothing.gameObject.SetActive(true);
+
+        if (newState == StateName.Default)
+            clothing.gameObject.SetActive(false);
+
         foreach (var state in states)
             state.spriteObject.gameObject.SetActive(state.name == newState);
+
+        currentState = newState;
     }
 
     public void OnNotify(GameEventData eventData) {
         switch (eventData.name) {
-            case GameEvents.FaucetClosed:
-                if (_isRoomWaterFilled)
-                    break;
-
-                if (_isShowerWaterFilled && GameState.IsPlayerInShower)
-                    break;
-
-                ChangePlayerState(StateName.Default);
-                break;
-
-            case GameEvents.FaucetOpening:
-                if (_isRoomWaterFilled)
-                    break;
-
-                if (_isShowerWaterFilled && GameState.IsPlayerInShower)
-                    break;
-
-                ChangePlayerState(StateName.Showering);
-                break;
-
             case GameEvents.InShower: {
                 if (currentState == StateName.Default && _isShowerWaterFilled)
                     ChangePlayerState(StateName.Drowning);
-
-                break;
-            }
-
-            case GameEvents.OutOfShower: {
-                if (currentState == StateName.Drowning && !_isRoomWaterFilled)
-                    ChangePlayerState(StateName.Default);
-
                 break;
             }
 
