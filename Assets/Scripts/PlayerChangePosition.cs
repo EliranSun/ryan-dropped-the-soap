@@ -15,14 +15,14 @@ public class Position {
 }
 
 
-public class PlayerChangePosition : ObserverSubject {
+public class PlayerChangePosition : MonoBehaviour {
     [SerializeField] private Transform playerTransform;
     [SerializeField] private Position[] positions;
     private PositionName _currentPositionName;
 
     private void Start() {
         _currentPositionName = positions[0].name;
-        Notify(GameEvents.OutOfShower);
+        EventManager.Instance.Publish(GameEvents.OutOfShower);
     }
 
     private void OnMouseDown() {
@@ -32,13 +32,16 @@ public class PlayerChangePosition : ObserverSubject {
             _ => PositionName.OutOfShower
         };
 
-        Notify(nextPositionName == PositionName.InShower
+        EventManager.Instance.Publish(nextPositionName == PositionName.InShower
             ? GameEvents.InShower
             : GameEvents.OutOfShower);
 
         GameState.IsPlayerInShower = nextPositionName == PositionName.InShower;
 
-        playerTransform.position = positions.First(item => item.name == nextPositionName).position.transform.position;
+        playerTransform.position = positions
+            .First(item => item.name == nextPositionName)
+            .position.transform.position;
+
         _currentPositionName = nextPositionName;
     }
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : ObserverSubject {
     [SerializeField] private GameObject[] uiElements;
@@ -8,6 +9,11 @@ public class LevelManager : ObserverSubject {
     private bool _isInShower;
     private bool _notifiedLevelResolution;
     private bool _timeIsUp;
+
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.R))
+            RestartLevel();
+    }
 
     public void OnNotify(GameEventData eventData) {
         switch (eventData.name) {
@@ -57,5 +63,9 @@ public class LevelManager : ObserverSubject {
             uiElement.gameObject.SetActive(false);
 
         _notifiedLevelResolution = true;
+    }
+
+    private void RestartLevel() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

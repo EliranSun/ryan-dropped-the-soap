@@ -1,8 +1,10 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
 public enum StateName {
     Default,
+    Naked,
     Showering,
     Drowning,
     Dead
@@ -12,17 +14,21 @@ public enum StateName {
 public class States {
     public StateName name;
     public GameObject spriteObject;
+    public bool isControlledByPlayer;
 }
 
-public class PlayerChangeState : ObserverSubject {
+public class PlayerChangeState : MonoBehaviour {
     [SerializeField] private GameObject player;
+    [SerializeField] private GameObject clothing;
     [SerializeField] private StateName currentState;
     [SerializeField] private States[] states;
-
+    [SerializeField] private States[] controlledByPlayerStates;
+    private int _activeStateIndex;
     private bool _isRoomWaterFilled;
     private bool _isShowerWaterFilled;
 
     private void Start() {
+        controlledByPlayerStates = states.Where(state => state.isControlledByPlayer).ToArray();
         ChangePlayerState(currentState);
     }
 
@@ -62,6 +68,14 @@ public class PlayerChangeState : ObserverSubject {
                 break;
             }
         }
+    }
+
+    private void OnMouseDown() {
+        _activeStateIndex = _activeStateIndex + 1 > controlledByPlayerStates.Length - 1
+            ? _activeStateIndex = 0
+            : _activeStateIndex + 1;
+
+        ChangePlayerState(controlledByPlayerStates[_activeStateIndex].name);
     }
 
     private void ChangePlayerState(StateName newState) {
@@ -126,6 +140,6 @@ public class PlayerChangeState : ObserverSubject {
     }
 
     private void NotifyDeath() {
-        Notify(GameEvents.Dead);
+        EventManager.Instance.Publish(GameEvents.Dead);
     }
 }
