@@ -188,7 +188,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8871560611603436771}
   - component: {fileID: 3161008818529001327}
-  - component: {fileID: 3028049285221470144}
   - component: {fileID: 6437031073560475123}
   - component: {fileID: 1688549446847745444}
   - component: {fileID: 8344404852260076839}
@@ -276,20 +275,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3028049285221470144
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2435450193994795978}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 763447f9d0e697d4e99d3dc2dbf81e7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isActive: 1
-  seconds: 4
 --- !u!114 &6437031073560475123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,6 +333,7 @@ MonoBehaviour:
   cleanlinessLevelText: {fileID: 0}
   faucetLevel: 0
   dirtinessLevel: 100
+  positions: []
 --- !u!61 &8344404852260076839
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -451,18 +437,23 @@ MonoBehaviour:
   states:
   - name: 0
     spriteObject: {fileID: 1298708700994376913}
+    additionalObjects: []
     isControlledByPlayer: 1
   - name: 1
     spriteObject: {fileID: 2995407816861817244}
+    additionalObjects: []
     isControlledByPlayer: 1
   - name: 2
     spriteObject: {fileID: 2472683043199429065}
+    additionalObjects: []
     isControlledByPlayer: 1
   - name: 3
     spriteObject: {fileID: 7135439320521428114}
+    additionalObjects: []
     isControlledByPlayer: 0
   - name: 4
     spriteObject: {fileID: 4666883807985648975}
+    additionalObjects: []
     isControlledByPlayer: 0
   controlledByPlayerStates: []
 --- !u!1 &2472683043199429065
@@ -976,6 +967,7 @@ GameObject:
   - component: {fileID: 4018185551314460098}
   - component: {fileID: 6328594946946810197}
   - component: {fileID: 3422696655057734696}
+  - component: {fileID: 6770618944666111430}
   m_Layer: 0
   m_Name: Ryan is drowning
   m_TagString: Untagged
@@ -1662,3 +1654,17 @@ MonoBehaviour:
   scaleMax: 1.1
   breathAmount: 0.0001
   waitBetweenBreathes: 0
+--- !u!114 &6770618944666111430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7135439320521428114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 763447f9d0e697d4e99d3dc2dbf81e7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isActive: 0
+  seconds: 1
