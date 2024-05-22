@@ -72,6 +72,9 @@ public class PlayerChangeState : MonoBehaviour {
     }
 
     private void OnMouseDown() {
+        if (CursorManager.Instance.IsActionCursor)
+            return;
+
         _activeStateIndex = _activeStateIndex + 1 > controlledByPlayerStates.Length - 1
             ? _activeStateIndex = 0
             : _activeStateIndex + 1;

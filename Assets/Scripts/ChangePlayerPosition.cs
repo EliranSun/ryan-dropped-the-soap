@@ -10,11 +10,13 @@ public class ChangePlayerPosition : MonoBehaviour {
     }
 
     private void OnMouseDown() {
+        if (CursorManager.Instance.IsActionCursor)
+            return;
+
         playerTransform.position = transform.position;
         var playerPositions = GameObject.FindGameObjectsWithTag("PlayerPosition");
 
         foreach (var playerPosition in playerPositions) {
-            print($"name {name} position name: {playerPosition.name}");
             var isSelf = playerPosition.name == name;
             playerPosition.GetComponent<Collider2D>().enabled = !isSelf;
             playerPosition.GetComponent<SpriteRenderer>().enabled = !isSelf;

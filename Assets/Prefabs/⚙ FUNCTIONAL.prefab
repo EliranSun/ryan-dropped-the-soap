@@ -84,7 +84,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6635752196677587904}
-  - component: {fileID: 2630169050004585619}
+  - component: {fileID: 1772796762950850110}
   m_Layer: 0
   m_Name: CursorChanger
   m_TagString: Untagged
@@ -107,7 +107,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3428772008855338635}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2630169050004585619
+--- !u!114 &1772796762950850110
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,12 +116,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1893008547232467928}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b03fd0f24b9384fa29dd9706b452d373, type: 3}
+  m_Script: {fileID: 11500000, guid: d08f674b2deb43a49b88ef1d635654c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursorTexture: {fileID: 2800000, guid: f841e8c3343db4767ae57c5c2f3358d5, type: 3}
-  hotSpot: {x: 0, y: 0}
-  cursorMode: 0
 --- !u!1 &2219978512596372411
 GameObject:
   m_ObjectHideFlags: 0

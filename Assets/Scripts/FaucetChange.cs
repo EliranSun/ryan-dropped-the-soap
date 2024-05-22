@@ -23,6 +23,7 @@ public class FaucetChange : MonoBehaviour {
             EventManager.Instance.Publish(GameEvents.FaucetOpening);
             _faucetOpenLevel++;
         });
+
         notifyFaucetClose.Setup(rotateNotifyDebounce, () => {
             if (_faucetOpenLevel == 0)
                 return;
