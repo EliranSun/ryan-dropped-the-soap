@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 
 public enum StateName {
-    Default,
+    Dressed,
     Naked,
     Showering,
     Drowning,
@@ -21,12 +21,21 @@ public class States {
 public class PlayerChangeState : MonoBehaviour {
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject clothing;
-    [SerializeField] private StateName currentState;
+    [SerializeField] public StateName currentState;
     [SerializeField] private States[] states;
     [SerializeField] private States[] controlledByPlayerStates;
     private int _activeStateIndex;
     private bool _isRoomWaterFilled;
     private bool _isShowerWaterFilled;
+
+    public static PlayerChangeState Instance { get; private set; }
+
+    private void Awake() {
+        if (Instance != null && Instance != this)
+            Destroy(this);
+        else
+            Instance = this;
+    }
 
     private void Start() {
         controlledByPlayerStates = states.Where(state => state.isControlledByPlayer).ToArray();
@@ -44,6 +53,7 @@ public class PlayerChangeState : MonoBehaviour {
 
                 break;
             }
+
             case false when _isShowerWaterFilled: {
                 _isShowerWaterFilled = false;
                 if (GameState.IsPlayerInShower && currentState == StateName.Drowning)
@@ -65,7 +75,7 @@ public class PlayerChangeState : MonoBehaviour {
             case false when _isRoomWaterFilled: {
                 _isRoomWaterFilled = false;
                 if (currentState == StateName.Drowning)
-                    ChangePlayerState(GameState.IsPlayerInShower ? StateName.Showering : StateName.Default);
+                    ChangePlayerState(GameState.IsPlayerInShower ? StateName.Showering : StateName.Dressed);
                 break;
             }
         }
@@ -88,7 +98,7 @@ public class PlayerChangeState : MonoBehaviour {
         if (newState == StateName.Naked)
             clothing.gameObject.SetActive(true);
 
-        if (newState == StateName.Default)
+        if (newState == StateName.Dressed)
             clothing.gameObject.SetActive(false);
 
         foreach (var state in states)
@@ -100,7 +110,7 @@ public class PlayerChangeState : MonoBehaviour {
     public void OnNotify(GameEventData eventData) {
         switch (eventData.name) {
             case GameEvents.InShower: {
-                if (currentState == StateName.Default && _isShowerWaterFilled)
+                if (currentState == StateName.Dressed && _isShowerWaterFilled)
                     ChangePlayerState(StateName.Drowning);
                 break;
             }

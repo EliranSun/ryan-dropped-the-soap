@@ -42,6 +42,9 @@ public class FaucetChange : MonoBehaviour {
     }
 
     private void OnMouseDrag() {
+        if (CursorManager.Instance.IsActionCursor)
+            return;
+
         var newMousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
         var newAngle = AngleBetweenPoints(newMousePosition, _objectCenter);
         var angleDifference = (newAngle - _currentAngle) * sensitivity;

@@ -1,40 +1,59 @@
+using System;
 using System.Collections;
+using System.Linq;
 using TMPro;
 using UnityEngine;
+
+[Serializable]
+public enum PositionName {
+    None,
+    InShower,
+    OutOfShower
+}
+
+[Serializable]
+public class Position {
+    public PositionName name;
+    public Transform transform;
+}
 
 public class CleanlinessLevel : ObserverSubject {
     [SerializeField] private TextMeshProUGUI cleanlinessLevelText;
     [SerializeField] private int faucetLevel;
     [SerializeField] private float dirtinessLevel = 100;
-    private bool _isInShower;
+    [SerializeField] private Position[] positions;
     private int _maxDirtiness;
 
     private void Start() {
         _maxDirtiness = (int)dirtinessLevel;
         UpdateText(dirtinessLevel);
-        // StartCoroutine(Cleaning());
     }
 
     public void OnNotify(GameEventData gameEventData) {
         switch (gameEventData.name) {
-            // case GameEvents.TimerUpdate:
-            //     timeToDeath = (int)gameEventData.data;
-            //     break;
+            case GameEvents.IsScrubbing: {
+                var isInShower = IsInShower();
+                var playerState = GetPlayerState();
+                var throttle = playerState == StateName.Showering ? 1 : 3;
 
-            case GameEvents.IsScrubbing:
-                print(
-                    $"GameEvents.IsScrubbing _isInShower {_isInShower}, faucetLevel {faucetLevel}, dirtinessLevel {dirtinessLevel}");
-                if (_isInShower && faucetLevel > 0) {
-                    if (dirtinessLevel <= 0) {
-                        Notify(GameEvents.IsClean);
-                        break;
-                    }
+                print("" +
+                      $"Player state: {playerState}, " +
+                      $"GameEvents.IsScrubbing _isInShower {isInShower}, " +
+                      $"faucetLevel {faucetLevel}, " +
+                      $"dirtinessLevel {dirtinessLevel}");
 
-                    dirtinessLevel -= 0.1f * faucetLevel;
-                    UpdateText(dirtinessLevel);
+                if (!isInShower || faucetLevel <= 0 || playerState == StateName.Dressed)
+                    break;
+
+                if (dirtinessLevel <= 0) {
+                    Notify(GameEvents.IsClean);
+                    break;
                 }
 
+                dirtinessLevel -= 0.1f * faucetLevel / throttle;
+                UpdateText(dirtinessLevel);
                 break;
+            }
 
             case GameEvents.FaucetOpening when faucetLevel >= 5:
                 return;
@@ -49,21 +68,14 @@ public class CleanlinessLevel : ObserverSubject {
             case GameEvents.FaucetClosing:
                 faucetLevel--;
                 break;
-
-            case GameEvents.OutOfShower:
-                _isInShower = false;
-                break;
-
-            case GameEvents.InShower:
-                _isInShower = true;
-                break;
         }
     }
 
     private IEnumerator Cleaning() {
         while (dirtinessLevel > 0) {
-            if (faucetLevel == 0 || !_isInShower)
-                yield return new WaitUntil(() => faucetLevel > 0 && _isInShower);
+            var isInShower = IsInShower();
+            if (faucetLevel == 0 || !isInShower)
+                yield return new WaitUntil(() => faucetLevel > 0 && isInShower);
 
             yield return new WaitForSeconds((float)1 / faucetLevel);
 
@@ -76,5 +88,16 @@ public class CleanlinessLevel : ObserverSubject {
 
     private void UpdateText(float level) {
         cleanlinessLevelText.text = $"{Mathf.Round(level / _maxDirtiness * 100)}% DIRTY";
+    }
+
+    private bool IsInShower() {
+        var playerTransform = transform;
+        var inShowerTransform = positions.First(position => position.name == PositionName.InShower).transform;
+
+        return Vector2.Distance(playerTransform.position, inShowerTransform.position) < 1;
+    }
+
+    private StateName GetPlayerState() {
+        return PlayerChangeState.Instance.currentState;
     }
 }
