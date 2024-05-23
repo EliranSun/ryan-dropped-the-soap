@@ -6,7 +6,8 @@ namespace Dialog.Scripts {
     public enum DialogAction {
         None,
         NextLevel,
-        RestartLevel
+        RestartLevel,
+        EndZoom
     }
 
     [CreateAssetMenu(fileName = "Line", menuName = "Dialogue/Line")]

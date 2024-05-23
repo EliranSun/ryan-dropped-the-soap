@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelManager : ObserverSubject {
+public class LevelManager : MonoBehaviour {
     [SerializeField] private GameObject[] uiElements;
 
     private bool _isClean;
@@ -57,7 +57,8 @@ public class LevelManager : ObserverSubject {
 
         var isWin = _isClean && !_isInShower && _isFaucetClosed;
 
-        Notify(isWin ? GameEvents.LevelWon : GameEvents.LevelLost);
+        // Notify(isWin ? GameEvents.LevelWon : GameEvents.LevelLost);
+        EventManager.Instance.Publish(isWin ? GameEvents.LevelWon : GameEvents.LevelLost);
 
         foreach (var uiElement in uiElements)
             uiElement.gameObject.SetActive(false);

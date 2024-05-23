@@ -36,12 +36,6 @@ public class CleanlinessLevel : ObserverSubject {
                 var playerState = GetPlayerState();
                 var throttle = playerState == StateName.Showering ? 1 : 3;
 
-                print("" +
-                      $"Player state: {playerState}, " +
-                      $"GameEvents.IsScrubbing _isInShower {isInShower}, " +
-                      $"faucetLevel {faucetLevel}, " +
-                      $"dirtinessLevel {dirtinessLevel}");
-
                 if (!isInShower || faucetLevel <= 0 || playerState == StateName.Dressed)
                     break;
 
