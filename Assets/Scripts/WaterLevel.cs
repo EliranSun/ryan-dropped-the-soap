@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class WaterLevel : ObserverSubject {
+public class WaterLevel : MonoBehaviour {
     [SerializeField] private float minWaterLevel;
     [SerializeField] private float pumpingLevelChange = 0.05f;
     [SerializeField] private float waterLevelChange = 0.01f;
