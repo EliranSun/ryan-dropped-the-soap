@@ -3,6 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(SpriteRenderer))]
 public class ChangePlayerPosition : MonoBehaviour {
+    [SerializeField] private PositionName positionName;
     [SerializeField] private Transform playerTransform;
 
     private void Start() {
@@ -14,17 +15,18 @@ public class ChangePlayerPosition : MonoBehaviour {
             return;
 
         playerTransform.position = transform.position;
-        var playerPositions = GameObject.FindGameObjectsWithTag("PlayerPosition");
+        SetGameState();
+        var positions = GameObject.FindGameObjectsWithTag("PlayerPosition");
 
-        foreach (var playerPosition in playerPositions) {
-            var isSelf = playerPosition.name == name;
-            playerPosition.GetComponent<Collider2D>().enabled = !isSelf;
-            playerPosition.GetComponent<SpriteRenderer>().enabled = !isSelf;
+        foreach (var position in positions) {
+            var isSelf = position.name == name;
+            position.GetComponent<Collider2D>().enabled = !isSelf;
+            position.GetComponent<SpriteRenderer>().enabled = !isSelf;
 
             if (isSelf)
-                DisableChildren(playerPosition);
+                DisableChildren(position);
             else
-                EnableChildren(playerPosition);
+                EnableChildren(position);
         }
     }
 
@@ -35,5 +37,9 @@ public class ChangePlayerPosition : MonoBehaviour {
     // Method to disable all children
     private void DisableChildren(GameObject parent) {
         foreach (Transform child in parent.transform) child.gameObject.SetActive(false);
+    }
+
+    private void SetGameState() {
+        GameState.IsPlayerInShower = positionName == PositionName.InShower;
     }
 }

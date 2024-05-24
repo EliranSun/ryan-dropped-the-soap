@@ -21,7 +21,7 @@ namespace Dialog.Scripts {
                 DialogSystem.Instance.TriggerLine(foundEvent.line);
             }
             catch (InvalidOperationException) {
-                print($"Event {eventData.name} does not have any lines");
+                // print($"Event {eventData.name} does not have any lines");
             }
         }
     }

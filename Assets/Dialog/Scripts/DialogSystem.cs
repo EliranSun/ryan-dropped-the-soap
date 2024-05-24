@@ -1,7 +1,6 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Dialog.Scripts {
     [RequireComponent(typeof(AudioSource))]
@@ -88,11 +87,11 @@ namespace Dialog.Scripts {
         private void HandleAction(DialogAction actionName) {
             switch (actionName) {
                 case DialogAction.NextLevel:
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                    LevelManager.NextLevel();
                     break;
 
                 case DialogAction.RestartLevel:
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                    LevelManager.RestartLevel();
                     break;
 
                 case DialogAction.EndZoom:

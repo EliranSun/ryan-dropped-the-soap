@@ -66,7 +66,13 @@ public class LevelManager : MonoBehaviour {
         _notifiedLevelResolution = true;
     }
 
-    private void RestartLevel() {
+    public static void RestartLevel() {
+        GameState.Reset();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public static void NextLevel() {
+        GameState.Reset();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class CursorVerticalDetector : ObserverSubject {
+public class CursorVerticalDetector : MonoBehaviour {
     [SerializeField] private int strongPullThreshold = 8;
     [SerializeField] private float gesturesMagnitudeThreshold = 0.5f; // Threshold of movement difference for a gestures
     [SerializeField] private float gesturesTimeThreshold = 2f; // Time threshold to reset gestures detection
