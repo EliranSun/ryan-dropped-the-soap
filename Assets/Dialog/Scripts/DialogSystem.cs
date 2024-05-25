@@ -3,10 +3,12 @@ using TMPro;
 using UnityEngine;
 
 namespace Dialog.Scripts {
+    [RequireComponent(typeof(AudioLowPassFilter))]
     [RequireComponent(typeof(AudioSource))]
     public class DialogSystem : MonoBehaviour {
         [SerializeField] private TextMeshProUGUI subtitles;
         [SerializeField] private DialogLineObject currentDialog;
+        private AudioLowPassFilter _audioLowPassFilter;
 
         private AudioSource _audioSource;
         private DialogLineObject _triggeredDialogueLine;
@@ -18,11 +20,12 @@ namespace Dialog.Scripts {
                 Destroy(this);
             else
                 Instance = this;
-
-            _audioSource = GetComponent<AudioSource>();
         }
 
         private void Start() {
+            _audioSource = GetComponent<AudioSource>();
+            _audioLowPassFilter = GetComponent<AudioLowPassFilter>();
+
             UpdateDialogState(currentDialog);
             ReadCurrentLine();
         }
@@ -45,6 +48,7 @@ namespace Dialog.Scripts {
             if (currentDialog.line) {
                 print($"Audio play for {currentDialog}");
                 _audioSource.clip = currentDialog.line;
+                _audioLowPassFilter.enabled = currentDialog.isMuffled;
                 _audioSource.Play();
                 StartCoroutine(CheckAudioEnd());
             }
@@ -94,7 +98,7 @@ namespace Dialog.Scripts {
                     LevelManager.RestartLevel();
                     break;
 
-                case DialogAction.EndZoom:
+                case DialogAction.ZoomOut:
                     Zoom.Instance.endSize = 40;
                     break;
             }

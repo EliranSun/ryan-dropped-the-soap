@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class Zoom : MonoBehaviour {
-    [SerializeField] private int startAfterSeconds = 3;
+    [SerializeField] private float speed = 1;
     [SerializeField] private float startSize = 1;
     [SerializeField] public float endSize = 6;
     private Camera _mainCamera;
@@ -25,12 +25,9 @@ public class Zoom : MonoBehaviour {
     private void Update() {
         _time = Time.time;
 
-        if (_time <= startAfterSeconds)
-            return;
-
         if (_mainCamera.orthographicSize >= endSize)
             return;
 
-        _mainCamera.orthographicSize += Time.deltaTime;
+        _mainCamera.orthographicSize += Time.deltaTime * speed;
     }
 }

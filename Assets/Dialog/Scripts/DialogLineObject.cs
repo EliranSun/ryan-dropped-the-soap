@@ -7,7 +7,7 @@ namespace Dialog.Scripts {
         None,
         NextLevel,
         RestartLevel,
-        EndZoom
+        ZoomOut
     }
 
     [CreateAssetMenu(fileName = "Line", menuName = "Dialogue/Line")]
@@ -17,5 +17,6 @@ namespace Dialog.Scripts {
         public DialogLineObject nextDialogueLine;
         public float waitAfterLine;
         public DialogAction afterLineAction;
+        public bool isMuffled = true;
     }
 }

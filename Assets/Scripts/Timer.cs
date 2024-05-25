@@ -2,13 +2,13 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
-public class Timer : ObserverSubject {
+public class Timer : MonoBehaviour {
     [SerializeField] private int timeInSeconds = 60;
     [SerializeField] private TextMeshProUGUI timerText;
     private bool _shouldStopTimer;
 
     private void Start() {
-        Notify(GameEvents.TimerUpdate, timeInSeconds);
+        EventManager.Instance.Publish(GameEvents.TimerUpdate, timeInSeconds);
         UpdateTimerText();
         StartCoroutine(CountDown());
     }
@@ -24,7 +24,7 @@ public class Timer : ObserverSubject {
             UpdateTimerText();
         }
 
-        Notify(GameEvents.TimeIsUp);
+        EventManager.Instance.Publish(GameEvents.TimeIsUp);
     }
 
     private void UpdateTimerText() {
