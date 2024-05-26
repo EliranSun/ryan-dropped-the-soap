@@ -4,7 +4,8 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class ChangePlayerPosition : MonoBehaviour {
     [SerializeField] private PositionName positionName;
-    [SerializeField] private Transform playerTransform;
+    [SerializeField] private GameObject playerTransform;
+    [SerializeField] private int orderInLayer;
 
     private void Start() {
         EventManager.Instance.Publish(GameEvents.OutOfShower);
@@ -14,8 +15,17 @@ public class ChangePlayerPosition : MonoBehaviour {
         if (CursorManager.Instance.IsActionCursor)
             return;
 
-        playerTransform.position = transform.position;
+        PositionPlayer();
         SetGameState();
+        TogglePositionIndicationGameObjects();
+    }
+
+    private void PositionPlayer() {
+        playerTransform.transform.position = transform.position;
+        playerTransform.GetComponentInChildren<SpriteRenderer>().sortingOrder = orderInLayer;
+    }
+
+    private void TogglePositionIndicationGameObjects() {
         var positions = GameObject.FindGameObjectsWithTag("PlayerPosition");
 
         foreach (var position in positions) {
@@ -31,12 +41,14 @@ public class ChangePlayerPosition : MonoBehaviour {
     }
 
     private void EnableChildren(GameObject parent) {
-        foreach (Transform child in parent.transform) child.gameObject.SetActive(true);
+        foreach (Transform child in parent.transform)
+            child.gameObject.SetActive(true);
     }
 
     // Method to disable all children
     private void DisableChildren(GameObject parent) {
-        foreach (Transform child in parent.transform) child.gameObject.SetActive(false);
+        foreach (Transform child in parent.transform)
+            child.gameObject.SetActive(false);
     }
 
     private void SetGameState() {

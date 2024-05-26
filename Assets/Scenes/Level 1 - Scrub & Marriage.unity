@@ -882,7 +882,7 @@ PrefabInstance:
     - target: {fileID: 1873376783642750233, guid: b1e9fa8dee1e92649848615c690674c9, type: 3}
       propertyPath: playerTransform
       value: 
-      objectReference: {fileID: 1427969176}
+      objectReference: {fileID: 8896928677596744446}
     - target: {fileID: 2042159085737464651, guid: b1e9fa8dee1e92649848615c690674c9, type: 3}
       propertyPath: m_Name
       value: Center
@@ -1758,7 +1758,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9b783bdca634614c9e011e8875a5026, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startAfterSeconds: 2
+  speed: 1
   startSize: 0.1
   endSize: 6
 --- !u!1 &694595261
@@ -3291,7 +3291,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1688549446847745444, guid: 03ced3b2bea96a347bedb6bf965c1f06, type: 3}
   m_PrefabInstance: {fileID: 8896928677596744445}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 8896928677596744446}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d29c73f746edfcb4eb81086f598a06de, type: 3}
@@ -3302,17 +3302,12 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3284844361841885877, guid: 03ced3b2bea96a347bedb6bf965c1f06, type: 3}
   m_PrefabInstance: {fileID: 8896928677596744445}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 8896928677596744446}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0a8e83317146d44ab1f5fbeb3227ef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &1427969176 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8871560611603436771, guid: 03ced3b2bea96a347bedb6bf965c1f06, type: 3}
-  m_PrefabInstance: {fileID: 8896928677596744445}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1453232060
 GameObject:
   m_ObjectHideFlags: 0
@@ -4610,7 +4605,7 @@ PrefabInstance:
     - target: {fileID: 1873376783642750233, guid: b1e9fa8dee1e92649848615c690674c9, type: 3}
       propertyPath: playerTransform
       value: 
-      objectReference: {fileID: 1427969176}
+      objectReference: {fileID: 8896928677596744446}
     - target: {fileID: 2042159085737464651, guid: b1e9fa8dee1e92649848615c690674c9, type: 3}
       propertyPath: m_Name
       value: InShower
@@ -4857,6 +4852,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1215514384}
   m_SourcePrefab: {fileID: 100100000, guid: 03ced3b2bea96a347bedb6bf965c1f06, type: 3}
+--- !u!1 &8896928677596744446 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2435450193994795978, guid: 03ced3b2bea96a347bedb6bf965c1f06, type: 3}
+  m_PrefabInstance: {fileID: 8896928677596744445}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
