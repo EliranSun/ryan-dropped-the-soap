@@ -1027,6 +1027,7 @@ GameObject:
   - component: {fileID: 1234161140}
   - component: {fileID: 1234161141}
   - component: {fileID: 1234161142}
+  - component: {fileID: 1234161143}
   m_Layer: 5
   m_Name: Soap
   m_TagString: Untagged
@@ -1230,6 +1231,18 @@ SpriteMask:
   m_IsCustomRangeActive: 0
   m_SpriteSortPoint: 0
   m_MaskSource: 0
+--- !u!114 &1234161143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234161137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5366abd73a5e31f4db17521a632c53d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2024896502
 GameObject:
   m_ObjectHideFlags: 0

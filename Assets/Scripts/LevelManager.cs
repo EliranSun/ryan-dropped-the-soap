@@ -10,10 +10,6 @@ public class LevelManager : MonoBehaviour {
     private bool _notifiedLevelResolution;
     private bool _timeIsUp;
 
-    private void Start() {
-        SceneManager.LoadScene("Don't drop the soap", LoadSceneMode.Additive);
-    }
-
     private void Update() {
         if (Input.GetKeyDown(KeyCode.R))
             RestartLevel();

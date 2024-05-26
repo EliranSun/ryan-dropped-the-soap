@@ -21,10 +21,12 @@ namespace Hands.Scripts {
             if (Input.GetMouseButtonDown(mouseButtonKeyCode)) {
                 if (IsSoapGrabbable()) {
                     print("GRAB!");
+                    SoapManager.IsGrabbingSoap = true;
                     GrabHand();
                     return;
                 }
 
+                SoapManager.IsGrabbingSoap = false;
                 print("MISSED!");
                 if (IsSoapCloseBy())
                     LaunchSoapInRandomDirection();
@@ -32,8 +34,10 @@ namespace Hands.Scripts {
                 CloseHand();
             }
 
-            if (Input.GetMouseButtonUp(mouseButtonKeyCode))
+            if (Input.GetMouseButtonUp(mouseButtonKeyCode)) {
+                SoapManager.IsGrabbingSoap = false;
                 OpenHand();
+            }
         }
 
         private void CloseHand() {
