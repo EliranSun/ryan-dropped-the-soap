@@ -1146,7 +1146,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1298708700994376913, guid: 03ced3b2bea96a347bedb6bf965c1f06, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1688549446847745444, guid: 03ced3b2bea96a347bedb6bf965c1f06, type: 3}
       propertyPath: cleanlinessLevelText
@@ -1174,7 +1174,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5302645272417607224, guid: 03ced3b2bea96a347bedb6bf965c1f06, type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6347184523317074284, guid: 03ced3b2bea96a347bedb6bf965c1f06, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1198,11 +1198,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8871560611603436771, guid: 03ced3b2bea96a347bedb6bf965c1f06, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.04
+      value: 8.33
       objectReference: {fileID: 0}
     - target: {fileID: 8871560611603436771, guid: 03ced3b2bea96a347bedb6bf965c1f06, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.68
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 8871560611603436771, guid: 03ced3b2bea96a347bedb6bf965c1f06, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2495,7 +2495,7 @@ GameObject:
   - component: {fileID: 1256253149}
   - component: {fileID: 1256253150}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Opaque White Glass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2558,7 +2558,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.27058825}
   m_FlipX: 0
@@ -2991,14 +2991,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 990086387701581823, guid: a9665a892e47cfd4ab966c41c6b5beb4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2219978512596372411, guid: a9665a892e47cfd4ab966c41c6b5beb4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2261742841618763813, guid: a9665a892e47cfd4ab966c41c6b5beb4, type: 3}
       propertyPath: timerText
       value: 
       objectReference: {fileID: 94970144}
+    - target: {fileID: 2304971940743482699, guid: a9665a892e47cfd4ab966c41c6b5beb4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2361260245084603450, guid: a9665a892e47cfd4ab966c41c6b5beb4, type: 3}
       propertyPath: subtitles
       value: 
       objectReference: {fileID: 1814098552}
+    - target: {fileID: 2484958702772304999, guid: a9665a892e47cfd4ab966c41c6b5beb4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2760136455291849394, guid: a9665a892e47cfd4ab966c41c6b5beb4, type: 3}
       propertyPath: 'uiElements.Array.data[0]'
       value: 
@@ -3007,6 +3023,10 @@ PrefabInstance:
       propertyPath: 'uiElements.Array.data[1]'
       value: 
       objectReference: {fileID: 1846877049}
+    - target: {fileID: 3125194407047017206, guid: a9665a892e47cfd4ab966c41c6b5beb4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3428772008855338635, guid: a9665a892e47cfd4ab966c41c6b5beb4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.6727986
@@ -3047,9 +3067,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4231753160686262960, guid: a9665a892e47cfd4ab966c41c6b5beb4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5037161160990464115, guid: a9665a892e47cfd4ab966c41c6b5beb4, type: 3}
       propertyPath: m_Name
       value: "\u2699 FUNCTIONAL"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5037161160990464115, guid: a9665a892e47cfd4ab966c41c6b5beb4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3541,7 +3569,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 4889811108948567267, guid: 5614141078efd7c4f8effdd44c407ce8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.15686275}
   m_FlipX: 0

@@ -14,7 +14,6 @@ public enum StateName {
 public class States {
     public StateName name;
     public GameObject spriteObject;
-    public GameObject[] additionalObjects;
     public bool isControlledByPlayer;
 }
 
@@ -23,8 +22,8 @@ public class PlayerChangeState : MonoBehaviour {
     [SerializeField] private GameObject clothing;
     [SerializeField] public StateName currentState;
     [SerializeField] private States[] states;
-    [SerializeField] private States[] controlledByPlayerStates;
     private int _activeStateIndex;
+    private States[] _controlledByPlayerStates;
     private bool _isDead;
     private bool _isRoomWaterFilled;
     private bool _isShowerWaterFilled;
@@ -39,7 +38,7 @@ public class PlayerChangeState : MonoBehaviour {
     }
 
     private void Start() {
-        controlledByPlayerStates = states.Where(state => state.isControlledByPlayer).ToArray();
+        _controlledByPlayerStates = states.Where(state => state.isControlledByPlayer).ToArray();
         ChangePlayerState(currentState);
     }
 
@@ -47,8 +46,7 @@ public class PlayerChangeState : MonoBehaviour {
         if (_isDead)
             return;
 
-
-        if (GameState.WaterFilledRoom) {
+        if (GameState.WaterFilledRoom && currentState != StateName.Drowning) {
             ChangePlayerState(StateName.Drowning);
             return;
         }
@@ -59,57 +57,23 @@ public class PlayerChangeState : MonoBehaviour {
             return;
         }
 
-        if (currentState == StateName.Drowning)
+        if ((!GameState.WaterFilledRoom && !GameState.IsPlayerInShower && currentState == StateName.Drowning) ||
+            (!GameState.WaterFilledShower && GameState.IsPlayerInShower && currentState == StateName.Drowning))
             ChangePlayerState(StateName.Naked);
-
-        // case true when !_isShowerWaterFilled: {
-
-        //     _isShowerWaterFilled = true;
-        //     if (GameState.IsPlayerInShower && currentState != StateName.Drowning) {
-        //         ChangePlayerState(StateName.Drowning);
-        //         Invoke(nameof(PlayerAvoidableDeath), 5);
-        //     }
-        //
-        //     break;
-        // }
-        //
-        // case false when _isShowerWaterFilled: {
-        //     _isShowerWaterFilled = false;
-        //     if (GameState.IsPlayerInShower && currentState == StateName.Drowning)
-        //         ChangePlayerState(StateName.Showering);
-        //     break;
-        // }
-
-
-        // switch (GameState.WaterFilledRoom) {
-        //     case true when !_isRoomWaterFilled: {
-        //         _isRoomWaterFilled = true;
-        //         if (currentState != StateName.Drowning) {
-        //             ChangePlayerState(StateName.Drowning);
-        //             Invoke(nameof(PlayerAvoidableDeath), 5);
-        //         }
-        //
-        //         break;
-        //     }
-        //     case false when _isRoomWaterFilled: {
-        //         _isRoomWaterFilled = false;
-        //         if (currentState == StateName.Drowning)
-        //             ChangePlayerState(GameState.IsPlayerInShower ? StateName.Showering : StateName.Dressed);
-        //         break;
-        //     }
-        // }
     }
 
     private void OnMouseDown() {
+        print("CLICK");
+
         if (CursorManager.Instance.IsActionCursor)
             return;
 
-        _activeStateIndex = _activeStateIndex + 1 > controlledByPlayerStates.Length - 1
+        _activeStateIndex = _activeStateIndex + 1 > _controlledByPlayerStates.Length - 1
             ? _activeStateIndex = 0
             : _activeStateIndex + 1;
 
 
-        var nextState = controlledByPlayerStates[_activeStateIndex];
+        var nextState = _controlledByPlayerStates[_activeStateIndex];
         ChangePlayerState(nextState.name);
     }
 
