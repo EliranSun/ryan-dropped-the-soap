@@ -62,7 +62,7 @@ public class PlayerChangeState : MonoBehaviour {
             ChangePlayerState(StateName.Naked);
     }
 
-    private void OnMouseDown() {
+    public void OnClick() {
         print("CLICK");
 
         if (CursorManager.Instance.IsActionCursor)
@@ -84,8 +84,12 @@ public class PlayerChangeState : MonoBehaviour {
         if (newState == StateName.Dressed)
             clothing.gameObject.SetActive(false);
 
-        foreach (var state in states)
-            state.spriteObject.gameObject.SetActive(state.name == newState);
+        foreach (var state in states) {
+            var shouldActivate = state.name == newState;
+            state.spriteObject.gameObject.GetComponent<Rigidbody2D>().gravityScale = shouldActivate ? 1 : 0;
+            state.spriteObject.gameObject.GetComponent<SpriteRenderer>().enabled = shouldActivate;
+            state.spriteObject.gameObject.GetComponent<Collider2D>().enabled = shouldActivate;
+        }
 
         currentState = newState;
     }

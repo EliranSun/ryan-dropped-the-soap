@@ -22,7 +22,10 @@ public class ChangePlayerPosition : MonoBehaviour {
 
     private void PositionPlayer() {
         playerTransform.transform.position = transform.position;
-        playerTransform.GetComponentInChildren<SpriteRenderer>().sortingOrder = orderInLayer;
+        var spriteRenderers = playerTransform.GetComponentsInChildren<SpriteRenderer>();
+
+        foreach (var spriteRenderer in spriteRenderers)
+            spriteRenderer.sortingOrder = orderInLayer;
     }
 
     private void TogglePositionIndicationGameObjects() {

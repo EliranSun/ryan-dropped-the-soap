@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7418074996840809955}
   - component: {fileID: 396868285525917834}
   - component: {fileID: 7384361782471379867}
+  - component: {fileID: 5512507445570340890}
   m_Layer: 0
   m_Name: Ryan is poor
   m_TagString: Untagged
@@ -44,7 +45,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1298708700994376913}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -79,7 +80,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 6884929123220145167, guid: 938344477de1ad64aa160f8e983f5a83, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -98,7 +99,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1298708700994376913}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -248,6 +249,18 @@ SpriteMask:
   m_IsCustomRangeActive: 0
   m_SpriteSortPoint: 0
   m_MaskSource: 1
+--- !u!114 &5512507445570340890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1298708700994376913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63730c297580f6743bf1c8a792dcbedb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2435450193994795978
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,7 +272,6 @@ GameObject:
   - component: {fileID: 8871560611603436771}
   - component: {fileID: 6437031073560475123}
   - component: {fileID: 1688549446847745444}
-  - component: {fileID: 8344404852260076839}
   - component: {fileID: 5330342347102596457}
   - component: {fileID: 851596396705302257}
   - component: {fileID: 3284844361841885877}
@@ -349,52 +361,6 @@ MonoBehaviour:
   faucetLevel: 0
   dirtinessLevel: 100
   positions: []
---- !u!61 &8344404852260076839
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2435450193994795978}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.8357143, y: 6.6107144}
-    newSize: {x: 8.491587, y: 21.93}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1.8357143, y: 6.6107144}
-  m_EdgeRadius: 0
 --- !u!114 &5330342347102596457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -437,37 +403,19 @@ MonoBehaviour:
   states:
   - name: 0
     spriteObject: {fileID: 1298708700994376913}
-    additionalObjects: []
     isControlledByPlayer: 1
   - name: 1
     spriteObject: {fileID: 2995407816861817244}
-    additionalObjects: []
     isControlledByPlayer: 1
   - name: 2
     spriteObject: {fileID: 2472683043199429065}
-    additionalObjects: []
     isControlledByPlayer: 1
   - name: 3
     spriteObject: {fileID: 7135439320521428114}
-    additionalObjects: []
     isControlledByPlayer: 0
   - name: 4
     spriteObject: {fileID: 4666883807985648975}
-    additionalObjects: []
     isControlledByPlayer: 0
-  controlledByPlayerStates:
-  - name: 0
-    spriteObject: {fileID: 1298708700994376913}
-    additionalObjects: []
-    isControlledByPlayer: 1
-  - name: 1
-    spriteObject: {fileID: 2995407816861817244}
-    additionalObjects: []
-    isControlledByPlayer: 1
-  - name: 2
-    spriteObject: {fileID: 2472683043199429065}
-    additionalObjects: []
-    isControlledByPlayer: 1
 --- !u!1 &2472683043199429065
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,13 +431,14 @@ GameObject:
   - component: {fileID: 3500212650571624942}
   - component: {fileID: 8035419100929946849}
   - component: {fileID: 5113403983472057808}
+  - component: {fileID: 2999825918741008}
   m_Layer: 0
   m_Name: Ryan is showering
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7493117389730413540
 Transform:
   m_ObjectHideFlags: 0
@@ -512,7 +461,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2472683043199429065}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -547,7 +496,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: -7709294582632356625, guid: 20fa33806f2953e40af86a54ac075cec, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -566,7 +515,7 @@ CapsuleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2472683043199429065}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -707,6 +656,18 @@ SpriteMask:
   m_IsCustomRangeActive: 0
   m_SpriteSortPoint: 0
   m_MaskSource: 1
+--- !u!114 &2999825918741008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2472683043199429065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63730c297580f6743bf1c8a792dcbedb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2995407816861817244
 GameObject:
   m_ObjectHideFlags: 0
@@ -720,6 +681,9 @@ GameObject:
   - component: {fileID: 891947085508711912}
   - component: {fileID: 9162903531278142997}
   - component: {fileID: 7476748846690887731}
+  - component: {fileID: 9014905964987817739}
+  - component: {fileID: 4643920672447435901}
+  - component: {fileID: 7768687181216688759}
   m_Layer: 0
   m_Name: Ryan naked
   m_TagString: Untagged
@@ -749,7 +713,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2995407816861817244}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -784,7 +748,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: -6620188775570611330, guid: a673625369fe18b49999d110d07f7cad, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -803,7 +767,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2995407816861817244}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -885,6 +849,86 @@ MonoBehaviour:
   scaleMax: 1.01
   breathAmount: 0.0001
   waitBetweenBreathes: 2
+--- !u!114 &9014905964987817739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2995407816861817244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63730c297580f6743bf1c8a792dcbedb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4643920672447435901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2995407816861817244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 763447f9d0e697d4e99d3dc2dbf81e7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isActive: 1
+  seconds: 3
+--- !u!331 &7768687181216688759
+SpriteMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2995407816861817244}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10758, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 0}
+  m_MaskAlphaCutoff: 0.2
+  m_FrontSortingLayerID: 0
+  m_BackSortingLayerID: 0
+  m_FrontSortingLayer: 0
+  m_BackSortingLayer: 0
+  m_FrontSortingOrder: 0
+  m_BackSortingOrder: 0
+  m_IsCustomRangeActive: 0
+  m_SpriteSortPoint: 0
+  m_MaskSource: 1
 --- !u!1 &4666883807985648975
 GameObject:
   m_ObjectHideFlags: 0
