@@ -21,6 +21,7 @@ public class PlayerChangeState : MonoBehaviour {
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject clothing;
     [SerializeField] public StateName currentState;
+    [SerializeField] private bool isSlipperyShower;
     [SerializeField] private States[] states;
     private int _activeStateIndex;
     private States[] _controlledByPlayerStates;
@@ -63,8 +64,6 @@ public class PlayerChangeState : MonoBehaviour {
     }
 
     public void OnClick() {
-        print("CLICK");
-
         if (CursorManager.Instance.IsActionCursor)
             return;
 
@@ -86,9 +85,20 @@ public class PlayerChangeState : MonoBehaviour {
 
         foreach (var state in states) {
             var shouldActivate = state.name == newState;
-            state.spriteObject.gameObject.GetComponent<Rigidbody2D>().gravityScale = shouldActivate ? 1 : 0;
-            state.spriteObject.gameObject.GetComponent<SpriteRenderer>().enabled = shouldActivate;
-            state.spriteObject.gameObject.GetComponent<Collider2D>().enabled = shouldActivate;
+            var spriteObject = state.spriteObject.gameObject;
+
+            spriteObject.GetComponent<Rigidbody2D>().gravityScale = shouldActivate ? 1 : 0;
+            spriteObject.GetComponent<SpriteRenderer>().enabled = shouldActivate;
+
+            spriteObject.TryGetComponent(out PolygonCollider2D hasSlipperyCollider);
+
+            if (hasSlipperyCollider && isSlipperyShower && GameState.IsPlayerInShower) {
+                spriteObject.GetComponent<Collider2D>().enabled = false;
+                spriteObject.GetComponent<PolygonCollider2D>().enabled = shouldActivate;
+            }
+            else {
+                spriteObject.GetComponent<Collider2D>().enabled = shouldActivate;
+            }
         }
 
         currentState = newState;
