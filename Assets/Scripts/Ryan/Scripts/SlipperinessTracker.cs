@@ -46,5 +46,10 @@ namespace Ryan.Scripts {
             currentRotation.z = zRotation * 180.0f; // Convert to degrees
             target.transform.rotation = Quaternion.Euler(currentRotation);
         }
+
+        public void OnNotify(GameEventData eventData) {
+            if (eventData.name == GameEvents.PlayerChangeState)
+                target = (GameObject)eventData.data;
+        }
     }
 }

@@ -15,6 +15,14 @@ public class StickyPlungerTrigger : ObserverSubject {
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
+    private void OnEnable() {
+        Debug.Log($"{gameObject.name} - Script Enabled");
+    }
+
+    private void OnDisable() {
+        Debug.Log($"{gameObject.name} - Script Disabled");
+    }
+
     private void OnTriggerEnter2D(Collider2D other) {
         transform.rotation = Quaternion.Euler(0, 0, 0);
         _rigidbody2D.constraints = RigidbodyConstraints2D.FreezeRotation;

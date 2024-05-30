@@ -87,14 +87,22 @@ public class PlayerChangeState : MonoBehaviour {
             var shouldActivate = state.name == newState;
             var spriteObject = state.spriteObject.gameObject;
 
+            if (shouldActivate)
+                EventManager.Instance.Publish(GameEvents.PlayerChangeState, spriteObject);
+
             spriteObject.GetComponent<Rigidbody2D>().gravityScale = shouldActivate ? 1 : 0;
             spriteObject.GetComponent<SpriteRenderer>().enabled = shouldActivate;
 
             spriteObject.TryGetComponent(out PolygonCollider2D hasSlipperyCollider);
 
+            // print($"Slippery collider? {hasSlipperyCollider} " +
+            //       $"- slippery shower? {isSlipperyShower}" +
+            //       $"- is in shower? {GameState.IsPlayerInShower}");
+
             if (hasSlipperyCollider && isSlipperyShower && GameState.IsPlayerInShower) {
                 spriteObject.GetComponent<Collider2D>().enabled = false;
                 spriteObject.GetComponent<PolygonCollider2D>().enabled = shouldActivate;
+                // spriteObject.GetComponent<HeadColliderController>().head.SetActive(shouldActivate);
             }
             else {
                 spriteObject.GetComponent<Collider2D>().enabled = shouldActivate;
