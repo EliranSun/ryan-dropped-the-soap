@@ -2642,6 +2642,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 15.03
       objectReference: {fileID: 0}
+    - target: {fileID: 6269340018401102753, guid: ed89737f53c9cc0469b0824722c594b6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2658,7 +2662,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1012664451}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a7eca91b050014545bf478e29b612653, type: 3}
   m_Name: 
@@ -3771,6 +3775,10 @@ PrefabInstance:
       propertyPath: subtitles
       value: 
       objectReference: {fileID: 1814098552}
+    - target: {fileID: 2470030125850160763, guid: a9665a892e47cfd4ab966c41c6b5beb4, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2484958702772304999, guid: a9665a892e47cfd4ab966c41c6b5beb4, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -3838,6 +3846,14 @@ PrefabInstance:
     - target: {fileID: 5037161160990464115, guid: a9665a892e47cfd4ab966c41c6b5beb4, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6275880332822417833, guid: a9665a892e47cfd4ab966c41c6b5beb4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 10.646426
+      objectReference: {fileID: 0}
+    - target: {fileID: 6275880332822417833, guid: a9665a892e47cfd4ab966c41c6b5beb4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.86
       objectReference: {fileID: 0}
     - target: {fileID: 8964328387618305738, guid: a9665a892e47cfd4ab966c41c6b5beb4, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.size
