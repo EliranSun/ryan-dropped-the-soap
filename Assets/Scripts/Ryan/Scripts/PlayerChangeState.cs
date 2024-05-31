@@ -2,7 +2,8 @@ using System;
 using System.Linq;
 using UnityEngine;
 
-public enum StateName {
+public enum StateName
+{
     Dressed,
     Naked,
     Showering,
@@ -11,13 +12,15 @@ public enum StateName {
 }
 
 [Serializable]
-public class States {
+public class States
+{
     public StateName name;
     public GameObject spriteObject;
     public bool isControlledByPlayer;
 }
 
-public class PlayerChangeState : MonoBehaviour {
+public class PlayerChangeState : MonoBehaviour
+{
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject clothing;
     [SerializeField] public StateName currentState;
@@ -31,28 +34,33 @@ public class PlayerChangeState : MonoBehaviour {
 
     public static PlayerChangeState Instance { get; private set; }
 
-    private void Awake() {
+    private void Awake()
+    {
         if (Instance != null && Instance != this)
             Destroy(this);
         else
             Instance = this;
     }
 
-    private void Start() {
+    private void Start()
+    {
         _controlledByPlayerStates = states.Where(state => state.isControlledByPlayer).ToArray();
         ChangePlayerState(currentState);
     }
 
-    private void Update() {
+    private void Update()
+    {
         if (_isDead)
             return;
 
-        if (GameState.WaterFilledRoom && currentState != StateName.Drowning) {
+        if (GameState.WaterFilledRoom && currentState != StateName.Drowning)
+        {
             ChangePlayerState(StateName.Drowning);
             return;
         }
 
-        if (GameState.WaterFilledShower && GameState.IsPlayerInShower) {
+        if (GameState.WaterFilledShower && GameState.IsPlayerInShower)
+        {
             ChangePlayerState(StateName.Drowning);
             Invoke(nameof(PlayerAvoidableDeath), 5);
             return;
@@ -63,7 +71,8 @@ public class PlayerChangeState : MonoBehaviour {
             ChangePlayerState(StateName.Naked);
     }
 
-    public void OnClick() {
+    public void OnClick()
+    {
         if (CursorManager.Instance.IsActionCursor)
             return;
 
@@ -76,21 +85,23 @@ public class PlayerChangeState : MonoBehaviour {
         ChangePlayerState(nextState.name);
     }
 
-    private void ChangePlayerState(StateName newState) {
+    private void ChangePlayerState(StateName newState)
+    {
         if (newState == StateName.Naked)
             clothing.gameObject.SetActive(true);
 
         if (newState == StateName.Dressed)
             clothing.gameObject.SetActive(false);
 
-        foreach (var state in states) {
+        foreach (var state in states)
+        {
             var shouldActivate = state.name == newState;
             var spriteObject = state.spriteObject.gameObject;
 
             if (shouldActivate)
                 EventManager.Instance.Publish(GameEvents.PlayerChangeState, spriteObject);
 
-            spriteObject.GetComponent<Rigidbody2D>().gravityScale = shouldActivate ? 1 : 0;
+            spriteObject.GetComponent<Rigidbody2D>().gravityScale = shouldActivate ? 0.2f : 0;
             spriteObject.GetComponent<SpriteRenderer>().enabled = shouldActivate;
 
             spriteObject.TryGetComponent(out PolygonCollider2D hasSlipperyCollider);
@@ -99,12 +110,14 @@ public class PlayerChangeState : MonoBehaviour {
             //       $"- slippery shower? {isSlipperyShower}" +
             //       $"- is in shower? {GameState.IsPlayerInShower}");
 
-            if (hasSlipperyCollider && isSlipperyShower && GameState.IsPlayerInShower) {
+            if (hasSlipperyCollider && isSlipperyShower && GameState.IsPlayerInShower)
+            {
                 spriteObject.GetComponent<Collider2D>().enabled = false;
                 spriteObject.GetComponent<PolygonCollider2D>().enabled = shouldActivate;
                 // spriteObject.GetComponent<HeadColliderController>().head.SetActive(shouldActivate);
             }
-            else {
+            else
+            {
                 spriteObject.GetComponent<Collider2D>().enabled = shouldActivate;
             }
         }
@@ -112,9 +125,12 @@ public class PlayerChangeState : MonoBehaviour {
         currentState = newState;
     }
 
-    public void OnNotify(GameEventData eventData) {
-        switch (eventData.name) {
-            case GameEvents.InShower: {
+    public void OnNotify(GameEventData eventData)
+    {
+        switch (eventData.name)
+        {
+            case GameEvents.InShower:
+            {
                 if (currentState == StateName.Dressed && _isShowerWaterFilled)
                     ChangePlayerState(StateName.Drowning);
                 break;
@@ -126,13 +142,16 @@ public class PlayerChangeState : MonoBehaviour {
         }
     }
 
-    private void PlayerAvoidableDeath() {
-        if (!GameState.IsPlayerInShower && !GameState.WaterFilledRoom) {
+    private void PlayerAvoidableDeath()
+    {
+        if (!GameState.IsPlayerInShower && !GameState.WaterFilledRoom)
+        {
             print("Player outside shower and room is not filled with water");
             return;
         }
 
-        if (GameState.IsPlayerInShower && !GameState.WaterFilledShower) {
+        if (GameState.IsPlayerInShower && !GameState.WaterFilledShower)
+        {
             print("Player inside shower and shower is not filled with water");
             return;
         }
@@ -140,13 +159,15 @@ public class PlayerChangeState : MonoBehaviour {
         HandleDeath();
     }
 
-    private void HandleDeath() {
+    private void HandleDeath()
+    {
         ChangePlayerState(StateName.Dead);
         _isDead = true;
         Invoke(nameof(NotifyDeath), 5);
     }
 
-    private void NotifyDeath() {
+    private void NotifyDeath()
+    {
         EventManager.Instance.Publish(GameEvents.Dead);
     }
 }

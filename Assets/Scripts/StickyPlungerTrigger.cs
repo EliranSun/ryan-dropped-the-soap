@@ -17,16 +17,6 @@ public class StickyPlungerTrigger : ObserverSubject
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    private void OnEnable()
-    {
-        Debug.Log($"{gameObject.name} - Script Enabled");
-    }
-
-    private void OnDisable()
-    {
-        Debug.Log($"{gameObject.name} - Script Disabled");
-    }
-
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (!other.gameObject.CompareTag("Plunger Sticky"))
