@@ -35,7 +35,7 @@ namespace Ryan.Scripts {
         }
 
         public void OnValueChange(float scrollbarValue) {
-            if (!_isHolding)
+            if (!_isHolding || !GameState.IsPlayerInShower)
                 return;
 
             _targetRigidBody.velocity = Vector2.zero;
@@ -45,11 +45,6 @@ namespace Ryan.Scripts {
             var currentRotation = target.transform.rotation.eulerAngles;
             currentRotation.z = zRotation * 180.0f; // Convert to degrees
             target.transform.rotation = Quaternion.Euler(currentRotation);
-        }
-
-        public void OnNotify(GameEventData eventData) {
-            if (eventData.name == GameEvents.PlayerChangeState)
-                target = (GameObject)eventData.data;
         }
     }
 }

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 20fa33806f2953e40af86a54ac075cec
+guid: 938344477de1ad64aa160f8e983f5a83
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7709294582632356625
-    second: ryan-shower copy_0
+      213: 6884929123220145167
+    second: ryan-poor_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 320
+  spritePixelsToUnits: 280
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -70,7 +70,7 @@ TextureImporter:
   swizzle: 50462976
   cookieLightType: 0
   platformSettings:
-  - serializedVersion: 4
+  - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -83,8 +83,21 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
+  - serializedVersion: 3
     buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -100,32 +113,30 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ryan-shower copy_0
+      name: ryan-poor_0
       rect:
         serializedVersion: 2
-        x: 156
+        x: 0
         y: 0
-        width: 849
-        height: 2193
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 514
+        height: 1851
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fe4ea553c65130590800000000000000
-      internalID: -7709294582632356625
+      spriteID: f0447454f8e2c8f50800000000000000
+      internalID: 6884929123220145167
       vertices: []
       indices: 
       edges: []
       weights: []
     outline: []
-    customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 6b8fedae0bbb5fb41b3b6d63cdb10c0d
     internalID: 0
     vertices: []
     indices: 
@@ -133,7 +144,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ryan-shower copy_0: -7709294582632356625
+      ryan-poor_0: 6884929123220145167
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

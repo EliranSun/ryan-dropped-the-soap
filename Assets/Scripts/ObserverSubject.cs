@@ -23,7 +23,9 @@ public enum GameEvents {
     WaterEverywhere,
     IsScrubbing,
     Dead,
-    PlayerChangeState
+
+    // PlayerChangeState,
+    HitByConcrete
 }
 
 public class GameEventData {
