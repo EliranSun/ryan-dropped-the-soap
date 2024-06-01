@@ -20,10 +20,8 @@ public class CleanlinessLevel : MonoBehaviour {
     [SerializeField] private TextMeshProUGUI cleanlinessLevelText;
     [SerializeField] private int faucetLevel;
     [SerializeField] private float dirtinessLevel = 100;
-    private int _maxDirtiness;
 
     private void Start() {
-        _maxDirtiness = (int)dirtinessLevel;
         UpdateText(dirtinessLevel);
     }
 
@@ -41,6 +39,7 @@ public class CleanlinessLevel : MonoBehaviour {
                     break;
                 }
 
+                print($"FL: {faucetLevel} THR: {throttle}");
                 dirtinessLevel -= 0.1f * faucetLevel / throttle;
                 UpdateText(dirtinessLevel);
                 break;
@@ -63,7 +62,7 @@ public class CleanlinessLevel : MonoBehaviour {
     }
 
     private void UpdateText(float level) {
-        cleanlinessLevelText.text = $"{Mathf.Round(level / _maxDirtiness * 100)}% DIRTY";
+        cleanlinessLevelText.text = $"{Mathf.Round(level)}% DIRTY";
     }
 
     private StateName GetPlayerState() {
