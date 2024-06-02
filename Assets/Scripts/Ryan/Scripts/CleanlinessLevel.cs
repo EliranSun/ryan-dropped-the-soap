@@ -28,6 +28,9 @@ public class CleanlinessLevel : MonoBehaviour {
     public void OnNotify(GameEventData gameEventData) {
         switch (gameEventData.name) {
             case GameEvents.IsScrubbing: {
+                if (!CursorManager.Instance.IsScrubbingCursor)
+                    return;
+
                 var playerState = GetPlayerState();
                 var throttle = playerState == StateName.Showering ? 1 : 3;
 
@@ -39,7 +42,6 @@ public class CleanlinessLevel : MonoBehaviour {
                     break;
                 }
 
-                print($"FL: {faucetLevel} THR: {throttle}");
                 dirtinessLevel -= 0.1f * faucetLevel / throttle;
                 UpdateText(dirtinessLevel);
                 break;

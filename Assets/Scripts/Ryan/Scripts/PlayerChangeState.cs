@@ -69,7 +69,7 @@ namespace Ryan.Scripts {
         }
 
         public void OnMouseDown() {
-            if (CursorManager.Instance.IsActionCursor)
+            if (CursorManager.Instance.IsScrubbingCursor)
                 return;
 
             _activeStateIndex = _activeStateIndex + 1 > _controlledByPlayerStates.Length - 1
