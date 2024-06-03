@@ -8,7 +8,7 @@ namespace Hands.Scripts {
         public static bool IsSoapDropped;
 
         private void Start() {
-            SceneManager.LoadScene("Don't drop the soap", LoadSceneMode.Additive);
+            // SceneManager.LoadScene("Don't drop the soap", LoadSceneMode.Additive);
         }
 
         private void Update() {
