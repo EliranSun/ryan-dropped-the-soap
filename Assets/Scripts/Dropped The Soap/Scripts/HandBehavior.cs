@@ -1,6 +1,7 @@
+using Hands.Scripts;
 using UnityEngine;
 
-namespace Hands.Scripts {
+namespace Dropped_The_Soap.Scripts {
     public class HandBehavior : MonoBehaviour {
         [SerializeField] private GameObject openHandObject;
         [SerializeField] private GameObject closedHandObject;

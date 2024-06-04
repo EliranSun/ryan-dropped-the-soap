@@ -25,7 +25,9 @@ public enum GameEvents {
     Dead,
 
     // PlayerChangeState,
-    HitByConcrete
+    HitByConcrete,
+    SoapMiniGameWon,
+    SoapMiniGameLost
 }
 
 public class GameEventData {

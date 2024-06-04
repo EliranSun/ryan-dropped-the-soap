@@ -1,6 +1,7 @@
+using Hands.Scripts;
 using UnityEngine;
 
-namespace Hands.Scripts {
+namespace Dropped_The_Soap.Scripts {
     public class DroppedTheSoap : MonoBehaviour {
         private bool _isSoapDropped;
 

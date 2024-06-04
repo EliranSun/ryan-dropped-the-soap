@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour {
     [SerializeField] private GameObject[] uiElements;
+    [SerializeField] private CursorChanger soapCursor;
 
     private bool _isClean;
     private bool _isFaucetClosed = true;
@@ -47,6 +48,13 @@ public class LevelManager : MonoBehaviour {
             case GameEvents.Dead:
             case GameEvents.TimeIsUp:
                 Invoke(nameof(HandleTimeUp), 2);
+                break;
+
+            case GameEvents.SoapMiniGameWon:
+                soapCursor.TriggerGrab();
+                break;
+
+            case GameEvents.SoapMiniGameLost:
                 break;
         }
     }

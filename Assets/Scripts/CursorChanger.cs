@@ -6,6 +6,8 @@ public class CursorChanger : MonoBehaviour {
     [SerializeField] private Texture2D defaultTexture;
     [SerializeField] private Vector2 hotSpot = Vector2.zero;
     [SerializeField] private CursorMode cursorMode = CursorMode.Auto;
+    [SerializeField] private GameObject indicatorGameObject;
+    [SerializeField] private bool triggeredDirectly = true;
     private SpriteRenderer _spriteRenderer;
 
     private void Start() {
@@ -28,23 +30,31 @@ public class CursorChanger : MonoBehaviour {
 
     private void Update() {
         if (Input.GetMouseButtonDown(1))
-            if (CanDropCursorItem()) {
-                Cursor.SetCursor(defaultTexture, hotSpot, cursorMode);
-                CursorManager.Instance.CurrentTexture = defaultTexture;
-                CursorManager.Instance.IsScrubbingCursor = false;
-                _spriteRenderer.enabled = true;
-            }
+            if (CursorManager.Instance.CanDropItem(cursorTexture))
+                CursorManager.Instance.DropItem(_spriteRenderer, indicatorGameObject);
     }
 
     private void OnMouseDown() {
-        Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
-        CursorManager.Instance.CurrentTexture = cursorTexture;
-        CursorManager.Instance.IsScrubbingCursor = true;
-        _spriteRenderer.enabled = false;
+        if (!triggeredDirectly)
+            return;
+
+        CursorManager.Instance.GrabItem(
+            cursorTexture,
+            hotSpot,
+            cursorMode,
+            _spriteRenderer,
+            indicatorGameObject
+        );
     }
 
-    private bool CanDropCursorItem() {
-        return cursorTexture && CursorManager.Instance.CurrentTexture == cursorTexture;
+    public void TriggerGrab() {
+        CursorManager.Instance.GrabItem(
+            cursorTexture,
+            hotSpot,
+            cursorMode,
+            _spriteRenderer,
+            indicatorGameObject
+        );
     }
 
     private Texture2D ResizeTexture(Texture2D original, int newWidth, int newHeight) {
