@@ -28,7 +28,12 @@ public class CleanlinessLevel : MonoBehaviour {
     public void OnNotify(GameEventData gameEventData) {
         switch (gameEventData.name) {
             case GameEvents.IsScrubbing: {
-                if (CursorManager.Instance.IsSoapCursor) return;
+                print("GameEvents.IsScrubbing");
+
+                if (CursorManager.Instance.IsSoapCursor) {
+                    print("Bubbling up!");
+                    return;
+                }
 
                 if (!CursorManager.Instance.IsScrubbingCursor)
                     return;

@@ -42,8 +42,11 @@ public class CursorManager : MonoBehaviour {
         Cursor.SetCursor(defaultTexture, Vector2.zero, CursorMode.Auto);
 
         // TODO: Enums
-        if (Instance.CurrentTexture.name == "soap-cursor")
+        if (Instance.CurrentTexture.name == "soap-cursor") {
             Instance.IsSoapCursor = false;
+            EventManager.Instance.Publish(GameEvents.SoapDropped);
+        }
+
         if (Instance.CurrentTexture.name == "sponge-cursor")
             Instance.IsScrubbingCursor = false;
 

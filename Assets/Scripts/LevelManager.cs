@@ -4,7 +4,8 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour {
     [SerializeField] private GameObject[] uiElements;
     [SerializeField] private CursorChanger soapCursor;
-
+    [SerializeField] private Camera mainCamera;
+    [SerializeField] private Camera zoomedInCamera;
     private bool _isClean;
     private bool _isFaucetClosed = true;
     private bool _isInShower;
@@ -52,6 +53,8 @@ public class LevelManager : MonoBehaviour {
 
             case GameEvents.SoapMiniGameWon:
                 soapCursor.TriggerGrab();
+                mainCamera.enabled = false;
+                zoomedInCamera.enabled = true;
                 break;
 
             case GameEvents.SoapMiniGameLost:
