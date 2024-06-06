@@ -3,6 +3,7 @@ using UnityEngine;
 public class CursorManager : MonoBehaviour {
     [SerializeField] private Texture2D defaultTexture;
     public Texture2D CurrentTexture { get; set; }
+    public bool IsActionCursor { get; set; }
     public bool IsScrubbingCursor { get; set; }
     public bool IsSoapCursor { get; set; }
     public static CursorManager Instance { get; private set; }
@@ -24,7 +25,7 @@ public class CursorManager : MonoBehaviour {
         Cursor.SetCursor(texture, hotSpot, cursorMode);
         Instance.CurrentTexture = texture;
 
-        print($"Textura name {texture.name}");
+        print($"texture name {texture.name}");
 
         // TODO: Enums
         if (texture.name == "soap-cursor")
@@ -32,7 +33,9 @@ public class CursorManager : MonoBehaviour {
         if (texture.name == "sponge-cursor")
             Instance.IsScrubbingCursor = true;
 
+        Instance.IsActionCursor = true;
         sprite.enabled = false;
+        EventManager.Instance.Publish(GameEvents.PickedItem);
 
         if (indicator)
             indicator.SetActive(false);
@@ -50,7 +53,9 @@ public class CursorManager : MonoBehaviour {
         if (Instance.CurrentTexture.name == "sponge-cursor")
             Instance.IsScrubbingCursor = false;
 
+        Instance.IsActionCursor = false;
         Instance.CurrentTexture = defaultTexture;
+        EventManager.Instance.Publish(GameEvents.DroppedItem);
 
         sprite.enabled = true;
 

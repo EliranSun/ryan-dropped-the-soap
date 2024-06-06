@@ -69,13 +69,13 @@ namespace Ryan.Scripts {
         }
 
         public void OnMouseDown() {
-            if (CursorManager.Instance.IsScrubbingCursor)
+            print($"Change state! {CursorManager.Instance.IsActionCursor}");
+            if (CursorManager.Instance.IsActionCursor)
                 return;
 
             _activeStateIndex = _activeStateIndex + 1 > _controlledByPlayerStates.Length - 1
                 ? _activeStateIndex = 0
                 : _activeStateIndex + 1;
-
 
             var nextState = _controlledByPlayerStates[_activeStateIndex];
             ChangePlayerState(nextState.name);
@@ -87,32 +87,6 @@ namespace Ryan.Scripts {
 
             if (newState == StateName.Dressed)
                 clothing.gameObject.SetActive(false);
-
-            // foreach (var state in states) {
-            //     var shouldActivate = state.name == newState;
-            //     var spriteObject = state.spriteObject.gameObject;
-            //
-            //     if (shouldActivate)
-            //         EventManager.Instance.Publish(GameEvents.PlayerChangeState, spriteObject);
-            //
-            //     spriteObject.GetComponent<Rigidbody2D>().gravityScale = shouldActivate ? 0.2f : 0;
-            //     spriteObject.GetComponent<SpriteRenderer>().enabled = shouldActivate;
-            //
-            //     spriteObject.TryGetComponent(out PolygonCollider2D hasSlipperyCollider);
-            //
-            //     // print($"Slippery collider? {hasSlipperyCollider} " +
-            //     //       $"- slippery shower? {isSlipperyShower}" +
-            //     //       $"- is in shower? {GameState.IsPlayerInShower}");
-            //
-            //     if (hasSlipperyCollider && isSlipperyShower && GameState.IsPlayerInShower) {
-            //         spriteObject.GetComponent<Collider2D>().enabled = false;
-            //         spriteObject.GetComponent<PolygonCollider2D>().enabled = shouldActivate;
-            //         // spriteObject.GetComponent<HeadColliderController>().head.SetActive(shouldActivate);
-            //     }
-            //     else {
-            //         spriteObject.GetComponent<Collider2D>().enabled = shouldActivate;
-            //     }
-            // }
 
             _spriteRenderer.sprite = states.First(state => state.name == newState).spriteRenderer;
 

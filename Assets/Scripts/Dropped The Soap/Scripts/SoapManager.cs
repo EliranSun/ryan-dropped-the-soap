@@ -21,11 +21,11 @@ namespace Dropped_The_Soap.Scripts {
                 Invoke(nameof(RestartMiniGame), 3);
             }
 
-            if (_time > 0 && Time.time - _time > 3 && IsGrabbingSoap) {
+            if (_time > 0 && Time.time - _time > 1 && IsGrabbingSoap) {
                 _time = 0;
                 IsGrabbingSoap = false;
                 if (textIndication) textIndication.text = "GRABBED IT!";
-                Invoke(nameof(CloseSoapMiniGame), 3);
+                Invoke(nameof(CloseSoapMiniGame), 1f);
             }
         }
 

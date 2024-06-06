@@ -23,12 +23,12 @@ public enum GameEvents {
     WaterEverywhere,
     IsScrubbing,
     Dead,
-
-    // PlayerChangeState,
     HitByConcrete,
     SoapMiniGameWon,
     SoapMiniGameLost,
-    SoapDropped
+    SoapDropped,
+    PickedItem,
+    DroppedItem
 }
 
 public class GameEventData {

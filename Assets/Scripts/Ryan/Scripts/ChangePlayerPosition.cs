@@ -14,7 +14,7 @@ namespace Ryan.Scripts {
         }
 
         private void OnMouseDown() {
-            if (CursorManager.Instance.IsScrubbingCursor)
+            if (CursorManager.Instance.IsActionCursor)
                 return;
 
             PositionPlayer();

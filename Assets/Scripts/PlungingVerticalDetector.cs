@@ -1,6 +1,6 @@
 public class PlungingVerticalDetector : CursorVerticalDetector {
     protected override void OnVerticalMotion(bool isDownwardMotion) {
-        if (CursorManager.Instance.IsScrubbingCursor)
+        if (CursorManager.Instance.IsActionCursor)
             return;
 
         base.OnVerticalMotion(isDownwardMotion);
@@ -12,7 +12,7 @@ public class PlungingVerticalDetector : CursorVerticalDetector {
     }
 
     protected override void OnBigUpwardsMotion() {
-        if (CursorManager.Instance.IsScrubbingCursor)
+        if (CursorManager.Instance.IsActionCursor)
             return;
 
         base.OnBigUpwardsMotion();

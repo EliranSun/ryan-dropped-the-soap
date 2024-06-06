@@ -42,7 +42,7 @@ public class FaucetChange : MonoBehaviour {
     }
 
     private void OnMouseDrag() {
-        if (CursorManager.Instance.IsScrubbingCursor)
+        if (CursorManager.Instance.IsActionCursor)
             return;
 
         var newMousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);

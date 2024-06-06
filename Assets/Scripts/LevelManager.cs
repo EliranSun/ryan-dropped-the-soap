@@ -57,8 +57,28 @@ public class LevelManager : MonoBehaviour {
                 zoomedInCamera.enabled = true;
                 break;
 
-            case GameEvents.SoapMiniGameLost:
+            case GameEvents.SoapDropped:
+                mainCamera.enabled = true;
+                zoomedInCamera.enabled = false;
                 break;
+
+            case GameEvents.PickedItem: {
+                if (zoomedInCamera) {
+                    mainCamera.enabled = false;
+                    zoomedInCamera.enabled = true;
+                }
+
+                break;
+            }
+
+            case GameEvents.DroppedItem: {
+                if (zoomedInCamera) {
+                    mainCamera.enabled = true;
+                    zoomedInCamera.enabled = false;
+                }
+
+                break;
+            }
         }
     }
 
