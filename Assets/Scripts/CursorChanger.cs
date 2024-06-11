@@ -8,6 +8,8 @@ public class CursorChanger : MonoBehaviour {
     [SerializeField] private CursorMode cursorMode = CursorMode.Auto;
     [SerializeField] private GameObject indicatorGameObject;
     [SerializeField] private bool triggeredDirectly = true;
+    [SerializeField] private bool triggerOnMouseEnter;
+    private bool _isHolding;
     private SpriteRenderer _spriteRenderer;
 
     private void Start() {
@@ -35,16 +37,37 @@ public class CursorChanger : MonoBehaviour {
     }
 
     private void OnMouseDown() {
-        if (!triggeredDirectly)
+        _isHolding = true;
+        if (!triggeredDirectly || triggerOnMouseEnter)
             return;
 
-        CursorManager.Instance.GrabItem(
-            cursorTexture,
-            hotSpot,
-            cursorMode,
-            _spriteRenderer,
-            indicatorGameObject
-        );
+        TriggerGrab();
+    }
+
+    private void OnMouseEnter() {
+        if (!triggerOnMouseEnter)
+            return;
+
+
+        TriggerGrab();
+    }
+
+    private void OnMouseExit() {
+        if (!triggerOnMouseEnter)
+            return;
+
+        if (_isHolding)
+            return;
+
+        if (CursorManager.Instance.CanDropItem(cursorTexture))
+            CursorManager.Instance.DropItem(_spriteRenderer, indicatorGameObject);
+    }
+
+    private void OnMouseUp() {
+        _isHolding = false;
+
+        if (triggerOnMouseEnter && CursorManager.Instance.CanDropItem(cursorTexture))
+            CursorManager.Instance.DropItem(_spriteRenderer, indicatorGameObject);
     }
 
     public void TriggerGrab() {
@@ -53,7 +76,8 @@ public class CursorChanger : MonoBehaviour {
             hotSpot,
             cursorMode,
             _spriteRenderer,
-            indicatorGameObject
+            indicatorGameObject,
+            !triggerOnMouseEnter
         );
     }
 

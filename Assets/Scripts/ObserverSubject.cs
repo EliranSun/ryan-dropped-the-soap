@@ -49,6 +49,7 @@ public class ObserverSubject : MonoBehaviour {
     public UnityEvent<GameEventData> observers;
 
     protected void Notify(GameEvents message) {
+        print(message);
         observers?.Invoke(new GameEventData(message));
     }
 

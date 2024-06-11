@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 public class WaterLevel : MonoBehaviour {
+    public static float CurrentWaterLevel;
     [SerializeField] private float minWaterLevel;
     [SerializeField] private float pumpingLevelChange = 0.05f;
     [SerializeField] private float waterLevelChange = 0.01f;
@@ -14,6 +15,7 @@ public class WaterLevel : MonoBehaviour {
     [SerializeField] private GameObject normalPerspectiveGameObject;
     [SerializeField] private GameObject perspectiveChangeGameObject;
     [SerializeField] private GameObject outsideViewGameObject;
+    [SerializeField] private Renderer waterRenderer;
     private Transform _waterTransform;
 
     private void Start() {
@@ -36,18 +38,20 @@ public class WaterLevel : MonoBehaviour {
             _waterTransform = outsideViewGameObject.transform;
         }
 
-        if (_waterTransform.position.y >= drowningWaterLevelHeight && !GameState.WaterFilledShower)
-            GameState.WaterFilledShower = true;
+        // if (_waterTransform.position.y >= drowningWaterLevelHeight && !GameState.WaterFilledShower)
+        //     GameState.WaterFilledShower = true;
+        //
+        // if (_waterTransform.position.y >= waterLevelWaterLevelHeight && !GameState.WaterFilledRoom)
+        //     // this is the outside water _waterTransform which should affect the entire level
+        //     GameState.WaterFilledRoom = true;
+        //
+        // if (_waterTransform.position.y <= drowningWaterLevelHeight && GameState.WaterFilledShower)
+        //     GameState.WaterFilledShower = false;
+        //
+        // if (_waterTransform.position.y <= waterLevelWaterLevelHeight && GameState.WaterFilledRoom)
+        //     GameState.WaterFilledRoom = false;
 
-        if (_waterTransform.position.y >= waterLevelWaterLevelHeight && !GameState.WaterFilledRoom)
-            // this is the outside water _waterTransform which should affect the entire level
-            GameState.WaterFilledRoom = true;
-
-        if (_waterTransform.position.y <= drowningWaterLevelHeight && GameState.WaterFilledShower)
-            GameState.WaterFilledShower = false;
-
-        if (_waterTransform.position.y <= waterLevelWaterLevelHeight && GameState.WaterFilledRoom)
-            GameState.WaterFilledRoom = false;
+        CurrentWaterLevel = _waterTransform.position.y + waterRenderer.bounds.size.y / 2;
 
         if (_waterTransform.position.y >= maxWaterLevelHeight)
             return;

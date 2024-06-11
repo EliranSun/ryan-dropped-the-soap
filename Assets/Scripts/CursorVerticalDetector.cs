@@ -31,6 +31,7 @@ public class CursorVerticalDetector : MonoBehaviour {
         _lastPosition = mousePosition;
     }
 
+
     private void OnVerticalGesture(Vector3 lastPosition, Vector3 currentPosition) {
         var xChange = Math.Round(Mathf.Abs(lastPosition.x - currentPosition.x), 2);
         var yChange = Math.Round(Mathf.Abs(lastPosition.y - currentPosition.y), 2);

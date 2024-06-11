@@ -20,7 +20,8 @@ public class CursorManager : MonoBehaviour {
         Vector2 hotSpot,
         CursorMode cursorMode,
         SpriteRenderer sprite,
-        GameObject indicator
+        GameObject indicator,
+        bool physicalPick
     ) {
         Cursor.SetCursor(texture, hotSpot, cursorMode);
         Instance.CurrentTexture = texture;
@@ -33,9 +34,11 @@ public class CursorManager : MonoBehaviour {
         if (texture.name == "sponge-cursor")
             Instance.IsScrubbingCursor = true;
 
-        Instance.IsActionCursor = true;
+        Instance.IsActionCursor = physicalPick;
         sprite.enabled = false;
-        EventManager.Instance.Publish(GameEvents.PickedItem);
+
+        if (physicalPick)
+            EventManager.Instance.Publish(GameEvents.PickedItem);
 
         if (indicator)
             indicator.SetActive(false);
