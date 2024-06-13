@@ -19,6 +19,7 @@ namespace Ryan.Scripts {
         public bool isControlledByPlayer;
     }
 
+    [RequireComponent(typeof(Renderer))]
     public class PlayerChangeState : MonoBehaviour {
         [SerializeField] private GameObject defaultColliderObject;
         [SerializeField] private GameObject slipperyColliderObject;
@@ -26,11 +27,13 @@ namespace Ryan.Scripts {
         [SerializeField] public StateName currentState;
         [SerializeField] private bool isSlipperyShower;
         [SerializeField] private States[] states;
+        [SerializeField] private float drownYOffset = 1;
         private int _activeStateIndex;
-        private int _breathInWater = 10;
         private States[] _controlledByPlayerStates;
 
         private bool _isDead;
+        private bool _isInWater;
+        private Renderer _renderer;
 
         // private bool _isRoomWaterFilled;
         // private bool _isShowerWaterFilled;
@@ -46,13 +49,14 @@ namespace Ryan.Scripts {
         }
 
         private void Start() {
+            _renderer = GetComponent<Renderer>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _controlledByPlayerStates = states.Where(state => state.isControlledByPlayer).ToArray();
             ChangePlayerState(currentState);
         }
 
         private void Update() {
-            if (_isDead || WaterLevel.CurrentWaterLevel == 0)
+            if (_isDead)
                 return;
 
             // if (GameState.WaterFilledRoom && currentState != StateName.Drowning) {
@@ -70,17 +74,21 @@ namespace Ryan.Scripts {
             //     (!GameState.WaterFilledShower && GameState.IsPlayerInShower && currentState == StateName.Drowning))
             //     ChangePlayerState(StateName.Naked);
 
-            print($"WaterLevel.CurrentWaterLevel {WaterLevel.CurrentWaterLevel}");
-
-            if (WaterLevel.CurrentWaterLevel >= transform.position.y + 1 && currentState != StateName.Drowning) {
-                ChangePlayerState(StateName.Drowning);
-                Invoke(nameof(PlayerAvoidableDeath), 5);
-            }
-
-            if (WaterLevel.CurrentWaterLevel < transform.position.y + 1 && currentState == StateName.Drowning) {
-                ChangePlayerState(StateName.Naked);
-                CancelInvoke(nameof(PlayerAvoidableDeath));
-            }
+            //
+            // if (
+            //     WaterLevel.CurrentWaterLevel >= transform.position.y + drownYOffset &&
+            //     currentState != StateName.Drowning &&
+            //     _isInWater
+            // ) {
+            //     ChangePlayerState(StateName.Drowning);
+            //     Invoke(nameof(PlayerAvoidableDeath), 5);
+            // }
+            //
+            // if (WaterLevel.CurrentWaterLevel < transform.position.y + drownYOffset &&
+            //     currentState == StateName.Drowning) {
+            //     ChangePlayerState(StateName.Naked);
+            //     CancelInvoke(nameof(PlayerAvoidableDeath));
+            // }
         }
 
         public void OnMouseDown() {
@@ -96,7 +104,7 @@ namespace Ryan.Scripts {
             ChangePlayerState(nextState.name);
         }
 
-        private void ChangePlayerState(StateName newState) {
+        public void ChangePlayerState(StateName newState) {
             if (newState == StateName.Naked)
                 clothing.gameObject.SetActive(true);
 
@@ -141,8 +149,8 @@ namespace Ryan.Scripts {
             //     return;
             // }
 
-            if (WaterLevel.CurrentWaterLevel >= transform.position.y + 1)
-                HandleDeath();
+            // if (WaterLevel.CurrentWaterLevel >= transform.position.y + 1)
+            //     HandleDeath();
         }
 
         private void HandleDeath() {

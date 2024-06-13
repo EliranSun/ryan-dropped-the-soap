@@ -19,5 +19,19 @@ namespace Ryan.Scripts {
                 spriteRenderer.color = new Color(1f, damage, damage);
             }
         }
+
+        private void OnTriggerEnter2D(Collider2D other) {
+            if (other.CompareTag("Water")) {
+                print("Head touched water");
+                PlayerChangeState.Instance.ChangePlayerState(StateName.Drowning);
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D other) {
+            if (other.CompareTag("Water")) {
+                print("Head out of water");
+                PlayerChangeState.Instance.ChangePlayerState(StateName.Naked);
+            }
+        }
     }
 }

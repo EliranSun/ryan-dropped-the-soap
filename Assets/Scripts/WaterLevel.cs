@@ -2,31 +2,36 @@ using System.Collections;
 using UnityEngine;
 
 public class WaterLevel : MonoBehaviour {
-    public static float CurrentWaterLevel;
-    [SerializeField] private float minWaterLevel;
+    [SerializeField] private float maxHeight = 3;
+    [SerializeField] private float perspectiveChangeHeight = 1.5f;
+
+    // [SerializeField] private float maxWaterLevelHeight = 3;
     [SerializeField] private float pumpingLevelChange = 0.05f;
     [SerializeField] private float waterLevelChange = 0.01f;
-    [SerializeField] private float maxHeight = 3;
-    [SerializeField] private float maxWaterLevelHeight = 3;
     [SerializeField] private float waterVerticalTransition;
-    [SerializeField] private float perspectiveChangeHeight = 1.5f;
-    [SerializeField] private float drowningWaterLevelHeight = 2f;
-    [SerializeField] private float waterLevelWaterLevelHeight = 3f;
+
+
+    // [SerializeField] private float drowningWaterLevelHeight = 2f;
+    // [SerializeField] private float waterLevelWaterLevelHeight = 3f;
     [SerializeField] private GameObject normalPerspectiveGameObject;
     [SerializeField] private GameObject perspectiveChangeGameObject;
     [SerializeField] private GameObject outsideViewGameObject;
-    [SerializeField] private Renderer waterRenderer;
+    private float _minHeight;
+    private float _screenHeight;
     private Transform _waterTransform;
 
     private void Start() {
         normalPerspectiveGameObject.SetActive(true);
+        _waterTransform = transform;
+        _minHeight = transform.position.y;
+
+        if (Camera.main)
+            _screenHeight = Camera.main.orthographicSize * 2f;
     }
 
     private void Update() {
         if (waterVerticalTransition == 0)
             return;
-
-        _waterTransform = transform;
 
         if (_waterTransform.position.y >= perspectiveChangeHeight && !perspectiveChangeGameObject.activeSelf) {
             normalPerspectiveGameObject.SetActive(false);
@@ -51,9 +56,8 @@ public class WaterLevel : MonoBehaviour {
         // if (_waterTransform.position.y <= waterLevelWaterLevelHeight && GameState.WaterFilledRoom)
         //     GameState.WaterFilledRoom = false;
 
-        CurrentWaterLevel = _waterTransform.position.y + waterRenderer.bounds.size.y / 2;
 
-        if (_waterTransform.position.y >= maxWaterLevelHeight)
+        if (_waterTransform.position.y >= _screenHeight)
             return;
 
         _waterTransform.Translate(new Vector2(0, waterVerticalTransition * Time.deltaTime));
@@ -62,7 +66,7 @@ public class WaterLevel : MonoBehaviour {
     public void OnNotify(GameEventData eventData) {
         switch (eventData.name) {
             case GameEvents.Pumping:
-                if (transform.localPosition.y <= minWaterLevel)
+                if (transform.localPosition.y <= _minHeight)
                     break;
 
                 StartCoroutine(TemporaryWaterChange(-pumpingLevelChange));

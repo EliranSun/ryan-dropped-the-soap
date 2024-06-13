@@ -1,18 +1,17 @@
 public class PlungingVerticalDetector : CursorVerticalDetector {
-    private void OnMouseEnter() {
-        print($"ENTER {gameObject.name}");
-    }
-
-    private void OnMouseExit() {
-        print($"EXIT {gameObject.name}");
-    }
+    // private void OnMouseEnter() {
+    //     print($"ENTER {gameObject.name}");
+    // }
+    //
+    // private void OnMouseExit() {
+    //     print($"EXIT {gameObject.name}");
+    // }
 
     protected override void OnVerticalMotion(bool isDownwardMotion) {
         if (CursorManager.Instance.IsActionCursor)
             return;
 
         base.OnVerticalMotion(isDownwardMotion);
-        print("PUMPING");
 
         EventManager.Instance.Publish(GameEvents.Pumping);
         EventManager.Instance.Publish(isDownwardMotion
@@ -26,7 +25,6 @@ public class PlungingVerticalDetector : CursorVerticalDetector {
 
         base.OnBigUpwardsMotion();
 
-        print("STRONG PULL!");
         EventManager.Instance.Publish(GameEvents.StrongPull);
         EventManager.Instance.Publish(GameEvents.TriggerNonStick);
     }
