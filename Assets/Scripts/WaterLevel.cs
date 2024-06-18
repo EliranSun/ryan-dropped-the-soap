@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class WaterLevel : MonoBehaviour {
     [SerializeField] private float maxHeight = 3;
+    [SerializeField] private float outsideWaterMaxHeight = 4;
     [SerializeField] private float perspectiveChangeHeight = 1.5f;
 
     // [SerializeField] private float maxWaterLevelHeight = 3;
@@ -16,8 +17,9 @@ public class WaterLevel : MonoBehaviour {
     [SerializeField] private GameObject normalPerspectiveGameObject;
     [SerializeField] private GameObject perspectiveChangeGameObject;
     [SerializeField] private GameObject outsideViewGameObject;
+
     private float _minHeight;
-    private float _screenHeight;
+
     private Transform _waterTransform;
 
     private void Start() {
@@ -25,42 +27,30 @@ public class WaterLevel : MonoBehaviour {
         _waterTransform = transform;
         _minHeight = transform.position.y;
 
-        if (Camera.main)
-            _screenHeight = Camera.main.orthographicSize * 2f;
+        // if (Camera.main)
+        //     _screenHeight = Camera.main.orthographicSize * 2f;
     }
 
     private void Update() {
         if (waterVerticalTransition == 0)
             return;
 
-        if (_waterTransform.position.y >= perspectiveChangeHeight && !perspectiveChangeGameObject.activeSelf) {
+        var movementVector = new Vector2(0, waterVerticalTransition * Time.deltaTime);
+
+        if (normalPerspectiveGameObject.transform.position.y >= perspectiveChangeHeight &&
+            !perspectiveChangeGameObject.activeSelf) {
             normalPerspectiveGameObject.SetActive(false);
             perspectiveChangeGameObject.SetActive(true);
         }
 
-        if (_waterTransform.position.y >= maxHeight) {
-            outsideViewGameObject.SetActive(true);
-            _waterTransform = outsideViewGameObject.transform;
-        }
+        if (normalPerspectiveGameObject.transform.position.y < perspectiveChangeHeight)
+            normalPerspectiveGameObject.transform.Translate(movementVector);
 
-        // if (_waterTransform.position.y >= drowningWaterLevelHeight && !GameState.WaterFilledShower)
-        //     GameState.WaterFilledShower = true;
-        //
-        // if (_waterTransform.position.y >= waterLevelWaterLevelHeight && !GameState.WaterFilledRoom)
-        //     // this is the outside water _waterTransform which should affect the entire level
-        //     GameState.WaterFilledRoom = true;
-        //
-        // if (_waterTransform.position.y <= drowningWaterLevelHeight && GameState.WaterFilledShower)
-        //     GameState.WaterFilledShower = false;
-        //
-        // if (_waterTransform.position.y <= waterLevelWaterLevelHeight && GameState.WaterFilledRoom)
-        //     GameState.WaterFilledRoom = false;
+        if (perspectiveChangeGameObject.transform.position.y < maxHeight)
+            perspectiveChangeGameObject.transform.Translate(movementVector);
 
-
-        if (_waterTransform.position.y >= _screenHeight)
-            return;
-
-        _waterTransform.Translate(new Vector2(0, waterVerticalTransition * Time.deltaTime));
+        if (outsideViewGameObject.transform.position.y < outsideWaterMaxHeight)
+            outsideViewGameObject.transform.Translate(movementVector);
     }
 
     public void OnNotify(GameEventData eventData) {

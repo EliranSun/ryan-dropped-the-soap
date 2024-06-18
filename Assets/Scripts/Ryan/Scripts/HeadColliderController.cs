@@ -21,17 +21,15 @@ namespace Ryan.Scripts {
         }
 
         private void OnTriggerEnter2D(Collider2D other) {
-            if (other.CompareTag("Water")) {
-                print("Head touched water");
+            print($"Head touched {other.gameObject.name}");
+            if (other.CompareTag("Water") || other.CompareTag("Outside Water"))
                 PlayerChangeState.Instance.ChangePlayerState(StateName.Drowning);
-            }
         }
 
         private void OnTriggerExit2D(Collider2D other) {
-            if (other.CompareTag("Water")) {
-                print("Head out of water");
+            print($"Head out of {other.gameObject.name}");
+            if (other.CompareTag("Water") || other.CompareTag("Outside Water"))
                 PlayerChangeState.Instance.ChangePlayerState(StateName.Naked);
-            }
         }
     }
 }

@@ -92,8 +92,9 @@ namespace Ryan.Scripts {
         }
 
         public void OnMouseDown() {
-            print($"Change state! {CursorManager.Instance.IsActionCursor}");
-            if (CursorManager.Instance.IsActionCursor)
+            if (CursorManager.Instance.IsActionCursor ||
+                currentState == StateName.Drowning ||
+                currentState == StateName.Dead)
                 return;
 
             _activeStateIndex = _activeStateIndex + 1 > _controlledByPlayerStates.Length - 1
