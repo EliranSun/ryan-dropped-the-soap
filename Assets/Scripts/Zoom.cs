@@ -1,6 +1,8 @@
 using UnityEngine;
 
-public class Zoom : MonoBehaviour {
+public class Zoom : MonoBehaviour
+{
+    [SerializeField] private float delay;
     [SerializeField] private float speed = 1;
     [SerializeField] private float startSize = 1;
     [SerializeField] public float endSize = 6;
@@ -9,21 +11,27 @@ public class Zoom : MonoBehaviour {
 
     public static Zoom Instance { get; private set; }
 
-    private void Awake() {
+    private void Awake()
+    {
         if (Instance != null && Instance != this)
             Destroy(this);
         else
             Instance = this;
     }
 
-    private void Start() {
+    private void Start()
+    {
         _time = Time.time;
         _mainCamera = Camera.main;
         _mainCamera.orthographicSize = startSize;
     }
 
-    private void Update() {
+    private void Update()
+    {
         _time = Time.time;
+
+        if (delay > 0 && _time < delay)
+            return;
 
         if (_mainCamera.orthographicSize >= endSize)
             return;
