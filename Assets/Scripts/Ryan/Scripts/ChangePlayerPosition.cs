@@ -24,7 +24,10 @@ namespace Ryan.Scripts {
 
         private void PositionPlayer() {
             var newPosition = transform.position;
-            newPosition.y += playerTransform.transform.localScale.y / 2;
+            float playerHeight = playerTransform.GetComponent<SpriteRenderer>().sprite.bounds.size.y * transform.localScale.y;
+            print(playerHeight);
+            newPosition.y = transform.position.y - playerHeight;
+            
             playerTransform.transform.position = newPosition;
 
             var spriteRenderers = playerTransform.GetComponentsInChildren<SpriteRenderer>();
