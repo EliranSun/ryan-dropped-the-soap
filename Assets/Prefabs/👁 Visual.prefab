@@ -841,6 +841,7 @@ GameObject:
   - component: {fileID: 3085324984192958090}
   - component: {fileID: 7295689485908053242}
   - component: {fileID: 3613199859509476958}
+  - component: {fileID: 1060874341444429489}
   m_Layer: 5
   m_Name: Dirty Percentage
   m_TagString: Untagged
@@ -966,6 +967,20 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1060874341444429489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4430368965507192483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e82b159ce42a119d7b7d9aa173db37e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showAfter: 1.3
+  hideAfter: 0
 --- !u!1 &4899395133387540867
 GameObject:
   m_ObjectHideFlags: 0
@@ -1387,6 +1402,7 @@ GameObject:
   - component: {fileID: 4488711449139852650}
   - component: {fileID: 6946064525251027450}
   - component: {fileID: 6163962515801249760}
+  - component: {fileID: 3529952308550436748}
   m_Layer: 5
   m_Name: Timer
   m_TagString: Untagged
@@ -1512,6 +1528,20 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3529952308550436748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6567936451514269396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e82b159ce42a119d7b7d9aa173db37e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showAfter: 1.3
+  hideAfter: 0
 --- !u!1 &6768719659875787543
 GameObject:
   m_ObjectHideFlags: 0
