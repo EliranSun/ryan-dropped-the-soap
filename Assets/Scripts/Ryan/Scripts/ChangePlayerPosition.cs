@@ -4,7 +4,7 @@ namespace Ryan.Scripts {
     [RequireComponent(typeof(Collider2D))]
     [RequireComponent(typeof(SpriteRenderer))]
     public class ChangePlayerPosition : MonoBehaviour {
-        [SerializeField] private float yOffset;
+        // [SerializeField] private float yOffset;
         [SerializeField] private PositionName positionName;
         [SerializeField] private GameObject playerTransform;
         [SerializeField] private int orderInLayer;
@@ -24,7 +24,10 @@ namespace Ryan.Scripts {
 
         private void PositionPlayer() {
             var newPosition = transform.position;
-            newPosition.y += yOffset;
+            float playerHeight = playerTransform.GetComponent<SpriteRenderer>().sprite.bounds.size.y * transform.localScale.y;
+            print(playerHeight);
+            newPosition.y = transform.position.y - playerHeight;
+            
             playerTransform.transform.position = newPosition;
 
             var spriteRenderers = playerTransform.GetComponentsInChildren<SpriteRenderer>();
