@@ -281,7 +281,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0.2
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -292,7 +292,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &8998209607270705221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,8 +321,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cleanlinessLevelText: {fileID: 0}
+  soapinessLevelText: {fileID: 0}
   faucetLevel: 0
   dirtinessLevel: 100
+  isSoapIncluded: 0
 --- !u!114 &8290882471851924746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -361,6 +363,7 @@ MonoBehaviour:
     spriteRenderer: {fileID: -6742524528089783344, guid: 422973ac1786f0a49a9675f796eb8915, type: 3}
     gravity: 0
     isControlledByPlayer: 0
+  drownYOffset: 1
 --- !u!61 &6198330544368341712
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -13,16 +13,18 @@ public class TextController : MonoBehaviour
     {
         _text = GetComponent<TextMeshProUGUI>();
         _time = Time.time;
+
+        if (showAfter > 0) _text.enabled = false;
     }
 
     private void Update()
     {
         _time = Time.time;
 
-        if (showAfter > 0 && _time >= showAfter && !_text.gameObject.activeSelf)
-            _text.gameObject.SetActive(true);
+        if (showAfter > 0 && _time >= showAfter && !_text.enabled)
+            _text.enabled = true;
 
-        if (hideAfter > 0 && _time >= hideAfter && _text.gameObject.activeSelf)
-            _text.gameObject.SetActive(false);
+        if (hideAfter > 0 && _time >= hideAfter && _text.enabled)
+            _text.enabled = false;
     }
 }
