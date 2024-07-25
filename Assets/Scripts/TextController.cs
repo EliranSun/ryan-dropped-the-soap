@@ -4,6 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(TextMeshProUGUI))]
 public class TextController : MonoBehaviour
 {
+    [SerializeField] private float showAfter;
     [SerializeField] private float hideAfter;
     private TextMeshProUGUI _text;
     private float _time;
@@ -18,7 +19,10 @@ public class TextController : MonoBehaviour
     {
         _time = Time.time;
 
-        if (hideAfter > 0 && _time >= hideAfter)
+        if (showAfter > 0 && _time >= showAfter && !_text.gameObject.activeSelf)
+            _text.gameObject.SetActive(true);
+
+        if (hideAfter > 0 && _time >= hideAfter && _text.gameObject.activeSelf)
             _text.gameObject.SetActive(false);
     }
 }
