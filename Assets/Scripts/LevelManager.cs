@@ -106,4 +106,9 @@ public class LevelManager : MonoBehaviour {
         GameState.Reset();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
+
+    public static void QuitGame()
+    {
+        Application.Quit();
+    }
 }
