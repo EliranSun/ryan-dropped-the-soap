@@ -372,11 +372,17 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!1 &145095044 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5721610812274122132, guid: 6654cf042db36a03ba81df88dbf700cd, type: 3}
+--- !u!114 &145095046 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2941166400257386865, guid: 6654cf042db36a03ba81df88dbf700cd, type: 3}
   m_PrefabInstance: {fileID: 6377390492890135477}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2958792a5c371a8a8cb8c2b875e9182, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &145153510
 GameObject:
   m_ObjectHideFlags: 0
@@ -3867,7 +3873,7 @@ PrefabInstance:
       objectReference: {fileID: 2059953816}
     - target: {fileID: 2261742841618763813, guid: a9665a892e47cfd4ab966c41c6b5beb4, type: 3}
       propertyPath: timeInSeconds
-      value: 10
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 2261742841618763813, guid: a9665a892e47cfd4ab966c41c6b5beb4, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -4024,7 +4030,7 @@ PrefabInstance:
     - target: {fileID: 8964328387618305738, guid: a9665a892e47cfd4ab966c41c6b5beb4, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[5].m_Target
       value: 
-      objectReference: {fileID: 145095044}
+      objectReference: {fileID: 145095046}
     - target: {fileID: 8964328387618305738, guid: a9665a892e47cfd4ab966c41c6b5beb4, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[6].m_Target
       value: 
@@ -4059,7 +4065,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8964328387618305738, guid: a9665a892e47cfd4ab966c41c6b5beb4, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[5].m_TargetAssemblyTypeName
-      value: SoundEffectsController, ScriptsAssembly
+      value: SoundController, ScriptsAssembly
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

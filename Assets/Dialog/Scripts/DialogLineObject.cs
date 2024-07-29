@@ -1,9 +1,11 @@
 using System;
 using UnityEngine;
 
-namespace Dialog.Scripts {
+namespace Dialog.Scripts
+{
     [Serializable]
-    public enum DialogAction {
+    public enum DialogAction
+    {
         None,
         NextLevel,
         RestartLevel,
@@ -11,9 +13,11 @@ namespace Dialog.Scripts {
     }
 
     [CreateAssetMenu(fileName = "Line", menuName = "Dialogue/Line")]
-    public class DialogLineObject : ScriptableObject {
+    public class DialogLineObject : ScriptableObject
+    {
         public string subtitles;
         public AudioClip line;
+        public float waitBeforeLine;
         public DialogLineObject nextDialogueLine;
         public float waitAfterLine;
         public DialogAction afterLineAction;

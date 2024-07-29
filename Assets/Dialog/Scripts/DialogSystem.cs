@@ -37,22 +37,18 @@ namespace Dialog.Scripts
         private IEnumerator CheckAudioEnd()
         {
             yield return new WaitWhile(() => _audioSource.isPlaying);
-
-            // print($"Audio stopped playing, Invoking on dialog end after {currentDialog.waitAfterLine}");
             Invoke(nameof(OnDialogEnd), currentDialog.waitAfterLine);
         }
 
         private void ReadCurrentLine()
         {
             if (!currentDialog)
-                // print($"Attempt playing but not current dialog {currentDialog}");
                 return;
 
             subtitles.text = currentDialog.subtitles;
 
             if (currentDialog.line)
             {
-                // print($"Audio play for {currentDialog}");
                 _audioSource.clip = currentDialog.line;
                 _audioLowPassFilter.enabled = currentDialog.isMuffled;
                 _audioSource.Play();
@@ -60,7 +56,6 @@ namespace Dialog.Scripts
             }
             else
             {
-                // print($"no current line, Invoking on dialog end after {currentDialog.waitAfterLine}");
                 Invoke(nameof(OnDialogEnd), currentDialog.waitAfterLine);
             }
         }
@@ -71,7 +66,6 @@ namespace Dialog.Scripts
 
             if (currentDialog.nextDialogueLine)
             {
-                // print($"Next dialog line detected, reading {currentDialog.nextDialogueLine}");
                 TriggerAction();
                 UpdateDialogState(currentDialog.nextDialogueLine);
                 ReadCurrentLine();
@@ -80,7 +74,6 @@ namespace Dialog.Scripts
 
             if (_triggeredDialogueLine != null)
             {
-                // print($"There is a pending triggered dialog line, reading {_triggeredDialogueLine}");
                 TriggerAction();
                 UpdateDialogState(_triggeredDialogueLine);
                 _triggeredDialogueLine = null;
@@ -94,7 +87,6 @@ namespace Dialog.Scripts
         private void TriggerAction()
         {
             if (currentDialog.afterLineAction != DialogAction.None)
-                // print($"Handling after line action {currentDialog.afterLineAction}");
                 HandleAction(currentDialog.afterLineAction);
         }
 
@@ -118,17 +110,10 @@ namespace Dialog.Scripts
 
         public void TriggerLine(DialogLineObject line)
         {
-            // if (_audioSource.isPlaying) {
-            //     // print($"Line triggered {line} but audio is playing {currentDialog}. holding");
-            //     _triggeredDialogueLine = line;
-            //     return;
-            // }
-
-            // print($"Line triggered {line} and nothing is playing. reading.");
             _audioSource.Stop();
             StopAllCoroutines();
             UpdateDialogState(line);
-            Invoke(nameof(ReadCurrentLine), 3);
+            Invoke(nameof(ReadCurrentLine), line.waitBeforeLine);
         }
 
         public void UpdateDialogState(DialogLineObject nextLineObject)

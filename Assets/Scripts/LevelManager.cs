@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelManager : MonoBehaviour {
+public class LevelManager : MonoBehaviour
+{
     [SerializeField] private GameObject[] uiElements;
     [SerializeField] private CursorChanger soapCursor;
     [SerializeField] private Camera mainCamera;
@@ -12,13 +13,16 @@ public class LevelManager : MonoBehaviour {
     private bool _notifiedLevelResolution;
     private bool _timeIsUp;
 
-    private void Update() {
+    private void Update()
+    {
         if (Input.GetKeyDown(KeyCode.R))
             RestartLevel();
     }
 
-    public void OnNotify(GameEventData eventData) {
-        switch (eventData.name) {
+    public void OnNotify(GameEventData eventData)
+    {
+        switch (eventData.name)
+        {
             case GameEvents.FaucetOpening:
                 _isFaucetClosed = false;
                 break;
@@ -26,7 +30,7 @@ public class LevelManager : MonoBehaviour {
             case GameEvents.FaucetClosed:
                 _isFaucetClosed = true;
                 if (_isClean && !_isInShower)
-                    Invoke(nameof(HandleTimeUp), 2);
+                    Invoke(nameof(HandleTimeUp), 1);
 
                 break;
 
@@ -34,10 +38,11 @@ public class LevelManager : MonoBehaviour {
                 _isInShower = true;
                 break;
 
-            case GameEvents.OutOfShower: {
+            case GameEvents.OutOfShower:
+            {
                 _isInShower = false;
                 if (_isClean && _isFaucetClosed)
-                    Invoke(nameof(HandleTimeUp), 2);
+                    Invoke(nameof(HandleTimeUp), 1);
 
                 break;
             }
@@ -48,7 +53,7 @@ public class LevelManager : MonoBehaviour {
 
             case GameEvents.Dead:
             case GameEvents.TimeIsUp:
-                Invoke(nameof(HandleTimeUp), 2);
+                Invoke(nameof(HandleTimeUp), 1);
                 break;
 
             case GameEvents.SoapMiniGameWon:
@@ -62,8 +67,10 @@ public class LevelManager : MonoBehaviour {
                 zoomedInCamera.enabled = false;
                 break;
 
-            case GameEvents.PickedItem: {
-                if (zoomedInCamera) {
+            case GameEvents.PickedItem:
+            {
+                if (zoomedInCamera)
+                {
                     mainCamera.enabled = false;
                     zoomedInCamera.enabled = true;
                 }
@@ -71,8 +78,10 @@ public class LevelManager : MonoBehaviour {
                 break;
             }
 
-            case GameEvents.DroppedItem: {
-                if (zoomedInCamera) {
+            case GameEvents.DroppedItem:
+            {
+                if (zoomedInCamera)
+                {
                     mainCamera.enabled = true;
                     zoomedInCamera.enabled = false;
                 }
@@ -82,13 +91,13 @@ public class LevelManager : MonoBehaviour {
         }
     }
 
-    private void HandleTimeUp() {
+    private void HandleTimeUp()
+    {
         if (_notifiedLevelResolution)
             return;
 
         var isWin = _isClean && !_isInShower && _isFaucetClosed;
 
-        // Notify(isWin ? GameEvents.LevelWon : GameEvents.LevelLost);
         EventManager.Instance.Publish(isWin ? GameEvents.LevelWon : GameEvents.LevelLost);
 
         foreach (var uiElement in uiElements)
@@ -97,12 +106,14 @@ public class LevelManager : MonoBehaviour {
         _notifiedLevelResolution = true;
     }
 
-    public static void RestartLevel() {
+    public static void RestartLevel()
+    {
         GameState.Reset();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public static void NextLevel() {
+    public static void NextLevel()
+    {
         GameState.Reset();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
