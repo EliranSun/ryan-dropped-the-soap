@@ -11,14 +11,18 @@ namespace Elevator.scripts
         [SerializeField] private GameObject panel;
         [SerializeField] private TextMeshPro floorText;
         [SerializeField] private TextMeshPro currentFloorText;
+        [SerializeField] private GameObject shaftLight;
         [SerializeField] private float debounce = 3f;
         private int _currentFloor;
+        private Vector3 _initLightPosition;
         private bool _isMoving;
         private float _timeDiff;
         private float _timeSinceLastClick;
 
         private void Start()
         {
+            _initLightPosition = shaftLight.transform.position;
+
             var panelChildren = panel.transform.childCount;
             for (var i = 0; i < panelChildren; i++)
             {
@@ -26,6 +30,8 @@ namespace Elevator.scripts
                 var button = child.GetComponent<Button>();
                 button.onClick.AddListener(() => OnElevatorButtonClick(button));
             }
+
+            StartCoroutine(MoveLight());
         }
 
         private void Update()
@@ -89,6 +95,16 @@ namespace Elevator.scripts
             }
 
             _isMoving = false;
+        }
+
+        private IEnumerator MoveLight()
+        {
+            while (true)
+            {
+                yield return new WaitForSeconds(3);
+                shaftLight.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+                shaftLight.transform.position = _initLightPosition;
+            }
         }
     }
 }
