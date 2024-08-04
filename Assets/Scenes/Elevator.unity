@@ -5617,10 +5617,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 119e772f973fe664984576c87c62d41d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shakeableCamera: {fileID: 233430090}
   panel: {fileID: 1206635668}
   floorText: {fileID: 1503323994}
   currentFloorText: {fileID: 1041061097}
-  throttle: 0.5
+  debounce: 3
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

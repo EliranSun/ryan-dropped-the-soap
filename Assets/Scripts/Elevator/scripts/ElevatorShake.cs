@@ -18,7 +18,7 @@ namespace Elevator
         private void Update()
         {
             if (shakeDuration > 0)
-            {   
+            {
                 transform.localPosition = _originalPos + Random.insideUnitSphere * shakeAmount;
 
                 shakeDuration -= Time.deltaTime * decreaseFactor;
@@ -28,6 +28,11 @@ namespace Elevator
                 shakeDuration = 0f;
                 transform.localPosition = _originalPos;
             }
+        }
+
+        public void Shake(float duration)
+        {
+            shakeDuration = duration;
         }
     }
 }
