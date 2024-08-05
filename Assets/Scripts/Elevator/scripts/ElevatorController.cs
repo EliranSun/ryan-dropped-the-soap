@@ -13,6 +13,8 @@ namespace Elevator.scripts
         [SerializeField] private TextMeshPro currentFloorText;
         [SerializeField] private GameObject shaftLight;
         [SerializeField] private float debounce = 3f;
+        [SerializeField] private float lightLoop = 3f;
+
         private int _currentFloor;
         private Vector3 _initLightPosition;
         private bool _isMoving;
@@ -31,7 +33,7 @@ namespace Elevator.scripts
                 button.onClick.AddListener(() => OnElevatorButtonClick(button));
             }
 
-            StartCoroutine(MoveLight());
+            StartCoroutine(ControlShaftLight());
         }
 
         private void Update()
@@ -97,11 +99,11 @@ namespace Elevator.scripts
             _isMoving = false;
         }
 
-        private IEnumerator MoveLight()
+        private IEnumerator ControlShaftLight()
         {
             while (true)
             {
-                yield return new WaitForSeconds(3);
+                yield return new WaitForSeconds(lightLoop);
                 shaftLight.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
                 shaftLight.transform.position = _initLightPosition;
             }
