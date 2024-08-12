@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Elevator.scripts
 {
-    public class ElevatorController : MonoBehaviour
+    public class ElevatorController : ObserverSubject
     {
         [SerializeField] private ElevatorShake shakeableCamera;
         [SerializeField] private GameObject panel;
@@ -82,6 +82,7 @@ namespace Elevator.scripts
 
         private IEnumerator Move(int floorNumber)
         {
+            Notify(GameEvents.ElevatorMoving);
             _isMoving = true;
 
             while (_currentFloor != floorNumber)
@@ -97,6 +98,7 @@ namespace Elevator.scripts
             }
 
             _isMoving = false;
+            Notify(GameEvents.ElevatorReachedFloor);
         }
 
         private IEnumerator ControlShaftLight()

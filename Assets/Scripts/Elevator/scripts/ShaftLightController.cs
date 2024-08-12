@@ -14,20 +14,12 @@ namespace Elevator.scripts
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.CompareTag("Light Trigger"))
-            {
-                print("Light Trigger");
-                shaftFloorLight.GetComponent<Light2DBase>().enabled = true;
-            }
+            if (other.CompareTag("Light Trigger")) shaftFloorLight.GetComponent<Light2DBase>().enabled = true;
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            if (other.CompareTag("Light Trigger"))
-            {
-                print("Light Trigger Exit");
-                shaftFloorLight.GetComponent<Light2DBase>().enabled = false;
-            }
+            if (other.CompareTag("Light Trigger")) shaftFloorLight.GetComponent<Light2DBase>().enabled = false;
         }
     }
 }
