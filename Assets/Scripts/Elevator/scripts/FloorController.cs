@@ -1,37 +1,53 @@
-using System.Collections;
 using UnityEngine;
 
 namespace Elevator.scripts
 {
     public class FloorController : MonoBehaviour
     {
-        [SerializeField] private BoxCollider2D doorTrigger;
-        [SerializeField] private SpriteRenderer floorSprite;
+        [SerializeField] private GameObject doors;
+        [SerializeField] private GameObject floorSprite;
+        [SerializeField] private Transform playerTransform;
+        [SerializeField] private Transform elevatorTransform;
         [SerializeField] private SpriteRenderer elevatorSprite;
-        [SerializeField] private int floorNumber;
+        private bool _isElevatorReachedFloor;
+
+        private void Start()
+        {
+            floorSprite.SetActive(false);
+        }
+
+        private void Update()
+        {
+            if (!_isElevatorReachedFloor)
+                return;
+
+            FadeElevatorBasedOnPlayerProximity();
+        }
 
         public void OnNotify(GameEventData eventData)
         {
-            if (eventData.name == GameEvents.PlayerExitElevator)
-                StartCoroutine(FadeOutElevator());
+            if (eventData.name == GameEvents.ElevatorReachedFloor)
+            {
+                _isElevatorReachedFloor = true;
+                floorSprite.SetActive(true);
+                doors.SetActive(false);
+            }
         }
 
-        private IEnumerator FadeOutElevator()
+        private void FadeElevatorBasedOnPlayerProximity()
         {
-            var elevatorColor = elevatorSprite.color;
-            var floorColor = floorSprite.color;
-            var elevatorAlpha = elevatorColor.a;
-            var floorAlpha = floorColor.a;
-            var elevatorAlphaStep = elevatorAlpha / 100;
-            var floorAlphaStep = floorAlpha / 100;
-            for (var i = 0; i < 100; i++)
+            var distance = Vector2.Distance(playerTransform.position, elevatorTransform.position);
+            print(distance);
+
+            if (distance < 2.5f)
             {
-                elevatorColor.a -= elevatorAlphaStep;
-                floorColor.a += floorAlphaStep;
-                elevatorSprite.color = elevatorColor;
-                floorSprite.color = floorColor;
-                yield return new WaitForSeconds(0.01f);
+                elevatorSprite.color = new Color(1, 1, 1, 1);
+                return;
             }
+
+            var alpha = 1 - distance / 5;
+
+            elevatorSprite.color = new Color(1, 1, 1, alpha);
         }
     }
 }

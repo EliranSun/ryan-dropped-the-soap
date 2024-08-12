@@ -255,6 +255,89 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8860332}
   m_CullTransparentMesh: 1
+--- !u!1 &24038116
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 24038117}
+  - component: {fileID: 24038118}
+  m_Layer: 0
+  m_Name: Elevator Colliders
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &24038117
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 24038116}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 310364982}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!68 &24038118
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 24038116}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: 0.990726, y: -3.9229627}
+  - {x: 1.526525, y: -3.9091234}
+  - {x: 2.2538807, y: -3.8925624}
+  - {x: 2.351873, y: -2.517572}
+  - {x: 5.4005995, y: -4.016839}
+  - {x: 5.408598, y: -5.41715}
+  - {x: 1.5018022, y: -7.230766}
+  - {x: -2.2075238, y: -5.4828787}
+  - {x: -0.9338621, y: -5.146472}
+  - {x: -1.4026366, y: -2.8637626}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &31224943
 GameObject:
   m_ObjectHideFlags: 0
@@ -703,7 +786,7 @@ Transform:
   m_GameObject: {fileID: 128135881}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.62, y: -2.27, z: 0}
+  m_LocalPosition: {x: 1.52, y: -2.74, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1790,7 +1873,7 @@ GameObject:
   m_Component:
   - component: {fileID: 310364982}
   m_Layer: 0
-  m_Name: Elevator Stuff
+  m_Name: Elevator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1817,6 +1900,7 @@ Transform:
   - {fileID: 215083975}
   - {fileID: 1050597171}
   - {fileID: 351947909}
+  - {fileID: 24038117}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &340980418
@@ -3311,10 +3395,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbef1291d1f6b4715a0ed6aee95357bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorTrigger: {fileID: 0}
-  floorSprite: {fileID: 1603388523}
+  doors: {fileID: 1187154925}
+  floorSprite: {fileID: 2073225680}
+  playerTransform: {fileID: 128135884}
+  elevatorTransform: {fileID: 642100444}
   elevatorSprite: {fileID: 642100443}
-  floorNumber: 0
 --- !u!1 &820930426
 GameObject:
   m_ObjectHideFlags: 0
@@ -4308,7 +4393,7 @@ GameObject:
   - component: {fileID: 1187154928}
   m_Layer: 0
   m_Name: Elevator doors
-  m_TagString: Untagged
+  m_TagString: Elevator Doors
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4412,11 +4497,11 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.51, y: 0.02}
+  m_Offset: {x: -0.55876935, y: 0.059015512}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -4426,7 +4511,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2.15, y: 3.6}
+  m_Size: {x: 2.0524614, y: 3.5219688}
   m_EdgeRadius: 0
 --- !u!1 &1206635668
 GameObject:
