@@ -30,7 +30,7 @@ namespace Elevator.scripts
             {
                 var child = panel.transform.GetChild(i);
                 var button = child.GetComponent<Button>();
-                button.onClick.AddListener(() => OnElevatorButtonClick(button));
+                button.onClick.AddListener(() => UpdateFloorText(button));
             }
 
             StartCoroutine(ControlShaftLight());
@@ -58,7 +58,7 @@ namespace Elevator.scripts
             GoToFloor(floor);
         }
 
-        private void OnElevatorButtonClick(Button button)
+        private void UpdateFloorText(Button button)
         {
             if (_isMoving)
                 return;
@@ -68,7 +68,8 @@ namespace Elevator.scripts
 
             var buttonName = button.name;
             var floor = int.Parse(buttonName);
-            floorText.text = floorText.text == "0" // init state
+            
+            floorText.text = floorText.text == "00" // init state
                 ? $"{floor}"
                 : $"{floorText.text}{floor}";
         }

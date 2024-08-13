@@ -32,7 +32,8 @@ public enum GameEvents
     DroppedItem,
     ElevatorReachedFloor,
     ElevatorMoving,
-    PlayerExitElevator
+    PlayerExitElevator,
+    FloorsUpdate
 }
 
 public class GameEventData
