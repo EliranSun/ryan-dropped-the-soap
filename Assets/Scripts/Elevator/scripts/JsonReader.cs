@@ -7,6 +7,7 @@ namespace common.scripts
     public class FloorData
     {
         public int floorNumber;
+        public int apartmentsCount;
     }
 
     [Serializable]
@@ -15,7 +16,7 @@ namespace common.scripts
         public FloorData[] data;
     }
 
-    public class JsonReader : MonoBehaviour
+    public class JsonReader : ObserverSubject
     {
         [SerializeField] private TextAsset jsonFile; // Drag your JSON file here in the editor
 
@@ -30,8 +31,8 @@ namespace common.scripts
             {
                 // Read the JSON content from the TextAsset
                 var json = jsonFile.text;
-                var data = JsonUtility.FromJson<FloorsData>(json).data;
-                Debug.Log($"Number of floors: {data.Length}");
+                var data = JsonUtility.FromJson<FloorsData>(json);
+                Notify(GameEvents.FloorsUpdate, data);
             }
             else
             {

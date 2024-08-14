@@ -37,7 +37,6 @@ namespace Elevator.scripts
         private void FadeElevatorBasedOnPlayerProximity()
         {
             var distance = Vector2.Distance(playerTransform.position, elevatorTransform.position);
-            print(distance);
 
             if (distance < 2.5f)
             {

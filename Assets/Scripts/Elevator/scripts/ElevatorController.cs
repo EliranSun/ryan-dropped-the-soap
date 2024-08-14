@@ -21,6 +21,12 @@ namespace Elevator.scripts
         private float _timeDiff;
         private float _timeSinceLastClick;
 
+        private void Awake()
+        {
+            // making sure to notify this before any other event
+            Notify(GameEvents.FloorChange, _currentFloor);
+        }
+
         private void Start()
         {
             _initLightPosition = shaftLight.transform.position;
@@ -30,7 +36,7 @@ namespace Elevator.scripts
             {
                 var child = panel.transform.GetChild(i);
                 var button = child.GetComponent<Button>();
-                button.onClick.AddListener(() => UpdateFloorText(button));
+                button.onClick.AddListener(() => UpdateFloor(button));
             }
 
             StartCoroutine(ControlShaftLight());
@@ -49,8 +55,6 @@ namespace Elevator.scripts
             if (_timeSinceLastClick == 0)
                 return;
 
-            print(_timeSinceLastClick - _timeDiff);
-
             if (_timeSinceLastClick - _timeDiff < debounce)
                 return;
 
@@ -58,7 +62,16 @@ namespace Elevator.scripts
             GoToFloor(floor);
         }
 
-        private void UpdateFloorText(Button button)
+        public void OnNotify(GameEventData eventData)
+        {
+            if (eventData.name == GameEvents.ElevatorButtonPress)
+            {
+                var floor = (int)eventData.data;
+                GoToFloor(floor);
+            }
+        }
+
+        private void UpdateFloor(Button button)
         {
             if (_isMoving)
                 return;
@@ -68,7 +81,7 @@ namespace Elevator.scripts
 
             var buttonName = button.name;
             var floor = int.Parse(buttonName);
-            
+
             floorText.text = floorText.text == "00" // init state
                 ? $"{floor}"
                 : $"{floorText.text}{floor}";
@@ -76,7 +89,6 @@ namespace Elevator.scripts
 
         private void GoToFloor(int floorNumber)
         {
-            print($"Going to floor {floorNumber}");
             StartCoroutine(Move(floorNumber));
             shakeableCamera.Shake(Mathf.Abs(floorNumber - _currentFloor));
         }
@@ -95,6 +107,7 @@ namespace Elevator.scripts
                 else
                     _currentFloor--;
 
+                Notify(GameEvents.FloorChange, _currentFloor);
                 currentFloorText.text = $"{_currentFloor}";
             }
 

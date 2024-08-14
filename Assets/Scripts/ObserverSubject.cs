@@ -30,8 +30,10 @@ public enum GameEvents
     SoapDropped,
     PickedItem,
     DroppedItem,
+    ElevatorButtonPress,
     ElevatorReachedFloor,
     ElevatorMoving,
+    FloorChange,
     PlayerExitElevator,
     FloorsUpdate
 }
