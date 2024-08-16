@@ -37,8 +37,8 @@ namespace Elevator.scripts
                 {
                     var floorButton = Instantiate(floorPrefab, elevatorButtonsPanelTransform);
                     floorButton.gameObject.name = _currentFloorNumber == i
-                        ? $"apt-active-{i + 1}:{j + 1}"
-                        : $"apt-inactive-{i + 1}:{j + 1}";
+                        ? $"apt_active-{i + 1}:{j + 1}"
+                        : $"apt_inactive-{i + 1}:{j + 1}";
 
                     floorButton.transform.localPosition = new Vector2(j / 10f, i / 20f);
                     floorButton.GetComponent<SpriteRenderer>().color = _currentFloorNumber == i
@@ -52,11 +52,11 @@ namespace Elevator.scripts
         {
             var currentHighlight =
                 FindObjectsByType<GameObject>(FindObjectsSortMode.None)
-                    .Where(item => item.name.StartsWith("apt-active-"))
+                    .Where(item => item.name.StartsWith("apt_active-"))
                     .ToList();
             var nextHighlight =
                 FindObjectsByType<GameObject>(FindObjectsSortMode.None)
-                    .Where(item => item.name.StartsWith($"apt-inactive-{_currentFloorNumber + 1}:"))
+                    .Where(item => item.name.StartsWith($"apt_inactive-{_currentFloorNumber + 1}:"))
                     .ToList();
 
             foreach (var item in currentHighlight)

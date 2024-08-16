@@ -10,7 +10,6 @@ namespace Elevator.scripts
         [SerializeField] private ElevatorShake shakeableCamera;
         [SerializeField] private GameObject panel;
         [SerializeField] private TextMeshPro floorText;
-        [SerializeField] private TextMeshPro currentFloorText;
         [SerializeField] private GameObject shaftLight;
         [SerializeField] private float debounce = 3f;
         [SerializeField] private float lightLoop = 3f;
@@ -66,6 +65,7 @@ namespace Elevator.scripts
         {
             if (eventData.name == GameEvents.ElevatorButtonPress)
             {
+                print("Elevator Button Press event " + eventData.data);
                 var floor = (int)eventData.data;
                 GoToFloor(floor);
             }
@@ -108,7 +108,7 @@ namespace Elevator.scripts
                     _currentFloor--;
 
                 Notify(GameEvents.FloorChange, _currentFloor);
-                currentFloorText.text = $"{_currentFloor}";
+                floorText.text = $"{_currentFloor}";
             }
 
             _isMoving = false;

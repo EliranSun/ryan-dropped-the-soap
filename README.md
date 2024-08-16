@@ -1,8 +1,8 @@
-# dont-drop-the-soap
+# Don't Drop the Soap AKA Character Selection Screen
  
 ## Butler Version Push
 
-### install butler
+### install butler - linux
 ```
 curl -L https://broth.itch.ovh/butler/darwin-amd64/LATEST/archive/default -o butler.zip
 unzip butler.zip

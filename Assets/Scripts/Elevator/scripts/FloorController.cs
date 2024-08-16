@@ -26,6 +26,13 @@ namespace Elevator.scripts
 
         public void OnNotify(GameEventData eventData)
         {
+            if (eventData.name == GameEvents.ElevatorMoving)
+            {
+                _isElevatorReachedFloor = false;
+                floorSprite.SetActive(false);
+                doors.SetActive(true);
+            }
+
             if (eventData.name == GameEvents.ElevatorReachedFloor)
             {
                 _isElevatorReachedFloor = true;
