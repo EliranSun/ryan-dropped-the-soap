@@ -7,6 +7,7 @@ namespace Elevator.scripts
 {
     public class ElevatorController : ObserverSubject
     {
+        [SerializeField] private Transform apartmentsGridTransform;
         [SerializeField] private ElevatorShake shakeableCamera;
         [SerializeField] private GameObject panel;
         [SerializeField] private TextMeshPro floorText;
@@ -16,7 +17,7 @@ namespace Elevator.scripts
 
         private int _currentFloor;
         private Vector3 _initLightPosition;
-        private bool _isMoving;
+        private bool _isFloorMoving;
         private float _timeDiff;
         private float _timeSinceLastClick;
 
@@ -45,7 +46,7 @@ namespace Elevator.scripts
         {
             _timeSinceLastClick += Time.deltaTime;
 
-            if (_isMoving)
+            if (_isFloorMoving)
                 return;
 
             if (_currentFloor == int.Parse(floorText.text))
@@ -73,7 +74,7 @@ namespace Elevator.scripts
 
         private void UpdateFloor(Button button)
         {
-            if (_isMoving)
+            if (_isFloorMoving)
                 return;
 
             _timeSinceLastClick = 0;
@@ -90,13 +91,14 @@ namespace Elevator.scripts
         private void GoToFloor(int floorNumber)
         {
             StartCoroutine(Move(floorNumber));
+            StartCoroutine(MoveApartmentsGrid());
             shakeableCamera.Shake(Mathf.Abs(floorNumber - _currentFloor));
         }
 
         private IEnumerator Move(int floorNumber)
         {
             Notify(GameEvents.ElevatorMoving);
-            _isMoving = true;
+            _isFloorMoving = true;
 
             while (_currentFloor != floorNumber)
             {
@@ -111,8 +113,23 @@ namespace Elevator.scripts
                 floorText.text = $"{_currentFloor}";
             }
 
-            _isMoving = false;
+            _isFloorMoving = false;
             Notify(GameEvents.ElevatorReachedFloor);
+        }
+
+        private IEnumerator MoveApartmentsGrid()
+        {
+            while (_isFloorMoving)
+            {
+                var time = Time.deltaTime * 2;
+                var pointA = apartmentsGridTransform.localPosition;
+                var pointB = apartmentsGridTransform.localPosition;
+                pointB.y -= 1;
+
+                apartmentsGridTransform.localPosition = Vector3.Lerp(pointA, pointB, time);
+
+                yield return new WaitForSeconds(1f);
+            }
         }
 
         private IEnumerator ControlShaftLight()
