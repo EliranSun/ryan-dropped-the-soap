@@ -2318,7 +2318,6 @@ Transform:
   - {fileID: 1050597171}
   - {fileID: 351947909}
   - {fileID: 24038117}
-  - {fileID: 958114077}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &340980418
@@ -2935,6 +2934,7 @@ Transform:
   m_Children:
   - {fileID: 32545738}
   - {fileID: 1016018649}
+  - {fileID: 958114077}
   - {fileID: 1533988521}
   - {fileID: 1914684153}
   - {fileID: 1254884381}
@@ -4360,12 +4360,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 958114076}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.9264, y: -1.8731, z: -0.07200003}
-  m_LocalScale: {x: 1.1672, y: 2.9063, z: 1}
+  m_LocalRotation: {x: -0.14126253, y: 0.45516908, z: -0.07468299, w: 0.8759501}
+  m_LocalPosition: {x: 3.7903786, y: -1.9195426, z: -1.5695829}
+  m_LocalScale: {x: 2.106075, y: 2.96545, z: 0.8683705}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 310364982}
+  m_Father: {fileID: 495999106}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!331 &958114078
 SpriteMask:
@@ -5900,7 +5900,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1254884381
 Transform:
   m_ObjectHideFlags: 0
@@ -6171,7 +6171,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.7019608}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -9754,6 +9754,7 @@ MonoBehaviour:
   shaftLight: {fileID: 1263613335}
   debounce: 3
   lightLoop: 3
+  apartmentsPanelMoveSpeed: 13
 --- !u!114 &2127134019
 MonoBehaviour:
   m_ObjectHideFlags: 0

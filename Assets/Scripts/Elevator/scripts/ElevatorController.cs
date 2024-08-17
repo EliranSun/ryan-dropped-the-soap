@@ -14,6 +14,7 @@ namespace Elevator.scripts
         [SerializeField] private GameObject shaftLight;
         [SerializeField] private float debounce = 3f;
         [SerializeField] private float lightLoop = 3f;
+        [SerializeField] private float apartmentsPanelMoveSpeed = 1;
 
         private int _currentFloor;
         private Vector3 _initLightPosition;
@@ -121,14 +122,14 @@ namespace Elevator.scripts
         {
             while (_isFloorMoving)
             {
-                var time = Time.deltaTime * 2;
+                var time = Time.deltaTime;
                 var pointA = apartmentsGridTransform.localPosition;
                 var pointB = apartmentsGridTransform.localPosition;
-                pointB.y -= 1;
+                pointB.y -= Time.deltaTime * apartmentsPanelMoveSpeed;
 
-                apartmentsGridTransform.localPosition = Vector3.Lerp(pointA, pointB, time);
+                apartmentsGridTransform.localPosition = Vector3.Lerp(pointA, pointB, Time.deltaTime);
 
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForEndOfFrame();
             }
         }
 
