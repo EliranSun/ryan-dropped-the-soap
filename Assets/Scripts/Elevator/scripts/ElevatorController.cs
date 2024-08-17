@@ -7,6 +7,9 @@ namespace Elevator.scripts
 {
     public class ElevatorController : ObserverSubject
     {
+        [SerializeField] private AudioSource elevatorAudioSource;
+        [SerializeField] private AudioClip elevatorMovingSound;
+        [SerializeField] private AudioClip elevatorReachedFloorSound;
         [SerializeField] private Transform apartmentsGridTransform;
         [SerializeField] private ElevatorShake shakeableCamera;
         [SerializeField] private GameObject panel;
@@ -99,6 +102,11 @@ namespace Elevator.scripts
         private IEnumerator Move(int floorNumber)
         {
             Notify(GameEvents.ElevatorMoving);
+
+            elevatorAudioSource.clip = elevatorMovingSound;
+            elevatorAudioSource.loop = true;
+            elevatorAudioSource.Play();
+
             _isFloorMoving = true;
 
             while (_currentFloor != floorNumber)
@@ -115,6 +123,16 @@ namespace Elevator.scripts
             }
 
             _isFloorMoving = false;
+
+            elevatorAudioSource.clip = elevatorReachedFloorSound;
+            elevatorAudioSource.loop = false;
+            elevatorAudioSource.Play();
+
+            Invoke(nameof(NotifyElevatorReachedFloor), 2);
+        }
+
+        private void NotifyElevatorReachedFloor()
+        {
             Notify(GameEvents.ElevatorReachedFloor);
         }
 
