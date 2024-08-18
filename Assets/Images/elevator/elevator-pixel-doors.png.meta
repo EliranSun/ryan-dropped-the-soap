@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: a331ff31ead15c01e8b838eabbdc83a8
+guid: 8de963ebbf2b3f444b55c4daf267b9af
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7986616684441009618
-    second: elevator-doors_0
-  - first:
-      213: 1495486136634444163
-    second: elevator-doors_1
+      213: 2895041839043100291
+    second: elevator-pixel-doors_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -54,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 200
+  spritePixelsToUnits: 7
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -116,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: elevator-doors_0
+      name: elevator-pixel-doors_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 131
-        height: 801
+        width: 17
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,29 +127,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2dd70514f8926de60800000000000000
-      internalID: 7986616684441009618
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: elevator-doors_1
-      rect:
-        serializedVersion: 2
-        x: 148
-        y: 81
-        width: 134
-        height: 799
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3890e94c7b801c410800000000000000
-      internalID: 1495486136634444163
+      spriteID: 38ebe0ac6314d2820800000000000000
+      internalID: 2895041839043100291
       vertices: []
       indices: 
       edges: []
@@ -168,8 +144,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      elevator-doors_0: 7986616684441009618
-      elevator-doors_1: 1495486136634444163
+      elevator-pixel-doors_0: 2895041839043100291
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

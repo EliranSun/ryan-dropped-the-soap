@@ -26,7 +26,8 @@ namespace Elevator
             else
             {
                 shakeDuration = 0f;
-                transform.localPosition = _originalPos;
+                // TODO: This might be needed, but it's fixing the camera position
+                // transform.localPosition = _originalPos;
             }
         }
 
