@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Elevator
+namespace Elevator.scripts
 {
     public class ElevatorShake : MonoBehaviour
     {

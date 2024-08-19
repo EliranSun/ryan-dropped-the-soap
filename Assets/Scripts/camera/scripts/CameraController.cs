@@ -1,44 +1,49 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace camera.scripts
 {
     public class CameraController : MonoBehaviour
     {
-        [SerializeField] private GameObject player;
+        [SerializeField] private Transform _playerTransform;
+        [SerializeField] private Transform _targetTransform;
+        [SerializeField] private float smoothTime = 0.3f;
+        [SerializeField] private float followAheadDistance = 2f;
+        [SerializeField] private float orthographicSizePlayer = 4f;
+        [SerializeField] private float orthographicSizeElevator = 6f;
+        private float sizeVelocity;
+        private Vector3 targetPosition;
 
-        [FormerlySerializedAs("elevator")] [SerializeField]
-        private GameObject target;
+        private Vector3 velocity = Vector3.zero;
 
-        private Transform _elevatorTransform;
-        private Transform _playerTransform;
-
-        private void Start()
+        private void FixedUpdate()
         {
-            _playerTransform = player.transform;
-            _elevatorTransform = target.transform;
-        }
-
-        private void Update()
-        {
-            var distance = Vector2.Distance(_playerTransform.position, _elevatorTransform.position);
-            print(distance);
-
-
-            if (distance >= 8.5f)
+            var distance = Vector2.Distance(_playerTransform.position, _targetTransform.position);
+            if (distance >= 7f)
             {
-                var newPosition = _playerTransform.position;
-                newPosition.z = transform.position.z;
-                transform.position = newPosition;
-                Camera.main.orthographicSize = 4;
-                return;
-            }
+                // Calculate the target position ahead of the player based on the direction of movement
+                var followOffset = _playerTransform.right * followAheadDistance;
+                targetPosition = _playerTransform.position + followOffset;
+                targetPosition.z = transform.position.z;
 
-            // TODO: Smooth transition
-            var newPosition1 = _elevatorTransform.position;
-            newPosition1.z = transform.position.z;
-            transform.position = newPosition1;
-            Camera.main.orthographicSize = 6;
+                // Smooth transition for position
+                transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
+
+                // Smooth transition for orthographic size
+                Camera.main.orthographicSize = Mathf.SmoothDamp(Camera.main.orthographicSize, orthographicSizePlayer,
+                    ref sizeVelocity, smoothTime);
+            }
+            else
+            {
+                targetPosition = _targetTransform.position;
+                targetPosition.z = transform.position.z;
+
+                // Smooth transition for position
+                transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
+
+                // Smooth transition for orthographic size
+                Camera.main.orthographicSize = Mathf.SmoothDamp(Camera.main.orthographicSize, orthographicSizeElevator,
+                    ref sizeVelocity, smoothTime);
+            }
         }
     }
 }
