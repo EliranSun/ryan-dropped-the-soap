@@ -14,6 +14,8 @@ namespace Elevator.scripts
         private void Start()
         {
             floorSprite.SetActive(false);
+            doors.SetActive(false);
+            // FadeElevatorBasedOnPlayerProximity();
         }
 
         private void Update()
@@ -39,6 +41,13 @@ namespace Elevator.scripts
                 floorSprite.SetActive(true);
                 doors.SetActive(false);
             }
+
+            // if (eventData.name == GameEvents.PlayerOutsideBuilding)
+            // {
+            //     floorSprite.SetActive(false);
+            //     doors.SetActive(false);
+            //     FadeElevatorBasedOnPlayerProximity();
+            // }
         }
 
         private void FadeElevatorBasedOnPlayerProximity()

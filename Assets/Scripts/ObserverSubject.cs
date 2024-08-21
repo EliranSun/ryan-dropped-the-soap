@@ -35,7 +35,8 @@ public enum GameEvents
     ElevatorMoving,
     FloorChange,
     PlayerExitElevator,
-    FloorsUpdate
+    FloorsUpdate,
+    PlayerOutsideBuilding
 }
 
 public class GameEventData

@@ -14,7 +14,8 @@ namespace Elevator.scripts
         [SerializeField] private float delayBeforeClosing = 2f;
 
         private float _closeLerpTime;
-        private Coroutine _doorCoroutine;
+        private bool _doorCloseCoroutineStarted;
+        private bool _doorOpenCoroutineStarted;
         private bool _doorsAreOpen;
         private Vector3 _initialPosition;
         private float _openLefpTime;
@@ -28,28 +29,39 @@ namespace Elevator.scripts
         private void Update()
         {
             var distance = Vector3.Distance(playerTransform.position, transform.position);
-            if (distance < distanceToOpen && !_doorsAreOpen)
-                _doorCoroutine ??= StartCoroutine(OpenDoorsWithDelay());
-            else if (distance >= distanceToOpen && _doorsAreOpen)
-                _doorCoroutine ??= StartCoroutine(CloseDoorsWithDelay());
+
+            if (distance < distanceToOpen && !_doorsAreOpen && !_doorOpenCoroutineStarted)
+            {
+                StartCoroutine(OpenDoorsWithDelay());
+                _doorOpenCoroutineStarted = true;
+            }
+
+            if (distance >= distanceToOpen && _doorsAreOpen && !_doorCloseCoroutineStarted)
+            {
+                StartCoroutine(CloseDoorsWithDelay());
+                _doorCloseCoroutineStarted = false;
+            }
         }
 
         private IEnumerator OpenDoorsWithDelay()
         {
             yield return new WaitForSeconds(delayBeforeOpening);
 
+            _openLefpTime = 0;
             _closeLerpTime = 0;
 
-            while (_openLefpTime <= 1)
+            while (doorsTransform.position != doorsOpenPosition.position)
             {
                 _openLefpTime += Time.deltaTime / timeToOpen;
+                print($"_openLefpTime: {_openLefpTime}");
                 doorsTransform.position =
                     Vector3.Lerp(doorsTransform.position, doorsOpenPosition.position, _openLefpTime);
                 yield return null;
             }
 
             _doorsAreOpen = true;
-            _doorCoroutine = null;
+            _doorOpenCoroutineStarted = false;
+            _doorCloseCoroutineStarted = false;
         }
 
         private IEnumerator CloseDoorsWithDelay()
@@ -57,7 +69,9 @@ namespace Elevator.scripts
             yield return new WaitForSeconds(delayBeforeClosing);
 
             _openLefpTime = 0;
-            while (_closeLerpTime <= 1)
+            _closeLerpTime = 0;
+
+            while (doorsTransform.position != _initialPosition)
             {
                 _closeLerpTime += Time.deltaTime / timeToOpen;
                 doorsTransform.position = Vector3.Lerp(doorsTransform.position, _initialPosition, _closeLerpTime);
@@ -65,7 +79,8 @@ namespace Elevator.scripts
             }
 
             _doorsAreOpen = false;
-            _doorCoroutine = null;
+            _doorCloseCoroutineStarted = false;
+            _doorOpenCoroutineStarted = false;
         }
     }
 }
