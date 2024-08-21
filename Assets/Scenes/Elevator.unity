@@ -1746,6 +1746,84 @@ Transform:
   m_Children: []
   m_Father: {fileID: 310364982}
   m_LocalEulerAnglesHint: {x: -11.703, y: -53.652, z: 19.437}
+--- !u!1 &216352704
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 216352705}
+  - component: {fileID: 216352706}
+  m_Layer: 0
+  m_Name: Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &216352705
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 216352704}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 806535549}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &216352706
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 216352704}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.55876935, y: 1.0550051}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.2857144, y: 5.285714}
+    newSize: {x: 2.4285715, y: 5.714286}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 2.0524614, y: 3.6241217}
+  m_EdgeRadius: 0
 --- !u!1 &233430086
 GameObject:
   m_ObjectHideFlags: 0
@@ -1912,8 +1990,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b372e0f62b6ee64ab04b23ef70324d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerTransform: {fileID: 128135884}
-  _targetTransform: {fileID: 97409525}
+  playerTransform: {fileID: 128135884}
+  targetTransform: {fileID: 97409525}
   smoothTime: 0.3
   followAheadDistance: 0
   orthographicSizePlayer: 4
@@ -2514,6 +2592,7 @@ Transform:
   - {fileID: 24038117}
   - {fileID: 330147601}
   - {fileID: 97409525}
+  - {fileID: 1292933263}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &330147600
@@ -2525,7 +2604,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 330147601}
-  - component: {fileID: 330147602}
   m_Layer: 0
   m_Name: Elevator Outside Colliders
   m_TagString: Untagged
@@ -2548,68 +2626,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 310364982}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &330147602
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 330147600}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.6787993, y: -2.3008966}
-      - {x: -1.9136492, y: -2.8940537}
-      - {x: -3.1539786, y: -3.4737778}
-      - {x: -3.1022315, y: -4.525057}
-      - {x: 1.6113665, y: -6.7947345}
-      - {x: 2.4171412, y: -6.5439467}
-      - {x: -2.3341632, y: -4.36116}
-      - {x: -2.2862327, y: -3.7208848}
-      - {x: 1.624204, y: -1.8318605}
-      - {x: 4.971076, y: -3.1129727}
-      - {x: 5.007282, y: -5.4488983}
-      - {x: 6.1573253, y: -5.1449227}
-      - {x: 6.11749, y: -3.1419544}
-      - {x: 1.4897695, y: -1.2182703}
-      - {x: 0.03873539, y: -1.9829118}
-  m_UseDelaunayMesh: 0
 --- !u!1001 &340980418
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4364,7 +4380,6 @@ GameObject:
   m_Component:
   - component: {fileID: 806535549}
   - component: {fileID: 806535551}
-  - component: {fileID: 806535550}
   m_Layer: 0
   m_Name: Front elevator doors
   m_TagString: Elevator Doors
@@ -4384,55 +4399,10 @@ Transform:
   m_LocalPosition: {x: 3.48, y: -5.17, z: -0.07200003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 216352705}
   m_Father: {fileID: 910218315}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &806535550
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 806535548}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: -0.55876935, y: 1.0550051}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.2857144, y: 5.285714}
-    newSize: {x: 2.4285715, y: 5.714286}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 2.0524614, y: 3.6241217}
-  m_EdgeRadius: 0
 --- !u!212 &806535551
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4532,6 +4502,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doors: {fileID: 1187154925}
+  outsideElevatorSprite: {fileID: 1623301824}
+  outsideElevatorObjects:
+  - {fileID: 1459352811}
+  - {fileID: 1691032293}
+  - {fileID: 330147600}
+  - {fileID: 216352704}
+  insideElevatorObjects:
+  - {fileID: 1050597170}
+  - {fileID: 351947907}
+  - {fileID: 24038116}
+  - {fileID: 495999105}
   floorSprite: {fileID: 2073225680}
   playerTransform: {fileID: 128135884}
   elevatorTransform: {fileID: 642100444}
@@ -6659,6 +6640,84 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   m_Size: {x: 1.4678917, y: 3.6214275}
+  m_EdgeRadius: 0
+--- !u!1 &1292933262
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1292933263}
+  - component: {fileID: 1292933264}
+  m_Layer: 0
+  m_Name: Inside elevator trigger
+  m_TagString: Inside Elevator
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1292933263
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292933262}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.40286025, y: 0.21243875, z: -0.34438488, w: 0.82095826}
+  m_LocalPosition: {x: 0.86, y: -4.65, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 310364982}
+  m_LocalEulerAnglesHint: {x: 53.88, y: 6.95, z: -41.98}
+--- !u!61 &1292933264
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292933262}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 2.74, y: 3.25}
   m_EdgeRadius: 0
 --- !u!1 &1294963296
 GameObject:

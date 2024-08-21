@@ -5,6 +5,9 @@ namespace Elevator.scripts
     public class FloorController : MonoBehaviour
     {
         [SerializeField] private GameObject doors;
+        [SerializeField] private SpriteRenderer outsideElevatorSprite;
+        [SerializeField] private GameObject[] outsideElevatorObjects;
+        [SerializeField] private GameObject[] insideElevatorObjects;
         [SerializeField] private GameObject floorSprite;
         [SerializeField] private Transform playerTransform;
         [SerializeField] private Transform elevatorTransform;
@@ -28,26 +31,43 @@ namespace Elevator.scripts
 
         public void OnNotify(GameEventData eventData)
         {
-            if (eventData.name == GameEvents.ElevatorMoving)
+            print($"FloorController OnNotify: {eventData.name}");
+            switch (eventData.name)
             {
-                _isElevatorReachedFloor = false;
-                floorSprite.SetActive(false);
-                doors.SetActive(true);
-            }
+                case GameEvents.ElevatorMoving:
+                    _isElevatorReachedFloor = false;
+                    floorSprite.SetActive(false);
+                    doors.SetActive(true);
+                    break;
 
-            if (eventData.name == GameEvents.ElevatorReachedFloor)
-            {
-                _isElevatorReachedFloor = true;
-                floorSprite.SetActive(true);
-                doors.SetActive(false);
-            }
+                case GameEvents.ElevatorReachedFloor:
+                    _isElevatorReachedFloor = true;
+                    floorSprite.SetActive(true);
+                    doors.SetActive(false);
+                    break;
 
-            // if (eventData.name == GameEvents.PlayerOutsideBuilding)
-            // {
-            //     floorSprite.SetActive(false);
-            //     doors.SetActive(false);
-            //     FadeElevatorBasedOnPlayerProximity();
-            // }
+                case GameEvents.PlayerInsideElevator:
+                    floorSprite.SetActive(false);
+                    doors.SetActive(true);
+                    outsideElevatorSprite.color = new Color(1, 1, 1, 0.2f);
+                    foreach (var outsideElevatorObject in outsideElevatorObjects)
+                        outsideElevatorObject.SetActive(false);
+
+                    foreach (var insideElevatorObject in insideElevatorObjects)
+                        insideElevatorObject.SetActive(true);
+                    break;
+
+                case GameEvents.PlayerExitElevator:
+                    floorSprite.SetActive(false); // TODO depends to which end
+                    doors.SetActive(false);
+                    outsideElevatorSprite.color = new Color(1, 1, 1, 1);
+                    foreach (var outsideElevatorObject in outsideElevatorObjects)
+                        outsideElevatorObject.SetActive(true);
+
+                    foreach (var insideElevatorObject in insideElevatorObjects)
+                        insideElevatorObject.SetActive(false);
+                    break;
+            }
         }
 
         private void FadeElevatorBasedOnPlayerProximity()

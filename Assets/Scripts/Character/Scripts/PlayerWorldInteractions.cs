@@ -7,8 +7,22 @@ namespace Character.Scripts
     {
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.CompareTag("Elevator Doors"))
-                Notify(GameEvents.PlayerExitElevator);
+            switch (other.tag)
+            {
+                case "Inside Elevator":
+                    Notify(GameEvents.PlayerInsideElevator);
+                    break;
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            switch (other.tag)
+            {
+                case "Inside Elevator":
+                    Notify(GameEvents.PlayerExitElevator);
+                    break;
+            }
         }
     }
 }

@@ -3,6 +3,7 @@ using UnityEngine.Events;
 
 public enum GameEvents
 {
+    // Dropped the soap scenes events
     None,
     FaucetOpening,
     FaucetClosing,
@@ -30,13 +31,15 @@ public enum GameEvents
     SoapDropped,
     PickedItem,
     DroppedItem,
+
+    // elevator/floor events
     ElevatorButtonPress,
     ElevatorReachedFloor,
     ElevatorMoving,
     FloorChange,
-    PlayerExitElevator,
     FloorsUpdate,
-    PlayerOutsideBuilding
+    PlayerExitElevator,
+    PlayerInsideElevator
 }
 
 public class GameEventData

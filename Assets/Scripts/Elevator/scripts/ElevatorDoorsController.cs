@@ -12,13 +12,12 @@ namespace Elevator.scripts
         [SerializeField] private float timeToOpen = 1.5f;
         [SerializeField] private float delayBeforeOpening = 2f;
         [SerializeField] private float delayBeforeClosing = 2f;
-
         private float _closeLerpTime;
         private bool _doorCloseCoroutineStarted;
         private bool _doorOpenCoroutineStarted;
         private bool _doorsAreOpen;
         private Vector3 _initialPosition;
-        private float _openLefpTime;
+        private float _openLerpTime;
 
         private void Start()
         {
@@ -47,15 +46,14 @@ namespace Elevator.scripts
         {
             yield return new WaitForSeconds(delayBeforeOpening);
 
-            _openLefpTime = 0;
+            _openLerpTime = 0;
             _closeLerpTime = 0;
 
             while (doorsTransform.position != doorsOpenPosition.position)
             {
-                _openLefpTime += Time.deltaTime / timeToOpen;
-                print($"_openLefpTime: {_openLefpTime}");
+                _openLerpTime += Time.deltaTime / timeToOpen;
                 doorsTransform.position =
-                    Vector3.Lerp(doorsTransform.position, doorsOpenPosition.position, _openLefpTime);
+                    Vector3.Lerp(doorsTransform.position, doorsOpenPosition.position, _openLerpTime);
                 yield return null;
             }
 
@@ -67,8 +65,8 @@ namespace Elevator.scripts
         private IEnumerator CloseDoorsWithDelay()
         {
             yield return new WaitForSeconds(delayBeforeClosing);
+            _openLerpTime = 0;
 
-            _openLefpTime = 0;
             _closeLerpTime = 0;
 
             while (doorsTransform.position != _initialPosition)
