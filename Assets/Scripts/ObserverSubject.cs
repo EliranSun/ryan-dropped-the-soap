@@ -38,7 +38,8 @@ public enum GameEvents
     ElevatorMoving,
     FloorChange,
     FloorsUpdate,
-    PlayerExitElevator,
+    ExitElevatorToFloors,
+    ExitElevatorToLobby,
     PlayerInsideElevator
 }
 

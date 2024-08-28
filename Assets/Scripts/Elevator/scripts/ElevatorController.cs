@@ -14,6 +14,7 @@ namespace Elevator.scripts
         [SerializeField] private ElevatorShake shakeableCamera;
         [SerializeField] private GameObject panel;
         [SerializeField] private TextMeshPro floorText;
+        [SerializeField] private TextMeshPro[] apartmentNumbers;
         [SerializeField] private GameObject shaftLight;
         [SerializeField] private float debounce = 3f;
         [SerializeField] private float lightLoop = 3f;
@@ -120,6 +121,11 @@ namespace Elevator.scripts
 
                 Notify(GameEvents.FloorChange, _currentFloor);
                 floorText.text = $"{_currentFloor}";
+                for (var i = 0; i < apartmentNumbers.Length; i++)
+                {
+                    var apt = apartmentNumbers[i];
+                    apt.text = $"{_currentFloor}0{i + 1}";
+                }
             }
 
             _isFloorMoving = false;
