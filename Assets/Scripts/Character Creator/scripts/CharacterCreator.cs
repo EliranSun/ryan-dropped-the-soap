@@ -1,11 +1,18 @@
 using UnityEngine;
+using System;
 
 namespace Character_Creator.scripts
 {
+
+    [Serializable]
+    class Eyes {
+        [SerializeField] private Sprite eye;
+        [SerializeField] private GameObject painting;
+    }
+
     public class CharacterCreator : MonoBehaviour
     {
-        [SerializeField] private Sprite[] face;
-        [SerializeField] private Sprite[] eyes;
+        [SerializeField] private Eyes[] eyes;
 
         private void Start()
         {
