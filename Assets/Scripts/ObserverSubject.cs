@@ -40,7 +40,10 @@ public enum GameEvents
     FloorsUpdate,
     ExitElevatorToFloors,
     ExitElevatorToLobby,
-    PlayerInsideElevator
+    PlayerInsideElevator,
+
+    // museum events
+    PaintingClicked
 }
 
 public class GameEventData
