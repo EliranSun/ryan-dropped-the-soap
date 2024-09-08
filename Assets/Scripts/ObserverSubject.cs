@@ -43,7 +43,8 @@ public enum GameEvents
     PlayerInsideElevator,
 
     // museum events
-    PaintingClicked
+    PaintingClicked,
+    MirrorClicked
 }
 
 public class GameEventData
