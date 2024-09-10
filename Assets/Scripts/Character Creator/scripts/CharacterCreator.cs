@@ -18,13 +18,42 @@ namespace Character_Creator.scripts
         [SerializeField] public GameObject mirror;
     }
 
+    [Serializable]
+    internal class Mouths
+    {
+        [SerializeField] public Sprite mouth;
+        [SerializeField] public GameObject door;
+    }
+
+    [Serializable]
+    internal class Noses
+    {
+        [SerializeField] public Sprite nose;
+        [SerializeField] public GameObject objectRelatedToNose;
+    }
+
+    [Serializable]
+    internal class Hairs
+    {
+        [SerializeField] public Sprite hairFront;
+        [SerializeField] public Sprite hairBack;
+        [SerializeField] public GameObject objectRelatedToHair;
+    }
+
 
     public class CharacterCreator : MonoBehaviour
     {
         [SerializeField] private GameObject eyesContainer;
         [SerializeField] private GameObject facesContainer;
+        [SerializeField] private GameObject mouthsContainer;
+        [SerializeField] private GameObject nosesContainer;
+        [SerializeField] private GameObject hairFrontContainer;
+        [SerializeField] private GameObject hairBackContainer;
         [SerializeField] private Eyes[] eyes;
         [SerializeField] private Faces[] faces;
+        [SerializeField] private Mouths[] mouths;
+        [SerializeField] private Noses[] noses;
+        [SerializeField] private Hairs[] hairs;
 
         public void OnPaintingClick(GameEventData gameData)
         {
@@ -41,6 +70,34 @@ namespace Character_Creator.scripts
             {
                 var face = Array.Find(faces, f => f.mirror.name == (string)gameData.data);
                 if (face != null) facesContainer.GetComponent<Image>().sprite = face.face;
+            }
+        }
+
+        public void OnDoorClick(GameEventData gameData)
+        {
+            if (gameData.name == GameEvents.DoorClicked)
+            {
+                var mouth = Array.Find(mouths, m => m.door.name == (string)gameData.data);
+                if (mouth != null) mouthsContainer.GetComponent<Image>().sprite = mouth.mouth;
+            }
+        }
+
+        public void OnHairRelatedObjectClick(GameEventData gameData)
+        {
+            if (gameData.name == GameEvents.HairRelatedObjectClicked)
+            {
+                var hair = Array.Find(hairs, h => h.objectRelatedToHair.name == (string)gameData.data);
+                if (hair != null) hairBackContainer.GetComponent<Image>().sprite = hair.hairBack;
+                if (hair != null) hairFrontContainer.GetComponent<Image>().sprite = hair.hairFront;
+            }
+        }
+
+        public void OnNoseRelatedObjectClick(GameEventData gameData)
+        {
+            if (gameData.name == GameEvents.NoseRelatedObjectClicked)
+            {
+                var nose = Array.Find(noses, n => n.objectRelatedToNose.name == (string)gameData.data);
+                if (nose != null) nosesContainer.GetComponent<Image>().sprite = nose.nose;
             }
         }
     }

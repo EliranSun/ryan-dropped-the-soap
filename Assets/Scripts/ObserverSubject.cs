@@ -44,7 +44,10 @@ public enum GameEvents
 
     // museum events
     PaintingClicked,
-    MirrorClicked
+    MirrorClicked,
+    DoorClicked,
+    NoseRelatedObjectClicked,
+    HairRelatedObjectClicked
 }
 
 public class GameEventData
