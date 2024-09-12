@@ -46,8 +46,8 @@ public enum GameEvents
     PaintingClicked,
     MirrorClicked,
     DoorClicked,
-    NoseRelatedObjectClicked,
-    HairRelatedObjectClicked
+    VaseClicked,
+    NoseRelatedObjectClicked
 }
 
 public class GameEventData

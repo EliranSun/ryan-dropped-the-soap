@@ -37,7 +37,7 @@ namespace Character_Creator.scripts
     {
         [SerializeField] public Sprite hairFront;
         [SerializeField] public Sprite hairBack;
-        [SerializeField] public GameObject objectRelatedToHair;
+        [SerializeField] public GameObject vase;
     }
 
 
@@ -82,11 +82,11 @@ namespace Character_Creator.scripts
             }
         }
 
-        public void OnHairRelatedObjectClick(GameEventData gameData)
+        public void OnVaseClick(GameEventData gameData)
         {
-            if (gameData.name == GameEvents.HairRelatedObjectClicked)
+            if (gameData.name == GameEvents.VaseClicked)
             {
-                var hair = Array.Find(hairs, h => h.objectRelatedToHair.name == (string)gameData.data);
+                var hair = Array.Find(hairs, h => h.vase.name == (string)gameData.data);
                 if (hair != null) hairBackContainer.GetComponent<Image>().sprite = hair.hairBack;
                 if (hair != null) hairFrontContainer.GetComponent<Image>().sprite = hair.hairFront;
             }
