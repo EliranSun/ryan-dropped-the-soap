@@ -10,7 +10,7 @@ namespace Object.Scripts
         Right
     }
 
-    public class ParallexEffect : MonoBehaviour
+    public class AutoMovementParallaxEffect : MonoBehaviour
     {
         [SerializeField] private float speed = 0.5f;
         [SerializeField] private Direction direction;
