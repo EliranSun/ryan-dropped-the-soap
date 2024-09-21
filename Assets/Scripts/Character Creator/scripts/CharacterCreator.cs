@@ -29,7 +29,7 @@ namespace Character_Creator.scripts
     internal class Noses
     {
         [SerializeField] public Sprite nose;
-        [SerializeField] public GameObject objectRelatedToNose;
+        [SerializeField] public GameObject armChairs;
     }
 
     [Serializable]
@@ -92,11 +92,11 @@ namespace Character_Creator.scripts
             }
         }
 
-        public void OnNoseRelatedObjectClick(GameEventData gameData)
+        public void OnArmchairClick(GameEventData gameData)
         {
-            if (gameData.name == GameEvents.NoseRelatedObjectClicked)
+            if (gameData.name == GameEvents.ArmchairClicked)
             {
-                var nose = Array.Find(noses, n => n.objectRelatedToNose.name == (string)gameData.data);
+                var nose = Array.Find(noses, n => n.armChairs.name == (string)gameData.data);
                 if (nose != null) nosesContainer.GetComponent<Image>().sprite = nose.nose;
             }
         }
