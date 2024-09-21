@@ -20,6 +20,9 @@ namespace camera.scripts
         private void Start()
         {
             _camera = Camera.main;
+            _camera.transform.position = new Vector3(playerTransform.position.x, playerTransform.position.y + yOffset,
+                _camera.transform.position.z);
+            _camera.orthographicSize = orthographicSizePlayer;
         }
 
         private void FixedUpdate()
