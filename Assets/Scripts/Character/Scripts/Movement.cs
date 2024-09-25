@@ -27,7 +27,7 @@ namespace Character.Scripts
                 _spriteRenderer.flipX = true;
 
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
-                _rigidbody2D.AddForce(Vector2.up * speed, ForceMode2D.Impulse);
+                _rigidbody2D.AddForce(Vector2.up * speed * 10, ForceMode2D.Impulse);
         }
     }
 }

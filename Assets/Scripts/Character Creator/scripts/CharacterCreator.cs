@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -55,12 +56,30 @@ namespace Character_Creator.scripts
         [SerializeField] private Noses[] noses;
         [SerializeField] private Hairs[] hairs;
 
+        private readonly Dictionary<string, bool> _playerChoices = new();
+
+        private void Start()
+        {
+            eyesContainer.GetComponent<Image>().color = new Color(1, 1, 1, 0);
+            facesContainer.GetComponent<Image>().color = new Color(1, 1, 1, 0);
+            mouthsContainer.GetComponent<Image>().color = new Color(1, 1, 1, 0);
+            nosesContainer.GetComponent<Image>().color = new Color(1, 1, 1, 0);
+            hairFrontContainer.GetComponent<Image>().color = new Color(1, 1, 1, 0);
+            hairBackContainer.GetComponent<Image>().color = new Color(1, 1, 1, 0);
+        }
+
         public void OnPaintingClick(GameEventData gameData)
         {
+            // TODO: Don't really need double check here,
+            // but consider refactoring to use a single method
             if (gameData.name == GameEvents.PaintingClicked)
             {
                 var eye = Array.Find(eyes, e => e.painting.name == (string)gameData.data);
-                if (eye != null) eyesContainer.GetComponent<Image>().sprite = eye.eye;
+                if (eye != null && !_playerChoices.ContainsKey("eyes"))
+                {
+                    eyesContainer.GetComponent<Image>().sprite = eye.eye;
+                    _playerChoices.Add("eyes", true);
+                }
             }
         }
 
@@ -69,7 +88,11 @@ namespace Character_Creator.scripts
             if (gameData.name == GameEvents.MirrorClicked)
             {
                 var face = Array.Find(faces, f => f.mirror.name == (string)gameData.data);
-                if (face != null) facesContainer.GetComponent<Image>().sprite = face.face;
+                if (face != null && !_playerChoices.ContainsKey("face"))
+                {
+                    facesContainer.GetComponent<Image>().sprite = face.face;
+                    _playerChoices.Add("face", true);
+                }
             }
         }
 
@@ -78,7 +101,11 @@ namespace Character_Creator.scripts
             if (gameData.name == GameEvents.DoorClicked)
             {
                 var mouth = Array.Find(mouths, m => m.door.name == (string)gameData.data);
-                if (mouth != null) mouthsContainer.GetComponent<Image>().sprite = mouth.mouth;
+                if (mouth != null && !_playerChoices.ContainsKey("mouth"))
+                {
+                    mouthsContainer.GetComponent<Image>().sprite = mouth.mouth;
+                    _playerChoices.Add("mouth", true);
+                }
             }
         }
 
@@ -87,8 +114,12 @@ namespace Character_Creator.scripts
             if (gameData.name == GameEvents.VaseClicked)
             {
                 var hair = Array.Find(hairs, h => h.vase.name == (string)gameData.data);
-                if (hair != null) hairBackContainer.GetComponent<Image>().sprite = hair.hairBack;
-                if (hair != null) hairFrontContainer.GetComponent<Image>().sprite = hair.hairFront;
+                if (hair != null && !_playerChoices.ContainsKey("hair"))
+                {
+                    hairBackContainer.GetComponent<Image>().sprite = hair.hairBack;
+                    hairFrontContainer.GetComponent<Image>().sprite = hair.hairFront;
+                    _playerChoices.Add("hair", true);
+                }
             }
         }
 
@@ -97,7 +128,25 @@ namespace Character_Creator.scripts
             if (gameData.name == GameEvents.ArmchairClicked)
             {
                 var nose = Array.Find(noses, n => n.armChairs.name == (string)gameData.data);
-                if (nose != null) nosesContainer.GetComponent<Image>().sprite = nose.nose;
+                if (nose != null && !_playerChoices.ContainsKey("nose"))
+                {
+                    nosesContainer.GetComponent<Image>().sprite = nose.nose;
+                    _playerChoices.Add("nose", true);
+                }
+            }
+        }
+
+        // TODO: Trigger after dialog
+        public void OnCharacterReveal()
+        {
+            if (_playerChoices.Count == 5)
+            {
+                eyesContainer.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                facesContainer.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                mouthsContainer.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                nosesContainer.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                hairFrontContainer.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                hairBackContainer.GetComponent<Image>().color = new Color(1, 1, 1, 1);
             }
         }
     }
