@@ -16,6 +16,7 @@ namespace Character_Creator.scripts
     internal class Faces
     {
         [SerializeField] public Sprite face;
+        [SerializeField] public Sprite faceSprite;
         [SerializeField] public GameObject mirror;
     }
 
@@ -39,8 +40,15 @@ namespace Character_Creator.scripts
         [SerializeField] public Sprite hairFront;
         [SerializeField] public Sprite hairBack;
         [SerializeField] public GameObject vase;
+        [SerializeField] public Sprite hairSprite;
     }
 
+    [Serializable]
+    internal class SpriteCreatorContainer
+    {
+        [SerializeField] public GameObject faceContainer;
+        [SerializeField] public GameObject hairContainer;
+    }
 
     public class CharacterCreator : MonoBehaviour
     {
@@ -55,6 +63,7 @@ namespace Character_Creator.scripts
         [SerializeField] private Mouths[] mouths;
         [SerializeField] private Noses[] noses;
         [SerializeField] private Hairs[] hairs;
+        [SerializeField] private SpriteCreatorContainer spriteCreatorContainer;
 
         private readonly Dictionary<string, bool> _playerChoices = new();
 
@@ -91,6 +100,7 @@ namespace Character_Creator.scripts
                 if (face != null && !_playerChoices.ContainsKey("face"))
                 {
                     facesContainer.GetComponent<Image>().sprite = face.face;
+                    spriteCreatorContainer.faceContainer.GetComponent<Image>().sprite = face.faceSprite;
                     _playerChoices.Add("face", true);
                 }
             }
@@ -118,6 +128,7 @@ namespace Character_Creator.scripts
                 {
                     hairBackContainer.GetComponent<Image>().sprite = hair.hairBack;
                     hairFrontContainer.GetComponent<Image>().sprite = hair.hairFront;
+                    spriteCreatorContainer.hairContainer.GetComponent<Image>().sprite = hair.hairSprite;
                     _playerChoices.Add("hair", true);
                 }
             }
