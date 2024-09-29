@@ -69,6 +69,11 @@ namespace Character_Creator.scripts
 
         private void Start()
         {
+            HideFaceUI();
+        }
+
+        private void HideFaceUI()
+        {
             eyesContainer.GetComponent<Image>().color = new Color(1, 1, 1, 0);
             facesContainer.GetComponent<Image>().color = new Color(1, 1, 1, 0);
             mouthsContainer.GetComponent<Image>().color = new Color(1, 1, 1, 0);
@@ -99,8 +104,11 @@ namespace Character_Creator.scripts
                 var face = Array.Find(faces, f => f.mirror.name == (string)gameData.data);
                 if (face != null && !_playerChoices.ContainsKey("face"))
                 {
+                    print(face.faceSprite);
+                    print(face.face);
+                    print(spriteCreatorContainer.faceContainer);
                     facesContainer.GetComponent<Image>().sprite = face.face;
-                    spriteCreatorContainer.faceContainer.GetComponent<Image>().sprite = face.faceSprite;
+                    spriteCreatorContainer.faceContainer.GetComponent<SpriteRenderer>().sprite = face.faceSprite;
                     _playerChoices.Add("face", true);
                 }
             }
@@ -128,7 +136,7 @@ namespace Character_Creator.scripts
                 {
                     hairBackContainer.GetComponent<Image>().sprite = hair.hairBack;
                     hairFrontContainer.GetComponent<Image>().sprite = hair.hairFront;
-                    spriteCreatorContainer.hairContainer.GetComponent<Image>().sprite = hair.hairSprite;
+                    spriteCreatorContainer.hairContainer.GetComponent<SpriteRenderer>().sprite = hair.hairSprite;
                     _playerChoices.Add("hair", true);
                 }
             }
