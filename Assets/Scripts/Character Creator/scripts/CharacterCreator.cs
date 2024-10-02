@@ -102,14 +102,11 @@ namespace Character_Creator.scripts
             if (gameData.name == GameEvents.MirrorClicked)
             {
                 var face = Array.Find(faces, f => f.mirror.name == (string)gameData.data);
-                if (face != null && !_playerChoices.ContainsKey("face"))
+                print($"Has obtained face? {_playerChoices.ContainsKey("face")}, face? {face.face}");
+                if (face.face != null)
                 {
-                    print(face.faceSprite);
-                    print(face.face);
-                    print(spriteCreatorContainer.faceContainer);
                     facesContainer.GetComponent<Image>().sprite = face.face;
                     spriteCreatorContainer.faceContainer.GetComponent<SpriteRenderer>().sprite = face.faceSprite;
-                    _playerChoices.Add("face", true);
                 }
             }
         }
