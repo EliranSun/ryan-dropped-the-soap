@@ -13,7 +13,16 @@ MonoBehaviour:
   m_Name: NarrationLine
   m_EditorClassIdentifier: DialogAssemblyDefinition:dialog.scripts:DialogueLineObject
   playerName: Shlomo
-  voicedLines: []
+  voicedLines:
+  - text: You will be watched...
+    clip: {fileID: 8300000, guid: 57d5c73272fae29428aa0ba16d733627, type: 3}
+    gender: 0
+  - text: You will be watched...
+    clip: {fileID: 8300000, guid: 57d5c73272fae29428aa0ba16d733627, type: 3}
+    gender: 1
+  - text: You will be watched...
+    clip: {fileID: 8300000, guid: 57d5c73272fae29428aa0ba16d733627, type: 3}
+    gender: 7
   playerOptions: []
   playerReactions: []
   nextDialogueLine: {fileID: 0}

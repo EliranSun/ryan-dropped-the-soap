@@ -6,7 +6,9 @@ using UnityEngine.SceneManagement;
 
 namespace dialog.scripts
 {
-    public sealed class DialogueManager : ObserverSubject
+    [RequireComponent(typeof(AudioSource))]
+    // [RequireComponent(typeof(DialogueStateChanger))]
+    public class DialogueManager : ObserverSubject
     {
         [SerializeField] private GameObject playerChoiceButton;
         [SerializeField] private GameObject playerChoiceButtonsContainer;
@@ -20,15 +22,16 @@ namespace dialog.scripts
         private DialogueLineObject _currentDialogue;
 
         private PlayerData _player;
+
         private DialogueLineObject _triggeredDialogueLine;
-        public static DialogueManager Instance { get; private set; }
+        // public static DialogueManager Instance { get; private set; }
 
         private void Awake()
         {
-            if (Instance != null && Instance != this)
-                Destroy(this);
-            else
-                Instance = this;
+            // if (Instance != null && Instance != this)
+            //     Destroy(this);
+            // else
+            //     Instance = this;
 
             _audioSource = GetComponent<AudioSource>();
         }
