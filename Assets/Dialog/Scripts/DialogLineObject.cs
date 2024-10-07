@@ -20,7 +20,7 @@ namespace Dialog.Scripts
         public float waitBeforeLine;
         public DialogLineObject nextDialogueLine;
         public float waitAfterLine;
-        public DialogAction afterLineAction;
+        public GameEvents afterLineAction;
         public bool isMuffled = true;
     }
 }

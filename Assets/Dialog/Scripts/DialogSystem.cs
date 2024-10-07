@@ -86,23 +86,23 @@ namespace Dialog.Scripts
 
         private void TriggerAction()
         {
-            if (currentDialog.afterLineAction != DialogAction.None)
+            if (currentDialog.afterLineAction != GameEvents.None)
                 HandleAction(currentDialog.afterLineAction);
         }
 
-        private void HandleAction(DialogAction actionName)
+        private void HandleAction(GameEvents actionName)
         {
             switch (actionName)
             {
-                case DialogAction.NextLevel:
+                case GameEvents.NextLevel:
                     LevelManager.NextLevel();
                     break;
 
-                case DialogAction.RestartLevel:
+                case GameEvents.RestartLevel:
                     LevelManager.RestartLevel();
                     break;
 
-                case DialogAction.ZoomOut:
+                case GameEvents.ZoomOut:
                     Zoom.Instance.endSize = 40;
                     break;
             }

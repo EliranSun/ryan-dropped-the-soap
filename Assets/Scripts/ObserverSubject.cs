@@ -47,7 +47,12 @@ public enum GameEvents
     MirrorClicked,
     DoorClicked,
     VaseClicked,
-    ArmchairClicked
+    ArmchairClicked,
+
+    NextScene,
+    NextLevel,
+    RestartLevel,
+    ZoomOut
 }
 
 public class GameEventData
