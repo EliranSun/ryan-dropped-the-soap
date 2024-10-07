@@ -129,12 +129,13 @@ namespace Character_Creator.scripts
             if (gameData.name == GameEvents.VaseClicked)
             {
                 var hair = Array.Find(hairs, h => h.vase.name == (string)gameData.data);
-                if (hair != null && !_playerChoices.ContainsKey("hair"))
+                // !_playerChoices.ContainsKey("hair")
+                if (hair != null)
                 {
                     hairBackContainer.GetComponent<Image>().sprite = hair.hairBack;
                     hairFrontContainer.GetComponent<Image>().sprite = hair.hairFront;
                     spriteCreatorContainer.hairContainer.GetComponent<SpriteRenderer>().sprite = hair.hairSprite;
-                    _playerChoices.Add("hair", true);
+                    // _playerChoices.Add("hair", true);
                 }
             }
         }
