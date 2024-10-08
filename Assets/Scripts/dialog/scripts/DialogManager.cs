@@ -95,7 +95,9 @@ namespace dialog.scripts
             }
             else
             {
-                Invoke(nameof(OnDialogEnd), _currentDialogue.wait);
+                var wordPerSecond = 2;
+                var duration = narratorText.text.Split(' ').Length / wordPerSecond;
+                Invoke(nameof(OnDialogEnd), _currentDialogue.wait + duration);
             }
         }
 
