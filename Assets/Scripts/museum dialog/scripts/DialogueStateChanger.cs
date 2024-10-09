@@ -1,14 +1,15 @@
 using System;
+using dialog.scripts;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace dialog.scripts
+namespace museum_dialog.scripts
 {
     [Serializable]
     public class DialogueState
     {
         public PlayerDataEnum playerDataProperty;
-        public DialogueLineObject nextState;
+        public NarrationDialogLine nextState;
     }
 
     public class DialogueStateChanger : MonoBehaviour
@@ -27,7 +28,7 @@ namespace dialog.scripts
                 Instance = this;
         }
 
-        public DialogueLineObject GetDialogStateByPlayerPrefs()
+        public NarrationDialogLine GetDialogStateByPlayerPrefs()
         {
             if (prioritizedStates.Length == 0)
                 return finalState.nextState;

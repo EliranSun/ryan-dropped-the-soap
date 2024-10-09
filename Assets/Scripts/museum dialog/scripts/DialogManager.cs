@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Linq;
+using dialog.scripts;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace dialog.scripts
+namespace museum_dialog.scripts
 {
     [RequireComponent(typeof(AudioSource))]
     // [RequireComponent(typeof(DialogueStateChanger))]
@@ -19,11 +20,11 @@ namespace dialog.scripts
         private bool _asyncLinesReady;
         private AudioSource _audioSource;
 
-        private DialogueLineObject _currentDialogue;
+        private NarrationDialogLine _currentDialogue;
 
         private PlayerData _player;
 
-        private DialogueLineObject _triggeredDialogueLine;
+        private NarrationDialogLine _triggeredDialogueLine;
         // public static DialogueManager Instance { get; private set; }
 
         private void Awake()
@@ -101,7 +102,7 @@ namespace dialog.scripts
             }
         }
 
-        private static VoicedLine GetLineByGender(DialogueLineObject dialogueLineObject)
+        private static VoicedLine GetLineByGender(NarrationDialogLine dialogueLineObject)
         {
             var gender = PlayerData.GetPlayerGender();
             print($"Player Gender: {gender}");
@@ -153,7 +154,7 @@ namespace dialog.scripts
             return objects.Length == 0;
         }
 
-        private void GeneratePlayerInputs(DialogueLineObject line)
+        private void GeneratePlayerInputs(NarrationDialogLine line)
         {
             for (var i = 0; i < line.playerOptions.Length; i++)
             {
@@ -220,7 +221,7 @@ namespace dialog.scripts
             ReadCurrentLine();
         }
 
-        public void TriggerLine(DialogueLineObject line)
+        public void TriggerLine(NarrationDialogLine line)
         {
             if (_audioSource.isPlaying)
             {
@@ -245,7 +246,7 @@ namespace dialog.scripts
             OnDialogEnd();
         }
 
-        public void UpdateDialogState(DialogueLineObject nextLineObject)
+        public void UpdateDialogState(NarrationDialogLine nextLineObject)
         {
             _currentDialogue = nextLineObject;
         }

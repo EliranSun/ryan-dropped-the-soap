@@ -1,7 +1,8 @@
 using System;
+using dialog.scripts;
 using UnityEngine;
 
-namespace dialog.scripts
+namespace museum_dialog.scripts
 {
     public enum ChoiceType
     {
@@ -15,8 +16,8 @@ namespace dialog.scripts
     {
         public string text;
         public ChoiceType type;
-        public DialogueLineObject next;
         public PlayerDataEnum choiceDataType;
+        public NarrationDialogLine next;
     }
 
     [Serializable]
@@ -41,11 +42,11 @@ namespace dialog.scripts
     public class PlayerReactions
     {
         public DialogReactions reaction;
-        public DialogueLineObject line;
+        public NarrationDialogLine line;
     }
 
-    [CreateAssetMenu(fileName = "NarrationLine", menuName = "Dialogue/Narration Line")]
-    public class DialogueLineObject : ScriptableObject
+    [CreateAssetMenu(fileName = "NarrationLine", menuName = "Line")]
+    public class NarrationDialogLine : ScriptableObject
     {
         // to dynamically replace the line. Replacing the actual line will be saved
         // and we do not want that mainly because of restarting and changing information
@@ -55,7 +56,7 @@ namespace dialog.scripts
         public VoicedLine[] voicedLines;
         public PlayerChoice[] playerOptions;
         public PlayerReactions[] playerReactions;
-        public DialogueLineObject nextDialogueLine;
+        public NarrationDialogLine nextDialogueLine;
         public float wait = 0.5f;
         public GameEvents actionAfterLine;
     }

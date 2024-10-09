@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using dialog.scripts;
 using UnityEngine;
 
-namespace dialog.scripts
+namespace museum_dialog.scripts
 {
     [RequireComponent(typeof(TextToSpeech))]
     public class PrefetchDialogLines : MonoBehaviour
     {
-        [SerializeField] private List<DialogueLineObject> linesWithPlayerName = new();
         public bool isFetched;
+        [SerializeField] private readonly List<NarrationDialogLine> linesWithPlayerName = new();
         private TextToSpeech _textToSpeechUtil;
         public static PrefetchDialogLines Instance { get; private set; }
 
@@ -53,7 +54,7 @@ namespace dialog.scripts
             print("FetchAndPopulatePlayerLines SUCCESS - API ended");
         }
 
-        private IEnumerator ConvertAndPopulateLine(DialogueLineObject dialogLine, CharacterType characterType,
+        private IEnumerator ConvertAndPopulateLine(NarrationDialogLine dialogLine, CharacterType characterType,
             string playerName, string partnerName)
         {
             var line = GetLineByGender(dialogLine, characterType);
@@ -76,7 +77,8 @@ namespace dialog.scripts
                     yield return coroutine.Current;
         }
 
-        private static VoicedLine GetLineByGender(DialogueLineObject dialogueLineObject, CharacterType characterType)
+        private static VoicedLine GetLineByGender(NarrationDialogLine dialogueLineObject,
+            CharacterType characterType)
         {
             return dialogueLineObject.voicedLines.First(voicedLine =>
             {
