@@ -4,11 +4,12 @@ using dialog.scripts;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace museum_dialog.scripts
 {
     [RequireComponent(typeof(AudioSource))]
-    // [RequireComponent(typeof(DialogueStateChanger))]
+    [RequireComponent(typeof(DialogueStateChanger))]
     public class DialogueManager : ObserverSubject
     {
         [SerializeField] private GameObject playerChoiceButton;
@@ -159,6 +160,7 @@ namespace museum_dialog.scripts
             for (var i = 0; i < line.playerOptions.Length; i++)
             {
                 var playerChoice = line.playerOptions[i];
+                var playerChoiceNextAction = playerChoice.next;
                 var buttonByType = playerChoice.type == ChoiceType.Button
                     ? playerChoiceButton
                     : playerInconsequentialChoice;
@@ -178,6 +180,9 @@ namespace museum_dialog.scripts
                         button.GetComponentInChildren<TextMeshProUGUI>().text = playerChoice.text;
                         if (playerChoice.type == ChoiceType.Button)
                             button.GetComponent<PlayerInfoInput>().type = playerChoice.choiceDataType;
+
+                        button.GetComponent<Button>().onClick
+                            .AddListener(() => OnPlayerChoiceButtonClick(playerChoiceNextAction));
 
                         break;
 
@@ -205,6 +210,16 @@ namespace museum_dialog.scripts
                     Notify(action);
                     break;
             }
+        }
+
+        public void OnPlayerChoiceButtonClick(NarrationDialogLine nextLine)
+        {
+            foreach (var input in GameObject.FindGameObjectsWithTag("PlayerInput"))
+                Destroy(input);
+
+            UpdateDialogState(nextLine);
+            HandlePlayerNameLines();
+            ReadCurrentLine();
         }
 
         public void OnPlayerChoiceButtonClick(string buttonText)

@@ -23,6 +23,10 @@ namespace Character.Scripts
                 case "Inside Elevator":
                     Notify(GameEvents.PlayerInsideElevator);
                     break;
+
+                case "Museum Entrance":
+                    Notify(GameEvents.EnteredMuseum);
+                    break;
             }
         }
 

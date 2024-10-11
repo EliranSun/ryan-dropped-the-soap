@@ -48,6 +48,8 @@ public enum GameEvents
     DoorClicked,
     VaseClicked,
     ArmchairClicked,
+    EnteredMuseum,
+    ExitedMuseum,
 
     NextScene,
     NextLevel,

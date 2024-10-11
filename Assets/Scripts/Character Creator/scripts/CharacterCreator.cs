@@ -69,7 +69,7 @@ namespace Character_Creator.scripts
 
         private void Start()
         {
-            HideFaceUI();
+            // HideFaceUI();
         }
 
         private void HideFaceUI()
