@@ -236,6 +236,16 @@ namespace museum_dialog.scripts
             ReadCurrentLine();
         }
 
+        public void OnNotify(GameEventData gameEventData)
+        {
+            switch (gameEventData.name)
+            {
+                case GameEvents.EnteredMuseum:
+                    TriggerLine((NarrationDialogLine)gameEventData.data);
+                    break;
+            }
+        }
+
         public void TriggerLine(NarrationDialogLine line)
         {
             if (_audioSource.isPlaying)

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using museum_dialog.scripts;
 using UnityEngine;
 
 namespace Character.Scripts
@@ -5,6 +7,18 @@ namespace Character.Scripts
     [RequireComponent(typeof(Collider2D))]
     public class PlayerWorldInteractions : ObserverSubject
     {
+        public List<NarrationDialogLine> dialogLines; // Assign in the editor
+       private Dictionary<string, NarrationDialogLine> _dialogLineMap;
+
+       private void Awake()
+       {
+           _dialogLineMap = new Dictionary<string, NarrationDialogLine>();
+           foreach (var line in dialogLines)
+           {
+               _dialogLineMap[line.name] = line; // Assuming each line has a unique name
+           }
+        }
+
         private void OnCollisionEnter2D(Collision2D other)
         {
             print($"Player Collision Enter {other.collider.tag} {other.gameObject.name}");
@@ -25,7 +39,8 @@ namespace Character.Scripts
                     break;
 
                 case "Museum Entrance":
-                    Notify(GameEvents.EnteredMuseum);
+                    _dialogLineMap.TryGetValue("MuseumEntrance", out var dialogLine);
+                    Notify(GameEvents.EnteredMuseum, dialogLine);
                     break;
             }
         }

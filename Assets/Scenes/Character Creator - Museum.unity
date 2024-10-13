@@ -6152,8 +6152,8 @@ Transform:
   m_GameObject: {fileID: 765789048}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 97.4, y: 2.63, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalPosition: {x: 101.6, y: -9.2916, z: 0}
+  m_LocalScale: {x: 3.1482913, y: 3.1482913, z: 3.1482913}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2061667556}
@@ -6214,7 +6214,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: -4229056505029344920, guid: 9a5e1c71a4b37ada4b3e5599d0b30e5e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -10544,7 +10544,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   observers:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1217884344}
+        m_TargetAssemblyTypeName: museum_dialog.scripts.DialogueManager, DialogAssemblyDefinition
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  dialogLines:
+  - {fileID: 11400000, guid: 3cb2395ccb0b10f498176d403eacced8, type: 2}
 --- !u!1 &1483258178
 GameObject:
   m_ObjectHideFlags: 0
