@@ -6952,7 +6952,7 @@ GameObject:
   m_Component:
   - component: {fileID: 869519446}
   m_Layer: 0
-  m_Name: Dialog Triggers
+  m_Name: "\U0001F4AC Dialog Triggers"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8815,7 +8815,7 @@ MonoBehaviour:
   prioritizedStates: []
   finalState:
     playerDataProperty: 0
-    nextState: {fileID: 11400000, guid: 3cb2395ccb0b10f498176d403eacced8, type: 2}
+    nextState: {fileID: 0}
 --- !u!1 &1221803884
 GameObject:
   m_ObjectHideFlags: 0
@@ -10557,8 +10557,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  dialogLines:
-  - {fileID: 11400000, guid: 3cb2395ccb0b10f498176d403eacced8, type: 2}
+  dialogLineMap:
+  - triggerObject: {fileID: 844135653}
+    duplicateCount: 0
+    dialogLine: {fileID: 11400000, guid: 3cb2395ccb0b10f498176d403eacced8, type: 2}
+    name: 1
+    eventToTrigger: 40
+  - triggerObject: {fileID: 844135653}
+    duplicateCount: 1
+    dialogLine: {fileID: 11400000, guid: fd979e4afea071c448af7d87766d313d, type: 2}
+    name: 1
+    eventToTrigger: 41
 --- !u!1 &1483258178
 GameObject:
   m_ObjectHideFlags: 0
@@ -12890,8 +12899,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 179037595}
   - {fileID: 1217884343}
+  - {fileID: 179037595}
   - {fileID: 869519446}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13316,7 +13325,7 @@ Transform:
   m_GameObject: {fileID: 1886877380}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 94.65, y: -3.13, z: 0}
+  m_LocalPosition: {x: 75.62, y: -2.64, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

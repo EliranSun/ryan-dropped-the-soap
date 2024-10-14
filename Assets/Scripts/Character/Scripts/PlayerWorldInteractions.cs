@@ -1,53 +1,72 @@
+using System;
 using System.Collections.Generic;
 using museum_dialog.scripts;
 using UnityEngine;
 
 namespace Character.Scripts
 {
+    [Serializable]
+    internal enum DialogLineTriggerName
+    {
+        None,
+        MuseumEntrance
+    }
+
+    [Serializable]
+    internal class DialogLineTrigger
+    {
+        public GameObject triggerObject;
+        public int duplicateCount;
+        public NarrationDialogLine dialogLine;
+        public DialogLineTriggerName name;
+        public GameEvents eventToTrigger;
+    }
+
     [RequireComponent(typeof(Collider2D))]
     public class PlayerWorldInteractions : ObserverSubject
     {
-        public List<NarrationDialogLine> dialogLines; // Assign in the editor
-       private Dictionary<string, NarrationDialogLine> _dialogLineMap;
-
-       private void Awake()
-       {
-           _dialogLineMap = new Dictionary<string, NarrationDialogLine>();
-           foreach (var line in dialogLines)
-           {
-               _dialogLineMap[line.name] = line; // Assuming each line has a unique name
-           }
-        }
-
-        private void OnCollisionEnter2D(Collision2D other)
-        {
-            print($"Player Collision Enter {other.collider.tag} {other.gameObject.name}");
-        }
-
-        private void OnCollisionExit2D(Collision2D other)
-        {
-            print($"Player Collision Exit {other.collider.tag} {other.gameObject.name}");
-        }
+        [SerializeField] private List<DialogLineTrigger> dialogLineMap;
+        private readonly List<DialogLineTriggerName> _triggeredEvents = new();
+        private readonly HashSet<DialogLineTriggerName> _triggeredEventSet = new();
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            print($"Player Ënter {other.tag} {other.gameObject.name}");
-            switch (other.tag)
-            {
-                case "Inside Elevator":
-                    Notify(GameEvents.PlayerInsideElevator);
-                    break;
+            var dialogLine = dialogLineMap
+                .Find(trigger =>
+                {
+                    if (_triggeredEvents == null) return trigger.triggerObject.CompareTag(other.tag);
 
-                case "Museum Entrance":
-                    _dialogLineMap.TryGetValue("MuseumEntrance", out var dialogLine);
-                    Notify(GameEvents.EnteredMuseum, dialogLine);
-                    break;
+                    var triggeredEvents = _triggeredEvents
+                        .FindAll(triggerName => triggerName == trigger.name);
+
+                    triggeredEvents.ForEach(triggerName => print($"Triggered event name: {triggerName}"));
+
+                    if (triggeredEvents.Count > 0)
+                        return triggeredEvents.Count == trigger.duplicateCount &&
+                               trigger.triggerObject.CompareTag(other.tag);
+
+                    return trigger.triggerObject.CompareTag(other.tag);
+                });
+
+            if (dialogLine != null && !_triggeredEventSet.Contains(dialogLine.name))
+            {
+                _triggeredEvents.Add(dialogLine.name);
+                _triggeredEventSet.Add(dialogLine.name);
+                Notify(dialogLine.eventToTrigger, dialogLine.dialogLine);
+            }
+            else
+            {
+                switch (other.tag)
+                {
+                    case "Inside Elevator":
+                        Notify(GameEvents.PlayerInsideElevator);
+                        break;
+                }
             }
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            print($"Player Exit {other.tag} {other.gameObject.name}");
             switch (other.tag)
             {
                 case "Inside Elevator":

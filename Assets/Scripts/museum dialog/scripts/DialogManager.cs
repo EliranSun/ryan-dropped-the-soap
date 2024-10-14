@@ -106,8 +106,6 @@ namespace museum_dialog.scripts
         private static VoicedLine GetLineByGender(NarrationDialogLine dialogueLineObject)
         {
             var gender = PlayerData.GetPlayerGender();
-            print($"Player Gender: {gender}");
-
             return dialogueLineObject.voicedLines.First(voicedLine =>
             {
                 if (voicedLine.gender == CharacterType.NonBinary || voicedLine.gender == CharacterType.None)

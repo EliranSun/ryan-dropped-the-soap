@@ -45,6 +45,7 @@ namespace museum_dialog.scripts
         public NarrationDialogLine line;
     }
 
+    [Serializable]
     [CreateAssetMenu(fileName = "NarrationLine", menuName = "Line")]
     public class NarrationDialogLine : ScriptableObject
     {
