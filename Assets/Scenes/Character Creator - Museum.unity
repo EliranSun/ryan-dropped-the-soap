@@ -13217,7 +13217,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1934076538719534953, guid: 74c9e4d4d98912c4b8dc07d6ffed775e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -442.6
+      value: 68.2
       objectReference: {fileID: 0}
     - target: {fileID: 1934076538719534953, guid: 74c9e4d4d98912c4b8dc07d6ffed775e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -13285,11 +13285,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8986177243237464851, guid: 74c9e4d4d98912c4b8dc07d6ffed775e, type: 3}
       propertyPath: m_Constraints
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8986177243237464851, guid: 74c9e4d4d98912c4b8dc07d6ffed775e, type: 3}
       propertyPath: m_GravityScale
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8988846409683289318, guid: 74c9e4d4d98912c4b8dc07d6ffed775e, type: 3}
       propertyPath: m_Enabled
@@ -13298,8 +13298,31 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 536150925389476208, guid: 74c9e4d4d98912c4b8dc07d6ffed775e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1871192998}
   m_SourcePrefab: {fileID: 100100000, guid: 74c9e4d4d98912c4b8dc07d6ffed775e, type: 3}
+--- !u!1 &1871192997 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 536150925389476208, guid: 74c9e4d4d98912c4b8dc07d6ffed775e, type: 3}
+  m_PrefabInstance: {fileID: 1871192996}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1871192998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1871192997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c99047920ed84adf894b38dfacf89d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  pointsOfInterest:
+  - {fileID: 733820106}
 --- !u!1 &1886877380
 GameObject:
   m_ObjectHideFlags: 0
