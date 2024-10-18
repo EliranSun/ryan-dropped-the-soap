@@ -9,6 +9,7 @@ namespace Character.Scripts
         [SerializeField] private float speed = 5f;
         [SerializeField] private GameObject headGameObject;
         [SerializeField] private GameObject hairGameObject;
+        [SerializeField] private float jumpForce = 20f;
         private SpriteRenderer _hairSpriteRenderer;
         private SpriteRenderer _headSpriteRenderer;
 
@@ -56,7 +57,7 @@ namespace Character.Scripts
             _hairSpriteRenderer.flipX = _spriteRenderer.flipX;
 
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
-                _rigidbody2D.AddForce(Vector2.up * (speed * 10), ForceMode2D.Impulse);
+                _rigidbody2D.AddForce(Vector2.up * (speed * jumpForce), ForceMode2D.Impulse);
         }
     }
 }

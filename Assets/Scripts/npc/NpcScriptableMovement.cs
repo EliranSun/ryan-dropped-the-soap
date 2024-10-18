@@ -3,33 +3,45 @@ using UnityEngine;
 namespace npc
 {
     [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(Animator))]
+    [RequireComponent(typeof(SpriteRenderer))]
     public class NpcScriptableMovement : MonoBehaviour
     {
+        private static readonly int IsWalking = Animator.StringToHash("IsWalking");
         [SerializeField] private int speed;
         [SerializeField] private Transform[] pointsOfInterest;
+        [SerializeField] private float distanceToChangePoint = 4f;
+        private Animator _animator;
         private int _currentPointOfInterestIndex;
-        private Rigidbody2D _rigidbody2D;
+        private Rigidbody2D _rigidBody2D;
+        private SpriteRenderer _spriteRenderer;
         private Vector2 _targetPosition;
 
         private void Start()
         {
-            _rigidbody2D = GetComponent<Rigidbody2D>();
+            _animator = GetComponent<Animator>();
+            _rigidBody2D = GetComponent<Rigidbody2D>();
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+
             SetNextPointOfInterest();
         }
 
         private void FixedUpdate()
         {
-            if (pointsOfInterest.Length == 0 || _currentPointOfInterestIndex >= pointsOfInterest.Length)
-                return;
+            if (pointsOfInterest.Length == 0 || _currentPointOfInterestIndex >= pointsOfInterest.Length) return;
 
             var direction = (_targetPosition - (Vector2)transform.position).normalized;
-            _rigidbody2D.AddForce(direction * (speed * Time.fixedDeltaTime), ForceMode2D.Force);
+            _rigidBody2D.velocityX = direction.x * speed;
+            var distance = Vector2.Distance(transform.position, _targetPosition);
+            _animator.SetBool(IsWalking, true);
+            _spriteRenderer.flipX = direction.x < 0;
 
-            if (Vector2.Distance(transform.position, _targetPosition) < 2f)
-            {
-                SetNextPointOfInterest();
-                _currentPointOfInterestIndex = (_currentPointOfInterestIndex + 1) % pointsOfInterest.Length;
-            }
+            if (distance >= distanceToChangePoint)
+                return;
+
+            _animator.SetBool(IsWalking, false);
+            SetNextPointOfInterest();
+            _currentPointOfInterestIndex = (_currentPointOfInterestIndex + 1) % pointsOfInterest.Length;
         }
 
         private void SetNextPointOfInterest()
