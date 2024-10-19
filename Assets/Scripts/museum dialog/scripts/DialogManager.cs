@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Linq;
-using dialog.scripts;
+using Dialog.Scripts;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -155,41 +155,43 @@ namespace museum_dialog.scripts
 
         private void GeneratePlayerInputs(NarrationDialogLine line)
         {
-            for (var i = 0; i < line.playerOptions.Length; i++)
-            {
-                var playerChoice = line.playerOptions[i];
-                var playerChoiceNextAction = playerChoice.next;
-                var buttonByType = playerChoice.type == ChoiceType.Button
-                    ? playerChoiceButton
-                    : playerInconsequentialChoice;
-
-                switch (playerChoice.type)
-                {
-                    case ChoiceType.InconsequentialButton:
-                    case ChoiceType.Button:
-                        var button = Instantiate(buttonByType, playerChoiceButtonsContainer.transform);
-                        var position = button.transform.position;
-                        var width = button.GetComponent<RectTransform>().sizeDelta.x;
-
-                        position.x += (i - line.playerOptions.Length / 2) * width;
-                        position.y -= 50;
-
-                        button.transform.position = position;
-                        button.GetComponentInChildren<TextMeshProUGUI>().text = playerChoice.text;
-                        if (playerChoice.type == ChoiceType.Button)
-                            button.GetComponent<PlayerInfoInput>().type = playerChoice.choiceDataType;
-
-                        button.GetComponent<Button>().onClick
-                            .AddListener(() => OnPlayerChoiceButtonClick(playerChoiceNextAction));
-
-                        break;
-
-                    case ChoiceType.TextInput:
-                        var textInput = Instantiate(playerTextInput, playerInputsContainer.transform);
-                        textInput.GetComponent<PlayerInfoInput>().type = playerChoice.choiceDataType;
-                        break;
-                }
-            }
+            print("Notifying player choice");
+            Notify(GameEvents.PlayerChoice, line.playerOptions);
+            
+            // for (var i = 0; i < line.playerOptions.Length; i++)
+            // {
+            //     var playerChoice = line.playerOptions[i];
+            //     var playerChoiceNextAction = playerChoice.next;
+            //     var buttonByType = playerChoice.type == ChoiceType.Button
+            //         ? playerChoiceButton
+            //         : playerInconsequentialChoice;
+            //
+            //     switch (playerChoice.type)
+            //     {
+            //         case ChoiceType.InconsequentialButton:
+            //         case ChoiceType.Button:
+            //             var button = Instantiate(buttonByType, playerChoiceButtonsContainer.transform);
+            //             var position = button.transform.position;
+            //             var width = button.GetComponent<RectTransform>().sizeDelta.x;
+            //             
+            //             position.x += (i - line.playerOptions.Length / 2) * width;
+            //             position.y -= 50;
+            //             
+            //             button.transform.position = position;
+            //             button.GetComponentInChildren<TextMeshProUGUI>().text = playerChoice.text;
+            //             if (playerChoice.type == ChoiceType.Button)
+            //                 button.GetComponent<PlayerInfoInput>().type = playerChoice.choiceDataType;
+            //             
+            //             button.GetComponent<Button>().onClick
+            //                 .AddListener(() => OnPlayerChoiceButtonClick(playerChoiceNextAction));
+            //             break;
+            //
+            //         case ChoiceType.TextInput:
+            //             var textInput = Instantiate(playerTextInput, playerInputsContainer.transform);
+            //             textInput.GetComponent<PlayerInfoInput>().type = playerChoice.choiceDataType;
+            //             break;
+            //     }
+            // }
         }
 
         private void ActAfterLine(GameEvents action)

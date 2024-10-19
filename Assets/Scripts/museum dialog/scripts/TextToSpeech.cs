@@ -1,7 +1,8 @@
 using System.Collections;
+using Dialog.Scripts;
 using UnityEngine;
 
-namespace dialog.scripts
+namespace museum_dialog.scripts
 {
     public class TextToSpeech : MonoBehaviour
     {

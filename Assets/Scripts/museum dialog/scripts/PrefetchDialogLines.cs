@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using dialog.scripts;
+using Dialog.Scripts;
 using UnityEngine;
 
 namespace museum_dialog.scripts

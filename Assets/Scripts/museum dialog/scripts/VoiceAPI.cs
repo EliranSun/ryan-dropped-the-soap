@@ -1,8 +1,9 @@
 using System.Collections;
+using Dialog.Scripts;
 using UnityEngine;
 using UnityEngine.Networking;
 
-namespace dialog.scripts
+namespace museum_dialog.scripts
 {
     public static class VoiceAPI
     {

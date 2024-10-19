@@ -1,5 +1,5 @@
 using System;
-using dialog.scripts;
+using Dialog.Scripts;
 using UnityEngine;
 using UnityEngine.Serialization;
 

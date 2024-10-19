@@ -1,8 +1,7 @@
 using System;
-using dialog.scripts;
 using UnityEngine;
 
-namespace museum_dialog.scripts
+namespace Dialog.Scripts
 {
     public enum ChoiceType
     {

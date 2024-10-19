@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using museum_dialog.scripts;
+using Dialog.Scripts;
 using UnityEngine;
 
 namespace Character.Scripts
@@ -38,9 +38,7 @@ namespace Character.Scripts
 
                     var triggeredEvents = _triggeredEvents
                         .FindAll(triggerName => triggerName == trigger.name);
-
-                    triggeredEvents.ForEach(triggerName => print($"Triggered event name: {triggerName}"));
-
+                    
                     if (triggeredEvents.Count > 0)
                         return triggeredEvents.Count == trigger.duplicateCount &&
                                trigger.triggerObject.CompareTag(other.tag);
