@@ -2885,8 +2885,8 @@ GameObject:
   - component: {fileID: 361193935}
   - component: {fileID: 361193934}
   - component: {fileID: 361193936}
-  - component: {fileID: 361193937}
-  m_Layer: 0
+  - component: {fileID: 361193938}
+  m_Layer: 10
   m_Name: greek-square-mirror
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3008,7 +3008,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3.8866668, y: 5.2833333}
   m_EdgeRadius: 0
---- !u!114 &361193937
+--- !u!114 &361193938
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3017,7 +3017,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 361193933}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6addad4eec2402d814d1ce4664f866c, type: 3}
+  m_Script: {fileID: 11500000, guid: b15b47ad22222ad4ca3d6e88e90e36ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   observers:
@@ -3035,6 +3035,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1217884344}
+        m_TargetAssemblyTypeName: museum_dialog.scripts.DialogueManager, DialogAssemblyDefinition
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  gameEvent: 36
+  dialogLine:
+  - {fileID: 11400000, guid: 518ad22ad7fb1544b97f91bdae6db2d3, type: 2}
+  - {fileID: 11400000, guid: 822b9a8d7fc15914f9aec4160ac4c061, type: 2}
+  interactionType: 0
+  repeatLastInteraction: 1
 --- !u!1 &366500387
 GameObject:
   m_ObjectHideFlags: 0
@@ -4978,8 +4996,8 @@ GameObject:
   - component: {fileID: 621015468}
   - component: {fileID: 621015467}
   - component: {fileID: 621015469}
-  - component: {fileID: 621015470}
-  m_Layer: 0
+  - component: {fileID: 621015471}
+  m_Layer: 10
   m_Name: roman-square-mirror
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5101,7 +5119,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 4.96, y: 5.18}
   m_EdgeRadius: 0
---- !u!114 &621015470
+--- !u!114 &621015471
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5110,7 +5128,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 621015466}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6addad4eec2402d814d1ce4664f866c, type: 3}
+  m_Script: {fileID: 11500000, guid: b15b47ad22222ad4ca3d6e88e90e36ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   observers:
@@ -5128,6 +5146,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1217884344}
+        m_TargetAssemblyTypeName: museum_dialog.scripts.DialogueManager, DialogAssemblyDefinition
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  gameEvent: 36
+  dialogLine:
+  - {fileID: 11400000, guid: d0b51ccedf4ec2340baeb6c5d3f64857, type: 2}
+  - {fileID: 11400000, guid: 822b9a8d7fc15914f9aec4160ac4c061, type: 2}
+  interactionType: 0
+  repeatLastInteraction: 1
 --- !u!1 &643875897
 GameObject:
   m_ObjectHideFlags: 0
@@ -10369,8 +10405,8 @@ GameObject:
   - component: {fileID: 1441349132}
   - component: {fileID: 1441349131}
   - component: {fileID: 1441349133}
-  - component: {fileID: 1441349134}
-  m_Layer: 0
+  - component: {fileID: 1441349135}
+  m_Layer: 10
   m_Name: sameritan-square-mirror
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10492,7 +10528,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 4.3166666, y: 5.0633335}
   m_EdgeRadius: 0
---- !u!114 &1441349134
+--- !u!114 &1441349135
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10501,7 +10537,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1441349130}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6addad4eec2402d814d1ce4664f866c, type: 3}
+  m_Script: {fileID: 11500000, guid: b15b47ad22222ad4ca3d6e88e90e36ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   observers:
@@ -10519,6 +10555,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1217884344}
+        m_TargetAssemblyTypeName: museum_dialog.scripts.DialogueManager, DialogAssemblyDefinition
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  gameEvent: 36
+  dialogLine:
+  - {fileID: 11400000, guid: 161481394093e934f868d6e64704c964, type: 2}
+  - {fileID: 11400000, guid: 822b9a8d7fc15914f9aec4160ac4c061, type: 2}
+  interactionType: 0
+  repeatLastInteraction: 1
 --- !u!1 &1478778454
 GameObject:
   m_ObjectHideFlags: 0
@@ -11973,7 +12027,7 @@ GameObject:
   - component: {fileID: 1656420739}
   - component: {fileID: 1656420741}
   - component: {fileID: 1656420742}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: egyptian-oval-mirror
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12104,7 +12158,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1656420738}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6addad4eec2402d814d1ce4664f866c, type: 3}
+  m_Script: {fileID: 11500000, guid: b15b47ad22222ad4ca3d6e88e90e36ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   observers:
@@ -12122,6 +12176,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1217884344}
+        m_TargetAssemblyTypeName: museum_dialog.scripts.DialogueManager, DialogAssemblyDefinition
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  gameEvent: 36
+  dialogLine:
+  - {fileID: 11400000, guid: 78d558b36c84bf14cba047f3f3a1ae15, type: 2}
+  - {fileID: 11400000, guid: 822b9a8d7fc15914f9aec4160ac4c061, type: 2}
+  interactionType: 0
+  repeatLastInteraction: 1
 --- !u!1 &1674801815
 GameObject:
   m_ObjectHideFlags: 0

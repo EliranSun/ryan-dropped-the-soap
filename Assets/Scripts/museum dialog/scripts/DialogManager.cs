@@ -5,7 +5,6 @@ using Dialog.Scripts;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 namespace museum_dialog.scripts
 {
@@ -158,7 +157,7 @@ namespace museum_dialog.scripts
         {
             print("Notifying player choice");
             Notify(GameEvents.PlayerChoice, line.playerOptions);
-            
+
             // for (var i = 0; i < line.playerOptions.Length; i++)
             // {
             //     var playerChoice = line.playerOptions[i];
@@ -241,11 +240,15 @@ namespace museum_dialog.scripts
                 case GameEvents.EnteredMuseum:
                     TriggerLine((NarrationDialogLine)gameEventData.data);
                     break;
-                
+
                 case GameEvents.PlayerClickOnChoice:
                     OnPlayerChoiceButtonClick((string)gameEventData.data);
                     break;
-                
+
+                case GameEvents.DoorClicked:
+                case GameEvents.ArmchairClicked:
+                case GameEvents.VaseClicked:
+                case GameEvents.MirrorClicked:
                 case GameEvents.PaintingClicked:
                     var interactionData = (InteractionData)gameEventData.data;
                     print("Triggering line" + interactionData.DialogLine);

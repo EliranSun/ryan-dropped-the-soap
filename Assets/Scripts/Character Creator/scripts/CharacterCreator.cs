@@ -93,7 +93,7 @@ namespace Character_Creator.scripts
                     var interactionData = (InteractionData)gameData.data;
                     return e.painting.name == interactionData.Name;
                 });
-                
+
                 if (eye != null && !_playerChoices.ContainsKey("eyes"))
                 {
                     eyesContainer.GetComponent<Image>().sprite = eye.eye;
@@ -106,7 +106,12 @@ namespace Character_Creator.scripts
         {
             if (gameData.name == GameEvents.MirrorClicked)
             {
-                var face = Array.Find(faces, f => f.mirror.name == (string)gameData.data);
+                var face = Array.Find(faces, f =>
+                {
+                    var interactionData = (InteractionData)gameData.data;
+                    return f.mirror.name == interactionData.Name;
+                });
+
                 print($"Has obtained face? {_playerChoices.ContainsKey("face")}, face? {face.face}");
                 if (face.face != null)
                 {
