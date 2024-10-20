@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Linq;
+using Character_Creator.scripts;
 using Dialog.Scripts;
 using TMPro;
 using UnityEngine;
@@ -243,6 +244,12 @@ namespace museum_dialog.scripts
                 
                 case GameEvents.PlayerClickOnChoice:
                     OnPlayerChoiceButtonClick((string)gameEventData.data);
+                    break;
+                
+                case GameEvents.PaintingClicked:
+                    var interactionData = (InteractionData)gameEventData.data;
+                    print("Triggering line" + interactionData.DialogLine);
+                    TriggerLine(interactionData.DialogLine);
                     break;
             }
         }

@@ -28,6 +28,26 @@ namespace Character.Scripts
         [SerializeField] private List<DialogLineTrigger> dialogLineMap;
         private readonly List<DialogLineTriggerName> _triggeredEvents = new();
         private readonly HashSet<DialogLineTriggerName> _triggeredEventSet = new();
+        private Camera _camera;
+
+        private void Start()
+        {
+            _camera = Camera.main;
+        }
+        
+        private void Update()
+        {
+            if (!Input.GetMouseButtonDown(0) || !_camera) 
+                return; // Detect left mouse button click
+            
+            var ray = _camera.ScreenPointToRay(Input.mousePosition);
+            var layerMask = LayerMask.GetMask("PlayerChoiceDialogBubbles");
+
+            if (!Physics.Raycast(ray, out var hit, Mathf.Infinity, layerMask)) 
+                return;
+
+            print(hit.collider.gameObject);
+        }
 
         private void OnTriggerEnter2D(Collider2D other)
         {

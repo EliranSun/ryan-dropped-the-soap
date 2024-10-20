@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
+  m_Name: kandinsky - composition 8
+  m_EditorClassIdentifier: 
+  playerName: 
+  voicedLines:
+  - text: "Dynamic and abstract\u2026 chaotic even? It\u2019s full of geometric shapes
+      and vibrant colors, that\u2019s for sure."
+    clip: {fileID: 8300000, guid: 502fed21c0408a640a61fc7568cf4620, type: 3}
+    gender: 7
+  playerOptions:
+  - text: Energetic
+    type: 1
+    choiceDataType: 0
+    next: {fileID: 0}
+  - text: Stress
+    type: 1
+    choiceDataType: 0
+    next: {fileID: 0}
+  - text: Both
+    type: 1
+    choiceDataType: 0
+    next: {fileID: 0}
+  - text: Nothing
+    type: 1
+    choiceDataType: 0
+    next: {fileID: 0}
+  playerReactions: []
+  nextDialogueLine: {fileID: 0}
+  wait: 0.5
+  actionAfterLine: 0

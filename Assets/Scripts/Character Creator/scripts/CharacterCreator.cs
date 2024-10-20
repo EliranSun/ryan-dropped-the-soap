@@ -88,7 +88,12 @@ namespace Character_Creator.scripts
             // but consider refactoring to use a single method
             if (gameData.name == GameEvents.PaintingClicked)
             {
-                var eye = Array.Find(eyes, e => e.painting.name == (string)gameData.data);
+                var eye = Array.Find(eyes, e =>
+                {
+                    var interactionData = (InteractionData)gameData.data;
+                    return e.painting.name == interactionData.Name;
+                });
+                
                 if (eye != null && !_playerChoices.ContainsKey("eyes"))
                 {
                     eyesContainer.GetComponent<Image>().sprite = eye.eye;

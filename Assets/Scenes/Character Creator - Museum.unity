@@ -731,10 +731,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1154924629}
   - {fileID: 733820106}
   - {fileID: 615406517}
   - {fileID: 936382649}
-  - {fileID: 1154924629}
   - {fileID: 366500389}
   - {fileID: 854800851}
   - {fileID: 1352879933}
@@ -2381,7 +2381,7 @@ Transform:
   m_GameObject: {fileID: 280932353}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -58.1, y: 2.63, z: 0}
+  m_LocalPosition: {x: -68, y: 2.63, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -3047,7 +3047,7 @@ GameObject:
   - component: {fileID: 366500388}
   - component: {fileID: 366500390}
   - component: {fileID: 366500391}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: kandinsky - composition 8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3150,6 +3150,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1217884344}
+        m_TargetAssemblyTypeName: museum_dialog.scripts.DialogueManager, DialogAssemblyDefinition
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  gameEvent: 35
+  dialogLine:
+  - {fileID: 11400000, guid: 4a42bea73f57fae4d9b77917ecd0373c, type: 2}
+  - {fileID: 11400000, guid: d315246926f9b5e4194a3cefc65ca0b2, type: 2}
+  interactionType: 0
+  repeatLastInteraction: 1
 --- !u!61 &366500391
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4782,7 +4800,7 @@ GameObject:
   - component: {fileID: 615406516}
   - component: {fileID: 615406518}
   - component: {fileID: 615406519}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: monet - impression
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4885,6 +4903,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1217884344}
+        m_TargetAssemblyTypeName: museum_dialog.scripts.DialogueManager, DialogAssemblyDefinition
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  gameEvent: 35
+  dialogLine:
+  - {fileID: 11400000, guid: 20bed75cd0324104ea2961cc234f2425, type: 2}
+  - {fileID: 11400000, guid: d315246926f9b5e4194a3cefc65ca0b2, type: 2}
+  interactionType: 0
+  repeatLastInteraction: 1
 --- !u!61 &615406519
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5770,7 +5806,7 @@ GameObject:
   - component: {fileID: 733820105}
   - component: {fileID: 733820107}
   - component: {fileID: 733820108}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: van gogh - Starry Night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5873,6 +5909,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1217884344}
+        m_TargetAssemblyTypeName: museum_dialog.scripts.DialogueManager, DialogAssemblyDefinition
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  gameEvent: 35
+  dialogLine:
+  - {fileID: 11400000, guid: b7e1d837f2f36aa4588655a6a32f37da, type: 2}
+  - {fileID: 11400000, guid: d315246926f9b5e4194a3cefc65ca0b2, type: 2}
+  interactionType: 0
+  repeatLastInteraction: 1
 --- !u!61 &733820108
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6860,7 +6914,7 @@ GameObject:
   - component: {fileID: 854800850}
   - component: {fileID: 854800852}
   - component: {fileID: 854800853}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: hopper - Nighthawks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6963,6 +7017,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1217884344}
+        m_TargetAssemblyTypeName: museum_dialog.scripts.DialogueManager, DialogAssemblyDefinition
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  gameEvent: 35
+  dialogLine:
+  - {fileID: 11400000, guid: 71b43286d700f0a4cacf11a284a286d4, type: 2}
+  - {fileID: 11400000, guid: d315246926f9b5e4194a3cefc65ca0b2, type: 2}
+  interactionType: 0
+  repeatLastInteraction: 1
 --- !u!61 &854800853
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7214,7 +7286,7 @@ GameObject:
   - component: {fileID: 936382648}
   - component: {fileID: 936382650}
   - component: {fileID: 936382651}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: "millet- \xC1ngelus"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7317,6 +7389,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1217884344}
+        m_TargetAssemblyTypeName: museum_dialog.scripts.DialogueManager, DialogAssemblyDefinition
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  gameEvent: 35
+  dialogLine:
+  - {fileID: 11400000, guid: 611fc1504dea74d43b4873a134b55bea, type: 2}
+  - {fileID: 11400000, guid: d315246926f9b5e4194a3cefc65ca0b2, type: 2}
+  interactionType: 0
+  repeatLastInteraction: 1
 --- !u!61 &936382651
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8099,7 +8189,7 @@ GameObject:
   - component: {fileID: 1154924628}
   - component: {fileID: 1154924630}
   - component: {fileID: 1154924631}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: klimt - The Kiss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8202,6 +8292,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1217884344}
+        m_TargetAssemblyTypeName: museum_dialog.scripts.DialogueManager, DialogAssemblyDefinition
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  gameEvent: 35
+  dialogLine:
+  - {fileID: 11400000, guid: d7f450e0aa97cf64b91431e5e6c5509a, type: 2}
+  - {fileID: 11400000, guid: d315246926f9b5e4194a3cefc65ca0b2, type: 2}
+  interactionType: 0
+  repeatLastInteraction: 1
 --- !u!61 &1154924631
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9423,7 +9531,7 @@ GameObject:
   - component: {fileID: 1352879932}
   - component: {fileID: 1352879934}
   - component: {fileID: 1352879935}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: friedrich - Wanderer above the Sea of Fog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9526,6 +9634,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1217884344}
+        m_TargetAssemblyTypeName: museum_dialog.scripts.DialogueManager, DialogAssemblyDefinition
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  gameEvent: 35
+  dialogLine:
+  - {fileID: 11400000, guid: db28cc7e70b254d4c93cdf3b4af57208, type: 2}
+  - {fileID: 11400000, guid: d315246926f9b5e4194a3cefc65ca0b2, type: 2}
+  interactionType: 0
+  repeatLastInteraction: 1
 --- !u!61 &1352879935
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10501,7 +10627,7 @@ Transform:
   m_GameObject: {fileID: 1478778454}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalPosition: {x: -24.58, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10645,6 +10771,11 @@ MonoBehaviour:
     name: 1
     eventToTrigger: 40
   - triggerObject: {fileID: 844135653}
+    duplicateCount: 1
+    dialogLine: {fileID: 11400000, guid: fd979e4afea071c448af7d87766d313d, type: 2}
+    name: 1
+    eventToTrigger: 41
+  - triggerObject: {fileID: 1154924627}
     duplicateCount: 1
     dialogLine: {fileID: 11400000, guid: fd979e4afea071c448af7d87766d313d, type: 2}
     name: 1
@@ -13727,7 +13858,7 @@ Transform:
   m_GameObject: {fileID: 1886877380}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 72.87, y: -2.64, z: 0}
+  m_LocalPosition: {x: -57.6, y: -2.64, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
