@@ -56,7 +56,8 @@ public enum GameEvents
     RestartLevel,
     ZoomOut,
     
-    PlayerChoice
+    PlayerChoice,
+    PlayerClickOnChoice,
 }
 
 public class GameEventData

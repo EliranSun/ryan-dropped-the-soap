@@ -222,11 +222,8 @@ namespace museum_dialog.scripts
             ReadCurrentLine();
         }
 
-        public void OnPlayerChoiceButtonClick(string buttonText)
+        private void OnPlayerChoiceButtonClick(string buttonText)
         {
-            foreach (var input in GameObject.FindGameObjectsWithTag("PlayerInput"))
-                Destroy(input);
-
             // the same text rendered via the node - so comparison is safe
             var nextLine = _currentDialogue.playerOptions
                 .First(option => option.text == buttonText).next;
@@ -242,6 +239,10 @@ namespace museum_dialog.scripts
             {
                 case GameEvents.EnteredMuseum:
                     TriggerLine((NarrationDialogLine)gameEventData.data);
+                    break;
+                
+                case GameEvents.PlayerClickOnChoice:
+                    OnPlayerChoiceButtonClick((string)gameEventData.data);
                     break;
             }
         }

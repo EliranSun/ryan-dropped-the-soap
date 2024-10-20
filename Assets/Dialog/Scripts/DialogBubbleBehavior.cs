@@ -76,13 +76,14 @@ namespace Dialog.Scripts
             // Update the TextMeshPro text
             _textMeshPro.text = newText;
 
-            // Adjust the size of the text capsule background based on the number of lines
-            float lineHeight = _textMeshPro.fontSize * 1.2f; // Adjust line height multiplier as needed
+            float lineWidth = _textMeshPro.fontSize * 0.3f; // Adjust line height multiplier as needed
+            float lineHeight = _textMeshPro.fontSize * 1f; // Adjust line height multiplier as needed
             int lineCount = newText.Split('\n').Length;
             float newHeight = lineHeight * lineCount;
 
             // Assuming the capsule's width should remain constant, adjust only the height
             Vector3 newScale = _textCapsuleBackground.localScale;
+            newScale.x = lineWidth / _textCapsuleBackground.GetComponent<SpriteRenderer>().sprite.bounds.size.x;
             newScale.y = newHeight / _textCapsuleBackground.GetComponent<SpriteRenderer>().sprite.bounds.size.y;
             _textCapsuleBackground.localScale = newScale;
         }
