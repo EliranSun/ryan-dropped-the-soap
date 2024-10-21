@@ -125,7 +125,12 @@ namespace Character_Creator.scripts
         {
             if (gameData.name == GameEvents.DoorClicked)
             {
-                var mouth = Array.Find(mouths, m => m.door.name == (string)gameData.data);
+                var mouth = Array.Find(mouths, m =>
+                {
+                    var interactionData = (InteractionData)gameData.data;
+                    return m.door.name == interactionData.Name;
+                });
+
                 if (mouth != null && !_playerChoices.ContainsKey("mouth"))
                 {
                     mouthsContainer.GetComponent<Image>().sprite = mouth.mouth;
@@ -138,7 +143,11 @@ namespace Character_Creator.scripts
         {
             if (gameData.name == GameEvents.VaseClicked)
             {
-                var hair = Array.Find(hairs, h => h.vase.name == (string)gameData.data);
+                var hair = Array.Find(hairs, h =>
+                {
+                    var interactionData = (InteractionData)gameData.data;
+                    return h.vase.name == interactionData.Name;
+                });
                 // !_playerChoices.ContainsKey("hair")
                 if (hair != null)
                 {
@@ -154,7 +163,11 @@ namespace Character_Creator.scripts
         {
             if (gameData.name == GameEvents.ArmchairClicked)
             {
-                var nose = Array.Find(noses, n => n.armChairs.name == (string)gameData.data);
+                var nose = Array.Find(noses, n =>
+                {
+                    var interactionData = (InteractionData)gameData.data;
+                    return n.armChairs.name == interactionData.Name;
+                });
                 if (nose != null && !_playerChoices.ContainsKey("nose"))
                 {
                     nosesContainer.GetComponent<Image>().sprite = nose.nose;

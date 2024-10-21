@@ -750,8 +750,8 @@ GameObject:
   m_Component:
   - component: {fileID: 80714316}
   - component: {fileID: 80714315}
-  - component: {fileID: 80714317}
   - component: {fileID: 80714318}
+  - component: {fileID: 80714319}
   m_Layer: 0
   m_Name: red-door
   m_TagString: Untagged
@@ -828,33 +828,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 534212133}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &80714317
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 80714314}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87cdfa0ddac649b28b38a6168fd02dad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  observers:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 212777809}
-        m_TargetAssemblyTypeName: Character_Creator.scripts.CharacterCreator, CharacterCreatorScriptsAssembly
-        m_MethodName: OnDoorClick
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!61 &80714318
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -901,6 +874,51 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 7.4666667, y: 10.622222}
   m_EdgeRadius: 0
+--- !u!114 &80714319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 80714314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b15b47ad22222ad4ca3d6e88e90e36ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1217884344}
+        m_TargetAssemblyTypeName: museum_dialog.scripts.DialogueManager, DialogAssemblyDefinition
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 212777809}
+        m_TargetAssemblyTypeName: Character_Creator.scripts.CharacterCreator, CharacterCreatorScriptsAssembly
+        m_MethodName: OnMirrorClick
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  gameEvent: 37
+  dialogLine:
+  - {fileID: 11400000, guid: 65873c043559d2640ae2e9cddb4444ba, type: 2}
+  - {fileID: 11400000, guid: 146223596dc807e4289e2671cec533ee, type: 2}
+  interactionType: 0
+  repeatLastInteraction: 1
 --- !u!1 &83617449
 GameObject:
   m_ObjectHideFlags: 0
@@ -1958,8 +1976,8 @@ GameObject:
   m_Component:
   - component: {fileID: 245962054}
   - component: {fileID: 245962053}
-  - component: {fileID: 245962055}
   - component: {fileID: 245962056}
+  - component: {fileID: 245962057}
   m_Layer: 0
   m_Name: white door
   m_TagString: Untagged
@@ -2036,33 +2054,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 534212133}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &245962055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 245962052}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87cdfa0ddac649b28b38a6168fd02dad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  observers:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 212777809}
-        m_TargetAssemblyTypeName: Character_Creator.scripts.CharacterCreator, CharacterCreatorScriptsAssembly
-        m_MethodName: OnDoorClick
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!61 &245962056
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2109,6 +2100,51 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 6.0666666, y: 10.816667}
   m_EdgeRadius: 0
+--- !u!114 &245962057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245962052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b15b47ad22222ad4ca3d6e88e90e36ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1217884344}
+        m_TargetAssemblyTypeName: museum_dialog.scripts.DialogueManager, DialogAssemblyDefinition
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 212777809}
+        m_TargetAssemblyTypeName: Character_Creator.scripts.CharacterCreator, CharacterCreatorScriptsAssembly
+        m_MethodName: OnMirrorClick
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  gameEvent: 37
+  dialogLine:
+  - {fileID: 11400000, guid: bb2af5d4138d191439b1c6e87da84da0, type: 2}
+  - {fileID: 11400000, guid: 146223596dc807e4289e2671cec533ee, type: 2}
+  interactionType: 0
+  repeatLastInteraction: 1
 --- !u!1 &258536736
 GameObject:
   m_ObjectHideFlags: 0
@@ -3414,8 +3450,8 @@ GameObject:
   m_Component:
   - component: {fileID: 433962366}
   - component: {fileID: 433962365}
-  - component: {fileID: 433962367}
   - component: {fileID: 433962368}
+  - component: {fileID: 433962369}
   m_Layer: 0
   m_Name: brown-door
   m_TagString: Untagged
@@ -3492,33 +3528,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 534212133}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &433962367
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 433962364}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87cdfa0ddac649b28b38a6168fd02dad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  observers:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 212777809}
-        m_TargetAssemblyTypeName: Character_Creator.scripts.CharacterCreator, CharacterCreatorScriptsAssembly
-        m_MethodName: OnDoorClick
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!61 &433962368
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3565,6 +3574,51 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 9.853333, y: 10.306666}
   m_EdgeRadius: 0
+--- !u!114 &433962369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433962364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b15b47ad22222ad4ca3d6e88e90e36ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1217884344}
+        m_TargetAssemblyTypeName: museum_dialog.scripts.DialogueManager, DialogAssemblyDefinition
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 212777809}
+        m_TargetAssemblyTypeName: Character_Creator.scripts.CharacterCreator, CharacterCreatorScriptsAssembly
+        m_MethodName: OnMirrorClick
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  gameEvent: 37
+  dialogLine:
+  - {fileID: 11400000, guid: 4224cb66d5717e841ba747c39b87faba, type: 2}
+  - {fileID: 11400000, guid: 146223596dc807e4289e2671cec533ee, type: 2}
+  interactionType: 0
+  repeatLastInteraction: 1
 --- !u!1 &445508319
 GameObject:
   m_ObjectHideFlags: 0
@@ -4417,8 +4471,8 @@ GameObject:
   m_Component:
   - component: {fileID: 593598608}
   - component: {fileID: 593598607}
-  - component: {fileID: 593598609}
   - component: {fileID: 593598610}
+  - component: {fileID: 593598611}
   m_Layer: 0
   m_Name: yellow-door
   m_TagString: Untagged
@@ -4497,33 +4551,6 @@ Transform:
   - {fileID: 747124167}
   m_Father: {fileID: 534212133}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &593598609
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 593598606}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87cdfa0ddac649b28b38a6168fd02dad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  observers:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 212777809}
-        m_TargetAssemblyTypeName: Character_Creator.scripts.CharacterCreator, CharacterCreatorScriptsAssembly
-        m_MethodName: OnDoorClick
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!61 &593598610
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4570,6 +4597,51 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 8.3529415, y: 10.6470585}
   m_EdgeRadius: 0
+--- !u!114 &593598611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593598606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b15b47ad22222ad4ca3d6e88e90e36ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1217884344}
+        m_TargetAssemblyTypeName: museum_dialog.scripts.DialogueManager, DialogAssemblyDefinition
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 212777809}
+        m_TargetAssemblyTypeName: Character_Creator.scripts.CharacterCreator, CharacterCreatorScriptsAssembly
+        m_MethodName: OnMirrorClick
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  gameEvent: 37
+  dialogLine:
+  - {fileID: 11400000, guid: 6ddc0babaab5a8c4b97577397b34a02e, type: 2}
+  - {fileID: 11400000, guid: 146223596dc807e4289e2671cec533ee, type: 2}
+  interactionType: 0
+  repeatLastInteraction: 1
 --- !u!1 &600799053
 GameObject:
   m_ObjectHideFlags: 0
@@ -6122,7 +6194,7 @@ Transform:
   m_GameObject: {fileID: 758295748}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -142.9, y: 2.63, z: 0}
+  m_LocalPosition: {x: -148.1, y: 2.63, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -7159,8 +7231,8 @@ GameObject:
   m_Component:
   - component: {fileID: 911730386}
   - component: {fileID: 911730385}
-  - component: {fileID: 911730387}
   - component: {fileID: 911730388}
+  - component: {fileID: 911730389}
   m_Layer: 0
   m_Name: green-door
   m_TagString: Untagged
@@ -7237,33 +7309,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 534212133}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &911730387
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 911730384}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87cdfa0ddac649b28b38a6168fd02dad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  observers:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 212777809}
-        m_TargetAssemblyTypeName: Character_Creator.scripts.CharacterCreator, CharacterCreatorScriptsAssembly
-        m_MethodName: OnDoorClick
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!61 &911730388
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7310,6 +7355,51 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 6.572222, y: 9.905556}
   m_EdgeRadius: 0
+--- !u!114 &911730389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 911730384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b15b47ad22222ad4ca3d6e88e90e36ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1217884344}
+        m_TargetAssemblyTypeName: museum_dialog.scripts.DialogueManager, DialogAssemblyDefinition
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 212777809}
+        m_TargetAssemblyTypeName: Character_Creator.scripts.CharacterCreator, CharacterCreatorScriptsAssembly
+        m_MethodName: OnMirrorClick
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  gameEvent: 37
+  dialogLine:
+  - {fileID: 11400000, guid: 123c3b1f8e56feb4f80ca43be404f882, type: 2}
+  - {fileID: 11400000, guid: 146223596dc807e4289e2671cec533ee, type: 2}
+  interactionType: 0
+  repeatLastInteraction: 1
 --- !u!1 &936382647
 GameObject:
   m_ObjectHideFlags: 0
@@ -10387,10 +10477,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 562454938}
-  - {fileID: 1353196027}
   - {fileID: 78679946}
+  - {fileID: 1353196027}
   - {fileID: 534212133}
+  - {fileID: 562454938}
   - {fileID: 1638754405}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11827,8 +11917,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1631091145}
   - component: {fileID: 1631091144}
-  - component: {fileID: 1631091146}
   - component: {fileID: 1631091147}
+  - component: {fileID: 1631091148}
   m_Layer: 0
   m_Name: blue-door
   m_TagString: Untagged
@@ -11905,33 +11995,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 534212133}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1631091146
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1631091143}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87cdfa0ddac649b28b38a6168fd02dad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  observers:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 212777809}
-        m_TargetAssemblyTypeName: Character_Creator.scripts.CharacterCreator, CharacterCreatorScriptsAssembly
-        m_MethodName: OnDoorClick
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!61 &1631091147
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11978,6 +12041,51 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 6.06, y: 9.846666}
   m_EdgeRadius: 0
+--- !u!114 &1631091148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1631091143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b15b47ad22222ad4ca3d6e88e90e36ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1217884344}
+        m_TargetAssemblyTypeName: museum_dialog.scripts.DialogueManager, DialogAssemblyDefinition
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 212777809}
+        m_TargetAssemblyTypeName: Character_Creator.scripts.CharacterCreator, CharacterCreatorScriptsAssembly
+        m_MethodName: OnMirrorClick
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  gameEvent: 37
+  dialogLine:
+  - {fileID: 11400000, guid: cd5598f16176cab4e89a05d518ad65ff, type: 2}
+  - {fileID: 11400000, guid: 146223596dc807e4289e2671cec533ee, type: 2}
+  interactionType: 0
+  repeatLastInteraction: 1
 --- !u!1 &1638754404
 GameObject:
   m_ObjectHideFlags: 0
@@ -13930,7 +14038,7 @@ Transform:
   m_GameObject: {fileID: 1886877380}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -57.6, y: -2.64, z: 0}
+  m_LocalPosition: {x: -262.8, y: -2.64, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
