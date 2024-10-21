@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
+  m_Name: roman armchair
+  m_EditorClassIdentifier: 
+  playerName: 
+  voicedLines:
+  - text: What do you think the romans thought when they sat on these chairs?
+    clip: {fileID: 8300000, guid: ac62e35a5446ad043bd764cd8489ab7b, type: 3}
+    gender: 7
+  playerOptions:
+  - text: power
+    type: 1
+    choiceDataType: 0
+    next: {fileID: 0}
+  - text: importance
+    type: 1
+    choiceDataType: 0
+    next: {fileID: 0}
+  - text: control
+    type: 1
+    choiceDataType: 0
+    next: {fileID: 0}
+  - text: part of the elite
+    type: 1
+    choiceDataType: 0
+    next: {fileID: 0}
+  playerReactions: []
+  nextDialogueLine: {fileID: 0}
+  wait: 0.5
+  actionAfterLine: 0

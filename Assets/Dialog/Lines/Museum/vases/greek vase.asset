@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
+  m_Name: greek vase
+  m_EditorClassIdentifier: 
+  playerName: 
+  voicedLines:
+  - text: Highly artistic! look at these horses go! what does that remind you of?
+    clip: {fileID: 8300000, guid: 09959a9d91363f94d9e6a723dea08398, type: 3}
+    gender: 7
+  playerOptions:
+  - text: "It\u2019s a Masterpiece"
+    type: 1
+    choiceDataType: 0
+    next: {fileID: 0}
+  - text: Art
+    type: 1
+    choiceDataType: 0
+    next: {fileID: 0}
+  - text: Story telling
+    type: 1
+    choiceDataType: 0
+    next: {fileID: 0}
+  - text: Nothing in particular
+    type: 1
+    choiceDataType: 0
+    next: {fileID: 0}
+  playerReactions: []
+  nextDialogueLine: {fileID: 0}
+  wait: 0.5
+  actionAfterLine: 0
