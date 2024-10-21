@@ -6559,7 +6559,7 @@ GameObject:
   - component: {fileID: 772074894}
   m_Layer: 0
   m_Name: Floor (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8251,6 +8251,9 @@ GameObject:
   - component: {fileID: 1132599234}
   - component: {fileID: 1132599233}
   - component: {fileID: 1132599232}
+  - component: {fileID: 1132599235}
+  - component: {fileID: 1132599236}
+  - component: {fileID: 1132599237}
   m_Layer: 0
   m_Name: Charlotte guide
   m_TagString: Untagged
@@ -8322,7 +8325,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7821311556540498414, guid: a592bbd66560a394495ee09586415e41, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -8343,12 +8346,104 @@ Transform:
   m_GameObject: {fileID: 1132599231}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 52.610203, y: -3.0179644, z: 0}
+  m_LocalPosition: {x: 60.47, y: -3.0179644, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1132599235
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1132599231}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 4.6}
+    newSize: {x: 1, y: 4.6}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1, y: 4.6}
+  m_EdgeRadius: 0
+--- !u!50 &1132599236
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1132599231}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 4
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!114 &1132599237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1132599231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c99047920ed84adf894b38dfacf89d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  pointsOfInterest:
+  - {fileID: 366500389}
+  distanceToChangePoint: 5
+  playerTransform: {fileID: 1478778457}
+  jumpForce: 65
+  distanceToPlayer: 4
 --- !u!1 &1137432891
 GameObject:
   m_ObjectHideFlags: 0
@@ -10953,7 +11048,7 @@ GameObject:
   - component: {fileID: 1478778462}
   m_Layer: 0
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11583,7 +11678,7 @@ GameObject:
   - component: {fileID: 1549085654}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13914,7 +14009,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 536150925389476208, guid: 74c9e4d4d98912c4b8dc07d6ffed775e, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1934076538719534953, guid: 74c9e4d4d98912c4b8dc07d6ffed775e, type: 3}
       propertyPath: m_LocalScale.x
@@ -14120,6 +14215,9 @@ MonoBehaviour:
   pointsOfInterest:
   - {fileID: 733820106}
   distanceToChangePoint: 4
+  playerTransform: {fileID: 0}
+  jumpForce: 20
+  distanceToPlayer: 4
 --- !u!1 &1879757930
 GameObject:
   m_ObjectHideFlags: 0
@@ -14299,6 +14397,9 @@ MonoBehaviour:
   pointsOfInterest:
   - {fileID: 733820106}
   distanceToChangePoint: 4
+  playerTransform: {fileID: 0}
+  jumpForce: 20
+  distanceToPlayer: 4
 --- !u!95 &1879757936
 Animator:
   serializedVersion: 7
@@ -15792,12 +15893,12 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1132599234}
+  - {fileID: 1871192996}
   - {fileID: 1886877381}
   - {fileID: 1767954664}
   - {fileID: 212777808}
   - {fileID: 1674801819}
   - {fileID: 1432875362}
-  - {fileID: 1871192996}
   - {fileID: 197440735}
   - {fileID: 1797148496}
   - {fileID: 2061667556}

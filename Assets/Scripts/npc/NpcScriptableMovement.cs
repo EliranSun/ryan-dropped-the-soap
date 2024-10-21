@@ -11,8 +11,13 @@ namespace npc
         [SerializeField] private int speed;
         [SerializeField] private Transform[] pointsOfInterest;
         [SerializeField] private float distanceToChangePoint = 4f;
+        [SerializeField] private Transform playerTransform;
+        [SerializeField] private float jumpForce = 20f;
+        [SerializeField] private float distanceToPlayer = 4f;
         private Animator _animator;
         private int _currentPointOfInterestIndex;
+        private bool _isJumping;
+        private bool _isWalking;
         private Rigidbody2D _rigidBody2D;
         private SpriteRenderer _spriteRenderer;
         private Vector2 _targetPosition;
@@ -28,20 +33,49 @@ namespace npc
 
         private void FixedUpdate()
         {
-            if (pointsOfInterest.Length == 0 || _currentPointOfInterestIndex >= pointsOfInterest.Length) return;
-
-            var direction = (_targetPosition - (Vector2)transform.position).normalized;
-            _rigidBody2D.velocityX = direction.x * speed;
-            var distance = Vector2.Distance(transform.position, _targetPosition);
-            _animator.SetBool(IsWalking, true);
-            _spriteRenderer.flipX = direction.x < 0;
-
-            if (distance >= distanceToChangePoint)
+            if (pointsOfInterest.Length == 0 || _currentPointOfInterestIndex >= pointsOfInterest.Length)
                 return;
 
-            _animator.SetBool(IsWalking, false);
-            SetNextPointOfInterest();
-            _currentPointOfInterestIndex = (_currentPointOfInterestIndex + 1) % pointsOfInterest.Length;
+            var direction = (_targetPosition - (Vector2)transform.position).normalized;
+            var distance = Vector2.Distance(transform.position, _targetPosition);
+            var distanceFromPlayer = Vector2.Distance(transform.position, playerTransform.position);
+
+            if (distance <= distanceToChangePoint)
+            {
+                if (_isWalking)
+                {
+                    _animator.SetBool(IsWalking, false);
+                    _isWalking = false;
+                }
+
+                return;
+            }
+
+            if (!_isWalking)
+            {
+                _isWalking = true;
+                _animator.SetBool(IsWalking, true);
+            }
+
+            _spriteRenderer.flipX = direction.x > 0;
+            _rigidBody2D.velocityX = direction.x * speed;
+
+            if (_isWalking && !_isJumping && Mathf.Abs(distanceFromPlayer) < distanceToPlayer)
+            {
+                // avoid player by jumping over them.
+                // of course the optimal solution would be to prevent collision,
+                // but this solution might be more fun.
+                _rigidBody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                _isJumping = true;
+            }
+
+            // SetNextPointOfInterest();
+            // _currentPointOfInterestIndex = (_currentPointOfInterestIndex + 1) % pointsOfInterest.Length;
+        }
+
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            if (other.gameObject.CompareTag("Ground")) _isJumping = false;
         }
 
         private void SetNextPointOfInterest()
