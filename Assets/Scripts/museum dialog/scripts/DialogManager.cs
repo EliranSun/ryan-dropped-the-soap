@@ -93,6 +93,7 @@ namespace museum_dialog.scripts
             {
                 _audioSource.clip = line.clip;
                 _audioSource.Play();
+                Notify(GameEvents.LineNarrationStart, _currentDialogue.actorName);
                 StartCoroutine(CheckAudioEnd());
             }
             else
@@ -117,6 +118,7 @@ namespace museum_dialog.scripts
 
         private void OnDialogEnd()
         {
+            Notify(GameEvents.LineNarrationEnd, _currentDialogue.actorName);
             narratorText.text = "";
             HandlePlayerNameLines();
 

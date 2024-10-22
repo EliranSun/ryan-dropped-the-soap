@@ -58,6 +58,7 @@ namespace Dialog.Scripts
         public PlayerReactions[] playerReactions;
         public NarrationDialogLine nextDialogueLine;
         public float wait = 0.5f;
+        public ActorName actorName;
         public GameEvents actionAfterLine;
     }
 }

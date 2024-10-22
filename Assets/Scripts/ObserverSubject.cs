@@ -55,9 +55,12 @@ public enum GameEvents
     NextLevel,
     RestartLevel,
     ZoomOut,
-    
+
     PlayerChoice,
     PlayerClickOnChoice,
+
+    LineNarrationStart,
+    LineNarrationEnd
 }
 
 public class GameEventData
