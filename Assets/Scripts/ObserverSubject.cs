@@ -60,7 +60,9 @@ public enum GameEvents
     PlayerClickOnChoice,
 
     LineNarrationStart,
-    LineNarrationEnd
+    LineNarrationEnd,
+
+    ClickOnNpc
 }
 
 public class GameEventData

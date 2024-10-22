@@ -36,9 +36,11 @@ namespace npc
             if (pointsOfInterest.Length == 0 || _currentPointOfInterestIndex >= pointsOfInterest.Length)
                 return;
 
-            var direction = (_targetPosition - (Vector2)transform.position).normalized;
-            var distance = Vector2.Distance(transform.position, _targetPosition);
+            var direction = (pointsOfInterest[0].transform.position - transform.position).normalized;
+            var distance = Vector2.Distance(transform.position, pointsOfInterest[0].transform.position);
             var distanceFromPlayer = Vector2.Distance(transform.position, playerTransform.position);
+
+            // print($"distance: {distance}, distanceFromPlayer: {distanceFromPlayer}");
 
             if (distance <= distanceToChangePoint)
             {

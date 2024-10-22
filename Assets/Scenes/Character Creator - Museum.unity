@@ -8366,8 +8366,9 @@ GameObject:
   - component: {fileID: 1132599235}
   - component: {fileID: 1132599236}
   - component: {fileID: 1132599237}
+  - component: {fileID: 1132599238}
   m_Layer: 0
-  m_Name: Charlotte guide
+  m_Name: "\U0001F9CD\u200D\u2640\uFE0F Charlotte guide"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8458,7 +8459,7 @@ Transform:
   m_GameObject: {fileID: 1132599231}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 60.47, y: -3.0179644, z: 0}
+  m_LocalPosition: {x: 60.47, y: -2.93, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8498,7 +8499,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.020306587}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -8508,7 +8509,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 4.6}
+  m_Size: {x: 1, y: 4.721842}
   m_EdgeRadius: 0
 --- !u!50 &1132599236
 Rigidbody2D:
@@ -8523,8 +8524,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 4
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_LinearDrag: 4
+  m_AngularDrag: 1
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -8551,11 +8552,49 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   pointsOfInterest:
-  - {fileID: 366500389}
-  distanceToChangePoint: 5
-  playerTransform: {fileID: 1478778457}
+  - {fileID: 113991998}
+  distanceToChangePoint: 10
+  playerTransform: {fileID: 113991998}
   jumpForce: 65
   distanceToPlayer: 4
+--- !u!114 &1132599238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1132599231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b15b47ad22222ad4ca3d6e88e90e36ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1217884344}
+        m_TargetAssemblyTypeName: museum_dialog.scripts.DialogueManager, DialogAssemblyDefinition
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  gameEvent: 50
+  dialogLine:
+  - {fileID: 11400000, guid: 8a265633a8539e14a8dba78a71726acb, type: 2}
+  - {fileID: 11400000, guid: fc11d939dd0527749a8c74cf69dfdb6d, type: 2}
+  - {fileID: 11400000, guid: 4793dbe1028433942b770af9496e754f, type: 2}
+  - {fileID: 11400000, guid: 900e3d08040f64043ab8a66b5e038243, type: 2}
+  - {fileID: 11400000, guid: f5d0b58557e1db94b86cbb089b714cb9, type: 2}
+  - {fileID: 11400000, guid: b0b2594ac2827b94388b112bbcdf8ec8, type: 2}
+  - {fileID: 11400000, guid: 05751cf9e9291c94992407977b820785, type: 2}
+  interactionType: 0
+  repeatLastInteraction: 0
 --- !u!1 &1137432891
 GameObject:
   m_ObjectHideFlags: 0
@@ -14368,7 +14407,7 @@ Transform:
   m_GameObject: {fileID: 1886877380}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 73.18, y: -2.64, z: 0}
+  m_LocalPosition: {x: 62.1, y: -2.64, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15814,8 +15853,8 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1132599234}
-  - {fileID: 1871192996}
   - {fileID: 1886877381}
+  - {fileID: 1871192996}
   - {fileID: 1767954664}
   - {fileID: 212777808}
   - {fileID: 1674801819}

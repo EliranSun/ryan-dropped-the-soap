@@ -247,6 +247,7 @@ namespace museum_dialog.scripts
                     OnPlayerChoiceButtonClick((string)gameEventData.data);
                     break;
 
+                case GameEvents.ClickOnNpc:
                 case GameEvents.DoorClicked:
                 case GameEvents.ArmchairClicked:
                 case GameEvents.VaseClicked:
