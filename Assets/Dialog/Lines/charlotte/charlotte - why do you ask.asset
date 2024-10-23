@@ -18,25 +18,34 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 555c00280430ca443865c6f13cb41c42, type: 3}
     gender: 7
   playerOptions:
-  - text: Who are you again?
+  - text: Just a random thought that popped up
     type: 0
     choiceDataType: 0
     next: {fileID: 0}
-  - text: Where am I?
+  - text: I am curious
     type: 0
     choiceDataType: 0
     next: {fileID: 0}
-  - text: What are we doing here?
+  - text: You seem young
     type: 0
     choiceDataType: 0
     next: {fileID: 0}
-  - text: Hello
+  - text: You seem old
+    type: 0
+    choiceDataType: 0
+    next: {fileID: 0}
+  - text: Your age is a mystery
+    type: 0
+    choiceDataType: 0
+    next: {fileID: 0}
+  - text: I am interested in you
     type: 0
     choiceDataType: 0
     next: {fileID: 0}
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []
+  objectReferringDialogLines: []
   wait: 0.5
   actorName: 1
   actionAfterLine: 0

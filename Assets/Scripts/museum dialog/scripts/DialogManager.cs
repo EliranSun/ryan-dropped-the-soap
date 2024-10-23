@@ -21,6 +21,7 @@ namespace museum_dialog.scripts
         private bool _asyncLinesReady;
         private AudioSource _audioSource;
         private NarrationDialogLine _currentDialogue;
+        private int _forgettingGuideCount;
         private PlayerData _player;
         private InteractableObjectName _potentialSelectedInteractableObject;
         private InteractableObjectType _potentialSelectedInteractableObjectType;
@@ -222,6 +223,10 @@ namespace museum_dialog.scripts
         {
             switch (action)
             {
+                case GameEvents.CountForgettingGuide:
+                    _forgettingGuideCount++;
+                    break;
+
                 case GameEvents.NextScene:
                     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                     break;
@@ -230,7 +235,6 @@ namespace museum_dialog.scripts
                     break;
 
                 default:
-                    // print($"Notifying action {action}");
                     Notify(action);
                     break;
             }

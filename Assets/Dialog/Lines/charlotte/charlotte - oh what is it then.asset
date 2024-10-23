@@ -18,25 +18,22 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 43e386e48a6fef24790004d8b4cf1de5, type: 3}
     gender: 7
   playerOptions:
-  - text: Who are you again?
-    type: 0
+  - text: Input favourite color
+    type: 2
     choiceDataType: 0
     next: {fileID: 0}
-  - text: Where am I?
+  - text: We were talking about you
     type: 0
     choiceDataType: 0
-    next: {fileID: 0}
-  - text: What are we doing here?
+    next: {fileID: 11400000, guid: dd8ffcc834d574a4aab4ad689f540cd7, type: 2}
+  - text: Nevermind
     type: 0
     choiceDataType: 0
-    next: {fileID: 0}
-  - text: Hello
-    type: 0
-    choiceDataType: 0
-    next: {fileID: 0}
+    next: {fileID: 11400000, guid: dd8ffcc834d574a4aab4ad689f540cd7, type: 2}
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []
+  objectReferringDialogLines: []
   wait: 0.5
   actorName: 1
   actionAfterLine: 0

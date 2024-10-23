@@ -25,15 +25,15 @@ MonoBehaviour:
   - text: What is your last name
     type: 0
     choiceDataType: 0
-    next: {fileID: 0}
+    next: {fileID: 11400000, guid: b26fbe5b4bdccaf4cb56a2c6da0d7959, type: 2}
   - text: How old are you
     type: 0
     choiceDataType: 0
-    next: {fileID: 0}
+    next: {fileID: 11400000, guid: 1462bd17e7765a74c8d893b4e8037d87, type: 2}
   - text: Why are you following me
     type: 0
     choiceDataType: 0
-    next: {fileID: 0}
+    next: {fileID: 11400000, guid: 04ace8f18fe96ed4087b49ba9d892715, type: 2}
   - text: OK
     type: 0
     choiceDataType: 0
@@ -41,6 +41,7 @@ MonoBehaviour:
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []
+  objectReferringDialogLines: []
   wait: 0.5
   actorName: 1
-  actionAfterLine: 0
+  actionAfterLine: 51

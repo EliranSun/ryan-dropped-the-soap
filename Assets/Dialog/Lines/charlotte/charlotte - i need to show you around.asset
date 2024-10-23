@@ -19,25 +19,30 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: b545149a42c08534ba037450831e2040, type: 3}
     gender: 7
   playerOptions:
-  - text: Who are you again?
+  - text: YES
     type: 0
     choiceDataType: 0
     next: {fileID: 0}
-  - text: Where am I?
+  - text: NO
     type: 0
     choiceDataType: 0
     next: {fileID: 0}
-  - text: What are we doing here?
+  - text: I am not sure
     type: 0
     choiceDataType: 0
     next: {fileID: 0}
-  - text: Hello
+  - text: Can you keep your distance
+    type: 0
+    choiceDataType: 0
+    next: {fileID: 0}
+  - text: Can you follow closer
     type: 0
     choiceDataType: 0
     next: {fileID: 0}
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []
+  objectReferringDialogLines: []
   wait: 0.5
   actorName: 1
   actionAfterLine: 0

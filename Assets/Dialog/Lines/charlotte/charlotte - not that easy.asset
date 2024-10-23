@@ -14,29 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerName: 
   voicedLines:
-  - text: Hey
+  - text: You see, it's not that easy.
     clip: {fileID: 8300000, guid: df1d110b13f437448a6012dac6b1b5b2, type: 3}
     gender: 7
   playerOptions:
-  - text: Who are you again?
-    type: 0
-    choiceDataType: 0
-    next: {fileID: 0}
-  - text: Where am I?
-    type: 0
-    choiceDataType: 0
-    next: {fileID: 0}
   - text: What are we doing here?
-    type: 0
-    choiceDataType: 0
-    next: {fileID: 0}
-  - text: Hello
     type: 0
     choiceDataType: 0
     next: {fileID: 0}
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []
+  objectReferringDialogLines: []
   wait: 0.5
   actorName: 1
   actionAfterLine: 0

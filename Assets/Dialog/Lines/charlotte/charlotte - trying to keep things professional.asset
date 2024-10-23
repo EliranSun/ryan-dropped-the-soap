@@ -18,26 +18,11 @@ MonoBehaviour:
       avoid the question.
     clip: {fileID: 8300000, guid: 0f55ba2a45671b147bbefcea5ca270da, type: 3}
     gender: 7
-  playerOptions:
-  - text: Who are you again?
-    type: 0
-    choiceDataType: 0
-    next: {fileID: 0}
-  - text: Where am I?
-    type: 0
-    choiceDataType: 0
-    next: {fileID: 0}
-  - text: What are we doing here?
-    type: 0
-    choiceDataType: 0
-    next: {fileID: 0}
-  - text: Hello
-    type: 0
-    choiceDataType: 0
-    next: {fileID: 0}
+  playerOptions: []
   playerReactions: []
-  nextDialogueLine: {fileID: 0}
+  nextDialogueLine: {fileID: 11400000, guid: 422e01ae77818ef4eb38cb367762e5c1, type: 2}
   randomizedDialogLines: []
+  objectReferringDialogLines: []
   wait: 0.5
   actorName: 1
   actionAfterLine: 0

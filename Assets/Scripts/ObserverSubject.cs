@@ -62,7 +62,8 @@ public enum GameEvents
     LineNarrationStart,
     LineNarrationEnd,
 
-    ClickOnNpc
+    ClickOnNpc,
+    CountForgettingGuide
 }
 
 public class GameEventData

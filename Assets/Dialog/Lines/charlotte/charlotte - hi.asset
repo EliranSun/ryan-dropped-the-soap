@@ -22,21 +22,26 @@ MonoBehaviour:
     type: 0
     choiceDataType: 0
     next: {fileID: 11400000, guid: 12aa3009806551a4d89e636bede84931, type: 2}
+    countChoice: 1
   - text: Where am I?
     type: 0
     choiceDataType: 0
     next: {fileID: 0}
+    countChoice: 0
   - text: What are we doing here?
     type: 0
     choiceDataType: 0
     next: {fileID: 0}
+    countChoice: 0
   - text: Hello
     type: 0
     choiceDataType: 0
     next: {fileID: 0}
+    countChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []
+  objectReferringDialogLines: []
   wait: 0.5
   actorName: 1
   actionAfterLine: 0

@@ -48,6 +48,7 @@ namespace Character_Creator.scripts
         [SerializeField] private NarrationDialogLine[] dialogLine;
         [SerializeField] private InteractionType interactionType;
         [SerializeField] private bool repeatLastInteraction = true;
+        [SerializeField] private bool repeatAllInteractions;
         private int _interactionCount;
 
         private void OnMouseDown()
@@ -56,10 +57,9 @@ namespace Character_Creator.scripts
             {
                 if (_interactionCount >= dialogLine.Length)
                 {
-                    if (repeatLastInteraction)
-                        _interactionCount = dialogLine.Length - 1;
-                    else
-                        return;
+                    if (repeatLastInteraction) _interactionCount = dialogLine.Length - 1;
+                    else if (repeatAllInteractions) _interactionCount = 0;
+                    else return;
                 }
 
                 Notify(gameEvent,

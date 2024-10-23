@@ -19,25 +19,30 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: bdf7406c25a07a346bc7b97e1f6c8971, type: 3}
     gender: 7
   playerOptions:
-  - text: Who are you again?
+  - text: Museum?
     type: 0
     choiceDataType: 0
     next: {fileID: 0}
-  - text: Where am I?
+  - text: GYM?
     type: 0
     choiceDataType: 0
     next: {fileID: 0}
-  - text: What are we doing here?
+  - text: Apartment?
     type: 0
     choiceDataType: 0
     next: {fileID: 0}
-  - text: Hello
+  - text: Oh so everyone gets this?
+    type: 0
+    choiceDataType: 0
+    next: {fileID: 0}
+  - text: OK
     type: 0
     choiceDataType: 0
     next: {fileID: 0}
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []
+  objectReferringDialogLines: []
   wait: 0.5
   actorName: 1
   actionAfterLine: 0
