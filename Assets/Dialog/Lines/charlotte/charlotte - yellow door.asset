@@ -10,30 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
-  m_Name: Favourite painting
+  m_Name: charlotte - yellow door
   m_EditorClassIdentifier: 
   playerName: 
   voicedLines:
-  - text: Would you say this is your favourite painting here?
-    clip: {fileID: 8300000, guid: 73c79d1a5624d3548ad6ffc7731d40d8, type: 3}
+  - text: Since you chose the yellow door, I assume yellow is your favourite color?
+    clip: {fileID: 8300000, guid: d6eca7f86d31524409d01bd3c15c46bf, type: 3}
     gender: 7
   playerOptions:
   - text: YES
     type: 0
-    choiceDataType: 5
+    choiceDataType: 0
     next: {fileID: 0}
   - text: NO
-    type: 1
+    type: 0
     choiceDataType: 0
-    next: {fileID: 0}
-  - text: NEED TO THINK MORE
-    type: 1
-    choiceDataType: 0
-    next: {fileID: 0}
+    next: {fileID: 11400000, guid: 3979d0375f13b6f4da5d53c2fa78471e, type: 2}
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []
-  conditionalDialogLines: []
   wait: 0.5
   actorName: 1
   actionAfterLine: 0

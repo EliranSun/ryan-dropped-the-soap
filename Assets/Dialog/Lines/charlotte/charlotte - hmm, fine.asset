@@ -10,30 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
-  m_Name: Favourite painting
+  m_Name: charlotte - hmm, fine
   m_EditorClassIdentifier: 
   playerName: 
   voicedLines:
-  - text: Would you say this is your favourite painting here?
-    clip: {fileID: 8300000, guid: 73c79d1a5624d3548ad6ffc7731d40d8, type: 3}
+  - text: Hmm, fine.
+    clip: {fileID: 8300000, guid: fc7a44aed18881f4db44a85c3766eb71, type: 3}
     gender: 7
-  playerOptions:
-  - text: YES
-    type: 0
-    choiceDataType: 5
-    next: {fileID: 0}
-  - text: NO
-    type: 1
-    choiceDataType: 0
-    next: {fileID: 0}
-  - text: NEED TO THINK MORE
-    type: 1
-    choiceDataType: 0
-    next: {fileID: 0}
+  playerOptions: []
   playerReactions: []
   nextDialogueLine: {fileID: 0}
-  randomizedDialogLines: []
-  conditionalDialogLines: []
+  randomizedDialogLines:
+  - {fileID: 11400000, guid: 2d749d117a1f0374091cd4c264802e57, type: 2}
+  - {fileID: 11400000, guid: 59bbb6a7de560df46a58e9c86fadd3ca, type: 2}
+  - {fileID: 11400000, guid: 653a2e1d01c414d469d02133bc0e9dc8, type: 2}
+  - {fileID: 11400000, guid: f6af7c4ef8a93b845978910672ab5f78, type: 2}
   wait: 0.5
   actorName: 1
   actionAfterLine: 0

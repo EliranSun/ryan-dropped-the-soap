@@ -10,30 +10,33 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
-  m_Name: Favourite painting
+  m_Name: charlotte - that is a big question
   m_EditorClassIdentifier: 
   playerName: 
   voicedLines:
-  - text: Would you say this is your favourite painting here?
-    clip: {fileID: 8300000, guid: 73c79d1a5624d3548ad6ffc7731d40d8, type: 3}
+  - text: That is a big question! Well...
+    clip: {fileID: 8300000, guid: 9170b6636aed8504db8b32de71db49da, type: 3}
     gender: 7
   playerOptions:
-  - text: YES
+  - text: Who are you again?
     type: 0
-    choiceDataType: 5
-    next: {fileID: 0}
-  - text: NO
-    type: 1
     choiceDataType: 0
     next: {fileID: 0}
-  - text: NEED TO THINK MORE
-    type: 1
+  - text: Where am I?
+    type: 0
+    choiceDataType: 0
+    next: {fileID: 0}
+  - text: What are we doing here?
+    type: 0
+    choiceDataType: 0
+    next: {fileID: 0}
+  - text: Hello
+    type: 0
     choiceDataType: 0
     next: {fileID: 0}
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []
-  conditionalDialogLines: []
   wait: 0.5
   actorName: 1
   actionAfterLine: 0

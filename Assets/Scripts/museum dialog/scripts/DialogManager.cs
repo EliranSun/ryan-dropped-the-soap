@@ -20,21 +20,14 @@ namespace museum_dialog.scripts
         [SerializeField] private TextMeshProUGUI narratorText;
         private bool _asyncLinesReady;
         private AudioSource _audioSource;
-
         private NarrationDialogLine _currentDialogue;
-
         private PlayerData _player;
-
+        private InteractableObjectName _potentialSelectedInteractableObject;
+        private InteractableObjectType _potentialSelectedInteractableObjectType;
         private NarrationDialogLine _triggeredDialogueLine;
-        // public static DialogueManager Instance { get; private set; }
 
         private void Awake()
         {
-            // if (Instance != null && Instance != this)
-            //     Destroy(this);
-            // else
-            //     Instance = this;
-
             _audioSource = GetComponent<AudioSource>();
         }
 
@@ -141,6 +134,35 @@ namespace museum_dialog.scripts
                 return;
             }
 
+            if (_currentDialogue.randomizedDialogLines.Length > 0)
+            {
+                var randomIndex = Random.Range(0, _currentDialogue.randomizedDialogLines.Length);
+                UpdateDialogState(_currentDialogue.randomizedDialogLines[randomIndex]);
+                ReadCurrentLine();
+                return;
+            }
+
+            if (_currentDialogue.objectReferringDialogLines.Length > 0)
+            {
+                var choiceType = _currentDialogue.objectReferringDialogLines[0].objectType;
+                var playerChosenObject = PlayerPrefs.GetString(choiceType.ToString());
+
+
+                if (playerChosenObject != "")
+                {
+                    var dialogLine = _currentDialogue.objectReferringDialogLines
+                        .First(obj => obj.objectName.ToString() == playerChosenObject);
+
+                    if (dialogLine.line)
+                    {
+                        UpdateDialogState(dialogLine.line);
+                        ReadCurrentLine();
+                    }
+                }
+
+                return;
+            }
+
             if (_triggeredDialogueLine != null)
             {
                 UpdateDialogState(_triggeredDialogueLine);
@@ -244,7 +266,18 @@ namespace museum_dialog.scripts
                     break;
 
                 case GameEvents.PlayerClickOnChoice:
-                    OnPlayerChoiceButtonClick((string)gameEventData.data);
+                    var choiceText = (string)gameEventData.data;
+                    if (choiceText == "YES" && _potentialSelectedInteractableObject != InteractableObjectName.Unknown)
+                    {
+                        var existingSelectedObjects =
+                            PlayerPrefs.GetString(_potentialSelectedInteractableObjectType.ToString());
+                        print(existingSelectedObjects);
+
+                        PlayerPrefs.SetString(_potentialSelectedInteractableObjectType.ToString(),
+                            _potentialSelectedInteractableObject.ToString());
+                    }
+
+                    OnPlayerChoiceButtonClick(choiceText);
                     break;
 
                 case GameEvents.ClickOnNpc:
@@ -254,7 +287,8 @@ namespace museum_dialog.scripts
                 case GameEvents.MirrorClicked:
                 case GameEvents.PaintingClicked:
                     var interactionData = (InteractionData)gameEventData.data;
-                    print("Triggering line" + interactionData.DialogLine);
+                    _potentialSelectedInteractableObject = interactionData.InteractableObjectName;
+                    _potentialSelectedInteractableObjectType = interactionData.InteractableObjectType;
                     TriggerLine(interactionData.DialogLine);
                     break;
             }

@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
+  m_Name: charlotte - I actually never thought of that
+  m_EditorClassIdentifier: 
+  playerName: 
+  voicedLines:
+  - text: I actually never thought about that.
+    clip: {fileID: 8300000, guid: 0472d5de90a82a242b87eaf7c3f30e87, type: 3}
+    gender: 7
+  playerOptions: []
+  playerReactions: []
+  nextDialogueLine: {fileID: 0}
+  randomizedDialogLines: []
+  objectReferringDialogLines:
+  - line: {fileID: 11400000, guid: cfad444287d8e2645b09848b7b90051f, type: 2}
+    objectName: 12
+    objectType: 3
+  - line: {fileID: 11400000, guid: 2d4fdce9da1a0694098f3afc5c8d3c9f, type: 2}
+    objectName: 13
+    objectType: 3
+  - line: {fileID: 11400000, guid: a2b77bfd800651943bbbab17946eb63e, type: 2}
+    objectName: 14
+    objectType: 3
+  - line: {fileID: 11400000, guid: 421e821aa2fe5064f9094899927ea1df, type: 2}
+    objectName: 15
+    objectType: 3
+  - line: {fileID: 11400000, guid: 589630d37de667c4cbebd4bc5d74c4dc, type: 2}
+    objectName: 16
+    objectType: 3
+  - line: {fileID: 11400000, guid: f3274cb7bbb4b0c41a84c49229c89555, type: 2}
+    objectName: 17
+    objectType: 3
+  wait: 0.5
+  actorName: 1
+  actionAfterLine: 0

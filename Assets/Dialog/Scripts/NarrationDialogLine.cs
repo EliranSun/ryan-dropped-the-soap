@@ -45,6 +45,67 @@ namespace Dialog.Scripts
     }
 
     [Serializable]
+    public enum InteractableObjectType
+    {
+        Unknown,
+        Painting,
+        Mirror,
+        Door,
+        Vase,
+        Chair
+    }
+
+
+    [Serializable]
+    public enum InteractableObjectName
+    {
+        Unknown,
+
+        PaintingTheKiss,
+        PaintingStarryNight,
+        PaintingImpression,
+        PaintingAngelus,
+        PaintingComposition,
+        PaintingNighthawks,
+        PaintingWanderer,
+
+        MirrorRoman,
+        MirrorGreek,
+        MirrorEgyptian,
+        MirrorSameritan,
+
+        DoorBlue,
+        DoorBlack,
+        DoorGreen,
+        DoorWhite,
+        DoorRed,
+        DoorYellow,
+
+        VaseEgyptian,
+        VaseGreek,
+        VaseJapanese,
+        VaseModern,
+        VasePersian,
+        VaseRoman,
+        VaseSameritan,
+
+        ChairRoman,
+        ChairModern,
+        ChairJapanese,
+        ChairGreek,
+        ChairEgyptian,
+        ChairSameritan
+    }
+
+    [Serializable]
+    public class ObjectReferringLine
+    {
+        public NarrationDialogLine line;
+        public InteractableObjectName objectName;
+        public InteractableObjectType objectType;
+    }
+
+    [Serializable]
     [CreateAssetMenu(fileName = "NarrationLine", menuName = "Line")]
     public class NarrationDialogLine : ScriptableObject
     {
@@ -57,6 +118,8 @@ namespace Dialog.Scripts
         public PlayerChoice[] playerOptions;
         public PlayerReactions[] playerReactions;
         public NarrationDialogLine nextDialogueLine;
+        public NarrationDialogLine[] randomizedDialogLines;
+        public ObjectReferringLine[] objectReferringDialogLines;
         public float wait = 0.5f;
         public ActorName actorName;
         public GameEvents actionAfterLine;
