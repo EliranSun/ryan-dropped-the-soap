@@ -65,11 +65,11 @@ namespace Character_Creator.scripts
         [SerializeField] private Hairs[] hairs;
         [SerializeField] private SpriteCreatorContainer spriteCreatorContainer;
 
-        private readonly Dictionary<string, bool> _playerChoices = new();
+        private readonly HashSet<string> _playerChoices = new();
 
         private void Start()
         {
-            // HideFaceUI();
+            HideFaceUI();
         }
 
         private void HideFaceUI()
@@ -84,8 +84,6 @@ namespace Character_Creator.scripts
 
         public void OnPaintingClick(GameEventData gameData)
         {
-            // TODO: Don't really need double check here,
-            // but consider refactoring to use a single method
             if (gameData.name == GameEvents.PaintingClicked)
             {
                 var eye = Array.Find(eyes, e =>
@@ -94,10 +92,10 @@ namespace Character_Creator.scripts
                     return e.painting.name == interactionData.Name;
                 });
 
-                if (eye != null && !_playerChoices.ContainsKey("eyes"))
+                if (eye != null && _playerChoices.Add("eyes"))
                 {
                     eyesContainer.GetComponent<Image>().sprite = eye.eye;
-                    _playerChoices.Add("eyes", true);
+                    OnCharacterReveal();
                 }
             }
         }
@@ -112,11 +110,12 @@ namespace Character_Creator.scripts
                     return f.mirror.name == interactionData.Name;
                 });
 
-                print($"Has obtained face? {_playerChoices.ContainsKey("face")}, face? {face.face}");
                 if (face.face != null)
                 {
+                    _playerChoices.Add("face");
                     facesContainer.GetComponent<Image>().sprite = face.face;
                     spriteCreatorContainer.faceContainer.GetComponent<SpriteRenderer>().sprite = face.faceSprite;
+                    OnCharacterReveal();
                 }
             }
         }
@@ -131,10 +130,10 @@ namespace Character_Creator.scripts
                     return m.door.name == interactionData.Name;
                 });
 
-                if (mouth != null && !_playerChoices.ContainsKey("mouth"))
+                if (mouth != null && _playerChoices.Add("mouth"))
                 {
                     mouthsContainer.GetComponent<Image>().sprite = mouth.mouth;
-                    _playerChoices.Add("mouth", true);
+                    OnCharacterReveal();
                 }
             }
         }
@@ -148,13 +147,14 @@ namespace Character_Creator.scripts
                     var interactionData = (InteractionData)gameData.data;
                     return h.vase.name == interactionData.Name;
                 });
-                // !_playerChoices.ContainsKey("hair")
+
                 if (hair != null)
                 {
                     hairBackContainer.GetComponent<Image>().sprite = hair.hairBack;
                     hairFrontContainer.GetComponent<Image>().sprite = hair.hairFront;
                     spriteCreatorContainer.hairContainer.GetComponent<SpriteRenderer>().sprite = hair.hairSprite;
-                    // _playerChoices.Add("hair", true);
+                    _playerChoices.Add("hair");
+                    OnCharacterReveal();
                 }
             }
         }
@@ -168,10 +168,10 @@ namespace Character_Creator.scripts
                     var interactionData = (InteractionData)gameData.data;
                     return n.armChairs.name == interactionData.Name;
                 });
-                if (nose != null && !_playerChoices.ContainsKey("nose"))
+                if (nose != null && _playerChoices.Add("nose"))
                 {
                     nosesContainer.GetComponent<Image>().sprite = nose.nose;
-                    _playerChoices.Add("nose", true);
+                    OnCharacterReveal();
                 }
             }
         }
