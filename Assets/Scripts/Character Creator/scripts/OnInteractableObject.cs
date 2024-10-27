@@ -55,6 +55,7 @@ namespace Character_Creator.scripts
         {
             if (interactionType is InteractionType.Click or InteractionType.Both)
             {
+                // TODO: _interactionCount & InteractionData might be redundant after the bubble event action change
                 if (_interactionCount >= dialogLine.Length)
                 {
                     if (repeatLastInteraction) _interactionCount = dialogLine.Length - 1;
@@ -62,16 +63,39 @@ namespace Character_Creator.scripts
                     else return;
                 }
 
-                Notify(gameEvent,
-                    new InteractionData(gameObject.name, interactableObjectName, interactableObjectType,
-                        dialogLine[_interactionCount]));
                 _interactionCount++;
+                Notify(gameEvent, new InteractionData(
+                    gameObject.name,
+                    interactableObjectName,
+                    interactableObjectType,
+                    dialogLine[_interactionCount]
+                ));
             }
         }
 
         private void OnTriggerEnter(Collider other)
         {
             if (interactionType == InteractionType.Move) _interactionCount++;
+        }
+
+        public void OnNotify(GameEventData gameEventData)
+        {
+            switch (gameEventData.name)
+            {
+                case GameEvents.ArmchairChosen:
+                case GameEvents.DoorChosen:
+                case GameEvents.MirrorChosen:
+                case GameEvents.PaintingChosen:
+                case GameEvents.VaseChosen:
+                    var interactionData = new InteractionData(
+                        gameObject.name,
+                        interactableObjectName,
+                        interactableObjectType,
+                        dialogLine[_interactionCount]
+                    );
+                    Notify(gameEventData.name, interactionData);
+                    break;
+            }
         }
     }
 }

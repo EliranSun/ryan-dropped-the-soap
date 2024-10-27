@@ -82,97 +82,95 @@ namespace Character_Creator.scripts
             hairBackContainer.GetComponent<Image>().color = new Color(1, 1, 1, 0);
         }
 
-        public void OnPaintingClick(GameEventData gameData)
+        public void OnNotify(GameEventData gameData)
         {
-            if (gameData.name == GameEvents.PaintingClicked)
+            switch (gameData.name)
             {
-                var eye = Array.Find(eyes, e =>
-                {
-                    var interactionData = (InteractionData)gameData.data;
-                    return e.painting.name == interactionData.Name;
-                });
+                case GameEvents.VaseChosen:
+                    var vase = (EnrichedPlayerChoice)gameData.data;
+                    OnVaseChoice(vase.OriginalInteraction.Name);
+                    break;
 
-                if (eye != null && _playerChoices.Add("eyes"))
-                {
-                    eyesContainer.GetComponent<Image>().sprite = eye.eye;
-                    OnCharacterReveal();
-                }
+                case GameEvents.ArmchairChosen:
+                    var armchair = (EnrichedPlayerChoice)gameData.data;
+                    OnArmchairChoice(armchair.OriginalInteraction.Name);
+                    break;
+
+                case GameEvents.DoorChosen:
+                    var door = (EnrichedPlayerChoice)gameData.data;
+                    OnDoorChoice(door.OriginalInteraction.Name);
+                    break;
+
+                case GameEvents.MirrorChosen:
+                    var mirror = (EnrichedPlayerChoice)gameData.data;
+                    OnMirrorChoice(mirror.OriginalInteraction.Name);
+                    break;
+
+                case GameEvents.PaintingChosen:
+                    var painting = (EnrichedPlayerChoice)gameData.data;
+                    OnPaintingChoice(painting.OriginalInteraction.Name);
+                    break;
             }
         }
 
-        public void OnMirrorClick(GameEventData gameData)
+        public void OnPaintingChoice(string paintingName)
         {
-            if (gameData.name == GameEvents.MirrorClicked)
+            var eye = Array.Find(eyes, e => e.painting.name == paintingName);
+            if (eye != null)
             {
-                var face = Array.Find(faces, f =>
-                {
-                    var interactionData = (InteractionData)gameData.data;
-                    return f.mirror.name == interactionData.Name;
-                });
-
-                if (face.face != null)
-                {
-                    _playerChoices.Add("face");
-                    facesContainer.GetComponent<Image>().sprite = face.face;
-                    spriteCreatorContainer.faceContainer.GetComponent<SpriteRenderer>().sprite = face.faceSprite;
-                    OnCharacterReveal();
-                }
+                _playerChoices.Add("eyes");
+                eyesContainer.GetComponent<Image>().sprite = eye.eye;
+                OnCharacterReveal();
             }
         }
 
-        public void OnDoorClick(GameEventData gameData)
+        public void OnMirrorChoice(string mirrorName)
         {
-            if (gameData.name == GameEvents.DoorClicked)
-            {
-                var mouth = Array.Find(mouths, m =>
-                {
-                    var interactionData = (InteractionData)gameData.data;
-                    return m.door.name == interactionData.Name;
-                });
+            var face = Array.Find(faces, f => f.mirror.name == mirrorName);
 
-                if (mouth != null && _playerChoices.Add("mouth"))
-                {
-                    mouthsContainer.GetComponent<Image>().sprite = mouth.mouth;
-                    OnCharacterReveal();
-                }
+            if (face.face != null)
+            {
+                _playerChoices.Add("face");
+                facesContainer.GetComponent<Image>().sprite = face.face;
+                spriteCreatorContainer.faceContainer.GetComponent<SpriteRenderer>().sprite = face.faceSprite;
+                OnCharacterReveal();
             }
         }
 
-        public void OnVaseClick(GameEventData gameData)
+        public void OnDoorChoice(string doorName)
         {
-            if (gameData.name == GameEvents.VaseClicked)
-            {
-                var hair = Array.Find(hairs, h =>
-                {
-                    var interactionData = (InteractionData)gameData.data;
-                    return h.vase.name == interactionData.Name;
-                });
+            var mouth = Array.Find(mouths, m => m.door.name == doorName);
 
-                if (hair != null)
-                {
-                    hairBackContainer.GetComponent<Image>().sprite = hair.hairBack;
-                    hairFrontContainer.GetComponent<Image>().sprite = hair.hairFront;
-                    spriteCreatorContainer.hairContainer.GetComponent<SpriteRenderer>().sprite = hair.hairSprite;
-                    _playerChoices.Add("hair");
-                    OnCharacterReveal();
-                }
+            if (mouth != null)
+            {
+                _playerChoices.Add("mouth");
+                mouthsContainer.GetComponent<Image>().sprite = mouth.mouth;
+                OnCharacterReveal();
             }
         }
 
-        public void OnArmchairClick(GameEventData gameData)
+        public void OnVaseChoice(string vaseName)
         {
-            if (gameData.name == GameEvents.ArmchairClicked)
+            var hair = Array.Find(hairs, h => h.vase.name == vaseName);
+
+            if (hair != null)
             {
-                var nose = Array.Find(noses, n =>
-                {
-                    var interactionData = (InteractionData)gameData.data;
-                    return n.armChairs.name == interactionData.Name;
-                });
-                if (nose != null && _playerChoices.Add("nose"))
-                {
-                    nosesContainer.GetComponent<Image>().sprite = nose.nose;
-                    OnCharacterReveal();
-                }
+                hairBackContainer.GetComponent<Image>().sprite = hair.hairBack;
+                hairFrontContainer.GetComponent<Image>().sprite = hair.hairFront;
+                spriteCreatorContainer.hairContainer.GetComponent<SpriteRenderer>().sprite = hair.hairSprite;
+                _playerChoices.Add("hair");
+                OnCharacterReveal();
+            }
+        }
+
+        public void OnArmchairChoice(string armchairName)
+        {
+            var nose = Array.Find(noses, n => n.armChairs.name == armchairName);
+            if (nose != null)
+            {
+                _playerChoices.Add("nose");
+                nosesContainer.GetComponent<Image>().sprite = nose.nose;
+                OnCharacterReveal();
             }
         }
 

@@ -270,18 +270,16 @@ namespace museum_dialog.scripts
                     break;
 
                 case GameEvents.PlayerClickOnChoice:
-                    var choiceText = (string)gameEventData.data;
-                    if (choiceText == "YES" && _potentialSelectedInteractableObject != InteractableObjectName.Unknown)
+                    var choiceData = (EnrichedPlayerChoice)gameEventData.data;
+                    if (choiceData.Choice == "YES")
                     {
-                        var existingSelectedObjects =
-                            PlayerPrefs.GetString(_potentialSelectedInteractableObjectType.ToString());
-                        print(existingSelectedObjects);
-
-                        PlayerPrefs.SetString(_potentialSelectedInteractableObjectType.ToString(),
-                            _potentialSelectedInteractableObject.ToString());
+                        // The state is already saved, just trigger the appropriate event
+                        var interactionType = choiceData.OriginalInteraction.InteractableObjectType;
+                        var eventName = GetEventNameForInteractionType(interactionType);
+                        Notify(eventName, choiceData.OriginalInteraction);
                     }
 
-                    OnPlayerChoiceButtonClick(choiceText);
+                    OnPlayerChoiceButtonClick(choiceData.Choice);
                     break;
 
                 case GameEvents.ClickOnNpc:
@@ -291,11 +289,22 @@ namespace museum_dialog.scripts
                 case GameEvents.MirrorClicked:
                 case GameEvents.PaintingClicked:
                     var interactionData = (InteractionData)gameEventData.data;
-                    _potentialSelectedInteractableObject = interactionData.InteractableObjectName;
-                    _potentialSelectedInteractableObjectType = interactionData.InteractableObjectType;
+                    InteractionStateService.Instance.SetCurrentInteraction(interactionData);
                     TriggerLine(interactionData.DialogLine);
                     break;
             }
+        }
+
+        private GameEvents GetEventNameForInteractionType(InteractableObjectType interactionType)
+        {
+            return interactionType switch
+            {
+                InteractableObjectType.Vase => GameEvents.VaseClicked,
+                InteractableObjectType.Mirror => GameEvents.MirrorClicked,
+                InteractableObjectType.Painting => GameEvents.PaintingClicked,
+                InteractableObjectType.Armchair => GameEvents.ArmchairClicked,
+                InteractableObjectType.Door => GameEvents.DoorClicked
+            };
         }
 
         public void TriggerLine(NarrationDialogLine line)

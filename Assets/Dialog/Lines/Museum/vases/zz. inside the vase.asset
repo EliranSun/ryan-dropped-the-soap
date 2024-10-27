@@ -19,19 +19,24 @@ MonoBehaviour:
     gender: 7
   playerOptions:
   - text: YES
-    type: 1
+    type: 0
     choiceDataType: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 55
   - text: NO
     type: 1
     choiceDataType: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: NEED TO THINK MORE
     type: 1
     choiceDataType: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
+  randomizedDialogLines: []
+  objectReferringDialogLines: []
   wait: 0.5
   actorName: 1
   actionAfterLine: 0

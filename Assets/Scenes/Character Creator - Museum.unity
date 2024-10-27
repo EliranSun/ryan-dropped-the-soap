@@ -720,6 +720,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 212777809}
+        m_TargetAssemblyTypeName: Character_Creator.scripts.CharacterCreator, CharacterCreatorScriptsAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   bubblesBasePositions:
   - {x: -4, y: 4}
   - {x: 5, y: 0}
@@ -1004,18 +1016,6 @@ MonoBehaviour:
       - m_Target: {fileID: 1217884344}
         m_TargetAssemblyTypeName: museum_dialog.scripts.DialogueManager, DialogAssemblyDefinition
         m_MethodName: OnNotify
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 212777809}
-        m_TargetAssemblyTypeName: Character_Creator.scripts.CharacterCreator, CharacterCreatorScriptsAssembly
-        m_MethodName: OnMirrorClick
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2243,18 +2243,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 212777809}
-        m_TargetAssemblyTypeName: Character_Creator.scripts.CharacterCreator, CharacterCreatorScriptsAssembly
-        m_MethodName: OnMirrorClick
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   interactableObjectName: 15
   interactableObjectType: 3
   gameEvent: 37
@@ -2896,7 +2884,7 @@ Transform:
   m_GameObject: {fileID: 360204269}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 316.74, y: -8.04, z: -4.5940313}
+  m_LocalPosition: {x: 327.61, y: 7.18, z: -4.5940313}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3020,18 +3008,6 @@ MonoBehaviour:
       - m_Target: {fileID: 1217884344}
         m_TargetAssemblyTypeName: museum_dialog.scripts.DialogueManager, DialogAssemblyDefinition
         m_MethodName: OnNotify
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 212777809}
-        m_TargetAssemblyTypeName: Character_Creator.scripts.CharacterCreator, CharacterCreatorScriptsAssembly
-        m_MethodName: OnVaseClick
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3199,18 +3175,6 @@ MonoBehaviour:
   observers:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 212777809}
-        m_TargetAssemblyTypeName: Character_Creator.scripts.CharacterCreator, CharacterCreatorScriptsAssembly
-        m_MethodName: OnMirrorClick
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1217884344}
         m_TargetAssemblyTypeName: museum_dialog.scripts.DialogueManager, DialogAssemblyDefinition
         m_MethodName: OnNotify
@@ -3335,18 +3299,6 @@ MonoBehaviour:
   observers:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 212777809}
-        m_TargetAssemblyTypeName: Character_Creator.scripts.CharacterCreator, CharacterCreatorScriptsAssembly
-        m_MethodName: OnPaintingClick
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1217884344}
         m_TargetAssemblyTypeName: museum_dialog.scripts.DialogueManager, DialogAssemblyDefinition
         m_MethodName: OnNotify
@@ -3747,18 +3699,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 212777809}
-        m_TargetAssemblyTypeName: Character_Creator.scripts.CharacterCreator, CharacterCreatorScriptsAssembly
-        m_MethodName: OnMirrorClick
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   interactableObjectName: 13
   interactableObjectType: 3
   gameEvent: 37
@@ -3920,18 +3860,6 @@ MonoBehaviour:
       - m_Target: {fileID: 1217884344}
         m_TargetAssemblyTypeName: museum_dialog.scripts.DialogueManager, DialogAssemblyDefinition
         m_MethodName: OnNotify
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 212777809}
-        m_TargetAssemblyTypeName: Character_Creator.scripts.CharacterCreator, CharacterCreatorScriptsAssembly
-        m_MethodName: OnVaseClick
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4421,18 +4349,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 212777809}
-        m_TargetAssemblyTypeName: Character_Creator.scripts.CharacterCreator, CharacterCreatorScriptsAssembly
-        m_MethodName: OnArmchairClick
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   interactableObjectName: 29
   interactableObjectType: 5
   gameEvent: 39
@@ -4815,18 +4731,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 212777809}
-        m_TargetAssemblyTypeName: Character_Creator.scripts.CharacterCreator, CharacterCreatorScriptsAssembly
-        m_MethodName: OnMirrorClick
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   interactableObjectName: 17
   interactableObjectType: 3
   gameEvent: 37
@@ -4864,7 +4768,7 @@ Transform:
   m_GameObject: {fileID: 600799053}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 500.1, y: -6.05, z: 0}
+  m_LocalPosition: {x: 522.96, y: 7.46, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4988,18 +4892,6 @@ MonoBehaviour:
       - m_Target: {fileID: 1217884344}
         m_TargetAssemblyTypeName: museum_dialog.scripts.DialogueManager, DialogAssemblyDefinition
         m_MethodName: OnNotify
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 212777809}
-        m_TargetAssemblyTypeName: Character_Creator.scripts.CharacterCreator, CharacterCreatorScriptsAssembly
-        m_MethodName: OnArmchairClick
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5196,18 +5088,6 @@ MonoBehaviour:
   observers:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 212777809}
-        m_TargetAssemblyTypeName: Character_Creator.scripts.CharacterCreator, CharacterCreatorScriptsAssembly
-        m_MethodName: OnPaintingClick
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1217884344}
         m_TargetAssemblyTypeName: museum_dialog.scripts.DialogueManager, DialogAssemblyDefinition
         m_MethodName: OnNotify
@@ -5424,18 +5304,6 @@ MonoBehaviour:
   observers:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 212777809}
-        m_TargetAssemblyTypeName: Character_Creator.scripts.CharacterCreator, CharacterCreatorScriptsAssembly
-        m_MethodName: OnMirrorClick
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1217884344}
         m_TargetAssemblyTypeName: museum_dialog.scripts.DialogueManager, DialogAssemblyDefinition
         m_MethodName: OnNotify
@@ -5876,18 +5744,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 212777809}
-        m_TargetAssemblyTypeName: Character_Creator.scripts.CharacterCreator, CharacterCreatorScriptsAssembly
-        m_MethodName: OnArmchairClick
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   interactableObjectName: 27
   interactableObjectType: 5
   gameEvent: 39
@@ -6247,18 +6103,6 @@ MonoBehaviour:
   observers:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 212777809}
-        m_TargetAssemblyTypeName: Character_Creator.scripts.CharacterCreator, CharacterCreatorScriptsAssembly
-        m_MethodName: OnPaintingClick
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1217884344}
         m_TargetAssemblyTypeName: museum_dialog.scripts.DialogueManager, DialogAssemblyDefinition
         m_MethodName: OnNotify
@@ -7358,18 +7202,6 @@ MonoBehaviour:
   observers:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 212777809}
-        m_TargetAssemblyTypeName: Character_Creator.scripts.CharacterCreator, CharacterCreatorScriptsAssembly
-        m_MethodName: OnPaintingClick
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1217884344}
         m_TargetAssemblyTypeName: museum_dialog.scripts.DialogueManager, DialogAssemblyDefinition
         m_MethodName: OnNotify
@@ -7630,18 +7462,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 212777809}
-        m_TargetAssemblyTypeName: Character_Creator.scripts.CharacterCreator, CharacterCreatorScriptsAssembly
-        m_MethodName: OnMirrorClick
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   interactableObjectName: 14
   interactableObjectType: 3
   gameEvent: 37
@@ -7754,18 +7574,6 @@ MonoBehaviour:
   observers:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 212777809}
-        m_TargetAssemblyTypeName: Character_Creator.scripts.CharacterCreator, CharacterCreatorScriptsAssembly
-        m_MethodName: OnPaintingClick
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1217884344}
         m_TargetAssemblyTypeName: museum_dialog.scripts.DialogueManager, DialogAssemblyDefinition
         m_MethodName: OnNotify
@@ -8256,18 +8064,6 @@ MonoBehaviour:
       - m_Target: {fileID: 1217884344}
         m_TargetAssemblyTypeName: museum_dialog.scripts.DialogueManager, DialogAssemblyDefinition
         m_MethodName: OnNotify
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 212777809}
-        m_TargetAssemblyTypeName: Character_Creator.scripts.CharacterCreator, CharacterCreatorScriptsAssembly
-        m_MethodName: OnArmchairClick
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8927,18 +8723,6 @@ MonoBehaviour:
   observers:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 212777809}
-        m_TargetAssemblyTypeName: Character_Creator.scripts.CharacterCreator, CharacterCreatorScriptsAssembly
-        m_MethodName: OnPaintingClick
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1217884344}
         m_TargetAssemblyTypeName: museum_dialog.scripts.DialogueManager, DialogAssemblyDefinition
         m_MethodName: OnNotify
@@ -9294,18 +9078,6 @@ MonoBehaviour:
       - m_Target: {fileID: 1217884344}
         m_TargetAssemblyTypeName: museum_dialog.scripts.DialogueManager, DialogAssemblyDefinition
         m_MethodName: OnNotify
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 212777809}
-        m_TargetAssemblyTypeName: Character_Creator.scripts.CharacterCreator, CharacterCreatorScriptsAssembly
-        m_MethodName: OnVaseClick
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10118,18 +9890,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 212777809}
-        m_TargetAssemblyTypeName: Character_Creator.scripts.CharacterCreator, CharacterCreatorScriptsAssembly
-        m_MethodName: OnVaseClick
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   interactableObjectName: 24
   interactableObjectType: 4
   gameEvent: 38
@@ -10326,18 +10086,6 @@ MonoBehaviour:
   observers:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 212777809}
-        m_TargetAssemblyTypeName: Character_Creator.scripts.CharacterCreator, CharacterCreatorScriptsAssembly
-        m_MethodName: OnPaintingClick
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1217884344}
         m_TargetAssemblyTypeName: museum_dialog.scripts.DialogueManager, DialogAssemblyDefinition
         m_MethodName: OnNotify
@@ -10943,18 +10691,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 212777809}
-        m_TargetAssemblyTypeName: Character_Creator.scripts.CharacterCreator, CharacterCreatorScriptsAssembly
-        m_MethodName: OnVaseClick
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   interactableObjectName: 22
   interactableObjectType: 4
   gameEvent: 38
@@ -11235,18 +10971,6 @@ MonoBehaviour:
   observers:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 212777809}
-        m_TargetAssemblyTypeName: Character_Creator.scripts.CharacterCreator, CharacterCreatorScriptsAssembly
-        m_MethodName: OnMirrorClick
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1217884344}
         m_TargetAssemblyTypeName: museum_dialog.scripts.DialogueManager, DialogAssemblyDefinition
         m_MethodName: OnNotify
@@ -12714,18 +12438,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 212777809}
-        m_TargetAssemblyTypeName: Character_Creator.scripts.CharacterCreator, CharacterCreatorScriptsAssembly
-        m_MethodName: OnMirrorClick
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   interactableObjectName: 12
   interactableObjectType: 3
   gameEvent: 37
@@ -12921,18 +12633,6 @@ MonoBehaviour:
   observers:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 212777809}
-        m_TargetAssemblyTypeName: Character_Creator.scripts.CharacterCreator, CharacterCreatorScriptsAssembly
-        m_MethodName: OnMirrorClick
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1217884344}
         m_TargetAssemblyTypeName: museum_dialog.scripts.DialogueManager, DialogAssemblyDefinition
         m_MethodName: OnNotify
@@ -13209,18 +12909,6 @@ MonoBehaviour:
       - m_Target: {fileID: 1217884344}
         m_TargetAssemblyTypeName: museum_dialog.scripts.DialogueManager, DialogAssemblyDefinition
         m_MethodName: OnNotify
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 212777809}
-        m_TargetAssemblyTypeName: Character_Creator.scripts.CharacterCreator, CharacterCreatorScriptsAssembly
-        m_MethodName: OnVaseClick
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13552,18 +13240,6 @@ MonoBehaviour:
       - m_Target: {fileID: 1217884344}
         m_TargetAssemblyTypeName: museum_dialog.scripts.DialogueManager, DialogAssemblyDefinition
         m_MethodName: OnNotify
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 212777809}
-        m_TargetAssemblyTypeName: Character_Creator.scripts.CharacterCreator, CharacterCreatorScriptsAssembly
-        m_MethodName: OnArmchairClick
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15387,18 +15063,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 212777809}
-        m_TargetAssemblyTypeName: Character_Creator.scripts.CharacterCreator, CharacterCreatorScriptsAssembly
-        m_MethodName: OnVaseClick
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   interactableObjectName: 23
   interactableObjectType: 4
   gameEvent: 38
@@ -15691,18 +15355,6 @@ MonoBehaviour:
       - m_Target: {fileID: 1217884344}
         m_TargetAssemblyTypeName: museum_dialog.scripts.DialogueManager, DialogAssemblyDefinition
         m_MethodName: OnNotify
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 212777809}
-        m_TargetAssemblyTypeName: Character_Creator.scripts.CharacterCreator, CharacterCreatorScriptsAssembly
-        m_MethodName: OnArmchairClick
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

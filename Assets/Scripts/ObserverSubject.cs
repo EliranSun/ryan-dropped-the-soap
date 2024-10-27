@@ -63,7 +63,14 @@ public enum GameEvents
     LineNarrationEnd,
 
     ClickOnNpc,
-    CountForgettingGuide
+    CountForgettingGuide,
+
+    // museum events
+    PaintingChosen,
+    MirrorChosen,
+    DoorChosen,
+    VaseChosen,
+    ArmchairChosen
 }
 
 public class GameEventData

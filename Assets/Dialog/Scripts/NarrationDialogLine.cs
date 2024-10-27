@@ -17,6 +17,7 @@ namespace Dialog.Scripts
         public ChoiceType type;
         public PlayerDataEnum choiceDataType;
         public NarrationDialogLine next;
+        public GameEvents actionAfterPlayerChoice;
     }
 
     [Serializable]
@@ -52,7 +53,7 @@ namespace Dialog.Scripts
         Mirror,
         Door,
         Vase,
-        Chair
+        Armchair
     }
 
 
