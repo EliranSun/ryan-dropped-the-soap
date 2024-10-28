@@ -56,7 +56,7 @@ namespace Character.Scripts
             _headSpriteRenderer.flipX = _spriteRenderer.flipX;
             _hairSpriteRenderer.flipX = _spriteRenderer.flipX;
 
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
                 _rigidbody2D.AddForce(Vector2.up * (speed * jumpForce), ForceMode2D.Impulse);
         }
     }

@@ -63,13 +63,13 @@ namespace Character_Creator.scripts
                     else return;
                 }
 
-                _interactionCount++;
                 Notify(gameEvent, new InteractionData(
                     gameObject.name,
                     interactableObjectName,
                     interactableObjectType,
                     dialogLine[_interactionCount]
                 ));
+                _interactionCount++;
             }
         }
 

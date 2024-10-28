@@ -50,8 +50,17 @@ namespace Character_Creator.scripts
         [SerializeField] public GameObject hairContainer;
     }
 
-    public class CharacterCreator : MonoBehaviour
+    [Serializable]
+    internal class CharacterSprite
     {
+        public GameObject face;
+        public GameObject hair;
+        public GameObject body;
+    }
+
+    public class CharacterCreator : ObserverSubject
+    {
+        [SerializeField] private CharacterSprite characterToReveal;
         [SerializeField] private GameObject eyesContainer;
         [SerializeField] private GameObject facesContainer;
         [SerializeField] private GameObject mouthsContainer;
@@ -110,6 +119,10 @@ namespace Character_Creator.scripts
                     var painting = (EnrichedPlayerChoice)gameData.data;
                     OnPaintingChoice(painting.OriginalInteraction.Name);
                     break;
+
+                case GameEvents.CharacterRevealTrigger:
+                    OnCharacterReveal();
+                    break;
             }
         }
 
@@ -120,7 +133,7 @@ namespace Character_Creator.scripts
             {
                 _playerChoices.Add("eyes");
                 eyesContainer.GetComponent<Image>().sprite = eye.eye;
-                OnCharacterReveal();
+                CheckCharacterReveal();
             }
         }
 
@@ -133,7 +146,7 @@ namespace Character_Creator.scripts
                 _playerChoices.Add("face");
                 facesContainer.GetComponent<Image>().sprite = face.face;
                 spriteCreatorContainer.faceContainer.GetComponent<SpriteRenderer>().sprite = face.faceSprite;
-                OnCharacterReveal();
+                CheckCharacterReveal();
             }
         }
 
@@ -145,7 +158,7 @@ namespace Character_Creator.scripts
             {
                 _playerChoices.Add("mouth");
                 mouthsContainer.GetComponent<Image>().sprite = mouth.mouth;
-                OnCharacterReveal();
+                CheckCharacterReveal();
             }
         }
 
@@ -159,7 +172,7 @@ namespace Character_Creator.scripts
                 hairFrontContainer.GetComponent<Image>().sprite = hair.hairFront;
                 spriteCreatorContainer.hairContainer.GetComponent<SpriteRenderer>().sprite = hair.hairSprite;
                 _playerChoices.Add("hair");
-                OnCharacterReveal();
+                CheckCharacterReveal();
             }
         }
 
@@ -170,22 +183,30 @@ namespace Character_Creator.scripts
             {
                 _playerChoices.Add("nose");
                 nosesContainer.GetComponent<Image>().sprite = nose.nose;
-                OnCharacterReveal();
+                CheckCharacterReveal();
             }
         }
 
-        // TODO: Trigger after dialog
-        public void OnCharacterReveal()
+        private void CheckCharacterReveal()
         {
             if (_playerChoices.Count == 5)
-            {
-                eyesContainer.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-                facesContainer.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-                mouthsContainer.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-                nosesContainer.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-                hairFrontContainer.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-                hairBackContainer.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-            }
+                Notify(GameEvents.CharacterRevealDialogTrigger);
+        }
+
+        // TODO: Trigger after dialog
+        private void OnCharacterReveal()
+        {
+            eyesContainer.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            facesContainer.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            mouthsContainer.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            nosesContainer.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            hairFrontContainer.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            hairBackContainer.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+
+            // set active each part of the character
+            characterToReveal.face.GetComponent<SpriteRenderer>().enabled = true;
+            characterToReveal.hair.GetComponent<SpriteRenderer>().enabled = true;
+            characterToReveal.body.GetComponent<SpriteRenderer>().enabled = true;
         }
     }
 }

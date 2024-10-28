@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Linq;
 using Character_Creator.scripts;
@@ -5,6 +6,7 @@ using Dialog.Scripts;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 namespace museum_dialog.scripts
 {
@@ -18,10 +20,10 @@ namespace museum_dialog.scripts
         [SerializeField] private GameObject playerInputsContainer;
         [SerializeField] private GameObject playerTextInput;
         [SerializeField] private TextMeshProUGUI narratorText;
+        [SerializeField] private EventToDialogMap eventToDialogMap;
         private bool _asyncLinesReady;
         private AudioSource _audioSource;
         private NarrationDialogLine _currentDialogue;
-        private int _forgettingGuideCount;
         private PlayerData _player;
         private InteractableObjectName _potentialSelectedInteractableObject;
         private InteractableObjectType _potentialSelectedInteractableObjectType;
@@ -36,6 +38,16 @@ namespace museum_dialog.scripts
         {
             UpdateDialogState(DialogueStateChanger.Instance.GetDialogStateByPlayerPrefs());
             StartCoroutine(HandlePlayerNameLinesAndStartRead());
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+                // TODO: move somewhere else
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+            if (Input.GetKeyDown(KeyCode.Space)) OnFastForwardDialogHold();
+            if (Input.GetKeyUp(KeyCode.Space)) OnFastForwardDialogRelease();
         }
 
         private IEnumerator HandlePlayerNameLinesAndStartRead()
@@ -210,7 +222,7 @@ namespace museum_dialog.scripts
             //             button.GetComponent<Button>().onClick
             //                 .AddListener(() => OnPlayerChoiceButtonClick(playerChoiceNextAction));
             //             break;
-            //
+            // TODO: handle text input for RIC intro
             //         case ChoiceType.TextInput:
             //             var textInput = Instantiate(playerTextInput, playerInputsContainer.transform);
             //             textInput.GetComponent<PlayerInfoInput>().type = playerChoice.choiceDataType;
@@ -223,10 +235,6 @@ namespace museum_dialog.scripts
         {
             switch (action)
             {
-                case GameEvents.CountForgettingGuide:
-                    _forgettingGuideCount++;
-                    break;
-
                 case GameEvents.NextScene:
                     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                     break;
@@ -263,6 +271,23 @@ namespace museum_dialog.scripts
 
         public void OnNotify(GameEventData gameEventData)
         {
+            // check if eventToDialogMap contains the event
+            try
+            {
+                var eventLine =
+                    eventToDialogMap.dialogLineEvents.First(dialogLineEvent =>
+                        dialogLineEvent.eventName == gameEventData.name);
+                if (eventLine.dialogLine)
+                {
+                    TriggerLine(eventLine.dialogLine);
+                    return;
+                }
+            }
+            catch (InvalidOperationException e)
+            {
+                // ignored, this is fine and expected
+            }
+
             switch (gameEventData.name)
             {
                 case GameEvents.EnteredMuseum:

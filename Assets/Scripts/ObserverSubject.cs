@@ -70,7 +70,10 @@ public enum GameEvents
     MirrorChosen,
     DoorChosen,
     VaseChosen,
-    ArmchairChosen
+    ArmchairChosen,
+
+    CharacterRevealDialogTrigger,
+    CharacterRevealTrigger
 }
 
 public class GameEventData
