@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5207606698477381166}
   - component: {fileID: 5693388335802752710}
   - component: {fileID: 5908167132551306628}
+  - component: {fileID: -7342026148279256824}
   m_Layer: 10
   m_Name: Speech Bubble
   m_TagString: PlayerChoiceDialogBubble
@@ -51,6 +52,7 @@ MonoBehaviour:
   minSpeed: 0.05
   maxSpeed: 0.1
   text: 
+  eventAfterChoice: 0
 --- !u!65 &5908167132551306628
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -72,6 +74,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 6.286708, y: 2.7524185, z: 1}
   m_Center: {x: 0.0073633194, y: 0.007363081, z: 0}
+--- !u!114 &-7342026148279256824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 628707650107998814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55689df3509cd604b8302e089278d065, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
 --- !u!1 &4917811842034121211
 GameObject:
   m_ObjectHideFlags: 0

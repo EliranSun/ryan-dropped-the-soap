@@ -1,14 +1,14 @@
 using System;
 using System.Collections;
 using System.Linq;
-using Character_Creator.scripts;
 using Dialog.Scripts;
+using museum_dialog.scripts;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
-namespace museum_dialog.scripts
+namespace Character_Creator.scripts
 {
     [RequireComponent(typeof(AudioSource))]
     [RequireComponent(typeof(DialogueStateChanger))]
@@ -297,12 +297,17 @@ namespace museum_dialog.scripts
                 case GameEvents.PlayerClickOnChoice:
                     var choiceData = (EnrichedPlayerChoice)gameEventData.data;
                     if (choiceData.Choice == "YES")
-                    {
-                        // The state is already saved, just trigger the appropriate event
-                        var interactionType = choiceData.OriginalInteraction.InteractableObjectType;
-                        var eventName = GetEventNameForInteractionType(interactionType);
-                        Notify(eventName, choiceData.OriginalInteraction);
-                    }
+                        try
+                        {
+                            // The state is already saved, just trigger the appropriate event
+                            var interactionType = choiceData.OriginalInteraction.InteractableObjectType;
+                            var eventName = GetEventNameForInteractionType(interactionType);
+                            Notify(eventName, choiceData.OriginalInteraction);
+                        }
+                        catch (NullReferenceException error)
+                        {
+                            print(error);
+                        }
 
                     OnPlayerChoiceButtonClick(choiceData.Choice);
                     break;

@@ -5,6 +5,8 @@ namespace Dialog.Scripts
 {
     public class PlayerChoiceDialogBubbles : ObserverSubject
     {
+        [SerializeField] private Transform inputCanvas;
+        [SerializeField] private GameObject playerTextInput;
         [SerializeField] private Vector2[] bubblesBasePositions;
         [SerializeField] private GameObject speechBubble;
         private Camera _camera;
@@ -31,6 +33,9 @@ namespace Dialog.Scripts
                 foreach (var bubble in GameObject.FindGameObjectsWithTag("PlayerChoiceDialogBubble"))
                     Destroy(bubble);
 
+                foreach (var input in GameObject.FindGameObjectsWithTag("PlayerInput"))
+                    Destroy(input);
+
                 var enrichedChoice = new EnrichedPlayerChoice(
                     bubbleText,
                     InteractionStateService.Instance.GetCurrentInteraction()
@@ -55,11 +60,20 @@ namespace Dialog.Scripts
                 var randomX = basePosition.x + Random.Range(-0.1f, 0.1f);
                 var randomY = basePosition.y + Random.Range(-0.1f, 0.1f);
 
-                var bubble = Instantiate(speechBubble, transform);
-
-                bubble.transform.localPosition = new Vector3(randomX, randomY, 0f);
-                bubble.GetComponent<DialogBubbleBehavior>().text = playerChoices[i].text;
-                bubble.GetComponent<DialogBubbleBehavior>().eventAfterChoice = playerChoices[i].actionAfterPlayerChoice;
+                if (playerChoices[i].type == ChoiceType.TextInput)
+                {
+                    var textInput = Instantiate(playerTextInput, inputCanvas);
+                    textInput.GetComponent<PlayerInfoInput>().type = playerChoices[i].choiceDataType;
+                }
+                else
+                {
+                    var bubble = Instantiate(speechBubble, transform);
+                    bubble.transform.localPosition = new Vector3(randomX, randomY, transform.position.z);
+                    bubble.GetComponent<PlayerInfoInput>().type = playerChoices[i].choiceDataType;
+                    bubble.GetComponent<DialogBubbleBehavior>().text = playerChoices[i].text;
+                    bubble.GetComponent<DialogBubbleBehavior>().eventAfterChoice =
+                        playerChoices[i].actionAfterPlayerChoice;
+                }
             }
         }
     }

@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Dialog.Scripts;
+using museum_dialog.scripts;
 using UnityEngine;
 
-namespace museum_dialog.scripts
+namespace Character_Creator.scripts
 {
     [RequireComponent(typeof(TextToSpeech))]
     public class PrefetchDialogLines : MonoBehaviour

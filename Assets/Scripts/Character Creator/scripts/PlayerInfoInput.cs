@@ -3,7 +3,7 @@ using Dialog.Scripts;
 using TMPro;
 using UnityEngine;
 
-namespace museum_dialog.scripts
+namespace Character_Creator.scripts
 {
     public class PlayerInfoInput : MonoBehaviour
     {
