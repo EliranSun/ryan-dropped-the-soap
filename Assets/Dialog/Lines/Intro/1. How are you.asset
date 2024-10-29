@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
+  m_Name: 1. How are you
+  m_EditorClassIdentifier: 
+  playerName: 
+  voicedLines:
+  - text: Hi, how are you today? Long time no see.
+    clip: {fileID: 8300000, guid: 7cab95713010945b6bec187cf5a0c270, type: 3}
+    gender: 3
+  playerOptions:
+  - text: OK
+    type: 0
+    choiceDataType: 3
+    next: {fileID: 11400000, guid: c41a0f400e21dce44b1da8fb1537f996, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: SO SO
+    type: 0
+    choiceDataType: 3
+    next: {fileID: 11400000, guid: c41a0f400e21dce44b1da8fb1537f996, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: GOOD
+    type: 0
+    choiceDataType: 3
+    next: {fileID: 11400000, guid: c41a0f400e21dce44b1da8fb1537f996, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: COMPLICATED
+    type: 0
+    choiceDataType: 3
+    next: {fileID: 11400000, guid: c41a0f400e21dce44b1da8fb1537f996, type: 2}
+    actionAfterPlayerChoice: 0
+  playerReactions: []
+  nextDialogueLine: {fileID: 0}
+  randomizedDialogLines: []
+  objectReferringDialogLines: []
+  wait: 0.5
+  actorName: 0
+  actionAfterLine: 0

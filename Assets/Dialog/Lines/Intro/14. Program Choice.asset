@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
+  m_Name: 14. Program Choice
+  m_EditorClassIdentifier: 
+  playerName: 
+  voicedLines:
+  - text: ...
+    clip: {fileID: 0}
+    gender: 0
+  playerOptions:
+  - text: YES
+    type: 0
+    choiceDataType: 0
+    next: {fileID: 11400000, guid: 48d4becce4459f34d8f9d71ec543b066, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: NO
+    type: 0
+    choiceDataType: 0
+    next: {fileID: 11400000, guid: 48d4becce4459f34d8f9d71ec543b066, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: WHY YOU KEEP SAYING THAT
+    type: 0
+    choiceDataType: 0
+    next: {fileID: 11400000, guid: 48d4becce4459f34d8f9d71ec543b066, type: 2}
+    actionAfterPlayerChoice: 0
+  playerReactions: []
+  nextDialogueLine: {fileID: 0}
+  randomizedDialogLines: []
+  objectReferringDialogLines: []
+  wait: 0.5
+  actorName: 0
+  actionAfterLine: 0

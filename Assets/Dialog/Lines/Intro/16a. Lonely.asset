@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
+  m_Name: 16a. Lonely
+  m_EditorClassIdentifier: 
+  playerName: 
+  voicedLines:
+  - text: Lonely! Are we not? Ok so - imagine you HAD someone you truly love. What
+      was their name?
+    clip: {fileID: 8300000, guid: 5821220dcccad426f8f85702394b63ff, type: 3}
+    gender: 1
+  - text: Lonely! Are we not? Ok so - imagine you HAD someone you truly love. What
+      was their name?
+    clip: {fileID: 8300000, guid: b2a4543e48ff04d2e8e17ea85b041c09, type: 3}
+    gender: 2
+  playerOptions:
+  - text: RYAN
+    type: 0
+    choiceDataType: 0
+    next: {fileID: 11400000, guid: 3e8cd60371f79554fb56207a972ae7d5, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: STACY
+    type: 0
+    choiceDataType: 0
+    next: {fileID: 11400000, guid: 3e8cd60371f79554fb56207a972ae7d5, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: ZEKE
+    type: 0
+    choiceDataType: 0
+    next: {fileID: 11400000, guid: 3e8cd60371f79554fb56207a972ae7d5, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: VALERY
+    type: 0
+    choiceDataType: 0
+    next: {fileID: 11400000, guid: 3e8cd60371f79554fb56207a972ae7d5, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: JAYDEN
+    type: 0
+    choiceDataType: 0
+    next: {fileID: 11400000, guid: 3e8cd60371f79554fb56207a972ae7d5, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: MORGAN
+    type: 0
+    choiceDataType: 0
+    next: {fileID: 11400000, guid: 3e8cd60371f79554fb56207a972ae7d5, type: 2}
+    actionAfterPlayerChoice: 0
+  playerReactions: []
+  nextDialogueLine: {fileID: 0}
+  randomizedDialogLines: []
+  objectReferringDialogLines: []
+  wait: 0.5
+  actorName: 0
+  actionAfterLine: 0

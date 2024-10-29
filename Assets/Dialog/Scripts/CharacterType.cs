@@ -5,13 +5,9 @@ namespace Dialog.Scripts
     [Serializable]
     public enum CharacterType
     {
-        Male,
+        None,
         Female,
-        NonBinary,
-        Cop,
-        Partner,
-        Stacy,
-        Zeke,
-        None
+        Male,
+        NonBinary
     }
 }

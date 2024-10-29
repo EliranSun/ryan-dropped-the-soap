@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
+  m_Name: 12. Evaluated
+  m_EditorClassIdentifier: 
+  playerName: 
+  voicedLines:
+  - text: 'You will be watched, measured and evaluated, all to better help you deal
+      with situations you find troubling in your own life. '
+    clip: {fileID: 8300000, guid: 9873014e6f5674d40a5ba080e9902cf1, type: 3}
+    gender: 1
+  - text: 'You will be watched, measured and evaluated, all to better help you deal
+      with situations you find troubling in your own life. '
+    clip: {fileID: 8300000, guid: ebc5437f78b804504ac76d77685d2d23, type: 3}
+    gender: 2
+  playerOptions: []
+  playerReactions: []
+  nextDialogueLine: {fileID: 11400000, guid: d146761b0a1ac0044932577cc836f39f, type: 2}
+  randomizedDialogLines: []
+  objectReferringDialogLines: []
+  wait: 1
+  actorName: 0
+  actionAfterLine: 0
