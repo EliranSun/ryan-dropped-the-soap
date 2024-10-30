@@ -180,12 +180,28 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7149559963680199428, guid: b6736823915bbc04d8b4383b540bfb78, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149559963680199428, guid: b6736823915bbc04d8b4383b540bfb78, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1210336575}
     - target: {fileID: 7149559963680199428, guid: b6736823915bbc04d8b4383b540bfb78, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: -7342026148279256824, guid: 7b738b3a161763148b7d88401208ccf6, type: 3}
+    - target: {fileID: 7149559963680199428, guid: b6736823915bbc04d8b4383b540bfb78, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: OnNotify
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149559963680199428, guid: b6736823915bbc04d8b4383b540bfb78, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: museum_dialog.scripts.DialogueManager, CharacterCreatorScriptsAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149559963680199428, guid: b6736823915bbc04d8b4383b540bfb78, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Character_Creator.scripts.PlayerInfoInput, CharacterCreatorScriptsAssembly
       objectReference: {fileID: 0}
     - target: {fileID: 7456967408516093557, guid: b6736823915bbc04d8b4383b540bfb78, type: 3}
       propertyPath: m_Name
@@ -212,6 +228,50 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3694917491872714927, guid: acdbe3621a3081546b24dd95ed37ef03, type: 3}
   m_PrefabInstance: {fileID: 1790248213}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &443504522
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 443504523}
+  - component: {fileID: 443504524}
+  m_Layer: 0
+  m_Name: Level Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &443504523
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443504522}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 306.4376, y: 216.04968, z: -2.7572522}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &443504524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443504522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5ed54be04b02e543bcd8659e8c33cb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &449897321
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,3 +544,4 @@ SceneRoots:
   - {fileID: 449897324}
   - {fileID: 1790248213}
   - {fileID: 28495717}
+  - {fileID: 443504523}

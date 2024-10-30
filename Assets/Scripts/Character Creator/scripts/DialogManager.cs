@@ -42,10 +42,6 @@ namespace Character_Creator.scripts
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.R))
-                // TODO: move somewhere else
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-
             if (Input.GetKeyDown(KeyCode.Space)) OnFastForwardDialogHold();
             if (Input.GetKeyUp(KeyCode.Space)) OnFastForwardDialogRelease();
         }
@@ -88,7 +84,6 @@ namespace Character_Creator.scripts
             if (!_currentDialogue)
                 return;
 
-            print(_currentDialogue);
             var line = GetLineByGender(_currentDialogue);
 
             narratorText.text = line.text

@@ -19,4 +19,25 @@ namespace Dialog.Scripts
         Armchair,
         Mirror
     }
+
+    [Serializable]
+    public enum PlayerDataOption
+    {
+        // CSS intro
+        None,
+
+        // Feelings
+        Ok,
+        SoSo,
+        Good,
+        Complicated,
+
+        // Gender,
+        Female,
+        Male,
+
+        // Painting
+        CompositionEight,
+        WandererAboveTheSeaOfFog
+    }
 }

@@ -16,6 +16,7 @@ namespace Dialog.Scripts
         public string text;
         public ChoiceType type;
         public PlayerDataEnum choiceDataType;
+        public PlayerDataOption choiceDataOption;
         public NarrationDialogLine next;
         public GameEvents actionAfterPlayerChoice;
     }

@@ -21,21 +21,25 @@ MonoBehaviour:
   - text: IM OK
     type: 0
     choiceDataType: 3
-    next: {fileID: 11400000, guid: c41a0f400e21dce44b1da8fb1537f996, type: 2}
-    actionAfterPlayerChoice: 0
-  - text: SO SO
-    type: 0
-    choiceDataType: 3
+    choiceDataOption: 1
     next: {fileID: 11400000, guid: c41a0f400e21dce44b1da8fb1537f996, type: 2}
     actionAfterPlayerChoice: 0
   - text: GOOD
     type: 0
     choiceDataType: 3
+    choiceDataOption: 3
     next: {fileID: 11400000, guid: c41a0f400e21dce44b1da8fb1537f996, type: 2}
     actionAfterPlayerChoice: 0
   - text: COMPLICATED
     type: 0
     choiceDataType: 3
+    choiceDataOption: 4
+    next: {fileID: 11400000, guid: c41a0f400e21dce44b1da8fb1537f996, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: SO SO
+    type: 0
+    choiceDataType: 3
+    choiceDataOption: 2
     next: {fileID: 11400000, guid: c41a0f400e21dce44b1da8fb1537f996, type: 2}
     actionAfterPlayerChoice: 0
   playerReactions: []
