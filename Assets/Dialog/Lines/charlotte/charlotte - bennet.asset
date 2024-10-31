@@ -16,15 +16,18 @@ MonoBehaviour:
   voicedLines:
   - text: Bennet.
     clip: {fileID: 8300000, guid: 383a6377bf3da0e45be75992f319908a, type: 3}
-    gender: 7
+    gender: 2
   playerOptions:
   - text: OK
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []
+  objectReferringDialogLines: []
   wait: 0.5
   actorName: 1
   actionAfterLine: 0

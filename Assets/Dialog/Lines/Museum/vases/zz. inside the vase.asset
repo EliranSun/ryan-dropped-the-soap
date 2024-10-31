@@ -16,21 +16,24 @@ MonoBehaviour:
   voicedLines:
   - text: "It\u2019s the inside that matters. Do you like it the most?"
     clip: {fileID: 8300000, guid: 46769ebd3d199414bacf2979e686d226, type: 3}
-    gender: 7
+    gender: 2
   playerOptions:
   - text: YES
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
     actionAfterPlayerChoice: 55
   - text: NO
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
     actionAfterPlayerChoice: 0
   - text: NEED TO THINK MORE
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
     actionAfterPlayerChoice: 0
   playerReactions: []

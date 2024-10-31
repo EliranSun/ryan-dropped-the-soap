@@ -17,28 +17,38 @@ MonoBehaviour:
   - text: I need to show you around and make sure you are familiar with the place.
       Is that OK?
     clip: {fileID: 8300000, guid: b545149a42c08534ba037450831e2040, type: 3}
-    gender: 7
+    gender: 2
   playerOptions:
   - text: YES
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: NO
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: I am not sure
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Can you keep your distance
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Can you follow closer
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []

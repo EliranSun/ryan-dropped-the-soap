@@ -18,26 +18,29 @@ MonoBehaviour:
       Or cherish. Or just want to be with A LOT. What is their name? I am asking
       about a romantic relationship, just to be clear.
     clip: {fileID: 8300000, guid: afa2b7b2b9bfe4795abf861f6578761e, type: 3}
-    gender: 1
+    gender: 2
   - text: Think of that one other person you care about. One that you even love.
       Or cherish. Or just want to be with A LOT. What is their name? I am asking
       about a romantic relationship, just to be clear.
     clip: {fileID: 8300000, guid: 16f3a127473e345b9be4ab6268b2ba15, type: 3}
-    gender: 2
+    gender: 1
   playerOptions:
   - text: PARTNER NAME HERE
     type: 2
     choiceDataType: 4
+    choiceDataOption: 0
     next: {fileID: 0}
     actionAfterPlayerChoice: 0
   - text: NO ONE
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 11400000, guid: e9861a6c674211c49bc7c14fad388aac, type: 2}
     actionAfterPlayerChoice: 0
   - text: SUBMIT
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 11400000, guid: 3e8cd60371f79554fb56207a972ae7d5, type: 2}
     actionAfterPlayerChoice: 0
   playerReactions: []

@@ -16,16 +16,20 @@ MonoBehaviour:
   voicedLines:
   - text: Simple, yet decorative. I wonder what ritual was this used for?
     clip: {fileID: 8300000, guid: 3d6f7378674dce84baa8a5c04923a287, type: 3}
-    gender: 7
+    gender: 2
   playerOptions:
   - text: Offering to some god
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Burial for the afterlife
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []

@@ -14,18 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerName: 
   voicedLines:
-  - text: Thank you. Please tell me your gender. Is that OK?
+  - text: What is your gender? Is that OK?
     clip: {fileID: 8300000, guid: b48d011ff2d2543db94119240ae0e8bf, type: 3}
     gender: 3
   playerOptions:
   - text: YES
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 11400000, guid: 9cdc3d088d15ff54faddd03738725331, type: 2}
     actionAfterPlayerChoice: 0
   - text: NO
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 11400000, guid: 9cdc3d088d15ff54faddd03738725331, type: 2}
     actionAfterPlayerChoice: 0
   playerReactions: []

@@ -11,7 +11,7 @@ namespace Character_Creator.scripts
     public class PrefetchDialogLines : MonoBehaviour
     {
         public bool isFetched;
-        [SerializeField] private readonly List<NarrationDialogLine> linesWithPlayerName = new();
+        [SerializeField] private List<NarrationDialogLine> linesWithPlayerName = new();
         private TextToSpeech _textToSpeechUtil;
         public static PrefetchDialogLines Instance { get; private set; }
 

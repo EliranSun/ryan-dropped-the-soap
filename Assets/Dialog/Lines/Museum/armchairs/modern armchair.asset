@@ -16,24 +16,32 @@ MonoBehaviour:
   voicedLines:
   - text: What do you feel when you sit on this arm chair?
     clip: {fileID: 8300000, guid: 82e70a21250287c4ca9589b3aebf8779, type: 3}
-    gender: 7
+    gender: 2
   playerOptions:
   - text: Relaxed
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Lazy
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Content
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Chill
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []

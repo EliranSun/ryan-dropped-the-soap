@@ -17,24 +17,32 @@ MonoBehaviour:
   - text: If you could go back in time and live in their civilization, what role
       do you think you would take?
     clip: {fileID: 8300000, guid: 2b6207c98a768034f9a2e062327c1c38, type: 3}
-    gender: 7
+    gender: 2
   playerOptions:
   - text: priest, perform rituals and communicate with the gods
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: scribe, responsible of writing, record keeping and administration
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: farmer, cultivate crops and manage livestock to sustain the city
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: artisan, skillfully make pottery, jewelry, textile and tools.
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []

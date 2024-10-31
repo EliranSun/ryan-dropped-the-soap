@@ -16,28 +16,38 @@ MonoBehaviour:
   voicedLines:
   - text: Oh.. My name is Charlotte. Hope you won't forget it again.
     clip: {fileID: 8300000, guid: a1e304153f2ff4146b65c0c1d6b854ed, type: 3}
-    gender: 7
+    gender: 2
   playerOptions:
   - text: Yes but who are you
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 11400000, guid: 099f7fe1d5e95cd4fabe74c35002b99f, type: 2}
+    actionAfterPlayerChoice: 0
   - text: What is your last name
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 11400000, guid: b26fbe5b4bdccaf4cb56a2c6da0d7959, type: 2}
+    actionAfterPlayerChoice: 0
   - text: How old are you
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 11400000, guid: 1462bd17e7765a74c8d893b4e8037d87, type: 2}
+    actionAfterPlayerChoice: 0
   - text: Why are you following me
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 11400000, guid: 04ace8f18fe96ed4087b49ba9d892715, type: 2}
+    actionAfterPlayerChoice: 0
   - text: OK
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []

@@ -16,16 +16,20 @@ MonoBehaviour:
   voicedLines:
   - text: My dad's name is Malik.
     clip: {fileID: 8300000, guid: 46ba8aaa2d6326241a4af20737e200ba, type: 3}
-    gender: 7
+    gender: 2
   playerOptions:
   - text: Thanks
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: OK
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []

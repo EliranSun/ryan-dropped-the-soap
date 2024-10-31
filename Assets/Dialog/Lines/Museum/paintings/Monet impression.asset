@@ -16,24 +16,32 @@ MonoBehaviour:
   voicedLines:
   - text: Soft and hazy, capturing the mood of a moment rather than fine details.
     clip: {fileID: 8300000, guid: 3b426f852f23b1f40a5c0b497930855a, type: 3}
-    gender: 7
+    gender: 2
   playerOptions:
   - text: Peaceful
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Fleeting sensation
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Both
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Nothing
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []

@@ -17,18 +17,24 @@ MonoBehaviour:
   - text: "That\u2019s interesting. and I don\u2019t want to force your hand or anything,
       but I would REALLY like you to tell me what you think about each piece here."
     clip: {fileID: 8300000, guid: f12e29c5d0c69f242bfa381b5050f269, type: 3}
-    gender: 7
+    gender: 2
   playerOptions:
   - text: OK
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: NO THANKS
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
+  randomizedDialogLines: []
+  objectReferringDialogLines: []
   wait: 0.5
   actorName: 1
   actionAfterLine: 0

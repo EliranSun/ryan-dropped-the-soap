@@ -16,24 +16,32 @@ MonoBehaviour:
   voicedLines:
   - text: A green door.
     clip: {fileID: 8300000, guid: 1f066e00ac6a0374ca4cef12f998321a, type: 3}
-    gender: 7
+    gender: 2
   playerOptions:
   - text: Nature and environment
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Growth and renewal
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Harmony and balance
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Creativity and inspiration
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []

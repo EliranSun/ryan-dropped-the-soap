@@ -16,29 +16,33 @@ MonoBehaviour:
   voicedLines:
   - text: Much, much better.
     clip: {fileID: 8300000, guid: c2fae8c42a15f43c59638acb1c8d8e47, type: 3}
-    gender: 1
+    gender: 2
   - text: Much, much better.
     clip: {fileID: 8300000, guid: 9761f30fc872f42dc8c4470fe774efb0, type: 3}
-    gender: 2
+    gender: 1
   playerOptions:
   - text: YES?
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 11400000, guid: 21fb4d3fba5d41e4a83e022690bea9ec, type: 2}
     actionAfterPlayerChoice: 0
   - text: NO?
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 11400000, guid: 21fb4d3fba5d41e4a83e022690bea9ec, type: 2}
     actionAfterPlayerChoice: 0
   - text: OH
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 11400000, guid: 21fb4d3fba5d41e4a83e022690bea9ec, type: 2}
     actionAfterPlayerChoice: 0
   - text: OK
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 11400000, guid: 21fb4d3fba5d41e4a83e022690bea9ec, type: 2}
     actionAfterPlayerChoice: 0
   playerReactions: []

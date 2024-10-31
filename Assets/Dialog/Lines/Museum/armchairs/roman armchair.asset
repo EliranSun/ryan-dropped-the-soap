@@ -16,24 +16,32 @@ MonoBehaviour:
   voicedLines:
   - text: What do you think the romans thought when they sat on these chairs?
     clip: {fileID: 8300000, guid: ac62e35a5446ad043bd764cd8489ab7b, type: 3}
-    gender: 7
+    gender: 2
   playerOptions:
   - text: power
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: importance
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: control
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: part of the elite
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []

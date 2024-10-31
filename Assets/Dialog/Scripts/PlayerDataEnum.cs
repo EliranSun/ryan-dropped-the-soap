@@ -38,6 +38,14 @@ namespace Dialog.Scripts
 
         // Painting
         CompositionEight,
-        WandererAboveTheSeaOfFog
+        WandererAboveTheSeaOfFog,
+
+        // Built in partner names
+        Ryan,
+        Stacy,
+        Zeke,
+        Valery,
+        Jayden,
+        Morgan
     }
 }

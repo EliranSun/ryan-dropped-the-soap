@@ -16,28 +16,38 @@ MonoBehaviour:
   voicedLines:
   - text: A white door.
     clip: {fileID: 8300000, guid: 3fdafb248ace1bb498bff815b5e034ca, type: 3}
-    gender: 7
+    gender: 2
   playerOptions:
   - text: Purity and innocence
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Spirituality and sacredness
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Peace and tranquality
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Simplicity and minimalism
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Cleanliness and order
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []

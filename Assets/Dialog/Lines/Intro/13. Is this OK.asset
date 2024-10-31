@@ -16,24 +16,27 @@ MonoBehaviour:
   voicedLines:
   - text: Is that OK?
     clip: {fileID: 8300000, guid: 0c7748e9b6d0645858c43aef9c93cd47, type: 3}
-    gender: 1
+    gender: 2
   - text: Is that OK?
     clip: {fileID: 8300000, guid: 30b533a8975dd47089fcc81b2124f32e, type: 3}
-    gender: 2
+    gender: 1
   playerOptions:
   - text: YES
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 11400000, guid: 48d4becce4459f34d8f9d71ec543b066, type: 2}
     actionAfterPlayerChoice: 0
   - text: NO
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 11400000, guid: 48d4becce4459f34d8f9d71ec543b066, type: 2}
     actionAfterPlayerChoice: 0
   - text: WHY YOU KEEP SAYING THAT
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 11400000, guid: 48d4becce4459f34d8f9d71ec543b066, type: 2}
     actionAfterPlayerChoice: 0
   playerReactions: []

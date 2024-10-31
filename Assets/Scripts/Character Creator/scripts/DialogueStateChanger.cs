@@ -8,14 +8,16 @@ namespace museum_dialog.scripts
     [Serializable]
     public class DialogueState
     {
-        public PlayerDataEnum playerDataProperty;
-        public NarrationDialogLine nextState;
+        [FormerlySerializedAs("playerDataProperty")]
+        public PlayerDataEnum missingPlayerData;
+
+        [FormerlySerializedAs("nextState")] public NarrationDialogLine dialogLineToPlay;
     }
 
     public class DialogueStateChanger : MonoBehaviour
     {
-        [FormerlySerializedAs("states")] [SerializeField]
-        private DialogueState[] prioritizedStates;
+        [FormerlySerializedAs("prioritizedStates")] [FormerlySerializedAs("states")] [SerializeField]
+        private DialogueState[] requiredStatesForScene;
 
         [SerializeField] private DialogueState finalState; // if all other states are met
         public static DialogueStateChanger Instance { get; private set; }
@@ -30,18 +32,18 @@ namespace museum_dialog.scripts
 
         public NarrationDialogLine GetDialogStateByPlayerPrefs()
         {
-            if (prioritizedStates.Length == 0)
-                return finalState.nextState;
+            if (requiredStatesForScene.Length == 0)
+                return finalState.dialogLineToPlay;
 
-            foreach (var state in prioritizedStates)
+            foreach (var state in requiredStatesForScene)
             {
-                var savedProperty = PlayerPrefs.GetString(state.playerDataProperty.ToString()).Trim();
+                var savedProperty = PlayerPrefs.GetString(state.missingPlayerData.ToString()).Trim();
 
                 if (string.IsNullOrEmpty(savedProperty) || savedProperty.Trim().Length <= 1)
-                    return state.nextState;
+                    return state.dialogLineToPlay;
             }
 
-            return finalState.nextState;
+            return finalState.dialogLineToPlay;
         }
     }
 }

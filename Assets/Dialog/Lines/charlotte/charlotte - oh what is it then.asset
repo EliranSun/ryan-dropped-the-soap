@@ -16,20 +16,26 @@ MonoBehaviour:
   voicedLines:
   - text: Oh, what is it then?
     clip: {fileID: 8300000, guid: 43e386e48a6fef24790004d8b4cf1de5, type: 3}
-    gender: 7
+    gender: 2
   playerOptions:
   - text: Input favourite color
     type: 2
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: We were talking about you
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 11400000, guid: dd8ffcc834d574a4aab4ad689f540cd7, type: 2}
+    actionAfterPlayerChoice: 0
   - text: Nevermind
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 11400000, guid: dd8ffcc834d574a4aab4ad689f540cd7, type: 2}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []

@@ -16,24 +16,32 @@ MonoBehaviour:
   voicedLines:
   - text: Highly artistic! look at these horses go! what does that remind you of?
     clip: {fileID: 8300000, guid: 09959a9d91363f94d9e6a723dea08398, type: 3}
-    gender: 7
+    gender: 2
   playerOptions:
   - text: "It\u2019s a Masterpiece"
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Art
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Story telling
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Nothing in particular
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []

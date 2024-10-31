@@ -16,24 +16,32 @@ MonoBehaviour:
   voicedLines:
   - text: My parents are divorced.
     clip: {fileID: 8300000, guid: c4cd50cdee19e0948ad9424ef3cfb511, type: 3}
-    gender: 7
+    gender: 2
   playerOptions:
   - text: Thanks
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: OK
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: That's sad
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: That's not a tiny detail
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []

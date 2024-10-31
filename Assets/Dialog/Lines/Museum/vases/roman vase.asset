@@ -17,16 +17,20 @@ MonoBehaviour:
   - text: Utilitarian much! although I think they show somewhere around here a glass
       vase as well, which is more decorative. Which one do you prefer?
     clip: {fileID: 8300000, guid: f7e163ba72bb2004999a16f6b77b56c8, type: 3}
-    gender: 7
+    gender: 2
   playerOptions:
   - text: Utility
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Decoration
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []

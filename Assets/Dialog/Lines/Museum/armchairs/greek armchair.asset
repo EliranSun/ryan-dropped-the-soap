@@ -16,24 +16,32 @@ MonoBehaviour:
   voicedLines:
   - text: This arm chair is not comfortable at all!
     clip: {fileID: 8300000, guid: 5f8a25f4ddc8e4f41a015d07d31c03b6, type: 3}
-    gender: 7
+    gender: 2
   playerOptions:
   - text: Who cares, when you have power
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Who cares, when you have status
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Who cares, when you have wealth
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: I disagree, this chair is comfortable
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []

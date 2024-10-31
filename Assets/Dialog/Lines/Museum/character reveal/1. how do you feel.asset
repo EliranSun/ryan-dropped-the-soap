@@ -16,21 +16,24 @@ MonoBehaviour:
   voicedLines:
   - text: How do you feel, after spending all this time here in the museum?
     clip: {fileID: 8300000, guid: 611dc66afd1603d4baadb42aab75b54c, type: 3}
-    gender: 7
+    gender: 2
   playerOptions:
   - text: OK I guess
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 11400000, guid: 928def5b45c2da543861ee5dfad07a3e, type: 2}
     actionAfterPlayerChoice: 0
   - text: bored
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 11400000, guid: 928def5b45c2da543861ee5dfad07a3e, type: 2}
     actionAfterPlayerChoice: 0
   - text: thrilled
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 11400000, guid: 928def5b45c2da543861ee5dfad07a3e, type: 2}
     actionAfterPlayerChoice: 0
   playerReactions: []

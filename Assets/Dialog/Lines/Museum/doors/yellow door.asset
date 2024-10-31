@@ -16,24 +16,32 @@ MonoBehaviour:
   voicedLines:
   - text: A yellow door.
     clip: {fileID: 8300000, guid: 2e789e6594425b34b9205dae9ffef12f, type: 3}
-    gender: 7
+    gender: 2
   playerOptions:
   - text: Happiness and optimism
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Creativity and energy
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Versatility and flexibility
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Warmth and cheerfulness
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []

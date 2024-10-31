@@ -16,28 +16,32 @@ MonoBehaviour:
   voicedLines:
   - text: Yes?
     clip: {fileID: 8300000, guid: d935991ad039f3747ad58ee9b207fe02, type: 3}
-    gender: 7
+    gender: 2
   playerOptions:
   - text: Who are you again?
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 11400000, guid: 12aa3009806551a4d89e636bede84931, type: 2}
-    countChoice: 1
+    actionAfterPlayerChoice: 0
   - text: Where am I?
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
-    countChoice: 0
+    actionAfterPlayerChoice: 0
   - text: What are we doing here?
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
-    countChoice: 0
+    actionAfterPlayerChoice: 0
   - text: Hello
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
-    countChoice: 0
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []

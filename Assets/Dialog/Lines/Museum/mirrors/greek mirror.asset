@@ -16,24 +16,32 @@ MonoBehaviour:
   voicedLines:
   - text: "Look at all these mythological GODS\u2026 which one do you like the most?"
     clip: {fileID: 8300000, guid: a64906210f346cb4b868d15236132b51, type: 3}
-    gender: 7
+    gender: 2
   playerOptions:
   - text: Zeus, king, ruler
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Athena, wisdom, war
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Posedion, sea, earth
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Hephaestus, fire, metal
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []

@@ -16,21 +16,24 @@ MonoBehaviour:
   voicedLines:
   - text: What do you think? how do you feel about this? Is that OK?
     clip: {fileID: 8300000, guid: 6a3f15d1e1adb6e4bb2984dac803203c, type: 3}
-    gender: 7
+    gender: 2
   playerOptions:
   - text: Yes I love it
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 11400000, guid: 10c8c9fd4cf80d245b2fbac1e610da91, type: 2}
     actionAfterPlayerChoice: 58
   - text: No I hate it
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 11400000, guid: 10c8c9fd4cf80d245b2fbac1e610da91, type: 2}
     actionAfterPlayerChoice: 58
   - text: It is OK
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 11400000, guid: 10c8c9fd4cf80d245b2fbac1e610da91, type: 2}
     actionAfterPlayerChoice: 58
   playerReactions: []

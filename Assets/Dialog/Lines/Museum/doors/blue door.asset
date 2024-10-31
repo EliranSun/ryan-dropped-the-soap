@@ -16,24 +16,32 @@ MonoBehaviour:
   voicedLines:
   - text: A blue door.
     clip: {fileID: 8300000, guid: a9e5ad1fe115bf44691744d37eb04789, type: 3}
-    gender: 7
+    gender: 2
   playerOptions:
   - text: Protection and spirituality
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Calmness and serenity
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Trust and stability
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Creativity and inspiration
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []

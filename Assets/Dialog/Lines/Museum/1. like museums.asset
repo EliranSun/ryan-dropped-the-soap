@@ -16,26 +16,36 @@ MonoBehaviour:
   voicedLines:
   - text: "Now I\u2019ll admit that I like museums. Quite a lot. How about you?"
     clip: {fileID: 8300000, guid: d72fbe16cb0a7c54f95a3d08128badb4, type: 3}
-    gender: 7
+    gender: 2
   playerOptions:
   - text: LOVE IT
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 11400000, guid: 96d303c7af54c416d86c14629883f319, type: 2}
+    actionAfterPlayerChoice: 0
   - text: LIKE IT
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 11400000, guid: 96d303c7af54c416d86c14629883f319, type: 2}
+    actionAfterPlayerChoice: 0
   - text: IT'S OK I GUESS
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 11400000, guid: 96d303c7af54c416d86c14629883f319, type: 2}
+    actionAfterPlayerChoice: 0
   - text: HATE IT
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 11400000, guid: 96d303c7af54c416d86c14629883f319, type: 2}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
+  randomizedDialogLines: []
+  objectReferringDialogLines: []
   wait: 0.5
   actorName: 1
   actionAfterLine: 0

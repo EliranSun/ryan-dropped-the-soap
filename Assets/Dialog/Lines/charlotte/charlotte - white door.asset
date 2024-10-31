@@ -16,19 +16,24 @@ MonoBehaviour:
   voicedLines:
   - text: Since you chose the white door, I assume white is your favourite color?
     clip: {fileID: 8300000, guid: 37a7c25fa43f8a041ae193924a1c9442, type: 3}
-    gender: 7
+    gender: 2
   playerOptions:
   - text: YES
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: NO
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 11400000, guid: 3979d0375f13b6f4da5d53c2fa78471e, type: 2}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []
+  objectReferringDialogLines: []
   wait: 0.5
   actorName: 1
   actionAfterLine: 0

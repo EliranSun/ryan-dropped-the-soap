@@ -17,16 +17,20 @@ MonoBehaviour:
   - text: When you look at this polished metal surface, what does it reminds you
       of?
     clip: {fileID: 8300000, guid: 298742a4ce6d2ca4bb1f35000bc5e8d8, type: 3}
-    gender: 7
+    gender: 2
   playerOptions:
   - text: Luxury
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Craftsmanship
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []

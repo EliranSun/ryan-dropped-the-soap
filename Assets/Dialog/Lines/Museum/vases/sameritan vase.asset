@@ -17,20 +17,26 @@ MonoBehaviour:
   - text: "It\u2019s so old, I don\u2019t believe it was used for anything other
       then storage, right? Bare minimum, as culture barely evolved\u2026"
     clip: {fileID: 8300000, guid: a812735270e4d3046a7a1dc52f61e056, type: 3}
-    gender: 7
+    gender: 2
   playerOptions:
   - text: Minimalistic
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Survival of the fittest
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: "You\u2019re wrong"
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []

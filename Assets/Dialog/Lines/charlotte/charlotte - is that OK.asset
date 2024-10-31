@@ -16,24 +16,32 @@ MonoBehaviour:
   voicedLines:
   - text: Is that OK?
     clip: {fileID: 8300000, guid: 51f1a6f4bb8fc744498e38d69dfbd20e, type: 3}
-    gender: 7
+    gender: 2
   playerOptions:
   - text: YES
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: NO
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: OK
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Why are you keep saying that
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []

@@ -16,21 +16,24 @@ MonoBehaviour:
   voicedLines:
   - text: Let me show you... am going to amaze you! is that OK?
     clip: {fileID: 8300000, guid: 067b3b5b7fd61814ea53335615d67718, type: 3}
-    gender: 7
+    gender: 2
   playerOptions:
   - text: YES
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 11400000, guid: 6b65608d83fe7d149b390ef25db40806, type: 2}
     actionAfterPlayerChoice: 58
   - text: NO
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 11400000, guid: 6b65608d83fe7d149b390ef25db40806, type: 2}
     actionAfterPlayerChoice: 58
   - text: Why you keep saying that
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 11400000, guid: 6b65608d83fe7d149b390ef25db40806, type: 2}
     actionAfterPlayerChoice: 58
   playerReactions: []

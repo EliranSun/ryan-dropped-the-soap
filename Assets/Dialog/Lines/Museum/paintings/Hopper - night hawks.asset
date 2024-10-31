@@ -17,28 +17,38 @@ MonoBehaviour:
   - text: "Sure it is in an urban setting, with the diner\u2019s bright light, people
       and street\u2026 but they are empty, and the people feel\u2026"
     clip: {fileID: 8300000, guid: 78cff73ca8022ac4984a198fae393d78, type: 3}
-    gender: 7
+    gender: 2
   playerOptions:
   - text: Lonely
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Isolated
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: All of these feelings
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Nothing at all
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Something else
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []

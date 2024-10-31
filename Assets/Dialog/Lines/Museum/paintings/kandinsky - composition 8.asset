@@ -17,24 +17,32 @@ MonoBehaviour:
   - text: "Dynamic and abstract\u2026 chaotic even? It\u2019s full of geometric shapes
       and vibrant colors, that\u2019s for sure."
     clip: {fileID: 8300000, guid: 502fed21c0408a640a61fc7568cf4620, type: 3}
-    gender: 7
+    gender: 2
   playerOptions:
   - text: Energetic
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Stress
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Both
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Nothing
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []

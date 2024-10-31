@@ -16,21 +16,24 @@ MonoBehaviour:
   voicedLines:
   - text: Would you say this is your favourite painting here?
     clip: {fileID: 8300000, guid: 73c79d1a5624d3548ad6ffc7731d40d8, type: 3}
-    gender: 7
+    gender: 2
   playerOptions:
   - text: YES
     type: 0
     choiceDataType: 5
+    choiceDataOption: 0
     next: {fileID: 0}
     actionAfterPlayerChoice: 52
   - text: NO
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
     actionAfterPlayerChoice: 0
   - text: NEED TO THINK MORE
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
     actionAfterPlayerChoice: 0
   playerReactions: []

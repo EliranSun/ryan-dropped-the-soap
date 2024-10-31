@@ -16,28 +16,38 @@ MonoBehaviour:
   voicedLines:
   - text: Hmm. I am not sure how to answer that. What do you mean exactly?
     clip: {fileID: 8300000, guid: 0afad4e25416cf748b29542c80821284, type: 3}
-    gender: 7
+    gender: 2
   playerOptions:
   - text: What is your job here
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 11400000, guid: 9fa439f84198ce248a40900f3404a896, type: 2}
+    actionAfterPlayerChoice: 0
   - text: What do you believe in
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 11400000, guid: 7438abcdba1f7b146adcb475b1361d5d, type: 2}
+    actionAfterPlayerChoice: 0
   - text: What is your favourite color
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 11400000, guid: ff405a57797a00641ba7e92a03f1e496, type: 2}
+    actionAfterPlayerChoice: 0
   - text: Your history
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 11400000, guid: fcd8be84098b6cd4b94d3781918d53c4, type: 2}
+    actionAfterPlayerChoice: 0
   - text: Nevermind
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []

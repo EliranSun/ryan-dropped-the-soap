@@ -17,20 +17,26 @@ MonoBehaviour:
   - text: Don't feel bad though. Keep this question in mind - in the future I might
       answer it.
     clip: {fileID: 8300000, guid: dabe7a054e801124d91d0ee6212d8fa1, type: 3}
-    gender: 7
+    gender: 2
   playerOptions:
   - text: OK
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Too bad
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Can you give me just the tiniest of details?
     type: 0
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 11400000, guid: d12b9c7b3d5507c4d912981a67aa673b, type: 2}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []

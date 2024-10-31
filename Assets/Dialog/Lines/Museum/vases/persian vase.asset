@@ -17,20 +17,26 @@ MonoBehaviour:
   - text: "Such rich artistic heritage\u2026 such fine calligraphy\u2026 don\u2019t
       they make you jealous?"
     clip: {fileID: 8300000, guid: e9d8d12490ef3eb48bcb99f34e2d5fa6, type: 3}
-    gender: 7
+    gender: 2
   playerOptions:
   - text: Yes
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: No
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: "I don\u2019t know, it\u2019s just a vase?"
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []

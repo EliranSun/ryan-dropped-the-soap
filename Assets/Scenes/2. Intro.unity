@@ -272,6 +272,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5ed54be04b02e543bcd8659e8c33cb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerName: 
+  playerGender: 
+  playerFeeling: 
+  playerPartner: 
 --- !u!1 &449897321
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,10 +516,126 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6388870331283414893, guid: acdbe3621a3081546b24dd95ed37ef03, type: 3}
+      propertyPath: linesWithPlayerName.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6388870331283414893, guid: acdbe3621a3081546b24dd95ed37ef03, type: 3}
+      propertyPath: 'linesWithPlayerName.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 35d00293f0efec44db21ffde9ead0062, type: 2}
     - target: {fileID: 7281469255832557384, guid: acdbe3621a3081546b24dd95ed37ef03, type: 3}
       propertyPath: finalState.nextState
       value: 
       objectReference: {fileID: 11400000, guid: 53ef4ab5bb1d5fc4c8b5acc28f6b8ec5, type: 2}
+    - target: {fileID: 7281469255832557384, guid: acdbe3621a3081546b24dd95ed37ef03, type: 3}
+      propertyPath: finalState.dialogLineToPlay
+      value: 
+      objectReference: {fileID: 11400000, guid: 3e8cd60371f79554fb56207a972ae7d5, type: 2}
+    - target: {fileID: 7281469255832557384, guid: acdbe3621a3081546b24dd95ed37ef03, type: 3}
+      propertyPath: prioritizedStates.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281469255832557384, guid: acdbe3621a3081546b24dd95ed37ef03, type: 3}
+      propertyPath: requiredStatesForScene.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281469255832557384, guid: acdbe3621a3081546b24dd95ed37ef03, type: 3}
+      propertyPath: prioritizedStates.Array.data[0].nextState
+      value: 
+      objectReference: {fileID: 11400000, guid: 53ef4ab5bb1d5fc4c8b5acc28f6b8ec5, type: 2}
+    - target: {fileID: 7281469255832557384, guid: acdbe3621a3081546b24dd95ed37ef03, type: 3}
+      propertyPath: prioritizedStates.Array.data[1].nextState
+      value: 
+      objectReference: {fileID: 11400000, guid: c41a0f400e21dce44b1da8fb1537f996, type: 2}
+    - target: {fileID: 7281469255832557384, guid: acdbe3621a3081546b24dd95ed37ef03, type: 3}
+      propertyPath: prioritizedStates.Array.data[2].nextState
+      value: 
+      objectReference: {fileID: 11400000, guid: 066d0851efd653d439d6f969ccd8828f, type: 2}
+    - target: {fileID: 7281469255832557384, guid: acdbe3621a3081546b24dd95ed37ef03, type: 3}
+      propertyPath: prioritizedStates.Array.data[3].nextState
+      value: 
+      objectReference: {fileID: 11400000, guid: dbfa98b66cafb3149a918ac662a9b495, type: 2}
+    - target: {fileID: 7281469255832557384, guid: acdbe3621a3081546b24dd95ed37ef03, type: 3}
+      propertyPath: prioritizedStates.Array.data[0].dialogLineToPlay
+      value: 
+      objectReference: {fileID: 11400000, guid: 53ef4ab5bb1d5fc4c8b5acc28f6b8ec5, type: 2}
+    - target: {fileID: 7281469255832557384, guid: acdbe3621a3081546b24dd95ed37ef03, type: 3}
+      propertyPath: prioritizedStates.Array.data[1].dialogLineToPlay
+      value: 
+      objectReference: {fileID: 11400000, guid: c41a0f400e21dce44b1da8fb1537f996, type: 2}
+    - target: {fileID: 7281469255832557384, guid: acdbe3621a3081546b24dd95ed37ef03, type: 3}
+      propertyPath: prioritizedStates.Array.data[2].dialogLineToPlay
+      value: 
+      objectReference: {fileID: 11400000, guid: 066d0851efd653d439d6f969ccd8828f, type: 2}
+    - target: {fileID: 7281469255832557384, guid: acdbe3621a3081546b24dd95ed37ef03, type: 3}
+      propertyPath: prioritizedStates.Array.data[3].dialogLineToPlay
+      value: 
+      objectReference: {fileID: 11400000, guid: dbfa98b66cafb3149a918ac662a9b495, type: 2}
+    - target: {fileID: 7281469255832557384, guid: acdbe3621a3081546b24dd95ed37ef03, type: 3}
+      propertyPath: prioritizedStates.Array.data[0].missingPlayerData
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281469255832557384, guid: acdbe3621a3081546b24dd95ed37ef03, type: 3}
+      propertyPath: prioritizedStates.Array.data[1].missingPlayerData
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281469255832557384, guid: acdbe3621a3081546b24dd95ed37ef03, type: 3}
+      propertyPath: prioritizedStates.Array.data[2].missingPlayerData
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281469255832557384, guid: acdbe3621a3081546b24dd95ed37ef03, type: 3}
+      propertyPath: prioritizedStates.Array.data[3].missingPlayerData
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281469255832557384, guid: acdbe3621a3081546b24dd95ed37ef03, type: 3}
+      propertyPath: prioritizedStates.Array.data[0].playerDataProperty
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281469255832557384, guid: acdbe3621a3081546b24dd95ed37ef03, type: 3}
+      propertyPath: prioritizedStates.Array.data[1].playerDataProperty
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281469255832557384, guid: acdbe3621a3081546b24dd95ed37ef03, type: 3}
+      propertyPath: prioritizedStates.Array.data[2].playerDataProperty
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281469255832557384, guid: acdbe3621a3081546b24dd95ed37ef03, type: 3}
+      propertyPath: prioritizedStates.Array.data[3].playerDataProperty
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281469255832557384, guid: acdbe3621a3081546b24dd95ed37ef03, type: 3}
+      propertyPath: requiredStatesForScene.Array.data[0].dialogLineToPlay
+      value: 
+      objectReference: {fileID: 11400000, guid: 53ef4ab5bb1d5fc4c8b5acc28f6b8ec5, type: 2}
+    - target: {fileID: 7281469255832557384, guid: acdbe3621a3081546b24dd95ed37ef03, type: 3}
+      propertyPath: requiredStatesForScene.Array.data[1].dialogLineToPlay
+      value: 
+      objectReference: {fileID: 11400000, guid: c41a0f400e21dce44b1da8fb1537f996, type: 2}
+    - target: {fileID: 7281469255832557384, guid: acdbe3621a3081546b24dd95ed37ef03, type: 3}
+      propertyPath: requiredStatesForScene.Array.data[2].dialogLineToPlay
+      value: 
+      objectReference: {fileID: 11400000, guid: 066d0851efd653d439d6f969ccd8828f, type: 2}
+    - target: {fileID: 7281469255832557384, guid: acdbe3621a3081546b24dd95ed37ef03, type: 3}
+      propertyPath: requiredStatesForScene.Array.data[3].dialogLineToPlay
+      value: 
+      objectReference: {fileID: 11400000, guid: dbfa98b66cafb3149a918ac662a9b495, type: 2}
+    - target: {fileID: 7281469255832557384, guid: acdbe3621a3081546b24dd95ed37ef03, type: 3}
+      propertyPath: requiredStatesForScene.Array.data[0].missingPlayerData
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281469255832557384, guid: acdbe3621a3081546b24dd95ed37ef03, type: 3}
+      propertyPath: requiredStatesForScene.Array.data[1].missingPlayerData
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281469255832557384, guid: acdbe3621a3081546b24dd95ed37ef03, type: 3}
+      propertyPath: requiredStatesForScene.Array.data[2].missingPlayerData
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281469255832557384, guid: acdbe3621a3081546b24dd95ed37ef03, type: 3}
+      propertyPath: requiredStatesForScene.Array.data[3].missingPlayerData
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8100115544484616992, guid: acdbe3621a3081546b24dd95ed37ef03, type: 3}
       propertyPath: playerTextInput
       value: 

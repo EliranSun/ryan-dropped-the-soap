@@ -17,16 +17,20 @@ MonoBehaviour:
   - text: Wow, how were the Egyptians able to put so much detail into this? This
       is inspiring, really.
     clip: {fileID: 8300000, guid: f2b82f82d14231548885c1d0ed4054fc, type: 3}
-    gender: 7
+    gender: 2
   playerOptions:
   - text: Yes, shows skill and dedication
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: No, it's intended only for the rich
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []

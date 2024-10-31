@@ -16,16 +16,20 @@ MonoBehaviour:
   voicedLines:
   - text: Wabi Sabi. Shibui. Such funny words.
     clip: {fileID: 8300000, guid: f52c8d047eb15f74e8f2a21726c63e8b, type: 3}
-    gender: 7
+    gender: 2
   playerOptions:
   - text: Beauty in imperfection
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Understated elegance
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []

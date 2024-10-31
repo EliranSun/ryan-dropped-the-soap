@@ -16,24 +16,32 @@ MonoBehaviour:
   voicedLines:
   - text: Finally, something recent! but wait, is that even a vase?
     clip: {fileID: 8300000, guid: 13517e41b6d187845a2a5d504f4f20df, type: 3}
-    gender: 7
+    gender: 2
   playerOptions:
   - text: "It\u2019s experimental"
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: "It\u2019s abstract"
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: "It\u2019s taking everything we know, and build on top of that"
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: It lost all its meaning
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []

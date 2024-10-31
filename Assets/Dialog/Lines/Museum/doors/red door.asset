@@ -16,24 +16,32 @@ MonoBehaviour:
   voicedLines:
   - text: A red door.
     clip: {fileID: 8300000, guid: 7e636832a633e27408bb3c44b6f93fac, type: 3}
-    gender: 7
+    gender: 2
   playerOptions:
   - text: Good luck and prosperity
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Openness and hospitality
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Passion and energy
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   - text: Warmth and comfort
     type: 1
     choiceDataType: 0
+    choiceDataOption: 0
     next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []

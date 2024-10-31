@@ -477,9 +477,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1959984834563312720}
+  - component: {fileID: 3431938376985331210}
   - component: {fileID: 8100115544484616992}
   - component: {fileID: 7281469255832557384}
-  - component: {fileID: 3431938376985331210}
+  - component: {fileID: 1358063836810249177}
+  - component: {fileID: 6388870331283414893}
   m_Layer: 0
   m_Name: "\U0001F4AC Dialog Manager"
   m_TagString: Untagged
@@ -502,68 +504,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4986956885146990041}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8100115544484616992
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6780022902889413674}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32aec04699863124dad61598cf7e3cc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  observers:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Dialog.Scripts.PlayerChoiceDialogBubbles, DialogAssembly
-        m_MethodName: OnNotify
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Dialog.Scripts.CanvasFaceAnimationController, DialogAssembly
-        m_MethodName: OnNotify
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  playerChoiceButton: {fileID: 2299324321123309203, guid: 8c107a050d7304ad395507a5313dca83, type: 3}
-  playerChoiceButtonsContainer: {fileID: 8821879776788779045}
-  playerInconsequentialChoice: {fileID: 2299324321123309203, guid: 8c107a050d7304ad395507a5313dca83, type: 3}
-  playerInputsContainer: {fileID: 8821879776788779045}
-  playerTextInput: {fileID: 0}
-  narratorText: {fileID: 1274830412328479340}
-  eventToDialogMap: {fileID: 8487223039540618129}
---- !u!114 &7281469255832557384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6780022902889413674}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44ba822ee7c417548943b12c282a8059, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prioritizedStates: []
-  finalState:
-    playerDataProperty: 0
-    nextState: {fileID: 0}
 --- !u!82 &3431938376985331210
 AudioSource:
   m_ObjectHideFlags: 0
@@ -661,6 +601,93 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8100115544484616992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6780022902889413674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32aec04699863124dad61598cf7e3cc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Dialog.Scripts.PlayerChoiceDialogBubbles, DialogAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Dialog.Scripts.CanvasFaceAnimationController, DialogAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  playerChoiceButton: {fileID: 2299324321123309203, guid: 8c107a050d7304ad395507a5313dca83, type: 3}
+  playerChoiceButtonsContainer: {fileID: 8821879776788779045}
+  playerInconsequentialChoice: {fileID: 2299324321123309203, guid: 8c107a050d7304ad395507a5313dca83, type: 3}
+  playerInputsContainer: {fileID: 8821879776788779045}
+  playerTextInput: {fileID: 0}
+  narratorText: {fileID: 1274830412328479340}
+  eventToDialogMap: {fileID: 8487223039540618129}
+--- !u!114 &7281469255832557384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6780022902889413674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44ba822ee7c417548943b12c282a8059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredStatesForScene: []
+  finalState:
+    missingPlayerData: 0
+    dialogLineToPlay: {fileID: 0}
+--- !u!114 &1358063836810249177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6780022902889413674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1339c17f22ebae2459380a2ff3116449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6388870331283414893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6780022902889413674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efa4a20d999de86499aebb2bd20cf297, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFetched: 0
 --- !u!1 &8821879776788779045
 GameObject:
   m_ObjectHideFlags: 0

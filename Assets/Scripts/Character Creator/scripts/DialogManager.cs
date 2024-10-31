@@ -95,6 +95,7 @@ namespace Character_Creator.scripts
                 _audioSource.clip = line.clip;
                 _audioSource.Play();
                 Notify(GameEvents.LineNarrationStart, _currentDialogue.actorName);
+                // PlayerPrefs.SetString("currentLine", _currentDialogue.actorName);
                 StartCoroutine(CheckAudioEnd());
             }
             else
@@ -110,7 +111,7 @@ namespace Character_Creator.scripts
             var gender = PlayerData.GetPlayerGender();
             return dialogueLineObject.voicedLines.First(voicedLine =>
             {
-                if (voicedLine.gender == CharacterType.NonBinary || voicedLine.gender == CharacterType.None)
+                if (voicedLine.gender is CharacterType.NonBinary or CharacterType.None)
                     return true;
 
                 return voicedLine.gender == gender;
