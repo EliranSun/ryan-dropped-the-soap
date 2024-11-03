@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Linq;
+using common.scripts;
 using Dialog.Scripts;
 using museum_dialog.scripts;
 using TMPro;
@@ -21,6 +22,9 @@ namespace Character_Creator.scripts
         [SerializeField] private GameObject playerTextInput;
         [SerializeField] private TextMeshProUGUI narratorText;
         [SerializeField] private EventToDialogMap eventToDialogMap;
+        [SerializeField] private AudioSource soundEffectsAudioSource;
+        [SerializeField] private EventToSound eventToSound;
+
         private bool _asyncLinesReady;
         private AudioSource _audioSource;
         private NarrationDialogLine _currentDialogue;
@@ -84,6 +88,9 @@ namespace Character_Creator.scripts
             if (!_currentDialogue)
                 return;
 
+            if (_currentDialogue.actionBeforeLine != GameEvents.None)
+                TriggerAnAct(_currentDialogue.actionBeforeLine);
+
             var line = GetLineByGender(_currentDialogue);
 
             narratorText.text = line.text
@@ -131,7 +138,7 @@ namespace Character_Creator.scripts
             }
 
             if (_currentDialogue.actionAfterLine != GameEvents.None)
-                ActAfterLine(_currentDialogue.actionAfterLine);
+                TriggerAnAct(_currentDialogue.actionAfterLine);
 
             if (_currentDialogue.playerReactions.Length > 0)
                 return;
@@ -227,7 +234,7 @@ namespace Character_Creator.scripts
             // }
         }
 
-        private void ActAfterLine(GameEvents action)
+        private void TriggerAnAct(GameEvents action)
         {
             switch (action)
             {

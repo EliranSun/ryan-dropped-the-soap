@@ -17,7 +17,10 @@ namespace Dialog.Scripts
         Door,
         Vase,
         Armchair,
-        Mirror
+        Mirror,
+
+        // Apartment choices
+        MorningWakeUpTime
     }
 
     [Serializable]
@@ -46,6 +49,14 @@ namespace Dialog.Scripts
         Zeke,
         Valery,
         Jayden,
-        Morgan
+        Morgan,
+
+        // Morning wake up times
+        FourAM,
+        SixAM,
+        SevenAM,
+        EightAM,
+        NineAM,
+        TwoPM
     }
 }

@@ -55,6 +55,12 @@ namespace Character_Creator.scripts
         {
             if (interactionType is InteractionType.Click or InteractionType.Both)
             {
+                if (dialogLine.Length == 0)
+                {
+                    Notify(gameEvent);
+                    return;
+                }
+
                 // TODO: _interactionCount & InteractionData might be redundant after the bubble event action change
                 if (_interactionCount >= dialogLine.Length)
                 {

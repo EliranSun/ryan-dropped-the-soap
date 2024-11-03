@@ -124,6 +124,7 @@ namespace Dialog.Scripts
         public ObjectReferringLine[] objectReferringDialogLines;
         public float wait = 0.5f;
         public ActorName actorName;
+        public GameEvents actionBeforeLine;
         public GameEvents actionAfterLine;
     }
 }
