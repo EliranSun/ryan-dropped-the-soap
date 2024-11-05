@@ -407,6 +407,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &109004085 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3560832367629595899, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+  m_PrefabInstance: {fileID: 222591561}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32aec04699863124dad61598cf7e3cc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &112772251
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -526,8 +537,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1849336435191607478, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: linesWithPlayerName.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1849336435191607478, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: 'linesWithPlayerName.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 15516975287d6da4f8b7282e0551f23d, type: 2}
     - target: {fileID: 2598299574820255891, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: finalState.dialogLineToPlay
       value: 
@@ -568,6 +583,14 @@ PrefabInstance:
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 3804229301443890250, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: dialogLineEvents.Array.data[0].eventName
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 3804229301443890250, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: dialogLineEvents.Array.data[0].dialogLine
+      value: 
+      objectReference: {fileID: 11400000, guid: 15516975287d6da4f8b7282e0551f23d, type: 2}
     - target: {fileID: 5765371805613449602, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1346,6 +1369,18 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 222591562}
         m_TargetAssemblyTypeName: common.scripts.LevelEvents, CommonScriptsAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 109004085}
+        m_TargetAssemblyTypeName: Character_Creator.scripts.DialogueManager, CharacterCreatorScriptsAssembly
         m_MethodName: OnNotify
         m_Mode: 0
         m_Arguments:

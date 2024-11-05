@@ -349,7 +349,11 @@ namespace Character_Creator.scripts
             }
 
             UpdateDialogState(line);
-            ReadCurrentLine();
+
+            if (line.waitBeforeLine > 0)
+                Invoke(nameof(ReadCurrentLine), line.waitBeforeLine);
+            else
+                ReadCurrentLine();
         }
 
         public void OnFastForwardDialogHold()

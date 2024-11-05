@@ -116,6 +116,7 @@ namespace Dialog.Scripts
         // TODO: I think playerName is deprecated - we replace only in the API and visually without 
         // actually altering the data here
         public string playerName;
+        public float waitBeforeLine;
         public VoicedLine[] voicedLines;
         public PlayerChoice[] playerOptions;
         public PlayerReactions[] playerReactions;

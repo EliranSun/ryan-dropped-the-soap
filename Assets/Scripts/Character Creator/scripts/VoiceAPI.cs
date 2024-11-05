@@ -3,7 +3,7 @@ using Dialog.Scripts;
 using UnityEngine;
 using UnityEngine.Networking;
 
-namespace museum_dialog.scripts
+namespace Character_Creator.scripts
 {
     public static class VoiceAPI
     {
