@@ -10,38 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
-  m_Name: 2. hello player
+  m_Name: 4. guide
   m_EditorClassIdentifier: 
   playerName: Eliran
   waitBeforeLine: 7
   voicedLines:
-  - text: Well, hello {playerName}! How are you today? Long time no see.
-    clip: {fileID: 0}
+  - text: I am here to show you around the place, getting you to know everything
+      and everyone...
+    clip: {fileID: 8300000, guid: 82200003b53fd9c4d9d266950fb9eff5, type: 3}
     gender: 2
   playerOptions:
-  - text: Hi
+  - text: So, like a tutorial?
     type: 0
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 11400000, guid: f52e85a07623a884db1902a3c232f8df, type: 2}
+    next: {fileID: 11400000, guid: cdb05012fe62bb34891432903e05f038, type: 2}
     actionAfterPlayerChoice: 0
-  - text: Who are you
+  - text: Got it
     type: 0
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 11400000, guid: f52e85a07623a884db1902a3c232f8df, type: 2}
-    actionAfterPlayerChoice: 0
-  - text: Where are we
-    type: 0
-    choiceDataType: 0
-    choiceDataOption: 0
-    next: {fileID: 11400000, guid: 7b301e2b81ee57a4ea51424a7f61272b, type: 2}
-    actionAfterPlayerChoice: 0
-  - text: This is the first time I am seeing you
-    type: 0
-    choiceDataType: 0
-    choiceDataOption: 0
-    next: {fileID: 11400000, guid: 54b51141586761b47943bf0df9f717e5, type: 2}
+    next: {fileID: 11400000, guid: ac3ef3fe1fdc56e45b48e0a96d032769, type: 2}
     actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
