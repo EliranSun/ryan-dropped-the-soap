@@ -53,30 +53,30 @@ namespace Character_Creator.scripts
 
         private void OnMouseDown()
         {
-            if (interactionType is InteractionType.Click or InteractionType.Both)
+            if (interactionType is not (InteractionType.Click or InteractionType.Both))
+                return;
+
+            if (dialogLine.Length == 0)
             {
-                if (dialogLine.Length == 0)
-                {
-                    Notify(gameEvent);
-                    return;
-                }
-
-                // TODO: _interactionCount & InteractionData might be redundant after the bubble event action change
-                if (_interactionCount >= dialogLine.Length)
-                {
-                    if (repeatLastInteraction) _interactionCount = dialogLine.Length - 1;
-                    else if (repeatAllInteractions) _interactionCount = 0;
-                    else return;
-                }
-
-                Notify(gameEvent, new InteractionData(
-                    gameObject.name,
-                    interactableObjectName,
-                    interactableObjectType,
-                    dialogLine[_interactionCount]
-                ));
-                _interactionCount++;
+                Notify(gameEvent, interactableObjectType);
+                return;
             }
+
+            // TODO: _interactionCount & InteractionData might be redundant after the bubble event action change
+            if (_interactionCount >= dialogLine.Length)
+            {
+                if (repeatLastInteraction) _interactionCount = dialogLine.Length - 1;
+                else if (repeatAllInteractions) _interactionCount = 0;
+                else return;
+            }
+
+            Notify(gameEvent, new InteractionData(
+                gameObject.name,
+                interactableObjectName,
+                interactableObjectType,
+                dialogLine[_interactionCount]
+            ));
+            _interactionCount++;
         }
 
         private void OnTriggerEnter(Collider other)

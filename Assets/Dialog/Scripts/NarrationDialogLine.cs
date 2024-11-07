@@ -54,7 +54,8 @@ namespace Dialog.Scripts
         Mirror,
         Door,
         Vase,
-        Armchair
+        Armchair,
+        ApartmentDoorKnob
     }
 
 

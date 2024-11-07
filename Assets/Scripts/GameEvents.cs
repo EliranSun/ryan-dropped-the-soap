@@ -75,5 +75,7 @@
     // Apartment intro
     TriggerAlarmClockSound,
     TriggerAlarmClockStop,
-    SetClockTime
+    SetClockTime,
+
+    ObjectClicked
 }
