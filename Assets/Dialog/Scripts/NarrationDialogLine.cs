@@ -117,6 +117,7 @@ namespace Dialog.Scripts
         // actually altering the data here
         public string playerName;
         public float waitBeforeLine;
+        public bool mandatoryPlayerChoice = true;
         public VoicedLine[] voicedLines;
         public PlayerChoice[] playerOptions;
         public PlayerReactions[] playerReactions;

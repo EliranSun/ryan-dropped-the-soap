@@ -13,7 +13,7 @@ namespace common.scripts
             if (eventData.name == GameEvents.TriggerAlarmClockStop)
             {
                 mainCamera.gameObject.AddComponent<Zoom>();
-                mainCamera.gameObject.GetComponent<Zoom>().endSize = 8;
+                mainCamera.gameObject.GetComponent<Zoom>().endSize = 9.28f;
                 globalLight.intensity = 1f;
             }
         }

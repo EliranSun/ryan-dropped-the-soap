@@ -134,7 +134,9 @@ namespace Character_Creator.scripts
             if (_currentDialogue.playerOptions.Length > 0 && NoPlayerInputsExist())
             {
                 GeneratePlayerInputs(_currentDialogue);
-                return;
+
+                if (_currentDialogue.mandatoryPlayerChoice)
+                    return;
             }
 
             if (_currentDialogue.actionAfterLine != GameEvents.None)
@@ -263,6 +265,9 @@ namespace Character_Creator.scripts
 
         private void OnPlayerChoiceButtonClick(string buttonText)
         {
+            StopAllCoroutines();
+            _audioSource.Stop();
+
             // the same text rendered via the node - so comparison is safe
             var nextLine = _currentDialogue.playerOptions
                 .First(option => option.text == buttonText).next;

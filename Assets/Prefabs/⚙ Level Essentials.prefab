@@ -206,6 +206,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9676d7078c7cd64b9340ba5d04a6f77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
+  globalLight: {fileID: 0}
 --- !u!1 &7519939730882227428
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,8 +238,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4232693342968420335}
-  - {fileID: 303642069790464514}
   - {fileID: 4105961397648695223}
+  - {fileID: 303642069790464514}
   - {fileID: 443127220034868392}
   - {fileID: 2507119260470874071}
   m_Father: {fileID: 0}
