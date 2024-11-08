@@ -17,6 +17,8 @@ namespace common.scripts
 
         private void OnMouseEnter()
         {
+            if (gameObject.CompareTag("Apartment accessory")) print("ohhhhh");
+
             Cursor.SetCursor(texture, Vector2.zero, CursorMode.Auto);
         }
 

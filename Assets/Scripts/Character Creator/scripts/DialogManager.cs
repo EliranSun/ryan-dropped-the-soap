@@ -93,6 +93,12 @@ namespace Character_Creator.scripts
 
             var line = GetLineByGender(_currentDialogue);
 
+            if (line == null)
+            {
+                OnDialogEnd();
+                return;
+            }
+
             narratorText.text = line.text
                 .Replace("{playerName}", PlayerData.GetPlayerName())
                 .Replace("{partnerName}", PlayerData.GetPartnerName());
@@ -115,14 +121,23 @@ namespace Character_Creator.scripts
 
         private static VoicedLine GetLineByGender(NarrationDialogLine dialogueLineObject)
         {
-            var gender = PlayerData.GetPlayerGender();
-            return dialogueLineObject.voicedLines.First(voicedLine =>
+            try
             {
-                if (voicedLine.gender is CharacterType.NonBinary or CharacterType.None)
-                    return true;
+                var gender = PlayerData.GetPlayerGender();
+                return dialogueLineObject.voicedLines.First(voicedLine =>
+                {
+                    if (voicedLine.gender is CharacterType.NonBinary or CharacterType.None)
+                        return true;
 
-                return voicedLine.gender == gender;
-            });
+                    return voicedLine.gender == gender;
+                });
+            }
+            catch (ArgumentException error)
+            {
+                print(error);
+            }
+
+            return null;
         }
 
         private void OnDialogEnd()

@@ -16,6 +16,8 @@ namespace museum_dialog.scripts
 
     public class DialogueStateChanger : MonoBehaviour
     {
+        [SerializeField] private bool isDisabled;
+
         [FormerlySerializedAs("prioritizedStates")] [FormerlySerializedAs("states")] [SerializeField]
         private DialogueState[] requiredStatesForScene;
 
@@ -32,6 +34,8 @@ namespace museum_dialog.scripts
 
         public NarrationDialogLine GetDialogStateByPlayerPrefs()
         {
+            if (isDisabled) return ScriptableObject.CreateInstance<NarrationDialogLine>();
+
             if (requiredStatesForScene.Length == 0)
                 return finalState.dialogLineToPlay;
 
