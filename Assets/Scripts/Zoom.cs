@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 
 public class Zoom : MonoBehaviour
 {
+    private const float Tolerance = 0.01f;
     [SerializeField] private float delay;
     [SerializeField] private float speed = 1;
     [SerializeField] private float startSize = 1;
@@ -23,7 +25,9 @@ public class Zoom : MonoBehaviour
     {
         _time = Time.time;
         _mainCamera = Camera.main;
-        _mainCamera.orthographicSize = startSize;
+
+        if (_mainCamera != null)
+            _mainCamera.orthographicSize = startSize;
     }
 
     private void Update()
@@ -33,9 +37,12 @@ public class Zoom : MonoBehaviour
         if (delay > 0 && _time < delay)
             return;
 
-        if (_mainCamera.orthographicSize >= endSize)
+        if (Math.Abs(_mainCamera.orthographicSize - endSize) < Tolerance)
             return;
 
-        _mainCamera.orthographicSize += Time.deltaTime * speed;
+        if (_mainCamera.orthographicSize > endSize)
+            _mainCamera.orthographicSize -= Time.deltaTime * speed;
+        else
+            _mainCamera.orthographicSize += Time.deltaTime * speed;
     }
 }

@@ -77,5 +77,9 @@
     TriggerAlarmClockStop,
     SetClockTime,
 
-    ObjectClicked
+    ObjectClicked,
+
+    ExitApartment,
+    EnterApartment,
+    EnterHallway
 }
