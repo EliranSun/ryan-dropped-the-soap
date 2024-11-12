@@ -18,6 +18,8 @@ namespace Dialog.Scripts
         Vase,
         Armchair,
         Mirror,
+        Shape,
+        Dependent,
 
         // Apartment choices
         MorningWakeUpTime
@@ -39,9 +41,51 @@ namespace Dialog.Scripts
         Female,
         Male,
 
+        // Door
+        Blue,
+        Red,
+        Yellow,
+        Green,
+        White,
+        Black,
+
         // Painting
-        CompositionEight,
         WandererAboveTheSeaOfFog,
+        NightHawks,
+        CompositionEight,
+        TheKiss,
+        Angelus,
+        Impression,
+        StarryNight,
+
+        // Shapes
+        Butt,
+        Cleavage,
+        Penis,
+        Vagina,
+
+        // Armchairs
+        ArmchairEgyptian,
+        ArmchairGreek,
+        ArmchairJapanese,
+        ArmchairModern,
+        ArmchairRoman,
+        ArmchairSameritan,
+
+        // Mirrors
+        MirrorEgyptian,
+        MirrorGreek,
+        MirrorRoman,
+        MirrorSameritan,
+
+        // Vases
+        VaseEgyptian,
+        VaseGreek,
+        VaseJapanese,
+        VaseModern,
+        VasePersian,
+        VaseRoman,
+        VaseSamerian,
 
         // Built in partner names
         Ryan,

@@ -10,22 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
-  m_Name: 27. look at each other
+  m_Name: 28. async - did not live alone
   m_EditorClassIdentifier: 
-  playerName: 
+  playerName: Ryan
   waitBeforeLine: 0
   mandatoryPlayerChoice: 1
   voicedLines:
-  - text: "Make sure you are looking at each other eyes for making this the most
-      comfortable feeling in the world\u2026"
-    clip: {fileID: 8300000, guid: 8e21583e04255ef4dae2e5234234570f, type: 3}
+  - text: '{playerName} did not live alone in this cozy house of his.'
+    clip: {fileID: 0}
     gender: 2
   playerOptions: []
   playerReactions: []
-  nextDialogueLine: {fileID: 11400000, guid: ad517011282bf6844be3de3970a65b87, type: 2}
+  nextDialogueLine: {fileID: 11400000, guid: a44620f60f596ab4ba967a161149139a, type: 2}
   randomizedDialogLines: []
   objectReferringDialogLines: []
-  wait: 5
+  wait: 0.5
   actorName: 0
   actionBeforeLine: 0
-  actionAfterLine: 67
+  actionAfterLine: 0
