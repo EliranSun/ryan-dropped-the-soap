@@ -17,17 +17,29 @@ MonoBehaviour:
   mandatoryPlayerChoice: 1
   voicedLines:
   - text: Was this his favourite door?
-    clip: {fileID: 8300000, guid: cdfce0ed8a0cbc7429a492361dc5018d, type: 3}
+    clip: {fileID: 8300000, guid: 55c63e13f2ef45c4198b39eed5f3f155, type: 3}
     gender: 2
   - text: Was this his favourite door?
-    clip: {fileID: 8300000, guid: cdfce0ed8a0cbc7429a492361dc5018d, type: 3}
+    clip: {fileID: 8300000, guid: 55c63e13f2ef45c4198b39eed5f3f155, type: 3}
     gender: 1
-  playerOptions: []
+  playerOptions:
+  - text: YES
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 3005fd083808baf4e84e9394813615b9, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: NO
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 3005fd083808baf4e84e9394813615b9, type: 2}
+    actionAfterPlayerChoice: 0
   playerReactions: []
-  nextDialogueLine: {fileID: 11400000, guid: 3005fd083808baf4e84e9394813615b9, type: 2}
+  nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []
   objectReferringDialogLines: []
   wait: 0.5
   actorName: 0
   actionBeforeLine: 0
-  actionAfterLine: 66
+  actionAfterLine: 0

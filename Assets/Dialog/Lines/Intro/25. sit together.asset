@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
+  m_Name: 25. sit together
+  m_EditorClassIdentifier: 
+  playerName: 
+  waitBeforeLine: 0
+  mandatoryPlayerChoice: 1
+  voicedLines:
+  - text: Let us sit together with {playerName} in this armchair of his.
+    clip: {fileID: 8300000, guid: d9118ec101cbbb24589ee70cc45c7b6c, type: 3}
+    gender: 2
+  playerOptions: []
+  playerReactions: []
+  nextDialogueLine: {fileID: 11400000, guid: 1936698503633c7499a059e89c8ac78c, type: 2}
+  randomizedDialogLines: []
+  objectReferringDialogLines: []
+  wait: 0.5
+  actorName: 0
+  actionBeforeLine: 0
+  actionAfterLine: 0

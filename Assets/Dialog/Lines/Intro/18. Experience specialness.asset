@@ -12,22 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
   m_Name: 18. Experience specialness
   m_EditorClassIdentifier: 
-  playerName: 
+  playerName: Ryan
   waitBeforeLine: 0
   mandatoryPlayerChoice: 1
   voicedLines:
-  - text: Let us experience this feeling together with {playerName}...
-    clip: {fileID: 8300000, guid: cdfce0ed8a0cbc7429a492361dc5018d, type: 3}
+  - text: Let us experience the feeling of walking through this door together with
+      {playerName}...
+    clip: {fileID: 0}
     gender: 2
-  - text: Let us experience this feeling together with {playerName}...
-    clip: {fileID: 8300000, guid: cdfce0ed8a0cbc7429a492361dc5018d, type: 3}
+  - text: Let us experience the feeling of walking through this door together with
+      {playerName}...
+    clip: {fileID: 0}
     gender: 1
   playerOptions: []
   playerReactions: []
-  nextDialogueLine: {fileID: 0}
+  nextDialogueLine: {fileID: 11400000, guid: 4c88d2a4db192bc45bb028b9dbc55b56, type: 2}
   randomizedDialogLines: []
   objectReferringDialogLines: []
   wait: 5
   actorName: 0
   actionBeforeLine: 0
-  actionAfterLine: 66
+  actionAfterLine: 67

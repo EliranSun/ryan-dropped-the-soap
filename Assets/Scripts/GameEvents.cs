@@ -83,9 +83,6 @@
     EnterApartment,
     EnterHallway,
 
-    CharacterCreatorShowDoors,
-    CharacterCreatorShowMirrors,
-    CharacterCreatorShowPaintings,
-    CharacterCreatorShowVases,
-    CharacterCreatorShowArmchairs
+    CharacterCreatorNextSetOfObjects,
+    CharacterCreatorHideObjects
 }

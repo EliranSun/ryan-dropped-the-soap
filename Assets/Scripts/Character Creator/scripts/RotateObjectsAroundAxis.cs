@@ -1,18 +1,26 @@
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
+using Enumerable = System.Linq.Enumerable;
 
 namespace Character_Creator.scripts
 {
+    [Serializable]
+    public class CharacterCreatorObjects
+    {
+        public List<GameObject> prefabs;
+    }
+
     public class RotateObjectsAroundAxis : MonoBehaviour
     {
-        [SerializeField] private List<GameObject> prefabsToRotate = new();
+        [SerializeField] private CharacterCreatorObjects[] prefabsToRotate;
         [SerializeField] private float rotationSpeed = 30f; // degrees per second
         [SerializeField] private float radius = 2f; // Distance from center
         [SerializeField] private Vector2 centerPoint = Vector2.zero;
         [SerializeField] private DialogueManager dialogueManager;
         private readonly List<float> angles = new();
         private readonly List<GameObject> instances = new();
+        private int _activePrefabsIndex;
 
         private void Update()
         {
@@ -27,31 +35,46 @@ namespace Character_Creator.scripts
 
         private void OnDestroy()
         {
-            foreach (var obj in instances.Where(obj => obj != null))
+            foreach (var obj in Enumerable.Where(instances, obj => obj != null))
                 Destroy(obj);
         }
 
         public void OnNotify(GameEventData gameEventData)
         {
-            if (gameEventData.name == GameEvents.CharacterCreatorShowDoors) Init();
+            if (gameEventData.name == GameEvents.CharacterCreatorNextSetOfObjects)
+            {
+                Destroy();
+                Init();
+                _activePrefabsIndex++;
+            }
+
+            if (gameEventData.name == GameEvents.CharacterCreatorHideObjects)
+                Destroy();
         }
 
         private void Init()
         {
             // Calculate even spacing for objects
-            var angleStep = 360f / prefabsToRotate.Count;
+            var activePrefabs = prefabsToRotate[_activePrefabsIndex];
+            var angleStep = 360f / activePrefabs.prefabs.Count;
 
-            for (var i = 0; i < prefabsToRotate.Count; i++)
-                if (prefabsToRotate[i] != null)
+            for (var i = 0; i < activePrefabs.prefabs.Count; i++)
+                if (activePrefabs.prefabs[i] != null)
                 {
                     var angle = i * angleStep;
                     var position = centerPoint + (Vector2.right * radius).Rotate(angle);
 
-                    var instance = Instantiate(prefabsToRotate[i], position, Quaternion.identity);
+                    var instance = Instantiate(activePrefabs.prefabs[i], position, Quaternion.identity);
                     instance.GetComponent<OnInteractableObject>().observers.AddListener(dialogueManager.OnNotify);
                     instances.Add(instance);
                     angles.Add(angle);
                 }
+        }
+
+        private void Destroy()
+        {
+            foreach (var obj in Enumerable.Where(instances, obj => obj != null))
+                Destroy(obj);
         }
     }
 

@@ -301,12 +301,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabsToRotate:
-  - {fileID: 2209564774416705469, guid: f999413cb2fbe3940a1cd69d64927841, type: 3}
-  - {fileID: 5996606594872320686, guid: 6b71a48c07f52354abe99d463b048afb, type: 3}
-  - {fileID: 685570633847837675, guid: b6db6b9d477b2494cb53d19844f0114c, type: 3}
-  - {fileID: 4945311056697139782, guid: 5a0c623bc15425547b7e8dcbb3a33323, type: 3}
-  - {fileID: 1774248172289413478, guid: 36c1c5775f82f444383075c508a05c18, type: 3}
-  - {fileID: 2212035416799105517, guid: 8701c80f728514344a1dfa359a0bb865, type: 3}
+  - prefabs:
+    - {fileID: 2209564774416705469, guid: f999413cb2fbe3940a1cd69d64927841, type: 3}
+    - {fileID: 5996606594872320686, guid: 6b71a48c07f52354abe99d463b048afb, type: 3}
+    - {fileID: 685570633847837675, guid: b6db6b9d477b2494cb53d19844f0114c, type: 3}
+    - {fileID: 4945311056697139782, guid: 5a0c623bc15425547b7e8dcbb3a33323, type: 3}
+    - {fileID: 1774248172289413478, guid: 36c1c5775f82f444383075c508a05c18, type: 3}
+    - {fileID: 2212035416799105517, guid: 8701c80f728514344a1dfa359a0bb865, type: 3}
+  - prefabs:
+    - {fileID: 453643083023655612, guid: 5ca027f56a1c35a48828b35e07059ad9, type: 3}
+    - {fileID: 6773758808137700198, guid: ae48a946651c45244b410fca24844e4e, type: 3}
+    - {fileID: 8895372069434441957, guid: d0a8c3a0394a3bd489ab0319807c7c69, type: 3}
+    - {fileID: 3461208392519771585, guid: 50f56a76629c85548ab0d70629b84ed4, type: 3}
+    - {fileID: 6708643834335732075, guid: 8bfdc03bddc2a544db2f359752973a18, type: 3}
+    - {fileID: 1683152180633488730, guid: 8dec0e115b1843c40aadff5f285b7d4a, type: 3}
+    - {fileID: 5874112099330180043, guid: 0825c898a2b0a944fa42e1d51d6e3c84, type: 3}
+  - prefabs:
+    - {fileID: 3512745406256592834, guid: 2738d782b3c023847aa03e403700c003, type: 3}
+    - {fileID: 7180350291141018766, guid: efe4e30880e8c004b903bf89c330b8d8, type: 3}
+    - {fileID: 5637833612275480039, guid: 1e4c9a1303fc9f84d940eac35d6277d2, type: 3}
+    - {fileID: 8556119641526458498, guid: 6fe181f8843ff434b846dd2e91ac2eac, type: 3}
+    - {fileID: 5289176479147945926, guid: b9618745423f5564c808c7fe5dd09d47, type: 3}
+  - prefabs:
+    - {fileID: 8009293232791107215, guid: 6dbd8705c4ca7e44785905436ea98cad, type: 3}
+    - {fileID: 8357468808119596310, guid: 4c5ceedfe920d4b4ea331eba484f4058, type: 3}
+    - {fileID: 8663626177535263213, guid: bbe884685634d1841af621701f8e2be2, type: 3}
+    - {fileID: 6137684837688409908, guid: 81aa8713a5edd9d42ad7c07d36747ff3, type: 3}
+    - {fileID: 2044652270183708803, guid: f1881b55d0fd63243b52dcc696d190fd, type: 3}
+    - {fileID: 876978905538646650, guid: e24ecf614d0623448b166a9368edb1a1, type: 3}
+    - {fileID: 1901620507616430430, guid: ddfa2610f461a5142b643f85410b12c5, type: 3}
+  - prefabs:
+    - {fileID: 364053030426377705, guid: 08b4185048bd83a4dacf9a2c9cc4e2a4, type: 3}
+    - {fileID: 3503996871657521010, guid: 06f2a852c3c4c2044b22f5ee8f9da663, type: 3}
+    - {fileID: 469618549399176623, guid: c1c3ee77783454f43972f77068aa9b9e, type: 3}
+    - {fileID: 8651019750574860686, guid: cd4b6b1fab8c575459dde533bd9e21de, type: 3}
+  - prefabs: []
   rotationSpeed: 1.5
   radius: 14
   centerPoint: {x: 0, y: 0}
@@ -321,7 +350,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1849336435191607478, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: linesWithPlayerName.Array.size
-      value: 4
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1849336435191607478, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: 'linesWithPlayerName.Array.data[1]'
@@ -335,6 +364,18 @@ PrefabInstance:
       propertyPath: 'linesWithPlayerName.Array.data[3]'
       value: 
       objectReference: {fileID: 11400000, guid: 8bdd2eda1c4348b45853678ffb3ba982, type: 2}
+    - target: {fileID: 1849336435191607478, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: 'linesWithPlayerName.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 0eadd073a867f1840841ce8ef4656ff7, type: 2}
+    - target: {fileID: 1849336435191607478, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: 'linesWithPlayerName.Array.data[5]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 35cbc0bf7ac240446bec0defe355f7ad, type: 2}
+    - target: {fileID: 1849336435191607478, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: 'linesWithPlayerName.Array.data[6]'
+      value: 
+      objectReference: {fileID: 11400000, guid: be79dc18d4b942f438b8b809526b163b, type: 2}
     - target: {fileID: 2598299574820255891, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: deletePlayerPrefs
       value: 0
@@ -345,7 +386,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 35d00293f0efec44db21ffde9ead0062, type: 2}
     - target: {fileID: 2598299574820255891, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: requiredStatesForScene.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2598299574820255891, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: requiredStatesForScene.Array.data[0].dialogLineToPlay
@@ -362,7 +403,7 @@ PrefabInstance:
     - target: {fileID: 2598299574820255891, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: requiredStatesForScene.Array.data[3].dialogLineToPlay
       value: 
-      objectReference: {fileID: 11400000, guid: 48d4becce4459f34d8f9d71ec543b066, type: 2}
+      objectReference: {fileID: 11400000, guid: d494aef1cc81cba498625a57fb170d71, type: 2}
     - target: {fileID: 2598299574820255891, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: requiredStatesForScene.Array.data[0].missingPlayerData
       value: 3
@@ -377,7 +418,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2598299574820255891, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: requiredStatesForScene.Array.data[3].missingPlayerData
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3560832367629595899, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.size
