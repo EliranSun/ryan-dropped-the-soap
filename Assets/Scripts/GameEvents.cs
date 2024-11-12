@@ -81,5 +81,11 @@
 
     ExitApartment,
     EnterApartment,
-    EnterHallway
+    EnterHallway,
+
+    CharacterCreatorShowDoors,
+    CharacterCreatorShowMirrors,
+    CharacterCreatorShowPaintings,
+    CharacterCreatorShowVases,
+    CharacterCreatorShowArmchairs
 }

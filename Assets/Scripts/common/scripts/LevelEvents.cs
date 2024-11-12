@@ -48,13 +48,13 @@ namespace common.scripts
                     StartCoroutine(FadeSprite(transitionInElement, true));
                     break;
 
-                // case GameEvents.EnterHallway:
-                // {
-                //     var temp = transitionInElement;
-                //     transitionOutElement = transitionInElement;
-                //     transitionInElement = temp;
-                //     break;
-                // }
+                    // case GameEvents.EnterHallway:
+                    // {
+                    //     var temp = transitionInElement;
+                    //     transitionOutElement = transitionInElement;
+                    //     transitionInElement = temp;
+                    //     break;
+                    // }
             }
         }
 

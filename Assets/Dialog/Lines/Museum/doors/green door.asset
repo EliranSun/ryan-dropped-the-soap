@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: green door
   m_EditorClassIdentifier: 
   playerName: 
+  waitBeforeLine: 0
+  mandatoryPlayerChoice: 1
   voicedLines:
   - text: A green door.
     clip: {fileID: 8300000, guid: 1f066e00ac6a0374ca4cef12f998321a, type: 3}
@@ -22,25 +24,25 @@ MonoBehaviour:
     type: 1
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 0}
+    next: {fileID: 11400000, guid: f47cd8ad37beb2c4c8719f28c87865ba, type: 2}
     actionAfterPlayerChoice: 0
   - text: Growth and renewal
     type: 1
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 0}
+    next: {fileID: 11400000, guid: f47cd8ad37beb2c4c8719f28c87865ba, type: 2}
     actionAfterPlayerChoice: 0
   - text: Harmony and balance
     type: 1
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 0}
+    next: {fileID: 11400000, guid: f47cd8ad37beb2c4c8719f28c87865ba, type: 2}
     actionAfterPlayerChoice: 0
   - text: Creativity and inspiration
     type: 1
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 0}
+    next: {fileID: 11400000, guid: f47cd8ad37beb2c4c8719f28c87865ba, type: 2}
     actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
@@ -48,4 +50,5 @@ MonoBehaviour:
   objectReferringDialogLines: []
   wait: 0.5
   actorName: 1
+  actionBeforeLine: 0
   actionAfterLine: 37

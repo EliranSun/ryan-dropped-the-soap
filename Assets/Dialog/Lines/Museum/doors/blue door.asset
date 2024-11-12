@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: blue door
   m_EditorClassIdentifier: 
   playerName: 
+  waitBeforeLine: 0
+  mandatoryPlayerChoice: 1
   voicedLines:
   - text: A blue door.
     clip: {fileID: 8300000, guid: a9e5ad1fe115bf44691744d37eb04789, type: 3}
@@ -22,25 +24,25 @@ MonoBehaviour:
     type: 1
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 0}
+    next: {fileID: 11400000, guid: f47cd8ad37beb2c4c8719f28c87865ba, type: 2}
     actionAfterPlayerChoice: 0
   - text: Calmness and serenity
     type: 1
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 0}
+    next: {fileID: 11400000, guid: f47cd8ad37beb2c4c8719f28c87865ba, type: 2}
     actionAfterPlayerChoice: 0
   - text: Trust and stability
     type: 1
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 0}
+    next: {fileID: 11400000, guid: f47cd8ad37beb2c4c8719f28c87865ba, type: 2}
     actionAfterPlayerChoice: 0
   - text: Creativity and inspiration
     type: 1
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 0}
+    next: {fileID: 11400000, guid: f47cd8ad37beb2c4c8719f28c87865ba, type: 2}
     actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
@@ -48,4 +50,5 @@ MonoBehaviour:
   objectReferringDialogLines: []
   wait: 0.5
   actorName: 1
+  actionBeforeLine: 0
   actionAfterLine: 37

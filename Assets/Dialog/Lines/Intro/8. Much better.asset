@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: 8. Much better
   m_EditorClassIdentifier: 
   playerName: 
+  waitBeforeLine: 0
+  mandatoryPlayerChoice: 1
   voicedLines:
   - text: Much, much better.
     clip: {fileID: 8300000, guid: c2fae8c42a15f43c59638acb1c8d8e47, type: 3}
@@ -25,19 +27,19 @@ MonoBehaviour:
     type: 1
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 11400000, guid: 21fb4d3fba5d41e4a83e022690bea9ec, type: 2}
+    next: {fileID: 11400000, guid: 3c6ec9d4e62ac1f40a4da3676ca58391, type: 2}
     actionAfterPlayerChoice: 0
   - text: NO?
     type: 1
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 11400000, guid: 21fb4d3fba5d41e4a83e022690bea9ec, type: 2}
+    next: {fileID: 11400000, guid: 3c6ec9d4e62ac1f40a4da3676ca58391, type: 2}
     actionAfterPlayerChoice: 0
   - text: OH
     type: 1
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 11400000, guid: 21fb4d3fba5d41e4a83e022690bea9ec, type: 2}
+    next: {fileID: 11400000, guid: 3c6ec9d4e62ac1f40a4da3676ca58391, type: 2}
     actionAfterPlayerChoice: 0
   - text: OK
     type: 1
@@ -51,4 +53,5 @@ MonoBehaviour:
   objectReferringDialogLines: []
   wait: 0.5
   actorName: 0
+  actionBeforeLine: 0
   actionAfterLine: 0

@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: zz. door closes door opens
   m_EditorClassIdentifier: 
   playerName: 
+  waitBeforeLine: 0
+  mandatoryPlayerChoice: 1
   voicedLines:
   - text: When one door closes, another opens. Not in this case. Is this your favourite?
     clip: {fileID: 8300000, guid: 18eadcdb90423d64caed2c0e94da3319, type: 3}
@@ -42,4 +44,5 @@ MonoBehaviour:
   objectReferringDialogLines: []
   wait: 0.5
   actorName: 1
+  actionBeforeLine: 0
   actionAfterLine: 37

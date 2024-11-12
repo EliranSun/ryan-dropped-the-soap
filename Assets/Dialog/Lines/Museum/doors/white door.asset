@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: white door
   m_EditorClassIdentifier: 
   playerName: 
+  waitBeforeLine: 0
+  mandatoryPlayerChoice: 1
   voicedLines:
   - text: A white door.
     clip: {fileID: 8300000, guid: 3fdafb248ace1bb498bff815b5e034ca, type: 3}
@@ -22,31 +24,31 @@ MonoBehaviour:
     type: 1
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 0}
+    next: {fileID: 11400000, guid: f47cd8ad37beb2c4c8719f28c87865ba, type: 2}
     actionAfterPlayerChoice: 0
   - text: Spirituality and sacredness
     type: 1
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 0}
+    next: {fileID: 11400000, guid: f47cd8ad37beb2c4c8719f28c87865ba, type: 2}
     actionAfterPlayerChoice: 0
   - text: Peace and tranquality
     type: 1
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 0}
+    next: {fileID: 11400000, guid: f47cd8ad37beb2c4c8719f28c87865ba, type: 2}
     actionAfterPlayerChoice: 0
   - text: Simplicity and minimalism
     type: 1
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 0}
+    next: {fileID: 11400000, guid: f47cd8ad37beb2c4c8719f28c87865ba, type: 2}
     actionAfterPlayerChoice: 0
   - text: Cleanliness and order
     type: 1
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 0}
+    next: {fileID: 11400000, guid: f47cd8ad37beb2c4c8719f28c87865ba, type: 2}
     actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
@@ -54,4 +56,5 @@ MonoBehaviour:
   objectReferringDialogLines: []
   wait: 0.5
   actorName: 1
+  actionBeforeLine: 0
   actionAfterLine: 37

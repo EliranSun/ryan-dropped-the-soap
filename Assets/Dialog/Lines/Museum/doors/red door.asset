@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: red door
   m_EditorClassIdentifier: 
   playerName: 
+  waitBeforeLine: 0
+  mandatoryPlayerChoice: 1
   voicedLines:
   - text: A red door.
     clip: {fileID: 8300000, guid: 7e636832a633e27408bb3c44b6f93fac, type: 3}
@@ -22,25 +24,25 @@ MonoBehaviour:
     type: 1
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 0}
+    next: {fileID: 11400000, guid: f47cd8ad37beb2c4c8719f28c87865ba, type: 2}
     actionAfterPlayerChoice: 0
   - text: Openness and hospitality
     type: 1
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 0}
+    next: {fileID: 11400000, guid: f47cd8ad37beb2c4c8719f28c87865ba, type: 2}
     actionAfterPlayerChoice: 0
   - text: Passion and energy
     type: 1
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 0}
+    next: {fileID: 11400000, guid: f47cd8ad37beb2c4c8719f28c87865ba, type: 2}
     actionAfterPlayerChoice: 0
   - text: Warmth and comfort
     type: 1
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 0}
+    next: {fileID: 11400000, guid: f47cd8ad37beb2c4c8719f28c87865ba, type: 2}
     actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
@@ -48,4 +50,5 @@ MonoBehaviour:
   objectReferringDialogLines: []
   wait: 0.5
   actorName: 1
+  actionBeforeLine: 0
   actionAfterLine: 37

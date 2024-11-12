@@ -1,27 +1,23 @@
 using System;
 using Dialog.Scripts;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace museum_dialog.scripts
+namespace Character_Creator.scripts
 {
     [Serializable]
     public class DialogueState
     {
-        [FormerlySerializedAs("playerDataProperty")]
         public PlayerDataEnum missingPlayerData;
-
-        [FormerlySerializedAs("nextState")] public NarrationDialogLine dialogLineToPlay;
+        public NarrationDialogLine dialogLineToPlay;
     }
 
     public class DialogueStateChanger : MonoBehaviour
     {
+        [SerializeField] private bool deletePlayerPrefs;
         [SerializeField] private bool isDisabled;
-
-        [FormerlySerializedAs("prioritizedStates")] [FormerlySerializedAs("states")] [SerializeField]
-        private DialogueState[] requiredStatesForScene;
-
+        [SerializeField] private DialogueState[] requiredStatesForScene;
         [SerializeField] private DialogueState finalState; // if all other states are met
+
         public static DialogueStateChanger Instance { get; private set; }
 
         private void Awake()
@@ -30,6 +26,13 @@ namespace museum_dialog.scripts
                 Destroy(this);
             else
                 Instance = this;
+
+            if (deletePlayerPrefs)
+            {
+                PlayerPrefs.DeleteAll();
+                PlayerPrefs.Save();
+                deletePlayerPrefs = false;
+            }
         }
 
         public NarrationDialogLine GetDialogStateByPlayerPrefs()
