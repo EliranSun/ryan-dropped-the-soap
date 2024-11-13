@@ -84,5 +84,7 @@
     EnterHallway,
 
     CharacterCreatorNextSetOfObjects,
-    CharacterCreatorHideObjects
+    CharacterCreatorHideObjects,
+
+    PlayerEnrichedChoice
 }

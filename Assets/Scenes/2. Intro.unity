@@ -256,6 +256,17 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &485218131 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6858920165759656711, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+  m_PrefabInstance: {fileID: 6875060715883232489}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e40d4407f037914082f5f7284c46d77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1436588475
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,6 +355,7 @@ MonoBehaviour:
   radius: 14
   centerPoint: {x: 0, y: 0}
   dialogueManager: {fileID: 6875060715883232490}
+  activePrefabsIndex: 0
 --- !u!1001 &6875060715883232489
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -419,7 +431,7 @@ PrefabInstance:
     - target: {fileID: 2598299574820255891, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: requiredStatesForScene.Array.data[4].dialogLineToPlay
       value: 
-      objectReference: {fileID: 11400000, guid: 9cad31664aa42a64594ce106f3b103aa, type: 2}
+      objectReference: {fileID: 11400000, guid: 4c88d2a4db192bc45bb028b9dbc55b56, type: 2}
     - target: {fileID: 2598299574820255891, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: requiredStatesForScene.Array.data[5].dialogLineToPlay
       value: 
@@ -458,7 +470,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3560832367629595899, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3560832367629595899, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
@@ -469,7 +481,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1436588477}
     - target: {fileID: 3560832367629595899, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 485218131}
+    - target: {fileID: 3560832367629595899, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3560832367629595899, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3560832367629595899, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
@@ -477,11 +497,23 @@ PrefabInstance:
       value: OnNotify
       objectReference: {fileID: 0}
     - target: {fileID: 3560832367629595899, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: OnNotify
+      objectReference: {fileID: 0}
+    - target: {fileID: 3560832367629595899, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: Character_Creator.scripts.RotateObjectsAroundAxis, CharacterCreatorScriptsAssembly
       objectReference: {fileID: 0}
     - target: {fileID: 3560832367629595899, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: common.scripts.PlayerPrefsController, CommonScriptsAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 3560832367629595899, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3560832367629595899, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5769146421933612997, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
@@ -524,6 +556,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6858920165759656711, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: characterCreatorObjectsController
+      value: 
+      objectReference: {fileID: 1436588477}
     - target: {fileID: 7519939730882227428, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: m_Name
       value: "\u2699 Level Essentials"

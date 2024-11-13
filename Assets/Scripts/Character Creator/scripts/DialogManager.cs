@@ -294,7 +294,8 @@ namespace Character_Creator.scripts
 
         public void OnNotify(GameEventData gameEventData)
         {
-            // check if eventToDialogMap contains the event
+            print("DialogueManager: OnNotify " + gameEventData.name);
+
             try
             {
                 var eventLine =
@@ -324,8 +325,8 @@ namespace Character_Creator.scripts
                         {
                             // The state is already saved, just trigger the appropriate event
                             var interactionType = choiceData.OriginalInteraction.InteractableObjectType;
-                            var eventName = GetEventNameForInteractionType(interactionType);
-                            Notify(eventName, choiceData.OriginalInteraction);
+                            // var eventName = GetEventNameForInteractionType(interactionType);
+                            Notify(GameEvents.PlayerEnrichedChoice, choiceData.OriginalInteraction);
                         }
                         catch (NullReferenceException error)
                         {

@@ -27,7 +27,7 @@ namespace Character_Creator.scripts
             var key = type.ToString();
             var lowerValue = option.ToString().ToLower();
 
-            print($"Setting {key} to {lowerValue}");
+            print($"PlayerInfoInput: Setting {key} to {lowerValue}");
             PlayerPrefs.SetString(key, lowerValue);
         }
 
@@ -41,13 +41,13 @@ namespace Character_Creator.scripts
                 return;
 
             if (string.IsNullOrEmpty(value.Trim()) || value.Trim().Length <= 1)
-                throw new Exception("must provide value for player prefs");
+                throw new Exception("PlayerInfoInput: must provide value for player prefs");
 
 
             var key = type.ToString();
             var lowerValue = value.ToLower();
 
-            print($"Setting {key} to {lowerValue}");
+            print($"PlayerInfoInput: Setting {key} to {lowerValue}");
             PlayerPrefs.SetString(key, lowerValue);
         }
     }

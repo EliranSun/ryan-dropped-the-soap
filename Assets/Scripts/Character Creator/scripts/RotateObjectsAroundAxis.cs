@@ -18,24 +18,24 @@ namespace Character_Creator.scripts
         [SerializeField] private float radius = 2f; // Distance from center
         [SerializeField] private Vector2 centerPoint = Vector2.zero;
         [SerializeField] private DialogueManager dialogueManager;
-        private readonly List<float> angles = new();
-        private readonly List<GameObject> instances = new();
-        private int _activePrefabsIndex;
+        public int activePrefabsIndex;
+        private readonly List<float> _angles = new();
+        private readonly List<GameObject> _instances = new();
 
         private void Update()
         {
-            for (var i = 0; i < instances.Count; i++)
-                if (instances[i])
+            for (var i = 0; i < _instances.Count; i++)
+                if (_instances[i])
                 {
-                    angles[i] += rotationSpeed * Time.deltaTime;
-                    var newPosition = centerPoint + (Vector2.right * radius).Rotate(angles[i]);
-                    instances[i].transform.position = newPosition;
+                    _angles[i] += rotationSpeed * Time.deltaTime;
+                    var newPosition = centerPoint + (Vector2.right * radius).Rotate(_angles[i]);
+                    _instances[i].transform.position = newPosition;
                 }
         }
 
         private void OnDestroy()
         {
-            foreach (var obj in Enumerable.Where(instances, obj => obj != null))
+            foreach (var obj in Enumerable.Where(_instances, obj => obj != null))
                 Destroy(obj);
         }
 
@@ -45,7 +45,7 @@ namespace Character_Creator.scripts
             {
                 Destroy();
                 Init();
-                _activePrefabsIndex++;
+                activePrefabsIndex++;
             }
 
             if (gameEventData.name == GameEvents.CharacterCreatorHideObjects)
@@ -54,8 +54,7 @@ namespace Character_Creator.scripts
 
         private void Init()
         {
-            // Calculate even spacing for objects
-            var activePrefabs = prefabsToRotate[_activePrefabsIndex];
+            var activePrefabs = prefabsToRotate[activePrefabsIndex];
             var angleStep = 360f / activePrefabs.prefabs.Count;
 
             for (var i = 0; i < activePrefabs.prefabs.Count; i++)
@@ -65,15 +64,31 @@ namespace Character_Creator.scripts
                     var position = centerPoint + (Vector2.right * radius).Rotate(angle);
 
                     var instance = Instantiate(activePrefabs.prefabs[i], position, Quaternion.identity);
-                    instance.GetComponent<OnInteractableObject>().observers.AddListener(dialogueManager.OnNotify);
-                    instances.Add(instance);
-                    angles.Add(angle);
+                    _instances.Add(instance);
+                    _angles.Add(angle);
+
+                    var interactable = instance.GetComponent<OnInteractableObject>();
+                    if (interactable == null)
+                    {
+                        Debug.LogError(
+                            $"OnInteractableObject component missing on prefab {activePrefabs.prefabs[i].name}");
+                        continue;
+                    }
+
+                    if (dialogueManager == null)
+                    {
+                        Debug.LogError("DialogueManager reference is null!");
+                        continue;
+                    }
+
+                    interactable.observers.AddListener(dialogueManager.OnNotify);
+                    Debug.Log($"Added dialogue listener to {instance.name}");
                 }
         }
 
         private void Destroy()
         {
-            foreach (var obj in Enumerable.Where(instances, obj => obj != null))
+            foreach (var obj in Enumerable.Where(_instances, obj => obj != null))
                 Destroy(obj);
         }
     }

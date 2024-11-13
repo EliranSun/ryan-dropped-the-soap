@@ -62,14 +62,16 @@ namespace Dialog.Scripts
                 if (playerChoices[i].type == ChoiceType.TextInput)
                 {
                     var textInput = Instantiate(playerTextInput, inputCanvas);
-                    print($"Setting {playerChoices[i].choiceDataType.ToString()} to {playerChoices[i].text}");
+                    print(
+                        $"PlayerChoiceDialogBubbles: Setting {playerChoices[i].choiceDataType.ToString()} to {playerChoices[i].text}");
                     textInput.GetComponent<PlayerInfoInput>().type = playerChoices[i].choiceDataType;
                 }
                 else
                 {
                     var bubble = Instantiate(speechBubble, transform);
                     bubble.transform.localPosition = new Vector3(randomX, randomY, transform.position.z);
-                    print($"Setting {playerChoices[i].choiceDataType.ToString()} to {playerChoices[i].text}");
+                    print(
+                        $"PlayerChoiceDialogBubbles: Setting {playerChoices[i].choiceDataType.ToString()} to {playerChoices[i].text}");
                     bubble.GetComponent<PlayerInfoInput>().type = playerChoices[i].choiceDataType;
                     bubble.GetComponent<PlayerInfoInput>().option = playerChoices[i].choiceDataOption;
                     bubble.GetComponent<DialogBubbleBehavior>().text = playerChoices[i].text;
