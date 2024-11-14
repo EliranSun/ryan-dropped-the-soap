@@ -86,5 +86,7 @@
     CharacterCreatorNextSetOfObjects,
     CharacterCreatorHideObjects,
 
-    PlayerEnrichedChoice
+    PlayerEnrichedChoice,
+
+    ShapeClicked
 }

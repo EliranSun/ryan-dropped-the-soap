@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
-  m_Name: 32. how it makes us feel
+  m_Name: 40. async - Empty life
   m_EditorClassIdentifier: 
   playerName: 
   waitBeforeLine: 0
   mandatoryPlayerChoice: 1
   voicedLines:
-  - text: "Let\u2019s see exactly how it makes us feel - and where..."
-    clip: {fileID: 8300000, guid: f9312c7940715c44c9e0467aeb156b5b, type: 3}
+  - text: "Is this how {playerName} feels about his life? How sad\u2026"
+    clip: {fileID: 0}
     gender: 2
-  - text: "Let\u2019s see exactly how it makes us feel - and where..."
-    clip: {fileID: 8300000, guid: f9312c7940715c44c9e0467aeb156b5b, type: 3}
+  - text: "Is this how {playerName} feels about his life? How sad\u2026"
+    clip: {fileID: 0}
     gender: 1
   playerOptions: []
   playerReactions: []
-  nextDialogueLine: {fileID: 11400000, guid: 7d26637dbf33cab449ffa54a27c65a70, type: 2}
+  nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []
   objectReferringDialogLines: []
   wait: 5

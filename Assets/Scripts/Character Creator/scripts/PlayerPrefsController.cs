@@ -88,7 +88,10 @@ namespace Character_Creator.scripts
                 (value: playerInformation.door, index: 0),
                 (value: playerInformation.painting, index: 1),
                 (value: playerInformation.armchair, index: 2),
-                (value: playerInformation.shape, index: 3)
+                (value: playerInformation.shape, index: 3),
+                (value: playerInformation.vase, index: 4),
+                (value: playerInformation.dependent, index: 5),
+                (value: playerInformation.mirror, index: 6)
             };
 
             foreach (var (value, index) in objectIndexPairs)

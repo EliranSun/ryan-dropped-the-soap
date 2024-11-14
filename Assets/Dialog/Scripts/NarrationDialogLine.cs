@@ -55,7 +55,9 @@ namespace Dialog.Scripts
         Door,
         Vase,
         Armchair,
-        ApartmentDoorKnob
+        ApartmentDoorKnob,
+        Shape,
+        Dependent
     }
 
 
@@ -97,7 +99,16 @@ namespace Dialog.Scripts
         ChairJapanese,
         ChairGreek,
         ChairEgyptian,
-        ChairSameritan
+        ChairSameritan,
+
+        ShapeButt,
+        ShapeCleavage,
+        ShapePenis,
+        ShapeVagina,
+
+        DependentBaby,
+        DependentDog,
+        DependentCat
     }
 
     [Serializable]
