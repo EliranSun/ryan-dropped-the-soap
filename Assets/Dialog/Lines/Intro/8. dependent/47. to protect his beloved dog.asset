@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
+  m_Name: 47. to protect his beloved dog
+  m_EditorClassIdentifier: 
+  playerName: 
+  waitBeforeLine: 0
+  mandatoryPlayerChoice: 1
+  voicedLines:
+  - text: He would do that without even thinking twice. All - to protect his beloved
+      dog.
+    clip: {fileID: 8300000, guid: f8e2f7dd07aa0cc40acb1990737588f3, type: 3}
+    gender: 1
+  playerOptions: []
+  playerReactions: []
+  nextDialogueLine: {fileID: 11400000, guid: f7b61528759caa04b8dd1c910cc6d343, type: 2}
+  randomizedDialogLines: []
+  objectReferringDialogLines: []
+  wait: 0.5
+  actorName: 0
+  actionBeforeLine: 0
+  actionAfterLine: 0
