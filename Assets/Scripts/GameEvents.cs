@@ -88,5 +88,6 @@
 
     PlayerEnrichedChoice,
 
-    ShapeClicked
+    ShapeClicked,
+    DependentClicked,
 }

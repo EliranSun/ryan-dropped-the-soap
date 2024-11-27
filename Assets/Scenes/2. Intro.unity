@@ -156,7 +156,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BackGroundColor: {r: 0.14150941, g: 0.14150941, b: 0.14150941, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -347,6 +347,10 @@ MonoBehaviour:
     - {fileID: 876978905538646650, guid: e24ecf614d0623448b166a9368edb1a1, type: 3}
     - {fileID: 1901620507616430430, guid: ddfa2610f461a5142b643f85410b12c5, type: 3}
   - prefabs:
+    - {fileID: 8654214027851677684, guid: 041fdfd8d888047bab630663e69d3315, type: 3}
+    - {fileID: 6444145089173658393, guid: e262595eceabd4db2945175f11e0dcc2, type: 3}
+    - {fileID: 5486511535112031047, guid: 82cf5aea795074856bfa124d92532f7d, type: 3}
+  - prefabs:
     - {fileID: 364053030426377705, guid: 08b4185048bd83a4dacf9a2c9cc4e2a4, type: 3}
     - {fileID: 3503996871657521010, guid: 06f2a852c3c4c2044b22f5ee8f9da663, type: 3}
     - {fileID: 469618549399176623, guid: c1c3ee77783454f43972f77068aa9b9e, type: 3}
@@ -366,7 +370,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1849336435191607478, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: linesWithPlayerName.Array.size
-      value: 11
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 1849336435191607478, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: 'linesWithPlayerName.Array.data[1]'
@@ -411,7 +415,59 @@ PrefabInstance:
     - target: {fileID: 1849336435191607478, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: 'linesWithPlayerName.Array.data[11]'
       value: 
-      objectReference: {fileID: 11400000, guid: e9502b4e6a370224cbfc213a075a7893, type: 2}
+      objectReference: {fileID: 11400000, guid: 76886838d03fee544902928bb9f373d1, type: 2}
+    - target: {fileID: 1849336435191607478, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: 'linesWithPlayerName.Array.data[12]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 0e360949bfae8e74ea0a73702a07a110, type: 2}
+    - target: {fileID: 1849336435191607478, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: 'linesWithPlayerName.Array.data[13]'
+      value: 
+      objectReference: {fileID: 11400000, guid: fef6970c6a646c9499313b9060232234, type: 2}
+    - target: {fileID: 1849336435191607478, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: 'linesWithPlayerName.Array.data[14]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 4352a989b7e7c15448e3d960bda424d7, type: 2}
+    - target: {fileID: 1849336435191607478, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: 'linesWithPlayerName.Array.data[15]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 34e24b389c0906048b6cfd9cc3317012, type: 2}
+    - target: {fileID: 1849336435191607478, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: 'linesWithPlayerName.Array.data[16]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 833cd380f124e38439daf01738b1d77b, type: 2}
+    - target: {fileID: 1849336435191607478, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: 'linesWithPlayerName.Array.data[17]'
+      value: 
+      objectReference: {fileID: 11400000, guid: f7b61528759caa04b8dd1c910cc6d343, type: 2}
+    - target: {fileID: 1849336435191607478, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: 'linesWithPlayerName.Array.data[18]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 5ca003c6f3ceab245a1fe2780daf3ac0, type: 2}
+    - target: {fileID: 1849336435191607478, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: 'linesWithPlayerName.Array.data[19]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 6c5f5aa8ef72b024ab0e8607b50cbae7, type: 2}
+    - target: {fileID: 1849336435191607478, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: 'linesWithPlayerName.Array.data[20]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 86192c6dcf4862f4c8c9e35322ccb3f1, type: 2}
+    - target: {fileID: 1849336435191607478, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: 'linesWithPlayerName.Array.data[21]'
+      value: 
+      objectReference: {fileID: 11400000, guid: a085d77356e5a3548b85ad07e59ce86e, type: 2}
+    - target: {fileID: 1849336435191607478, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: 'linesWithPlayerName.Array.data[22]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 4ce61333449b40e45b886acf4d25e9ff, type: 2}
+    - target: {fileID: 1849336435191607478, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: 'linesWithPlayerName.Array.data[23]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 552058cfce9695546a21264e8a50e73d, type: 2}
+    - target: {fileID: 1849336435191607478, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: 'linesWithPlayerName.Array.data[24]'
+      value: 
+      objectReference: {fileID: 11400000, guid: aebe633464f54be49bc7dd6c34a9deb3, type: 2}
     - target: {fileID: 2598299574820255891, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: deletePlayerPrefs
       value: 0
@@ -422,7 +478,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 35d00293f0efec44db21ffde9ead0062, type: 2}
     - target: {fileID: 2598299574820255891, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: requiredStatesForScene.Array.size
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2598299574820255891, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: requiredStatesForScene.Array.data[0].dialogLineToPlay
@@ -457,6 +513,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 7d26637dbf33cab449ffa54a27c65a70, type: 2}
     - target: {fileID: 2598299574820255891, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: requiredStatesForScene.Array.data[8].dialogLineToPlay
+      value: 
+      objectReference: {fileID: 11400000, guid: d6308d847d8eb1e48b6d68d329edbeb1, type: 2}
+    - target: {fileID: 2598299574820255891, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: requiredStatesForScene.Array.data[0].missingPlayerData
       value: 3
       objectReference: {fileID: 0}
@@ -487,6 +547,10 @@ PrefabInstance:
     - target: {fileID: 2598299574820255891, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: requiredStatesForScene.Array.data[7].missingPlayerData
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2598299574820255891, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: requiredStatesForScene.Array.data[8].missingPlayerData
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3560832367629595899, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.size
