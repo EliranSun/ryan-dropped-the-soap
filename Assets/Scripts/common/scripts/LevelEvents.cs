@@ -20,10 +20,11 @@ namespace common.scripts
         [SerializeField] private float transitionDuration = 2f;
         [SerializeField] private TransitionalElement transitionOutElement;
         [SerializeField] private TransitionalElement transitionInElement;
-        [SerializeField]
-        
+        [SerializeField] private KillingDependents killingDependents;
+
         public void OnNotify(GameEventData eventData)
         {
+            print("LevelEvents OnNotify:  " + eventData);
             switch (eventData.name)
             {
                 case GameEvents.TriggerAlarmClockStop:
@@ -49,15 +50,16 @@ namespace common.scripts
                     StartCoroutine(FadeSprite(transitionInElement, true));
                     break;
 
-                    // case GameEvents.EnterHallway:
-                    // {
-                    //     var temp = transitionInElement;
-                    //     transitionOutElement = transitionInElement;
-                    //     transitionInElement = temp;
-                    //     break;
-                    // }
-                
+                // case GameEvents.EnterHallway:
+                // {
+                //     var temp = transitionInElement;
+                //     transitionOutElement = transitionInElement;
+                //     transitionInElement = temp;
+                //     break;
+                // }
+
                 case GameEvents.KillDependents:
+                    killingDependents.ActivateDependents();
                     break;
             }
         }
