@@ -343,6 +343,7 @@ namespace Character_Creator.scripts
                 case GameEvents.MirrorClicked:
                 case GameEvents.PaintingClicked:
                 case GameEvents.ShapeClicked:
+                case GameEvents.DependentClicked:
                     var interactionData = (InteractionData)gameEventData.data;
                     InteractionStateService.Instance.SetCurrentInteraction(interactionData);
                     TriggerLine(interactionData.DialogLine);

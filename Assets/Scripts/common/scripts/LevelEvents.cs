@@ -20,7 +20,8 @@ namespace common.scripts
         [SerializeField] private float transitionDuration = 2f;
         [SerializeField] private TransitionalElement transitionOutElement;
         [SerializeField] private TransitionalElement transitionInElement;
-
+        [SerializeField]
+        
         public void OnNotify(GameEventData eventData)
         {
             switch (eventData.name)
@@ -55,6 +56,9 @@ namespace common.scripts
                     //     transitionInElement = temp;
                     //     break;
                     // }
+                
+                case GameEvents.KillDependents:
+                    break;
             }
         }
 
