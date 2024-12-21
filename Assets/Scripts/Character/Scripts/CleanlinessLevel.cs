@@ -94,11 +94,12 @@ public class CleanlinessLevel : MonoBehaviour {
         )
             return;
 
-
-        dirtinessLevel -= 0.1f * faucetLevel / throttle;
-
+        dirtinessLevel -= 1.2f * faucetLevel / throttle;
         if (dirtinessLevel <= 0)
+        {
+            dirtinessLevel = 0;
             EventManager.Instance.Publish(GameEvents.IsClean);
+        }
     }
 
     private void UpdateText(float level) {
