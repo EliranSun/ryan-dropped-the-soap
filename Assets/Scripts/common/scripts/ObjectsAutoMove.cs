@@ -31,9 +31,9 @@ namespace common.scripts
         {
             var speed = this.speed switch
             {
-                Speed.Slow => 0.05f,
-                Speed.Medium => 0.1f,
-                Speed.Fast => 0.15f,
+                Speed.Slow => 0.01f,
+                Speed.Medium => 0.05f,
+                Speed.Fast => 0.1f,
                 _ => 0.1f
             };
 

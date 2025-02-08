@@ -18,46 +18,57 @@ namespace Character.Scripts
 
         private void Start()
         {
-            _headSpriteRenderer = headGameObject.GetComponent<SpriteRenderer>();
-            _hairSpriteRenderer = hairGameObject.GetComponent<SpriteRenderer>();
+            if (headGameObject) _headSpriteRenderer = headGameObject.GetComponent<SpriteRenderer>();
+            if (hairGameObject) _hairSpriteRenderer = hairGameObject.GetComponent<SpriteRenderer>();
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
         private void Update()
         {
+            HandleMovement();
+            HandleHeadAndHair();
+        }
+
+        private void HandleMovement()
+        {
             var horizontal = Input.GetAxis("Horizontal");
             _rigidbody2D.velocity = new Vector2(horizontal * speed, _rigidbody2D.velocity.y);
 
-            var oldHeadPosition = headGameObject.transform.localPosition;
-            var oldHairPosition = hairGameObject.transform.localPosition;
+            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+                _rigidbody2D.AddForce(Vector2.up * (speed * jumpForce), ForceMode2D.Impulse);
+        }
+
+        private void HandleHeadAndHair()
+        {
+            if (!headGameObject && !hairGameObject) return;
+
+            var horizontal = Input.GetAxis("Horizontal");
+            var oldHeadPosition = headGameObject ? headGameObject.transform.localPosition : Vector3.zero;
+            var oldHairPosition = hairGameObject ? hairGameObject.transform.localPosition : Vector3.zero;
 
             switch (horizontal)
             {
                 case > 0:
                     _spriteRenderer.flipX = false;
-                    oldHeadPosition.x = 0.3f;
-                    oldHairPosition.x = 0.3f;
+                    if (headGameObject) oldHeadPosition.x = 0.3f;
+                    if (hairGameObject) oldHairPosition.x = 0.3f;
                     break;
                 case < 0:
                     _spriteRenderer.flipX = true;
-                    oldHeadPosition.x = -0.3f;
-                    oldHairPosition.x = -0.3f;
+                    if (headGameObject) oldHeadPosition.x = -0.3f;
+                    if (hairGameObject) oldHairPosition.x = -0.3f;
                     break;
                 case 0:
-                    oldHeadPosition.x = 0;
-                    oldHairPosition.x = 0;
+                    if (headGameObject) oldHeadPosition.x = 0;
+                    if (hairGameObject) oldHairPosition.x = 0;
                     break;
             }
 
-
-            headGameObject.transform.localPosition = oldHeadPosition;
-            hairGameObject.transform.localPosition = oldHairPosition;
-            _headSpriteRenderer.flipX = _spriteRenderer.flipX;
-            _hairSpriteRenderer.flipX = _spriteRenderer.flipX;
-
-            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
-                _rigidbody2D.AddForce(Vector2.up * (speed * jumpForce), ForceMode2D.Impulse);
+            if (headGameObject) headGameObject.transform.localPosition = oldHeadPosition;
+            if (hairGameObject) hairGameObject.transform.localPosition = oldHairPosition;
+            if (headGameObject) _headSpriteRenderer.flipX = _spriteRenderer.flipX;
+            if (hairGameObject) _hairSpriteRenderer.flipX = _spriteRenderer.flipX;
         }
     }
 }
