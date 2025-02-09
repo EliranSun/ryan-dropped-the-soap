@@ -58,7 +58,10 @@ namespace Character_Creator.scripts
             if (playerName != "" && playerGender != CharacterType.None && !PrefetchDialogLines.Instance.isFetched)
                 yield return StartCoroutine(PrefetchDialogLines.Instance.FetchAndPopulatePlayerLines());
 
-            ReadCurrentLine();
+            if (_currentDialogue.waitBeforeLine > 0)
+                Invoke(nameof(ReadCurrentLine), _currentDialogue.waitBeforeLine);
+            else
+                ReadCurrentLine();
         }
 
         private void HandlePlayerNameLines()
@@ -108,7 +111,6 @@ namespace Character_Creator.scripts
                 _audioSource.clip = line.clip;
                 _audioSource.Play();
                 Notify(GameEvents.LineNarrationStart, _currentDialogue.actorName);
-                // PlayerPrefs.SetString("currentLine", _currentDialogue.actorName);
                 StartCoroutine(CheckAudioEnd());
             }
             else

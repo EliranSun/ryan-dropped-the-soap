@@ -97,7 +97,10 @@ namespace Character_Creator.scripts
             foreach (var (value, index) in objectIndexPairs)
             {
                 if (value != string.Empty) continue;
-                characterCreatorObjectsController.activePrefabsIndex = index;
+                if (characterCreatorObjectsController != null)
+                {
+                    characterCreatorObjectsController.activePrefabsIndex = index;
+                }
                 return;
             }
         }
