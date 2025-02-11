@@ -19,7 +19,25 @@ MonoBehaviour:
   - text: ...about you and me, and the world. The world we live in.
     clip: {fileID: 8300000, guid: 128825d111601e547a96dc69fded1d9e, type: 3}
     gender: 0
-  playerOptions: []
+  playerOptions:
+  - text: What?
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 0}
+    actionAfterPlayerChoice: 0
+  - text: Who?
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 0}
+    actionAfterPlayerChoice: 0
+  - text: Where?
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []

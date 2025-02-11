@@ -19,7 +19,7 @@ namespace Dialog.Scripts
                     return;
 
                 var playerOptionsValue = (PlayerChoice[])playerOptions.GetValue(gameEventData.data);
-                if (playerOptionsValue == null)
+                if (playerOptionsValue == null || playerOptionsValue.Length == 0)
                     return;
 
                 foreach (var option in playerOptionsValue)
@@ -39,11 +39,23 @@ namespace Dialog.Scripts
         {
             thoughtsBottomCollider.enabled = false;
             Invoke(nameof(RemoveSayings), 4f);
+            Invoke(nameof(RestartThoughtsBottomCollider), 1f);
         }
 
         public void RemoveSayings()
         {
             sayingsBottomCollider.enabled = false;
+            Invoke(nameof(RestartSayingBottomCollider), 1f);
+        }
+
+        private void RestartSayingBottomCollider()
+        {
+            sayingsBottomCollider.enabled = true;
+        }
+
+        private void RestartThoughtsBottomCollider()
+        {
+            thoughtsBottomCollider.enabled = true;
         }
 
         public void OnSpeak(string text, NarrationDialogLine nextLine)

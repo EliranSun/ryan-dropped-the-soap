@@ -33,7 +33,8 @@ namespace npc
 
         private void FixedUpdate()
         {
-            if (pointsOfInterest.Length == 0 || _currentPointOfInterestIndex >= pointsOfInterest.Length)
+            if (pointsOfInterest == null || pointsOfInterest.Length == 0 ||
+                _currentPointOfInterestIndex >= pointsOfInterest.Length)
                 return;
 
             var direction = (pointsOfInterest[0].transform.position - transform.position).normalized;
@@ -82,7 +83,7 @@ namespace npc
 
         private void SetNextPointOfInterest()
         {
-            if (pointsOfInterest.Length == 0) return;
+            if (pointsOfInterest == null || pointsOfInterest.Length == 0) return;
 
             _targetPosition = pointsOfInterest[_currentPointOfInterestIndex].position;
         }
