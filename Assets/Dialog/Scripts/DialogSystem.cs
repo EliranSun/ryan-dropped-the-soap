@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
+// old
 namespace Dialog.Scripts
 {
     [RequireComponent(typeof(AudioLowPassFilter))]

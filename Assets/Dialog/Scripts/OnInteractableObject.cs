@@ -24,7 +24,9 @@ namespace Character_Creator.scripts
         public readonly InteractableObjectType InteractableObjectType;
         public readonly string Name;
 
-        public InteractionData(string gameObjectName, InteractableObjectName interactableObjectName,
+        public InteractionData(
+            string gameObjectName,
+            InteractableObjectName interactableObjectName,
             InteractableObjectType type,
             NarrationDialogLine dialogLine)
         {

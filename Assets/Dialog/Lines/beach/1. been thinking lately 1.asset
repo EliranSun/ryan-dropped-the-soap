@@ -13,13 +13,31 @@ MonoBehaviour:
   m_Name: 1. been thinking lately 1
   m_EditorClassIdentifier: 
   playerName: 
-  waitBeforeLine: 12
+  waitBeforeLine: 1
   mandatoryPlayerChoice: 1
   voicedLines:
   - text: You know, I've been thinking lately...
     clip: {fileID: 8300000, guid: ada2567d4eb6ddb479937edece8079c1, type: 3}
     gender: 0
-  playerOptions: []
+  playerOptions:
+  - text: What?
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 57165ffa33aac314491abe09dc6f2263, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: Who?
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 57165ffa33aac314491abe09dc6f2263, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: Why?
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 57165ffa33aac314491abe09dc6f2263, type: 2}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 11400000, guid: 57165ffa33aac314491abe09dc6f2263, type: 2}
   randomizedDialogLines: []

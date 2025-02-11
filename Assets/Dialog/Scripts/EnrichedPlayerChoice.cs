@@ -1,4 +1,6 @@
-namespace Character_Creator.scripts
+using Character_Creator.scripts;
+
+namespace Dialog.Scripts
 {
     public class EnrichedPlayerChoice
     {

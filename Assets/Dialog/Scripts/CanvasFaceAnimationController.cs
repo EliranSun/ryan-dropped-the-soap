@@ -41,7 +41,12 @@ namespace Dialog.Scripts
                     break;
 
                 case GameEvents.LineNarrationEnd:
-                    if ((ActorName)gameEventData.data == actorName)
+                    var actorNameProperty = gameEventData.data.GetType().GetProperty("actorName");
+                    if (actorNameProperty == null)
+                        break;
+
+                    var dataActorName = (ActorName)actorNameProperty.GetValue(gameEventData.data);
+                    if (dataActorName == actorName)
                     {
                         _animator.SetBool(IsTalking, false);
                         Invoke(nameof(ClearImage), 2f);

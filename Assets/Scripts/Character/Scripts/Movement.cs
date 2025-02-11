@@ -33,7 +33,9 @@ namespace Character.Scripts
         private void HandleMovement()
         {
             var horizontal = Input.GetAxis("Horizontal");
-            // _rigidbody2D.velocity = new Vector2(horizontal * speed, _rigidbody2D.velocity.y);
+
+            if (horizontal != 0)
+                _rigidbody2D.velocity = new Vector2(horizontal * speed, _rigidbody2D.velocity.y);
 
             if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
                 _rigidbody2D.AddForce(Vector2.up * (speed * jumpForce), ForceMode2D.Impulse);

@@ -1,4 +1,4 @@
-using Character_Creator.scripts;
+using Dialog.Scripts;
 using UnityEngine;
 
 namespace Object.Scripts

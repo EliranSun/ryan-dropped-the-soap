@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Dialog.Scripts;
 using UnityEngine;
 using UnityEngine.UI;
 

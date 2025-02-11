@@ -144,17 +144,18 @@ namespace Character_Creator.scripts
 
         private void OnDialogEnd()
         {
-            Notify(GameEvents.LineNarrationEnd, _currentDialogue.actorName);
+            Notify(GameEvents.LineNarrationEnd, new
+            {
+                _currentDialogue.actorName,
+                _currentDialogue.playerOptions
+            });
             narratorText.text = "";
             HandlePlayerNameLines();
 
             if (_currentDialogue.playerOptions.Length > 0 && NoPlayerInputsExist())
-            {
-                GeneratePlayerInputs(_currentDialogue);
-
+                // GeneratePlayerInputs(_currentDialogue);
                 if (_currentDialogue.mandatoryPlayerChoice)
                     return;
-            }
 
             if (_currentDialogue.actionAfterLine != GameEvents.None)
                 TriggerAnAct(_currentDialogue.actionAfterLine);

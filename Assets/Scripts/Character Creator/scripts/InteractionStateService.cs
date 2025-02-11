@@ -1,19 +1,20 @@
-using Character_Creator.scripts;
-
-public class InteractionStateService
+namespace Character_Creator.scripts
 {
-    private static InteractionStateService _instance;
-
-    private InteractionData _currentInteraction;
-    public static InteractionStateService Instance => _instance ??= new InteractionStateService();
-
-    public void SetCurrentInteraction(InteractionData interaction)
+    public class InteractionStateService
     {
-        _currentInteraction = interaction;
-    }
+        private static InteractionStateService _instance;
 
-    public InteractionData GetCurrentInteraction()
-    {
-        return _currentInteraction;
+        private InteractionData _currentInteraction;
+        public static InteractionStateService Instance => _instance ??= new InteractionStateService();
+
+        public void SetCurrentInteraction(InteractionData interaction)
+        {
+            _currentInteraction = interaction;
+        }
+
+        public InteractionData GetCurrentInteraction()
+        {
+            return _currentInteraction;
+        }
     }
 }
