@@ -31,7 +31,7 @@ namespace common.scripts
             {
                 Force.Soft => 1f,
                 Force.Medium => 3f,
-                _ => 3f
+                _ => 5f
             };
             _directionValue = direction switch
             {

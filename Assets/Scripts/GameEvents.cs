@@ -90,6 +90,8 @@
 
     ShapeClicked,
     DependentClicked,
-    
+
     KillDependents,
+
+    CharlotteBeachDialogStart
 }
