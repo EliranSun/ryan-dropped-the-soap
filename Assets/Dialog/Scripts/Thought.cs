@@ -27,14 +27,7 @@ namespace Dialog.Scripts
 
         private void Speak()
         {
-            _thoughtsManager.RemoveThoughts();
             _thoughtsManager.OnSpeak(textContainer.text, _nextLine);
-            Invoke(nameof(RemoveSaying), 4);
-        }
-
-        public void RemoveSaying()
-        {
-            _thoughtsManager.RemoveSayings();
         }
 
         public void SetThought(string newText)

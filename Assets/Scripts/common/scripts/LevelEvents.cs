@@ -16,7 +16,7 @@ namespace common.scripts
     {
         [SerializeField] private Transform player;
         [SerializeField] private Transform charlotte;
-        [SerializeField] private Transform ship;
+        [SerializeField] private GameObject ship;
         [SerializeField] private Camera mainCamera;
         [SerializeField] private Light2D globalLight;
         [SerializeField] private float transitionDuration = 2f;
@@ -64,8 +64,15 @@ namespace common.scripts
                         ship.transform.position.x - 1,
                         ship.transform.position.y + 1
                     );
+
+                    Invoke(nameof(PushShip), 5f);
                     break;
             }
+        }
+
+        private void PushShip()
+        {
+            ship.GetComponent<Rigidbody2D>().AddForce(new Vector2(100, 0), ForceMode2D.Impulse);
         }
 
         private IEnumerator FadeSprite(TransitionalElement transitionalElement, bool fadeIn)

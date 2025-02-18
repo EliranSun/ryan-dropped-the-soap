@@ -95,5 +95,8 @@
 
     CharlotteBeachDialogStart,
     CharlotteBeachDialogEnd,
-    ClearDialogImageOverlay
+    ClearDialogImageOverlay,
+
+    ClearThoughts,
+    Speak
 }

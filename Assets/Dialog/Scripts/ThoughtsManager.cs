@@ -9,6 +9,8 @@ namespace Dialog.Scripts
         [SerializeField] private GameObject thoughtPrefab;
         [SerializeField] private Collider2D thoughtsBottomCollider;
         [SerializeField] private Collider2D sayingsBottomCollider;
+        private string _choice;
+        private NarrationDialogLine _nextLine;
 
         public void OnNotify(GameEventData gameEventData)
         {
@@ -30,20 +32,31 @@ namespace Dialog.Scripts
                     thought.GetComponent<Thought>().SetThought(option.text);
                     thought.GetComponent<Thought>().SetNextLine(option.next);
                 }
-
-                Invoke(nameof(RemoveThoughts), 10f);
             }
+
+            if (gameEventData.name == GameEvents.ClearThoughts) RemoveThoughts();
+            if (gameEventData.name == GameEvents.Speak) Speak();
         }
 
-        public void RemoveThoughts()
+        private void RemoveThoughts()
         {
             thoughtsBottomCollider.enabled = false;
-            Invoke(nameof(RemoveSayings), 4f);
+            Invoke(nameof(Speak), 4f);
             Invoke(nameof(RestartThoughtsBottomCollider), 1f);
         }
 
-        public void RemoveSayings()
+        public void Speak()
         {
+            var choice = new EnrichedPlayerChoice(
+                _choice,
+                new InteractionData(
+                    gameObject.name,
+                    InteractableObjectName.Unknown,
+                    InteractableObjectType.Unknown,
+                    _nextLine
+                ));
+
+            Notify(GameEvents.PlayerClickOnChoice, choice);
             sayingsBottomCollider.enabled = false;
             Invoke(nameof(RestartSayingBottomCollider), 1f);
         }
@@ -60,16 +73,8 @@ namespace Dialog.Scripts
 
         public void OnSpeak(string text, NarrationDialogLine nextLine)
         {
-            var choice = new EnrichedPlayerChoice(
-                text,
-                new InteractionData(
-                    gameObject.name,
-                    InteractableObjectName.Unknown,
-                    InteractableObjectType.Unknown,
-                    nextLine
-                ));
-
-            Notify(GameEvents.PlayerClickOnChoice, choice);
+            _choice += text;
+            _nextLine = nextLine;
         }
     }
 }
