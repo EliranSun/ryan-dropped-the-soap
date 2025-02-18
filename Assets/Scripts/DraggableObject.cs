@@ -40,6 +40,7 @@ public class DraggableObject : ObserverSubject
     private void OnMouseDown()
     {
         print("MOUSE DOWN");
+        _rigidbody2D.velocity = Vector2.zero;
         _isDragging = true;
     }
 

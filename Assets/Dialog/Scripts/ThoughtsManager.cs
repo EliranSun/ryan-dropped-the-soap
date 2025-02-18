@@ -47,6 +47,8 @@ namespace Dialog.Scripts
 
         public void Speak()
         {
+            if (string.IsNullOrEmpty(_choice)) return;
+
             var choice = new EnrichedPlayerChoice(
                 _choice,
                 new InteractionData(
@@ -58,6 +60,7 @@ namespace Dialog.Scripts
 
             Notify(GameEvents.PlayerClickOnChoice, choice);
             sayingsBottomCollider.enabled = false;
+            _choice = "";
             Invoke(nameof(RestartSayingBottomCollider), 1f);
         }
 
