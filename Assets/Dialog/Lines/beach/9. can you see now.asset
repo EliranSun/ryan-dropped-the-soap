@@ -13,36 +13,37 @@ MonoBehaviour:
   m_Name: 9. can you see now
   m_EditorClassIdentifier: 
   playerName: 
-  waitBeforeLine: 8
+  waitBeforeLine: 0
   mandatoryPlayerChoice: 1
+  overlayImageSprite: {fileID: 0}
   voicedLines:
-  - text: Poor thing. can you see now? can you tell?
-    clip: {fileID: 8300000, guid: 128825d111601e547a96dc69fded1d9e, type: 3}
+  - text: Can you see now? can you tell?
+    clip: {fileID: 8300000, guid: 7debe432e382039468bdd52fdce78687, type: 3}
     gender: 0
   playerOptions:
-  - text: WHAT?
+  - text: WHAT
     type: 0
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 0}
+    next: {fileID: 11400000, guid: cbcabc92ca81d8745b64e25c0effa916, type: 2}
     actionAfterPlayerChoice: 0
   - text: NO
     type: 0
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 0}
+    next: {fileID: 11400000, guid: a4bd9787fed839e43ae2b0c128354fa7, type: 2}
     actionAfterPlayerChoice: 0
   - text: YES
     type: 0
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 0}
+    next: {fileID: 11400000, guid: 46fdb26653c3a5846aba34f1c6282b6a, type: 2}
     actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []
   objectReferringDialogLines: []
-  wait: 0
+  wait: 2
   actorName: 1
   actionBeforeLine: 0
   actionAfterLine: 0

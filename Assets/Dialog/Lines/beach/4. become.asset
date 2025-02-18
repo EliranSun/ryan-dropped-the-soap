@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 4. become
   m_EditorClassIdentifier: 
   playerName: 
-  waitBeforeLine: 8
+  waitBeforeLine: 0
   mandatoryPlayerChoice: 1
   voicedLines:
   - text: What you've become.
@@ -21,10 +21,10 @@ MonoBehaviour:
     gender: 0
   playerOptions: []
   playerReactions: []
-  nextDialogueLine: {fileID: 0}
+  nextDialogueLine: {fileID: 11400000, guid: 0297b2ec84e2d8e458fb0bca49aaa62d, type: 2}
   randomizedDialogLines: []
   objectReferringDialogLines: []
-  wait: 0
+  wait: 3
   actorName: 1
   actionBeforeLine: 0
   actionAfterLine: 0

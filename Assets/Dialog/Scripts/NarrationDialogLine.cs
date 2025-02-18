@@ -130,12 +130,16 @@ namespace Dialog.Scripts
         public string playerName;
         public float waitBeforeLine;
         public bool mandatoryPlayerChoice = true;
+
+        public Sprite overlayImageSprite;
+
         public VoicedLine[] voicedLines;
         public PlayerChoice[] playerOptions;
         public PlayerReactions[] playerReactions;
         public NarrationDialogLine nextDialogueLine;
         public NarrationDialogLine[] randomizedDialogLines;
         public ObjectReferringLine[] objectReferringDialogLines;
+
         public float wait = 0.5f;
         public ActorName actorName;
         public GameEvents actionBeforeLine;

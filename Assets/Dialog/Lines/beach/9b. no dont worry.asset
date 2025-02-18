@@ -10,21 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
-  m_Name: 5. dont worry
+  m_Name: 9b. no dont worry
   m_EditorClassIdentifier: 
   playerName: 
   waitBeforeLine: 0
   mandatoryPlayerChoice: 1
+  overlayImageSprite: {fileID: 0}
   voicedLines:
-  - text: Don't worry. we'll fix it. We'll fix you... and then we'll fix me.
-    clip: {fileID: 8300000, guid: 2529e30f29d57084ebd34c12692b1a30, type: 3}
+  - text: No? Well, don't worry. That's why I am here.
+    clip: {fileID: 8300000, guid: dd51ea52b03614a49be0d10cbfdb00a4, type: 3}
     gender: 0
   playerOptions: []
   playerReactions: []
-  nextDialogueLine: {fileID: 11400000, guid: 6de0a581c6af2744f920a246f7de7f6f, type: 2}
+  nextDialogueLine: {fileID: 11400000, guid: 95b87a0467413254b9d94a2a778244f3, type: 2}
   randomizedDialogLines: []
   objectReferringDialogLines: []
-  wait: 3
+  wait: 0
   actorName: 1
   actionBeforeLine: 0
   actionAfterLine: 0

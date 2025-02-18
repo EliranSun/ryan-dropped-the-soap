@@ -13,13 +13,25 @@ MonoBehaviour:
   m_Name: 7. have a look
   m_EditorClassIdentifier: 
   playerName: 
-  waitBeforeLine: 8
+  waitBeforeLine: 0
   mandatoryPlayerChoice: 1
   voicedLines:
-  - text: Let me have a look at you...
-    clip: {fileID: 8300000, guid: 128825d111601e547a96dc69fded1d9e, type: 3}
+  - text: Here, Let me have a look at you... is that OK?
+    clip: {fileID: 8300000, guid: 611884615f2b5064abbc9d1755810297, type: 3}
     gender: 0
-  playerOptions: []
+  playerOptions:
+  - text: YES
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 7c48a14de88bd1942b2f7918b652f367, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: NO
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 7c48a14de88bd1942b2f7918b652f367, type: 2}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []

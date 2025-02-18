@@ -24,6 +24,7 @@ namespace Character_Creator.scripts
         [SerializeField] private EventToDialogMap eventToDialogMap;
         [SerializeField] private AudioSource soundEffectsAudioSource;
         [SerializeField] private EventToSound eventToSound;
+        [SerializeField] private SpriteRenderer overlayImage;
 
         private bool _asyncLinesReady;
         private AudioSource _audioSource;
@@ -106,6 +107,13 @@ namespace Character_Creator.scripts
                 .Replace("{playerName}", PlayerData.GetPlayerName())
                 .Replace("{partnerName}", PlayerData.GetPartnerName());
 
+            if (_currentDialogue.overlayImageSprite)
+            {
+                print("Fading image");
+                overlayImage.sprite = _currentDialogue.overlayImageSprite;
+                StartCoroutine(FadeOverlayImage());
+            }
+
             if (line.clip)
             {
                 _audioSource.clip = line.clip;
@@ -149,8 +157,15 @@ namespace Character_Creator.scripts
                 _currentDialogue.actorName,
                 _currentDialogue.playerOptions
             });
+
             narratorText.text = "";
             HandlePlayerNameLines();
+
+            // if (_currentDialogue.overlayImageSprite && overlayImage)
+            // {
+            //     overlayImage.color = Color.clear;
+            //     overlayImage.sprite = null;
+            // }
 
             if (_currentDialogue.playerOptions.Length > 0 && NoPlayerInputsExist())
                 // GeneratePlayerInputs(_currentDialogue);
@@ -263,6 +278,10 @@ namespace Character_Creator.scripts
                     break;
 
                 case GameEvents.None:
+                    break;
+
+                case GameEvents.ClearDialogImageOverlay:
+                    StartCoroutine(FadeOverlayImage());
                     break;
 
                 default:
@@ -398,6 +417,30 @@ namespace Character_Creator.scripts
         public void UpdateDialogState(NarrationDialogLine nextLineObject)
         {
             _currentDialogue = nextLineObject;
+        }
+
+        private IEnumerator FadeOverlayImage()
+        {
+            var fadeIn = overlayImage.color.a == 0;
+
+            var startAlpha = fadeIn ? 0f : 1f;
+            var endAlpha = fadeIn ? 1f : 0f;
+            var elapsedTime = 0f;
+            var transitionDuration = 1f;
+
+            while (elapsedTime < transitionDuration)
+            {
+                elapsedTime += Time.deltaTime;
+                var alpha = Mathf.Lerp(startAlpha, endAlpha, elapsedTime / transitionDuration);
+                overlayImage.color = new Color(255, 255, 255, alpha);
+                yield return null;
+            }
+
+            // // Ensure we end at exactly the target value
+            // shadeSpriteRenderer.color = new Color(0, 0, 0, endAlpha);
+            // containerSpriteRenderer.sortingOrder = fadeIn ? 3 : 7;
+            //
+            yield return new WaitForSeconds(1);
         }
     }
 }

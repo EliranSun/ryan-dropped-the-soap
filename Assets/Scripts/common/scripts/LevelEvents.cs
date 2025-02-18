@@ -15,6 +15,8 @@ namespace common.scripts
     public sealed class LevelEvents : MonoBehaviour
     {
         [SerializeField] private Transform player;
+        [SerializeField] private Transform charlotte;
+        [SerializeField] private Transform ship;
         [SerializeField] private Camera mainCamera;
         [SerializeField] private Light2D globalLight;
         [SerializeField] private float transitionDuration = 2f;
@@ -24,7 +26,6 @@ namespace common.scripts
 
         public void OnNotify(GameEventData eventData)
         {
-            print("LevelEvents OnNotify:  " + eventData);
             switch (eventData.name)
             {
                 case GameEvents.TriggerAlarmClockStop:
@@ -50,16 +51,19 @@ namespace common.scripts
                     StartCoroutine(FadeSprite(transitionInElement, true));
                     break;
 
-                // case GameEvents.EnterHallway:
-                // {
-                //     var temp = transitionInElement;
-                //     transitionOutElement = transitionInElement;
-                //     transitionInElement = temp;
-                //     break;
-                // }
-
                 case GameEvents.KillDependents:
                     killingDependents.ActivateDependents();
+                    break;
+
+                case GameEvents.CharlotteBeachDialogEnd:
+                    charlotte.transform.position = new Vector2(
+                        ship.transform.position.x,
+                        ship.transform.position.y + 1
+                    );
+                    player.transform.position = new Vector2(
+                        ship.transform.position.x - 1,
+                        ship.transform.position.y + 1
+                    );
                     break;
             }
         }

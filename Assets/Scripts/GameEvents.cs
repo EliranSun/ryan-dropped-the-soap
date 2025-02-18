@@ -93,5 +93,7 @@
 
     KillDependents,
 
-    CharlotteBeachDialogStart
+    CharlotteBeachDialogStart,
+    CharlotteBeachDialogEnd,
+    ClearDialogImageOverlay
 }

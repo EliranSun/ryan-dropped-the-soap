@@ -13,36 +13,19 @@ MonoBehaviour:
   m_Name: 8. Poor thing
   m_EditorClassIdentifier: 
   playerName: 
-  waitBeforeLine: 8
+  waitBeforeLine: 0
   mandatoryPlayerChoice: 1
+  overlayImageSprite: {fileID: 21300000, guid: be5143be490daef4ca09657b61982384, type: 3}
   voicedLines:
-  - text: Poor thing. can you see now? can you tell?
-    clip: {fileID: 8300000, guid: 128825d111601e547a96dc69fded1d9e, type: 3}
+  - text: Oh... poor thing.
+    clip: {fileID: 8300000, guid: 9fe06d4d9ebb38740a54b5a5e02799dd, type: 3}
     gender: 0
-  playerOptions:
-  - text: WHAT?
-    type: 0
-    choiceDataType: 0
-    choiceDataOption: 0
-    next: {fileID: 0}
-    actionAfterPlayerChoice: 0
-  - text: NO
-    type: 0
-    choiceDataType: 0
-    choiceDataOption: 0
-    next: {fileID: 0}
-    actionAfterPlayerChoice: 0
-  - text: YES
-    type: 0
-    choiceDataType: 0
-    choiceDataOption: 0
-    next: {fileID: 0}
-    actionAfterPlayerChoice: 0
+  playerOptions: []
   playerReactions: []
-  nextDialogueLine: {fileID: 0}
+  nextDialogueLine: {fileID: 11400000, guid: bc889322859a9d44a9dbe9dd84ce3de0, type: 2}
   randomizedDialogLines: []
   objectReferringDialogLines: []
-  wait: 0
+  wait: 1
   actorName: 1
   actionBeforeLine: 0
   actionAfterLine: 0
