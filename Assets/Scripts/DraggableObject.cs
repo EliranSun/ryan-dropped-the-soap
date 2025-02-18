@@ -23,8 +23,8 @@ public class DraggableObject : ObserverSubject
             var mousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = 0f; // Ensure we only work with 2D coordinates
 
-            _rigidbody2D.MovePosition(mousePosition);
-            // transform.position = mousePosition;
+            // _rigidbody2D.MovePosition(mousePosition);
+            transform.position = mousePosition;
         }
     }
 

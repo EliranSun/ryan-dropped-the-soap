@@ -76,9 +76,11 @@ namespace Character_Creator.scripts
             if (gameEventData.name != GameEvents.PlayerEnrichedChoice)
                 return;
 
-            var playerData = (InteractionData)gameEventData.data;
-            PlayerPrefs.SetString(playerData.InteractableObjectType.ToString(),
-                playerData.InteractableObjectName.ToString());
+            var data = (object[])gameEventData.data;
+            var key = data[1].ToString(); // Assuming the second element is the PlayerDataType
+            var value = data[0].ToString(); // Assuming the first element is the Choice
+
+            PlayerPrefs.SetString(key, value);
         }
 
         private void SetCharacterCreatorObjectsIndex()
@@ -91,16 +93,14 @@ namespace Character_Creator.scripts
                 (value: playerInformation.shape, index: 3), // partner
                 (value: playerInformation.vase, index: 4),
                 (value: playerInformation.dependent, index: 5),
-                (value: playerInformation.mirror, index: 6),
+                (value: playerInformation.mirror, index: 6)
             };
 
             foreach (var (value, index) in objectIndexPairs)
             {
                 if (value != string.Empty) continue;
                 if (characterCreatorObjectsController != null)
-                {
                     characterCreatorObjectsController.activePrefabsIndex = index;
-                }
                 return;
             }
         }

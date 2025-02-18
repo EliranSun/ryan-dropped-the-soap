@@ -7,9 +7,12 @@ namespace Dialog.Scripts
     {
         [SerializeField] private GameObject thoughtsContainer;
         [SerializeField] private GameObject thoughtPrefab;
-        [SerializeField] private Collider2D thoughtsBottomCollider;
-        [SerializeField] private Collider2D sayingsBottomCollider;
+        [SerializeField] private GameObject thoughtsBottom;
+        [SerializeField] private GameObject sayingsBottom;
         private string _choice;
+        private bool _isSayingsEnabled = true;
+        private bool _isThoughtsEnabled = true;
+        private PlayerDataEnum _lastPlayerDataType;
         private NarrationDialogLine _nextLine;
 
         public void OnNotify(GameEventData gameEventData)
@@ -28,26 +31,43 @@ namespace Dialog.Scripts
                 {
                     var randomHeight = Random.Range(0, 5);
                     var thought = Instantiate(thoughtPrefab, thoughtsContainer.transform);
+
+                    if (option.text.Length <= 1)
+                    {
+                        var localScale = thought.transform.localScale;
+                        localScale.x *= 1f / 3f;
+                        thought.transform.localScale = localScale;
+                    }
+
                     thought.transform.position += new Vector3(0, randomHeight, 0);
-                    thought.GetComponent<Thought>().SetThought(option.text);
-                    thought.GetComponent<Thought>().SetNextLine(option.next);
+
+                    var thoughtComponent = thought.GetComponent<Thought>();
+                    thoughtComponent.SetThought(option.text);
+                    thoughtComponent.SetNextLine(option.next);
+                    thoughtComponent.SetChoicePlayerDataType(option.choiceDataType);
                 }
             }
 
-            if (gameEventData.name == GameEvents.ClearThoughts) RemoveThoughts();
-            if (gameEventData.name == GameEvents.Speak) Speak();
+            if (gameEventData.name == GameEvents.ClearThoughts)
+            {
+                if (_isThoughtsEnabled) DisableThoughts();
+                else EnableThoughts();
+            }
+
+            if (gameEventData.name == GameEvents.Speak)
+            {
+                if (_isSayingsEnabled) Speak();
+                else EnableSayings();
+            }
         }
 
-        private void RemoveThoughts()
+        private void Speak()
         {
-            thoughtsBottomCollider.enabled = false;
-            Invoke(nameof(Speak), 4f);
-            Invoke(nameof(RestartThoughtsBottomCollider), 1f);
-        }
-
-        public void Speak()
-        {
-            if (string.IsNullOrEmpty(_choice)) return;
+            if (string.IsNullOrEmpty(_choice) || !_nextLine)
+            {
+                print("No choice given or no next line provided");
+                return;
+            }
 
             var choice = new EnrichedPlayerChoice(
                 _choice,
@@ -56,28 +76,50 @@ namespace Dialog.Scripts
                     InteractableObjectName.Unknown,
                     InteractableObjectType.Unknown,
                     _nextLine
-                ));
+                ),
+                _lastPlayerDataType
+            );
 
             Notify(GameEvents.PlayerClickOnChoice, choice);
-            sayingsBottomCollider.enabled = false;
+            DisableSayings();
+
             _choice = "";
-            Invoke(nameof(RestartSayingBottomCollider), 1f);
+            // Invoke(nameof(RestartSayingBottomCollider), 1f);
         }
 
-        private void RestartSayingBottomCollider()
+        private void DisableSayings()
         {
-            sayingsBottomCollider.enabled = true;
+            sayingsBottom.GetComponent<Collider2D>().isTrigger = true;
+            sayingsBottom.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+            _isSayingsEnabled = false;
         }
 
-        private void RestartThoughtsBottomCollider()
+        private void EnableSayings()
         {
-            thoughtsBottomCollider.enabled = true;
+            sayingsBottom.GetComponent<Collider2D>().isTrigger = false;
+            sayingsBottom.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 1);
+            _isSayingsEnabled = true;
         }
 
-        public void OnSpeak(string text, NarrationDialogLine nextLine)
+        private void DisableThoughts()
+        {
+            thoughtsBottom.GetComponent<Collider2D>().isTrigger = true;
+            thoughtsBottom.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+            _isThoughtsEnabled = false;
+        }
+
+        private void EnableThoughts()
+        {
+            thoughtsBottom.GetComponent<Collider2D>().isTrigger = false;
+            thoughtsBottom.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 1);
+            _isThoughtsEnabled = true;
+        }
+
+        public void OnSpeak(string text, NarrationDialogLine nextLine, PlayerDataEnum lastPlayerDataType)
         {
             _choice += text;
             _nextLine = nextLine;
+            _lastPlayerDataType = lastPlayerDataType;
         }
     }
 }

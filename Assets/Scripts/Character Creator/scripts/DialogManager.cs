@@ -70,7 +70,8 @@ namespace Character_Creator.scripts
             var playerName = PlayerData.GetPlayerName();
             var playerGender = PlayerData.GetPlayerGender();
 
-            if (playerName != "" && playerGender != CharacterType.None && !PrefetchDialogLines.Instance.isFetched)
+            // playerGender != CharacterType.None
+            if (playerName != "" && !PrefetchDialogLines.Instance.isFetched)
                 StartCoroutine(PrefetchDialogLines.Instance.FetchAndPopulatePlayerLines());
         }
 
@@ -300,14 +301,14 @@ namespace Character_Creator.scripts
             ReadCurrentLine();
         }
 
-        private void OnPlayerChoiceButtonClick(string buttonText)
+        private void OnPlayerChoiceButtonClick(string buttonText, NarrationDialogLine nextLine)
         {
             StopAllCoroutines();
             _audioSource.Stop();
 
             // the same text rendered via the node - so comparison is safe
-            var nextLine = _currentDialogue.playerOptions
-                .First(option => option.text == buttonText).next;
+            // var nextLine = _currentDialogue.playerOptions
+            //     .First(option => option.text == buttonText).next;
 
             UpdateDialogState(nextLine);
             HandlePlayerNameLines();
@@ -342,20 +343,24 @@ namespace Character_Creator.scripts
 
                 case GameEvents.PlayerClickOnChoice:
                     var choiceData = (EnrichedPlayerChoice)gameEventData.data;
-                    if (choiceData.Choice == "YES")
+                    if (choiceData.PlayerDataType == PlayerDataEnum.Name)
                         try
                         {
                             // The state is already saved, just trigger the appropriate event
-                            var interactionType = choiceData.OriginalInteraction.InteractableObjectType;
+                            // var interactionType = choiceData.OriginalInteraction.InteractableObjectType;
                             // var eventName = GetEventNameForInteractionType(interactionType);
-                            Notify(GameEvents.PlayerEnrichedChoice, choiceData.OriginalInteraction);
+                            Notify(GameEvents.PlayerEnrichedChoice, new object[]
+                            {
+                                choiceData.Choice,
+                                choiceData.PlayerDataType
+                            });
                         }
                         catch (NullReferenceException error)
                         {
                             print(error);
                         }
 
-                    OnPlayerChoiceButtonClick(choiceData.Choice);
+                    OnPlayerChoiceButtonClick(choiceData.OriginalInteraction.DialogLine);
                     break;
 
                 case GameEvents.ClickOnNpc:

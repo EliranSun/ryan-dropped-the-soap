@@ -55,8 +55,12 @@ namespace Character_Creator.scripts
             print("FetchAndPopulatePlayerLines SUCCESS - API ended");
         }
 
-        private IEnumerator ConvertAndPopulateLine(NarrationDialogLine dialogLine, CharacterType characterType,
-            string playerName, string partnerName)
+        private IEnumerator ConvertAndPopulateLine(
+            NarrationDialogLine dialogLine,
+            CharacterType characterType,
+            string playerName,
+            string partnerName
+        )
         {
             var line = GetLineByGender(dialogLine, characterType);
             var textWithNames = line.text
