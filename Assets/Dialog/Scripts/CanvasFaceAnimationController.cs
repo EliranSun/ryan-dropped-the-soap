@@ -9,7 +9,6 @@ namespace Dialog.Scripts
         Charlotte
     }
 
-
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(Image))]
     public class CanvasFaceAnimationController : MonoBehaviour

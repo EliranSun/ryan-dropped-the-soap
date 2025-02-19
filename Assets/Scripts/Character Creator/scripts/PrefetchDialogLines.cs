@@ -67,7 +67,13 @@ namespace Character_Creator.scripts
                 .Replace("{playerName}", playerName)
                 .Replace("{partnerName}", partnerName);
 
-            yield return _textToSpeechUtil.ConvertText(textWithNames, characterType, playerName, partnerName);
+            yield return _textToSpeechUtil.ConvertText(
+                textWithNames,
+                characterType,
+                playerName,
+                partnerName,
+                dialogLine.actorName
+            );
 
             dialogLine.playerName = playerName;
             line.clip = VoiceAPI.PlayerNameAudioClip;

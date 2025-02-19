@@ -169,12 +169,16 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 6293c6d0cded78d498e422bfad2673b1, type: 3}
     - target: {fileID: 1849336435191607478, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: linesWithPlayerName.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1849336435191607478, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: 'linesWithPlayerName.Array.data[0]'
       value: 
       objectReference: {fileID: 11400000, guid: f9a00aabc72094146be775bbc57c155f, type: 2}
+    - target: {fileID: 1849336435191607478, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: 'linesWithPlayerName.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 567911f93e79f1447b6dde45af237974, type: 2}
     - target: {fileID: 2598299574820255891, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: deletePlayerPrefs
       value: 1
@@ -182,7 +186,19 @@ PrefabInstance:
     - target: {fileID: 2598299574820255891, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: finalState.dialogLineToPlay
       value: 
-      objectReference: {fileID: 11400000, guid: 4c1c5b6bae8b0cb4eb85239f90c09661, type: 2}
+      objectReference: {fileID: 11400000, guid: f9a00aabc72094146be775bbc57c155f, type: 2}
+    - target: {fileID: 2598299574820255891, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: requiredStatesForScene.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2598299574820255891, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: requiredStatesForScene.Array.data[0].dialogLineToPlay
+      value: 
+      objectReference: {fileID: 11400000, guid: 8dd73387196b71c4e958160488aad7fa, type: 2}
+    - target: {fileID: 2598299574820255891, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: requiredStatesForScene.Array.data[0].missingPlayerData
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2849331599432670816, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: m_SizeDelta.x
       value: 26

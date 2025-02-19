@@ -23,6 +23,12 @@ MonoBehaviour:
   playerOptions:
   - text: A
     type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: f9a00aabc72094146be775bbc57c155f, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: A
+    type: 0
     choiceDataType: 1
     choiceDataOption: 0
     next: {fileID: 11400000, guid: f9a00aabc72094146be775bbc57c155f, type: 2}
@@ -30,6 +36,12 @@ MonoBehaviour:
   - text: B
     type: 0
     choiceDataType: 1
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: f9a00aabc72094146be775bbc57c155f, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: A
+    type: 0
+    choiceDataType: 0
     choiceDataOption: 0
     next: {fileID: 11400000, guid: f9a00aabc72094146be775bbc57c155f, type: 2}
     actionAfterPlayerChoice: 0
@@ -65,6 +77,12 @@ MonoBehaviour:
     actionAfterPlayerChoice: 0
   - text: H
     type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: f9a00aabc72094146be775bbc57c155f, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: H
+    type: 0
     choiceDataType: 1
     choiceDataOption: 0
     next: {fileID: 11400000, guid: f9a00aabc72094146be775bbc57c155f, type: 2}
@@ -72,6 +90,24 @@ MonoBehaviour:
   - text: I
     type: 0
     choiceDataType: 1
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: f9a00aabc72094146be775bbc57c155f, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: O
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: f9a00aabc72094146be775bbc57c155f, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: U
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: f9a00aabc72094146be775bbc57c155f, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: I
+    type: 0
+    choiceDataType: 0
     choiceDataOption: 0
     next: {fileID: 11400000, guid: f9a00aabc72094146be775bbc57c155f, type: 2}
     actionAfterPlayerChoice: 0
@@ -189,5 +225,5 @@ MonoBehaviour:
   objectReferringDialogLines: []
   wait: 0
   actorName: 1
-  actionBeforeLine: 73
-  actionAfterLine: 74
+  actionBeforeLine: 0
+  actionAfterLine: 0

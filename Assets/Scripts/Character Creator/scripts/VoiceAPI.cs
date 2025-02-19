@@ -11,10 +11,10 @@ namespace Character_Creator.scripts
         public static AudioClip PlayerNameAudioClip { get; private set; }
 
         public static IEnumerator VoiceGetRequest(string text, CharacterType gender, string playerName,
-            string partnerName)
+            string partnerName, ActorName actorName = ActorName.None)
         {
             var url =
-                $"https://walak.vercel.app/voice?name={playerName}&gender={gender}&text={text}&partner={partnerName}";
+                $"https://walak.vercel.app/voice?name={playerName}&gender={gender}&actorName={actorName}&text={text}&partner={partnerName}";
             Debug.Log($"@ VoiceGetRequest URL {url}");
 
             using var webRequest = UnityWebRequestMultimedia.GetAudioClip(url, AudioType.MPEG);

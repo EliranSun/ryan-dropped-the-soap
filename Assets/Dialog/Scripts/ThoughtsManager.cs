@@ -120,6 +120,8 @@ namespace Dialog.Scripts
             _choice += text;
             _nextLine = nextLine;
             _lastPlayerDataType = lastPlayerDataType;
+
+            print("OnSpeak:" + _choice);
         }
     }
 }

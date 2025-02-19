@@ -65,6 +65,23 @@ namespace Character_Creator.scripts
                 ReadCurrentLine();
         }
 
+        private IEnumerator HandlePlayerNameLines(Action onComplete)
+        {
+            var playerName = PlayerData.GetPlayerName();
+            var playerGender = PlayerData.GetPlayerGender();
+
+            print(
+                $"Checking if player name is empty {playerName != ""} and if dialog lines are fetched {PrefetchDialogLines.Instance.isFetched}");
+            if (playerName != "" && !PrefetchDialogLines.Instance.isFetched)
+            {
+                print($"fetching dialog lines for player name {playerName}");
+                yield return StartCoroutine(PrefetchDialogLines.Instance.FetchAndPopulatePlayerLines());
+            }
+
+            print($"invoking onComplete for player name {playerName}");
+            onComplete?.Invoke();
+        }
+
         private void HandlePlayerNameLines()
         {
             var playerName = PlayerData.GetPlayerName();
@@ -90,6 +107,7 @@ namespace Character_Creator.scripts
 
         private void ReadCurrentLine()
         {
+            print($"Reading current line for {_currentDialogue.voicedLines.First().text}");
             if (!_currentDialogue)
                 return;
 
@@ -297,22 +315,17 @@ namespace Character_Creator.scripts
                 Destroy(input);
 
             UpdateDialogState(nextLine);
-            HandlePlayerNameLines();
-            ReadCurrentLine();
-        }
 
-        private void OnPlayerChoiceButtonClick(string buttonText, NarrationDialogLine nextLine)
-        {
-            StopAllCoroutines();
-            _audioSource.Stop();
-
-            // the same text rendered via the node - so comparison is safe
-            // var nextLine = _currentDialogue.playerOptions
-            //     .First(option => option.text == buttonText).next;
-
-            UpdateDialogState(nextLine);
-            HandlePlayerNameLines();
-            ReadCurrentLine();
+            if (nextLine.voicedLines.First().text.Contains("{playerName}"))
+            {
+                print("Line contains {playerName}, starting coroutine");
+                StartCoroutine(HandlePlayerNameLines(ReadCurrentLine));
+            }
+            else
+            {
+                HandlePlayerNameLines();
+                ReadCurrentLine();
+            }
         }
 
         public void OnNotify(GameEventData gameEventData)

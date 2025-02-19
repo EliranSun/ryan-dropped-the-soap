@@ -21,7 +21,6 @@ namespace Dialog.Scripts
             if (other.gameObject.CompareTag("Saying box") && !_spokeMind)
             {
                 _spokeMind = true;
-                print("SPOKE HIS MIND!");
                 Invoke(nameof(Speak), 1);
             }
         }

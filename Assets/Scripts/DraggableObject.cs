@@ -39,14 +39,12 @@ public class DraggableObject : ObserverSubject
 
     private void OnMouseDown()
     {
-        print("MOUSE DOWN");
         _rigidbody2D.velocity = Vector2.zero;
         _isDragging = true;
     }
 
     private void OnMouseUp()
     {
-        print("MOUSE UP");
         _isDragging = false;
     }
 
