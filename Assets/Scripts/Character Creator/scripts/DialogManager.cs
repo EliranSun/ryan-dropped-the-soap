@@ -47,8 +47,8 @@ namespace Character_Creator.scripts
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space)) OnFastForwardDialogHold();
-            if (Input.GetKeyUp(KeyCode.Space)) OnFastForwardDialogRelease();
+            if (Input.GetKeyDown(KeyCode.Space)) FastForwardDialog();
+            if (Input.GetKeyUp(KeyCode.Space)) NormalSpeedDialog();
         }
 
         private IEnumerator HandlePlayerNameLinesAndStartRead()
@@ -56,13 +56,11 @@ namespace Character_Creator.scripts
             var playerName = PlayerData.GetPlayerName();
             var playerGender = PlayerData.GetPlayerGender();
 
-            if (playerName != "" && playerGender != CharacterType.None && !PrefetchDialogLines.Instance.isFetched)
+            // playerGender != CharacterType.None
+            if (playerName != "" && !PrefetchDialogLines.Instance.isFetched)
                 yield return StartCoroutine(PrefetchDialogLines.Instance.FetchAndPopulatePlayerLines());
 
-            if (_currentDialogue.waitBeforeLine > 0)
-                Invoke(nameof(ReadCurrentLine), _currentDialogue.waitBeforeLine);
-            else
-                ReadCurrentLine();
+            Invoke(nameof(ReadCurrentLine), _currentDialogue.waitBeforeLine);
         }
 
         private IEnumerator HandlePlayerNameLines(Action onComplete)
@@ -419,12 +417,12 @@ namespace Character_Creator.scripts
                 ReadCurrentLine();
         }
 
-        public void OnFastForwardDialogHold()
+        private void FastForwardDialog()
         {
             _audioSource.pitch = 2;
         }
 
-        public void OnFastForwardDialogRelease()
+        public void NormalSpeedDialog()
         {
             _audioSource.pitch = 1;
             _audioSource.clip = null;

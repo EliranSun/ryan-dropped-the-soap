@@ -17,6 +17,8 @@ namespace common.scripts
         [SerializeField] private Transform player;
         [SerializeField] private Transform charlotte;
         [SerializeField] private GameObject ship;
+        [SerializeField] private Transform insideSewerPosition;
+        [SerializeField] private Transform nearShipPosition;
         [SerializeField] private Camera mainCamera;
         [SerializeField] private Light2D globalLight;
         [SerializeField] private float transitionDuration = 2f;
@@ -53,6 +55,17 @@ namespace common.scripts
 
                 case GameEvents.KillDependents:
                     killingDependents.ActivateDependents();
+                    break;
+
+                case GameEvents.CharlotteBeachDialogStart:
+                    charlotte.transform.position = new Vector2(
+                        nearShipPosition.position.x,
+                        nearShipPosition.position.y
+                    );
+                    player.transform.position = new Vector2(
+                        insideSewerPosition.position.x,
+                        insideSewerPosition.position.y
+                    );
                     break;
 
                 case GameEvents.CharlotteBeachDialogEnd:
