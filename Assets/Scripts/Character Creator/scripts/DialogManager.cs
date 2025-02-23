@@ -178,11 +178,11 @@ namespace Character_Creator.scripts
             narratorText.text = "";
             HandlePlayerNameLines();
 
-            // if (_currentDialogue.overlayImageSprite && overlayImage)
-            // {
-            //     overlayImage.color = Color.clear;
-            //     overlayImage.sprite = null;
-            // }
+            if (_currentDialogue.overlayImageSprite && overlayImage)
+            {
+                overlayImage.color = Color.clear;
+                overlayImage.sprite = null;
+            }
 
             if (_currentDialogue.playerOptions.Length > 0 && NoPlayerInputsExist())
                 // GeneratePlayerInputs(_currentDialogue);

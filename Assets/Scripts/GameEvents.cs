@@ -93,10 +93,13 @@
 
     KillDependents,
 
+    CharlotteBeachDialogInit,
     CharlotteBeachDialogStart,
     CharlotteBeachDialogEnd,
     ClearDialogImageOverlay,
 
     ClearThoughts,
-    Speak
+    Speak,
+
+    BoatStart
 }

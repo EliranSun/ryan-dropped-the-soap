@@ -12,7 +12,7 @@ namespace common.scripts
         [SerializeField] public GameObject elementShade;
     }
 
-    public sealed class LevelEvents : MonoBehaviour
+    public sealed class LevelEvents : ObserverSubject
     {
         [SerializeField] private Transform player;
         [SerializeField] private Transform charlotte;
@@ -57,13 +57,13 @@ namespace common.scripts
                     killingDependents.ActivateDependents();
                     break;
 
-                case GameEvents.CharlotteBeachDialogStart:
+                case GameEvents.CharlotteBeachDialogInit:
                     charlotte.transform.position = new Vector2(
                         nearShipPosition.position.x,
                         nearShipPosition.position.y
                     );
                     player.transform.position = new Vector2(
-                        insideSewerPosition.position.x,
+                        insideSewerPosition.position.x + 1f,
                         insideSewerPosition.position.y
                     );
                     break;
@@ -85,7 +85,8 @@ namespace common.scripts
 
         private void PushShip()
         {
-            ship.GetComponent<Rigidbody2D>().AddForce(new Vector2(100, 0), ForceMode2D.Impulse);
+            ship.GetComponent<Rigidbody2D>().AddForce(new Vector2(20, 0), ForceMode2D.Impulse);
+            Notify(GameEvents.BoatStart);
         }
 
         private IEnumerator FadeSprite(TransitionalElement transitionalElement, bool fadeIn)

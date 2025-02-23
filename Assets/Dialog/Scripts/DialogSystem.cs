@@ -114,6 +114,7 @@ namespace Dialog.Scripts
             _audioSource.Stop();
             StopAllCoroutines();
             UpdateDialogState(line);
+            
             // TODO: action before line should occur before waitBeforeLine
             Invoke(nameof(ReadCurrentLine), line.waitBeforeLine);
         }
