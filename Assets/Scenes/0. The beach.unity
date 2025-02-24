@@ -253,7 +253,7 @@ PrefabInstance:
       objectReference: {fileID: 1368301669}
     - target: {fileID: 2954467284234610200, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2954467284234610200, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -264,7 +264,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 869308068}
     - target: {fileID: 2954467284234610200, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1943593847}
+    - target: {fileID: 2954467284234610200, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954467284234610200, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2954467284234610200, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
@@ -272,11 +280,23 @@ PrefabInstance:
       value: OnNotify
       objectReference: {fileID: 0}
     - target: {fileID: 2954467284234610200, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: OnNotify
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954467284234610200, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Object.Scripts.BoatController, ObjectScriptAssembly
       objectReference: {fileID: 0}
     - target: {fileID: 2954467284234610200, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Character.Scripts.Movement, RyanAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954467284234610200, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954467284234610200, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2968641989831547413, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
@@ -479,6 +499,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4371016708318843730, guid: e353ef99cd15a914d936e254978559b3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850179438922891831, guid: e353ef99cd15a914d936e254978559b3, type: 3}
+      propertyPath: isRigidBodyMovement
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6850179438922891831, guid: e353ef99cd15a914d936e254978559b3, type: 3}
@@ -2115,8 +2139,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 869308065}
-  - component: {fileID: 869308066}
-  - component: {fileID: 869308067}
   - component: {fileID: 869308068}
   m_Layer: 0
   m_Name: "\u26F5 BOAT"
@@ -2144,44 +2166,6 @@ Transform:
   - {fileID: 1809150843}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &869308066
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 869308064}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 10
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!247 &869308067
-ConstantForce2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 869308064}
-  m_Enabled: 1
-  m_Force: {x: 15, y: 0}
-  m_RelativeForce: {x: 0, y: 0}
-  m_Torque: 0
 --- !u!114 &869308068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2194,6 +2178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d51c1cad57e3e4259b336226a5b4b86e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0.3
 --- !u!1 &968395088
 GameObject:
   m_ObjectHideFlags: 0
@@ -4187,8 +4172,8 @@ Transform:
   m_GameObject: {fileID: 1646446171}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 102.4112, y: -31.8346, z: 0}
-  m_LocalScale: {x: 126.2718, y: 57.43101, z: 24.06}
+  m_LocalPosition: {x: 98.0344, y: -31.8346, z: 0}
+  m_LocalScale: {x: 859.72906, y: 57.43101, z: 24.06}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 324049838}
@@ -4235,7 +4220,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.3137255, g: 0.6901961, b: 0.7960785, a: 1}
   m_FlipX: 0
@@ -4275,7 +4260,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 197.4, y: -40, z: 0.014677481}
-  m_LocalScale: {x: 187.72575, y: 26.1, z: 1}
+  m_LocalScale: {x: 762.63586, y: 26.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 533662543}
@@ -5953,6 +5938,8 @@ MonoBehaviour:
   headGameObject: {fileID: 0}
   hairGameObject: {fileID: 0}
   jumpForce: 0
+  isRigidBodyMovement: 0
+  boatController: {fileID: 869308068}
 --- !u!1001 &1961195827
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6680,8 +6667,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 1908759365}
   - {fileID: 1943593843}
-  - {fileID: 869308065}
   - {fileID: 20231979}
+  - {fileID: 869308065}
   - {fileID: 1439661024}
   - {fileID: 10596974}
   - {fileID: 324049838}

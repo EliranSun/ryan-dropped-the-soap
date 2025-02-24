@@ -14,6 +14,8 @@ namespace npc
         [SerializeField] private Transform playerTransform;
         [SerializeField] private float jumpForce = 20f;
         [SerializeField] private float distanceToPlayer = 4f;
+        [SerializeField] private bool isRigidBodyMovement = true;
+
         private Animator _animator;
         private int _currentPointOfInterestIndex;
         private bool _isJumping;
@@ -37,9 +39,7 @@ namespace npc
                 _currentPointOfInterestIndex >= pointsOfInterest.Length)
                 return;
 
-            var direction = (pointsOfInterest[0].transform.position - transform.position).normalized;
             var distance = Vector2.Distance(transform.position, pointsOfInterest[0].transform.position);
-            var distanceFromPlayer = Vector2.Distance(transform.position, playerTransform.position);
 
             // print($"distance: {distance}, distanceFromPlayer: {distanceFromPlayer}");
 
@@ -60,18 +60,7 @@ namespace npc
                 _animator.SetBool(IsWalking, true);
             }
 
-            _spriteRenderer.flipX = direction.x > 0;
-            _rigidBody2D.velocityX = direction.x * speed;
-
-            if (_isWalking && !_isJumping && Mathf.Abs(distanceFromPlayer) < distanceToPlayer)
-            {
-                // avoid player by jumping over them.
-                // of course the optimal solution would be to prevent collision,
-                // but this solution might be more fun.
-                _rigidBody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-                _isJumping = true;
-            }
-
+            HandleMovement();
             // SetNextPointOfInterest();
             // _currentPointOfInterestIndex = (_currentPointOfInterestIndex + 1) % pointsOfInterest.Length;
         }
@@ -86,6 +75,37 @@ namespace npc
             if (pointsOfInterest == null || pointsOfInterest.Length == 0) return;
 
             _targetPosition = pointsOfInterest[_currentPointOfInterestIndex].position;
+        }
+
+        private void HandleMovement()
+        {
+            var direction = (pointsOfInterest[0].transform.position - transform.position).normalized;
+            var distanceFromPlayer = Vector2.Distance(transform.position, playerTransform.position);
+
+            if (isRigidBodyMovement)
+                RigidBodyMovement(direction, distanceFromPlayer);
+            else
+                CharacterControllerMovement(direction, distanceFromPlayer);
+        }
+
+        private void RigidBodyMovement(Vector2 direction, float distanceFromPlayer)
+        {
+            _spriteRenderer.flipX = direction.x > 0;
+            _rigidBody2D.velocityX = direction.x * speed;
+
+            if (_isWalking && !_isJumping && Mathf.Abs(distanceFromPlayer) < distanceToPlayer)
+            {
+                // avoid player by jumping over them.
+                // of course the optimal solution would be to prevent collision,
+                // but this solution might be more fun.
+                _rigidBody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                _isJumping = true;
+            }
+        }
+
+        private void CharacterControllerMovement(Vector2 direction, float distanceFromPlayer)
+        {
+            transform.Translate(new Vector3(direction.x, 0, 0) * (speed * Time.deltaTime));
         }
     }
 }

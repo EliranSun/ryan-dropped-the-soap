@@ -1,3 +1,4 @@
+using Object.Scripts;
 using UnityEngine;
 
 namespace Character.Scripts
@@ -10,8 +11,13 @@ namespace Character.Scripts
         [SerializeField] private GameObject headGameObject;
         [SerializeField] private GameObject hairGameObject;
         [SerializeField] private float jumpForce = 20f;
+        [SerializeField] private bool isRigidBodyMovement = true;
+        [SerializeField] private BoatController boatController;
+
         private SpriteRenderer _hairSpriteRenderer;
         private SpriteRenderer _headSpriteRenderer;
+
+        private bool _isOnBoat;
 
         private Rigidbody2D _rigidbody2D;
         private SpriteRenderer _spriteRenderer;
@@ -26,11 +32,29 @@ namespace Character.Scripts
 
         private void Update()
         {
-            HandleMovement();
+            if (isRigidBodyMovement)
+                RigidBodyMovement();
+            else
+                CharacterControllerMovement();
+
             HandleHeadAndHair();
+
+            if (_isOnBoat)
+            {
+                if (isRigidBodyMovement)
+                {
+                    _rigidbody2D.velocity = new Vector2(boatController.speed, _rigidbody2D.velocity.y);
+                }
+                else
+                {
+                    var translate = new Vector3(boatController.speed, 0, 0) * Time.deltaTime;
+                    transform.Translate(translate);
+                }
+                return;
+            }
         }
 
-        private void HandleMovement()
+        private void RigidBodyMovement()
         {
             var horizontal = Input.GetAxis("Horizontal");
 
@@ -39,6 +63,12 @@ namespace Character.Scripts
 
             if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
                 _rigidbody2D.AddForce(Vector2.up * (speed * jumpForce), ForceMode2D.Impulse);
+        }
+
+        private void CharacterControllerMovement()
+        {
+            var horizontal = Input.GetAxis("Horizontal");
+            transform.Translate(new Vector3(horizontal, 0, 0) * (speed * Time.deltaTime));
         }
 
         private void HandleHeadAndHair()
@@ -71,6 +101,12 @@ namespace Character.Scripts
             if (hairGameObject) hairGameObject.transform.localPosition = oldHairPosition;
             if (headGameObject) _headSpriteRenderer.flipX = _spriteRenderer.flipX;
             if (hairGameObject) _hairSpriteRenderer.flipX = _spriteRenderer.flipX;
+        }
+
+        public void OnNotify(GameEventData gameEvent)
+        {
+            if (gameEvent.name == GameEvents.BoatStart)
+                _isOnBoat = true;
         }
     }
 }

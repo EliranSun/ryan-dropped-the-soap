@@ -69,13 +69,13 @@ namespace common.scripts
                     break;
 
                 case GameEvents.CharlotteBeachDialogEnd:
-                    charlotte.transform.position = new Vector2(
-                        ship.transform.position.x,
-                        ship.transform.position.y + 1
-                    );
+                    // charlotte.transform.position = new Vector2(
+                    //     ship.transform.position.x,
+                    //     ship.transform.position.y + 1
+                    // );
                     player.transform.position = new Vector2(
-                        ship.transform.position.x - 1,
-                        ship.transform.position.y + 1
+                        ship.transform.position.x - 4,
+                        ship.transform.position.y
                     );
 
                     Invoke(nameof(PushShip), 5f);
@@ -85,7 +85,7 @@ namespace common.scripts
 
         private void PushShip()
         {
-            ship.GetComponent<Rigidbody2D>().AddForce(new Vector2(20, 0), ForceMode2D.Impulse);
+            // ship.GetComponent<Rigidbody2D>().AddForce(new Vector2(20, 0), ForceMode2D.Impulse);
             Notify(GameEvents.BoatStart);
         }
 
