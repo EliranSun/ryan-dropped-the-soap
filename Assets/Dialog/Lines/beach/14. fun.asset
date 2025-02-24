@@ -10,22 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
-  m_Name: 13. a game
+  m_Name: 14. fun
   m_EditorClassIdentifier: 
   playerName: N
   waitBeforeLine: 0
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
   voicedLines:
-  - text: Oh wait, I know! Let us play a little game.
-    clip: {fileID: 8300000, guid: 15985fcfd069da8429b1958d2a7f4ca7, type: 3}
+  - text: 'It''ll be fun, you''ll see! In this game I''ll describe to you a couple
+      of... let''s call them scenarious. '
+    clip: {fileID: 8300000, guid: 52ca83ca54af44f54b90049ab6b506cc, type: 3}
     gender: 0
   playerOptions: []
   playerReactions: []
-  nextDialogueLine: {fileID: 11400000, guid: 337a74b8e2d884abca83fe61892ff71e, type: 2}
+  nextDialogueLine: {fileID: 11400000, guid: 07bf0881dfc54430fa6c1df230e3b957, type: 2}
   randomizedDialogLines: []
   objectReferringDialogLines: []
-  wait: 2
+  wait: 0.5
   actorName: 1
   actionBeforeLine: 0
   actionAfterLine: 0

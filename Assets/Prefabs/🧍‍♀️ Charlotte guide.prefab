@@ -199,12 +199,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  pointsOfInterest:
-  - {fileID: 0}
+  pointsOfInterest: []
   distanceToChangePoint: 10
   playerTransform: {fileID: 0}
   jumpForce: 65
   distanceToPlayer: 4
+  isRigidBodyMovement: 1
 --- !u!114 &7795751477906700509
 MonoBehaviour:
   m_ObjectHideFlags: 0

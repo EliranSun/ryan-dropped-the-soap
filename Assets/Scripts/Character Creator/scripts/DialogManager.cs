@@ -425,9 +425,9 @@ namespace Character_Creator.scripts
         public void NormalSpeedDialog()
         {
             _audioSource.pitch = 1;
-            _audioSource.clip = null;
-            StopAllCoroutines();
-            OnDialogEnd();
+            // _audioSource.clip = null;
+            // StopAllCoroutines();
+            // OnDialogEnd();
         }
 
         public void UpdateDialogState(NarrationDialogLine nextLineObject)
