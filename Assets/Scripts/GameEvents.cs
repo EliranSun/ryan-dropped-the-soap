@@ -101,5 +101,7 @@
     ClearThoughts,
     Speak,
 
-    BoatStart
+    BoatStart,
+
+    AddThoughts
 }

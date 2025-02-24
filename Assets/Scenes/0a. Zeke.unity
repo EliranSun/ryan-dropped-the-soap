@@ -155,6 +155,17 @@ Transform:
   - {fileID: 1020736242}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &175271479 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7925401932596224289, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+  m_PrefabInstance: {fileID: 548751242}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0256d2e8fe0b0b54db12c2355ab42295, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &206534853
 GameObject:
   m_ObjectHideFlags: 0
@@ -446,6 +457,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1849336435191607478, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: linesWithPlayerName.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2239556681016677361, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2598299574820255891, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: finalState.dialogLineToPlay
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3560832367629595899, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3560832367629595899, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 175271479}
+    - target: {fileID: 3560832367629595899, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Dialog.Scripts.CanvasFaceAnimationController, DialogAssembly
+      objectReference: {fileID: 0}
     - target: {fileID: 5765371805613449602, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -512,8 +547,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 586389661}
+  - component: {fileID: 586389662}
   m_Layer: 0
-  m_Name: Flirt mini game
+  m_Name: "\U0001F92D Flirt mini game"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -534,6 +570,45 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &586389662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 586389660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4544cba04d0a94c4d91b4b1257bdb84a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1117182689}
+        m_TargetAssemblyTypeName: Dialog.Scripts.ThoughtsManager, DialogAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  characterImageContainer: {fileID: 0}
+  backgroundRenderer: {fileID: 0}
+  inGameTrigger: {fileID: 0}
+  characterSpritesEmotion:
+  - sprite: {fileID: 21300000, guid: 4cfc18f4575ea4a5f9e6fba2512a6ade, type: 3}
+    emotion: 3
+  - sprite: {fileID: 21300000, guid: ce63cd04014f64739916933145f2b420, type: 3}
+    emotion: 2
+  - sprite: {fileID: 21300000, guid: 3d8d949700e0e49ce9711b9804d8fb65, type: 3}
+    emotion: 1
+  - sprite: {fileID: 21300000, guid: a6c03e25b90e345e6a88178bf3dec0fd, type: 3}
+    emotion: 0
 --- !u!1 &617536041
 GameObject:
   m_ObjectHideFlags: 0
@@ -1543,6 +1618,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 8bbc861aaaf38418e867160e512aba4d, type: 3}
+--- !u!114 &1117182689 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4398517611734436644, guid: 8bbc861aaaf38418e867160e512aba4d, type: 3}
+  m_PrefabInstance: {fileID: 1117182688}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cee83121ef43a9f45a1405ca658e4240, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1123042830
 GameObject:
   m_ObjectHideFlags: 0

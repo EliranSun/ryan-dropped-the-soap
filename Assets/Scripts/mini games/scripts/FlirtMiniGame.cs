@@ -1,18 +1,49 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using Dialog.Scripts;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class FlirtMiniGame : MonoBehaviour
+namespace mini_games.scripts
 {
-    // Start is called before the first frame update
-    void Start()
+    [Serializable]
+    internal enum Emotion
     {
-        
+        Neutral,
+        Happy,
+        Excited,
+        Disgusted
     }
 
-    // Update is called once per frame
-    void Update()
+    [Serializable]
+    internal class SpriteEmotion
     {
-        
+        public Sprite sprite;
+        public Emotion emotion;
+    }
+
+    [Serializable]
+    internal class Thought
+    {
+        public PlayerChoice[] playerOptions;
+    }
+
+    public class FlirtMiniGame : ObserverSubject
+    {
+        [SerializeField] private Image characterImageContainer;
+        [SerializeField] private SpriteRenderer backgroundRenderer;
+        [SerializeField] private GameObject inGameTrigger;
+        [SerializeField] private SpriteEmotion[] characterSpritesEmotion;
+
+        private void Start()
+        {
+            Notify(GameEvents.AddThoughts, new Thought
+            {
+                playerOptions = new[]
+                {
+                    new PlayerChoice("HI"),
+                    new PlayerChoice("BYE")
+                }
+            });
+        }
     }
 }

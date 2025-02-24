@@ -17,7 +17,7 @@ namespace Dialog.Scripts
 
         public void OnNotify(GameEventData gameEventData)
         {
-            if (gameEventData.name == GameEvents.LineNarrationEnd)
+            if (gameEventData.name is GameEvents.LineNarrationEnd or GameEvents.AddThoughts)
             {
                 var playerOptions = gameEventData.data.GetType().GetProperty("playerOptions");
                 if (playerOptions == null)

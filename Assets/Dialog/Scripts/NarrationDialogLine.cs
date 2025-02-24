@@ -19,6 +19,12 @@ namespace Dialog.Scripts
         public PlayerDataOption choiceDataOption;
         public NarrationDialogLine next;
         public GameEvents actionAfterPlayerChoice;
+
+        public PlayerChoice(string text)
+        {
+            this.text = text;
+            type = ChoiceType.Button;
+        }
     }
 
     [Serializable]
