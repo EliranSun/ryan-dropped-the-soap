@@ -34,7 +34,7 @@ namespace Elevator.scripts
 
         public void OnNotify(GameEventData eventData)
         {
-            switch (eventData.name)
+            switch (eventData.Name)
             {
                 case GameEvents.ElevatorMoving:
                     _isElevatorReachedFloor = false;

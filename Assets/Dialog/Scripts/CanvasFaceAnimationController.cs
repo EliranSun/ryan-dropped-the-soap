@@ -28,10 +28,10 @@ namespace Dialog.Scripts
 
         public void OnNotify(GameEventData gameEventData)
         {
-            switch (gameEventData.name)
+            switch (gameEventData.Name)
             {
                 case GameEvents.LineNarrationStart:
-                    if ((ActorName)gameEventData.data == actorName)
+                    if ((ActorName)gameEventData.Data == actorName)
                     {
                         _animator.SetBool(IsTalking, true);
                         _image.color = Color.white;
@@ -40,11 +40,11 @@ namespace Dialog.Scripts
                     break;
 
                 case GameEvents.LineNarrationEnd:
-                    var actorNameProperty = gameEventData.data.GetType().GetProperty("actorName");
+                    var actorNameProperty = gameEventData.Data.GetType().GetProperty("actorName");
                     if (actorNameProperty == null)
                         break;
 
-                    var dataActorName = (ActorName)actorNameProperty.GetValue(gameEventData.data);
+                    var dataActorName = (ActorName)actorNameProperty.GetValue(gameEventData.Data);
                     if (dataActorName == actorName)
                     {
                         _animator.SetBool(IsTalking, false);

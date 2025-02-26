@@ -12,19 +12,19 @@ namespace Elevator.scripts
 
         public void OnNotify(GameEventData eventData)
         {
-            if (eventData.name == GameEvents.FloorChange)
+            if (eventData.Name == GameEvents.FloorChange)
             {
                 // suppose to happen once before floors update, then for every floor change
                 print("Floor Change event - Current floor number: " + _currentFloorNumber);
-                _currentFloorNumber = (int)eventData.data;
+                _currentFloorNumber = (int)eventData.Data;
                 FindAndHighlightCurrentFloorButtons();
             }
 
-            if (eventData.name == GameEvents.FloorsUpdate)
+            if (eventData.Name == GameEvents.FloorsUpdate)
             {
-                print(eventData.data);
+                print(eventData.Data);
 
-                if (eventData.data is not FloorsData floorsData)
+                if (eventData.Data is not FloorsData floorsData)
                 {
                     print("Data is not FloorsData");
                     return;

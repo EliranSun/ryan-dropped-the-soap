@@ -33,7 +33,7 @@ namespace Elevator.scripts
 
         public void OnNotify(GameEventData eventData)
         {
-            if (eventData.name == GameEvents.ElevatorMoving)
+            if (eventData.Name == GameEvents.ElevatorMoving)
             {
                 _isElevatorMoving = true;
                 var newPosition = transform.position;

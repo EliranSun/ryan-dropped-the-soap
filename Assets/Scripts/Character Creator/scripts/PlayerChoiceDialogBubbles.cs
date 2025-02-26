@@ -48,10 +48,10 @@ namespace Dialog.Scripts
 
         public void OnNotify(GameEventData gameEventData)
         {
-            if (gameEventData.name != GameEvents.PlayerChoice)
+            if (gameEventData.Name != GameEvents.PlayerChoice)
                 return;
 
-            var playerChoices = (PlayerChoice[])gameEventData.data;
+            var playerChoices = (PlayerChoice[])gameEventData.Data;
 
             for (var i = 0; i < playerChoices.Length; i++)
             {

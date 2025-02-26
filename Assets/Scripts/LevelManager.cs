@@ -21,7 +21,7 @@ public class LevelManager : MonoBehaviour
 
     public void OnNotify(GameEventData eventData)
     {
-        switch (eventData.name)
+        switch (eventData.Name)
         {
             case GameEvents.FaucetOpening:
                 _isFaucetClosed = false;

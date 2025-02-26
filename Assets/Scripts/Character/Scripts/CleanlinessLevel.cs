@@ -4,19 +4,22 @@ using TMPro;
 using UnityEngine;
 
 [Serializable]
-public enum PositionName {
+public enum PositionName
+{
     None,
     InShower,
     OutOfShower
 }
 
 [Serializable]
-public class Position {
+public class Position
+{
     public PositionName name;
     public Transform transform;
 }
 
-public class CleanlinessLevel : MonoBehaviour {
+public class CleanlinessLevel : MonoBehaviour
+{
     [SerializeField] private TextMeshProUGUI cleanlinessLevelText;
     [SerializeField] private TextMeshProUGUI soapinessLevelText;
     [SerializeField] private int faucetLevel;
@@ -24,8 +27,10 @@ public class CleanlinessLevel : MonoBehaviour {
     [SerializeField] private bool isSoapIncluded;
     private float _soapinessLevel;
 
-    private void Start() {
-        if (isSoapIncluded) {
+    private void Start()
+    {
+        if (isSoapIncluded)
+        {
             dirtinessLevel = 0;
             faucetLevel = 2;
         }
@@ -33,9 +38,12 @@ public class CleanlinessLevel : MonoBehaviour {
         UpdateText(dirtinessLevel);
     }
 
-    public void OnNotify(GameEventData gameEventData) {
-        switch (gameEventData.name) {
-            case GameEvents.IsScrubbing: {
+    public void OnNotify(GameEventData gameEventData)
+    {
+        switch (gameEventData.Name)
+        {
+            case GameEvents.IsScrubbing:
+            {
                 var playerState = GetPlayerState();
                 var throttle = playerState == StateName.Showering ? 1 : 3;
 
@@ -62,14 +70,17 @@ public class CleanlinessLevel : MonoBehaviour {
         }
     }
 
-    private void HandleSoapLevel(StateName playerState, float throttle) {
-        if (CursorManager.Instance.IsSoapCursor) {
+    private void HandleSoapLevel(StateName playerState, float throttle)
+    {
+        if (CursorManager.Instance.IsSoapCursor)
+        {
             if (playerState == StateName.Dressed)
                 return;
             _soapinessLevel += 5 * Time.deltaTime;
         }
 
-        if (CursorManager.Instance.IsScrubbingCursor && _soapinessLevel > 0) {
+        if (CursorManager.Instance.IsScrubbingCursor && _soapinessLevel > 0)
+        {
             _soapinessLevel -= 0.1f * faucetLevel / throttle;
             dirtinessLevel += 0.1f * faucetLevel / throttle;
             print("" +
@@ -85,7 +96,8 @@ public class CleanlinessLevel : MonoBehaviour {
             EventManager.Instance.Publish(GameEvents.IsClean);
     }
 
-    private void HandleSpongeScrub(StateName playerState, float throttle) {
+    private void HandleSpongeScrub(StateName playerState, float throttle)
+    {
         if (
             !CursorManager.Instance.IsScrubbingCursor ||
             !GameState.IsPlayerInShower ||
@@ -102,13 +114,15 @@ public class CleanlinessLevel : MonoBehaviour {
         }
     }
 
-    private void UpdateText(float level) {
+    private void UpdateText(float level)
+    {
         cleanlinessLevelText.text = isSoapIncluded
             ? $"{Mathf.Round(level)}% Clean"
             : $"{Mathf.Round(level)}% Dirty";
     }
 
-    private StateName GetPlayerState() {
+    private StateName GetPlayerState()
+    {
         return PlayerChangeState.Instance.currentState;
     }
 }

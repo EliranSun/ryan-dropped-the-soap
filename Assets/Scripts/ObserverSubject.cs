@@ -3,18 +3,18 @@ using UnityEngine.Events;
 
 public class GameEventData
 {
-    public object data;
-    public GameEvents name;
+    public readonly object Data;
+    public GameEvents Name;
 
     public GameEventData(GameEvents gameEventName)
     {
-        name = gameEventName;
+        Name = gameEventName;
     }
 
     public GameEventData(GameEvents gameEventName, object data)
     {
-        name = gameEventName;
-        this.data = data;
+        Name = gameEventName;
+        Data = data;
     }
 }
 

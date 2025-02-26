@@ -88,7 +88,7 @@ namespace Character_Creator.scripts
 
         public void OnNotify(GameEventData gameEventData)
         {
-            switch (gameEventData.name)
+            switch (gameEventData.Name)
             {
                 case GameEvents.ArmchairChosen:
                 case GameEvents.DoorChosen:
@@ -101,7 +101,7 @@ namespace Character_Creator.scripts
                         interactableObjectType,
                         dialogLine[_interactionCount]
                     );
-                    Notify(gameEventData.name, interactionData);
+                    Notify(gameEventData.Name, interactionData);
                     break;
             }
         }

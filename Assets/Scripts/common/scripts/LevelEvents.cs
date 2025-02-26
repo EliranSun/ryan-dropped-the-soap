@@ -28,7 +28,7 @@ namespace common.scripts
 
         public void OnNotify(GameEventData eventData)
         {
-            switch (eventData.name)
+            switch (eventData.Name)
             {
                 case GameEvents.TriggerAlarmClockStop:
                     mainCamera.gameObject.GetComponent<Zoom>().endSize = 9.28f;

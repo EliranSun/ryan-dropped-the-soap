@@ -26,7 +26,7 @@ namespace Object.Scripts
 
         public void OnNotify(GameEventData gameEvent)
         {
-            if (gameEvent.name == GameEvents.BoatStart)
+            if (gameEvent.Name == GameEvents.BoatStart)
                 // _force.enabled = true;
                 _isMoving = true;
         }

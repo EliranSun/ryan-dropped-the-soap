@@ -328,13 +328,13 @@ namespace Character_Creator.scripts
 
         public void OnNotify(GameEventData gameEventData)
         {
-            print("DialogueManager: OnNotify " + gameEventData.name);
+            print("DialogueManager: OnNotify " + gameEventData.Name);
 
             try
             {
                 var eventLine =
                     eventToDialogMap.dialogLineEvents.First(dialogLineEvent =>
-                        dialogLineEvent.eventName == gameEventData.name);
+                        dialogLineEvent.eventName == gameEventData.Name);
                 if (eventLine.dialogLine)
                 {
                     TriggerLine(eventLine.dialogLine);
@@ -346,14 +346,14 @@ namespace Character_Creator.scripts
                 // ignored, this is fine and expected
             }
 
-            switch (gameEventData.name)
+            switch (gameEventData.Name)
             {
                 case GameEvents.EnteredMuseum:
-                    TriggerLine((NarrationDialogLine)gameEventData.data);
+                    TriggerLine((NarrationDialogLine)gameEventData.Data);
                     break;
 
                 case GameEvents.PlayerClickOnChoice:
-                    var choiceData = (EnrichedPlayerChoice)gameEventData.data;
+                    var choiceData = (EnrichedPlayerChoice)gameEventData.Data;
                     if (choiceData.PlayerDataType == PlayerDataEnum.Name)
                         try
                         {
@@ -382,7 +382,7 @@ namespace Character_Creator.scripts
                 case GameEvents.PaintingClicked:
                 case GameEvents.ShapeClicked:
                 case GameEvents.DependentClicked:
-                    var interactionData = (InteractionData)gameEventData.data;
+                    var interactionData = (InteractionData)gameEventData.Data;
                     InteractionStateService.Instance.SetCurrentInteraction(interactionData);
                     TriggerLine(interactionData.DialogLine);
                     break;

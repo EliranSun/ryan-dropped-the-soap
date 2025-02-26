@@ -69,7 +69,7 @@ namespace Object.Scripts
 
         public void OnNotify(GameEventData eventData)
         {
-            switch (eventData.name)
+            switch (eventData.Name)
             {
                 case GameEvents.TriggerAlarmClockSound:
                     StartBuzzing();
@@ -81,7 +81,7 @@ namespace Object.Scripts
 
                 case GameEvents.SetClockTime:
                 {
-                    var playerChoice = (EnrichedPlayerChoice)eventData.data;
+                    var playerChoice = (EnrichedPlayerChoice)eventData.Data;
                     var time = playerChoice.Choice;
                     SetTimeFromString(time);
                     break;

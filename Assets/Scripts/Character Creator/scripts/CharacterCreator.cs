@@ -94,30 +94,30 @@ namespace Character_Creator.scripts
 
         public void OnNotify(GameEventData gameData)
         {
-            switch (gameData.name)
+            switch (gameData.Name)
             {
                 case GameEvents.VaseChosen:
-                    var vase = (EnrichedPlayerChoice)gameData.data;
+                    var vase = (EnrichedPlayerChoice)gameData.Data;
                     OnVaseChoice(vase.OriginalInteraction.Name);
                     break;
 
                 case GameEvents.ArmchairChosen:
-                    var armchair = (EnrichedPlayerChoice)gameData.data;
+                    var armchair = (EnrichedPlayerChoice)gameData.Data;
                     OnArmchairChoice(armchair.OriginalInteraction.Name);
                     break;
 
                 case GameEvents.DoorChosen:
-                    var door = (EnrichedPlayerChoice)gameData.data;
+                    var door = (EnrichedPlayerChoice)gameData.Data;
                     OnDoorChoice(door.OriginalInteraction.Name);
                     break;
 
                 case GameEvents.MirrorChosen:
-                    var mirror = (EnrichedPlayerChoice)gameData.data;
+                    var mirror = (EnrichedPlayerChoice)gameData.Data;
                     OnMirrorChoice(mirror.OriginalInteraction.Name);
                     break;
 
                 case GameEvents.PaintingChosen:
-                    var painting = (EnrichedPlayerChoice)gameData.data;
+                    var painting = (EnrichedPlayerChoice)gameData.Data;
                     OnPaintingChoice(painting.OriginalInteraction.Name);
                     break;
 

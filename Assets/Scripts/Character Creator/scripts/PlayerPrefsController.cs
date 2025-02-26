@@ -73,10 +73,10 @@ namespace Character_Creator.scripts
 
         public void OnNotify(GameEventData gameEventData)
         {
-            if (gameEventData.name != GameEvents.PlayerEnrichedChoice)
+            if (gameEventData.Name != GameEvents.PlayerEnrichedChoice)
                 return;
 
-            var data = (object[])gameEventData.data;
+            var data = (object[])gameEventData.Data;
             var key = data[1].ToString(); // Assuming the second element is the PlayerDataType
             var value = data[0].ToString(); // Assuming the first element is the Choice
 

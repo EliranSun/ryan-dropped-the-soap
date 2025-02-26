@@ -41,14 +41,14 @@ namespace Character_Creator.scripts
 
         public void OnNotify(GameEventData gameEventData)
         {
-            if (gameEventData.name == GameEvents.CharacterCreatorNextSetOfObjects)
+            if (gameEventData.Name == GameEvents.CharacterCreatorNextSetOfObjects)
             {
                 Destroy();
                 Init();
                 activePrefabsIndex++;
             }
 
-            if (gameEventData.name == GameEvents.CharacterCreatorHideObjects)
+            if (gameEventData.Name == GameEvents.CharacterCreatorHideObjects)
                 Destroy();
         }
 

@@ -2,8 +2,10 @@ using System;
 using System.Linq;
 using UnityEngine;
 
-namespace Ryan.Scripts {
-    public enum StateName {
+namespace Ryan.Scripts
+{
+    public enum StateName
+    {
         Dressed,
         Naked,
         Showering,
@@ -12,7 +14,8 @@ namespace Ryan.Scripts {
     }
 
     [Serializable]
-    public class States {
+    public class States
+    {
         public StateName name;
         public Sprite spriteRenderer;
         public float gravity;
@@ -20,7 +23,8 @@ namespace Ryan.Scripts {
     }
 
     [RequireComponent(typeof(Renderer))]
-    public class PlayerChangeState : MonoBehaviour {
+    public class PlayerChangeState : MonoBehaviour
+    {
         [SerializeField] private GameObject defaultColliderObject;
         [SerializeField] private GameObject slipperyColliderObject;
         [SerializeField] private GameObject clothing;
@@ -41,21 +45,24 @@ namespace Ryan.Scripts {
 
         public static PlayerChangeState Instance { get; private set; }
 
-        private void Awake() {
+        private void Awake()
+        {
             if (Instance != null && Instance != this)
                 Destroy(this);
             else
                 Instance = this;
         }
 
-        private void Start() {
+        private void Start()
+        {
             _renderer = GetComponent<Renderer>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _controlledByPlayerStates = states.Where(state => state.isControlledByPlayer).ToArray();
             ChangePlayerState(currentState);
         }
 
-        private void Update() {
+        private void Update()
+        {
             if (_isDead)
                 return;
 
@@ -91,7 +98,8 @@ namespace Ryan.Scripts {
             // }
         }
 
-        public void OnMouseDown() {
+        public void OnMouseDown()
+        {
             if (CursorManager.Instance.IsActionCursor ||
                 currentState == StateName.Drowning ||
                 currentState == StateName.Dead)
@@ -105,7 +113,8 @@ namespace Ryan.Scripts {
             ChangePlayerState(nextState.name);
         }
 
-        public void ChangePlayerState(StateName newState) {
+        public void ChangePlayerState(StateName newState)
+        {
             if (newState == StateName.Naked)
                 clothing.gameObject.SetActive(true);
 
@@ -121,8 +130,10 @@ namespace Ryan.Scripts {
             currentState = newState;
         }
 
-        public void OnNotify(GameEventData eventData) {
-            switch (eventData.name) {
+        public void OnNotify(GameEventData eventData)
+        {
+            switch (eventData.Name)
+            {
                 case GameEvents.HitByConcrete:
                     HandleDeath();
                     break;
@@ -139,7 +150,8 @@ namespace Ryan.Scripts {
             }
         }
 
-        private void PlayerAvoidableDeath() {
+        private void PlayerAvoidableDeath()
+        {
             // if (!GameState.IsPlayerInShower && !GameState.WaterFilledRoom) {
             //     print("Player outside shower and room is not filled with water");
             //     return;
@@ -154,13 +166,15 @@ namespace Ryan.Scripts {
             //     HandleDeath();
         }
 
-        private void HandleDeath() {
+        private void HandleDeath()
+        {
             ChangePlayerState(StateName.Dead);
             _isDead = true;
             Invoke(nameof(NotifyDeath), 5);
         }
 
-        private void NotifyDeath() {
+        private void NotifyDeath()
+        {
             EventManager.Instance.Publish(GameEvents.Dead);
         }
     }

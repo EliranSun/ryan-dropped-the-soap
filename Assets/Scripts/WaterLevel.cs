@@ -1,7 +1,8 @@
 using System.Collections;
 using UnityEngine;
 
-public class WaterLevel : MonoBehaviour {
+public class WaterLevel : MonoBehaviour
+{
     [SerializeField] private float maxHeight = 3;
     [SerializeField] private float outsideWaterMaxHeight = 4;
     [SerializeField] private float perspectiveChangeHeight = 1.5f;
@@ -22,7 +23,8 @@ public class WaterLevel : MonoBehaviour {
 
     private Transform _waterTransform;
 
-    private void Start() {
+    private void Start()
+    {
         normalPerspectiveGameObject.SetActive(true);
         _waterTransform = transform;
         _minHeight = transform.position.y;
@@ -31,14 +33,16 @@ public class WaterLevel : MonoBehaviour {
         //     _screenHeight = Camera.main.orthographicSize * 2f;
     }
 
-    private void Update() {
+    private void Update()
+    {
         if (waterVerticalTransition == 0)
             return;
 
         var movementVector = new Vector2(0, waterVerticalTransition * Time.deltaTime);
 
         if (normalPerspectiveGameObject.transform.position.y >= perspectiveChangeHeight &&
-            !perspectiveChangeGameObject.activeSelf) {
+            !perspectiveChangeGameObject.activeSelf)
+        {
             normalPerspectiveGameObject.SetActive(false);
             perspectiveChangeGameObject.SetActive(true);
         }
@@ -53,8 +57,10 @@ public class WaterLevel : MonoBehaviour {
             outsideViewGameObject.transform.Translate(movementVector);
     }
 
-    public void OnNotify(GameEventData eventData) {
-        switch (eventData.name) {
+    public void OnNotify(GameEventData eventData)
+    {
+        switch (eventData.Name)
+        {
             case GameEvents.Pumping:
                 if (transform.localPosition.y <= _minHeight)
                     break;
@@ -75,7 +81,8 @@ public class WaterLevel : MonoBehaviour {
         }
     }
 
-    private IEnumerator TemporaryWaterChange(float levelChange) {
+    private IEnumerator TemporaryWaterChange(float levelChange)
+    {
         waterVerticalTransition += levelChange;
         yield return new WaitForSeconds(1);
         waterVerticalTransition -= levelChange;

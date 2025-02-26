@@ -34,8 +34,8 @@ namespace common.scripts
 
         public void OnNotify(GameEventData gameEventData)
         {
-            if (gameEventData.name != GameEvents.ObjectClicked) return;
-            if ((InteractableObjectType)gameEventData.data != objectType) return;
+            if (gameEventData.Name != GameEvents.ObjectClicked) return;
+            if ((InteractableObjectType)gameEventData.Data != objectType) return;
 
             switch (interactionType)
             {

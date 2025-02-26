@@ -12,7 +12,7 @@ public class SoundController : MonoBehaviour
 
     public void OnNotify(GameEventData gameEvent)
     {
-        switch (gameEvent.name)
+        switch (gameEvent.Name)
         {
             case GameEvents.LevelWon:
                 soundEffectsAudioSource.PlayOneShot(levelWonSound);

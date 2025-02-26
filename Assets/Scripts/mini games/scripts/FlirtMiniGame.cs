@@ -21,12 +21,6 @@ namespace mini_games.scripts
         public Emotion emotion;
     }
 
-    [Serializable]
-    internal class Thought
-    {
-        public PlayerChoice[] playerOptions;
-    }
-
     public class FlirtMiniGame : ObserverSubject
     {
         [SerializeField] private Image characterImageContainer;
@@ -36,7 +30,7 @@ namespace mini_games.scripts
 
         private void Start()
         {
-            Notify(GameEvents.AddThoughts, new Thought
+            Notify(GameEvents.AddThoughts, new ThoughtChoice
             {
                 playerOptions = new[]
                 {

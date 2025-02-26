@@ -69,10 +69,10 @@ namespace Elevator.scripts
 
         public void OnNotify(GameEventData eventData)
         {
-            if (eventData.name == GameEvents.ElevatorButtonPress)
+            if (eventData.Name == GameEvents.ElevatorButtonPress)
             {
-                print("Elevator Button Press event " + eventData.data);
-                var floor = (int)eventData.data;
+                print("Elevator Button Press event " + eventData.Data);
+                var floor = (int)eventData.Data;
                 GoToFloor(floor);
             }
         }

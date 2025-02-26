@@ -40,10 +40,10 @@ namespace common.scripts
 
         public void OnNotify(GameEventData gameEventData)
         {
-            if (gameEventData.name != GameEvents.ObjectClicked)
+            if (gameEventData.Name != GameEvents.ObjectClicked)
                 return;
 
-            if ((InteractableObjectType)gameEventData.data == InteractableObjectType.ApartmentDoorKnob)
+            if ((InteractableObjectType)gameEventData.Data == InteractableObjectType.ApartmentDoorKnob)
                 _isDoorOpen = !_isDoorOpen;
         }
     }

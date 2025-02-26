@@ -1,8 +1,16 @@
+using System;
 using Character_Creator.scripts;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Dialog.Scripts
 {
+    [Serializable]
+    public class ThoughtChoice
+    {
+        public PlayerChoice[] playerOptions;
+    }
+
     public class ThoughtsManager : ObserverSubject
     {
         [SerializeField] private GameObject thoughtsContainer;
@@ -17,13 +25,25 @@ namespace Dialog.Scripts
 
         public void OnNotify(GameEventData gameEventData)
         {
-            if (gameEventData.name is GameEvents.LineNarrationEnd or GameEvents.AddThoughts)
+            if (gameEventData.Name is GameEvents.LineNarrationEnd or GameEvents.AddThoughts)
             {
-                var playerOptions = gameEventData.data.GetType().GetProperty("playerOptions");
-                if (playerOptions == null)
-                    return;
+                PlayerChoice[] playerOptionsValue = null;
 
-                var playerOptionsValue = (PlayerChoice[])playerOptions.GetValue(gameEventData.data);
+                // Handle different data structures based on the event type
+                if (gameEventData.Name == GameEvents.AddThoughts)
+                {
+                    // For AddThoughts event, directly access the field from Thought class
+                    if (gameEventData.Data is ThoughtChoice thought)
+                        playerOptionsValue = thought.playerOptions;
+                }
+                else
+                {
+                    // For LineNarrationEnd event, use reflection to get the property
+                    var playerOptions = gameEventData.Data.GetType().GetProperty("playerOptions");
+                    if (playerOptions != null)
+                        playerOptionsValue = (PlayerChoice[])playerOptions.GetValue(gameEventData.Data);
+                }
+
                 if (playerOptionsValue == null || playerOptionsValue.Length == 0)
                     return;
 
@@ -48,13 +68,13 @@ namespace Dialog.Scripts
                 }
             }
 
-            if (gameEventData.name == GameEvents.ClearThoughts)
+            if (gameEventData.Name == GameEvents.ClearThoughts)
             {
                 if (_isThoughtsEnabled) DisableThoughts();
                 else EnableThoughts();
             }
 
-            if (gameEventData.name == GameEvents.Speak)
+            if (gameEventData.Name == GameEvents.Speak)
             {
                 if (_isSayingsEnabled) Speak();
                 else EnableSayings();

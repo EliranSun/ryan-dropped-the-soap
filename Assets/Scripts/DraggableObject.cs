@@ -50,7 +50,7 @@ public class DraggableObject : ObserverSubject
 
     public void OnNotify(GameEventData gameEventData)
     {
-        _isSticky = gameEventData.name switch
+        _isSticky = gameEventData.Name switch
         {
             GameEvents.TriggerStick => true,
             GameEvents.TriggerNonStick => false,

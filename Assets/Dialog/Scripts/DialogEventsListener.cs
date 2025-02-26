@@ -20,7 +20,7 @@ namespace Dialog.Scripts
         {
             try
             {
-                var foundEvent = events.First(item => item.name == eventData.name);
+                var foundEvent = events.First(item => item.name == eventData.Name);
                 if (foundEvent.line == null)
                     return;
 
