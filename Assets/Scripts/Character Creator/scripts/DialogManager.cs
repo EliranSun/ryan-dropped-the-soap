@@ -34,13 +34,9 @@ namespace Character_Creator.scripts
         private InteractableObjectType _potentialSelectedInteractableObjectType;
         private NarrationDialogLine _triggeredDialogueLine;
 
-        private void Awake()
-        {
-            _audioSource = GetComponent<AudioSource>();
-        }
-
         private void Start()
         {
+            _audioSource = GetComponent<AudioSource>();
             UpdateDialogState(DialogueStateChanger.Instance.GetDialogStateByPlayerPrefs());
             StartCoroutine(HandlePlayerNameLinesAndStartRead());
         }
@@ -136,6 +132,7 @@ namespace Character_Creator.scripts
                 _audioSource.clip = line.clip;
                 _audioSource.Play();
                 Notify(GameEvents.LineNarrationStart, _currentDialogue.actorName);
+                Notify(GameEvents.ActorReaction, _currentDialogue);
                 StartCoroutine(CheckAudioEnd());
             }
             else

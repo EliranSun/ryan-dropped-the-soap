@@ -103,5 +103,7 @@
 
     BoatStart,
 
-    AddThoughts
+    AddThoughts,
+
+    ActorReaction
 }

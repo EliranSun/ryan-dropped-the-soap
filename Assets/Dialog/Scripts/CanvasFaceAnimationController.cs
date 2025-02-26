@@ -6,7 +6,12 @@ namespace Dialog.Scripts
     public enum ActorName
     {
         None,
-        Charlotte
+        Charlotte,
+        Morgan,
+        Zeke,
+        Ryan,
+        Stacy,
+        Pigeon
     }
 
     [RequireComponent(typeof(Animator))]

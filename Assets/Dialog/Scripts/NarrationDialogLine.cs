@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Dialog.Scripts
 {
@@ -20,9 +21,10 @@ namespace Dialog.Scripts
         public NarrationDialogLine next;
         public GameEvents actionAfterPlayerChoice;
 
-        public PlayerChoice(string text)
+        public PlayerChoice(string text, NarrationDialogLine dialogResponse)
         {
             this.text = text;
+            next = dialogResponse;
             type = ChoiceType.Button;
         }
     }
@@ -36,19 +38,22 @@ namespace Dialog.Scripts
     }
 
     [Serializable]
-    public enum DialogReactions
+    public enum Reaction
     {
-        None,
+        Neutral,
         Happy,
         Sad,
         Anger,
-        Fear
+        Fear,
+        Disgust,
+        Love,
+        Hate
     }
 
     [Serializable]
-    public class PlayerReactions
+    public class EmotionalReactionLine
     {
-        public DialogReactions reaction;
+        [FormerlySerializedAs("reaction")] public Reaction reaction;
         public NarrationDialogLine line;
     }
 
@@ -141,7 +146,7 @@ namespace Dialog.Scripts
 
         public VoicedLine[] voicedLines;
         public PlayerChoice[] playerOptions;
-        public PlayerReactions[] playerReactions;
+        public EmotionalReactionLine[] playerReactions;
         public NarrationDialogLine nextDialogueLine;
         public NarrationDialogLine[] randomizedDialogLines;
         public ObjectReferringLine[] objectReferringDialogLines;
@@ -150,5 +155,6 @@ namespace Dialog.Scripts
         public ActorName actorName;
         public GameEvents actionBeforeLine;
         public GameEvents actionAfterLine;
+        public Reaction actorReaction;
     }
 }
