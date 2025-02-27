@@ -8,6 +8,7 @@ namespace Dialog.Scripts
         [SerializeField] private TextMeshPro textContainer;
         private NarrationDialogLine _nextLine;
         private PlayerDataEnum _playerDataType;
+        private int _score;
         private bool _spokeMind;
         private ThoughtsManager _thoughtsManager;
 
@@ -27,7 +28,7 @@ namespace Dialog.Scripts
 
         private void Speak()
         {
-            _thoughtsManager.OnSpeak(textContainer.text, _nextLine, _playerDataType);
+            _thoughtsManager.OnSpeak(textContainer.text, _nextLine, _playerDataType, _score);
         }
 
         public void SetThought(string newText)
@@ -38,6 +39,11 @@ namespace Dialog.Scripts
         public void SetNextLine(NarrationDialogLine nextDialogLine)
         {
             _nextLine = nextDialogLine;
+        }
+
+        public void SetThoughtScore(int score)
+        {
+            _score = score;
         }
 
         public void SetChoicePlayerDataType(PlayerDataEnum playerDataType)

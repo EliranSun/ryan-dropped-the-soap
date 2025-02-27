@@ -6,9 +6,17 @@ using Random = UnityEngine.Random;
 namespace Dialog.Scripts
 {
     [Serializable]
+    public class FlirtChoice
+    {
+        public string text;
+        public int score;
+        public NarrationDialogLine actorLine;
+    }
+
+    [Serializable]
     public class ThoughtChoice
     {
-        public PlayerChoice[] playerOptions;
+        public FlirtChoice[] flirtChoices;
     }
 
     public class ThoughtsManager : ObserverSubject
@@ -22,6 +30,7 @@ namespace Dialog.Scripts
         private bool _isThoughtsEnabled = true;
         private PlayerDataEnum _lastPlayerDataType;
         private NarrationDialogLine _nextLine;
+        private int _score;
 
         public void OnNotify(GameEventData gameEventData)
         {
@@ -34,7 +43,14 @@ namespace Dialog.Scripts
                 {
                     // For AddThoughts event, directly access the field from Thought class
                     if (gameEventData.Data is ThoughtChoice thought)
-                        playerOptionsValue = thought.playerOptions;
+                    {
+                        var flirtChoices = thought.flirtChoices;
+                        if (flirtChoices == null || flirtChoices.Length == 0)
+                            return;
+
+                        foreach (var option in flirtChoices)
+                            CreateThought(option.text, option.actorLine, PlayerDataEnum.None, option.score);
+                    }
                 }
                 else
                 {
@@ -48,24 +64,7 @@ namespace Dialog.Scripts
                     return;
 
                 foreach (var option in playerOptionsValue)
-                {
-                    var randomHeight = Random.Range(0, 5);
-                    var thought = Instantiate(thoughtPrefab, thoughtsContainer.transform);
-
-                    if (option.text.Length <= 1)
-                    {
-                        var localScale = thought.transform.localScale;
-                        localScale.x *= 1f / 3f;
-                        thought.transform.localScale = localScale;
-                    }
-
-                    thought.transform.position += new Vector3(0, randomHeight, 0);
-
-                    var thoughtComponent = thought.GetComponent<Thought>();
-                    thoughtComponent.SetThought(option.text);
-                    thoughtComponent.SetNextLine(option.next);
-                    thoughtComponent.SetChoicePlayerDataType(option.choiceDataType);
-                }
+                    CreateThought(option.text, option.next, option.choiceDataType);
             }
 
             if (gameEventData.Name == GameEvents.ClearThoughts)
@@ -79,6 +78,35 @@ namespace Dialog.Scripts
                 if (_isSayingsEnabled) Speak();
                 else EnableSayings();
             }
+
+            if (gameEventData.Name == GameEvents.KillThoughtsAndSayings)
+                KillThoughtsAndSayings();
+        }
+
+        private void CreateThought(
+            string text,
+            NarrationDialogLine nextLine,
+            PlayerDataEnum lastPlayerDataType = PlayerDataEnum.None,
+            int score = 0
+        )
+        {
+            var randomHeight = Random.Range(0, 5);
+            var thought = Instantiate(thoughtPrefab, thoughtsContainer.transform);
+
+            if (text.Length <= 1)
+            {
+                var localScale = thought.transform.localScale;
+                localScale.x *= 1f / 3f;
+                thought.transform.localScale = localScale;
+            }
+
+            thought.transform.position += new Vector3(0, randomHeight, 0);
+
+            var thoughtComponent = thought.GetComponent<Thought>();
+            thoughtComponent.SetThought(text);
+            thoughtComponent.SetNextLine(nextLine);
+            if (score != 0) thoughtComponent.SetThoughtScore(score);
+            if (lastPlayerDataType != PlayerDataEnum.None) thoughtComponent.SetChoicePlayerDataType(lastPlayerDataType);
         }
 
         private void Speak()
@@ -101,6 +129,7 @@ namespace Dialog.Scripts
             );
 
             Notify(GameEvents.PlayerClickOnChoice, choice);
+            Notify(GameEvents.ThoughtScoreChange, _score);
             DisableSayings();
 
             _choice = "";
@@ -135,13 +164,21 @@ namespace Dialog.Scripts
             _isThoughtsEnabled = true;
         }
 
-        public void OnSpeak(string text, NarrationDialogLine nextLine, PlayerDataEnum lastPlayerDataType)
+        public void OnSpeak(string text, NarrationDialogLine nextLine, PlayerDataEnum lastPlayerDataType, int score)
         {
             _choice += text;
             _nextLine = nextLine;
             _lastPlayerDataType = lastPlayerDataType;
+            _score = score;
 
             print("OnSpeak:" + _choice);
+        }
+
+        public void KillThoughtsAndSayings()
+        {
+            foreach (Transform child in thoughtsContainer.transform) Destroy(child.gameObject);
+
+            foreach (Transform child in sayingsBottom.transform) Destroy(child.gameObject);
         }
     }
 }

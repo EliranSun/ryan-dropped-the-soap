@@ -37,8 +37,13 @@ namespace Character_Creator.scripts
         private void Start()
         {
             _audioSource = GetComponent<AudioSource>();
-            UpdateDialogState(DialogueStateChanger.Instance.GetDialogStateByPlayerPrefs());
-            StartCoroutine(HandlePlayerNameLinesAndStartRead());
+            var nextLine = DialogueStateChanger.Instance.GetDialogStateByPlayerPrefs();
+
+            if (nextLine)
+            {
+                UpdateDialogState(nextLine);
+                StartCoroutine(HandlePlayerNameLinesAndStartRead());
+            }
         }
 
         private void Update()

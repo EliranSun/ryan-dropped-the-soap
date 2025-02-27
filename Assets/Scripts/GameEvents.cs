@@ -105,5 +105,7 @@
 
     AddThoughts,
 
-    ActorReaction
+    ActorReaction,
+    ThoughtScoreChange,
+    KillThoughtsAndSayings
 }
