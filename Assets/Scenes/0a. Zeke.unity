@@ -1922,6 +1922,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1596153596 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3637131745237976192, guid: e353ef99cd15a914d936e254978559b3, type: 3}
+  m_PrefabInstance: {fileID: 1709955601}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1598458860
 GameObject:
   m_ObjectHideFlags: 0
@@ -2108,7 +2113,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4371016708318843730, guid: e353ef99cd15a914d936e254978559b3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.9
+      value: -3.87
       objectReference: {fileID: 0}
     - target: {fileID: 4371016708318843730, guid: e353ef99cd15a914d936e254978559b3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2145,6 +2150,22 @@ PrefabInstance:
     - target: {fileID: 4371016708318843730, guid: e353ef99cd15a914d936e254978559b3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6999263780196100403, guid: e353ef99cd15a914d936e254978559b3, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7795751477906700509, guid: e353ef99cd15a914d936e254978559b3, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 586389662}
+    - target: {fileID: 7795751477906700509, guid: e353ef99cd15a914d936e254978559b3, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnNotify
+      objectReference: {fileID: 0}
+    - target: {fileID: 7795751477906700509, guid: e353ef99cd15a914d936e254978559b3, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: mini_games.scripts.FlirtMiniGame, MiniGamesScriptAssembly
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2468,6 +2489,10 @@ PrefabInstance:
       propertyPath: timer
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 617806365517851854, guid: 60580c399cfcaba4383037606e1fabe0, type: 3}
+      propertyPath: inGameTrigger
+      value: 
+      objectReference: {fileID: 1596153596}
     - target: {fileID: 617806365517851854, guid: 60580c399cfcaba4383037606e1fabe0, type: 3}
       propertyPath: miniGameContainer
       value: 

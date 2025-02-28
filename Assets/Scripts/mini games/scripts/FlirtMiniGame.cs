@@ -1,9 +1,11 @@
 using System;
 using System.Linq;
+using Character_Creator.scripts;
 using Dialog.Scripts;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace mini_games.scripts
 {
@@ -35,7 +37,6 @@ namespace mini_games.scripts
         private void Start()
         {
             CloseMiniGame();
-            Invoke(nameof(StartMiniGame), 0.5f);
         }
 
         private void Update()
@@ -63,6 +64,16 @@ namespace mini_games.scripts
 
         public void OnNotify(GameEventData eventData)
         {
+            print("Flirt OnNotify: " + eventData.Data);
+            if (eventData.Name == GameEvents.ClickOnNpc)
+            {
+                var interactionData = eventData.Data as InteractionData;
+                if (interactionData == null) return;
+
+                if (interactionData.Name == inGameTrigger.gameObject.name)
+                    StartMiniGame();
+            }
+
             if (eventData.Name == GameEvents.FlirtGameStart)
             {
                 CloseMiniGame();
@@ -107,7 +118,7 @@ namespace mini_games.scripts
             miniGameContainer.SetActive(true);
 
             // Randomly select 4 choices from the available choices
-            FlirtChoice[] randomChoices = GetRandomChoices(choices, 4);
+            var randomChoices = GetRandomChoices(choices, 4);
 
             Notify(GameEvents.AddThoughts, new ThoughtChoice
             {
@@ -128,12 +139,12 @@ namespace mini_games.scripts
             count = Mathf.Min(count, availableChoices.Length);
 
             // Create a copy of the available choices to avoid modifying the original array
-            FlirtChoice[] choicesCopy = availableChoices.ToArray();
+            var choicesCopy = availableChoices.ToArray();
 
             // Shuffle the array using Fisher-Yates algorithm
-            for (int i = choicesCopy.Length - 1; i > 0; i--)
+            for (var i = choicesCopy.Length - 1; i > 0; i--)
             {
-                int randomIndex = UnityEngine.Random.Range(0, i + 1);
+                var randomIndex = Random.Range(0, i + 1);
                 (choicesCopy[i], choicesCopy[randomIndex]) = (choicesCopy[randomIndex], choicesCopy[i]);
             }
 
