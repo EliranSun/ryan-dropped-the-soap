@@ -388,6 +388,10 @@ namespace Character_Creator.scripts
                     InteractionStateService.Instance.SetCurrentInteraction(interactionData);
                     TriggerLine(interactionData.DialogLine);
                     break;
+
+                case GameEvents.KillDialog:
+                    KillDialog();
+                    break;
             }
         }
 
@@ -459,6 +463,16 @@ namespace Character_Creator.scripts
             // containerSpriteRenderer.sortingOrder = fadeIn ? 3 : 7;
             //
             yield return new WaitForSeconds(1);
+        }
+
+        private void KillDialog()
+        {
+            if (_audioSource.isPlaying)
+            {
+                _audioSource.pitch = 1;
+                _audioSource.Stop();
+                StopAllCoroutines();
+            }
         }
     }
 }

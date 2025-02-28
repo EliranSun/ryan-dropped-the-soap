@@ -49,7 +49,13 @@ namespace Dialog.Scripts
                             return;
 
                         foreach (var option in flirtChoices)
-                            CreateThought(option.text, option.actorLine, PlayerDataEnum.None, option.score);
+                            CreateThought(
+                                option.text,
+                                option.actorLine,
+                                PlayerDataEnum.None,
+                                option.score,
+                                false
+                            );
                     }
                 }
                 else
@@ -87,10 +93,11 @@ namespace Dialog.Scripts
             string text,
             NarrationDialogLine nextLine,
             PlayerDataEnum lastPlayerDataType = PlayerDataEnum.None,
-            int score = 0
+            int score = 0,
+            bool dropThoughtFromAbove = true
         )
         {
-            var randomHeight = Random.Range(0, 5);
+            var randomHeight = Random.Range(0, 3);
             var thought = Instantiate(thoughtPrefab, thoughtsContainer.transform);
 
             if (text.Length <= 1)
@@ -100,7 +107,8 @@ namespace Dialog.Scripts
                 thought.transform.localScale = localScale;
             }
 
-            thought.transform.position += new Vector3(0, randomHeight, 0);
+            if (dropThoughtFromAbove)
+                thought.transform.position += new Vector3(0, randomHeight, 0);
 
             var thoughtComponent = thought.GetComponent<Thought>();
             thoughtComponent.SetThought(text);

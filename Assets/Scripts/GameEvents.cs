@@ -107,5 +107,7 @@
 
     ActorReaction,
     ThoughtScoreChange,
-    KillThoughtsAndSayings
+    KillThoughtsAndSayings,
+    KillDialog,
+    FlirtGameStart
 }

@@ -18,7 +18,7 @@ namespace mini_games.scripts
     public class FlirtMiniGame : ObserverSubject
     {
         public int score = 50;
-        public int timer = 5;
+        [SerializeField] private int timer = 8;
         [SerializeField] private ActorName actorName = ActorName.Morgan;
         [SerializeField] private FlirtChoice[] choices;
         [SerializeField] private SpriteEmotion[] actorSpriteEmotions;
@@ -35,7 +35,7 @@ namespace mini_games.scripts
         private void Start()
         {
             CloseMiniGame();
-            Invoke(nameof(StartMiniGame), 5);
+            Invoke(nameof(StartMiniGame), 0.5f);
         }
 
         private void Update()
@@ -56,11 +56,19 @@ namespace mini_games.scripts
             {
                 _isTimerRunning = false;
                 CloseMiniGame();
+                Notify(GameEvents.KillThoughtsAndSayings);
+                Notify(GameEvents.KillDialog);
             }
         }
 
         public void OnNotify(GameEventData eventData)
         {
+            if (eventData.Name == GameEvents.FlirtGameStart)
+            {
+                CloseMiniGame();
+                StartMiniGame();
+            }
+
             if (eventData.Name == GameEvents.ActorReaction)
             {
                 var dialogLine = eventData.Data as NarrationDialogLine;
@@ -92,19 +100,45 @@ namespace mini_games.scripts
         {
             _isTimerRunning = false;
             miniGameContainer.SetActive(false);
-            Notify(GameEvents.KillThoughtsAndSayings);
         }
 
         private void StartMiniGame()
         {
             miniGameContainer.SetActive(true);
-            Notify(GameEvents.AddThoughts, new ThoughtChoice { flirtChoices = choices });
+
+            // Randomly select 4 choices from the available choices
+            FlirtChoice[] randomChoices = GetRandomChoices(choices, 4);
+
+            Notify(GameEvents.AddThoughts, new ThoughtChoice
+            {
+                flirtChoices = randomChoices
+            });
             scoreTextContainer.text = score.ToString();
 
             // Initialize and start the timer
             _currentTime = timer;
             timerTextContainer.text = timer.ToString();
             _isTimerRunning = true;
+        }
+
+        // Helper method to randomly select n choices from the available choices
+        private FlirtChoice[] GetRandomChoices(FlirtChoice[] availableChoices, int count)
+        {
+            // Make sure we don't try to select more choices than available
+            count = Mathf.Min(count, availableChoices.Length);
+
+            // Create a copy of the available choices to avoid modifying the original array
+            FlirtChoice[] choicesCopy = availableChoices.ToArray();
+
+            // Shuffle the array using Fisher-Yates algorithm
+            for (int i = choicesCopy.Length - 1; i > 0; i--)
+            {
+                int randomIndex = UnityEngine.Random.Range(0, i + 1);
+                (choicesCopy[i], choicesCopy[randomIndex]) = (choicesCopy[randomIndex], choicesCopy[i]);
+            }
+
+            // Return the first 'count' elements from the shuffled array
+            return choicesCopy.Take(count).ToArray();
         }
 
         public void SetActorName(ActorName actorName)

@@ -22,7 +22,7 @@ namespace Dialog.Scripts
             if (other.gameObject.CompareTag("Saying box") && !_spokeMind)
             {
                 _spokeMind = true;
-                Invoke(nameof(Speak), 1);
+                Speak();
             }
         }
 

@@ -995,7 +995,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Dialog.Scripts.ThoughtsManager, DialogAssembly
-        m_MethodName: OnNotify
+        m_MethodName: 
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1006,6 +1006,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   score: 50
+  timer: 5
   actorName: 2
   choices: []
   actorSpriteEmotions:
@@ -1018,6 +1019,7 @@ MonoBehaviour:
   - sprite: {fileID: 0}
     reaction: 0
   scoreTextContainer: {fileID: 0}
+  timerTextContainer: {fileID: 0}
   characterImageContainer: {fileID: 0}
   miniGameContainer: {fileID: 0}
   inGameTrigger: {fileID: 0}

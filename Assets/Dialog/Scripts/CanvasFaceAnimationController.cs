@@ -6,10 +6,10 @@ namespace Dialog.Scripts
     public enum ActorName
     {
         None,
-        Charlotte,
-        Morgan,
-        Zeke,
-        Ryan,
+        Charlotte, // voiced by model: Charlotte,
+        Morgan, // voiced by model: Grace,
+        Zeke, // voiced by:
+        Ryan, // voiced by:
         Stacy,
         Pigeon
     }
