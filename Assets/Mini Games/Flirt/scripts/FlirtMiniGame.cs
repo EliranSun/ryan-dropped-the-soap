@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-namespace mini_games.scripts
+namespace Mini_Games.Flirt.scripts
 {
     [Serializable]
     internal class SpriteEmotion
@@ -156,11 +156,6 @@ namespace mini_games.scripts
 
             // Return the first 'count' elements from the shuffled array
             return choicesCopy.Take(count).ToArray();
-        }
-
-        public void SetActorName(ActorName actorName)
-        {
-            this.actorName = actorName;
         }
     }
 }
