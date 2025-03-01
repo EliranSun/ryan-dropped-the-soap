@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 namespace Dialog.Scripts
 {
     [Serializable]
-    public class FlirtChoice
+    public class PlayerMiniGameChoice
     {
         public string text;
         public int score;
@@ -16,7 +16,7 @@ namespace Dialog.Scripts
     [Serializable]
     public class ThoughtChoice
     {
-        public FlirtChoice[] flirtChoices;
+        public PlayerMiniGameChoice[] choices;
     }
 
     public class ThoughtsManager : ObserverSubject
@@ -44,11 +44,11 @@ namespace Dialog.Scripts
                     // For AddThoughts event, directly access the field from Thought class
                     if (gameEventData.Data is ThoughtChoice thought)
                     {
-                        var flirtChoices = thought.flirtChoices;
-                        if (flirtChoices == null || flirtChoices.Length == 0)
+                        var choices = thought.choices;
+                        if (choices == null || choices.Length == 0)
                             return;
 
-                        foreach (var option in flirtChoices)
+                        foreach (var option in choices)
                             CreateThought(
                                 option.text,
                                 option.actorLine,

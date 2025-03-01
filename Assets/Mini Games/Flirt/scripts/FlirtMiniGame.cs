@@ -22,7 +22,7 @@ namespace mini_games.scripts
         public int score = 50;
         [SerializeField] private int timer = 8;
         [SerializeField] private ActorName actorName = ActorName.Morgan;
-        [SerializeField] private FlirtChoice[] choices;
+        [SerializeField] private PlayerMiniGameChoice[] choices;
         [SerializeField] private SpriteEmotion[] actorSpriteEmotions;
 
         [SerializeField] private TextMeshProUGUI scoreTextContainer;
@@ -31,6 +31,7 @@ namespace mini_games.scripts
         [SerializeField] private GameObject miniGameContainer;
         [SerializeField] private GameObject inGameTrigger;
         private float _currentTime;
+        private bool _isGameActive;
         private bool _isTimerRunning;
 
 
@@ -64,6 +65,9 @@ namespace mini_games.scripts
 
         public void OnNotify(GameEventData eventData)
         {
+            if (!_isGameActive)
+                return;
+
             print("Flirt OnNotify: " + eventData.Data);
             if (eventData.Name == GameEvents.ClickOnNpc)
             {
@@ -110,19 +114,21 @@ namespace mini_games.scripts
         private void CloseMiniGame()
         {
             _isTimerRunning = false;
+            _isGameActive = false;
             miniGameContainer.SetActive(false);
         }
 
         private void StartMiniGame()
         {
             miniGameContainer.SetActive(true);
+            _isGameActive = true;
 
             // Randomly select 4 choices from the available choices
             var randomChoices = GetRandomChoices(choices, 4);
 
             Notify(GameEvents.AddThoughts, new ThoughtChoice
             {
-                flirtChoices = randomChoices
+                choices = randomChoices
             });
             scoreTextContainer.text = score.ToString();
 
@@ -133,7 +139,7 @@ namespace mini_games.scripts
         }
 
         // Helper method to randomly select n choices from the available choices
-        private FlirtChoice[] GetRandomChoices(FlirtChoice[] availableChoices, int count)
+        private PlayerMiniGameChoice[] GetRandomChoices(PlayerMiniGameChoice[] availableChoices, int count)
         {
             // Make sure we don't try to select more choices than available
             count = Mathf.Min(count, availableChoices.Length);
