@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Object.Scripts
 {
@@ -7,7 +8,11 @@ namespace Object.Scripts
         [SerializeField] private Transform target;
         [SerializeField] private float xOffset;
         [SerializeField] private float yOffset;
-        [SerializeField] private bool staticZ;
+
+        [FormerlySerializedAs("staticZ")] [SerializeField]
+        private bool lockZ;
+
+        [SerializeField] private bool lockY;
         private float _initialZ;
 
         private void Start()
@@ -20,7 +25,9 @@ namespace Object.Scripts
             var newPosition = target.position;
             newPosition.y += yOffset;
             newPosition.x += xOffset;
-            if (staticZ) newPosition.z = _initialZ;
+
+            if (lockZ) newPosition.z = _initialZ;
+            if (lockY) newPosition.y = yOffset;
 
             transform.position = newPosition;
         }
