@@ -47,7 +47,6 @@ namespace Mini_Games
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            print("UI CLICK ON " + gameObject.name);
             Notify(gameEventName);
         }
     }
