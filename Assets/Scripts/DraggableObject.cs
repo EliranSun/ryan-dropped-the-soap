@@ -1,5 +1,7 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class DraggableObject : ObserverSubject
 {
     private bool _isDragging;
@@ -23,6 +25,7 @@ public class DraggableObject : ObserverSubject
             var mousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = 0f; // Ensure we only work with 2D coordinates
 
+            print(mousePosition);
             // _rigidbody2D.MovePosition(mousePosition);
             transform.position = mousePosition;
         }

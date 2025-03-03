@@ -1,3 +1,4 @@
+using Mini_Games.Organize_Desk.scripts;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -6,14 +7,15 @@ namespace Mini_Games
 {
     [RequireComponent(typeof(Image))]
     [RequireComponent(typeof(RectTransform))]
-    public class MiniGameTrigger : ObserverSubject, IPointerClickHandler
+    public class UIClickNotifier : ObserverSubject, IPointerClickHandler
     {
+        [SerializeField] private UIItem uiItemName;
         [SerializeField] private GameEvents gameEventName;
 
         private void Start()
         {
             // Check if we're in a Canvas hierarchy
-            Canvas canvas = GetComponentInParent<Canvas>();
+            var canvas = GetComponentInParent<Canvas>();
             if (canvas == null)
             {
                 Debug.LogError("MiniGameTrigger must be placed inside a Canvas hierarchy for UI interaction to work!");
@@ -28,7 +30,7 @@ namespace Mini_Games
             }
 
             // Make sure our Image component has raycast target enabled
-            Image image = GetComponent<Image>();
+            var image = GetComponent<Image>();
             if (image != null && !image.raycastTarget)
             {
                 Debug.LogWarning("Image raycastTarget is disabled! Enabling it for click detection...");
@@ -39,7 +41,7 @@ namespace Mini_Games
             if (FindObjectOfType<EventSystem>() == null)
             {
                 Debug.LogWarning("No EventSystem found in the scene! UI interactions require an EventSystem.");
-                GameObject eventSystem = new GameObject("EventSystem");
+                var eventSystem = new GameObject("EventSystem");
                 eventSystem.AddComponent<EventSystem>();
                 eventSystem.AddComponent<StandaloneInputModule>();
             }
@@ -47,7 +49,8 @@ namespace Mini_Games
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            Notify(gameEventName);
+            print("UIClickNotifier OnPointerClick");
+            Notify(gameEventName, uiItemName);
         }
     }
 }

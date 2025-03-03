@@ -112,5 +112,6 @@
     FlirtGameStart,
     MiniGameIndicationTrigger,
     TextMessageGameStart,
-    MiniGameClosed
+    MiniGameClosed,
+    UIItemClicked
 }
