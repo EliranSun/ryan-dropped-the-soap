@@ -109,5 +109,8 @@
     ThoughtScoreChange,
     KillThoughtsAndSayings,
     KillDialog,
-    FlirtGameStart
+    FlirtGameStart,
+    MiniGameIndicationTrigger,
+    TextMessageGameStart,
+    MiniGameClosed
 }

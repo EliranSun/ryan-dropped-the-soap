@@ -5,7 +5,9 @@ namespace Mini_Games
 {
     public class MiniGame : ObserverSubject
     {
-        [SerializeField] private TextMeshProUGUI timerTextContainer;
+        [Header("Mini Game Settings")] [SerializeField]
+        private TextMeshProUGUI timerTextContainer;
+
         [SerializeField] private int timer = 8;
         [SerializeField] public GameObject miniGameContainer;
 
@@ -38,13 +40,14 @@ namespace Mini_Games
             _isTimerRunning = true;
         }
 
-        protected void CloseMiniGame()
+        protected virtual void CloseMiniGame()
         {
             _isTimerRunning = false;
             isGameActive = false;
             miniGameContainer.SetActive(false);
             Notify(GameEvents.KillThoughtsAndSayings);
             Notify(GameEvents.KillDialog);
+            Notify(GameEvents.MiniGameClosed);
         }
     }
 }

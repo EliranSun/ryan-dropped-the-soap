@@ -3,6 +3,7 @@ using UnityEngine;
 namespace Mini_Games
 {
     [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(SpriteRenderer))]
     public class WobblyMovement : MonoBehaviour
     {
         [Header("References")] [SerializeField]
@@ -14,37 +15,52 @@ namespace Mini_Games
         private float moveSpeed = 5f;
 
         [SerializeField] private float jumpForce = 5f;
-
-        private bool _isPressed;
+        private bool _isFacingRight = true;
+        private SpriteRenderer _spriteRenderer;
 
         private void Start()
         {
+            _spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
         private void Update()
         {
-            var moveInput = Input.GetAxis("Horizontal");
+            var moveRight = Input.GetKeyDown(KeyCode.D);
+            var moveLeft = Input.GetKeyDown(KeyCode.A);
 
-            if (moveInput > 0)
-                PushForward(Vector2.right);
-            else if (moveInput < 0)
-                PushForward(Vector2.left);
-        }
+            if (moveRight) PushForward(Vector2.right);
+            else if (moveLeft) PushForward(Vector2.left);
 
-        private void OnCollisionEnter2D(Collision2D other)
-        {
-            if (other.gameObject.CompareTag("Ground"))
-                _isPressed = false;
+            // Reset rotation when keys are released
+            if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.A)) transform.rotation = Quaternion.identity;
         }
 
         private void PushForward(Vector2 direction)
         {
-            if (_isPressed)
-                return;
+            // reset rotation
+            transform.rotation = Quaternion.identity;
+
+            FlipSprite(direction);
 
             playerRigidbody.velocity = Vector2.zero;
             playerRigidbody.AddForce(direction * moveSpeed + Vector2.up * jumpForce, ForceMode2D.Impulse);
-            _isPressed = true;
+
+            // rotate object angle a bit in the direction of movement
+            transform.Rotate(Vector3.forward, direction.x * -5f);
+        }
+
+        private void FlipSprite(Vector2 direction)
+        {
+            if (_isFacingRight && direction == Vector2.left)
+            {
+                _spriteRenderer.flipX = false;
+                _isFacingRight = false;
+            }
+            else if (!_isFacingRight && direction == Vector2.right)
+            {
+                _spriteRenderer.flipX = true;
+                _isFacingRight = true;
+            }
         }
     }
 }
