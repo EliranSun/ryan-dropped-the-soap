@@ -1526,6 +1526,7 @@ GameObject:
   - component: {fileID: 476172425}
   - component: {fileID: 476172427}
   - component: {fileID: 476172426}
+  - component: {fileID: 476172428}
   m_Layer: 5
   m_Name: Image (3)
   m_TagString: Untagged
@@ -1590,6 +1591,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 476172424}
   m_CullTransparentMesh: 1
+--- !u!114 &476172428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 476172424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d89b8a59143035b469115d4300844da9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1959906848}
+        m_TargetAssemblyTypeName: Mini_Games.Organize_Desk.scripts.OrganizeMiniGame,
+          MiniGamesScriptAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  uiItemName: 8
+  gameEventName: 89
 --- !u!1 &478838317
 GameObject:
   m_ObjectHideFlags: 0
@@ -1704,6 +1735,7 @@ GameObject:
   - component: {fileID: 497764865}
   - component: {fileID: 497764867}
   - component: {fileID: 497764866}
+  - component: {fileID: 497764868}
   m_Layer: 5
   m_Name: Image (2)
   m_TagString: Untagged
@@ -1768,6 +1800,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 497764864}
   m_CullTransparentMesh: 1
+--- !u!114 &497764868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 497764864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d89b8a59143035b469115d4300844da9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1959906848}
+        m_TargetAssemblyTypeName: Mini_Games.Organize_Desk.scripts.OrganizeMiniGame,
+          MiniGamesScriptAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  uiItemName: 7
+  gameEventName: 89
 --- !u!1 &524733619
 GameObject:
   m_ObjectHideFlags: 0
@@ -2265,6 +2327,7 @@ GameObject:
   - component: {fileID: 735049913}
   - component: {fileID: 735049915}
   - component: {fileID: 735049914}
+  - component: {fileID: 735049916}
   m_Layer: 5
   m_Name: Image (2)
   m_TagString: Untagged
@@ -2329,6 +2392,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 735049912}
   m_CullTransparentMesh: 1
+--- !u!114 &735049916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 735049912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d89b8a59143035b469115d4300844da9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1959906848}
+        m_TargetAssemblyTypeName: Mini_Games.Organize_Desk.scripts.OrganizeMiniGame,
+          MiniGamesScriptAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  uiItemName: 7
+  gameEventName: 89
 --- !u!114 &740530430 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3560832367629595899, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
@@ -3308,6 +3401,7 @@ GameObject:
   - component: {fileID: 1162219559}
   - component: {fileID: 1162219561}
   - component: {fileID: 1162219560}
+  - component: {fileID: 1162219562}
   m_Layer: 5
   m_Name: Image (1)
   m_TagString: Untagged
@@ -3372,6 +3466,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1162219558}
   m_CullTransparentMesh: 1
+--- !u!114 &1162219562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162219558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d89b8a59143035b469115d4300844da9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1959906848}
+        m_TargetAssemblyTypeName: Mini_Games.Organize_Desk.scripts.OrganizeMiniGame,
+          MiniGamesScriptAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  uiItemName: 6
+  gameEventName: 89
 --- !u!1 &1184234874
 GameObject:
   m_ObjectHideFlags: 0
@@ -3488,6 +3612,7 @@ GameObject:
   - component: {fileID: 1194898053}
   - component: {fileID: 1194898055}
   - component: {fileID: 1194898054}
+  - component: {fileID: 1194898056}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -3552,6 +3677,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1194898052}
   m_CullTransparentMesh: 1
+--- !u!114 &1194898056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194898052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d89b8a59143035b469115d4300844da9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1959906848}
+        m_TargetAssemblyTypeName: Mini_Games.Organize_Desk.scripts.OrganizeMiniGame,
+          MiniGamesScriptAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  uiItemName: 4
+  gameEventName: 89
 --- !u!1 &1218222514
 GameObject:
   m_ObjectHideFlags: 0
@@ -3736,8 +3891,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 65.69378, y: 13.0662}
+  m_SizeDelta: {x: 550.7829, y: 282.9263}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1305133460
 GameObject:
@@ -4479,6 +4634,7 @@ GameObject:
   - component: {fileID: 1523527729}
   - component: {fileID: 1523527731}
   - component: {fileID: 1523527730}
+  - component: {fileID: 1523527732}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -4543,6 +4699,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1523527728}
   m_CullTransparentMesh: 1
+--- !u!114 &1523527732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1523527728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d89b8a59143035b469115d4300844da9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1959906848}
+        m_TargetAssemblyTypeName: Mini_Games.Organize_Desk.scripts.OrganizeMiniGame,
+          MiniGamesScriptAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  uiItemName: 4
+  gameEventName: 89
 --- !u!1 &1549563772
 GameObject:
   m_ObjectHideFlags: 0
@@ -5101,6 +5287,7 @@ GameObject:
   - component: {fileID: 1625872334}
   - component: {fileID: 1625872336}
   - component: {fileID: 1625872335}
+  - component: {fileID: 1625872337}
   m_Layer: 5
   m_Name: Image (1)
   m_TagString: Untagged
@@ -5165,6 +5352,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1625872333}
   m_CullTransparentMesh: 1
+--- !u!114 &1625872337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625872333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d89b8a59143035b469115d4300844da9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1959906848}
+        m_TargetAssemblyTypeName: Mini_Games.Organize_Desk.scripts.OrganizeMiniGame,
+          MiniGamesScriptAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  uiItemName: 6
+  gameEventName: 89
 --- !u!1 &1670375037
 GameObject:
   m_ObjectHideFlags: 0
@@ -5262,6 +5479,7 @@ GameObject:
   - component: {fileID: 1670382433}
   - component: {fileID: 1670382435}
   - component: {fileID: 1670382434}
+  - component: {fileID: 1670382436}
   m_Layer: 5
   m_Name: Image (4)
   m_TagString: Untagged
@@ -5326,6 +5544,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1670382432}
   m_CullTransparentMesh: 1
+--- !u!114 &1670382436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670382432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d89b8a59143035b469115d4300844da9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1959906848}
+        m_TargetAssemblyTypeName: Mini_Games.Organize_Desk.scripts.OrganizeMiniGame,
+          MiniGamesScriptAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  uiItemName: 5
+  gameEventName: 89
 --- !u!1 &1683653701
 GameObject:
   m_ObjectHideFlags: 0
@@ -5647,6 +5895,7 @@ GameObject:
   - component: {fileID: 1717044680}
   - component: {fileID: 1717044682}
   - component: {fileID: 1717044681}
+  - component: {fileID: 1717044683}
   m_Layer: 5
   m_Name: Image (4)
   m_TagString: Untagged
@@ -5711,6 +5960,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1717044679}
   m_CullTransparentMesh: 1
+--- !u!114 &1717044683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1717044679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d89b8a59143035b469115d4300844da9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1959906848}
+        m_TargetAssemblyTypeName: Mini_Games.Organize_Desk.scripts.OrganizeMiniGame,
+          MiniGamesScriptAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  uiItemName: 5
+  gameEventName: 89
 --- !u!1 &1734589534
 GameObject:
   m_ObjectHideFlags: 0
@@ -6177,6 +6456,7 @@ GameObject:
   - component: {fileID: 1911095804}
   - component: {fileID: 1911095806}
   - component: {fileID: 1911095805}
+  - component: {fileID: 1911095807}
   m_Layer: 5
   m_Name: Image (3)
   m_TagString: Untagged
@@ -6241,6 +6521,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1911095803}
   m_CullTransparentMesh: 1
+--- !u!114 &1911095807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911095803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d89b8a59143035b469115d4300844da9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1959906848}
+        m_TargetAssemblyTypeName: Mini_Games.Organize_Desk.scripts.OrganizeMiniGame,
+          MiniGamesScriptAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  uiItemName: 8
+  gameEventName: 89
 --- !u!1 &1914849582
 GameObject:
   m_ObjectHideFlags: 0

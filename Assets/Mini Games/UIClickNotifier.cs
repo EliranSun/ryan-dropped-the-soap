@@ -11,6 +11,7 @@ namespace Mini_Games
     {
         [SerializeField] private UIItem uiItemName;
         [SerializeField] private GameEvents gameEventName;
+        private bool _isSelected;
 
         private void Start()
         {
@@ -49,8 +50,30 @@ namespace Mini_Games
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            print("UIClickNotifier OnPointerClick");
+            if (_isSelected)
+                RemoveDuplicateItem();
+            else
+                DuplicateItem();
+
+            _isSelected = !_isSelected;
             Notify(gameEventName, uiItemName);
+        }
+
+        private void DuplicateItem()
+        {
+            var item = Instantiate(gameObject, transform.parent);
+            GetComponent<Image>().color = Color.black;
+
+            // disable the item's raycast target
+            item.GetComponent<Image>().raycastTarget = false;
+            item.transform.position = transform.position + new Vector3(4f, 4f, 0f);
+            item.transform.SetParent(transform);
+        }
+
+        private void RemoveDuplicateItem()
+        {
+            Destroy(transform.GetChild(0).gameObject);
+            GetComponent<Image>().color = Color.white;
         }
     }
 }

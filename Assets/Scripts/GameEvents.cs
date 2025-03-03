@@ -113,5 +113,6 @@
     MiniGameIndicationTrigger,
     TextMessageGameStart,
     MiniGameClosed,
-    UIItemClicked
+    UIItemClicked,
+    UIItemPlacementClicked
 }

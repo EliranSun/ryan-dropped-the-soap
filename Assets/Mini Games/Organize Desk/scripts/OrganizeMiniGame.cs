@@ -20,7 +20,15 @@ namespace Mini_Games.Organize_Desk.scripts
         None,
         Notebook,
         Screen,
-        SoccerBall
+        SoccerBall,
+
+        // TODO: Refactor
+        ItemPlacementOne,
+        ItemPlacementTwo,
+        ItemPlacementThree,
+        ItemPlacementFour,
+        ItemPlacementFive,
+        ItemPlacementSix
     }
 
     [Serializable]
@@ -43,6 +51,7 @@ namespace Mini_Games.Organize_Desk.scripts
         [SerializeField] private OrganizableItem[] items;
         [SerializeField] private OrganizationPattern[] patterns;
         private OrganizableItem _selectedItem;
+        private OrganizableItem _selectedSlot;
 
         private void Start()
         {
@@ -60,12 +69,24 @@ namespace Mini_Games.Organize_Desk.scripts
                 // Check if the clicked item exists in our items array
                 _selectedItem = items.First(item => item.uiItem == itemName);
             }
+
+            if (gameEvent.Name == GameEvents.UIItemPlacementClicked)
+            {
+                var itemName = (UIItem)gameEvent.Data;
+                _selectedSlot = items.First(item => item.uiItem == itemName);
+
+                if (_selectedItem != null)
+                {
+                    Instantiate(_selectedItem.itemObject, _selectedSlot.itemObject.transform.position, Quaternion.identity, itemsContainerTransform);
+                    Destroy(_selectedItem.itemObject);
+                }
+            }
         }
 
         private void PlaceItemsRandomlyOnScreen()
         {
             // Check if the itemsContainerTransform is a RectTransform (part of a Canvas)
-            RectTransform containerRect = itemsContainerTransform as RectTransform;
+            var containerRect = itemsContainerTransform as RectTransform;
             if (containerRect == null)
             {
                 Debug.LogError("itemsContainerTransform is not a RectTransform! Make sure it's part of a Canvas.");
@@ -73,7 +94,7 @@ namespace Mini_Games.Organize_Desk.scripts
             }
 
             // Get the canvas rect dimensions
-            Canvas canvas = containerRect.GetComponentInParent<Canvas>();
+            var canvas = containerRect.GetComponentInParent<Canvas>();
             if (canvas == null)
             {
                 Debug.LogError("No Canvas found in parent hierarchy!");
@@ -81,33 +102,33 @@ namespace Mini_Games.Organize_Desk.scripts
             }
 
             // Get the container's rect dimensions
-            Rect containerRect2D = containerRect.rect;
-            float containerWidth = containerRect2D.width;
-            float containerHeight = containerRect2D.height;
+            var containerRect2D = containerRect.rect;
+            var containerWidth = containerRect2D.width;
+            var containerHeight = containerRect2D.height;
 
             // If the container has zero size, try to use the canvas size instead
             if (containerWidth <= 0 || containerHeight <= 0)
             {
-                RectTransform canvasRect = canvas.GetComponent<RectTransform>();
+                var canvasRect = canvas.GetComponent<RectTransform>();
                 containerWidth = canvasRect.rect.width;
                 containerHeight = canvasRect.rect.height;
             }
 
             // Add padding to ensure objects aren't placed right at the edge
-            float padding = 50f; // Adjust this value based on your UI object sizes
-            float minX = padding - containerWidth / 2;
-            float maxX = containerWidth / 2 - padding;
-            float minY = padding - containerHeight / 2;
-            float maxY = containerHeight / 2 - padding;
+            var padding = 50f; // Adjust this value based on your UI object sizes
+            var minX = padding - containerWidth / 2;
+            var maxX = containerWidth / 2 - padding;
+            var minY = padding - containerHeight / 2;
+            var maxY = containerHeight / 2 - padding;
 
             foreach (var item in items)
             {
                 // Place items randomly within the calculated canvas bounds
-                float randomX = Random.Range(minX, maxX);
-                float randomY = Random.Range(minY, maxY);
+                var randomX = Random.Range(minX, maxX);
+                var randomY = Random.Range(minY, maxY);
 
                 // Instantiate the item as a UI element
-                GameObject newItem = Instantiate(
+                var newItem = Instantiate(
                     item.itemObject,
                     Vector3.zero, // Position will be set via RectTransform
                     Quaternion.identity,
@@ -115,7 +136,7 @@ namespace Mini_Games.Organize_Desk.scripts
                 );
 
                 // Set the anchored position on the RectTransform
-                RectTransform itemRect = newItem.GetComponent<RectTransform>();
+                var itemRect = newItem.GetComponent<RectTransform>();
                 if (itemRect != null)
                 {
                     itemRect.anchoredPosition = new Vector2(randomX, randomY);
