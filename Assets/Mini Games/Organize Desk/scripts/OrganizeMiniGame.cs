@@ -42,7 +42,7 @@ namespace Mini_Games.Organize_Desk.scripts
     public class OrganizableItem
     {
         public GameObject itemObject;
-        [FormerlySerializedAs("uiItems")] public UIItem uiItem;
+        public UIItem uiItem;
     }
 
     public class OrganizeMiniGame : MonoBehaviour
@@ -146,6 +146,45 @@ namespace Mini_Games.Organize_Desk.scripts
                     Debug.LogWarning($"Item {item.uiItem} doesn't have a RectTransform component!");
                     // Fallback to setting the local position
                     newItem.transform.localPosition = new Vector3(randomX, randomY, 0);
+                }
+
+                // Add click listener to the item
+                var clickHandler = newItem.GetComponent<UIClickNotifier>();
+                if (clickHandler == null)
+                {
+                    // Add UIClickNotifier if it doesn't exist
+                    clickHandler = newItem.AddComponent<UIClickNotifier>();
+
+                    // Make sure it has an Image component for raycasting
+                    if (newItem.GetComponent<UnityEngine.UI.Image>() == null)
+                    {
+                        newItem.AddComponent<UnityEngine.UI.Image>();
+                        // Make it transparent but still clickable
+                        newItem.GetComponent<UnityEngine.UI.Image>().color = new Color(1, 1, 1, 0.01f);
+                    }
+
+                    // Set the UIItem name
+                    var field = typeof(UIClickNotifier).GetField("uiItemName", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                    if (field != null)
+                    {
+                        field.SetValue(clickHandler, item.uiItem);
+                    }
+
+                    // Set the GameEvent name
+                    var eventField = typeof(UIClickNotifier).GetField("gameEventName", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                    if (eventField != null)
+                    {
+                        eventField.SetValue(clickHandler, GameEvents.UIItemClicked);
+                    }
+
+                    // Add this OrganizeMiniGame as an observer
+                    var observersField = typeof(ObserverSubject).GetField("observers", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
+                    if (observersField != null)
+                    {
+                        var observers = new UnityEngine.Events.UnityEvent<GameEventData>();
+                        observers.AddListener(OnNotify);
+                        observersField.SetValue(clickHandler, observers);
+                    }
                 }
             }
         }
