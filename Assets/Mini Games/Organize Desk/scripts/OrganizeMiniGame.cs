@@ -1,7 +1,6 @@
 using System;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace Mini_Games.Organize_Desk.scripts
@@ -36,6 +35,7 @@ namespace Mini_Games.Organize_Desk.scripts
     {
         public GameObject pattern;
         public PatternName patternName;
+        public UIItem uiItem;
     }
 
     [Serializable]
@@ -51,6 +51,7 @@ namespace Mini_Games.Organize_Desk.scripts
         [SerializeField] private OrganizableItem[] items;
         [SerializeField] private OrganizationPattern[] patterns;
         private OrganizableItem _selectedItem;
+        private GameObject _selectedPattern;
         private OrganizableItem _selectedSlot;
 
         private void Start()
@@ -73,12 +74,22 @@ namespace Mini_Games.Organize_Desk.scripts
             if (gameEvent.Name == GameEvents.UIItemPlacementClicked)
             {
                 var itemName = (UIItem)gameEvent.Data;
-                _selectedSlot = items.First(item => item.uiItem == itemName);
+                // Find the placement slot from the patterns array
+                var selectedPattern = Array.Find(
+                    _selectedPattern.GetComponentsInChildren<UIClickNotifier>(),
+                    pattern => pattern.uiItemName == itemName
+                );
 
-                if (_selectedItem != null)
+                if (_selectedItem != null && selectedPattern != null)
                 {
-                    Instantiate(_selectedItem.itemObject, _selectedSlot.itemObject.transform.position, Quaternion.identity, itemsContainerTransform);
-                    Destroy(_selectedItem.itemObject);
+                    // Use the pattern GameObject's position for placement
+                    Instantiate(_selectedItem.itemObject,
+                        selectedPattern.gameObject.transform.position,
+                        Quaternion.identity,
+                        itemsContainerTransform
+                    );
+                    _selectedItem.itemObject.SetActive(false);
+                    _selectedItem = null; // Reset selection after placement
                 }
             }
         }
@@ -135,6 +146,12 @@ namespace Mini_Games.Organize_Desk.scripts
                     itemsContainerTransform
                 );
 
+                newItem.GetComponent<UIClickNotifier>().SetUIItemData(
+                    item.uiItem,
+                    GameEvents.UIItemClicked,
+                    OnNotify
+                );
+
                 // Set the anchored position on the RectTransform
                 var itemRect = newItem.GetComponent<RectTransform>();
                 if (itemRect != null)
@@ -146,45 +163,6 @@ namespace Mini_Games.Organize_Desk.scripts
                     Debug.LogWarning($"Item {item.uiItem} doesn't have a RectTransform component!");
                     // Fallback to setting the local position
                     newItem.transform.localPosition = new Vector3(randomX, randomY, 0);
-                }
-
-                // Add click listener to the item
-                var clickHandler = newItem.GetComponent<UIClickNotifier>();
-                if (clickHandler == null)
-                {
-                    // Add UIClickNotifier if it doesn't exist
-                    clickHandler = newItem.AddComponent<UIClickNotifier>();
-
-                    // Make sure it has an Image component for raycasting
-                    if (newItem.GetComponent<UnityEngine.UI.Image>() == null)
-                    {
-                        newItem.AddComponent<UnityEngine.UI.Image>();
-                        // Make it transparent but still clickable
-                        newItem.GetComponent<UnityEngine.UI.Image>().color = new Color(1, 1, 1, 0.01f);
-                    }
-
-                    // Set the UIItem name
-                    var field = typeof(UIClickNotifier).GetField("uiItemName", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-                    if (field != null)
-                    {
-                        field.SetValue(clickHandler, item.uiItem);
-                    }
-
-                    // Set the GameEvent name
-                    var eventField = typeof(UIClickNotifier).GetField("gameEventName", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-                    if (eventField != null)
-                    {
-                        eventField.SetValue(clickHandler, GameEvents.UIItemClicked);
-                    }
-
-                    // Add this OrganizeMiniGame as an observer
-                    var observersField = typeof(ObserverSubject).GetField("observers", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
-                    if (observersField != null)
-                    {
-                        var observers = new UnityEngine.Events.UnityEvent<GameEventData>();
-                        observers.AddListener(OnNotify);
-                        observersField.SetValue(clickHandler, observers);
-                    }
                 }
             }
         }
@@ -218,6 +196,7 @@ namespace Mini_Games.Organize_Desk.scripts
                         if (pattern.patternName == selectedPattern && pattern.pattern != null)
                         {
                             pattern.pattern.SetActive(true);
+                            _selectedPattern = pattern.pattern;
                             Debug.Log($"Activated pattern: {selectedPattern}");
                             break;
                         }

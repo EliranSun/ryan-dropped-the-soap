@@ -1,5 +1,6 @@
 using Mini_Games.Organize_Desk.scripts;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -9,8 +10,8 @@ namespace Mini_Games
     [RequireComponent(typeof(RectTransform))]
     public class UIClickNotifier : ObserverSubject, IPointerClickHandler
     {
-        [SerializeField] private UIItem uiItemName;
         [SerializeField] private GameEvents gameEventName;
+        [SerializeField] public UIItem uiItemName;
         private bool _isSelected;
 
         private void Start()
@@ -74,6 +75,17 @@ namespace Mini_Games
         {
             Destroy(transform.GetChild(0).gameObject);
             GetComponent<Image>().color = Color.white;
+        }
+
+        // New overload that accepts an Action<GameEventData> delegate
+        public void SetUIItemData(UIItem itemName, GameEvents clickEventName, UnityAction<GameEventData> notifyCallback)
+        {
+            gameEventName = clickEventName;
+            uiItemName = itemName;
+
+            if (notifyCallback != null)
+                // Register the callback directly to receive notifications
+                observers.AddListener(notifyCallback);
         }
     }
 }
