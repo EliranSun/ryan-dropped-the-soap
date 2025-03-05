@@ -19,6 +19,7 @@ namespace Mini_Games.Organize_Desk.scripts
         None,
         Notebook,
         Screen,
+        Pens,
         SoccerBall,
 
         // TODO: Refactor
@@ -49,8 +50,11 @@ namespace Mini_Games.Organize_Desk.scripts
     {
         [SerializeField] private Transform itemsContainerTransform;
         [SerializeField] private OrganizableItem[] items;
+
         [SerializeField] private OrganizationPattern[] patterns;
-        private OrganizableItem _selectedItem;
+
+        // private OrganizableItem _selectedItem;
+        private GameObject _selectedItem;
         private GameObject _selectedPattern;
         private OrganizableItem _selectedSlot;
 
@@ -64,31 +68,31 @@ namespace Mini_Games.Organize_Desk.scripts
         public void OnNotify(GameEventData gameEvent)
         {
             if (gameEvent.Name == GameEvents.UIItemClicked)
-            {
-                var itemName = (UIItem)gameEvent.Data;
-
+                // var itemName = (UIItem)gameEvent.Data;
                 // Check if the clicked item exists in our items array
-                _selectedItem = items.First(item => item.uiItem == itemName);
-            }
+                // _selectedItem = items.First(item => item.uiItem == itemName);
+                _selectedItem = (GameObject)gameEvent.Data;
 
             if (gameEvent.Name == GameEvents.UIItemPlacementClicked)
             {
-                var itemName = (UIItem)gameEvent.Data;
-                // Find the placement slot from the patterns array
-                var selectedPattern = Array.Find(
-                    _selectedPattern.GetComponentsInChildren<UIClickNotifier>(),
-                    pattern => pattern.uiItemName == itemName
-                );
+                // var itemName = (UIItem)gameEvent.Data;
+                // // Find the placement slot from the patterns array
+                // var selectedPattern = Array.Find(
+                //     _selectedPattern.GetComponentsInChildren<UIClickNotifier>(),
+                //     pattern => pattern.uiItemName == itemName
+                // );
+
+                var selectedPattern = (GameObject)gameEvent.Data;
 
                 if (_selectedItem != null && selectedPattern != null)
                 {
                     // Use the pattern GameObject's position for placement
-                    Instantiate(_selectedItem.itemObject,
-                        selectedPattern.gameObject.transform.position,
+                    Instantiate(_selectedItem,
+                        selectedPattern.transform.position,
                         Quaternion.identity,
                         itemsContainerTransform
                     );
-                    _selectedItem.itemObject.SetActive(false);
+                    _selectedItem.SetActive(false);
                     _selectedItem = null; // Reset selection after placement
                 }
             }

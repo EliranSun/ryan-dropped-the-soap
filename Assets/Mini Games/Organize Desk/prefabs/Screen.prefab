@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4296731345616158253}
   - component: {fileID: 1022842233208365005}
   m_Layer: 5
-  m_Name: Notebook image
+  m_Name: Screen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36,9 +36,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 100, y: 100}
-  m_SizeDelta: {x: 74.29999, y: 82.12}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -13.499573, y: -62.51149}
+  m_SizeDelta: {x: 192.85, y: 201.65}
+  m_Pivot: {x: 0.43, y: 0.19}
 --- !u!222 &4411083402482507762
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d861202830cb64967aa8bef54e55a446, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 692062b2123674d8ead505f1e3590a36, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -151,5 +151,5 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  uiItemName: 0
   gameEventName: 88
+  uiItemName: 0

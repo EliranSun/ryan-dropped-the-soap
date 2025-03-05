@@ -57,7 +57,7 @@ namespace Mini_Games
                 DuplicateItem();
 
             _isSelected = !_isSelected;
-            Notify(gameEventName, uiItemName);
+            Notify(gameEventName, gameObject);
         }
 
         private void DuplicateItem()
