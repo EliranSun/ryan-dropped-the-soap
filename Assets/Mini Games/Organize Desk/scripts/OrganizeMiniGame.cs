@@ -28,7 +28,9 @@ namespace Mini_Games.Organize_Desk.scripts
         ItemPlacementThree,
         ItemPlacementFour,
         ItemPlacementFive,
-        ItemPlacementSix
+        ItemPlacementSix,
+
+        Trash
     }
 
     [Serializable]
@@ -46,12 +48,14 @@ namespace Mini_Games.Organize_Desk.scripts
         public UIItem uiItem;
     }
 
-    public class OrganizeMiniGame : MonoBehaviour
+    public class OrganizeMiniGame : MiniGame
     {
+        [Header("Organize Game Settings")]
         [SerializeField] private Transform itemsContainerTransform;
         [SerializeField] private OrganizableItem[] items;
 
         [SerializeField] private OrganizationPattern[] patterns;
+        private int _organizedItemsCount;
 
         // private OrganizableItem _selectedItem;
         private GameObject _selectedItem;
@@ -64,34 +68,49 @@ namespace Mini_Games.Organize_Desk.scripts
             PlaceItemsRandomlyOnScreen();
         }
 
-        // Update is called once per frame
         public void OnNotify(GameEventData gameEvent)
         {
             if (gameEvent.Name == GameEvents.UIItemClicked)
-                // var itemName = (UIItem)gameEvent.Data;
-                // Check if the clicked item exists in our items array
-                // _selectedItem = items.First(item => item.uiItem == itemName);
-                _selectedItem = (GameObject)gameEvent.Data;
+            {
+                if (gameEvent.Data is not UIItemClickData data)
+                    return;
+
+                _selectedItem = data.gameObject;
+            }
 
             if (gameEvent.Name == GameEvents.UIItemPlacementClicked)
             {
-                // var itemName = (UIItem)gameEvent.Data;
-                // // Find the placement slot from the patterns array
-                // var selectedPattern = Array.Find(
-                //     _selectedPattern.GetComponentsInChildren<UIClickNotifier>(),
-                //     pattern => pattern.uiItemName == itemName
-                // );
+                // Extract the gameObject from the anonymous object
+                if (gameEvent.Data is not UIItemClickData data)
+                    return;
 
-                var selectedPattern = (GameObject)gameEvent.Data;
+                if (data.uiItemName == UIItem.Trash)
+                {
+                    if (_selectedItem != null)
+                    {
+                        _selectedItem.SetActive(false);
+                        _selectedItem = null;
+                    }
+
+                    return;
+                }
+
+                var selectedPattern = data.gameObject;
 
                 if (_selectedItem != null && selectedPattern != null)
                 {
-                    // Use the pattern GameObject's position for placement
+                    if (_organizedItemsCount == _selectedPattern.GetComponentsInChildren<UIClickNotifier>().Length)
+                    {
+                        CloseMiniGame();
+                        return;
+                    }
+
                     Instantiate(_selectedItem,
                         selectedPattern.transform.position,
                         Quaternion.identity,
                         itemsContainerTransform
                     );
+                    _organizedItemsCount++;
                     _selectedItem.SetActive(false);
                     _selectedItem = null; // Reset selection after placement
                 }

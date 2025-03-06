@@ -6,6 +6,18 @@ using UnityEngine.UI;
 
 namespace Mini_Games
 {
+    public class UIItemClickData
+    {
+        public GameObject gameObject;
+        public UIItem uiItemName;
+
+        public UIItemClickData(GameObject gameObject, UIItem uiItemName)
+        {
+            this.gameObject = gameObject;
+            this.uiItemName = uiItemName;
+        }
+    }
+
     [RequireComponent(typeof(Image))]
     [RequireComponent(typeof(RectTransform))]
     public class UIClickNotifier : ObserverSubject, IPointerClickHandler
@@ -57,7 +69,7 @@ namespace Mini_Games
                 DuplicateItem();
 
             _isSelected = !_isSelected;
-            Notify(gameEventName, gameObject);
+            Notify(gameEventName, new UIItemClickData(gameObject, uiItemName));
         }
 
         private void DuplicateItem()
