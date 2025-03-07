@@ -50,8 +50,9 @@ namespace Mini_Games.Organize_Desk.scripts
 
     public class OrganizeMiniGame : MiniGame
     {
-        [Header("Organize Game Settings")]
-        [SerializeField] private Transform itemsContainerTransform;
+        [Header("Organize Game Settings")] [SerializeField]
+        private Transform itemsContainerTransform;
+
         [SerializeField] private OrganizableItem[] items;
 
         [SerializeField] private OrganizationPattern[] patterns;
@@ -65,7 +66,8 @@ namespace Mini_Games.Organize_Desk.scripts
         private void Start()
         {
             ActivateRandomPattern();
-            PlaceItemsRandomlyOnScreen();
+            // PlaceItemsRandomlyOnScreen();
+            Place3DItemsRandomlyOnScreen();
         }
 
         public void OnNotify(GameEventData gameEvent)
@@ -117,6 +119,72 @@ namespace Mini_Games.Organize_Desk.scripts
             }
         }
 
+        private void Place3DItemsRandomlyOnScreen()
+        {
+            // Check if the itemsContainerTransform exists
+            if (itemsContainerTransform == null)
+            {
+                Debug.LogError("itemsContainerTransform is not assigned!");
+                return;
+            }
+
+            // Get the bounds of the container object
+            // If the container has a collider, we can use its bounds
+            var containerCollider = itemsContainerTransform.GetComponent<Collider>();
+            var containerWidth = 10f;
+            var containerHeight = 10f;
+            var containerDepth = 10f;
+
+            if (containerCollider != null)
+            {
+                var bounds = containerCollider.bounds;
+                containerWidth = bounds.size.x;
+                containerHeight = bounds.size.y;
+                containerDepth = bounds.size.z;
+            }
+            else
+            {
+                // If no collider, use a default size or the transform's local scale
+                containerWidth = itemsContainerTransform.localScale.x * 10f;
+                containerHeight = itemsContainerTransform.localScale.y * 10f;
+                containerDepth = itemsContainerTransform.localScale.z * 20f;
+                Debug.LogWarning("No Collider found on container. Using estimated bounds based on transform scale.");
+            }
+
+            // Add padding to ensure objects aren't placed right at the edge
+            var padding = 1f; // Adjust this value based on your 3D object sizes
+            var minX = -containerWidth / 2 + padding;
+            var maxX = containerWidth / 2 - padding;
+            var minY = -containerHeight / 2 + padding;
+            var maxY = containerHeight / 2 - padding;
+            var minZ = -containerDepth / 2 + padding;
+            var maxZ = containerDepth / 2 - padding;
+
+            foreach (var item in items)
+            {
+                // Place items randomly within the calculated 3D bounds
+                var randomX = Random.Range(minX, maxX);
+                var randomY = Random.Range(minY, maxY);
+                var randomZ = Random.Range(minZ, maxZ);
+                var randomPosition = new Vector3(randomX, randomY, randomZ);
+
+                // Instantiate the item as a 3D object
+                var newItem = Instantiate(
+                    item.itemObject,
+                    randomPosition,
+                    Quaternion.identity
+                );
+//                     // itemsContainerTransform.TransformPoint(randomPosition), // Convert local position to world position
+
+                // Optional: Add random rotation
+                // newItem.transform.rotation = Quaternion.Euler(
+                //     Random.Range(0, 360),
+                //     Random.Range(0, 360),
+                //     Random.Range(0, 360)
+                // );
+            }
+        }
+
         private void PlaceItemsRandomlyOnScreen()
         {
             // Check if the itemsContainerTransform is a RectTransform (part of a Canvas)
@@ -139,6 +207,13 @@ namespace Mini_Games.Organize_Desk.scripts
             var containerRect2D = containerRect.rect;
             var containerWidth = containerRect2D.width;
             var containerHeight = containerRect2D.height;
+
+            // Calculate an appropriate depth based on the container's width or height
+            // This creates a proportional depth relative to the container size
+            var containerDepth = Mathf.Max(containerWidth, containerHeight) * 0.1f;
+
+            // Alternative: You could also use the scale of the container
+            // var containerDepth = containerRect.lossyScale.z * 10f;
 
             // If the container has zero size, try to use the canvas size instead
             if (containerWidth <= 0 || containerHeight <= 0)
@@ -175,18 +250,11 @@ namespace Mini_Games.Organize_Desk.scripts
                     OnNotify
                 );
 
-                // Set the anchored position on the RectTransform
-                var itemRect = newItem.GetComponent<RectTransform>();
+                var itemRect = newItem.GetComponent<Transform>();
                 if (itemRect != null)
-                {
-                    itemRect.anchoredPosition = new Vector2(randomX, randomY);
-                }
+                    itemRect.position = new Vector2(randomX, randomY);
                 else
-                {
-                    Debug.LogWarning($"Item {item.uiItem} doesn't have a RectTransform component!");
-                    // Fallback to setting the local position
-                    newItem.transform.localPosition = new Vector3(randomX, randomY, 0);
-                }
+                    newItem.transform.localPosition = new Vector2(randomX, randomY);
             }
         }
 
