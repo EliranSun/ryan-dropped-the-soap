@@ -72,6 +72,14 @@ namespace Mini_Games.Organize_Desk.scripts
 
         public void OnNotify(GameEventData gameEvent)
         {
+            if (gameEvent.Name == GameEvents.CollisionDetected)
+            {
+                if (gameEvent.Data is not UIItemCollisionData data)
+                    return;
+
+                print("OrganizeMiniGame OnNotify CollisionDetected");
+            }
+
             if (gameEvent.Name == GameEvents.UIItemClicked)
             {
                 if (gameEvent.Data is not UIItemClickData data)

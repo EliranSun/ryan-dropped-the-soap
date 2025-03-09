@@ -114,5 +114,6 @@
     TextMessageGameStart,
     MiniGameClosed,
     UIItemClicked,
-    UIItemPlacementClicked
+    UIItemPlacementClicked,
+    CollisionDetected
 }

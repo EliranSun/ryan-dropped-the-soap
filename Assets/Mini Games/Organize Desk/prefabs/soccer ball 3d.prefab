@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3568582480800847905}
   - component: {fileID: 5010299978138985195}
   - component: {fileID: 4657542010171365589}
+  - component: {fileID: -2777146395096163335}
   m_Layer: 0
   m_Name: soccer ball 3d
   m_TagString: Untagged
@@ -98,7 +99,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 20
   m_Sprite: {fileID: 21300000, guid: 05a563747f8084e5796fef1a10068e55, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -152,3 +153,20 @@ MonoBehaviour:
   observers:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &-2777146395096163335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175929084321124254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f22d7b748b853e4687b5c71116b851e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls: []
+  itemName: 4
+  tagName: Item Placement
