@@ -58,11 +58,16 @@ namespace Character_Creator.scripts
             if (interactionType is not (InteractionType.Click or InteractionType.Both))
                 return;
 
+            Notify(gameEvent, new InteractionData(
+                gameObject.name,
+                interactableObjectName,
+                interactableObjectType,
+                dialogLine.Length == 0 ? null : dialogLine[_interactionCount]
+            ));
+
             if (dialogLine.Length == 0)
-            {
-                Notify(gameEvent, interactableObjectType);
+                // Notify(gameEvent, interactableObjectType);
                 return;
-            }
 
             // TODO: _interactionCount & InteractionData might be redundant after the bubble event action change
             if (_interactionCount >= dialogLine.Length)
@@ -72,12 +77,6 @@ namespace Character_Creator.scripts
                 else return;
             }
 
-            Notify(gameEvent, new InteractionData(
-                gameObject.name,
-                interactableObjectName,
-                interactableObjectType,
-                dialogLine[_interactionCount]
-            ));
             _interactionCount++;
         }
 

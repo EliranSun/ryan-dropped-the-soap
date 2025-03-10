@@ -22,23 +22,19 @@ namespace Mini_Games.Flirt.scripts
         public int score = 50;
         [SerializeField] private int timer = 8;
         [SerializeField] private ActorName actorName = ActorName.Morgan;
+        [SerializeField] private NarrationDialogLine[] initialResponses;
+        [SerializeField] private NarrationDialogLine emptyResponse;
         [SerializeField] private PlayerMiniGameChoice[] choices;
         [SerializeField] private SpriteEmotion[] actorSpriteEmotions;
-
         [SerializeField] private TextMeshProUGUI scoreTextContainer;
         [SerializeField] private TextMeshProUGUI timerTextContainer;
         [SerializeField] private Image characterImageContainer;
         [SerializeField] private GameObject miniGameContainer;
         [SerializeField] private GameObject inGameTrigger;
         private float _currentTime;
+        private int _initResponsesCounter;
         private bool _isGameActive;
         private bool _isTimerRunning;
-
-
-        private void Start()
-        {
-            CloseMiniGame();
-        }
 
         private void Update()
         {
@@ -65,10 +61,14 @@ namespace Mini_Games.Flirt.scripts
 
         public void OnNotify(GameEventData eventData)
         {
-            if (!_isGameActive)
-                return;
+            _isGameActive = eventData.Name switch
+            {
+                GameEvents.MiniGameClosed => false,
+                GameEvents.MiniGameIndicationTrigger when (MiniGameName)eventData.Data == MiniGameName.Flirt => true,
+                _ => _isGameActive
+            };
 
-            print("Flirt OnNotify: " + eventData.Data);
+
             if (eventData.Name == GameEvents.ClickOnNpc)
             {
                 var interactionData = eventData.Data as InteractionData;
@@ -77,6 +77,9 @@ namespace Mini_Games.Flirt.scripts
                 if (interactionData.Name == inGameTrigger.gameObject.name)
                     StartMiniGame();
             }
+
+            if (!_isGameActive)
+                return;
 
             if (eventData.Name == GameEvents.FlirtGameStart)
             {
@@ -126,6 +129,8 @@ namespace Mini_Games.Flirt.scripts
             // Randomly select 4 choices from the available choices
             var randomChoices = GetRandomChoices(choices, 4);
 
+            InitActorResponse();
+
             Notify(GameEvents.AddThoughts, new ThoughtChoice
             {
                 choices = randomChoices
@@ -137,6 +142,17 @@ namespace Mini_Games.Flirt.scripts
             timerTextContainer.text = timer.ToString();
             _isTimerRunning = true;
         }
+
+        private void InitActorResponse()
+        {
+            var response = emptyResponse;
+            if (_initResponsesCounter <= initialResponses.Length - 1)
+                response = initialResponses[_initResponsesCounter];
+
+            Notify(GameEvents.TriggerSpecificDialogLine, response);
+            _initResponsesCounter++;
+        }
+
 
         // Helper method to randomly select n choices from the available choices
         private PlayerMiniGameChoice[] GetRandomChoices(PlayerMiniGameChoice[] availableChoices, int count)

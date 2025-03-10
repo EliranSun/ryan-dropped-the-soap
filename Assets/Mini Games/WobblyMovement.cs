@@ -12,7 +12,7 @@ namespace Mini_Games
         [SerializeField] private Rigidbody2D playerRigidbody;
 
         [Header("Movement Settings")] [SerializeField]
-        private float moveSpeed = 5f;
+        public float moveSpeed = 5f;
 
         [SerializeField] private float jumpForce = 5f;
         private bool _isFacingRight = true;

@@ -54,17 +54,17 @@ namespace Mini_Games.Organize_Desk.scripts
         private Transform itemsContainerTransform;
 
         [SerializeField] private OrganizableItem[] items;
-
         [SerializeField] private OrganizationPattern[] patterns;
         private int _organizedItemsCount;
 
-        // private OrganizableItem _selectedItem;
         private GameObject _selectedItem;
         private GameObject _selectedPattern;
         private OrganizableItem _selectedSlot;
 
         private void Start()
         {
+            StartMiniGame();
+
             ActivateRandomPattern();
             // PlaceItemsRandomlyOnScreen();
             Place3DItemsRandomlyOnScreen();
@@ -72,12 +72,22 @@ namespace Mini_Games.Organize_Desk.scripts
 
         public void OnNotify(GameEventData gameEvent)
         {
-            if (gameEvent.Name == GameEvents.CollisionDetected)
+            if (gameEvent.Name == GameEvents.CollisionEnter)
             {
                 if (gameEvent.Data is not UIItemCollisionData data)
                     return;
 
-                print("OrganizeMiniGame OnNotify CollisionDetected");
+                _organizedItemsCount++;
+                return;
+            }
+
+            if (gameEvent.Name == GameEvents.CollisionExit)
+            {
+                if (gameEvent.Data is not UIItemCollisionData data)
+                    return;
+
+                _organizedItemsCount--;
+                return;
             }
 
             if (gameEvent.Name == GameEvents.UIItemClicked)

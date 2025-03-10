@@ -63,13 +63,18 @@ namespace Mini_Games
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (_isSelected)
-                RemoveDuplicateItem();
-            else
-                DuplicateItem();
+            if (uiItemName != UIItem.None)
+            {
+                if (_isSelected)
+                    RemoveDuplicateItem();
+                else
+                    DuplicateItem();
 
-            _isSelected = !_isSelected;
-            Notify(gameEventName, new UIItemClickData(gameObject, uiItemName));
+                _isSelected = !_isSelected;
+            }
+
+            if (gameEventName != GameEvents.None)
+                Notify(gameEventName, new UIItemClickData(gameObject, uiItemName));
         }
 
         private void DuplicateItem()

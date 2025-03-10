@@ -334,9 +334,10 @@ namespace Character_Creator.scripts
 
             try
             {
-                var eventLine =
-                    eventToDialogMap.dialogLineEvents.First(dialogLineEvent =>
-                        dialogLineEvent.eventName == gameEventData.Name);
+                var eventLine = eventToDialogMap.dialogLineEvents.First(dialogLineEvent =>
+                    dialogLineEvent.eventName == gameEventData.Name
+                );
+
                 if (eventLine.dialogLine)
                 {
                     TriggerLine(eventLine.dialogLine);
@@ -350,6 +351,7 @@ namespace Character_Creator.scripts
 
             switch (gameEventData.Name)
             {
+                case GameEvents.TriggerSpecificDialogLine:
                 case GameEvents.EnteredMuseum:
                     TriggerLine((NarrationDialogLine)gameEventData.Data);
                     break;

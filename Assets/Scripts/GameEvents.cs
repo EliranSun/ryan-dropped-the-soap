@@ -115,5 +115,10 @@
     MiniGameClosed,
     UIItemClicked,
     UIItemPlacementClicked,
-    CollisionDetected
+    CollisionEnter,
+    CollisionExit,
+    MiniGameWon,
+    MiniGameLost,
+    MiniGameStart,
+    TriggerSpecificDialogLine
 }

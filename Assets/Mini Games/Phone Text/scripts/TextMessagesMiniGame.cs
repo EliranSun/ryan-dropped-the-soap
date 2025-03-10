@@ -52,7 +52,7 @@ namespace Mini_Games.Phone_Text.scripts
 
         private void Start()
         {
-            CloseMiniGame();
+            // CloseMiniGame();
 
             // Get or add CanvasGroup component to notification
             _notificationCanvasGroup = phoneNotification.GetComponent<CanvasGroup>();
@@ -185,6 +185,10 @@ namespace Mini_Games.Phone_Text.scripts
 
                     break;
                 }
+
+                case GameEvents.MiniGameClosed:
+                    StopMiniGameIndication();
+                    break;
             }
         }
 

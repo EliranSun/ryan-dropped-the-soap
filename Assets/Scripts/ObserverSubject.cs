@@ -20,7 +20,7 @@ public class GameEventData
 
 public class ObserverSubject : MonoBehaviour
 {
-    public UnityEvent<GameEventData> observers;
+    [Header("Observers")] public UnityEvent<GameEventData> observers;
 
     protected void Notify(GameEvents message)
     {

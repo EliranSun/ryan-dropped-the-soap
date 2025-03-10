@@ -32,7 +32,16 @@ namespace Mini_Games.Organize_Desk.scripts
         {
             if (other.gameObject.CompareTag(tagName))
                 _organizeMiniGameManager.OnNotify(new GameEventData(
-                    GameEvents.CollisionDetected,
+                    GameEvents.CollisionEnter,
+                    new UIItemCollisionData(itemName, gameObject, other.gameObject)
+                ));
+        }
+
+        private void OnCollisionExit(Collision other)
+        {
+            if (other.gameObject.CompareTag(tagName))
+                _organizeMiniGameManager.OnNotify(new GameEventData(
+                    GameEvents.CollisionExit,
                     new UIItemCollisionData(itemName, gameObject, other.gameObject)
                 ));
         }
