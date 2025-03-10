@@ -17,114 +17,81 @@ namespace Mini_Games.Flirt.scripts
     }
 
 
-    public class FlirtMiniGame : ObserverSubject
+    public class FlirtMiniGame : MiniGame
     {
-        public int score = 50;
-        [SerializeField] private int timer = 8;
+        [Header("Flirt Game Settings")] public int score = 50;
+
         [SerializeField] private ActorName actorName = ActorName.Morgan;
         [SerializeField] private NarrationDialogLine[] initialResponses;
         [SerializeField] private NarrationDialogLine emptyResponse;
         [SerializeField] private PlayerMiniGameChoice[] choices;
         [SerializeField] private SpriteEmotion[] actorSpriteEmotions;
         [SerializeField] private TextMeshProUGUI scoreTextContainer;
-        [SerializeField] private TextMeshProUGUI timerTextContainer;
         [SerializeField] private Image characterImageContainer;
-        [SerializeField] private GameObject miniGameContainer;
         [SerializeField] private GameObject inGameTrigger;
-        private float _currentTime;
         private int _initResponsesCounter;
-        private bool _isGameActive;
-        private bool _isTimerRunning;
-
-        private void Update()
-        {
-            if (_isTimerRunning) UpdateTimer();
-        }
-
-        private void UpdateTimer()
-        {
-            _currentTime -= Time.deltaTime;
-
-            // Update the timer display
-            var timeRemaining = Mathf.CeilToInt(_currentTime);
-            timerTextContainer.text = timeRemaining.ToString();
-
-            // Check if timer has reached zero
-            if (_currentTime <= 0)
-            {
-                _isTimerRunning = false;
-                CloseMiniGame();
-                Notify(GameEvents.KillThoughtsAndSayings);
-                Notify(GameEvents.KillDialog);
-            }
-        }
 
         public void OnNotify(GameEventData eventData)
         {
-            _isGameActive = eventData.Name switch
+            switch (eventData.Name)
             {
-                GameEvents.MiniGameClosed => false,
-                GameEvents.MiniGameIndicationTrigger when (MiniGameName)eventData.Data == MiniGameName.Flirt => true,
-                _ => _isGameActive
-            };
+                case GameEvents.MiniGameClosed:
+                    isGameActive = false;
+                    break;
 
+                case GameEvents.MiniGameIndicationTrigger when (MiniGameName)eventData.Data == MiniGameName.Flirt:
+                    isGameActive = true;
+                    break;
 
-            if (eventData.Name == GameEvents.ClickOnNpc)
-            {
-                var interactionData = eventData.Data as InteractionData;
-                if (interactionData == null) return;
+                case GameEvents.ClickOnNpc:
+                    var interactionData = eventData.Data as InteractionData;
+                    if (interactionData == null) return;
 
-                if (interactionData.Name == inGameTrigger.gameObject.name)
-                    StartMiniGame();
+                    if (interactionData.Name == inGameTrigger.gameObject.name)
+                        StartMiniGame();
+                    break;
             }
 
-            if (!_isGameActive)
+            if (!isGameActive)
                 return;
 
-            if (eventData.Name == GameEvents.FlirtGameStart)
+            switch (eventData.Name)
             {
-                CloseMiniGame();
-                StartMiniGame();
-            }
+                case GameEvents.FlirtGameStart:
+                    CloseMiniGame();
+                    StartMiniGame();
+                    break;
 
-            if (eventData.Name == GameEvents.ActorReaction)
-            {
-                var dialogLine = eventData.Data as NarrationDialogLine;
+                case GameEvents.ActorReaction:
+                    var dialogLine = eventData.Data as NarrationDialogLine;
 
-                if (!dialogLine) return;
-                if (dialogLine.actorName != actorName) return;
+                    if (!dialogLine) return;
+                    if (dialogLine.actorName != actorName) return;
 
-                var reaction = actorSpriteEmotions.First(x =>
-                    x.reaction == dialogLine.actorReaction);
+                    var reaction = actorSpriteEmotions.First(x =>
+                        x.reaction == dialogLine.actorReaction);
 
-                characterImageContainer.sprite = reaction.sprite;
-            }
+                    characterImageContainer.sprite = reaction.sprite;
+                    break;
 
-            if (eventData.Name == GameEvents.ThoughtScoreChange)
-            {
-                var newScore = (int)eventData.Data;
-                if (newScore != 0)
-                {
-                    score += newScore;
-                    scoreTextContainer.text = score.ToString();
+                case GameEvents.ThoughtScoreChange:
+                    var newScore = (int)eventData.Data;
+                    if (newScore != 0)
+                    {
+                        score += newScore;
+                        scoreTextContainer.text = score.ToString();
 
-                    if (score is <= 0 or >= 100)
-                        Invoke(nameof(CloseMiniGame), 2);
-                }
+                        if (score is <= 0 or >= 100)
+                            Invoke(nameof(CloseMiniGame), 2);
+                    }
+
+                    break;
             }
         }
 
-        private void CloseMiniGame()
+        protected override void StartMiniGame()
         {
-            _isTimerRunning = false;
-            _isGameActive = false;
-            miniGameContainer.SetActive(false);
-        }
-
-        private void StartMiniGame()
-        {
-            miniGameContainer.SetActive(true);
-            _isGameActive = true;
+            base.StartMiniGame();
 
             // Randomly select 4 choices from the available choices
             var randomChoices = GetRandomChoices(choices, 4);
@@ -136,11 +103,6 @@ namespace Mini_Games.Flirt.scripts
                 choices = randomChoices
             });
             scoreTextContainer.text = score.ToString();
-
-            // Initialize and start the timer
-            _currentTime = timer;
-            timerTextContainer.text = timer.ToString();
-            _isTimerRunning = true;
         }
 
         private void InitActorResponse()
@@ -152,7 +114,6 @@ namespace Mini_Games.Flirt.scripts
             Notify(GameEvents.TriggerSpecificDialogLine, response);
             _initResponsesCounter++;
         }
-
 
         // Helper method to randomly select n choices from the available choices
         private PlayerMiniGameChoice[] GetRandomChoices(PlayerMiniGameChoice[] availableChoices, int count)

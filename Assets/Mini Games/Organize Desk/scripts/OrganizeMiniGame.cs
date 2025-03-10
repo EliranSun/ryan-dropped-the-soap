@@ -66,8 +66,8 @@ namespace Mini_Games.Organize_Desk.scripts
             StartMiniGame();
 
             ActivateRandomPattern();
-            // PlaceItemsRandomlyOnScreen();
-            Place3DItemsRandomlyOnScreen();
+            PlaceItemsRandomlyOnScreen();
+            // Place3DItemsRandomlyOnScreen();
         }
 
         public void OnNotify(GameEventData gameEvent)

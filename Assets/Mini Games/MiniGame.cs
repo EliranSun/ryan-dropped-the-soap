@@ -41,7 +41,10 @@ namespace Mini_Games
             _currentTime = timer;
             timerTextContainer.text = timer.ToString();
             _isTimerRunning = true;
+
+            if (miniGameContainer) miniGameContainer.SetActive(true);
             if (hideOnStart) hideOnStart.SetActive(false);
+
             Notify(GameEvents.MiniGameStart);
         }
 
@@ -49,6 +52,7 @@ namespace Mini_Games
         {
             _isTimerRunning = false;
             isGameActive = false;
+
             if (miniGameContainer) miniGameContainer.SetActive(false);
             if (hideOnStart) hideOnStart.SetActive(true);
 

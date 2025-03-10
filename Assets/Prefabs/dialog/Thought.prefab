@@ -83,7 +83,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 20
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -196,6 +196,7 @@ MonoBehaviour:
   observers:
     m_PersistentCalls:
       m_Calls: []
+  _is3D: 0
 --- !u!1001 &2815578852345424907
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -234,7 +235,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6002240131562247331, guid: 93113192ca9dc29439644b5c5a093346, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1.4831
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6002240131562247331, guid: 93113192ca9dc29439644b5c5a093346, type: 3}
       propertyPath: m_SizeDelta.y
@@ -278,11 +279,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6002240131562247331, guid: 93113192ca9dc29439644b5c5a093346, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.23
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6002240131562247331, guid: 93113192ca9dc29439644b5c5a093346, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.99
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 6002240131562247331, guid: 93113192ca9dc29439644b5c5a093346, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -306,7 +307,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6284004548980049784, guid: 93113192ca9dc29439644b5c5a093346, type: 3}
       propertyPath: m_fontSize
-      value: 3.28
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6284004548980049784, guid: 93113192ca9dc29439644b5c5a093346, type: 3}
       propertyPath: m_fontColor.b
@@ -322,11 +323,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6284004548980049784, guid: 93113192ca9dc29439644b5c5a093346, type: 3}
       propertyPath: m_fontSizeBase
-      value: 3.28
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6284004548980049784, guid: 93113192ca9dc29439644b5c5a093346, type: 3}
       propertyPath: m_characterSpacing
-      value: -5.35
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 6284004548980049784, guid: 93113192ca9dc29439644b5c5a093346, type: 3}
       propertyPath: m_enableAutoSizing
@@ -335,6 +336,10 @@ PrefabInstance:
     - target: {fileID: 6284004548980049784, guid: 93113192ca9dc29439644b5c5a093346, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6284004548980049784, guid: 93113192ca9dc29439644b5c5a093346, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

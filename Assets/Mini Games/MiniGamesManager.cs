@@ -26,15 +26,17 @@ namespace Mini_Games
         [SerializeField] private Slider scoreSlider;
         [SerializeField] private TextMeshProUGUI inGameInstructionsText;
         [SerializeField] private GameObject inGameInstructions;
+        [SerializeField] private float currentScore;
+        [SerializeField] private int bestEmployeeScore = 100;
+        [SerializeField] private int bossOfficeScore = -100;
         private bool _isMiniGameInitiated;
-        private float _score = 0.5f;
 
         private void Start()
         {
-            scoreSlider.minValue = 0;
-            scoreSlider.maxValue = 1;
+            scoreSlider.minValue = -100;
+            scoreSlider.maxValue = 100;
 
-            // set color to half the brighness of player sprite
+            // set color to half the brightness of player sprite
             var playerSprite = player.GetComponent<SpriteRenderer>();
             playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 1f);
 
@@ -70,30 +72,24 @@ namespace Mini_Games
 
         public void OnNotify(GameEventData eventData)
         {
+            if (eventData.Name == GameEvents.ThoughtScoreChange)
+            {
+                var newScore = (int)eventData.Data;
+                currentScore += newScore;
+            }
+
             if (eventData.Name == GameEvents.MiniGameStart && !_isMiniGameInitiated)
             {
                 _isMiniGameInitiated = true;
                 CloseInstruction();
+                CloseMiniGame();
                 // stopping the clock, a bit confusing but this is the mini-game 
                 // of starting a mini-game
-                CloseMiniGame();
-            }
-
-            if (eventData.Name == GameEvents.MiniGameClosed && !_isMiniGameInitiated)
-                Invoke(nameof(SetRandomInstruction), 2f);
-
-            if (!_isMiniGameInitiated)
-                return;
-
-            if (eventData.Name == GameEvents.MiniGameWon)
-            {
-                OnMiniGameWin();
-                Invoke(nameof(SetRandomInstruction), 2f);
             }
 
             if (eventData.Name == GameEvents.MiniGameClosed)
             {
-                OnMiniGameLose();
+                if (_isMiniGameInitiated) OnMiniGameEnd();
                 Invoke(nameof(SetRandomInstruction), 2f);
             }
         }
@@ -108,31 +104,27 @@ namespace Mini_Games
             Notify(GameEvents.MiniGameIndicationTrigger, miniGameNameName);
         }
 
-        private void OnMiniGameWin()
+        private void OnMiniGameEnd()
         {
             CloseInstruction();
 
-            _score += 0.1f;
-            scoreSlider.value = _score;
             var playerSprite = player.GetComponent<SpriteRenderer>();
             var playerMovement = player.GetComponent<WobblyMovement>();
 
-            playerSprite.color = DecreaseBrightness(playerSprite.color);
-            playerMovement.moveSpeed -= 2f;
-        }
+            if (currentScore < scoreSlider.value)
+            {
+                // lower = towards boss office end scene, this makes zeke happy
+                playerSprite.color = IncreaseBrightness(playerSprite.color);
+                playerMovement.moveSpeed += 2f;
+            }
+            else
+            {
+                // higher = towards perfect employee end scene, this makes zeke depressed
+                playerSprite.color = DecreaseBrightness(playerSprite.color);
+                playerMovement.moveSpeed -= 2f;
+            }
 
-        private void OnMiniGameLose()
-        {
-            CloseInstruction();
-
-            _score -= 0.1f;
-            scoreSlider.value = _score;
-
-            var playerSprite = player.GetComponent<SpriteRenderer>();
-            playerSprite.color = IncreaseBrightness(playerSprite.color);
-
-            var playerMovement = player.GetComponent<WobblyMovement>();
-            playerMovement.moveSpeed += 2f;
+            scoreSlider.value = currentScore;
         }
 
         private static Color DecreaseBrightness(Color currentColor)
