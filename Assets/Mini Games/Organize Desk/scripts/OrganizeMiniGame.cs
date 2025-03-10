@@ -242,7 +242,7 @@ namespace Mini_Games.Organize_Desk.scripts
             }
 
             // Add padding to ensure objects aren't placed right at the edge
-            var padding = 50f; // Adjust this value based on your UI object sizes
+            var padding = 0f; // Adjust this value based on your UI object sizes
             var minX = padding - containerWidth / 2;
             var maxX = containerWidth / 2 - padding;
             var minY = padding - containerHeight / 2;

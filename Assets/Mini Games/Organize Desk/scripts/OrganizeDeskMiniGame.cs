@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Mini_Games.Organize_Desk.scripts
 {
@@ -6,68 +8,109 @@ namespace Mini_Games.Organize_Desk.scripts
     {
         [SerializeField] private GameObject[] items;
         [SerializeField] private GameObject itemsContainer;
+        [SerializeField] private float yOffset = 2f;
+
+        private readonly List<GameObject> _itemsRef = new();
+
+        private void Start()
+        {
+            StartMiniGame();
+            PlaceItemsRandomlyOnScreen();
+        }
 
         private void PlaceItemsRandomlyOnScreen()
         {
-            // Check if the itemsContainerTransform is a RectTransform (part of a Canvas)
-            if (itemsContainer.transform == null)
+            // Check if the itemsContainer has a transform
+            if (itemsContainer == null || itemsContainer.transform == null)
             {
-                Debug.LogError("itemsContainerTransform is not a RectTransform! Make sure it's part of a Canvas.");
+                Debug.LogError("itemsContainer is null or has no transform!");
                 return;
             }
 
-            // Get the container's rect dimensions
-            var containerRect2D = containerRect.rect;
-            var containerWidth = containerRect2D.width;
-            var containerHeight = containerRect2D.height;
+            // Get the container's bounds using its renderer or collider
+            Bounds containerBounds;
 
-            // Calculate an appropriate depth based on the container's width or height
-            // This creates a proportional depth relative to the container size
-            var containerDepth = Mathf.Max(containerWidth, containerHeight) * 0.1f;
-
-            // Alternative: You could also use the scale of the container
-            // var containerDepth = containerRect.lossyScale.z * 10f;
-
-            // If the container has zero size, try to use the canvas size instead
-            if (containerWidth <= 0 || containerHeight <= 0)
+            // Try to get bounds from a renderer
+            var renderer = itemsContainer.GetComponent<Renderer>();
+            if (renderer != null)
             {
-                var canvasRect = canvas.GetComponent<RectTransform>();
-                containerWidth = canvasRect.rect.width;
-                containerHeight = canvasRect.rect.height;
+                containerBounds = renderer.bounds;
+            }
+            // If no renderer, try to get bounds from a collider
+            else
+            {
+                var collider = itemsContainer.GetComponent<Collider>();
+                if (collider != null)
+                {
+                    containerBounds = collider.bounds;
+                }
+                else
+                {
+                    // If no renderer or collider, use a default size based on the transform's scale
+                    var scale = itemsContainer.transform.lossyScale;
+                    containerBounds = new Bounds(
+                        itemsContainer.transform.position,
+                        new Vector3(scale.x * 10f, scale.y * 10f, scale.z * 2f)
+                    );
+                    Debug.LogWarning(
+                        "No Renderer or Collider found on itemsContainer. Using default bounds based on transform scale.");
+                }
             }
 
             // Add padding to ensure objects aren't placed right at the edge
-            var padding = 50f; // Adjust this value based on your UI object sizes
-            var minX = padding - containerWidth / 2;
-            var maxX = containerWidth / 2 - padding;
-            var minY = padding - containerHeight / 2;
-            var maxY = containerHeight / 2 - padding;
+            var padding = 0.5f; // Adjust this value based on your object sizes
+            var minX = containerBounds.min.x + padding;
+            var maxX = containerBounds.max.x - padding;
+            var minY = containerBounds.min.y + padding;
+            var maxY = containerBounds.max.y - padding;
+            var z = itemsContainer.transform.position.z;
 
             foreach (var item in items)
             {
-                // Place items randomly within the calculated canvas bounds
+                // Place items randomly within the calculated container bounds
                 var randomX = Random.Range(minX, maxX);
                 var randomY = Random.Range(minY, maxY);
 
-                // Instantiate the item as a UI element
+                // Instantiate the item as a world space object
                 var newItem = Instantiate(
-                    item.itemObject,
-                    Vector3.zero, // Position will be set via RectTransform
+                    item,
+                    new Vector3(randomX, randomY + yOffset, z),
                     Quaternion.identity,
-                    itemsContainerTransform
+                    itemsContainer.transform
                 );
 
-                newItem.GetComponent<UIClickNotifier>().SetUIItemData(
-                    item.uiItem,
-                    GameEvents.UIItemClicked,
-                    OnNotify
-                );
+                _itemsRef.Add(newItem);
 
-                var itemRect = newItem.GetComponent<Transform>();
-                if (itemRect != null)
-                    itemRect.position = new Vector2(randomX, randomY);
-                else
-                    newItem.transform.localPosition = new Vector2(randomX, randomY);
+                // newItem.GetComponent<UIClickNotifier>().SetUIItemData(
+                //     item,
+                //     GameEvents.UIItemClicked,
+                //     OnNotify
+                // );
+
+                // You can add any additional setup for the item here
+                // For example, if you have a component that handles item interaction:
+                // var itemComponent = newItem.GetComponent<ItemComponent>();
+                // if (itemComponent != null)
+                // {
+                //     itemComponent.Initialize();
+                // }
+            }
+        }
+
+        public void OnNotify(GameEventData gameEvent)
+        {
+            if (gameEvent.Name == GameEvents.DeskItemsChanged)
+            {
+                foreach (var item in _itemsRef)
+                {
+                    var scoreableItem = item.GetComponent<ScoreableItem>();
+                    if (scoreableItem != null && !scoreableItem.isThrown && scoreableItem.score < 0)
+                        // the item is on desk but is not essential for work
+                        break;
+                }
+
+                // desk is organized
+                CloseMiniGame();
             }
         }
     }

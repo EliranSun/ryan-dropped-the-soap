@@ -120,5 +120,6 @@
     MiniGameWon,
     MiniGameLost,
     MiniGameStart,
-    TriggerSpecificDialogLine
+    TriggerSpecificDialogLine,
+    DeskItemsChanged
 }

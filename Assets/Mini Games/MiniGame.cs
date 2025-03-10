@@ -29,7 +29,7 @@ namespace Mini_Games
 
             // Update the timer display
             var timeRemaining = Mathf.CeilToInt(_currentTime);
-            timerTextContainer.text = timeRemaining.ToString();
+            if (timerTextContainer) timerTextContainer.text = timeRemaining.ToString();
 
             // Check if timer has reached zero
             if (_currentTime <= 0)
@@ -39,9 +39,9 @@ namespace Mini_Games
         protected virtual void StartMiniGame()
         {
             _currentTime = timer;
-            timerTextContainer.text = timer.ToString();
             _isTimerRunning = true;
 
+            if (timerTextContainer) timerTextContainer.text = timer.ToString();
             if (miniGameContainer) miniGameContainer.SetActive(true);
             if (hideOnStart) hideOnStart.SetActive(false);
 

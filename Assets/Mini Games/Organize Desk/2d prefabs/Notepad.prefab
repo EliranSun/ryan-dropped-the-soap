@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 5047742650427079372}
   - component: {fileID: 7819586903168667276}
   - component: {fileID: 7706113838080001852}
-  m_Layer: 0
+  - component: {fileID: 1185553568794445857}
+  m_Layer: 13
   m_Name: Notepad
-  m_TagString: Untagged
+  m_TagString: Desk Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,13 +128,13 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2.2}
+    oldSize: {x: 1.6666666, y: 1.8333334}
     newSize: {x: 2, y: 2.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2, y: 2.2}
+  m_Size: {x: 1.6666666, y: 1.8333334}
   m_EdgeRadius: 0
 --- !u!50 &7819586903168667276
 Rigidbody2D:
@@ -178,3 +179,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _is3D: 0
+--- !u!114 &1185553568794445857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4996003035165626030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c78a4f7fa858c8843800e4e557706e9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 10
+  isThrown: 0

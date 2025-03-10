@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 3239875551216205346}
   - component: {fileID: 238475829293951892}
   - component: {fileID: 5345908899817118552}
-  m_Layer: 0
+  - component: {fileID: -2694991971304503049}
+  m_Layer: 13
   m_Name: Pens
-  m_TagString: Untagged
+  m_TagString: Desk Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,13 +128,13 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.2, y: 2.4}
+    oldSize: {x: 1, y: 2}
     newSize: {x: 1.2, y: 2.4}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.2, y: 2.4}
+  m_Size: {x: 1, y: 2}
   m_EdgeRadius: 0
 --- !u!50 &238475829293951892
 Rigidbody2D:
@@ -178,3 +179,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _is3D: 0
+--- !u!114 &-2694991971304503049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 879929437080332285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c78a4f7fa858c8843800e4e557706e9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 15
+  isThrown: 0
