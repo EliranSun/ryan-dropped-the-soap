@@ -935,7 +935,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   timerTextContainer: {fileID: 0}
-  timer: 60
+  timer: 10
   miniGameContainer: {fileID: 146850968}
   hideOnStart: {fileID: 1218222514}
   isGameActive: 0
@@ -9337,6 +9337,7 @@ GameObject:
   - component: {fileID: 1906140128}
   - component: {fileID: 1906140130}
   - component: {fileID: 1906140131}
+  - component: {fileID: 1906140132}
   m_Layer: 13
   m_Name: Bin
   m_TagString: Trash
@@ -9508,6 +9509,36 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 5, y: 7.6666665}
   m_EdgeRadius: 0
+--- !u!114 &1906140132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906140127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e1d3e142ee98cf44866882c3e40f055, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 146850970}
+        m_TargetAssemblyTypeName: Mini_Games.Organize_Desk.scripts.OrganizeDeskMiniGame,
+          MiniGamesScriptAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  tagToDetect: Desk Item
+  gameEventName: 96
 --- !u!1 &1911095803
 GameObject:
   m_ObjectHideFlags: 0

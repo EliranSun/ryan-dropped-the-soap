@@ -10,13 +10,13 @@ namespace Mini_Games.Organize_Desk.scripts
         private void OnCollisionEnter2D(Collision2D other)
         {
             if (other.gameObject.CompareTag(tagToDetect))
-                Notify(gameEventName);
+                Notify(gameEventName, other.gameObject);
         }
 
         private void OnCollisionExit2D(Collision2D other)
         {
             if (other.gameObject.CompareTag(tagToDetect))
-                Notify(gameEventName);
+                Notify(gameEventName, other.gameObject);
         }
     }
 }

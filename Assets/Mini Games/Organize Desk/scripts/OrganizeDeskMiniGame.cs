@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -11,6 +12,7 @@ namespace Mini_Games.Organize_Desk.scripts
         [SerializeField] private float yOffset = 2f;
 
         private readonly List<GameObject> _itemsRef = new();
+        private readonly HashSet<GameObject> _nonEssentialItems = new();
 
         private void Start()
         {
@@ -101,16 +103,20 @@ namespace Mini_Games.Organize_Desk.scripts
         {
             if (gameEvent.Name == GameEvents.DeskItemsChanged)
             {
-                foreach (var item in _itemsRef)
+                var gameObjectName = gameEvent.Data as GameObject;
+                foreach (var itemRef in _itemsRef)
                 {
-                    var scoreableItem = item.GetComponent<ScoreableItem>();
-                    if (scoreableItem != null && !scoreableItem.isThrown && scoreableItem.score < 0)
-                        // the item is on desk but is not essential for work
-                        break;
+                    var item = itemRef.GetComponent<ScoreableItem>();
+                    var isEssentialItem = item.score > 0;
+                    if (item == null || isEssentialItem) continue;
+
+                    if (item.isThrown && item.offTable)
+                        _nonEssentialItems.Remove(gameObjectName);
+                    else
+                        _nonEssentialItems.Add(gameObjectName);
                 }
 
-                // desk is organized
-                CloseMiniGame();
+                Debug.Log(string.Join(", ", _nonEssentialItems.Select(item => item.name)));
             }
         }
     }
