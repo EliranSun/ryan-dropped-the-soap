@@ -92,6 +92,20 @@ namespace Mini_Games
                 if (_isMiniGameInitiated) OnMiniGameEnd();
                 Invoke(nameof(SetRandomInstruction), 2f);
             }
+
+            if (eventData.Name == GameEvents.MiniGameWon)
+            {
+                print("GAME WON");
+                currentScore += 10f;
+                CloseMiniGame();
+            }
+
+            if (eventData.Name == GameEvents.MiniGameLost)
+            {
+                print("GAME LOST");
+                currentScore -= 10f;
+                CloseMiniGame();
+            }
         }
 
         private void CloseInstruction()

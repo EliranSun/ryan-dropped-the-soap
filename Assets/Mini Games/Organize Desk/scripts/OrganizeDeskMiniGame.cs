@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -110,14 +109,23 @@ namespace Mini_Games.Organize_Desk.scripts
                     var isEssentialItem = item.score > 0;
                     if (item == null || isEssentialItem) continue;
 
-                    if (item.isThrown && item.offTable)
+                    if (item.offTable)
                         _nonEssentialItems.Remove(gameObjectName);
                     else
                         _nonEssentialItems.Add(gameObjectName);
                 }
 
-                Debug.Log(string.Join(", ", _nonEssentialItems.Select(item => item.name)));
+                // Debug.Log(string.Join(", ", _nonEssentialItems.Select(item => item.name)));
             }
+        }
+
+        protected override void CloseMiniGame()
+        {
+            base.CloseMiniGame();
+
+            Notify(_nonEssentialItems.Count == 0
+                ? GameEvents.MiniGameWon
+                : GameEvents.MiniGameLost);
         }
     }
 }
