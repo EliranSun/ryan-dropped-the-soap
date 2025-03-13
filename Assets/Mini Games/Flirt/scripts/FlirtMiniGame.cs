@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using Character_Creator.scripts;
 using Dialog.Scripts;
 using TMPro;
 using UnityEngine;
@@ -28,27 +27,21 @@ namespace Mini_Games.Flirt.scripts
         [SerializeField] private SpriteEmotion[] actorSpriteEmotions;
         [SerializeField] private TextMeshProUGUI scoreTextContainer;
         [SerializeField] private Image characterImageContainer;
-        [SerializeField] private GameObject inGameTrigger;
         private int _initResponsesCounter;
 
-        public void OnNotify(GameEventData eventData)
+        public override void OnNotify(GameEventData eventData)
         {
+            base.OnNotify(eventData);
+
             switch (eventData.Name)
             {
                 case GameEvents.MiniGameClosed:
                     isGameActive = false;
                     break;
 
-                case GameEvents.MiniGameIndicationTrigger when (MiniGameName)eventData.Data == MiniGameName.Flirt:
+                case GameEvents.MiniGameIndicationTrigger when
+                    (MiniGameName)eventData.Data == MiniGameName.Flirt:
                     isGameActive = true;
-                    break;
-
-                case GameEvents.ClickOnNpc:
-                    var interactionData = eventData.Data as InteractionData;
-                    if (interactionData == null) return;
-
-                    if (interactionData.Name == inGameTrigger.gameObject.name)
-                        StartMiniGame();
                     break;
             }
 

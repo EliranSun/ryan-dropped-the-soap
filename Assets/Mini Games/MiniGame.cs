@@ -1,3 +1,4 @@
+using Character_Creator.scripts;
 using TMPro;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ namespace Mini_Games
         [SerializeField] private int timer = 60;
         [SerializeField] public GameObject miniGameContainer;
         [SerializeField] private GameObject hideOnStart;
+        [SerializeField] public GameObject inGameTrigger;
 
         public bool isGameActive;
 
@@ -59,6 +61,20 @@ namespace Mini_Games
             Notify(GameEvents.KillThoughtsAndSayings);
             Notify(GameEvents.KillDialog);
             Notify(GameEvents.MiniGameClosed);
+        }
+
+        public virtual void OnNotify(GameEventData eventData)
+        {
+            switch (eventData.Name)
+            {
+                case GameEvents.ClickOnNpc:
+                    var interactionData = eventData.Data as InteractionData;
+                    if (interactionData == null) return;
+
+                    if (interactionData.Name == inGameTrigger.gameObject.name)
+                        StartMiniGame();
+                    break;
+            }
         }
     }
 }

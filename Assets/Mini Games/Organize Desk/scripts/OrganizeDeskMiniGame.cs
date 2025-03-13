@@ -13,12 +13,6 @@ namespace Mini_Games.Organize_Desk.scripts
         private readonly List<GameObject> _itemsRef = new();
         private readonly HashSet<GameObject> _nonEssentialItems = new();
 
-        private void Start()
-        {
-            StartMiniGame();
-            PlaceItemsRandomlyOnScreen();
-        }
-
         private void PlaceItemsRandomlyOnScreen()
         {
             // Check if the itemsContainer has a transform
@@ -98,8 +92,10 @@ namespace Mini_Games.Organize_Desk.scripts
             }
         }
 
-        public void OnNotify(GameEventData gameEvent)
+        public override void OnNotify(GameEventData gameEvent)
         {
+            base.OnNotify(gameEvent);
+
             if (gameEvent.Name == GameEvents.DeskItemsChanged)
             {
                 var gameObjectName = gameEvent.Data as GameObject;
@@ -117,6 +113,12 @@ namespace Mini_Games.Organize_Desk.scripts
 
                 // Debug.Log(string.Join(", ", _nonEssentialItems.Select(item => item.name)));
             }
+        }
+
+        protected override void StartMiniGame()
+        {
+            base.StartMiniGame();
+            PlaceItemsRandomlyOnScreen();
         }
 
         protected override void CloseMiniGame()

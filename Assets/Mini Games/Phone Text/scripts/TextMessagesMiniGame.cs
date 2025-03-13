@@ -132,8 +132,10 @@ namespace Mini_Games.Phone_Text.scripts
                 });
         }
 
-        public void OnNotify(GameEventData eventData)
+        public override void OnNotify(GameEventData eventData)
         {
+            base.OnNotify(eventData);
+
             switch (eventData.Name)
             {
                 case GameEvents.PlayerClickOnChoice:

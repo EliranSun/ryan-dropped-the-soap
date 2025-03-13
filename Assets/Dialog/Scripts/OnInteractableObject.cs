@@ -58,6 +58,8 @@ namespace Character_Creator.scripts
             if (interactionType is not (InteractionType.Click or InteractionType.Both))
                 return;
 
+            print($"CLICK ON {gameObject.name}");
+
             Notify(gameEvent, new InteractionData(
                 gameObject.name,
                 interactableObjectName,

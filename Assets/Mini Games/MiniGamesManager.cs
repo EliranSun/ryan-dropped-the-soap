@@ -41,14 +41,14 @@ namespace Mini_Games
             playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 1f);
 
             inGameInstructions.SetActive(false);
-            Invoke(nameof(SetRandomInstruction), 5f);
+            Invoke(nameof(SetRandomInstruction), 1f);
         }
 
         private void SetRandomInstruction()
         {
             if (instructions == null || instructions.Length == 0)
             {
-                Debug.LogWarning("Instructions array is empty or null!");
+                print("Instructions array is empty or null!");
                 return;
             }
 
@@ -57,21 +57,21 @@ namespace Mini_Games
             var randomIndex = Random.Range(0, instructions.Length);
             var selectedInstruction = instructions[randomIndex];
 
-            if (inGameInstructions != null)
-            {
-                StartMiniGame(); // counts down
+            print($"Selected instruction: {selectedInstruction} in game instructions: {inGameInstructions}");
+
+            if (inGameInstructions != null && inGameInstructions.activeInHierarchy)
                 inGameInstructionsText.text = selectedInstruction + "!";
-                TriggerMiniGame(selectedInstruction);
-                // Invoke(nameof(CloseInstruction), 5f);
-            }
+            // TriggerMiniGame(selectedInstruction);
+            // StartMiniGame(); // counts down
+            // Invoke(nameof(CloseInstruction), 5f);
             else
-            {
-                Debug.LogWarning("inGameInstructions TextMeshProUGUI reference is null!");
-            }
+                print("inGameInstructions error!");
         }
 
-        public void OnNotify(GameEventData eventData)
+        public override void OnNotify(GameEventData eventData)
         {
+            base.OnNotify(eventData);
+
             if (eventData.Name == GameEvents.ThoughtScoreChange)
             {
                 var newScore = (int)eventData.Data;
@@ -88,15 +88,15 @@ namespace Mini_Games
             }
 
             if (eventData.Name == GameEvents.MiniGameClosed)
-            {
-                if (_isMiniGameInitiated) OnMiniGameEnd();
-                Invoke(nameof(SetRandomInstruction), 2f);
-            }
+                if (_isMiniGameInitiated)
+                    OnMiniGameEnd();
+            // Invoke(nameof(SetRandomInstruction), 2f);
 
             if (eventData.Name == GameEvents.MiniGameWon)
             {
                 print("GAME WON");
                 currentScore += 10f;
+                inGameInstructionsText.text = "GOOD EMPLOYEE";
                 CloseMiniGame();
             }
 
@@ -104,6 +104,7 @@ namespace Mini_Games
             {
                 print("GAME LOST");
                 currentScore -= 10f;
+                inGameInstructionsText.text = "BAD EMPLOYEE";
                 CloseMiniGame();
             }
         }
