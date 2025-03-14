@@ -18,10 +18,12 @@ namespace Mini_Games.Phone_Text.scripts
     {
         private const int InitialScore = -50;
 
-        [Header("Game Settings")] [SerializeField]
+        [Header("Game Settings")]
+        [SerializeField]
         private int score = InitialScore;
 
-        [Header("UI References")] [SerializeField]
+        [Header("UI References")]
+        [SerializeField]
         private float messageSpacing = 20f;
 
         [SerializeField] private GameObject textMessage;
@@ -31,10 +33,12 @@ namespace Mini_Games.Phone_Text.scripts
         [SerializeField] private GameObject phoneNotification;
         [SerializeField] private GameObject phoneFrame;
 
-        [Header("Game Content")] [SerializeField]
+        [Header("Game Content")]
+        [SerializeField]
         private NpcMessage[] npcMessages;
 
-        [Header("Notification Effects")] [SerializeField]
+        [Header("Notification Effects")]
+        [SerializeField]
         private float flashSpeed = 1.5f;
 
         [SerializeField] private float minOpacity = 0.2f;
@@ -49,11 +53,10 @@ namespace Mini_Games.Phone_Text.scripts
         private CanvasGroup _notificationCanvasGroup;
         private Vector3 _phoneOriginalPosition;
         private Coroutine _vibrateCoroutine;
+        private bool _isOpenedBefore = false;
 
         private void Start()
         {
-            // CloseMiniGame();
-
             // Get or add CanvasGroup component to notification
             _notificationCanvasGroup = phoneNotification.GetComponent<CanvasGroup>();
             if (_notificationCanvasGroup == null)
@@ -139,54 +142,54 @@ namespace Mini_Games.Phone_Text.scripts
             switch (eventData.Name)
             {
                 case GameEvents.PlayerClickOnChoice:
-                {
-                    if (!isGameActive)
-                        return;
-
-                    var choiceData = (EnrichedPlayerChoice)eventData.Data;
-                    _nextTextMessage = choiceData.OriginalInteraction.DialogLine.voicedLines[0].text;
-                    CreateTextMessage(choiceData.Choice, playerTextMessagesContainer);
-                    Invoke(nameof(CreateTextMessageFromNext), 1.6f);
-                    break;
-                }
-                case GameEvents.ThoughtScoreChange:
-                {
-                    if (!isGameActive)
-                        return;
-
-                    var newScore = (int)eventData.Data;
-                    if (newScore != 0)
                     {
-                        score += newScore;
-                        scoreTextContainer.text = score.ToString();
+                        if (!isGameActive)
+                            return;
 
-                        // if (score is <= 0 or >= 100)
-                        Invoke(nameof(CloseMiniGame), 3);
+                        var choiceData = (EnrichedPlayerChoice)eventData.Data;
+                        _nextTextMessage = choiceData.OriginalInteraction.DialogLine.voicedLines[0].text;
+                        CreateTextMessage(choiceData.Choice, playerTextMessagesContainer);
+                        Invoke(nameof(CreateTextMessageFromNext), 1.6f);
+                        break;
                     }
+                case GameEvents.ThoughtScoreChange:
+                    {
+                        if (!isGameActive)
+                            return;
 
-                    break;
-                }
+                        var newScore = (int)eventData.Data;
+                        if (newScore != 0)
+                        {
+                            score = newScore;
+                            scoreTextContainer.text = score.ToString();
+
+                            // if (score is <= 0 or >= 100)
+                            Invoke(nameof(CloseMiniGame), 3);
+                        }
+
+                        break;
+                    }
 
                 case GameEvents.MiniGameIndicationTrigger:
-                {
-                    if ((MiniGameName)eventData.Data == MiniGameName.Reply)
-                        TriggerMiniGameIndication();
-                    else
-                        StopMiniGameIndication();
-
-                    break;
-                }
-
-                case GameEvents.TextMessageGameStart:
-                {
-                    if (_isGameIndicationTriggered)
                     {
-                        StopMiniGameIndication();
-                        StartMiniGame();
+                        if ((MiniGameName)eventData.Data == MiniGameName.Reply)
+                            TriggerMiniGameIndication();
+                        else
+                            StopMiniGameIndication();
+
+                        break;
                     }
 
-                    break;
-                }
+                case GameEvents.TextMessageGameStart:
+                    {
+                        if (_isGameIndicationTriggered)
+                        {
+                            StopMiniGameIndication();
+                            StartMiniGame();
+                        }
+
+                        break;
+                    }
 
                 case GameEvents.MiniGameClosed:
                     StopMiniGameIndication();
@@ -203,11 +206,10 @@ namespace Mini_Games.Phone_Text.scripts
 
             scoreTextContainer.text = score.ToString();
 
-            if (score == InitialScore) // first time open
-            {
-                CreateRandomTextMessage(textMessagesContainer);
-                CreateTextMessage("?", textMessagesContainer);
-            }
+            CreateRandomTextMessage(textMessagesContainer);
+            CreateTextMessage("?", textMessagesContainer);
+            if (_isOpenedBefore) PushAllTextMessagesUp();
+            _isOpenedBefore = true;
         }
 
         private void CreateTextMessageFromNext()
@@ -322,8 +324,36 @@ namespace Mini_Games.Phone_Text.scripts
         protected override void CloseMiniGame()
         {
             base.CloseMiniGame();
+
             StopNotificationEffects();
             phoneNotification.SetActive(false);
+
+            Notify(score > 0
+                ? GameEvents.MiniGameWon
+                : GameEvents.MiniGameLost);
+        }
+
+        private void PushAllTextMessagesUp()
+        {
+            var textMessages = GameObject.FindGameObjectsWithTag("Text Message");
+
+            print($"textMessages: {textMessages.Length}");
+
+            // Use the same angle calculation as in CreateTextMessage
+            var angleInRadians = -20f * Mathf.Deg2Rad;
+            var verticalOffset = 200f;
+
+            foreach (var textMessage in textMessages)
+            {
+                // Calculate horizontal offset based on the -20-degree angle
+                // As messages go up (positive y), they should shift right (positive x)
+                var horizontalOffset = verticalOffset * Mathf.Tan(angleInRadians);
+
+                // Apply both vertical and horizontal offsets to maintain the angle
+                textMessage.transform.localPosition += new Vector3(-horizontalOffset, verticalOffset, 0);
+            }
+
+            _lastMessageBottomPosition = textMessages[textMessages.Length - 1].transform.localPosition.y - messageSpacing;
         }
     }
 }

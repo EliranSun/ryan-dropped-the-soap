@@ -6,12 +6,13 @@ namespace Dialog.Scripts
     public enum ActorName
     {
         None,
-        Charlotte, // voiced by model: Charlotte,
-        Morgan, // voiced by model: Grace,
+        Charlotte, // voiced by: Charlotte (XB0fDUnXU5powFXDhCwa)
+        Morgan, // voiced by: Grace (4zDsWfgtAP9O9F9kJlUk)
         Zeke, // voiced by:
         Ryan, // voiced by:
         Stacy,
-        Pigeon
+        Pigeon,
+        Boss // voiced by: Bubba Marshel (YEkUdc7PezGaXaRslSHB)
     }
 
     [RequireComponent(typeof(Animator))]

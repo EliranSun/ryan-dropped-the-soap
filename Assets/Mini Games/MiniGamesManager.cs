@@ -60,10 +60,11 @@ namespace Mini_Games
             print($"Selected instruction: {selectedInstruction} in game instructions: {inGameInstructions}");
 
             if (inGameInstructions != null && inGameInstructions.activeInHierarchy)
+            {
                 inGameInstructionsText.text = selectedInstruction + "!";
-            // TriggerMiniGame(selectedInstruction);
-            // StartMiniGame(); // counts down
-            // Invoke(nameof(CloseInstruction), 5f);
+                TriggerMiniGame(selectedInstruction);
+                // StartMiniGame(); // counts down
+            }
             else
                 print("inGameInstructions error!");
         }
@@ -80,32 +81,36 @@ namespace Mini_Games
 
             if (eventData.Name == GameEvents.MiniGameStart && !_isMiniGameInitiated)
             {
+                print("MiniGameStart");
                 _isMiniGameInitiated = true;
-                CloseInstruction();
-                CloseMiniGame();
+                // CloseInstruction();
+                // CloseMiniGame();
                 // stopping the clock, a bit confusing but this is the mini-game 
                 // of starting a mini-game
             }
 
-            if (eventData.Name == GameEvents.MiniGameClosed)
-                if (_isMiniGameInitiated)
-                    OnMiniGameEnd();
-            // Invoke(nameof(SetRandomInstruction), 2f);
+            // if (eventData.Name == GameEvents.MiniGameClosed)
+            //     if (_isMiniGameInitiated)
+            //         OnMiniGameEnd();
 
             if (eventData.Name == GameEvents.MiniGameWon)
             {
                 print("GAME WON");
                 currentScore += 10f;
+                _isMiniGameInitiated = false;
                 inGameInstructionsText.text = "GOOD EMPLOYEE";
                 CloseMiniGame();
+                Invoke(nameof(OnMiniGameEnd), 2f);
             }
 
             if (eventData.Name == GameEvents.MiniGameLost)
             {
                 print("GAME LOST");
                 currentScore -= 10f;
+                _isMiniGameInitiated = false;
                 inGameInstructionsText.text = "BAD EMPLOYEE";
                 CloseMiniGame();
+                Invoke(nameof(OnMiniGameEnd), 2f);
             }
         }
 
@@ -121,6 +126,7 @@ namespace Mini_Games
 
         private void OnMiniGameEnd()
         {
+            print("OnMiniGameEnd");
             CloseInstruction();
 
             var playerSprite = player.GetComponent<SpriteRenderer>();
@@ -140,6 +146,10 @@ namespace Mini_Games
             }
 
             scoreSlider.value = currentScore;
+
+            SetRandomInstruction();
+
+            Notify(GameEvents.ResetThoughtsAndSayings);
         }
 
         private static Color DecreaseBrightness(Color currentColor)

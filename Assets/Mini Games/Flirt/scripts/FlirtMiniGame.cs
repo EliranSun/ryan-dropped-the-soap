@@ -71,7 +71,7 @@ namespace Mini_Games.Flirt.scripts
                     var newScore = (int)eventData.Data;
                     if (newScore != 0)
                     {
-                        score += newScore;
+                        score = newScore;
                         scoreTextContainer.text = score.ToString();
 
                         if (score is <= 0 or >= 100)
@@ -96,6 +96,15 @@ namespace Mini_Games.Flirt.scripts
                 choices = randomChoices
             });
             scoreTextContainer.text = score.ToString();
+        }
+
+        protected override void CloseMiniGame()
+        {
+            base.CloseMiniGame();
+
+            Notify(score > 0
+                ? GameEvents.MiniGameWon
+                : GameEvents.MiniGameLost);
         }
 
         private void InitActorResponse()

@@ -121,5 +121,6 @@
     MiniGameLost,
     MiniGameStart,
     TriggerSpecificDialogLine,
-    DeskItemsChanged
+    DeskItemsChanged,
+    ResetThoughtsAndSayings
 }

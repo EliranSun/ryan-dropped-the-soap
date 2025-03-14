@@ -87,6 +87,13 @@ namespace Dialog.Scripts
 
             if (gameEventData.Name == GameEvents.KillThoughtsAndSayings)
                 KillThoughtsAndSayings();
+
+            if (gameEventData.Name == GameEvents.ResetThoughtsAndSayings)
+            {
+                KillThoughtsAndSayings();
+                EnableSayings();
+                EnableThoughts();
+            }
         }
 
         private void CreateThought(
