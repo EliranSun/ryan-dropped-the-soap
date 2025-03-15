@@ -24,9 +24,16 @@ namespace Mini_Games.Organize_Desk.scripts
         }
     }
 
-    public class DeskDialogLines : ScriptableObject
+    public class OrganizeDeskMiniGame : MiniGame
     {
-        [SerializeField] private TypedDialogLine[] dialogLines;
+        [SerializeField] private GameObject[] items;
+        [SerializeField] private GameObject itemsContainer;
+        [SerializeField] private float yOffset = 2f;
+        [SerializeField] public TypedDialogLine[] dialogLines;
+
+        private readonly List<GameObject> _itemsRef = new();
+        private readonly HashSet<GameObject> _nonEssentialItems = new();
+
 
         public NarrationDialogLine GetRandomLine(DialogLineType type)
         {
@@ -38,20 +45,9 @@ namespace Mini_Games.Organize_Desk.scripts
                 return null;
 
             // Return a random line of the specified type
-            var randomIndex = UnityEngine.Random.Range(0, filteredLines.Length);
+            var randomIndex = Random.Range(0, filteredLines.Length);
             return filteredLines[randomIndex].dialogLine;
         }
-    }
-
-    public class OrganizeDeskMiniGame : MiniGame
-    {
-        [SerializeField] private GameObject[] items;
-        [SerializeField] private GameObject itemsContainer;
-        [SerializeField] private float yOffset = 2f;
-        [SerializeField] private DeskDialogLines deskDialogLines;
-
-        private readonly List<GameObject> _itemsRef = new();
-        private readonly HashSet<GameObject> _nonEssentialItems = new();
 
         private void PlaceItemsRandomlyOnScreen()
         {
@@ -169,9 +165,9 @@ namespace Mini_Games.Organize_Desk.scripts
 
             // Get a random dialog line based on game outcome
             NarrationDialogLine dialogLine = null;
-            if (deskDialogLines != null)
+            if (dialogLines != null)
             {
-                dialogLine = deskDialogLines.GetRandomLine(
+                dialogLine = GetRandomLine(
                     gameWon ? DialogLineType.Good : DialogLineType.Bad
                 );
             }

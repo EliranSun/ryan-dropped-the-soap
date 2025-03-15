@@ -1,4 +1,5 @@
 using System;
+using Dialog.Scripts;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,6 +21,8 @@ namespace Mini_Games
     {
         [Header("Mini Games Manager")] private const float BrightnessDecrease = 0.1f;
         private const float BrightnessIncrease = 0.1f;
+        private const float MinMoveSpeed = 2f; // Minimum move speed to ensure player can still move
+        private const float MaxMoveSpeed = 15f; // Maximum move speed to prevent too fast movement
 
         [SerializeField] private GameObject player;
         [SerializeField] private MiniGameName[] instructions;
@@ -27,8 +30,11 @@ namespace Mini_Games
         [SerializeField] private TextMeshProUGUI inGameInstructionsText;
         [SerializeField] private GameObject inGameInstructions;
         [SerializeField] private float currentScore;
-        [SerializeField] private int bestEmployeeScore = 100;
-        [SerializeField] private int bossOfficeScore = -100;
+        [SerializeField] private int initiateMiniGameDelay = 3;
+        [SerializeField] private readonly int bestEmployeeScore = 100;
+        [SerializeField] private readonly int bossOfficeScore = -100;
+        [SerializeField] private NarrationDialogLine goodEndingDialogLine;
+        [SerializeField] private NarrationDialogLine badEndingDialogLine;
         private bool _isMiniGameInitiated;
 
         private void Start()
@@ -74,7 +80,7 @@ namespace Mini_Games
 
             if (eventData.Name == GameEvents.StartMiniGames)
             {
-                Invoke(nameof(SetRandomInstruction), 1f);
+                Invoke(nameof(SetRandomInstruction), initiateMiniGameDelay);
             }
 
             if (eventData.Name == GameEvents.ThoughtScoreChange)
@@ -99,21 +105,23 @@ namespace Mini_Games
 
             if (eventData.Name == GameEvents.MiniGameWon)
             {
-                print("GAME WON");
+                print("@@@@@@@ GAME WON");
                 currentScore += 10f;
                 _isMiniGameInitiated = false;
                 inGameInstructionsText.text = "GOOD EMPLOYEE";
                 CloseMiniGame();
+                Notify(GameEvents.SlowDownMusic);
                 Invoke(nameof(OnMiniGameEnd), 2f);
             }
 
             if (eventData.Name == GameEvents.MiniGameLost)
             {
-                print("GAME LOST");
+                print("@@@@@@@ GAME LOST");
                 currentScore -= 10f;
                 _isMiniGameInitiated = false;
                 inGameInstructionsText.text = "BAD EMPLOYEE";
                 CloseMiniGame();
+                Notify(GameEvents.SpeedUpMusic);
                 Invoke(nameof(OnMiniGameEnd), 2f);
             }
         }
@@ -141,19 +149,32 @@ namespace Mini_Games
                 // lower = towards boss office end scene, this makes zeke happy
                 playerSprite.color = IncreaseBrightness(playerSprite.color);
                 playerMovement.moveSpeed += 2f;
+                // Clamp move speed to maximum value
+                playerMovement.moveSpeed = Mathf.Min(playerMovement.moveSpeed, MaxMoveSpeed);
             }
             else
             {
                 // higher = towards perfect employee end scene, this makes zeke depressed
                 playerSprite.color = DecreaseBrightness(playerSprite.color);
                 playerMovement.moveSpeed -= 2f;
+                // Clamp move speed to minimum value
+                playerMovement.moveSpeed = Mathf.Max(playerMovement.moveSpeed, MinMoveSpeed);
             }
 
             scoreSlider.value = currentScore;
 
-            SetRandomInstruction();
-
             Notify(GameEvents.ResetThoughtsAndSayings);
+
+            if (currentScore >= bestEmployeeScore || currentScore <= bossOfficeScore)
+            {
+                Notify(GameEvents.StopMusic);
+                Notify(GameEvents.TriggerSpecificDialogLine, currentScore >= bestEmployeeScore
+                ? goodEndingDialogLine
+                : badEndingDialogLine);
+                return;
+            }
+
+            SetRandomInstruction();
         }
 
         private static Color DecreaseBrightness(Color currentColor)

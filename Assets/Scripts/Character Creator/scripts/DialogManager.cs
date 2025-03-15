@@ -427,7 +427,7 @@ namespace Character_Creator.scripts
 
         private void FastForwardDialog()
         {
-            _audioSource.pitch = 2;
+            _audioSource.pitch = 3;
         }
 
         public void NormalSpeedDialog()

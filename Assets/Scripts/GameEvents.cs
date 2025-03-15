@@ -123,5 +123,9 @@
     TriggerSpecificDialogLine,
     DeskItemsChanged,
     ResetThoughtsAndSayings,
-    StartMiniGames
+    StartMiniGames,
+    SlowDownMusic,
+    SpeedUpMusic,
+    StopMusic,
+    StartMusic,
 }

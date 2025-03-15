@@ -580,6 +580,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 740530430}
+        m_TargetAssemblyTypeName: Character_Creator.scripts.DialogueManager, CharacterCreatorScriptsAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   timerTextContainer: {fileID: 1983947901}
   timer: 8
   miniGameContainer: {fileID: 980824119}
@@ -592,6 +604,13 @@ MonoBehaviour:
   - {fileID: 8297794796849318199, guid: 47af48e2f11c6cc4c8ca190d3927bd22, type: 3}
   itemsContainer: {fileID: 602952872}
   yOffset: 10
+  dialogLines:
+  - dialogLine: {fileID: 11400000, guid: 2daf0fa43cea9c84ca073bb51a8a005a, type: 2}
+    type: 1
+  - dialogLine: {fileID: 11400000, guid: c38ed7c69dea7e94581d5b16c28742c4, type: 2}
+    type: 1
+  - dialogLine: {fileID: 11400000, guid: 91c56c5f294e8df44872e3b0e821b77e, type: 2}
+    type: 0
 --- !u!1 &158297798
 GameObject:
   m_ObjectHideFlags: 0
@@ -1692,6 +1711,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1676544239519199644, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: m_Volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676544239519199644, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: adfbdf11f4a05f541aee9069c958d322, type: 3}
+    - target: {fileID: 1676544239519199644, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: adfbdf11f4a05f541aee9069c958d322, type: 3}
     - target: {fileID: 1849336435191607478, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: linesWithPlayerName.Array.size
       value: 0
@@ -1811,7 +1842,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1338710738119981748, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1565312876}
   m_SourcePrefab: {fileID: 100100000, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
 --- !u!114 &586389662 stripped
 MonoBehaviour:
@@ -2210,6 +2244,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 740530430}
+        m_TargetAssemblyTypeName: Character_Creator.scripts.DialogueManager, CharacterCreatorScriptsAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1565312876}
+        m_TargetAssemblyTypeName: common.scripts.MusicController, CommonScriptsAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   timerTextContainer: {fileID: 1526414645}
   timer: 20
   miniGameContainer: {fileID: 0}
@@ -2217,13 +2275,14 @@ MonoBehaviour:
   inGameTrigger: {fileID: 0}
   isGameActive: 0
   player: {fileID: 392735297}
-  instructions: 00000000
+  instructions: 020000000100000000000000
   scoreSlider: {fileID: 2020364341}
   inGameInstructionsText: {fileID: 524733621}
   inGameInstructions: {fileID: 1220970306}
   currentScore: 0
-  bestEmployeeScore: 100
-  bossOfficeScore: -100
+  initiateMiniGameDelay: 3
+  goodEndingDialogLine: {fileID: 11400000, guid: 101a1794db5022d40a6593f313b32c08, type: 2}
+  badEndingDialogLine: {fileID: 11400000, guid: 51c341dbc84f9494b9f3e3d60ee98483, type: 2}
 --- !u!114 &740530430 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3560832367629595899, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
@@ -4804,6 +4863,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1565312873 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1338710738119981748, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+  m_PrefabInstance: {fileID: 548751242}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1565312876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1565312873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf782a8dc5150e9448766b8032caab23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _delay: 12.5
+  _changeSpeedFactor: 0.05
+  _minPitch: 0.5
+  _maxPitch: 1.5
 --- !u!1 &1565971886
 GameObject:
   m_ObjectHideFlags: 0
