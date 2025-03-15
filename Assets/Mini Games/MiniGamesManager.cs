@@ -41,7 +41,6 @@ namespace Mini_Games
             playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 1f);
 
             inGameInstructions.SetActive(false);
-            Invoke(nameof(SetRandomInstruction), 1f);
         }
 
         private void SetRandomInstruction()
@@ -72,6 +71,11 @@ namespace Mini_Games
         public override void OnNotify(GameEventData eventData)
         {
             base.OnNotify(eventData);
+
+            if (eventData.Name == GameEvents.StartMiniGames)
+            {
+                Invoke(nameof(SetRandomInstruction), 1f);
+            }
 
             if (eventData.Name == GameEvents.ThoughtScoreChange)
             {

@@ -1,14 +1,54 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
-
+using Dialog.Scripts;
+using System;
 namespace Mini_Games.Organize_Desk.scripts
 {
+    public enum DialogLineType
+    {
+        Good,
+        Bad
+    }
+
+    [Serializable]
+    public class TypedDialogLine
+    {
+        public NarrationDialogLine dialogLine;
+        public DialogLineType type;
+
+        public TypedDialogLine(NarrationDialogLine line, DialogLineType lineType)
+        {
+            dialogLine = line;
+            type = lineType;
+        }
+    }
+
+    public class DeskDialogLines : ScriptableObject
+    {
+        [SerializeField] private TypedDialogLine[] dialogLines;
+
+        public NarrationDialogLine GetRandomLine(DialogLineType type)
+        {
+            // Filter lines by type
+            var filteredLines = Array.FindAll(dialogLines, line => line.type == type);
+
+            // If no lines of this type, return null
+            if (filteredLines.Length == 0)
+                return null;
+
+            // Return a random line of the specified type
+            var randomIndex = UnityEngine.Random.Range(0, filteredLines.Length);
+            return filteredLines[randomIndex].dialogLine;
+        }
+    }
+
     public class OrganizeDeskMiniGame : MiniGame
     {
         [SerializeField] private GameObject[] items;
         [SerializeField] private GameObject itemsContainer;
         [SerializeField] private float yOffset = 2f;
+        [SerializeField] private DeskDialogLines deskDialogLines;
 
         private readonly List<GameObject> _itemsRef = new();
         private readonly HashSet<GameObject> _nonEssentialItems = new();
@@ -125,9 +165,25 @@ namespace Mini_Games.Organize_Desk.scripts
         {
             base.CloseMiniGame();
 
-            Notify(_nonEssentialItems.Count == 0
-                ? GameEvents.MiniGameWon
-                : GameEvents.MiniGameLost);
+            bool gameWon = _nonEssentialItems.Count == 0;
+
+            // Get a random dialog line based on game outcome
+            NarrationDialogLine dialogLine = null;
+            if (deskDialogLines != null)
+            {
+                dialogLine = deskDialogLines.GetRandomLine(
+                    gameWon ? DialogLineType.Good : DialogLineType.Bad
+                );
+            }
+
+            // Trigger the dialog line if one was found
+            if (dialogLine != null)
+            {
+                Notify(GameEvents.TriggerSpecificDialogLine, dialogLine);
+            }
+
+            // Notify about game outcome
+            Notify(gameWon ? GameEvents.MiniGameWon : GameEvents.MiniGameLost);
         }
     }
 }
