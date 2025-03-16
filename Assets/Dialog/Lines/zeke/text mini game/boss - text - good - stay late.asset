@@ -10,24 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
-  m_Name: 1. best employee - boss
+  m_Name: boss - text - good - stay late
   m_EditorClassIdentifier: 
   playerName: 
   waitBeforeLine: 0
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
   voicedLines:
-  - text: 'Oh, oh I can see these annual reports writing themselves up. Zeke: The
-      employee of the day... NAY, the month!'
-    clip: {fileID: 8300000, guid: 2498ba410a722564f983bfb85917a1b5, type: 3}
+  - text: That's right. Stay up late. Stay as long as you want. Do you need coffee?
+    clip: {fileID: 8300000, guid: 9789266f5ace4014b8f7db9dd3162ee9, type: 3}
     gender: 0
   playerOptions: []
   playerReactions: []
-  nextDialogueLine: {fileID: 11400000, guid: afafe0f0c79f9461d803389093777379, type: 2}
+  nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []
   objectReferringDialogLines: []
-  wait: 5
+  wait: 0.5
   actorName: 0
   actionBeforeLine: 0
-  actionAfterLine: 0
+  actionAfterLine: 98
   actorReaction: 0

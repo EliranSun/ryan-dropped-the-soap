@@ -597,13 +597,6 @@ MonoBehaviour:
   miniGameContainer: {fileID: 980824119}
   hideOnStart: {fileID: 1218222514}
   inGameTrigger: {fileID: 1874680888}
-  isGameActive: 0
-  items:
-  - {fileID: 5044103681791229065, guid: f00ff7fe488c98b4eb8d1bac5025e38b, type: 3}
-  - {fileID: 8297794796849318199, guid: 47af48e2f11c6cc4c8ca190d3927bd22, type: 3}
-  - {fileID: 8297794796849318199, guid: 47af48e2f11c6cc4c8ca190d3927bd22, type: 3}
-  itemsContainer: {fileID: 602952872}
-  yOffset: 10
   dialogLines:
   - dialogLine: {fileID: 11400000, guid: 2daf0fa43cea9c84ca073bb51a8a005a, type: 2}
     type: 1
@@ -611,6 +604,13 @@ MonoBehaviour:
     type: 1
   - dialogLine: {fileID: 11400000, guid: 91c56c5f294e8df44872e3b0e821b77e, type: 2}
     type: 0
+  isGameActive: 0
+  items:
+  - {fileID: 5044103681791229065, guid: f00ff7fe488c98b4eb8d1bac5025e38b, type: 3}
+  - {fileID: 8297794796849318199, guid: 47af48e2f11c6cc4c8ca190d3927bd22, type: 3}
+  - {fileID: 8297794796849318199, guid: 47af48e2f11c6cc4c8ca190d3927bd22, type: 3}
+  itemsContainer: {fileID: 602952872}
+  yOffset: 10
 --- !u!1 &158297798
 GameObject:
   m_ObjectHideFlags: 0
@@ -2273,6 +2273,7 @@ MonoBehaviour:
   miniGameContainer: {fileID: 0}
   hideOnStart: {fileID: 0}
   inGameTrigger: {fileID: 0}
+  dialogLines: []
   isGameActive: 0
   player: {fileID: 392735297}
   instructions: 020000000100000000000000
@@ -2879,6 +2880,11 @@ MonoBehaviour:
   miniGameContainer: {fileID: 1855517037}
   hideOnStart: {fileID: 0}
   inGameTrigger: {fileID: 0}
+  dialogLines:
+  - dialogLine: {fileID: 11400000, guid: 1f7babafd51f143d0918fef80e437708, type: 2}
+    type: 0
+  - dialogLine: {fileID: 11400000, guid: b6993880a9dd0de45a0596faf5a36a15, type: 2}
+    type: 1
   isGameActive: 0
   score: -50
   messageSpacing: 10
@@ -7349,6 +7355,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 74671447}
     - target: {fileID: 617806365517851854, guid: 60580c399cfcaba4383037606e1fabe0, type: 3}
+      propertyPath: dialogLines.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 617806365517851854, guid: 60580c399cfcaba4383037606e1fabe0, type: 3}
       propertyPath: characterImageContainer
       value: 
       objectReference: {fileID: 931227789}
@@ -7439,6 +7449,18 @@ PrefabInstance:
     - target: {fileID: 617806365517851854, guid: 60580c399cfcaba4383037606e1fabe0, type: 3}
       propertyPath: actorSpriteEmotions.Array.size
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 617806365517851854, guid: 60580c399cfcaba4383037606e1fabe0, type: 3}
+      propertyPath: dialogLines.Array.data[0].type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 617806365517851854, guid: 60580c399cfcaba4383037606e1fabe0, type: 3}
+      propertyPath: dialogLines.Array.data[2].type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 617806365517851854, guid: 60580c399cfcaba4383037606e1fabe0, type: 3}
+      propertyPath: dialogLines.Array.data[4].type
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 617806365517851854, guid: 60580c399cfcaba4383037606e1fabe0, type: 3}
       propertyPath: 'initialResponses.Array.data[0]'
@@ -7532,6 +7554,26 @@ PrefabInstance:
       propertyPath: 'initialResponses.Array.data[12]'
       value: 
       objectReference: {fileID: 11400000, guid: 9a37fa150f0aaca4dbde1f6cd46cf872, type: 2}
+    - target: {fileID: 617806365517851854, guid: 60580c399cfcaba4383037606e1fabe0, type: 3}
+      propertyPath: dialogLines.Array.data[0].dialogLine
+      value: 
+      objectReference: {fileID: 11400000, guid: 22acbd19c2499e4428fb9c3d3ef0606d, type: 2}
+    - target: {fileID: 617806365517851854, guid: 60580c399cfcaba4383037606e1fabe0, type: 3}
+      propertyPath: dialogLines.Array.data[1].dialogLine
+      value: 
+      objectReference: {fileID: 11400000, guid: 1dc3c6c586597d741a973ad81832350b, type: 2}
+    - target: {fileID: 617806365517851854, guid: 60580c399cfcaba4383037606e1fabe0, type: 3}
+      propertyPath: dialogLines.Array.data[2].dialogLine
+      value: 
+      objectReference: {fileID: 11400000, guid: 4b7fdadf424dd164f8bcc6fea2b22cbe, type: 2}
+    - target: {fileID: 617806365517851854, guid: 60580c399cfcaba4383037606e1fabe0, type: 3}
+      propertyPath: dialogLines.Array.data[3].dialogLine
+      value: 
+      objectReference: {fileID: 11400000, guid: 2fb55d28ce1f6cb43a4bc01a74edfdca, type: 2}
+    - target: {fileID: 617806365517851854, guid: 60580c399cfcaba4383037606e1fabe0, type: 3}
+      propertyPath: dialogLines.Array.data[4].dialogLine
+      value: 
+      objectReference: {fileID: 11400000, guid: a1acdaa475a0e3b4e832c1c22c266099, type: 2}
     - target: {fileID: 617806365517851854, guid: 60580c399cfcaba4383037606e1fabe0, type: 3}
       propertyPath: actorSpriteEmotions.Array.data[0].sprite
       value: 

@@ -18,12 +18,10 @@ namespace Mini_Games.Phone_Text.scripts
     {
         private const int InitialScore = -50;
 
-        [Header("Game Settings")]
-        [SerializeField]
+        [Header("Game Settings")] [SerializeField]
         private int score = InitialScore;
 
-        [Header("UI References")]
-        [SerializeField]
+        [Header("UI References")] [SerializeField]
         private float messageSpacing = 20f;
 
         [SerializeField] private GameObject textMessage;
@@ -33,12 +31,10 @@ namespace Mini_Games.Phone_Text.scripts
         [SerializeField] private GameObject phoneNotification;
         [SerializeField] private GameObject phoneFrame;
 
-        [Header("Game Content")]
-        [SerializeField]
+        [Header("Game Content")] [SerializeField]
         private NpcMessage[] npcMessages;
 
-        [Header("Notification Effects")]
-        [SerializeField]
+        [Header("Notification Effects")] [SerializeField]
         private float flashSpeed = 1.5f;
 
         [SerializeField] private float minOpacity = 0.2f;
@@ -47,13 +43,13 @@ namespace Mini_Games.Phone_Text.scripts
         [SerializeField] private float vibrateDuration = 0.5f;
         private Coroutine _flashingCoroutine;
         private bool _isGameIndicationTriggered;
+        private bool _isOpenedBefore;
 
         private float _lastMessageBottomPosition;
         private string _nextTextMessage;
         private CanvasGroup _notificationCanvasGroup;
         private Vector3 _phoneOriginalPosition;
         private Coroutine _vibrateCoroutine;
-        private bool _isOpenedBefore = false;
 
         private void Start()
         {
@@ -142,54 +138,54 @@ namespace Mini_Games.Phone_Text.scripts
             switch (eventData.Name)
             {
                 case GameEvents.PlayerClickOnChoice:
-                    {
-                        if (!isGameActive)
-                            return;
+                {
+                    if (!isGameActive)
+                        return;
 
-                        var choiceData = (EnrichedPlayerChoice)eventData.Data;
-                        _nextTextMessage = choiceData.OriginalInteraction.DialogLine.voicedLines[0].text;
-                        CreateTextMessage(choiceData.Choice, playerTextMessagesContainer);
-                        Invoke(nameof(CreateTextMessageFromNext), 1.6f);
-                        break;
-                    }
+                    var choiceData = (EnrichedPlayerChoice)eventData.Data;
+                    _nextTextMessage = choiceData.OriginalInteraction.DialogLine.voicedLines[0].text;
+                    CreateTextMessage(choiceData.Choice, playerTextMessagesContainer);
+                    Invoke(nameof(CreateTextMessageFromNext), 1.6f);
+                    break;
+                }
                 case GameEvents.ThoughtScoreChange:
+                {
+                    if (!isGameActive)
+                        return;
+
+                    var newScore = (int)eventData.Data;
+                    if (newScore != 0)
                     {
-                        if (!isGameActive)
-                            return;
+                        score = newScore;
+                        scoreTextContainer.text = score.ToString();
 
-                        var newScore = (int)eventData.Data;
-                        if (newScore != 0)
-                        {
-                            score = newScore;
-                            scoreTextContainer.text = score.ToString();
-
-                            // if (score is <= 0 or >= 100)
-                            Invoke(nameof(CloseMiniGame), 3);
-                        }
-
-                        break;
+                        // if (score is <= 0 or >= 100)
+                        Invoke(nameof(EndGame), 3);
                     }
+
+                    break;
+                }
 
                 case GameEvents.MiniGameIndicationTrigger:
-                    {
-                        if ((MiniGameName)eventData.Data == MiniGameName.Reply)
-                            TriggerMiniGameIndication();
-                        else
-                            StopMiniGameIndication();
+                {
+                    if ((MiniGameName)eventData.Data == MiniGameName.Reply)
+                        TriggerMiniGameIndication();
+                    else
+                        StopMiniGameIndication();
 
-                        break;
-                    }
+                    break;
+                }
 
                 case GameEvents.TextMessageGameStart:
+                {
+                    if (_isGameIndicationTriggered)
                     {
-                        if (_isGameIndicationTriggered)
-                        {
-                            StopMiniGameIndication();
-                            StartMiniGame();
-                        }
-
-                        break;
+                        StopMiniGameIndication();
+                        StartMiniGame();
                     }
+
+                    break;
+                }
 
                 case GameEvents.MiniGameClosed:
                     StopMiniGameIndication();
@@ -321,16 +317,16 @@ namespace Mini_Games.Phone_Text.scripts
             if (_notificationCanvasGroup) _notificationCanvasGroup.alpha = 1.0f;
         }
 
-        protected override void CloseMiniGame()
+        private void EndGame()
         {
-            base.CloseMiniGame();
+            CloseMiniGame(score > 0);
+        }
 
+        protected override void CloseMiniGame(bool isGameWon = false)
+        {
+            base.CloseMiniGame(isGameWon);
             StopNotificationEffects();
             phoneNotification.SetActive(false);
-
-            Notify(score > 0
-                ? GameEvents.MiniGameWon
-                : GameEvents.MiniGameLost);
         }
 
         private void PushAllTextMessagesUp()
@@ -353,7 +349,8 @@ namespace Mini_Games.Phone_Text.scripts
                 textMessage.transform.localPosition += new Vector3(-horizontalOffset, verticalOffset, 0);
             }
 
-            _lastMessageBottomPosition = textMessages[textMessages.Length - 1].transform.localPosition.y - messageSpacing;
+            _lastMessageBottomPosition =
+                textMessages[textMessages.Length - 1].transform.localPosition.y - messageSpacing;
         }
     }
 }

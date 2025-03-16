@@ -51,7 +51,7 @@ namespace Mini_Games.Flirt.scripts
             switch (eventData.Name)
             {
                 case GameEvents.FlirtGameStart:
-                    CloseMiniGame();
+                    EndGame();
                     StartMiniGame();
                     break;
 
@@ -75,7 +75,7 @@ namespace Mini_Games.Flirt.scripts
                         scoreTextContainer.text = score.ToString();
 
                         if (score is <= 0 or >= 100)
-                            Invoke(nameof(CloseMiniGame), 2);
+                            Invoke(nameof(EndGame), 2);
                     }
 
                     break;
@@ -98,13 +98,9 @@ namespace Mini_Games.Flirt.scripts
             scoreTextContainer.text = score.ToString();
         }
 
-        protected override void CloseMiniGame()
+        private void EndGame()
         {
-            base.CloseMiniGame();
-
-            Notify(score > 0
-                ? GameEvents.MiniGameWon
-                : GameEvents.MiniGameLost);
+            CloseMiniGame(score > 0);
         }
 
         private void InitActorResponse()

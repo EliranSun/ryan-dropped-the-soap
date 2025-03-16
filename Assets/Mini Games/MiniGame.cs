@@ -1,6 +1,10 @@
+using System;
 using Character_Creator.scripts;
+using Dialog.Scripts;
+using Mini_Games.Organize_Desk.scripts;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Mini_Games
 {
@@ -14,6 +18,9 @@ namespace Mini_Games
         [SerializeField] private GameObject hideOnStart;
         [SerializeField] public GameObject inGameTrigger;
 
+        [Header("Game dialog responses")] [SerializeField]
+        public TypedDialogLine[] dialogLines;
+
         public bool isGameActive;
 
         private float _currentTime;
@@ -23,6 +30,20 @@ namespace Mini_Games
         {
             if (_isTimerRunning)
                 UpdateTimer();
+        }
+
+        public NarrationDialogLine GetRandomLine(DialogLineType type)
+        {
+            // Filter lines by type
+            var filteredLines = Array.FindAll(dialogLines, line => line.type == type);
+
+            // If no lines of this type, return null
+            if (filteredLines.Length == 0)
+                return null;
+
+            // Return a random line of the specified type
+            var randomIndex = Random.Range(0, filteredLines.Length);
+            return filteredLines[randomIndex].dialogLine;
         }
 
         protected virtual void UpdateTimer()
@@ -50,7 +71,7 @@ namespace Mini_Games
             Notify(GameEvents.MiniGameStart);
         }
 
-        protected virtual void CloseMiniGame()
+        protected virtual void CloseMiniGame(bool isGameWon = false)
         {
             _isTimerRunning = false;
             isGameActive = false;
@@ -61,6 +82,20 @@ namespace Mini_Games
             Notify(GameEvents.KillThoughtsAndSayings);
             Notify(GameEvents.KillDialog);
             Notify(GameEvents.MiniGameClosed);
+
+
+            // Get a random dialog line based on game outcome
+            NarrationDialogLine dialogLine = null;
+            if (dialogLines != null)
+                dialogLine = GetRandomLine(
+                    isGameWon ? DialogLineType.Good : DialogLineType.Bad
+                );
+
+            // Trigger the dialog line if one was found
+            if (dialogLine != null) Notify(GameEvents.TriggerSpecificDialogLine, dialogLine);
+
+            // Notify about game outcome
+            Notify(isGameWon ? GameEvents.MiniGameWon : GameEvents.MiniGameLost);
         }
 
         public virtual void OnNotify(GameEventData eventData)

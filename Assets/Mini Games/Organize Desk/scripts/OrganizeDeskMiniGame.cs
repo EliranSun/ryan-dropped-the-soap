@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
-using Dialog.Scripts;
-using System;
+
 namespace Mini_Games.Organize_Desk.scripts
 {
     public enum DialogLineType
@@ -11,43 +10,16 @@ namespace Mini_Games.Organize_Desk.scripts
         Bad
     }
 
-    [Serializable]
-    public class TypedDialogLine
-    {
-        public NarrationDialogLine dialogLine;
-        public DialogLineType type;
-
-        public TypedDialogLine(NarrationDialogLine line, DialogLineType lineType)
-        {
-            dialogLine = line;
-            type = lineType;
-        }
-    }
-
     public class OrganizeDeskMiniGame : MiniGame
     {
-        [SerializeField] private GameObject[] items;
+        [Header("Organize Desk Settings")] [SerializeField]
+        private GameObject[] items;
+
         [SerializeField] private GameObject itemsContainer;
         [SerializeField] private float yOffset = 2f;
-        [SerializeField] public TypedDialogLine[] dialogLines;
 
         private readonly List<GameObject> _itemsRef = new();
         private readonly HashSet<GameObject> _nonEssentialItems = new();
-
-
-        public NarrationDialogLine GetRandomLine(DialogLineType type)
-        {
-            // Filter lines by type
-            var filteredLines = Array.FindAll(dialogLines, line => line.type == type);
-
-            // If no lines of this type, return null
-            if (filteredLines.Length == 0)
-                return null;
-
-            // Return a random line of the specified type
-            var randomIndex = Random.Range(0, filteredLines.Length);
-            return filteredLines[randomIndex].dialogLine;
-        }
 
         private void PlaceItemsRandomlyOnScreen()
         {
@@ -157,29 +129,10 @@ namespace Mini_Games.Organize_Desk.scripts
             PlaceItemsRandomlyOnScreen();
         }
 
-        protected override void CloseMiniGame()
+        protected override void CloseMiniGame(bool isGameWon = false)
         {
-            base.CloseMiniGame();
-
-            bool gameWon = _nonEssentialItems.Count == 0;
-
-            // Get a random dialog line based on game outcome
-            NarrationDialogLine dialogLine = null;
-            if (dialogLines != null)
-            {
-                dialogLine = GetRandomLine(
-                    gameWon ? DialogLineType.Good : DialogLineType.Bad
-                );
-            }
-
-            // Trigger the dialog line if one was found
-            if (dialogLine != null)
-            {
-                Notify(GameEvents.TriggerSpecificDialogLine, dialogLine);
-            }
-
-            // Notify about game outcome
-            Notify(gameWon ? GameEvents.MiniGameWon : GameEvents.MiniGameLost);
+            var gameWon = _nonEssentialItems.Count == 0;
+            base.CloseMiniGame(gameWon);
         }
     }
 }
