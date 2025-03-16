@@ -31,10 +31,10 @@ namespace Mini_Games
         [SerializeField] private GameObject inGameInstructions;
         [SerializeField] private float currentScore;
         [SerializeField] private int initiateMiniGameDelay = 3;
-        [SerializeField] private readonly int bestEmployeeScore = 100;
-        [SerializeField] private readonly int bossOfficeScore = -100;
         [SerializeField] private NarrationDialogLine goodEndingDialogLine;
         [SerializeField] private NarrationDialogLine badEndingDialogLine;
+        private readonly int bestEmployeeScore = 100;
+        private readonly int bossOfficeScore = -100;
         private bool _isMiniGameInitiated;
 
         private void Start()
@@ -71,7 +71,9 @@ namespace Mini_Games
                 // StartMiniGame(); // counts down
             }
             else
+            {
                 print("inGameInstructions error!");
+            }
         }
 
         public override void OnNotify(GameEventData eventData)
@@ -79,9 +81,7 @@ namespace Mini_Games
             base.OnNotify(eventData);
 
             if (eventData.Name == GameEvents.StartMiniGames)
-            {
                 Invoke(nameof(SetRandomInstruction), initiateMiniGameDelay);
-            }
 
             if (eventData.Name == GameEvents.ThoughtScoreChange)
             {
@@ -109,7 +109,7 @@ namespace Mini_Games
                 currentScore += 10f;
                 _isMiniGameInitiated = false;
                 inGameInstructionsText.text = "GOOD EMPLOYEE";
-                CloseMiniGame();
+                // CloseMiniGame();
                 Notify(GameEvents.SlowDownMusic);
                 Invoke(nameof(OnMiniGameEnd), 2f);
             }
@@ -120,7 +120,7 @@ namespace Mini_Games
                 currentScore -= 10f;
                 _isMiniGameInitiated = false;
                 inGameInstructionsText.text = "BAD EMPLOYEE";
-                CloseMiniGame();
+                // CloseMiniGame();
                 Notify(GameEvents.SpeedUpMusic);
                 Invoke(nameof(OnMiniGameEnd), 2f);
             }
@@ -169,8 +169,8 @@ namespace Mini_Games
             {
                 Notify(GameEvents.StopMusic);
                 Notify(GameEvents.TriggerSpecificDialogLine, currentScore >= bestEmployeeScore
-                ? goodEndingDialogLine
-                : badEndingDialogLine);
+                    ? goodEndingDialogLine
+                    : badEndingDialogLine);
                 return;
             }
 
