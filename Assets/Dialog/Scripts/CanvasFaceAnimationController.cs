@@ -8,7 +8,7 @@ namespace Dialog.Scripts
         None,
         Charlotte, // voiced by: Charlotte (XB0fDUnXU5powFXDhCwa)
         Morgan, // voiced by: Grace (4zDsWfgtAP9O9F9kJlUk)
-        Zeke, // voiced by:
+        Zeke, // voiced by: Roger (CwhRBWXzGAHq8TQ4Fs17)
         Ryan, // voiced by:
         Stacy,
         Pigeon,
