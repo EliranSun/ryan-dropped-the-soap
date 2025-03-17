@@ -129,4 +129,6 @@
     StopMusic,
     StartMusic,
     BossOfficeDialogStart,
+    TriggerZekeShout,
+    TriggerZekeBossStub,
 }

@@ -15,6 +15,7 @@ namespace Dialog.Scripts
         private void Start()
         {
             _thoughtsManager = FindFirstObjectByType<ThoughtsManager>();
+            Destroy(gameObject, 15f);
         }
 
         private void OnCollisionEnter2D(Collision2D other)

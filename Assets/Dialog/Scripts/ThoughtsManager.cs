@@ -17,6 +17,8 @@ namespace Dialog.Scripts
     public class ThoughtChoice
     {
         public PlayerMiniGameChoice[] choices;
+        public bool dropThoughtFromAbove = true;
+        public bool randomizeXPosition = false;
     }
 
     public class ThoughtsManager : ObserverSubject
@@ -54,7 +56,8 @@ namespace Dialog.Scripts
                                 option.actorLine,
                                 PlayerDataEnum.None,
                                 option.score,
-                                false
+                                thought.dropThoughtFromAbove,
+                                thought.randomizeXPosition
                             );
                     }
                 }
@@ -101,10 +104,12 @@ namespace Dialog.Scripts
             NarrationDialogLine nextLine,
             PlayerDataEnum lastPlayerDataType = PlayerDataEnum.None,
             int score = 0,
-            bool dropThoughtFromAbove = true
+            bool dropThoughtFromAbove = true,
+            bool randomizeXPosition = false
         )
         {
-            var randomHeight = Random.Range(0, 3);
+            var randomHeight = Random.Range(0, 10);
+            var xPosition = randomizeXPosition ? Random.Range(-1, 20) : 0;
             var thought = Instantiate(thoughtPrefab, thoughtsContainer.transform);
 
             if (text.Length <= 1)
@@ -115,7 +120,7 @@ namespace Dialog.Scripts
             }
 
             if (dropThoughtFromAbove)
-                thought.transform.position += new Vector3(0, randomHeight, 0);
+                thought.transform.position += new Vector3(xPosition, randomHeight, 0);
 
             var thoughtComponent = thought.GetComponent<Thought>();
             thoughtComponent.SetThought(text);
