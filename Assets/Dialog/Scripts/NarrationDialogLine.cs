@@ -156,5 +156,7 @@ namespace Dialog.Scripts
         public GameEvents actionBeforeLine;
         public GameEvents actionAfterLine;
         public Reaction actorReaction;
+
+        public float blurAudioLevel = 0;
     }
 }

@@ -25,6 +25,7 @@ namespace Character_Creator.scripts
         [SerializeField] private AudioSource soundEffectsAudioSource;
         [SerializeField] private EventToSound eventToSound;
         [SerializeField] private SpriteRenderer overlayImage;
+        [SerializeField] private int delayFirstLine = 0;
 
         private bool _asyncLinesReady;
         private AudioSource _audioSource;
@@ -37,13 +38,16 @@ namespace Character_Creator.scripts
         private void Start()
         {
             _audioSource = GetComponent<AudioSource>();
-            var nextLine = DialogueStateChanger.Instance.GetDialogStateByPlayerPrefs();
+            Invoke(nameof(Init), delayFirstLine);
+        }
 
-            if (nextLine)
-            {
-                UpdateDialogState(nextLine);
-                StartCoroutine(HandlePlayerNameLinesAndStartRead());
-            }
+        private void Init()
+        {
+            var nextLine = DialogueStateChanger.Instance.GetDialogStateByPlayerPrefs();
+            if (!nextLine) return;
+
+            UpdateDialogState(nextLine);
+            StartCoroutine(HandlePlayerNameLinesAndStartRead());
         }
 
         private void Update()
