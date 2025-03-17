@@ -56,7 +56,7 @@ public class BlurAudio : MonoBehaviour
     {
         if (dialogLine != null)
         {
-            ApplyBlurEffect(dialogLine.blurAudioLevel);
+            ApplyBlurEffect(dialogLine.angerLevel);
         }
     }
 
@@ -66,6 +66,8 @@ public class BlurAudio : MonoBehaviour
         {
             var narrationDialogLine = gameEventData.Data as NarrationDialogLine;
             if (narrationDialogLine == null) return;
+
+            print("angerLevel: " + narrationDialogLine.angerLevel);
 
             ApplyBlurFromDialogLine(narrationDialogLine);
         }

@@ -47,8 +47,8 @@ namespace Mini_Games
             var playerSprite = player.GetComponent<SpriteRenderer>();
             playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 1f);
 
-            inGameInstructions.SetActive(false);
-            badEndingTrigger.SetActive(false);
+            if (inGameInstructions) inGameInstructions.SetActive(false);
+            if (badEndingTrigger) badEndingTrigger.SetActive(false);
         }
 
         private void SetRandomInstruction()
