@@ -18,11 +18,11 @@ MonoBehaviour:
   overlayImageSprite: {fileID: 0}
   voicedLines:
   - text: You gotta be fucking kidding me. ZEKE. In my office, RIGHT NOW.
-    clip: {fileID: 8300000, guid: db8d1daf461baf9468dadd05abe2ed0a, type: 3}
+    clip: {fileID: 8300000, guid: 2fcb61789cb755f4983e7ec5162b7cae, type: 3}
     gender: 0
   playerOptions: []
   playerReactions: []
-  nextDialogueLine: {fileID: 0}
+  nextDialogueLine: {fileID: 11400000, guid: a5475d494ddfcc444842ae61bf465ef6, type: 2}
   randomizedDialogLines: []
   objectReferringDialogLines: []
   wait: 0.5
@@ -30,3 +30,4 @@ MonoBehaviour:
   actionBeforeLine: 0
   actionAfterLine: 0
   actorReaction: 0
+  blurAudioLevel: 0

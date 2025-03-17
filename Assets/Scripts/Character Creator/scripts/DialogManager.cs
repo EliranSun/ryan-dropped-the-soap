@@ -140,7 +140,7 @@ namespace Character_Creator.scripts
             {
                 _audioSource.clip = line.clip;
                 _audioSource.Play();
-                Notify(GameEvents.LineNarrationStart, _currentDialogue.actorName);
+                Notify(GameEvents.LineNarrationStart, _currentDialogue);
                 Notify(GameEvents.ActorReaction, _currentDialogue);
                 StartCoroutine(CheckAudioEnd());
             }

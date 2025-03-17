@@ -58,14 +58,25 @@ namespace Object.Scripts
 
             while (elapsedTime < transitionDuration)
             {
+                // Update target position to account for object movement
+                var currentTargetPosition = target.position;
+                currentTargetPosition.y += yOffset;
+                if (lockZ) currentTargetPosition.z = _initialZ;
+                if (lockY) currentTargetPosition.y = yOffset;
+
                 elapsedTime += Time.deltaTime;
                 var t = elapsedTime / transitionDuration;
-                _mainCamera.gameObject.transform.position = Vector3.Lerp(startPosition, targetPosition, t);
+                _mainCamera.gameObject.transform.position = Vector3.Lerp(startPosition, currentTargetPosition, t);
                 yield return null;
             }
 
-            // Ensure we end at exactly the target position
-            _mainCamera.gameObject.transform.position = targetPosition;
+            // Final position should be the current target position
+            var finalPosition = target.position;
+            finalPosition.y += yOffset;
+            if (lockZ) finalPosition.z = _initialZ;
+            if (lockY) finalPosition.y = yOffset;
+
+            _mainCamera.gameObject.transform.position = finalPosition;
             _centerOnObject = true;
         }
     }

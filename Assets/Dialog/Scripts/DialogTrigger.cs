@@ -7,6 +7,7 @@ namespace Dialog.Scripts
     {
         [SerializeField] private GameObject triggeredBy;
         [SerializeField] private GameEvents eventName;
+        [SerializeField] private NarrationDialogLine narrationDialogLine;
         private bool _isTriggered;
 
 
@@ -18,7 +19,7 @@ namespace Dialog.Scripts
             if (other.gameObject.CompareTag(triggeredBy.gameObject.tag))
             {
                 _isTriggered = true;
-                Notify(eventName);
+                Notify(eventName, narrationDialogLine);
             }
         }
     }

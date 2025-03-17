@@ -37,7 +37,9 @@ namespace Dialog.Scripts
             switch (gameEventData.Name)
             {
                 case GameEvents.LineNarrationStart:
-                    if ((ActorName)gameEventData.Data == actorName)
+                    var narrationDialogLine = gameEventData.Data as NarrationDialogLine;
+                    if (narrationDialogLine == null) return;
+                    if (narrationDialogLine.actorName == actorName)
                     {
                         _animator.SetBool(IsTalking, true);
                         _image.color = Color.white;

@@ -10,7 +10,7 @@ public class BlurAudio : MonoBehaviour
     private AudioLowPassFilter _lowPassFilter;
 
     [SerializeField] private float _defaultCutoffFrequency = 22000f; // Default cutoff (no filter)
-    [SerializeField] private float _minCutoffFrequency = 500f; // Heavy muffling
+    [SerializeField] private float _minCutoffFrequency = 400f; // Heavy muffling
 
     private void Start()
     {
@@ -57,6 +57,17 @@ public class BlurAudio : MonoBehaviour
         if (dialogLine != null)
         {
             ApplyBlurEffect(dialogLine.blurAudioLevel);
+        }
+    }
+
+    public void OnNotify(GameEventData gameEventData)
+    {
+        if (gameEventData.Name == GameEvents.LineNarrationStart)
+        {
+            var narrationDialogLine = gameEventData.Data as NarrationDialogLine;
+            if (narrationDialogLine == null) return;
+
+            ApplyBlurFromDialogLine(narrationDialogLine);
         }
     }
 }

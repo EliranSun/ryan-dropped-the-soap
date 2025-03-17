@@ -128,4 +128,5 @@
     SpeedUpMusic,
     StopMusic,
     StartMusic,
+    BossOfficeDialogStart,
 }
