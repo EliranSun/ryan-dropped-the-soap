@@ -1,32 +1,74 @@
 using System.Collections;
-using System.Collections.Generic;
+using Dialog.Scripts;
 using UnityEngine;
 using UnityEngine.UI;
-using Dialog.Scripts;
 
-public class ZekeShoutsController : ObserverSubject
+namespace Scenes.ZEKE.scripts
 {
-    [SerializeField] private Image zekeShoutsImage;
-    [SerializeField] private Sprite[] zekeShoutsSprites;
-    [SerializeField] private ThoughtChoice[] thoughtsChoice;
-
-
-    public void Init()
+    public class ZekeShoutsController : ObserverSubject
     {
-        StartCoroutine(ThinkRandomThought());
-    }
+        [SerializeField] private Image zekeShoutsImage;
+        [SerializeField] private Sprite[] zekeShoutsSprites;
+        [SerializeField] private ThoughtChoice[] thoughtsChoice;
+        private int _activeSpriteIndex;
+        private bool _isInitialized;
+        private int _shoutsCount;
 
-    public IEnumerator ThinkRandomThought()
-    {
-        while (true)
+        public void Init()
         {
+            StartCoroutine(ThinkRandomThought());
+            _isInitialized = true;
             zekeShoutsImage.sprite = zekeShoutsSprites[0];
-            var randomIndex = Random.Range(0, thoughtsChoice.Length);
-            var selectedThought = thoughtsChoice[randomIndex];
+        }
 
-            Notify(GameEvents.AddThoughts, selectedThought);
+        public void OnNotify(GameEventData eventData)
+        {
+            if (
+                eventData.Name != GameEvents.SpeakMind ||
+                !_isInitialized ||
+                _activeSpriteIndex >= zekeShoutsSprites.Length
+            )
+                return;
 
-            yield return new WaitForSeconds(1f);
+            _shoutsCount++;
+            print("SHOUTS % " + _shoutsCount % zekeShoutsSprites.Length);
+            StartCoroutine(ThinkRandomThought());
+
+            if (_shoutsCount % zekeShoutsSprites.Length == 0)
+            {
+                _activeSpriteIndex++;
+
+                if (_activeSpriteIndex >= zekeShoutsSprites.Length)
+                {
+                    StopAllCoroutines();
+                    Notify(GameEvents.KillThoughtsAndSayings);
+                    zekeShoutsImage.sprite = zekeShoutsSprites[0];
+                    // FIXME: Does not work
+                    Invoke(nameof(CloseSequence), 5f);
+                    // TODO: notify the final piece of dialog
+                    return;
+                }
+
+                zekeShoutsImage.sprite = zekeShoutsSprites[_activeSpriteIndex];
+            }
+        }
+
+        private void CloseSequence()
+        {
+            Notify(GameEvents.EndZekeShouts);
+        }
+
+        private IEnumerator ThinkRandomThought()
+        {
+            while (true)
+            {
+                var randomIndex = Random.Range(0, thoughtsChoice.Length);
+                var selectedThought = thoughtsChoice[randomIndex];
+
+                Notify(GameEvents.AddThoughts, selectedThought);
+
+                yield return new WaitForSeconds(1f);
+            }
         }
     }
 }

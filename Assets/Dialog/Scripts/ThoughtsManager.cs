@@ -18,7 +18,7 @@ namespace Dialog.Scripts
     {
         public PlayerMiniGameChoice[] choices;
         public bool dropThoughtFromAbove = true;
-        public bool randomizeXPosition = false;
+        public bool randomizeXPosition;
     }
 
     public class ThoughtsManager : ObserverSubject
@@ -148,6 +148,7 @@ namespace Dialog.Scripts
                 _lastPlayerDataType
             );
 
+            Notify(GameEvents.SpeakMind);
             Notify(GameEvents.PlayerClickOnChoice, choice);
             Notify(GameEvents.ThoughtScoreChange, _score);
             DisableSayings();

@@ -2392,7 +2392,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e667f32cc10f6e040a3f6d64de808653, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3457,6 +3457,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 619399803}
+        m_TargetAssemblyTypeName: Scenes.ZEKE.scripts.BossOfficeController, ZekeSceneScriptAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   zekeShoutsImage: {fileID: 593826682}
   zekeShoutsSprites:
   - {fileID: 21300000, guid: e667f32cc10f6e040a3f6d64de808653, type: 3}
@@ -3464,57 +3476,57 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c04cfbf9529b39b45aab1207c8f25a35, type: 3}
   thoughtsChoice:
   - choices:
-    - text: NOBODY LOVES YOU
+    - text: BOSS
       score: 0
-      actorLine: {fileID: 0}
+      actorLine: {fileID: 11400000, guid: 20e07f8b025434f7b88e5b8aff60565f, type: 2}
     dropThoughtFromAbove: 1
     randomizeXPosition: 1
   - choices:
-    - text: I HATE MY LIFE SO MUCH
+    - text: LIFE
       score: 0
-      actorLine: {fileID: 0}
+      actorLine: {fileID: 11400000, guid: 44829880544054a3fb578463f3addfe0, type: 2}
     dropThoughtFromAbove: 1
     randomizeXPosition: 1
   - choices:
-    - text: I WAS NEVER LOVED BY MY MOTHER
+    - text: LOVE
       score: 0
-      actorLine: {fileID: 0}
+      actorLine: {fileID: 11400000, guid: ddbd7b47827da48ca8768242a137cf13, type: 2}
     dropThoughtFromAbove: 1
     randomizeXPosition: 1
   - choices:
-    - text: THIS JOB SUCKS
+    - text: JOB
       score: 0
-      actorLine: {fileID: 0}
+      actorLine: {fileID: 11400000, guid: a16916e07a21e4bb4b67d9b504597cb9, type: 2}
     dropThoughtFromAbove: 1
     randomizeXPosition: 1
   - choices:
-    - text: YOU SUCK
+    - text: BOSS
       score: 0
-      actorLine: {fileID: 0}
+      actorLine: {fileID: 11400000, guid: 34ba41e8d8bcd49c6b30aec5beb6e697, type: 2}
     dropThoughtFromAbove: 1
     randomizeXPosition: 1
   - choices:
-    - text: I WANT TO DIVORCE MY WIFE
+    - text: WIFE
       score: 0
-      actorLine: {fileID: 0}
+      actorLine: {fileID: 11400000, guid: 28137de1cc17a4537b6356a76e5f37ab, type: 2}
     dropThoughtFromAbove: 1
     randomizeXPosition: 1
   - choices:
-    - text: I WANT TO FUCK MORGAN
+    - text: MORGAN
       score: 0
-      actorLine: {fileID: 0}
+      actorLine: {fileID: 11400000, guid: 65bd31fec989f45eca7518ed7bff97cb, type: 2}
     dropThoughtFromAbove: 1
     randomizeXPosition: 1
   - choices:
-    - text: I WANT TO KILL YOU
+    - text: BOSS
       score: 0
-      actorLine: {fileID: 0}
+      actorLine: {fileID: 11400000, guid: 662920177f5fa4790806a9b5ef1abc08, type: 2}
     dropThoughtFromAbove: 1
     randomizeXPosition: 1
   - choices:
-    - text: I WANT TO KILL MYSELF
+    - text: KILL
       score: 0
-      actorLine: {fileID: 0}
+      actorLine: {fileID: 11400000, guid: 4e4e4663859a34332bdeece3ac8b49e9, type: 2}
     dropThoughtFromAbove: 1
     randomizeXPosition: 1
 --- !u!114 &931227789 stripped
@@ -4361,7 +4373,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4398517611734436644, guid: 8bbc861aaaf38418e867160e512aba4d, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4398517611734436644, guid: 8bbc861aaaf38418e867160e512aba4d, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
@@ -4390,7 +4402,7 @@ PrefabInstance:
     - target: {fileID: 4398517611734436644, guid: 8bbc861aaaf38418e867160e512aba4d, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[4].m_Target
       value: 
-      objectReference: {fileID: 619399803}
+      objectReference: {fileID: 899511885}
     - target: {fileID: 4398517611734436644, guid: 8bbc861aaaf38418e867160e512aba4d, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
@@ -4437,7 +4449,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4398517611734436644, guid: 8bbc861aaaf38418e867160e512aba4d, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
-      value: BossOfficeController, ZekeSceneScriptAssembly
+      value: Scenes.ZEKE.scripts.ZekeShoutsController, ZekeSceneScriptAssembly
       objectReference: {fileID: 0}
     - target: {fileID: 4398517611734436644, guid: 8bbc861aaaf38418e867160e512aba4d, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName

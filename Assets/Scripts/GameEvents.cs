@@ -131,4 +131,6 @@
     BossOfficeDialogStart,
     TriggerZekeShout,
     TriggerZekeBossStub,
+    SpeakMind,
+    EndZekeShouts
 }

@@ -1,32 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Dialog.Scripts;
 
-public class BossOfficeController : MonoBehaviour
+namespace Scenes.ZEKE.scripts
 {
-    [SerializeField] private GameObject zekeShouts;
-    [SerializeField] private GameObject zekeBossStub;
-
-    private void Awake()
+    public class BossOfficeController : MonoBehaviour
     {
-        if (zekeShouts) zekeShouts.SetActive(false);
-        if (zekeBossStub) zekeBossStub.SetActive(false);
-    }
+        [SerializeField] private GameObject zekeShouts;
+        [SerializeField] private GameObject zekeBossStub;
 
-    public void OnNotify(GameEventData gameEventData)
-    {
-        if (gameEventData.Name == GameEvents.TriggerZekeShout)
+        private bool _isZekeShoutsActive;
+
+        private void Awake()
         {
-
-            if (zekeShouts) zekeShouts.SetActive(true);
-            zekeShouts.GetComponent<ZekeShoutsController>().Init();
+            if (zekeShouts) zekeShouts.SetActive(false);
+            if (zekeBossStub) zekeBossStub.SetActive(false);
         }
 
-        if (gameEventData.Name == GameEvents.TriggerZekeBossStub)
+        public void OnNotify(GameEventData gameEventData)
         {
-            if (zekeBossStub) zekeBossStub.SetActive(true);
+            if (gameEventData.Name == GameEvents.TriggerZekeShout && !_isZekeShoutsActive)
+            {
+                if (zekeShouts) zekeShouts.SetActive(true);
+                _isZekeShoutsActive = true;
+                zekeShouts.GetComponent<ZekeShoutsController>().Init();
+            }
+
+            if (gameEventData.Name == GameEvents.TriggerZekeBossStub)
+                if (zekeBossStub)
+                    zekeBossStub.SetActive(true);
         }
     }
 }
-
