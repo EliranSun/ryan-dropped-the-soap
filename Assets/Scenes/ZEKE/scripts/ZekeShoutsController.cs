@@ -38,12 +38,12 @@ namespace Scenes.ZEKE.scripts
             {
                 _activeSpriteIndex++;
 
-                if (_activeSpriteIndex >= zekeShoutsSprites.Length)
+                if (_activeSpriteIndex >= zekeShoutsSprites.Length / 2)
                 {
                     StopAllCoroutines();
                     Notify(GameEvents.KillThoughtsAndSayings);
+                    _isInitialized = false;
                     zekeShoutsImage.sprite = zekeShoutsSprites[0];
-                    // FIXME: Does not work
                     Invoke(nameof(CloseSequence), 5f);
                     // TODO: notify the final piece of dialog
                     return;

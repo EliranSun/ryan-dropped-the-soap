@@ -34,6 +34,7 @@ namespace Mini_Games
         [SerializeField] private NarrationDialogLine goodEndingDialogLine;
         [SerializeField] private NarrationDialogLine badEndingDialogLine;
         [SerializeField] private GameObject badEndingTrigger;
+        [SerializeField] private GameObject goodEndingTrigger;
         private readonly int bestEmployeeScore = 100;
         private readonly int bossOfficeScore = -100;
         private bool _isMiniGameInitiated;
@@ -49,6 +50,7 @@ namespace Mini_Games
 
             if (inGameInstructions) inGameInstructions.SetActive(false);
             if (badEndingTrigger) badEndingTrigger.SetActive(false);
+            if (goodEndingTrigger) goodEndingTrigger.SetActive(false);
         }
 
         private void SetRandomInstruction()
@@ -169,11 +171,17 @@ namespace Mini_Games
 
             if (currentScore >= bestEmployeeScore || currentScore <= bossOfficeScore)
             {
-                badEndingTrigger.SetActive(true);
                 Notify(GameEvents.StopMusic);
-                Notify(GameEvents.TriggerSpecificDialogLine, currentScore >= bestEmployeeScore
-                    ? goodEndingDialogLine
-                    : badEndingDialogLine);
+
+                var isGoodEnding = currentScore >= bestEmployeeScore;
+
+                badEndingTrigger.SetActive(!isGoodEnding);
+                goodEndingTrigger.SetActive(isGoodEnding);
+
+                Notify(GameEvents.TriggerSpecificDialogLine,
+                    isGoodEnding
+                        ? goodEndingDialogLine
+                        : badEndingDialogLine);
                 return;
             }
 

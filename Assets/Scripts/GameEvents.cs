@@ -132,5 +132,6 @@
     TriggerZekeShout,
     TriggerZekeBossStub,
     SpeakMind,
-    EndZekeShouts
+    EndZekeShouts,
+    TriggerZekeSuicide
 }
