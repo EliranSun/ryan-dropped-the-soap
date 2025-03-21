@@ -8,6 +8,7 @@ namespace Scenes.ZEKE.scripts
         [SerializeField] private GameObject zekeShouts;
         [SerializeField] private GameObject zekeSuicide;
         [SerializeField] private GameObject zekeBossStub;
+        [SerializeField] private AudioSource bgAudioSource;
 
         private bool _isZekeShoutsActive;
 
@@ -23,17 +24,17 @@ namespace Scenes.ZEKE.scripts
             switch (gameEventData.Name)
             {
                 case GameEvents.TriggerZekeShout when !_isZekeShoutsActive:
-                {
-                    if (zekeShouts) zekeShouts.SetActive(true);
-                    _isZekeShoutsActive = true;
-                    zekeShouts.GetComponent<ZekeShoutsController>().Init();
-                    break;
-                }
+                    {
+                        if (zekeShouts) zekeShouts.SetActive(true);
+                        _isZekeShoutsActive = true;
+                        zekeShouts.GetComponent<ZekeShoutsController>().Init();
+                        break;
+                    }
                 case GameEvents.TriggerZekeBossStub:
-                {
-                    if (zekeBossStub) zekeBossStub.SetActive(true);
-                    break;
-                }
+                    {
+                        if (zekeBossStub) zekeBossStub.SetActive(true);
+                        break;
+                    }
 
                 case GameEvents.EndZekeShouts:
                     zekeShouts.SetActive(false);
@@ -42,10 +43,14 @@ namespace Scenes.ZEKE.scripts
                     break;
 
                 case GameEvents.TriggerZekeSuicide:
-                {
-                    if (zekeSuicide) zekeSuicide.SetActive(true);
-                    break;
-                }
+                    {
+                        if (zekeSuicide)
+                        {
+                            bgAudioSource.Stop();
+                            zekeSuicide.SetActive(true);
+                        }
+                        break;
+                    }
             }
         }
     }

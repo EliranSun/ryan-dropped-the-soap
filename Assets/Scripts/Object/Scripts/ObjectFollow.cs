@@ -16,6 +16,7 @@ namespace Object.Scripts
         private float _initialZ;
         private Camera _mainCamera;
         private bool _centerOnObject = false;
+        private bool _isActive = false;
 
         private void Start()
         {
@@ -28,8 +29,20 @@ namespace Object.Scripts
             }
         }
 
+        private void OnDisable()
+        {
+            StopAllCoroutines();
+            _isActive = false;
+        }
+
+        private void OnEnable()
+        {
+            _isActive = true;
+        }
+
         private void CenterOnObject()
         {
+            _isActive = true;
             var newPosition = target.position;
             newPosition.y += yOffset;
             if (lockZ) newPosition.z = _initialZ;
@@ -39,6 +52,8 @@ namespace Object.Scripts
 
         private void Update()
         {
+            if (!_isActive || !target) return;
+
             var newPosition = target.position;
             newPosition.y += yOffset;
 
