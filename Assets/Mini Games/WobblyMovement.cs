@@ -18,6 +18,7 @@ namespace Mini_Games
         private bool _hasMoved;
         private bool _isFacingRight = true;
         private SpriteRenderer _spriteRenderer;
+        private bool _inAir = false;
 
         private void Start()
         {
@@ -51,6 +52,8 @@ namespace Mini_Games
 
             FlipSprite(direction);
 
+            if (_inAir) return;
+
             playerRigidbody.velocity = Vector2.zero;
             playerRigidbody.AddForce(direction * moveSpeed + Vector2.up * jumpForce, ForceMode2D.Impulse);
 
@@ -69,6 +72,23 @@ namespace Mini_Games
             {
                 _spriteRenderer.flipX = true;
                 _isFacingRight = true;
+            }
+        }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.gameObject.CompareTag("Ground"))
+            {
+                _inAir = false;
+            }
+        }
+
+
+        private void OnCollisionExit2D(Collision2D collision)
+        {
+            if (collision.gameObject.CompareTag("Ground"))
+            {
+                _inAir = true;
             }
         }
     }
