@@ -10,19 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
-  m_Name: boss office 5
+  m_Name: boss office 3 - but no
   m_EditorClassIdentifier: 
   playerName: 
   waitBeforeLine: 0
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
   voicedLines:
-  - text: You gotta be fucking kidding me. ZEKE. In my office, RIGHT NOW.
-    clip: {fileID: 8300000, guid: e31eccef013a4174089aaca34e8c29e3, type: 3}
+  - text: But no. You had to flirt with Morgan. Bend yourself to appease her. Leave
+      your desk utterly CHAOTIC, come on Zeke!
+    clip: {fileID: 8300000, guid: bcbb0a249dfa4664aa28b5d640cf7dfe, type: 3}
     gender: 0
   playerOptions: []
   playerReactions: []
-  nextDialogueLine: {fileID: 11400000, guid: 80e46a586e4a6d14abdef4401039be4b, type: 2}
+  nextDialogueLine: {fileID: 11400000, guid: 5525dd7d09a7c284d976943a685f66c5, type: 2}
   randomizedDialogLines: []
   objectReferringDialogLines: []
   wait: 0.5
@@ -30,4 +31,4 @@ MonoBehaviour:
   actionBeforeLine: 0
   actionAfterLine: 0
   actorReaction: 0
-  angerLevel: 0.2
+  angerLevel: 0.1

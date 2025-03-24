@@ -679,7 +679,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   timerTextContainer: {fileID: 1983947901}
-  timer: 8
+  timer: 7
   miniGameContainer: {fileID: 980824119}
   hideOnStart: {fileID: 1218222514}
   inGameTrigger: {fileID: 1874680888}
@@ -1439,7 +1439,7 @@ Transform:
   m_GameObject: {fileID: 392735297}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 73.3, y: 1, z: 0}
+  m_LocalPosition: {x: 17.3, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1457,6 +1457,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35a918350817f134298fd0b64d6bb6d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 937176696}
+        m_TargetAssemblyTypeName: Object.Scripts.ObjectFollow, ObjectScriptAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   playerTransform: {fileID: 392735299}
   playerRigidbody: {fileID: 392735301}
   moveSpeed: 8
@@ -1738,7 +1753,7 @@ Transform:
   m_GameObject: {fileID: 408860161}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -64.9, y: 6.69, z: -1}
+  m_LocalPosition: {x: -65.04, y: 6.69, z: -1}
   m_LocalScale: {x: 0.279992, y: 20, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2546,14 +2561,14 @@ PrefabInstance:
     - target: {fileID: 2598299574820255891, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: finalState.dialogLineToPlay
       value: 
-      objectReference: {fileID: 11400000, guid: 101a1794db5022d40a6593f313b32c08, type: 2}
+      objectReference: {fileID: 11400000, guid: 3c0f0531c86f1504795246be31849d35, type: 2}
     - target: {fileID: 2968641989831547413, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3560832367629595899, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: delayFirstLine
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3560832367629595899, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.size
@@ -2977,7 +2992,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.16791677, y: -0.37095785}
+  m_Offset: {x: -0.20227623, y: 3.3913074}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2987,7 +3002,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 16.216259, y: 8.258084}
+  m_Size: {x: 16.147541, y: 0.7335539}
   m_EdgeRadius: 0
 --- !u!114 &602952876
 MonoBehaviour:
@@ -3534,6 +3549,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 716598053}
+        m_TargetAssemblyTypeName: Mini_Games.MiniGamesManager, MiniGamesScriptAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   timerTextContainer: {fileID: 1526414645}
   timer: 20
   miniGameContainer: {fileID: 0}
@@ -3544,14 +3571,15 @@ MonoBehaviour:
   player: {fileID: 392735297}
   instructions: 020000000100000000000000
   scoreSlider: {fileID: 2020364341}
+  scoreWrapper: {fileID: 1184234874}
   inGameInstructionsText: {fileID: 524733621}
   inGameInstructions: {fileID: 1220970306}
   currentScore: 0
   initiateMiniGameDelay: 3
   goodEndingDialogLine: {fileID: 11400000, guid: 101a1794db5022d40a6593f313b32c08, type: 2}
   badEndingDialogLine: {fileID: 11400000, guid: 51c341dbc84f9494b9f3e3d60ee98483, type: 2}
-  badEndingTrigger: {fileID: 0}
-  goodEndingTrigger: {fileID: 1665240340}
+  badEndingTrigger: {fileID: 1665240340}
+  goodEndingTrigger: {fileID: 0}
 --- !u!1 &725053838
 GameObject:
   m_ObjectHideFlags: 0
@@ -4387,7 +4415,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1117182690}
-  - {fileID: 1123042831}
   m_Father: {fileID: 1218222515}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &937176695
@@ -4700,10 +4727,10 @@ MonoBehaviour:
   - text: where are you.
     choices:
     - text: where else would i be
-      score: 10
+      score: -10
       actorLine: {fileID: 11400000, guid: 6126cdbc74e449446922cd1396cb34d4, type: 2}
     - text: work
-      score: 1
+      score: 10
       actorLine: {fileID: 11400000, guid: ae5cbea62e55e2345893685cd7361591, type: 2}
     - text: i dont like your tone
       score: 20
@@ -4726,38 +4753,38 @@ MonoBehaviour:
       score: -50
       actorLine: {fileID: 11400000, guid: f11862d5c4945c14781132b69c932dbe, type: 2}
     - text: late
-      score: 5
+      score: 10
       actorLine: {fileID: 11400000, guid: e5e5c9cd80c022344aa889765d2d9edc, type: 2}
     - text: dunno
-      score: 1
+      score: 5
       actorLine: {fileID: 11400000, guid: a736915d30a2b4442ae20699db131d04, type: 2}
   - text: Did you buy the groceries.
     choices:
     - text: shit no
-      score: -9999
+      score: -50
       actorLine: {fileID: 11400000, guid: 6126cdbc74e449446922cd1396cb34d4, type: 2}
     - text: no
-      score: -50
+      score: -20
       actorLine: {fileID: 11400000, guid: e5e5c9cd80c022344aa889765d2d9edc, type: 2}
     - text: yes
       score: 10
       actorLine: {fileID: 11400000, guid: df8c3c5f5da2e23489e6d5771b0d29a0, type: 2}
     - text: of course
-      score: 1
+      score: 20
       actorLine: {fileID: 11400000, guid: 58fd104cedb73b142b1dcee4dc9d280f, type: 2}
     - text: didnt feel like it
-      score: 100
+      score: 50
       actorLine: {fileID: 11400000, guid: 099d22b60d9d1654fad196acb366f3cf, type: 2}
   - text: Are you staying late today.
     choices:
     - text: yes
-      score: -50
+      score: 50
       actorLine: {fileID: 11400000, guid: a736915d30a2b4442ae20699db131d04, type: 2}
     - text: no
-      score: 10
+      score: -10
       actorLine: {fileID: 11400000, guid: 58fd104cedb73b142b1dcee4dc9d280f, type: 2}
     - text: no i promise
-      score: -20
+      score: -40
       actorLine: {fileID: 11400000, guid: f11862d5c4945c14781132b69c932dbe, type: 2}
   flashSpeed: 3
   minOpacity: 0
@@ -5638,12 +5665,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1123042830}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
-  m_LocalScale: {x: 28.15, y: 15.834374, z: 1.759375}
-  m_ConstrainProportionsScale: 1
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 22.7, y: 4, z: -20}
+  m_LocalScale: {x: 175.35664, y: 71.452614, z: 7.9391794}
+  m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 937176694}
+  m_Father: {fileID: 1218222515}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1123042832
 SpriteRenderer:
@@ -5847,6 +5874,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1123042831}
   - {fileID: 937176694}
   - {fileID: 1438104545}
   - {fileID: 392735299}
@@ -8645,7 +8673,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 20
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.30460128, g: 0.3490566, b: 0.31268406, a: 1}
   m_FlipX: 0
@@ -9410,7 +9438,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1906140128
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9812,7 +9840,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 20
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.30460128, g: 0.3490566, b: 0.31268406, a: 1}
   m_FlipX: 0
@@ -10887,7 +10915,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 20
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.30460128, g: 0.3490566, b: 0.31268406, a: 1}
   m_FlipX: 0
@@ -11214,11 +11242,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 617806365517851854, guid: 60580c399cfcaba4383037606e1fabe0, type: 3}
       propertyPath: choices.Array.data[0].score
-      value: 10
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 617806365517851854, guid: 60580c399cfcaba4383037606e1fabe0, type: 3}
       propertyPath: choices.Array.data[1].score
-      value: -50
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 617806365517851854, guid: 60580c399cfcaba4383037606e1fabe0, type: 3}
       propertyPath: choices.Array.data[2].score
@@ -11226,31 +11254,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 617806365517851854, guid: 60580c399cfcaba4383037606e1fabe0, type: 3}
       propertyPath: choices.Array.data[3].score
-      value: -30
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 617806365517851854, guid: 60580c399cfcaba4383037606e1fabe0, type: 3}
       propertyPath: choices.Array.data[4].score
-      value: 5
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 617806365517851854, guid: 60580c399cfcaba4383037606e1fabe0, type: 3}
       propertyPath: choices.Array.data[5].score
-      value: -2
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 617806365517851854, guid: 60580c399cfcaba4383037606e1fabe0, type: 3}
       propertyPath: choices.Array.data[6].score
-      value: 10
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 617806365517851854, guid: 60580c399cfcaba4383037606e1fabe0, type: 3}
       propertyPath: choices.Array.data[7].score
-      value: 20
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 617806365517851854, guid: 60580c399cfcaba4383037606e1fabe0, type: 3}
       propertyPath: choices.Array.data[8].score
-      value: -30
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 617806365517851854, guid: 60580c399cfcaba4383037606e1fabe0, type: 3}
       propertyPath: choices.Array.data[9].score
-      value: 40
+      value: -40
       objectReference: {fileID: 0}
     - target: {fileID: 617806365517851854, guid: 60580c399cfcaba4383037606e1fabe0, type: 3}
       propertyPath: initialResponses.Array.size

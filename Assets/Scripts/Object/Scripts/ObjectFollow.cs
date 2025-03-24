@@ -13,41 +13,17 @@ namespace Object.Scripts
         [SerializeField] private bool lockY;
         [SerializeField] private int centerOnObjectDelay;
         [SerializeField] private int transitionDuration = 5;
+        private bool _centerOnObject;
         private float _initialZ;
+        private bool _isActive;
         private Camera _mainCamera;
-        private bool _centerOnObject = false;
-        private bool _isActive = false;
 
         private void Start()
         {
             _mainCamera = GetComponent<Camera>();
             _initialZ = transform.position.z;
 
-            if (centerOnObjectDelay > 0)
-            {
-                Invoke(nameof(CenterOnObject), centerOnObjectDelay);
-            }
-        }
-
-        private void OnDisable()
-        {
-            StopAllCoroutines();
-            _isActive = false;
-        }
-
-        private void OnEnable()
-        {
-            _isActive = true;
-        }
-
-        private void CenterOnObject()
-        {
-            _isActive = true;
-            var newPosition = target.position;
-            newPosition.y += yOffset;
-            if (lockZ) newPosition.z = _initialZ;
-            if (lockY) newPosition.y = yOffset;
-            StartCoroutine(SmoothCameraTransition(newPosition));
+            if (centerOnObjectDelay > 0) Invoke(nameof(CenterOnObject), centerOnObjectDelay);
         }
 
         private void Update()
@@ -66,8 +42,32 @@ namespace Object.Scripts
             transform.position = newPosition;
         }
 
+        private void OnEnable()
+        {
+            _isActive = true;
+        }
+
+        private void OnDisable()
+        {
+            StopAllCoroutines();
+            _isActive = false;
+        }
+
+        private void CenterOnObject()
+        {
+            _isActive = true;
+            var newPosition = target.position;
+            newPosition.y += yOffset;
+            if (lockZ) newPosition.z = _initialZ;
+            if (lockY) newPosition.y = yOffset;
+            StartCoroutine(SmoothCameraTransition(newPosition));
+        }
+
         private IEnumerator SmoothCameraTransition(Vector3 targetPosition)
         {
+            if (!_mainCamera.gameObject.activeSelf)
+                yield return null;
+
             var elapsedTime = 0f;
             var startPosition = _mainCamera.gameObject.transform.position;
 
@@ -93,6 +93,16 @@ namespace Object.Scripts
 
             _mainCamera.gameObject.transform.position = finalPosition;
             _centerOnObject = true;
+        }
+
+        public void OnNotify(GameEventData eventData)
+        {
+            StopAllCoroutines();
+            _centerOnObject = false;
+
+            // start a new, fast smooth transition
+            transitionDuration = 2;
+            StartCoroutine(SmoothCameraTransition(target.position));
         }
     }
 }

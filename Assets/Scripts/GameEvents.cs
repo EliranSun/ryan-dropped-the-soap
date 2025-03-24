@@ -133,5 +133,6 @@
     TriggerZekeBossStub,
     SpeakMind,
     EndZekeShouts,
-    TriggerZekeSuicide
+    TriggerZekeSuicide,
+    FirstTimePlayerMove
 }

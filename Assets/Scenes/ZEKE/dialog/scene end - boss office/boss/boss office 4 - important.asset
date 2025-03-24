@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
-  m_Name: boss office 7
+  m_Name: boss office 4 - important
   m_EditorClassIdentifier: 
   playerName: 
   waitBeforeLine: 0
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
   voicedLines:
-  - text: You gotta be fucking kidding me. ZEKE. In my office, RIGHT NOW.
-    clip: {fileID: 8300000, guid: 3fbc80bffcdd92a4394d45d7cadcfa45, type: 3}
+  - text: You know how important this is to me.
+    clip: {fileID: 8300000, guid: 52aaae976415bc340a4391c2ba39abbe, type: 3}
     gender: 0
   playerOptions: []
   playerReactions: []
-  nextDialogueLine: {fileID: 11400000, guid: 1279d5687f838c9439026c8046c637e9, type: 2}
+  nextDialogueLine: {fileID: 11400000, guid: 7de6796f3f7770540b2b33bfd1442fa9, type: 2}
   randomizedDialogLines: []
   objectReferringDialogLines: []
   wait: 0.5
@@ -30,4 +30,4 @@ MonoBehaviour:
   actionBeforeLine: 0
   actionAfterLine: 0
   actorReaction: 0
-  angerLevel: 0.3
+  angerLevel: 0.1

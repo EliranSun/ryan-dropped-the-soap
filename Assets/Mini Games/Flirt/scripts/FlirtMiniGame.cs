@@ -84,6 +84,9 @@ namespace Mini_Games.Flirt.scripts
 
         protected override void StartMiniGame()
         {
+            if (!isGameActive)
+                return;
+
             base.StartMiniGame();
 
             // Randomly select 4 choices from the available choices

@@ -23,10 +23,13 @@ namespace Mini_Games
         private const float BrightnessIncrease = 0.1f;
         private const float MinMoveSpeed = 2f; // Minimum move speed to ensure player can still move
         private const float MaxMoveSpeed = 15f; // Maximum move speed to prevent too fast movement
+        private const int BestEmployeeScore = 100;
+        private const int BossOfficeScore = -100;
 
         [SerializeField] private GameObject player;
         [SerializeField] private MiniGameName[] instructions;
         [SerializeField] private Slider scoreSlider;
+        [SerializeField] private GameObject scoreWrapper;
         [SerializeField] private TextMeshProUGUI inGameInstructionsText;
         [SerializeField] private GameObject inGameInstructions;
         [SerializeField] private float currentScore;
@@ -35,8 +38,6 @@ namespace Mini_Games
         [SerializeField] private NarrationDialogLine badEndingDialogLine;
         [SerializeField] private GameObject badEndingTrigger;
         [SerializeField] private GameObject goodEndingTrigger;
-        private readonly int bestEmployeeScore = 100;
-        private readonly int bossOfficeScore = -100;
         private bool _isMiniGameInitiated;
 
         private void Start()
@@ -90,27 +91,17 @@ namespace Mini_Games
             if (eventData.Name == GameEvents.ThoughtScoreChange)
             {
                 var newScore = (int)eventData.Data;
-                currentScore += newScore;
+                print("@@@@@@@ SCORE CHANGE: " + newScore);
+                currentScore += newScore * 3;
             }
 
             if (eventData.Name == GameEvents.MiniGameStart && !_isMiniGameInitiated)
-            {
-                print("MiniGameStart");
                 _isMiniGameInitiated = true;
-                // CloseInstruction();
-                // CloseMiniGame();
-                // stopping the clock, a bit confusing but this is the mini-game 
-                // of starting a mini-game
-            }
-
-            // if (eventData.Name == GameEvents.MiniGameClosed)
-            //     if (_isMiniGameInitiated)
-            //         OnMiniGameEnd();
 
             if (eventData.Name == GameEvents.MiniGameWon)
             {
                 print("@@@@@@@ GAME WON");
-                currentScore += 10f;
+                currentScore += 20f * 2;
                 _isMiniGameInitiated = false;
                 inGameInstructionsText.text = "GOOD EMPLOYEE";
                 // CloseMiniGame();
@@ -121,7 +112,7 @@ namespace Mini_Games
             if (eventData.Name == GameEvents.MiniGameLost)
             {
                 print("@@@@@@@ GAME LOST");
-                currentScore -= 10f;
+                currentScore -= 20f * 2;
                 _isMiniGameInitiated = false;
                 inGameInstructionsText.text = "BAD EMPLOYEE";
                 // CloseMiniGame();
@@ -169,19 +160,24 @@ namespace Mini_Games
 
             Notify(GameEvents.ResetThoughtsAndSayings);
 
-            if (currentScore >= bestEmployeeScore || currentScore <= bossOfficeScore)
+            if (currentScore is >= BestEmployeeScore or <= BossOfficeScore)
             {
                 Notify(GameEvents.StopMusic);
 
-                var isGoodEnding = currentScore >= bestEmployeeScore;
+                var isGoodEnding = currentScore >= BestEmployeeScore;
 
-                badEndingTrigger.SetActive(!isGoodEnding);
-                goodEndingTrigger.SetActive(isGoodEnding);
+                if (badEndingTrigger) badEndingTrigger.SetActive(!isGoodEnding);
+                if (goodEndingTrigger) goodEndingTrigger.SetActive(isGoodEnding);
 
                 Notify(GameEvents.TriggerSpecificDialogLine,
                     isGoodEnding
                         ? goodEndingDialogLine
                         : badEndingDialogLine);
+
+                CloseInstruction();
+                StopAllCoroutines();
+                scoreWrapper.SetActive(false);
+
                 return;
             }
 

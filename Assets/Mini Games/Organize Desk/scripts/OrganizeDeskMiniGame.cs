@@ -19,7 +19,7 @@ namespace Mini_Games.Organize_Desk.scripts
         [SerializeField] private float yOffset = 2f;
 
         private readonly List<GameObject> _itemsRef = new();
-        private readonly HashSet<GameObject> _nonEssentialItems = new();
+        private readonly HashSet<int> _nonEssentialItemIds = new();
 
         private void PlaceItemsRandomlyOnScreen()
         {
@@ -83,20 +83,6 @@ namespace Mini_Games.Organize_Desk.scripts
                 );
 
                 _itemsRef.Add(newItem);
-
-                // newItem.GetComponent<UIClickNotifier>().SetUIItemData(
-                //     item,
-                //     GameEvents.UIItemClicked,
-                //     OnNotify
-                // );
-
-                // You can add any additional setup for the item here
-                // For example, if you have a component that handles item interaction:
-                // var itemComponent = newItem.GetComponent<ItemComponent>();
-                // if (itemComponent != null)
-                // {
-                //     itemComponent.Initialize();
-                // }
             }
         }
 
@@ -104,34 +90,46 @@ namespace Mini_Games.Organize_Desk.scripts
         {
             base.OnNotify(gameEvent);
 
+            if (gameEvent.Name == GameEvents.MiniGameIndicationTrigger)
+                isGameActive = (MiniGameName)gameEvent.Data == MiniGameName.Organize;
+            // StartMiniGame();
             if (gameEvent.Name == GameEvents.DeskItemsChanged)
             {
-                var gameObjectName = gameEvent.Data as GameObject;
-                foreach (var itemRef in _itemsRef)
+                var gameObjectRef = gameEvent.Data as GameObject;
+                if (!gameObjectRef)
+                    return;
+
+                var item = gameObjectRef.GetComponent<ScoreableItem>();
+                var isNonEssentialItem = item.score < 0;
+
+                if (!isNonEssentialItem)
+                    return;
+
+                if (item.offTable)
                 {
-                    var item = itemRef.GetComponent<ScoreableItem>();
-                    var isEssentialItem = item.score > 0;
-                    if (item == null || isEssentialItem) continue;
-
-                    if (item.offTable)
-                        _nonEssentialItems.Remove(gameObjectName);
-                    else
-                        _nonEssentialItems.Add(gameObjectName);
+                    print($"Removing non-essential {gameObjectRef.name} id: {gameObjectRef.GetInstanceID()}");
+                    _nonEssentialItemIds.Remove(gameObjectRef.GetInstanceID());
                 }
-
-                // Debug.Log(string.Join(", ", _nonEssentialItems.Select(item => item.name)));
+                else
+                {
+                    print($"Adding non-essential {gameObjectRef.name} id: {gameObjectRef.GetInstanceID()}");
+                    _nonEssentialItemIds.Add(gameObjectRef.GetInstanceID());
+                }
             }
         }
 
         protected override void StartMiniGame()
         {
+            if (!isGameActive)
+                return;
+
             base.StartMiniGame();
             PlaceItemsRandomlyOnScreen();
         }
 
         protected override void CloseMiniGame(bool isGameWon = false)
         {
-            var gameWon = _nonEssentialItems.Count == 0;
+            var gameWon = _nonEssentialItemIds.Count == 0;
             base.CloseMiniGame(gameWon);
         }
     }

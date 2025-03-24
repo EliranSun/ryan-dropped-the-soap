@@ -4,7 +4,7 @@ namespace Mini_Games
 {
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(SpriteRenderer))]
-    public class WobblyMovement : MonoBehaviour
+    public class WobblyMovement : ObserverSubject
     {
         [Header("References")] [SerializeField]
         private Transform playerTransform;
@@ -15,12 +15,14 @@ namespace Mini_Games
         public float moveSpeed = 5f;
 
         [SerializeField] private float jumpForce = 5f;
+        private bool _hasMoved;
         private bool _isFacingRight = true;
         private SpriteRenderer _spriteRenderer;
 
         private void Start()
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
+            _isFacingRight = _spriteRenderer.flipX;
         }
 
         private void Update()
@@ -32,11 +34,18 @@ namespace Mini_Games
             else if (moveLeft) PushForward(Vector2.left);
 
             // Reset rotation when keys are released
-            if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.A)) transform.rotation = Quaternion.identity;
+            if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.A))
+                transform.rotation = Quaternion.identity;
         }
 
         private void PushForward(Vector2 direction)
         {
+            if (!_hasMoved)
+            {
+                Notify(GameEvents.FirstTimePlayerMove);
+                _hasMoved = true;
+            }
+
             // reset rotation
             transform.rotation = Quaternion.identity;
 
