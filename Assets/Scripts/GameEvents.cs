@@ -134,5 +134,6 @@
     SpeakMind,
     EndZekeShouts,
     TriggerZekeSuicide,
-    FirstTimePlayerMove
+    FirstTimePlayerMove,
+    ZekeSuicideEnd
 }

@@ -10,6 +10,7 @@ namespace Scenes.ZEKE.scripts
         [SerializeField] private Image zekeShoutsImage;
         [SerializeField] private Sprite[] zekeShoutsSprites;
         [SerializeField] private ThoughtChoice[] thoughtsChoice;
+        [SerializeField] private ThoughtChoice finalChoice;
         private int _activeSpriteIndex;
         private bool _isInitialized;
         private int _shoutsCount;
@@ -55,7 +56,8 @@ namespace Scenes.ZEKE.scripts
 
         private void CloseSequence()
         {
-            Notify(GameEvents.EndZekeShouts);
+            Notify(GameEvents.AddThoughts, finalChoice);
+            // Notify(GameEvents.EndZekeShouts);
         }
 
         private IEnumerator ThinkRandomThought()

@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +10,7 @@ namespace Scenes.ZEKE.scripts
         [SerializeField] private GameObject zekeSuicide;
         [SerializeField] private GameObject zekeBossStub;
         [SerializeField] private AudioSource bgAudioSource;
+        [SerializeField] private SceneAsset nextScene;
 
         private bool _isZekeShoutsActive;
 
@@ -24,33 +26,41 @@ namespace Scenes.ZEKE.scripts
             switch (gameEventData.Name)
             {
                 case GameEvents.TriggerZekeShout when !_isZekeShoutsActive:
-                    {
-                        if (zekeShouts) zekeShouts.SetActive(true);
-                        _isZekeShoutsActive = true;
-                        zekeShouts.GetComponent<ZekeShoutsController>().Init();
-                        break;
-                    }
+                {
+                    if (zekeShouts) zekeShouts.SetActive(true);
+                    _isZekeShoutsActive = true;
+                    zekeShouts.GetComponent<ZekeShoutsController>().Init();
+                    break;
+                }
                 case GameEvents.TriggerZekeBossStub:
-                    {
-                        if (zekeBossStub) zekeBossStub.SetActive(true);
-                        break;
-                    }
+                {
+                    if (zekeBossStub) zekeBossStub.SetActive(true);
+                    break;
+                }
 
                 case GameEvents.EndZekeShouts:
+                    PlayerPrefs.SetString("Zeke Scene End", "Shout");
                     zekeShouts.SetActive(false);
                     _isZekeShoutsActive = false;
-                    SceneManager.LoadScene(SceneManager.GetSceneByName("0. The beach").ToString());
+                    SceneManager.LoadScene(nextScene.name);
                     break;
 
                 case GameEvents.TriggerZekeSuicide:
+                {
+                    if (zekeSuicide)
                     {
-                        if (zekeSuicide)
-                        {
-                            bgAudioSource.Stop();
-                            zekeSuicide.SetActive(true);
-                        }
-                        break;
+                        bgAudioSource.Stop();
+                        zekeSuicide.SetActive(true);
                     }
+
+                    break;
+                }
+
+                case GameEvents.ZekeSuicideEnd:
+                    PlayerPrefs.SetString("Zeke Scene End", "Suicide");
+                    zekeSuicide.SetActive(false);
+                    SceneManager.LoadScene(nextScene.name);
+                    break;
             }
         }
     }

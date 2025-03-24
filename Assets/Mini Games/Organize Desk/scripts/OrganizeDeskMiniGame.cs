@@ -92,7 +92,7 @@ namespace Mini_Games.Organize_Desk.scripts
 
             if (gameEvent.Name == GameEvents.MiniGameIndicationTrigger)
                 isGameActive = (MiniGameName)gameEvent.Data == MiniGameName.Organize;
-            // StartMiniGame();
+
             if (gameEvent.Name == GameEvents.DeskItemsChanged)
             {
                 var gameObjectRef = gameEvent.Data as GameObject;

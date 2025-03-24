@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerName: 
   waitBeforeLine: 0
-  mandatoryPlayerChoice: 1
+  mandatoryPlayerChoice: 0
   overlayImageSprite: {fileID: 0}
   voicedLines:
   - text: ...
@@ -28,6 +28,24 @@ MonoBehaviour:
     next: {fileID: 11400000, guid: 1db6ae882cbc0d6499c21234be82feba, type: 2}
     actionAfterPlayerChoice: 0
   - text: STUB
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 0}
+    actionAfterPlayerChoice: 0
+  - text: WALK AWAY
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 0}
+    actionAfterPlayerChoice: 0
+  - text: PUNCH
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 0}
+    actionAfterPlayerChoice: 0
+  - text: WALK AWAY
     type: 0
     choiceDataType: 0
     choiceDataOption: 0

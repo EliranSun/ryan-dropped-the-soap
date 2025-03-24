@@ -679,7 +679,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   timerTextContainer: {fileID: 1983947901}
-  timer: 7
+  timer: 5
   miniGameContainer: {fileID: 980824119}
   hideOnStart: {fileID: 1218222514}
   inGameTrigger: {fileID: 1874680888}
@@ -2807,7 +2807,7 @@ GameObject:
   - component: {fileID: 593826683}
   - component: {fileID: 593826682}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Zeke Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2845,7 +2845,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.7529412}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3084,6 +3084,7 @@ MonoBehaviour:
   zekeSuicide: {fileID: 1519897732}
   zekeBossStub: {fileID: 0}
   bgAudioSource: {fileID: 1565312877}
+  nextScene: {fileID: 102900000, guid: 3e9953ac4aa1e8e4c98764a67dd013fa, type: 3}
 --- !u!1 &622681059
 GameObject:
   m_ObjectHideFlags: 0
@@ -3549,8 +3550,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 716598053}
-        m_TargetAssemblyTypeName: Mini_Games.MiniGamesManager, MiniGamesScriptAssembly
+      - m_Target: {fileID: 146850970}
+        m_TargetAssemblyTypeName: Mini_Games.Organize_Desk.scripts.OrganizeDeskMiniGame,
+          MiniGamesScriptAssembly
         m_MethodName: OnNotify
         m_Mode: 0
         m_Arguments:
@@ -4136,7 +4138,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 899511880}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
@@ -4311,6 +4313,13 @@ MonoBehaviour:
       actorLine: {fileID: 11400000, guid: 4e4e4663859a34332bdeece3ac8b49e9, type: 2}
     dropThoughtFromAbove: 1
     randomizeXPosition: 1
+  finalChoice:
+    choices:
+    - text: ...
+      score: 0
+      actorLine: {fileID: 11400000, guid: e7e44fefbd7de4a3a968a9020f3b01f0, type: 2}
+    dropThoughtFromAbove: 1
+    randomizeXPosition: 0
 --- !u!114 &931227789 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1920426131519907038, guid: 60580c399cfcaba4383037606e1fabe0, type: 3}
@@ -5714,7 +5723,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 12
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.254717, g: 0.254717, b: 0.254717, a: 0.5411765}
   m_FlipX: 0
@@ -7246,7 +7255,6 @@ Transform:
   - {fileID: 1053760220}
   - {fileID: 2023663502}
   - {fileID: 731357285}
-  - {fileID: 1535537910}
   m_Father: {fileID: 619399802}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1519897734
@@ -7276,10 +7284,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 619399803}
+        m_TargetAssemblyTypeName: Scenes.ZEKE.scripts.ZekeEndingsController, ZekeSceneScriptAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   mainCamera: {fileID: 937176691}
   suicideCamera: {fileID: 2100724304}
   zeke: {fileID: 622681059}
-  initPosition: {fileID: 1535537910}
   initLine: {fileID: 11400000, guid: 101a1794db5022d40a6593f313b32c08, type: 2}
   blackness: {fileID: 253097949}
 --- !u!1 &1526414643
@@ -7418,92 +7437,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1526414643}
   m_CullTransparentMesh: 1
---- !u!1 &1535537909
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1535537910}
-  - component: {fileID: 1535537911}
-  m_Layer: 0
-  m_Name: Init Camera Position
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1535537910
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1535537909}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 37.39, y: 5.51, z: -30}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1519897733}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1535537911
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1535537909}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
 --- !u!1 &1549563772
 GameObject:
   m_ObjectHideFlags: 0
@@ -8190,7 +8123,7 @@ MonoBehaviour:
         m_CallState: 2
   triggeredBy: {fileID: 392735297}
   eventName: 95
-  narrationDialogLine: {fileID: 11400000, guid: 1279d5687f838c9439026c8046c637e9, type: 2}
+  narrationDialogLine: {fileID: 11400000, guid: 04f722e90a09e884ca523ee06f3d4346, type: 2}
 --- !u!1 &1670375037
 GameObject:
   m_ObjectHideFlags: 0
@@ -8673,7 +8606,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 20
+  m_SortingOrder: 12
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.30460128, g: 0.3490566, b: 0.31268406, a: 1}
   m_FlipX: 0
@@ -11041,7 +10974,7 @@ Transform:
   m_GameObject: {fileID: 2100724304}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 35, y: 4, z: -30}
+  m_LocalPosition: {x: 12, y: 4, z: -30}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

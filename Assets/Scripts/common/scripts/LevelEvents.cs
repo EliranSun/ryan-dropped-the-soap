@@ -26,6 +26,17 @@ namespace common.scripts
         [SerializeField] private TransitionalElement transitionInElement;
         [SerializeField] private KillingDependents killingDependents;
 
+        private void Start()
+        {
+            var zekeSceneEnded = PlayerPrefs.GetString("Zeke Scene End");
+            if (zekeSceneEnded == "")
+                return;
+
+            print("@@@@@@@@@@ Zeke ended");
+            MoveToBoat();
+            Invoke(nameof(BoatStart), 5f);
+        }
+
         public void OnNotify(GameEventData eventData)
         {
             switch (eventData.Name)
@@ -69,21 +80,25 @@ namespace common.scripts
                     break;
 
                 case GameEvents.CharlotteBeachDialogEnd:
-                    player.transform.parent = ship.transform;
-                    charlotte.transform.parent = ship.transform;
-
-                    charlotte.transform.position = new Vector2(
-                        ship.transform.position.x - 1,
-                        ship.transform.position.y
-                    );
-                    player.transform.position = new Vector2(
-                        ship.transform.position.x - 5,
-                        ship.transform.position.y
-                    );
-
+                    MoveToBoat();
                     Invoke(nameof(BoatStart), 5f);
                     break;
             }
+        }
+
+        private void MoveToBoat()
+        {
+            player.transform.parent = ship.transform;
+            charlotte.transform.parent = ship.transform;
+
+            charlotte.transform.position = new Vector2(
+                ship.transform.position.x - 1,
+                ship.transform.position.y
+            );
+            player.transform.position = new Vector2(
+                ship.transform.position.x - 5,
+                ship.transform.position.y
+            );
         }
 
         private void BoatStart()
