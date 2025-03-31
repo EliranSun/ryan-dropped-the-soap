@@ -26,7 +26,12 @@ public class BackpackController : ObserverSubject
 
         if (Input.GetKeyDown(toggleKey))
         {
-            Notify(GameEvents.TriggerSpecificDialogLine, itemDoesNotFitDialogLine);
+            var flashLight = GetActiveItemByName("flashlight");
+            if (!flashLight.activeSelf)
+            {
+                // notify only for non flashlight items
+                Notify(GameEvents.TriggerSpecificDialogLine, itemDoesNotFitDialogLine);
+            }
         }
     }
 
