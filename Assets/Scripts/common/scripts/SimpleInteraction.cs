@@ -25,9 +25,15 @@ namespace common.scripts
             _spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
+        private void OnMouseDown()
+        {
+            // FIXME: This does not work for the flashlight for some reason
+            print("Mouse down on" + gameObject.name);
+            Notify(GameEvents.ClickOnItem, gameObject.name);
+        }
+
         private void OnMouseUp()
         {
-            print("Simple interaction on mouse down");
             if (interactionType == InteractionType.ClearThoughts) Notify(GameEvents.ClearThoughts);
             if (interactionType == InteractionType.Speak) Notify(GameEvents.Speak);
         }

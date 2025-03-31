@@ -332,6 +332,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9676d7078c7cd64b9340ba5d04a6f77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls: []
   player: {fileID: 0}
   charlotte: {fileID: 0}
   ship: {fileID: 0}
@@ -627,10 +630,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 53ef4ab5bb1d5fc4c8b5acc28f6b8ec5, type: 2}
     - target: {fileID: 7281469255832557384, guid: acdbe3621a3081546b24dd95ed37ef03, type: 3}
-      propertyPath: finalState.dialogLineToPlay
-      value: 
-      objectReference: {fileID: 11400000, guid: 53ef4ab5bb1d5fc4c8b5acc28f6b8ec5, type: 2}
-    - target: {fileID: 7281469255832557384, guid: acdbe3621a3081546b24dd95ed37ef03, type: 3}
       propertyPath: prioritizedStates.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -747,21 +746,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6381851352204090758}
     - target: {fileID: 8100115544484616992, guid: acdbe3621a3081546b24dd95ed37ef03, type: 3}
-      propertyPath: observers.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8100115544484616992, guid: acdbe3621a3081546b24dd95ed37ef03, type: 3}
-      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 24673230984845378}
-    - target: {fileID: 8100115544484616992, guid: acdbe3621a3081546b24dd95ed37ef03, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 7925401932596224289}
-    - target: {fileID: 8100115544484616992, guid: acdbe3621a3081546b24dd95ed37ef03, type: 3}
-      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Dialog.Scripts.PlayerChoiceDialogBubbles, CharacterCreatorScriptsAssembly
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -881,17 +868,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6736823915bbc04d8b4383b540bfb78, type: 3}
---- !u!114 &24673230984845378 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7149559963680199428, guid: b6736823915bbc04d8b4383b540bfb78, type: 3}
-  m_PrefabInstance: {fileID: 7165225651812911942}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29a89f4f0aec1d44abacba923222030a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &4105961397648695223 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6599093861925147889, guid: b6736823915bbc04d8b4383b540bfb78, type: 3}

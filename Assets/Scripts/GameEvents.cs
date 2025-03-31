@@ -135,5 +135,6 @@
     EndZekeShouts,
     TriggerZekeSuicide,
     FirstTimePlayerMove,
-    ZekeSuicideEnd
+    ZekeSuicideEnd,
+    ClickOnItem,
 }
