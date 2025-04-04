@@ -12,7 +12,7 @@ public class OnTriggerGameEvent : ObserverSubject
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (isInvoked) return;
+        if (invokeOnce && isInvoked) return;
 
         if (collision.gameObject.CompareTag(tagToDetect))
         {

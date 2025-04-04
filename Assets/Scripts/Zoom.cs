@@ -10,6 +10,7 @@ public class Zoom : MonoBehaviour
     [SerializeField] public float endSize = 6;
     private Camera _mainCamera;
     private float _time;
+    private bool _isActive = false;
 
     public static Zoom Instance { get; private set; }
 
