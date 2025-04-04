@@ -137,4 +137,5 @@
     FirstTimePlayerMove,
     ZekeSuicideEnd,
     ClickOnItem,
+    RopeNeededDialog
 }

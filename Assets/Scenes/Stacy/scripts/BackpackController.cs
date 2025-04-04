@@ -43,6 +43,7 @@ public class BackpackController : ObserverSubject
                 return;
 
             itemsInBackpack.Add(collision.gameObject);
+            collision.gameObject.layer = LayerMask.NameToLayer("UI");
             collision.gameObject.transform.SetParent(transform);
             var rigidbody = collision.gameObject.GetComponent<Rigidbody2D>();
 

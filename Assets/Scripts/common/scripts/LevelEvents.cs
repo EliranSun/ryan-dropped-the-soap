@@ -83,6 +83,14 @@ namespace common.scripts
                     MoveToBoat();
                     Invoke(nameof(BoatStart), 5f);
                     break;
+
+                case GameEvents.ZoomOut:
+                    StartCoroutine(SmoothCameraZoom(7.4f));
+                    break;
+
+                case GameEvents.RopeNeededDialog:
+                    Notify(GameEvents.RopeNeededDialog);
+                    break;
             }
         }
 
@@ -149,6 +157,23 @@ namespace common.scripts
 
             // Ensure we end at exactly the target position
             mainCamera.gameObject.transform.position = targetPosition;
+        }
+
+        private IEnumerator SmoothCameraZoom(float targetSize)
+        {
+            var elapsedTime = 0f;
+            var startSize = mainCamera.gameObject.GetComponent<Zoom>().endSize;
+
+            while (elapsedTime < transitionDuration)
+            {
+                elapsedTime += Time.deltaTime;
+                var t = elapsedTime / transitionDuration;
+                mainCamera.gameObject.GetComponent<Zoom>().endSize = Mathf.Lerp(startSize, targetSize, t);
+                yield return null;
+            }
+
+            // Ensure we end at exactly the target size
+            mainCamera.gameObject.GetComponent<Zoom>().endSize = targetSize;
         }
     }
 }

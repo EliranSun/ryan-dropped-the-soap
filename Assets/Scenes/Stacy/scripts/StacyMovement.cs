@@ -6,11 +6,12 @@ namespace Scenes.Stacy.scripts
     [RequireComponent(typeof(SpriteRenderer))]
     public class StacyMovement : MonoBehaviour
     {
-        [SerializeField] private float movementSpeed = 5f;
+        [SerializeField] private float movementSpeed = 10f;
         [SerializeField] private float jumpForce = 50f;
         [SerializeField] private float maxSpeed = 8f;
         private Rigidbody2D _rigidbody2D;
         private SpriteRenderer _spriteRenderer;
+        private bool _isOnGround = true;
 
         private void Start()
         {
@@ -36,22 +37,32 @@ namespace Scenes.Stacy.scripts
             // rotate is just cosmetic, forces are applied to the rigidbody
             
             if (moveRight) {
-                _rigidbody2D.AddForce(Vector2.right * movementSpeed, ForceMode2D.Impulse);
+                _rigidbody2D.AddForce((Vector2.right + Vector2.up) * movementSpeed, ForceMode2D.Impulse);
                 transform.Rotate(0, 0, -5);
                 _spriteRenderer.flipX = false;
             }
 
             if (moveLeft) {
-                _rigidbody2D.AddForce(Vector2.left * movementSpeed, ForceMode2D.Impulse);
+                _rigidbody2D.AddForce((Vector2.left + Vector2.up) * movementSpeed, ForceMode2D.Impulse);
                 transform.Rotate(0, 0, 5);
                 _spriteRenderer.flipX = true;
             }
 
-            if (jump) _rigidbody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            if (jump && _isOnGround)
+            {
+                _rigidbody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                _isOnGround = false;
+            }
 
             if (releaseRight || releaseLeft) {
                 transform.rotation = Quaternion.identity;
             }
+        }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.gameObject.CompareTag("Ground"))
+                _isOnGround = true;
         }
     }
 }
