@@ -87,6 +87,9 @@ namespace common.scripts
                 case GameEvents.ZoomOut:
                     StartCoroutine(SmoothCameraZoom(7.4f));
                     break;
+
+                case GameEvents.Dead:
+                    break;
             }
         }
 

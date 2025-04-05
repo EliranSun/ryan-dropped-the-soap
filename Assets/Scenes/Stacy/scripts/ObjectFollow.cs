@@ -5,12 +5,8 @@ using UnityEngine;
 public class ObjectFollow : MonoBehaviour
 {
     [SerializeField] Transform objectToFollow;
-    private Vector3 _initialPosition;
-
-    private void Start()
-    {
-        _initialPosition = transform.position;
-    }
+    [SerializeField] private float xOffset = 5;
+    [SerializeField] private float yOffset = 3;
 
     private void Update()
     {
@@ -18,8 +14,8 @@ public class ObjectFollow : MonoBehaviour
 
         var newPosition = objectToFollow.position;
         newPosition.z = transform.position.z;
-        newPosition.x -= 5;
-        newPosition.y += 3;
+        newPosition.x -= xOffset;
+        newPosition.y += yOffset;
 
         transform.position = newPosition;
     }
