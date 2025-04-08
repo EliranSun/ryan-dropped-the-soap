@@ -1,28 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class OnTriggerGameEvent : ObserverSubject
+namespace Scenes.Stacy.scripts
 {
-    [SerializeField] private string tagToDetect;
-    [SerializeField] private GameEvents gameEventName;
-    [SerializeField] private int delayEventTrigger;
-    [SerializeField] private bool invokeOnce = true;
-    private bool isInvoked;
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    public class OnTriggerGameEvent : ObserverSubject
     {
-        if (invokeOnce && isInvoked) return;
+        [SerializeField] private string tagToDetect;
+        [SerializeField] private GameEvents gameEventName;
+        [SerializeField] private int delayEventTrigger;
+        [SerializeField] private bool invokeOnce = true;
+        private bool _isInvoked;
 
-        if (collision.gameObject.CompareTag(tagToDetect))
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            isInvoked = true;
+            if (invokeOnce && _isInvoked) return;
+            if (!collision.gameObject.CompareTag(tagToDetect)) return;
+
+            _isInvoked = true;
             Invoke(nameof(NotifyEvent), delayEventTrigger);
         }
-    }
 
-    private void NotifyEvent()
-    {
-        Notify(gameEventName);
+        private void NotifyEvent()
+        {
+            Notify(gameEventName);
+        }
     }
 }
