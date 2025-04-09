@@ -1,4 +1,3 @@
-using Object.Scripts;
 using UnityEngine;
 
 namespace Character.Scripts
@@ -8,9 +7,9 @@ namespace Character.Scripts
     public class Movement : MonoBehaviour
     {
         [SerializeField] private float speed = 5f;
+        [SerializeField] private float jumpForce = 20f;
         [SerializeField] private GameObject headGameObject;
         [SerializeField] private GameObject hairGameObject;
-        [SerializeField] private float jumpForce = 20f;
         [SerializeField] private bool isRigidBodyMovement = true;
 
         private SpriteRenderer _hairSpriteRenderer;
@@ -43,6 +42,8 @@ namespace Character.Scripts
 
             if (horizontal != 0)
                 _rigidbody2D.velocity = new Vector2(horizontal * speed, _rigidbody2D.velocity.y);
+            else
+                _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
 
             if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
                 _rigidbody2D.AddForce(Vector2.up * (speed * jumpForce), ForceMode2D.Impulse);

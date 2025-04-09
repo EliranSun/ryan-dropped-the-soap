@@ -139,4 +139,6 @@
     ClickOnItem,
     RopeNeededDialog,
     HeadBackDialog,
+    DimLight,
+    BrightenLight
 }
