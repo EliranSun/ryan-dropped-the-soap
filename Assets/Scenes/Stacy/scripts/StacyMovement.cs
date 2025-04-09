@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace Scenes.Stacy.scripts
@@ -12,17 +13,18 @@ namespace Scenes.Stacy.scripts
         private Rigidbody2D _rigidbody2D;
         private SpriteRenderer _spriteRenderer;
         private bool _isOnGround = true;
+        private bool _isMoving = false;
+
 
         private void Start()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
+            StartCoroutine(Jitter());
         }
 
         private void Update()
         {
-            var moveRight = Input.GetKeyDown(KeyCode.D);
-            var moveLeft = Input.GetKeyDown(KeyCode.A);
             var jump = Input.GetKeyDown(KeyCode.W);
 
             var releaseRight = Input.GetKeyUp(KeyCode.D);
@@ -32,20 +34,29 @@ namespace Scenes.Stacy.scripts
             var currentVelocity = _rigidbody2D.velocity;
             currentVelocity.x = Mathf.Clamp(currentVelocity.x, -maxSpeed, maxSpeed);
             _rigidbody2D.velocity = currentVelocity;
-            
+
             // TODO: Move sprite to inner game object to avoid rotation issues
             // rotate is just cosmetic, forces are applied to the rigidbody
-            
-            if (moveRight) {
-                _rigidbody2D.AddForce((Vector2.right + Vector2.up) * movementSpeed, ForceMode2D.Impulse);
-                transform.Rotate(0, 0, -5);
-                _spriteRenderer.flipX = false;
-            }
 
-            if (moveLeft) {
-                _rigidbody2D.AddForce((Vector2.left + Vector2.up) * movementSpeed, ForceMode2D.Impulse);
-                transform.Rotate(0, 0, 5);
+            if (Input.GetAxis("Horizontal") > 0)
+            {
+                // _rigidbody2D.AddForce((Vector2.right + Vector2.up) * movementSpeed, ForceMode2D.Impulse);
+                _rigidbody2D.velocity = new Vector2(movementSpeed, _rigidbody2D.velocity.y);
+                // transform.Rotate(0, 0, -5);
+                _spriteRenderer.flipX = false;
+                _isMoving = true;
+            }
+            else if (Input.GetAxis("Horizontal") < 0)
+            {
+                // _rigidbody2D.AddForce((Vector2.left + Vector2.up) * movementSpeed, ForceMode2D.Impulse);
+                _rigidbody2D.velocity = new Vector2(-movementSpeed, _rigidbody2D.velocity.y);
+                // 
                 _spriteRenderer.flipX = true;
+                _isMoving = true;
+            }
+            else
+            {
+                _isMoving = false;
             }
 
             if (jump && _isOnGround)
@@ -54,15 +65,32 @@ namespace Scenes.Stacy.scripts
                 _isOnGround = false;
             }
 
-            if (releaseRight || releaseLeft) {
-                transform.rotation = Quaternion.identity;
-            }
+            // if (releaseRight || releaseLeft)
+            // {
+            //     transform.rotation = Quaternion.identity;
+            // }
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
             if (collision.gameObject.CompareTag("Ground"))
                 _isOnGround = true;
+        }
+
+        private IEnumerator Jitter()
+        {
+            while (true)
+            {
+                if (_isMoving)
+                {
+                    transform.Rotate(0, 0, 5);
+                    yield return new WaitForSeconds(0.5f);
+                    transform.Rotate(0, 0, -5);
+                    yield return new WaitForSeconds(0.5f);
+                }
+
+                yield return new WaitForEndOfFrame();
+            }
         }
     }
 }
