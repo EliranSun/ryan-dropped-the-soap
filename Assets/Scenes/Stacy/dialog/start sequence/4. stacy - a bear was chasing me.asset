@@ -10,22 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
-  m_Name: stacy - oh fuck
+  m_Name: 4. stacy - a bear was chasing me
   m_EditorClassIdentifier: 
   playerName: 
-  waitBeforeLine: 0
+  waitBeforeLine: 3
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
   voicedLines:
-  - text: Oh fuck...
-    clip: {fileID: 8300000, guid: 5ebc17e4e61431d418d8dfedd2f7d0b6, type: 3}
+  - text: A bear was chasing me... it nearly caught up but I managed to escape at
+      the last moment
+    clip: {fileID: 8300000, guid: e9079d1645ad54a49b81175997bc17d6, type: 3}
     gender: 0
   playerOptions: []
   playerReactions: []
-  nextDialogueLine: {fileID: 11400000, guid: b49521b23b6143943ad1fd11e1381b9f, type: 2}
+  nextDialogueLine: {fileID: 11400000, guid: 2556febe70d37ca47973d50ed6d28140, type: 2}
   randomizedDialogLines: []
   objectReferringDialogLines: []
-  wait: 0.5
+  wait: 0
   actorName: 0
   actionBeforeLine: 0
   actionAfterLine: 0
