@@ -15,6 +15,11 @@ namespace Scenes.Stacy.scripts
         private void Start()
         {
             _camera = GetComponent<Camera>();
+            UpdateCameraData();
+        }
+
+        private void UpdateCameraData()
+        {
             _cameraWidth = _camera.orthographicSize * _camera.aspect * 2;
             _cameraHeight = _camera.orthographicSize * 2;
 
@@ -26,6 +31,13 @@ namespace Scenes.Stacy.scripts
 
             // Remember the target's position
             _lastPosition = target.position;
+        }
+
+        public void OnNotify(GameEventData eventData)
+        {
+            if (eventData.Name == GameEvents.ZoomChangeEnd) {
+                UpdateCameraData();
+            }
         }
 
         private void LateUpdate()

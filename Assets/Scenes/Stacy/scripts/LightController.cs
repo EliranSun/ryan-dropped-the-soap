@@ -1,20 +1,17 @@
 using UnityEngine;
-using UnityEngine.U2D;
-
-// using UnityEngine.Rendering.Universal;
+using UnityEngine.Rendering.Universal;
 
 namespace Scenes.Stacy.scripts
 {
-    [RequireComponent(typeof(Light2DBase))]
+    [RequireComponent(typeof(Light2D))]
     public class LightController : MonoBehaviour
     {
-        [SerializeField] private Light2DBase light;
+        [SerializeField] private Light2D light;
 
         public void OnNotify(GameEventData eventData)
         {
-            // FIXME
-            if (eventData.Name == GameEvents.DimLight) light.GetComponent<Light>().intensity -= 0.1f;
-            if (eventData.Name == GameEvents.BrightenLight) light.GetComponent<Light>().intensity += 0.1f;
+            if (eventData.Name == GameEvents.DimLight) light.intensity -= 0.1f;
+            if (eventData.Name == GameEvents.BrightenLight) light.intensity += 0.1f;
         }
     }
 }

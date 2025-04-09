@@ -140,5 +140,9 @@
     RopeNeededDialog,
     HeadBackDialog,
     DimLight,
-    BrightenLight
+    BrightenLight,
+    ZoomChangeEnd,
+    ZoomStart,
+    CrawlTrigger,
+    IdleTrigger
 }

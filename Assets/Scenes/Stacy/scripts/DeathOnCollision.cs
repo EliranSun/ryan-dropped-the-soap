@@ -4,11 +4,14 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class DeathOnCollision : ObserverSubject
 {
+    [SerializeField] bool isEnabled = true;
     [SerializeField] NarrationDialogLine[] lines;
     private int _linesIndex;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (!isEnabled) return;
+
         var collisionSpeed = collision.relativeVelocity.magnitude;
 
         if (collisionSpeed <= 50) return;
