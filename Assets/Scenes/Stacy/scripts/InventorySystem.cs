@@ -9,6 +9,17 @@ public class InventorySystem : MonoBehaviour
 
     private void Start()
     {
-        //flashlightImage;
+        flashlightImage.color = new Color(1, 1, 1, 0.1f);
     }
+
+    public void AddFlashlight()
+    {
+        flashlightImage.color = new Color(1, 1, 1, 1);
+    }
+
+    public void RemoveFlashlight()
+    {
+        flashlightImage.color = new Color(1, 1, 1, 0.1f);
+    }
+
 }
