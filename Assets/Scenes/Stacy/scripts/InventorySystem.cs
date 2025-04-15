@@ -9,17 +9,25 @@ public class InventorySystem : MonoBehaviour
 
     private void Start()
     {
-        flashlightImage.color = new Color(1, 1, 1, 0.1f);
+        DisableItem(flashlightImage);
     }
 
-    public void AddFlashlight()
+    public void DisableItem(Image itemImage)
     {
-        flashlightImage.color = new Color(1, 1, 1, 1);
+        itemImage.color = new Color(1, 1, 1, 0.1f);
     }
 
-    public void RemoveFlashlight()
+    public void EnableItem(Image itemImage)
     {
-        flashlightImage.color = new Color(1, 1, 1, 0.1f);
+        itemImage.color = new Color(1, 1, 1, 1f);
     }
 
+
+    public void OnNotify(GameEventData eventData)
+    {
+        if (eventData.Name == GameEvents.FlashlightClicked)
+        {
+            EnableItem(flashlightImage);
+        }
+    }
 }

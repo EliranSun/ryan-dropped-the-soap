@@ -144,5 +144,9 @@
     ZoomChangeEnd,
     ZoomStart,
     CrawlTrigger,
-    IdleTrigger
+    IdleTrigger,
+
+    FlashlightClicked,
+    FlashlightPicked,
+    FlashlightDropped,
 }

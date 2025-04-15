@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class DraggableObject : ObserverSubject
 {
+    [SerializeField] private GameEvents onDragEvent;
+    [SerializeField] private GameEvents onDropEvent;
     [SerializeField] private bool _is3D = false;
 
     private bool _isDragging;
@@ -122,6 +124,7 @@ public class DraggableObject : ObserverSubject
             {
                 _rigidbody3D.velocity = Vector3.zero;
                 _isDragging = true;
+                Notify(onDragEvent);
 
                 // Create a plane that is perpendicular to the camera view
                 Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
@@ -141,6 +144,7 @@ public class DraggableObject : ObserverSubject
             {
                 _rigidbody2D.velocity = Vector2.zero;
                 _isDragging = true;
+                Notify(onDragEvent);
             }
         }
     }
@@ -148,6 +152,7 @@ public class DraggableObject : ObserverSubject
     private void OnMouseUp()
     {
         _isDragging = false;
+        Notify(onDropEvent);
     }
 
     public void OnNotify(GameEventData gameEventData)

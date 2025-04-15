@@ -8,21 +8,19 @@ public class FlashlightController : MonoBehaviour
     [SerializeField] private float rotationSpeed = 10f;
     [SerializeField] private KeyCode toggleKey = KeyCode.F;
     [SerializeField] private float maxRotationAngle = 45f;
+    [SerializeField] Transform playerTransform;
 
     private Camera mainCamera;
-    private Transform playerTransform;
     private Vector3 initialPosition;
     private bool isFlashlightOn = false;
     private Quaternion targetRotation;
+    private bool _isPicked = false;
 
     // Start is called before the first frame update
     void Start()
     {
         // Get the main camera
         mainCamera = Camera.main;
-
-        // Get the player transform (assuming this script is attached to the player)
-        playerTransform = transform.parent;
 
         // Store the initial position
         initialPosition = transform.localPosition;
@@ -37,6 +35,8 @@ public class FlashlightController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!_isPicked) return;
+
         // Toggle flashlight on/off with F key
         if (Input.GetKeyDown(toggleKey))
         {
@@ -72,6 +72,19 @@ public class FlashlightController : MonoBehaviour
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
         // Ensure the flashlight stays at its fixed position relative to the player
-        transform.position = playerTransform.position + initialPosition;
+        //transform.position = playerTransform.position + initialPosition;
+    }
+
+    public void OnNotify(GameEventData eventData)
+    {
+        if (eventData.Name == GameEvents.FlashlightPicked)
+        {
+            _isPicked = true;
+        }
+
+        if (eventData.Name == GameEvents.FlashlightDropped)
+        {
+            _isPicked = false;
+        }
     }
 }
