@@ -149,4 +149,6 @@
     FlashlightClicked,
     FlashlightPicked,
     FlashlightDropped,
+    SandwichFed,
+    SandwichConsumed,
 }

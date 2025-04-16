@@ -9,9 +9,9 @@ namespace Dialog.Scripts
         Charlotte, // voiced by: Charlotte (XB0fDUnXU5powFXDhCwa)
         Morgan, // voiced by: Grace (4zDsWfgtAP9O9F9kJlUk)
         Zeke, // voiced by: Roger (CwhRBWXzGAHq8TQ4Fs17)
-        Ryan, // voiced by:
-        Stacy,
-        Pigeon,
+        Ryan, //
+        Stacy, // voiced by: Violet (j7KV53NgP8U4LRS2k2Gs)
+        Pigeon, // 
         Boss, // voiced by: Bubba Marshel (YEkUdc7PezGaXaRslSHB)
         OldMan // voiced by: Beezle Wheezleby (BBfN7Spa3cqLPH1xAS22)
     }

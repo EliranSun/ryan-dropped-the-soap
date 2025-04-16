@@ -6,8 +6,11 @@ using UnityEngine.UI;
 [Serializable]
 public enum ItemName
 {
+    None,
     Flashlight,
     Knife,
+    Sandwich,
+    Rope
 }
 
 [Serializable]
@@ -19,12 +22,12 @@ public class InventoryItem
     public bool isHeldByPlayer;
 }
 
-public class InventorySystem : MonoBehaviour
+public class InventorySystem : ObserverSubject
 {
     [SerializeField] private InventoryItem flashlightItem;
     [SerializeField] private InventoryItem knifeItem;
     [SerializeField] private InventoryItem rope;
-    [SerializeField] private InventoryItem sandwich;
+    [SerializeField] private InventoryItem sandwichItem;
 
     private bool isItemHeldByPlayer;
 
@@ -33,11 +36,17 @@ public class InventorySystem : MonoBehaviour
     {
         var isFlashLightClicked = imageName == flashlightItem.name.ToString().ToLower();
         var isKnifeClicked = imageName == knifeItem.name.ToString().ToLower();
+        var isSandwichClicked = imageName == sandwichItem.name.ToString().ToLower();
 
         if (isItemHeldByPlayer) return;
 
         if (isFlashLightClicked) TakeOutItem(flashlightItem);
         if (isKnifeClicked) TakeOutItem(knifeItem);
+        if (isSandwichClicked)
+        {
+            Notify(GameEvents.SandwichFed);
+            DisableUI(sandwichItem.uiImage);
+        }
     }
 
     public void PutItemInBag(InventoryItem item)
