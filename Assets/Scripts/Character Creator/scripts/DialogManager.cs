@@ -348,10 +348,9 @@ namespace Character_Creator.scripts
                     return;
                 }
             }
-            catch (InvalidOperationException e)
-            {
-                // ignored, this is fine and expected
-            }
+            // ignored, this is fine and expected
+            catch (InvalidOperationException) { }
+            catch (NullReferenceException) { }
 
             switch (gameEventData.Name)
             {
@@ -417,7 +416,7 @@ namespace Character_Creator.scripts
         {
             if (_audioSource.isPlaying)
             {
-                _triggeredDialogueLine = line;
+                // _triggeredDialogueLine = line;
                 return;
             }
 

@@ -18,6 +18,7 @@ namespace common.scripts
     {
         [SerializeField] private InteractableObjectType objectType;
         [SerializeField] private InteractionType interactionType;
+        [SerializeField] private bool _disableOnClick = false;
         private SpriteRenderer _spriteRenderer;
 
         private void Start()
@@ -36,6 +37,8 @@ namespace common.scripts
         {
             if (interactionType == InteractionType.ClearThoughts) Notify(GameEvents.ClearThoughts);
             if (interactionType == InteractionType.Speak) Notify(GameEvents.Speak);
+
+            if (_disableOnClick) gameObject.SetActive(false);
         }
 
         public void OnNotify(GameEventData gameEventData)

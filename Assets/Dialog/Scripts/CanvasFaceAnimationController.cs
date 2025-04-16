@@ -12,7 +12,8 @@ namespace Dialog.Scripts
         Ryan, // voiced by:
         Stacy,
         Pigeon,
-        Boss // voiced by: Bubba Marshel (YEkUdc7PezGaXaRslSHB)
+        Boss, // voiced by: Bubba Marshel (YEkUdc7PezGaXaRslSHB)
+        OldMan // voiced by: Beezle Wheezleby (BBfN7Spa3cqLPH1xAS22)
     }
 
     [RequireComponent(typeof(Animator))]

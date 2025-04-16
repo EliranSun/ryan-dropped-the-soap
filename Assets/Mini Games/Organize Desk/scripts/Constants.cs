@@ -19,6 +19,11 @@ namespace Mini_Games.Organize_Desk.scripts
         ItemPlacementFive,
         ItemPlacementSix,
 
-        Trash
+        Trash,
+
+        Flashlight,
+        Knife,
+        Sandwich,
+        Rope
     }
 }
