@@ -134,7 +134,8 @@ namespace Dialog.Scripts
     public enum Condition
     {
         None,
-        TalkedWithOldMan
+        TalkedWithOldMan,
+        ZekeAtBridge
     }
 
     [Serializable]

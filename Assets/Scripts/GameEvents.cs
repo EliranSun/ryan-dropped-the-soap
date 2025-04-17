@@ -152,5 +152,6 @@
     SandwichFed,
     SandwichConsumed,
 
-    AutoMovementTrigger
+    AutoMovementTrigger,
+    NpcAtBridge
 }

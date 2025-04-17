@@ -1,3 +1,4 @@
+using Dialog.Scripts;
 using UnityEngine;
 
 namespace Scenes.Stacy.scripts
@@ -8,6 +9,7 @@ namespace Scenes.Stacy.scripts
         [SerializeField] private GameEvents gameEventName;
         [SerializeField] private int delayEventTrigger;
         [SerializeField] private bool invokeOnce = true;
+        [SerializeField] private NarrationDialogLine toggleTriggerLine;
         private bool _isInvoked;
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -21,6 +23,11 @@ namespace Scenes.Stacy.scripts
 
         private void NotifyEvent()
         {
+            if (toggleTriggerLine)
+            {
+                toggleTriggerLine.lineCondition.isMet = true;
+            }
+
             Notify(gameEventName);
         }
     }
