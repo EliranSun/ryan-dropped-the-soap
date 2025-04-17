@@ -1,18 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using Dialog.Scripts;
 using UnityEngine;
 
-public class TriggerDialogOnObjectClick : ObserverSubject
+namespace Scenes.Stacy.scripts
 {
-    [SerializeField] NarrationDialogLine[] lines;
-    private int _clickCount;
-
-    private void OnMouseDown()
+    public class TriggerDialogOnObjectClick : ObserverSubject
     {
-        if (_clickCount >= lines.Length) return;
+        [SerializeField] private NarrationDialogLine[] lines;
+        private int _clickCount;
 
-        Notify(GameEvents.TriggerSpecificDialogLine, lines[_clickCount]);
-        _clickCount++;
+        private void OnMouseDown()
+        {
+            if (_clickCount >= lines.Length) return;
+
+            var line = lines[_clickCount];
+
+            if (line.lineCondition.condition != Condition.None && !line.lineCondition.isMet)
+                return;
+
+            Notify(GameEvents.TriggerSpecificDialogLine, line);
+            _clickCount++;
+        }
     }
 }

@@ -17,7 +17,8 @@ namespace common.scripts
     {
         Slow,
         Medium,
-        Fast
+        Fast,
+        Human
     }
 
     public class ObjectsAutoMove : MonoBehaviour
@@ -25,19 +26,24 @@ namespace common.scripts
     {
         [SerializeField] private Direction direction;
         [SerializeField] private Speed speed;
-
+        [SerializeField] private float stopAtX;
+        [SerializeField] public bool start;
 
         private void Update()
         {
-            var speed = this.speed switch
+            if (!start) return;
+            if (stopAtX != 0 && transform.position.x <= stopAtX) return;
+
+            var currentSpeed = speed switch
             {
                 Speed.Slow => 0.01f,
                 Speed.Medium => 0.05f,
                 Speed.Fast => 0.1f,
+                Speed.Human => 5f,
                 _ => 0.1f
             };
 
-            var direction = this.direction switch
+            var currentDirection = direction switch
             {
                 Direction.Up => Vector3.up,
                 Direction.Down => Vector3.down,
@@ -46,7 +52,13 @@ namespace common.scripts
                 _ => Vector3.right
             };
 
-            transform.Translate(direction * (speed * Time.deltaTime));
+            transform.Translate(currentDirection * (currentSpeed * Time.deltaTime));
+        }
+
+        public void OnNotify(GameEventData eventData)
+        {
+            if (eventData.Name == GameEvents.AutoMovementTrigger)
+                start = true;
         }
     }
 }

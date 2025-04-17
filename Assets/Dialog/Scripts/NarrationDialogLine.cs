@@ -131,6 +131,20 @@ namespace Dialog.Scripts
     }
 
     [Serializable]
+    public enum Condition
+    {
+        None,
+        TalkedWithOldMan
+    }
+
+    [Serializable]
+    public class LineCondition
+    {
+        public Condition condition;
+        public bool isMet;
+    }
+
+    [Serializable]
     [CreateAssetMenu(fileName = "NarrationLine", menuName = "Line")]
     public class NarrationDialogLine : ScriptableObject
     {
@@ -157,6 +171,9 @@ namespace Dialog.Scripts
         public GameEvents actionAfterLine;
         public Reaction actorReaction;
 
-        public float angerLevel = 0;
+        public float angerLevel;
+
+        public NarrationDialogLine toggleLineCondition;
+        public LineCondition lineCondition;
     }
 }

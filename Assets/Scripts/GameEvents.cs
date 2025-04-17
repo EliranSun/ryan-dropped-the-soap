@@ -151,4 +151,6 @@
     FlashlightDropped,
     SandwichFed,
     SandwichConsumed,
+
+    AutoMovementTrigger
 }

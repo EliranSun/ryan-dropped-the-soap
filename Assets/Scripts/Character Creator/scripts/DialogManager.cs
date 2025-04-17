@@ -25,7 +25,7 @@ namespace Character_Creator.scripts
         [SerializeField] private AudioSource soundEffectsAudioSource;
         [SerializeField] private EventToSound eventToSound;
         [SerializeField] private SpriteRenderer overlayImage;
-        [SerializeField] private int delayFirstLine = 0;
+        [SerializeField] private int delayFirstLine;
 
         private bool _asyncLinesReady;
         private AudioSource _audioSource;
@@ -41,6 +41,12 @@ namespace Character_Creator.scripts
             Invoke(nameof(Init), delayFirstLine);
         }
 
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Space)) FastForwardDialog();
+            if (Input.GetKeyUp(KeyCode.Space)) NormalSpeedDialog();
+        }
+
         private void Init()
         {
             var nextLine = DialogueStateChanger.Instance.GetDialogStateByPlayerPrefs();
@@ -48,12 +54,6 @@ namespace Character_Creator.scripts
 
             UpdateDialogState(nextLine);
             StartCoroutine(HandlePlayerNameLinesAndStartRead());
-        }
-
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Space)) FastForwardDialog();
-            if (Input.GetKeyUp(KeyCode.Space)) NormalSpeedDialog();
         }
 
         private IEnumerator HandlePlayerNameLinesAndStartRead()
@@ -183,6 +183,8 @@ namespace Character_Creator.scripts
 
             narratorText.text = "";
             HandlePlayerNameLines();
+
+            if (_currentDialogue.toggleLineCondition) _currentDialogue.toggleLineCondition.lineCondition.isMet = true;
 
             if (_currentDialogue.overlayImageSprite && overlayImage)
             {
@@ -349,8 +351,12 @@ namespace Character_Creator.scripts
                 }
             }
             // ignored, this is fine and expected
-            catch (InvalidOperationException) { }
-            catch (NullReferenceException) { }
+            catch (InvalidOperationException)
+            {
+            }
+            catch (NullReferenceException)
+            {
+            }
 
             switch (gameEventData.Name)
             {
@@ -415,10 +421,8 @@ namespace Character_Creator.scripts
         public void TriggerLine(NarrationDialogLine line)
         {
             if (_audioSource.isPlaying)
-            {
                 // _triggeredDialogueLine = line;
                 return;
-            }
 
             UpdateDialogState(line);
 
