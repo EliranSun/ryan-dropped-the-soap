@@ -156,5 +156,6 @@
     NpcAtBridge,
 
     RevealKnife,
-    NpcDeath
+    NpcDeath,
+    EnableRope
 }

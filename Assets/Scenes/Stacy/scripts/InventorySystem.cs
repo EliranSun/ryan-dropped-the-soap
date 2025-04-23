@@ -40,6 +40,7 @@ public class InventorySystem : ObserverSubject
 
         if (isItemHeldByPlayer) return;
 
+        if (isRopeClicked) TakeOutItem(ropeItem);
         if (isFlashLightClicked) TakeOutItem(flashlightItem);
         if (isKnifeClicked) TakeOutItem(knifeItem);
         if (isSandwichClicked)

@@ -1,4 +1,5 @@
 using Character.Scripts;
+using common.scripts;
 using Dialog.Scripts;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ namespace Scenes.Stacy.scripts
         [SerializeField] private Sprite stacySleepsSprite;
         [SerializeField] private Sprite stacyIdleSprite;
         [SerializeField] private GameObject inWorldKnife;
+        [SerializeField] private GameObject inWorldRope;
         [SerializeField] private NarrationDialogLine knifeRevealDialogLine;
         [SerializeField] private int timeToWake = 5;
         private int _bodyCount;
@@ -19,6 +21,8 @@ namespace Scenes.Stacy.scripts
 
         private void Start()
         {
+            inWorldRope.GetComponent<SimpleInteraction>().isEnabled = false;
+
             if (stacy)
             {
                 _spriteRenderer = stacy.GetComponent<SpriteRenderer>();
@@ -44,9 +48,11 @@ namespace Scenes.Stacy.scripts
 
         public void OnNotify(GameEventData eventData)
         {
-            if (eventData.Name == GameEvents.CrawlTrigger) _spriteRenderer.sprite = stacyCrawlsSprite;
+            if (eventData.Name == GameEvents.CrawlTrigger) 
+                _spriteRenderer.sprite = stacyCrawlsSprite;
 
-            if (eventData.Name == GameEvents.IdleTrigger) _spriteRenderer.sprite = stacyIdleSprite;
+            if (eventData.Name == GameEvents.IdleTrigger) 
+                _spriteRenderer.sprite = stacyIdleSprite;
 
             if (eventData.Name == GameEvents.RevealKnife)
             {
@@ -56,6 +62,9 @@ namespace Scenes.Stacy.scripts
 
             if (eventData.Name == GameEvents.NpcDeath)
                 _bodyCount++;
+
+            if (eventData.Name == GameEvents.EnableRope)
+                inWorldRope.GetComponent<SimpleInteraction>().isEnabled = true;
         }
 
         private void TriggerKnifeRevealDialog()
