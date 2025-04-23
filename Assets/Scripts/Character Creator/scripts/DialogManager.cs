@@ -45,6 +45,7 @@ namespace Character_Creator.scripts
         {
             if (Input.GetKeyDown(KeyCode.Space)) FastForwardDialog();
             if (Input.GetKeyUp(KeyCode.Space)) NormalSpeedDialog();
+            AdvanceDialogOnClick();
         }
 
         private void Init()
@@ -175,17 +176,14 @@ namespace Character_Creator.scripts
 
         private void OnDialogEnd()
         {
-            Notify(GameEvents.LineNarrationEnd, new
-            {
-                _currentDialogue.actorName,
-                _currentDialogue.playerOptions
-            });
-
-            narratorText.text = "";
             HandlePlayerNameLines();
 
-            if (_currentDialogue.toggleLineCondition) _currentDialogue.toggleLineCondition.lineCondition.isMet = true;
+            if (_currentDialogue.toggleLineCondition) 
+                _currentDialogue.toggleLineCondition.lineCondition.isMet = true;
+        }
 
+        private void PostDialogAdvanceActions()
+        {
             if (_currentDialogue.overlayImageSprite && overlayImage)
             {
                 overlayImage.color = Color.clear;
@@ -202,13 +200,6 @@ namespace Character_Creator.scripts
 
             if (_currentDialogue.playerReactions.Length > 0)
                 return;
-
-            if (_currentDialogue.nextDialogueLine)
-            {
-                UpdateDialogState(_currentDialogue.nextDialogueLine);
-                ReadCurrentLine();
-                return;
-            }
 
             if (_currentDialogue.randomizedDialogLines.Length > 0)
             {
@@ -251,47 +242,6 @@ namespace Character_Creator.scripts
         {
             var objects = GameObject.FindGameObjectsWithTag("PlayerInput");
             return objects.Length == 0;
-        }
-
-        private void GeneratePlayerInputs(NarrationDialogLine line)
-        {
-            print("Notifying player choice");
-            Notify(GameEvents.PlayerChoice, line.playerOptions);
-
-            // for (var i = 0; i < line.playerOptions.Length; i++)
-            // {
-            //     var playerChoice = line.playerOptions[i];
-            //     var playerChoiceNextAction = playerChoice.next;
-            //     var buttonByType = playerChoice.type == ChoiceType.Button
-            //         ? playerChoiceButton
-            //         : playerInconsequentialChoice;
-            //
-            //     switch (playerChoice.type)
-            //     {
-            //         case ChoiceType.InconsequentialButton:
-            //         case ChoiceType.Button:
-            //             var button = Instantiate(buttonByType, playerChoiceButtonsContainer.transform);
-            //             var position = button.transform.position;
-            //             var width = button.GetComponent<RectTransform>().sizeDelta.x;
-            //             
-            //             position.x += (i - line.playerOptions.Length / 2) * width;
-            //             position.y -= 50;
-            //             
-            //             button.transform.position = position;
-            //             button.GetComponentInChildren<TextMeshProUGUI>().text = playerChoice.text;
-            //             if (playerChoice.type == ChoiceType.Button)
-            //                 button.GetComponent<PlayerInfoInput>().type = playerChoice.choiceDataType;
-            //             
-            //             button.GetComponent<Button>().onClick
-            //                 .AddListener(() => OnPlayerChoiceButtonClick(playerChoiceNextAction));
-            //             break;
-            // TODO: handle text input for RIC intro
-            //         case ChoiceType.TextInput:
-            //             var textInput = Instantiate(playerTextInput, playerInputsContainer.transform);
-            //             textInput.GetComponent<PlayerInfoInput>().type = playerChoice.choiceDataType;
-            //             break;
-            //     }
-            // }
         }
 
         private void TriggerAnAct(GameEvents action)
@@ -406,22 +356,9 @@ namespace Character_Creator.scripts
             }
         }
 
-        private GameEvents GetEventNameForInteractionType(InteractableObjectType interactionType)
-        {
-            return interactionType switch
-            {
-                InteractableObjectType.Vase => GameEvents.VaseClicked,
-                InteractableObjectType.Mirror => GameEvents.MirrorClicked,
-                InteractableObjectType.Painting => GameEvents.PaintingClicked,
-                InteractableObjectType.Armchair => GameEvents.ArmchairClicked,
-                InteractableObjectType.Door => GameEvents.DoorClicked
-            };
-        }
-
         public void TriggerLine(NarrationDialogLine line)
         {
             if (_audioSource.isPlaying)
-                // _triggeredDialogueLine = line;
                 return;
 
             UpdateDialogState(line);
@@ -440,9 +377,6 @@ namespace Character_Creator.scripts
         public void NormalSpeedDialog()
         {
             _audioSource.pitch = 1;
-            // _audioSource.clip = null;
-            // StopAllCoroutines();
-            // OnDialogEnd();
         }
 
         public void UpdateDialogState(NarrationDialogLine nextLineObject)
@@ -481,6 +415,30 @@ namespace Character_Creator.scripts
                 _audioSource.pitch = 1;
                 _audioSource.Stop();
                 StopAllCoroutines();
+            }
+        }
+
+        private void AdvanceDialogOnClick()
+        {
+            // TODO: Controller support
+            if (Input.GetKeyDown(KeyCode.N))
+            {
+                narratorText.text = "";
+
+                Notify(GameEvents.LineNarrationEnd, new
+                {
+                    _currentDialogue.actorName,
+                    _currentDialogue.playerOptions
+                });
+
+                if (_currentDialogue.nextDialogueLine)
+                {
+                    UpdateDialogState(_currentDialogue.nextDialogueLine);
+                    ReadCurrentLine();
+                    return;
+                }
+
+                PostDialogAdvanceActions();
             }
         }
     }
