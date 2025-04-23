@@ -7,6 +7,7 @@ public class StacySceneEvents : ObserverSubject
     [SerializeField] Sprite stacyCrawlsSprite;
     [SerializeField] Sprite stacySleepsSprite;
     [SerializeField] Sprite stacyIdleSprite;
+    [SerializeField] GameObject inWorldKnife;
     [SerializeField] int timeToWake = 5;
 
     private SpriteRenderer _spriteRenderer;
@@ -41,5 +42,8 @@ public class StacySceneEvents : ObserverSubject
         {
             _spriteRenderer.sprite = stacyIdleSprite;
         }
+
+        if (eventData.Name == GameEvents.RevealKnife)
+            inWorldKnife.SetActive(true);
     }
 }

@@ -5,21 +5,17 @@ public class PointableObjectController : MonoBehaviour
     [SerializeField] private float rotationRadius = 3f;
     [SerializeField] private float rotationSpeed = 10f;
     [SerializeField] private float maxRotationAngle = 45f;
-    [SerializeField] Transform playerTransform;
+    [SerializeField] private float distanceFromTarget = 2f;
+    [SerializeField] GameObject target;
 
     private Camera mainCamera;
-    private Vector3 initialPosition;
-    private bool isFlashlightOn = false;
     private Quaternion targetRotation;
 
-    // Start is called before the first frame update
-    void Start()
+
+    void OnEnable()
     {
         // Get the main camera
         mainCamera = Camera.main;
-
-        // Store the initial position
-        initialPosition = transform.localPosition;
     }
 
     // Update is called once per frame
@@ -29,10 +25,21 @@ public class PointableObjectController : MonoBehaviour
         Vector3 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         mousePosition.z = transform.position.z; // Keep same z-position
 
-        if (!playerTransform) return;
+        if (!target) return;
+
+        // Flip the object if the target is facing left
+        var isSpriteFlipX = target.GetComponent<SpriteRenderer>().flipX;
+        gameObject.transform.localScale = new Vector3(isSpriteFlipX ? 1 : -1, 1, 1);
 
         // Calculate direction to mouse
-        Vector3 direction = mousePosition - playerTransform.position;
+        Vector3 direction = mousePosition - target.transform.position;
+
+        // Adjust direction calculation based on flip state
+        // if (!isSpriteFlipX)
+        // {
+        //     // When sprite is not flipped, invert the direction for correct rotation
+        //     direction.x = -direction.x;
+        // }
 
         // Clamp the direction to the maximum rotation radius
         if (direction.magnitude > rotationRadius)
@@ -40,10 +47,10 @@ public class PointableObjectController : MonoBehaviour
             direction = direction.normalized * rotationRadius;
         }
 
-        // Only rotate the flashlight, don't move it
+        // Only rotate the object, don't move it
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        // Optional: Limit the rotation angle if desired
+        // Limit the rotation angle
         float currentAngle = transform.eulerAngles.z;
         float clampedAngle = Mathf.Clamp(angle, -maxRotationAngle, maxRotationAngle);
 
@@ -51,7 +58,7 @@ public class PointableObjectController : MonoBehaviour
         targetRotation = Quaternion.Euler(0, 0, clampedAngle);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
-        // Ensure the flashlight stays at its fixed position relative to the player
-        transform.position = playerTransform.position + initialPosition;
+        // Ensure the object stays at its fixed position relative to the player
+        transform.position = target.transform.position + new Vector3(distanceFromTarget * (isSpriteFlipX ? 1 : -1), 0, 0);
     }
 }

@@ -153,5 +153,7 @@
     SandwichConsumed,
 
     AutoMovementTrigger,
-    NpcAtBridge
+    NpcAtBridge,
+
+    RevealKnife
 }
