@@ -13,6 +13,7 @@ namespace Scenes.Stacy.scripts
         [SerializeField] private GameObject inWorldKnife;
         [SerializeField] private NarrationDialogLine knifeRevealDialogLine;
         [SerializeField] private int timeToWake = 5;
+        private int _bodyCount;
 
         private SpriteRenderer _spriteRenderer;
 
@@ -26,6 +27,12 @@ namespace Scenes.Stacy.scripts
 
                 Invoke(nameof(WakeUp), timeToWake);
             }
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Z)) stacy.transform.position = new Vector3(64, 9, 0);
+            if (Input.GetKeyDown(KeyCode.O)) stacy.transform.position = new Vector3(-64, 45, 0);
         }
 
         private void WakeUp()
@@ -46,6 +53,9 @@ namespace Scenes.Stacy.scripts
                 inWorldKnife.SetActive(true);
                 Invoke(nameof(TriggerKnifeRevealDialog), 4f);
             }
+
+            if (eventData.Name == GameEvents.NpcDeath)
+                _bodyCount++;
         }
 
         private void TriggerKnifeRevealDialog()

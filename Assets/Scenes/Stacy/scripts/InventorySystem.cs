@@ -1,5 +1,4 @@
 using System;
-using Mini_Games.Organize_Desk.scripts;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,8 +25,8 @@ public class InventorySystem : ObserverSubject
 {
     [SerializeField] private InventoryItem flashlightItem;
     [SerializeField] private InventoryItem knifeItem;
-    [SerializeField] private InventoryItem rope;
     [SerializeField] private InventoryItem sandwichItem;
+    [SerializeField] private InventoryItem ropeItem;
 
     private bool isItemHeldByPlayer;
 
@@ -37,6 +36,7 @@ public class InventorySystem : ObserverSubject
         var isFlashLightClicked = imageName == flashlightItem.name.ToString().ToLower();
         var isKnifeClicked = imageName == knifeItem.name.ToString().ToLower();
         var isSandwichClicked = imageName == sandwichItem.name.ToString().ToLower();
+        var isRopeClicked = imageName == ropeItem.name.ToString().ToLower();
 
         if (isItemHeldByPlayer) return;
 
@@ -82,9 +82,11 @@ public class InventorySystem : ObserverSubject
         {
             var isFlashlight = (string)eventData.Data == ItemName.Flashlight.ToString().ToLower();
             var isKnife = (string)eventData.Data == ItemName.Knife.ToString().ToLower();
+            var isRope = (string)eventData.Data == ItemName.Rope.ToString().ToLower();
 
             if (isFlashlight) PutItemInBag(flashlightItem);
             if (isKnife) PutItemInBag(knifeItem);
+            if (isRope) PutItemInBag(ropeItem);
         }
     }
 }

@@ -20,6 +20,7 @@ namespace common.scripts
         [SerializeField] private InteractionType interactionType;
         [SerializeField] private bool _disableOnClick = false;
         private SpriteRenderer _spriteRenderer;
+        [SerializeField] public bool isEnabled = true;
 
         private void Start()
         {
@@ -28,6 +29,7 @@ namespace common.scripts
 
         private void OnMouseDown()
         {
+            if (!isEnabled) return;
             // FIXME: This does not work for the flashlight for some reason
             print("Mouse down on" + gameObject.name);
             Notify(GameEvents.ClickOnItem, gameObject.name);
@@ -35,6 +37,8 @@ namespace common.scripts
 
         private void OnMouseUp()
         {
+            if (!isEnabled) return;
+            
             if (interactionType == InteractionType.ClearThoughts) Notify(GameEvents.ClearThoughts);
             if (interactionType == InteractionType.Speak) Notify(GameEvents.Speak);
 

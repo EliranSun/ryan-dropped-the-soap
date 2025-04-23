@@ -135,7 +135,8 @@ namespace Dialog.Scripts
     {
         None,
         TalkedWithOldMan,
-        ZekeAtBridge
+        ZekeAtBridge,
+        ZekeIsDead
     }
 
     [Serializable]
