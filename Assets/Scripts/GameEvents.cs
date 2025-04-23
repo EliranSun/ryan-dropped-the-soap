@@ -155,5 +155,6 @@
     AutoMovementTrigger,
     NpcAtBridge,
 
-    RevealKnife
+    RevealKnife,
+    NpcDeath
 }

@@ -1,49 +1,56 @@
 using Character.Scripts;
+using Dialog.Scripts;
 using UnityEngine;
 
-public class StacySceneEvents : ObserverSubject
+namespace Scenes.Stacy.scripts
 {
-    [SerializeField] GameObject stacy;
-    [SerializeField] Sprite stacyCrawlsSprite;
-    [SerializeField] Sprite stacySleepsSprite;
-    [SerializeField] Sprite stacyIdleSprite;
-    [SerializeField] GameObject inWorldKnife;
-    [SerializeField] int timeToWake = 5;
-
-    private SpriteRenderer _spriteRenderer;
-
-    void Start()
+    public class StacySceneEvents : ObserverSubject
     {
-        if (stacy)
+        [SerializeField] private GameObject stacy;
+        [SerializeField] private Sprite stacyCrawlsSprite;
+        [SerializeField] private Sprite stacySleepsSprite;
+        [SerializeField] private Sprite stacyIdleSprite;
+        [SerializeField] private GameObject inWorldKnife;
+        [SerializeField] private NarrationDialogLine knifeRevealDialogLine;
+        [SerializeField] private int timeToWake = 5;
+
+        private SpriteRenderer _spriteRenderer;
+
+        private void Start()
         {
-            _spriteRenderer = stacy.GetComponent<SpriteRenderer>();
-            _spriteRenderer.sprite = stacySleepsSprite;
-            stacy.GetComponent<Movement>().enabled = false;
+            if (stacy)
+            {
+                _spriteRenderer = stacy.GetComponent<SpriteRenderer>();
+                _spriteRenderer.sprite = stacySleepsSprite;
+                stacy.GetComponent<Movement>().enabled = false;
 
-            Invoke(nameof(WakeUp), timeToWake);
-        }
-    }
-
-    private void WakeUp()
-    {
-        _spriteRenderer.sprite = stacyIdleSprite;
-        stacy.GetComponent<Movement>().enabled = true;
-        Notify(GameEvents.ZoomStart);
-    }
-
-    public void OnNotify(GameEventData eventData)
-    {
-        if (eventData.Name == GameEvents.CrawlTrigger)
-        {
-            _spriteRenderer.sprite = stacyCrawlsSprite;
+                Invoke(nameof(WakeUp), timeToWake);
+            }
         }
 
-        if (eventData.Name == GameEvents.IdleTrigger)
+        private void WakeUp()
         {
             _spriteRenderer.sprite = stacyIdleSprite;
+            stacy.GetComponent<Movement>().enabled = true;
+            Notify(GameEvents.ZoomStart);
         }
 
-        if (eventData.Name == GameEvents.RevealKnife)
-            inWorldKnife.SetActive(true);
+        public void OnNotify(GameEventData eventData)
+        {
+            if (eventData.Name == GameEvents.CrawlTrigger) _spriteRenderer.sprite = stacyCrawlsSprite;
+
+            if (eventData.Name == GameEvents.IdleTrigger) _spriteRenderer.sprite = stacyIdleSprite;
+
+            if (eventData.Name == GameEvents.RevealKnife)
+            {
+                inWorldKnife.SetActive(true);
+                Invoke(nameof(TriggerKnifeRevealDialog), 4f);
+            }
+        }
+
+        private void TriggerKnifeRevealDialog()
+        {
+            Notify(GameEvents.TriggerSpecificDialogLine, knifeRevealDialogLine);
+        }
     }
 }

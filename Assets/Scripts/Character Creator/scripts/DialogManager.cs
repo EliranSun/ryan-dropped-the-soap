@@ -137,12 +137,13 @@ namespace Character_Creator.scripts
                 StartCoroutine(FadeOverlayImage());
             }
 
+            Notify(GameEvents.ActorReaction, _currentDialogue);
+
             if (line.clip)
             {
                 _audioSource.clip = line.clip;
                 _audioSource.Play();
                 Notify(GameEvents.LineNarrationStart, _currentDialogue);
-                Notify(GameEvents.ActorReaction, _currentDialogue);
                 StartCoroutine(CheckAudioEnd());
             }
             else
@@ -178,7 +179,7 @@ namespace Character_Creator.scripts
         {
             HandlePlayerNameLines();
 
-            if (_currentDialogue.toggleLineCondition) 
+            if (_currentDialogue.toggleLineCondition)
                 _currentDialogue.toggleLineCondition.lineCondition.isMet = true;
         }
 
