@@ -157,5 +157,9 @@
 
     RevealKnife,
     NpcDeath,
-    EnableRope
+    EnableRope,
+    RopeAttached,
+    RopeDetached,
+    RopeInHand,
+    RopeInBag,
 }

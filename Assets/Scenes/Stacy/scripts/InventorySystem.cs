@@ -28,8 +28,14 @@ public class InventorySystem : ObserverSubject
     [SerializeField] private InventoryItem sandwichItem;
     [SerializeField] private InventoryItem ropeItem;
 
+    private bool isRopeUsed;
     private bool isItemHeldByPlayer;
 
+    public void Start()
+    {
+        // for testing
+        PutItemInBag(ropeItem);
+    }
 
     public void OnImageClick(string imageName)
     {
@@ -40,9 +46,18 @@ public class InventorySystem : ObserverSubject
 
         if (isItemHeldByPlayer) return;
 
-        if (isRopeClicked) TakeOutItem(ropeItem);
-        if (isFlashLightClicked) TakeOutItem(flashlightItem);
-        if (isKnifeClicked) TakeOutItem(knifeItem);
+        if (isRopeClicked)
+        {
+            Notify(GameEvents.RopeInHand);
+            TakeOutItem(ropeItem);
+        }
+
+        if (isFlashLightClicked) 
+            TakeOutItem(flashlightItem);
+
+        if (isKnifeClicked) 
+            TakeOutItem(knifeItem);
+
         if (isSandwichClicked)
         {
             Notify(GameEvents.SandwichFed);
@@ -85,9 +100,29 @@ public class InventorySystem : ObserverSubject
             var isKnife = (string)eventData.Data == ItemName.Knife.ToString().ToLower();
             var isRope = (string)eventData.Data == ItemName.Rope.ToString().ToLower();
 
-            if (isFlashlight) PutItemInBag(flashlightItem);
-            if (isKnife) PutItemInBag(knifeItem);
-            if (isRope) PutItemInBag(ropeItem);
+            if (isFlashlight) 
+                PutItemInBag(flashlightItem);
+
+            if (isKnife) 
+                PutItemInBag(knifeItem);
+
+            if (isRope)
+            {
+                Notify(GameEvents.RopeInBag);
+                PutItemInBag(ropeItem);
+            }
+        }
+
+        if (eventData.Name == GameEvents.RopeAttached)
+        {
+            isRopeUsed = true;
+            ropeItem.gameObject.SetActive(false);
+        }
+
+        if (eventData.Name == GameEvents.RopeDetached)
+        {
+            isRopeUsed = false;
+            ropeItem.gameObject.SetActive(true);
         }
     }
 }
