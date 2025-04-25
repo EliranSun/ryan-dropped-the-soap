@@ -71,7 +71,7 @@ namespace Character.Scripts
 
             if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
             {
-                _rigidbody2D.AddForce(Vector2.up * (speed * jumpForce), ForceMode2D.Impulse);
+                _rigidbody2D.AddForce(Vector2.up * (jumpForce), ForceMode2D.Impulse);
                 //_isOnGround = false;
             }
         }
@@ -162,6 +162,16 @@ namespace Character.Scripts
                 _flipEnabled = true;
                 _isCrawling = false;
             }
+        }
+
+        public void SlowDown()
+        {
+            speed /= 4;
+        }
+
+        public void NormalSpeed()
+        {
+            speed *= 4;
         }
     }
 }
