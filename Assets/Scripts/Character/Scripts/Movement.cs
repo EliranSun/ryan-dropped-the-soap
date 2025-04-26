@@ -12,17 +12,17 @@ namespace Character.Scripts
         [SerializeField] private GameObject headGameObject;
         [SerializeField] private GameObject hairGameObject;
         [SerializeField] private bool isRigidBodyMovement = true;
-        [SerializeField] private bool addWobblyMovement = false;
+        [SerializeField] private bool addWobblyMovement;
+        private bool _flipEnabled = true;
 
 
         private SpriteRenderer _hairSpriteRenderer;
         private SpriteRenderer _headSpriteRenderer;
+        private bool _isCrawling;
+        private bool _isMoving;
+        private bool _isOnGround;
         private Rigidbody2D _rigidbody2D;
         private SpriteRenderer _spriteRenderer;
-        private bool _isOnGround;
-        private bool _isMoving = false;
-        private bool _flipEnabled = true;
-        private bool _isCrawling = false;
 
         private void Start()
         {
@@ -45,6 +45,24 @@ namespace Character.Scripts
             HandleHeadAndHair();
         }
 
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.gameObject.CompareTag("Ground"))
+            {
+                print("Touched ground");
+                _isOnGround = true;
+            }
+        }
+
+        private void OnCollisionExit2D(Collision2D collision)
+        {
+            if (collision.gameObject.CompareTag("Ground"))
+            {
+                print("Left ground");
+                _isOnGround = false;
+            }
+        }
+
         private void RigidBodyMovement()
         {
             var horizontal = Input.GetAxis("Horizontal");
@@ -64,16 +82,10 @@ namespace Character.Scripts
                 _isMoving = false;
             }
 
-            if (!_isOnGround)
-            {
-                return;
-            }
+            if (!_isOnGround) return;
 
             if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                _rigidbody2D.AddForce(Vector2.up * (jumpForce), ForceMode2D.Impulse);
-                //_isOnGround = false;
-            }
+                _rigidbody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
 
         private void CharacterControllerMovement()
@@ -114,26 +126,9 @@ namespace Character.Scripts
             if (hairGameObject) _hairSpriteRenderer.flipX = _spriteRenderer.flipX;
         }
 
-        private void OnCollisionEnter2D(Collision2D collision)
-        {
-            if (collision.gameObject.CompareTag("Ground"))
-            {
-                _isOnGround = true;
-            }
-        }
-
-        private void OnCollisionExit2D(Collision2D collision)
-        {
-            if (collision.gameObject.CompareTag("Ground"))
-            {
-                _isOnGround = false;
-            }
-        }
-
         private IEnumerator WobblyMovement()
         {
             while (true)
-            {
                 if (_isMoving)
                 {
                     var direction = Mathf.Sign(_rigidbody2D.velocity.x);
@@ -146,7 +141,6 @@ namespace Character.Scripts
                 {
                     yield return null;
                 }
-            }
         }
 
         public void OnNotify(GameEventData eventData)

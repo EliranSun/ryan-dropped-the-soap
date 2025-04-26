@@ -38,7 +38,7 @@ namespace Scenes.Stacy.scripts
             {
                 // unlock z axis rotation
                 _weaponStuckIn.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
-                var xForce = 1000 * (playerSpriteRenderer.flipX ? 1 : -1);
+                var xForce = 200 * (playerSpriteRenderer.flipX ? 1 : -1);
                 _weaponStuckIn.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector3(xForce, 0, 400));
                 _weaponStuckIn = null;
             }
