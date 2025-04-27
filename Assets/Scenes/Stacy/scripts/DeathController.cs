@@ -40,9 +40,9 @@ namespace Scenes.Stacy.scripts
             gameObject.tag = "Ground";
         }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        private void OnTriggerExit2D(Collider2D other)
         {
-            if (collision.gameObject.name == "knife")
+            if (other.gameObject.name == "knife")
             {
                 _isDead = true;
                 gameObject.layer = LayerMask.NameToLayer("Ground");

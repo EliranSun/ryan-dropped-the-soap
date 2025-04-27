@@ -37,6 +37,7 @@ namespace Scenes.Stacy.scripts
         {
             if (Input.GetKeyDown(KeyCode.Z)) stacy.transform.position = new Vector3(64, 9, 0);
             if (Input.GetKeyDown(KeyCode.O)) stacy.transform.position = new Vector3(-64, 45, 0);
+            if (Input.GetKeyDown(KeyCode.T)) stacy.transform.position = new Vector3(-64, 45, 0);
         }
 
         private void WakeUp()
@@ -48,10 +49,10 @@ namespace Scenes.Stacy.scripts
 
         public void OnNotify(GameEventData eventData)
         {
-            if (eventData.Name == GameEvents.CrawlTrigger) 
+            if (eventData.Name == GameEvents.CrawlTrigger)
                 _spriteRenderer.sprite = stacyCrawlsSprite;
 
-            if (eventData.Name == GameEvents.IdleTrigger) 
+            if (eventData.Name == GameEvents.IdleTrigger)
                 _spriteRenderer.sprite = stacyIdleSprite;
 
             if (eventData.Name == GameEvents.RevealKnife)

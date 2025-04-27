@@ -23,23 +23,24 @@ namespace Scenes.Stacy.scripts
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.gameObject.CompareTag("NPC")) _weaponStuckIn = collision.gameObject;
-            // Invoke(nameof(ForcePushVictim), 1f);
+            if (collision.gameObject.CompareTag("NPC"))
+                _weaponStuckIn = collision.gameObject;
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            if (other.gameObject.CompareTag("NPC")) _weaponStuckIn = null;
+            if (other.gameObject.CompareTag("NPC"))
+                _weaponStuckIn = null;
         }
 
         private void ForcePushVictim()
         {
             if (_weaponStuckIn)
             {
+                var xForce = 400 * (playerSpriteRenderer.flipX ? 1 : -1);
                 // unlock z axis rotation
                 _weaponStuckIn.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
-                var xForce = 200 * (playerSpriteRenderer.flipX ? 1 : -1);
-                _weaponStuckIn.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector3(xForce, 0, 400));
+                _weaponStuckIn.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector3(xForce, 0, 1000));
                 _weaponStuckIn = null;
             }
         }
