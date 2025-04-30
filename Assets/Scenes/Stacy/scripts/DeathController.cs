@@ -26,7 +26,7 @@ namespace Scenes.Stacy.scripts
             if (distanceFromPlayer <= 2)
             {
                 gameObject.layer = LayerMask.NameToLayer("NPC");
-                gameObject.tag = "NPC";
+                // gameObject.tag = "NPC";
                 _isHoldingBody = true;
             }
         }
@@ -37,7 +37,7 @@ namespace Scenes.Stacy.scripts
 
             _isHoldingBody = false;
             gameObject.layer = LayerMask.NameToLayer("Ground");
-            gameObject.tag = "Ground";
+            // gameObject.tag = "Ground";
         }
 
         private void OnTriggerExit2D(Collider2D other)
@@ -46,7 +46,7 @@ namespace Scenes.Stacy.scripts
             {
                 _isDead = true;
                 gameObject.layer = LayerMask.NameToLayer("Ground");
-                gameObject.tag = "Ground";
+                // gameObject.tag = "Ground";
                 gameObject.GetComponent<Collider2D>().sharedMaterial = bodyMaterial;
                 gameObject.GetComponent<Rigidbody2D>().mass *= 2;
             }

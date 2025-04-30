@@ -45,6 +45,7 @@ namespace Character_Creator.scripts
         {
             if (Input.GetKeyDown(KeyCode.Space)) FastForwardDialog();
             if (Input.GetKeyUp(KeyCode.Space)) NormalSpeedDialog();
+
             AdvanceDialogOnClick();
         }
 
@@ -419,28 +420,28 @@ namespace Character_Creator.scripts
             }
         }
 
+        // TODO: Controller support
         private void AdvanceDialogOnClick()
         {
-            // TODO: Controller support
-            if (Input.GetKeyDown(KeyCode.N))
+            if (!Input.GetKeyDown(KeyCode.N))
+                return;
+
+            narratorText.text = "";
+
+            Notify(GameEvents.LineNarrationEnd, new
             {
-                narratorText.text = "";
+                _currentDialogue.actorName,
+                _currentDialogue.playerOptions
+            });
 
-                Notify(GameEvents.LineNarrationEnd, new
-                {
-                    _currentDialogue.actorName,
-                    _currentDialogue.playerOptions
-                });
-
-                if (_currentDialogue.nextDialogueLine)
-                {
-                    UpdateDialogState(_currentDialogue.nextDialogueLine);
-                    ReadCurrentLine();
-                    return;
-                }
-
-                PostDialogAdvanceActions();
+            if (_currentDialogue.nextDialogueLine)
+            {
+                UpdateDialogState(_currentDialogue.nextDialogueLine);
+                ReadCurrentLine();
+                return;
             }
+
+            PostDialogAdvanceActions();
         }
     }
 }

@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Dialog.Scripts
 {
@@ -53,7 +52,7 @@ namespace Dialog.Scripts
     [Serializable]
     public class EmotionalReactionLine
     {
-        [FormerlySerializedAs("reaction")] public Reaction reaction;
+        public Reaction reaction;
         public NarrationDialogLine line;
     }
 
@@ -136,7 +135,9 @@ namespace Dialog.Scripts
         None,
         TalkedWithOldMan,
         ZekeAtBridge,
-        ZekeIsDead
+        ZekeIsDead,
+        OldManIsDead,
+        TreasureFound
     }
 
     [Serializable]

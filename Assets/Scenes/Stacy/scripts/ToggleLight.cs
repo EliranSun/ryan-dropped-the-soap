@@ -1,24 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D;
 
-[RequireComponent(typeof(Light2DBase))]
-public class ToggleLight : MonoBehaviour
+namespace Scenes.Stacy.scripts
 {
-    [SerializeField] private KeyCode toggleKey = KeyCode.F;
-    private Light2DBase _light;
-
-    void Start()
+    [RequireComponent(typeof(Light2DBase))]
+    public class ToggleLight : MonoBehaviour
     {
-        _light = GetComponent<Light2DBase>();
-    }
+        [SerializeField] private KeyCode toggleKey = KeyCode.F;
+        [SerializeField] private Light2DBase light;
+        private bool _isDisabled;
 
-    void Update()
-    {
-        if (Input.GetKeyDown(toggleKey))
+        private void Update()
         {
-            _light.enabled = !_light.enabled;
+            if (_isDisabled) return;
+
+            if (Input.GetKeyDown(toggleKey)) light.enabled = !light.enabled;
+        }
+
+        public void DisableLightToggle()
+        {
+            _isDisabled = true;
+            light.enabled = false;
         }
     }
 }

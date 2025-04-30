@@ -162,4 +162,8 @@
     RopeDetached,
     RopeInHand,
     RopeInBag,
+
+    TreasureFound,
+
+    GlobalLightToggle
 }

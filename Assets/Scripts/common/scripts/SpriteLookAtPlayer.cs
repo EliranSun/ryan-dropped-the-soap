@@ -1,17 +1,20 @@
 using UnityEngine;
 
-public class SpriteLookAtPlayer : MonoBehaviour
+namespace common.scripts
 {
-    [SerializeField] Transform playerTransform;
-    private SpriteRenderer _spriteRenderer;
-
-    void Start()
+    public class SpriteLookAtPlayer : MonoBehaviour
     {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-    }
+        [SerializeField] private Transform playerTransform;
+        private SpriteRenderer _spriteRenderer;
 
-    void Update()
-    {
-        _spriteRenderer.flipX = transform.position.x < playerTransform.position.x;
+        private void Start()
+        {
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+        }
+
+        private void Update()
+        {
+            _spriteRenderer.flipX = transform.position.x < playerTransform.position.x;
+        }
     }
 }

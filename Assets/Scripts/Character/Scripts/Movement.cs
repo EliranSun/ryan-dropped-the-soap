@@ -47,25 +47,24 @@ namespace Character.Scripts
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.gameObject.CompareTag("Ground"))
-            {
-                print("Touched ground");
+            if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("NPC"))
                 _isOnGround = true;
-            }
         }
 
         private void OnCollisionExit2D(Collision2D collision)
         {
-            if (collision.gameObject.CompareTag("Ground"))
-            {
-                print("Left ground");
+            if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("NPC"))
                 _isOnGround = false;
-            }
         }
 
         private void RigidBodyMovement()
         {
             var horizontal = Input.GetAxis("Horizontal");
+
+            if (_isOnGround && (Input.GetKeyDown(KeyCode.W) ||
+                                Input.GetKeyDown(KeyCode.UpArrow) ||
+                                Input.GetButtonDown("Jump")))
+                _rigidbody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
 
             if (horizontal != 0)
             {
@@ -74,18 +73,19 @@ namespace Character.Scripts
 
                 _rigidbody2D.velocity = new Vector2(xVelocity, _rigidbody2D.velocity.y);
                 if (_flipEnabled) _spriteRenderer.flipX = horizontal > 0;
+                if (_isMoving)
+                    return;
+
                 _isMoving = true;
+                if (addWobblyMovement) StartCoroutine(WobblyMovement());
             }
-            else
+            else if (_isMoving)
             {
                 _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
                 _isMoving = false;
+                transform.rotation = Quaternion.identity;
+                StopAllCoroutines();
             }
-
-            if (!_isOnGround) return;
-
-            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
-                _rigidbody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
 
         private void CharacterControllerMovement()
