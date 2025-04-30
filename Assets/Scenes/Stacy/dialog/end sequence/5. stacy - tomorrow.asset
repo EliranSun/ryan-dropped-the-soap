@@ -10,24 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
-  m_Name: stacy - is that ok
+  m_Name: 5. stacy - tomorrow
   m_EditorClassIdentifier: 
   playerName: 
   waitBeforeLine: 0
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
   voicedLines:
-  - text: Not now.
-    clip: {fileID: 8300000, guid: 608909d4b0a936a4c9526de0169679c6, type: 3}
+  - text: Tomorrow we'll find it. I know we will.
+    clip: {fileID: 8300000, guid: a792a3b8bc4764c4eb7caf105acd1cf7, type: 3}
     gender: 0
   playerOptions: []
   playerReactions: []
-  nextDialogueLine: {fileID: 0}
+  nextDialogueLine: {fileID: 11400000, guid: a14c231d20f23c44783ccbb853d393ec, type: 2}
   randomizedDialogLines: []
   objectReferringDialogLines: []
   wait: 0.5
-  actorName: 0
+  actorName: 5
   actionBeforeLine: 0
   actionAfterLine: 0
   actorReaction: 0
   angerLevel: 0
+  toggleLineCondition: {fileID: 0}
+  lineCondition:
+    condition: 0
+    isMet: 0
