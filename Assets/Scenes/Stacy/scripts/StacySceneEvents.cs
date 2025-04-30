@@ -21,12 +21,15 @@ namespace Scenes.Stacy.scripts
         [SerializeField] private Light2D sceneLight;
         [SerializeField] private NarrationDialogLine knifeRevealDialogLine;
         [SerializeField] private NarrationDialogLine treasureFoundDialogLine;
+        [SerializeField] private NarrationDialogLine walkInCabinDialogLine;
         private int _bodyCount;
 
         private SpriteRenderer _spriteRenderer;
+        private bool _treasureFound;
 
         private void Start()
         {
+            if (treasureFoundDialogLine.lineCondition.isMet) _treasureFound = true;
             inWorldRope.GetComponent<SimpleInteraction>().isEnabled = false;
 
             if (stacy)
@@ -75,6 +78,8 @@ namespace Scenes.Stacy.scripts
 
             if (eventData.Name == GameEvents.TreasureFound)
             {
+                _treasureFound = true;
+
                 sceneLight.intensity = 0.02f;
                 flashlight.GetComponent<ToggleLight>().DisableLightToggle();
 
@@ -85,6 +90,14 @@ namespace Scenes.Stacy.scripts
 
             if (eventData.Name == GameEvents.GlobalLightToggle)
                 sceneLight.intensity = Mathf.Approximately(sceneLight.intensity, 0.02f) ? 0.8f : 0.02f;
+
+            if (eventData.Name == GameEvents.NpcDeath)
+            {
+                var isOldManDead = eventData.Data as string == oldMan.gameObject.name;
+                print("Is old man dead? " + isOldManDead + "; is treasure found? " + _treasureFound);
+                if (isOldManDead && _treasureFound)
+                    walkInCabinDialogLine.lineCondition.isMet = true;
+            }
         }
 
         private void TriggerKnifeRevealDialog()

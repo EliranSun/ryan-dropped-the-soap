@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Scenes.Stacy.scripts
 {
-    public class DeathController : MonoBehaviour
+    public class DeathController : ObserverSubject
     {
         [SerializeField] private Transform playerTransform;
         [SerializeField] private PhysicsMaterial2D bodyMaterial;
@@ -49,6 +49,8 @@ namespace Scenes.Stacy.scripts
                 // gameObject.tag = "Ground";
                 gameObject.GetComponent<Collider2D>().sharedMaterial = bodyMaterial;
                 gameObject.GetComponent<Rigidbody2D>().mass *= 2;
+
+                Notify(GameEvents.NpcDeath, gameObject.name);
             }
         }
     }
