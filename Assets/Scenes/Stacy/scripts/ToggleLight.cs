@@ -7,20 +7,20 @@ namespace Scenes.Stacy.scripts
     public class ToggleLight : MonoBehaviour
     {
         [SerializeField] private KeyCode toggleKey = KeyCode.F;
-        [SerializeField] private Light2DBase light;
+        [SerializeField] private Light2DBase lightSource;
         private bool _isDisabled;
 
         private void Update()
         {
             if (_isDisabled) return;
 
-            if (Input.GetKeyDown(toggleKey)) light.enabled = !light.enabled;
+            if (Input.GetKeyDown(toggleKey)) lightSource.enabled = !lightSource.enabled;
         }
 
         public void DisableLightToggle()
         {
             _isDisabled = true;
-            light.enabled = false;
+            lightSource.enabled = false;
         }
     }
 }

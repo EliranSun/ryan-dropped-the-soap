@@ -358,10 +358,10 @@ namespace Character_Creator.scripts
             }
         }
 
-        public void TriggerLine(NarrationDialogLine line)
+        private void TriggerLine(NarrationDialogLine line)
         {
-            if (_audioSource.isPlaying)
-                return;
+            // if (_audioSource.isPlaying)
+            //     return;
 
             UpdateDialogState(line);
 

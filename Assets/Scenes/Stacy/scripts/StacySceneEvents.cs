@@ -17,11 +17,15 @@ namespace Scenes.Stacy.scripts
         [SerializeField] private GameObject flashlight;
         [SerializeField] private GameObject oldMan;
         [SerializeField] private GameObject cabin;
+        [SerializeField] private GameObject stacyMonologue;
+        [SerializeField] private GameObject moon;
         [SerializeField] private int timeToWake = 5;
-        [SerializeField] private Light2D sceneLight;
+        [SerializeField] private GameObject sceneLight;
         [SerializeField] private NarrationDialogLine knifeRevealDialogLine;
         [SerializeField] private NarrationDialogLine treasureFoundDialogLine;
         [SerializeField] private NarrationDialogLine walkInCabinDialogLine;
+        [SerializeField] private Material litMaterial;
+        [SerializeField] private Material unlitMaterial;
         private int _bodyCount;
 
         private SpriteRenderer _spriteRenderer;
@@ -31,6 +35,8 @@ namespace Scenes.Stacy.scripts
         {
             if (treasureFoundDialogLine.lineCondition.isMet) _treasureFound = true;
             inWorldRope.GetComponent<SimpleInteraction>().isEnabled = false;
+
+            stacyMonologue.SetActive(false);
 
             if (stacy)
             {
@@ -80,8 +86,10 @@ namespace Scenes.Stacy.scripts
             {
                 _treasureFound = true;
 
-                sceneLight.intensity = 0.02f;
+                sceneLight.GetComponent<Light2D>().intensity = 0.02f;
                 flashlight.GetComponent<ToggleLight>().DisableLightToggle();
+
+                stacyMonologue.SetActive(true);
 
                 oldMan.transform.position = cabin.transform.position;
 
@@ -89,7 +97,12 @@ namespace Scenes.Stacy.scripts
             }
 
             if (eventData.Name == GameEvents.GlobalLightToggle)
-                sceneLight.intensity = Mathf.Approximately(sceneLight.intensity, 0.02f) ? 0.8f : 0.02f;
+            {
+                var isDark = Mathf.Approximately(sceneLight.GetComponent<Light2D>().intensity, 0.02f);
+                sceneLight.GetComponent<Light2D>().intensity = isDark ? 0.8f : 0.02f;
+                moon.SetActive(isDark);
+                stacy.GetComponent<SpriteRenderer>().material = isDark ? unlitMaterial : litMaterial;
+            }
 
             if (eventData.Name == GameEvents.NpcDeath)
             {
