@@ -182,15 +182,18 @@ namespace Character_Creator.scripts
 
             if (_currentDialogue.toggleLineCondition)
                 _currentDialogue.toggleLineCondition.lineCondition.isMet = true;
+
+            PostDialogAdvanceActions();
         }
 
         private void PostDialogAdvanceActions()
         {
-            if (_currentDialogue.overlayImageSprite && overlayImage)
-            {
-                overlayImage.color = Color.clear;
-                overlayImage.sprite = null;
-            }
+            // TODO: Add a specific action for removing overlay images
+            // if (_currentDialogue.overlayImageSprite && overlayImage)
+            // {
+            //     overlayImage.color = Color.clear;
+            //     overlayImage.sprite = null;
+            // }
 
             if (_currentDialogue.playerOptions.Length > 0 && NoPlayerInputsExist())
                 // GeneratePlayerInputs(_currentDialogue);
@@ -251,7 +254,7 @@ namespace Character_Creator.scripts
             switch (action)
             {
                 case GameEvents.NextScene:
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                    Invoke(nameof(LoadNextScene), 4f);
                     break;
 
                 case GameEvents.None:
@@ -265,6 +268,11 @@ namespace Character_Creator.scripts
                     Notify(action);
                     break;
             }
+        }
+
+        private void LoadNextScene()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
 
         public void OnPlayerChoiceButtonClick(NarrationDialogLine nextLine)
@@ -399,14 +407,13 @@ namespace Character_Creator.scripts
             {
                 elapsedTime += Time.deltaTime;
                 var alpha = Mathf.Lerp(startAlpha, endAlpha, elapsedTime / transitionDuration);
-                overlayImage.color = new Color(255, 255, 255, alpha);
+                overlayImage.color = new Color(1f, 1f, 1f, alpha);
                 yield return null;
             }
 
-            // // Ensure we end at exactly the target value
-            // shadeSpriteRenderer.color = new Color(0, 0, 0, endAlpha);
-            // containerSpriteRenderer.sortingOrder = fadeIn ? 3 : 7;
-            //
+            // Ensure the final alpha is set exactly
+            overlayImage.color = new Color(1f, 1f, 1f, endAlpha);
+
             yield return new WaitForSeconds(1);
         }
 

@@ -40,6 +40,15 @@ namespace Scenes.Stacy.scripts
 
                 if (dialogLine == null) return;
 
+                if (dialogLine.actorName == ActorName.None)
+                {
+                    leftSideImage.sprite = null;
+                    rightSideImage.sprite = null;
+                    leftSideContainer.SetActive(false);
+                    rightSideContainer.SetActive(false);
+                    return;
+                }
+
                 if (dialogLine.actorName == ActorName.Stacy)
                 {
                     var reaction = stacyReactions.First(stacy => stacy.reaction == dialogLine.actorReaction);
