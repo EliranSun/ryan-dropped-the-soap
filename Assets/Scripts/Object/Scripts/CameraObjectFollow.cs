@@ -13,15 +13,22 @@ namespace Object.Scripts
         [SerializeField] private bool lockY;
         [SerializeField] private int centerOnObjectDelay;
         [SerializeField] private int transitionDuration = 5;
+        [SerializeField] private bool catchUpMode = false;
+        [SerializeField] private float catchUpSpeed = 5f;
         private bool _centerOnObject;
         private float _initialZ;
         private bool _isActive;
         private Camera _mainCamera;
+        // For SmoothDamp
+        private Vector3 _velocity = Vector3.zero;
+        private Vector3 _lastTargetPosition;
+        private bool _isCatchingUp = false;
 
         private void Start()
         {
             _mainCamera = GetComponent<Camera>();
             _initialZ = transform.position.z;
+            _lastTargetPosition = target ? target.position : Vector3.zero;
 
             if (centerOnObjectDelay > 0) Invoke(nameof(CenterOnObject), centerOnObjectDelay);
         }
@@ -29,6 +36,33 @@ namespace Object.Scripts
         private void Update()
         {
             if (!_isActive || !target) return;
+
+            if (catchUpMode)
+            {
+                Vector3 targetPos = target.position;
+                targetPos.y += yOffset;
+                if (lockZ) targetPos.z = _initialZ;
+                if (lockY) targetPos.y = yOffset;
+
+                // Check if target is moving
+                bool isMoving = (target.position - _lastTargetPosition).sqrMagnitude > 0.001f;
+
+                if (isMoving)
+                {
+                    // Camera follows with lag
+                    transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref _velocity, 1f / catchUpSpeed);
+                    _isCatchingUp = true;
+                }
+                else if (_isCatchingUp)
+                {
+                    // When target stops, recenter smoothly
+                    _isCatchingUp = false;
+                    StopAllCoroutines();
+                    StartCoroutine(SmoothCameraTransition(targetPos));
+                }
+                _lastTargetPosition = target.position;
+                return;
+            }
 
             var newPosition = target.position;
             newPosition.y += yOffset;
@@ -45,6 +79,7 @@ namespace Object.Scripts
         private void OnEnable()
         {
             _isActive = true;
+            _lastTargetPosition = target ? target.position : Vector3.zero;
         }
 
         private void OnDisable()
