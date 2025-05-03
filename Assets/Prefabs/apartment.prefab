@@ -302,9 +302,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7075201022561310556}
   - component: {fileID: 5199260141000934715}
-  - component: {fileID: 4947440500551974034}
   - component: {fileID: 6759641169285516235}
-  - component: {fileID: 5963654976746126652}
   m_Layer: 0
   m_Name: "\U0001F6AA apartment door"
   m_TagString: Untagged
@@ -384,25 +382,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4947440500551974034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5886537008606517864}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a92b55e90f5afb64c84613c6074a20c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  observers:
-    m_PersistentCalls:
-      m_Calls: []
-  objectType: 6
-  interactionType: 0
-  _disableOnClick: 0
-  isEnabled: 1
 --- !u!61 &6759641169285516235
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -449,33 +428,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.3, y: 7.3}
   m_EdgeRadius: 0
---- !u!114 &5963654976746126652
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5886537008606517864}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44d81f1156582314b968cc910e083de5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  observers:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: common.scripts.LevelEvents, CommonScriptsAssembly
-        m_MethodName: OnNotify
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &6049926249126208074
 GameObject:
   m_ObjectHideFlags: 0
@@ -725,7 +677,7 @@ MonoBehaviour:
   observers:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4947440500551974034}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: common.scripts.SimpleInteraction, CommonScriptsAssembly
         m_MethodName: OnNotify
         m_Mode: 0
@@ -737,7 +689,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 5963654976746126652}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: common.scripts.DoorInteraction, CommonScriptsAssembly
         m_MethodName: OnNotify
         m_Mode: 0

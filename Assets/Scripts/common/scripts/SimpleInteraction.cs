@@ -1,6 +1,7 @@
 using System;
 using Dialog.Scripts;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace common.scripts
 {
@@ -9,7 +10,8 @@ namespace common.scripts
     {
         ShowHide,
         ClearThoughts,
-        Speak
+        Speak,
+        None
     }
 
 
@@ -18,9 +20,12 @@ namespace common.scripts
     {
         [SerializeField] private InteractableObjectType objectType;
         [SerializeField] private InteractionType interactionType;
-        [SerializeField] private bool _disableOnClick = false;
-        private SpriteRenderer _spriteRenderer;
+
+        [FormerlySerializedAs("_disableOnClick")] [SerializeField]
+        private bool disableGameObjectOnClick;
+
         [SerializeField] public bool isEnabled = true;
+        private SpriteRenderer _spriteRenderer;
 
         private void Start()
         {
@@ -38,11 +43,13 @@ namespace common.scripts
         private void OnMouseUp()
         {
             if (!isEnabled) return;
-            
+
             if (interactionType == InteractionType.ClearThoughts) Notify(GameEvents.ClearThoughts);
             if (interactionType == InteractionType.Speak) Notify(GameEvents.Speak);
 
-            if (_disableOnClick) gameObject.SetActive(false);
+            if (disableGameObjectOnClick)
+                // gameObject.SetActive(false);
+                _spriteRenderer.enabled = !_spriteRenderer.enabled;
         }
 
         public void OnNotify(GameEventData gameEventData)

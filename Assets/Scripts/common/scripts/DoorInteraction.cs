@@ -1,4 +1,3 @@
-using Dialog.Scripts;
 using UnityEngine;
 
 namespace common.scripts
@@ -40,11 +39,12 @@ namespace common.scripts
 
         public void OnNotify(GameEventData gameEventData)
         {
-            if (gameEventData.Name != GameEvents.ObjectClicked)
-                return;
-
-            if ((InteractableObjectType)gameEventData.Data == InteractableObjectType.ApartmentDoorKnob)
-                _isDoorOpen = !_isDoorOpen;
+            if (gameEventData.Name == GameEvents.ClickOnItem)
+            {
+                var itemName = (string)gameEventData.Data;
+                if (itemName.ToLower().Contains("door"))
+                    _isDoorOpen = !_isDoorOpen;
+            }
         }
     }
 }

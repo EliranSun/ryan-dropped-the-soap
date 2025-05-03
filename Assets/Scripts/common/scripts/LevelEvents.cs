@@ -22,8 +22,8 @@ namespace common.scripts
         [SerializeField] private Camera mainCamera;
         [SerializeField] private Light2D globalLight;
         [SerializeField] private float transitionDuration = 2f;
-        [SerializeField] private TransitionalElement transitionOutElement;
-        [SerializeField] private TransitionalElement transitionInElement;
+        [SerializeField] private GameObject[] transitionOutElements;
+        [SerializeField] private GameObject[] transitionInElements;
         [SerializeField] private KillingDependents killingDependents;
 
         private void Start()
@@ -47,12 +47,15 @@ namespace common.scripts
                     break;
 
                 case GameEvents.ExitApartment:
-                    mainCamera.gameObject.transform.parent = player.transform;
-                    StartCoroutine(SmoothCameraTransition(new Vector3(player.position.x, player.position.y, -10)));
-                    mainCamera.gameObject.GetComponent<Zoom>().endSize = 8.5f;
+                    // mainCamera.gameObject.transform.parent = player.transform;
+                    // StartCoroutine(SmoothCameraTransition(new Vector3(player.position.x, player.position.y, -10)));
+                    // mainCamera.gameObject.GetComponent<Zoom>().endSize = 8.5f;
 
-                    StartCoroutine(FadeSprite(transitionInElement, false));
-                    StartCoroutine(FadeSprite(transitionOutElement, true));
+                    foreach (var transitionInElement in transitionInElements)
+                        StartCoroutine(FadeSprite(transitionInElement, false));
+
+                    foreach (var transitionOutElement in transitionOutElements)
+                        StartCoroutine(FadeSprite(transitionOutElement, true));
                     break;
 
                 case GameEvents.EnterApartment:
@@ -60,8 +63,11 @@ namespace common.scripts
                     StartCoroutine(SmoothCameraTransition(new Vector3(0, 3, -10)));
                     mainCamera.gameObject.GetComponent<Zoom>().endSize = 9.28f;
 
-                    StartCoroutine(FadeSprite(transitionOutElement, false));
-                    StartCoroutine(FadeSprite(transitionInElement, true));
+                    foreach (var transitionOutElement in transitionOutElements)
+                        StartCoroutine(FadeSprite(transitionOutElement, false));
+
+                    foreach (var transitionInElement in transitionInElements)
+                        StartCoroutine(FadeSprite(transitionInElement, true));
                     break;
 
                 case GameEvents.KillDependents:
@@ -113,10 +119,10 @@ namespace common.scripts
             Notify(GameEvents.BoatStart);
         }
 
-        private IEnumerator FadeSprite(TransitionalElement transitionalElement, bool fadeIn)
+        private IEnumerator FadeSprite(GameObject transitionalElement, bool fadeIn)
         {
-            var shadeSpriteRenderer = transitionalElement.elementShade.GetComponent<SpriteRenderer>();
-            var containerSpriteRenderer = transitionalElement.elementContainer.GetComponent<SpriteRenderer>();
+            // var shadeSpriteRenderer = transitionalElement.elementShade.GetComponent<SpriteRenderer>();
+            var containerSpriteRenderer = transitionalElement.GetComponent<SpriteRenderer>();
 
             if (fadeIn) containerSpriteRenderer.GetComponent<Collider2D>().enabled = false;
 
@@ -128,17 +134,18 @@ namespace common.scripts
             {
                 elapsedTime += Time.deltaTime;
                 var alpha = Mathf.Lerp(startAlpha, endAlpha, elapsedTime / transitionDuration);
-                shadeSpriteRenderer.color = new Color(0, 0, 0, alpha);
+                containerSpriteRenderer.color = new Color(1, 1, 1, alpha);
                 yield return null;
             }
 
             // Ensure we end at exactly the target value
-            shadeSpriteRenderer.color = new Color(0, 0, 0, endAlpha);
+            containerSpriteRenderer.color = new Color(1, 1, 1, endAlpha);
             containerSpriteRenderer.sortingOrder = fadeIn ? 3 : 7;
 
             yield return new WaitForSeconds(1);
 
-            if (!fadeIn) containerSpriteRenderer.GetComponent<Collider2D>().enabled = true;
+            if (!fadeIn) 
+                containerSpriteRenderer.GetComponent<Collider2D>().enabled = true;
         }
 
         private IEnumerator SmoothCameraTransition(Vector3 targetPosition)
