@@ -59,15 +59,15 @@ namespace common.scripts
                     break;
 
                 case GameEvents.EnterApartment:
-                    mainCamera.gameObject.transform.parent = null;
-                    StartCoroutine(SmoothCameraTransition(new Vector3(0, 3, -10)));
-                    mainCamera.gameObject.GetComponent<Zoom>().endSize = 9.28f;
-
-                    foreach (var transitionOutElement in transitionOutElements)
-                        StartCoroutine(FadeSprite(transitionOutElement, false));
+                    // mainCamera.gameObject.transform.parent = null;
+                    // StartCoroutine(SmoothCameraTransition(new Vector3(0, 3, -10)));
+                    // mainCamera.gameObject.GetComponent<Zoom>().endSize = 9.28f;
 
                     foreach (var transitionInElement in transitionInElements)
                         StartCoroutine(FadeSprite(transitionInElement, true));
+
+                    foreach (var transitionOutElement in transitionOutElements)
+                        StartCoroutine(FadeSprite(transitionOutElement, false));
                     break;
 
                 case GameEvents.KillDependents:
@@ -121,31 +121,31 @@ namespace common.scripts
 
         private IEnumerator FadeSprite(GameObject transitionalElement, bool fadeIn)
         {
-            // var shadeSpriteRenderer = transitionalElement.elementShade.GetComponent<SpriteRenderer>();
-            var containerSpriteRenderer = transitionalElement.GetComponent<SpriteRenderer>();
+            var spriteRenderer = transitionalElement.GetComponent<SpriteRenderer>();
+            // if (fadeIn) spriteRenderer.GetComponent<Collider2D>().enabled = false;
 
-            if (fadeIn) containerSpriteRenderer.GetComponent<Collider2D>().enabled = false;
-
-            var startAlpha = fadeIn ? 0f : 1f;
-            var endAlpha = fadeIn ? 1f : 0f;
-            var elapsedTime = 0f;
+            Color startColor = spriteRenderer.color;
+            Color blackTransparent = new Color(0, 0, 0, 0);
+            Color blackHalf = new Color(0, 0, 0, 0.5f);
+            Color endColor = fadeIn ? blackHalf : blackTransparent;
+            float elapsedTime = 0f;
 
             while (elapsedTime < transitionDuration)
             {
                 elapsedTime += Time.deltaTime;
-                var alpha = Mathf.Lerp(startAlpha, endAlpha, elapsedTime / transitionDuration);
-                containerSpriteRenderer.color = new Color(1, 1, 1, alpha);
+                float t = Mathf.Clamp01(elapsedTime / transitionDuration);
+                spriteRenderer.color = Color.Lerp(startColor, endColor, t);
                 yield return null;
             }
 
             // Ensure we end at exactly the target value
-            containerSpriteRenderer.color = new Color(1, 1, 1, endAlpha);
-            containerSpriteRenderer.sortingOrder = fadeIn ? 3 : 7;
+            spriteRenderer.color = endColor;
+            // spriteRenderer.sortingOrder = fadeIn ? 7 : 3;
 
             yield return new WaitForSeconds(1);
 
-            if (!fadeIn) 
-                containerSpriteRenderer.GetComponent<Collider2D>().enabled = true;
+            // if (!fadeIn)
+            //     spriteRenderer.GetComponent<Collider2D>().enabled = true;
         }
 
         private IEnumerator SmoothCameraTransition(Vector3 targetPosition)
