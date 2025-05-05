@@ -7,7 +7,7 @@ namespace common.scripts
     {
         private bool _isDoorOpen;
         private bool _isPlayerInsideApartment = true;
-        private bool _isPlayerNear;
+        private bool _isPlayerOnDoor;
 
         // Update is called once per frame
         private void Update()
@@ -15,14 +15,14 @@ namespace common.scripts
             if (!Input.GetKeyDown(KeyCode.X))
                 return;
 
-            if (_isDoorOpen && _isPlayerNear)
+            if (_isPlayerOnDoor && _isDoorOpen)
                 Notify(_isPlayerInsideApartment ? GameEvents.ExitApartment : GameEvents.EnterApartment);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.CompareTag("Player"))
-                _isPlayerNear = true;
+                _isPlayerOnDoor = true;
         }
 
         private void OnTriggerExit2D(Collider2D other)
@@ -33,7 +33,7 @@ namespace common.scripts
                     // Notify(GameEvents.EnterHallway);
                     _isPlayerInsideApartment = !_isPlayerInsideApartment;
 
-                _isPlayerNear = false;
+                _isPlayerOnDoor = false;
             }
         }
 

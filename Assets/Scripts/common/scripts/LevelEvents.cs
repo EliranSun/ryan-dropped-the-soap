@@ -21,10 +21,20 @@ namespace common.scripts
         [SerializeField] private Transform nearShipPosition;
         [SerializeField] private Camera mainCamera;
         [SerializeField] private Light2D globalLight;
+
         [SerializeField] private float transitionDuration = 2f;
-        [SerializeField] private GameObject[] transitionOutElements;
-        [SerializeField] private GameObject[] transitionInElements;
-        [SerializeField] private KillingDependents killingDependents;
+
+        // [SerializeField] private GameObject[] transitionOutElements;
+        // [SerializeField] private GameObject[] transitionInElements;
+
+        [Header("Apartment")] [SerializeField] private KillingDependents killingDependents;
+
+        [SerializeField] private GameObject hallwayShade;
+        [SerializeField] private GameObject apartmentsShade;
+        [SerializeField] private GameObject[] hallways;
+        [SerializeField] private GameObject apartmentsBoundaries;
+        [SerializeField] private GameObject hallwayBoundaries;
+
 
         private void Start()
         {
@@ -47,27 +57,51 @@ namespace common.scripts
                     break;
 
                 case GameEvents.ExitApartment:
+                    print("EXIT APARTMENT");
                     // mainCamera.gameObject.transform.parent = player.transform;
                     // StartCoroutine(SmoothCameraTransition(new Vector3(player.position.x, player.position.y, -10)));
                     // mainCamera.gameObject.GetComponent<Zoom>().endSize = 8.5f;
 
-                    foreach (var transitionInElement in transitionInElements)
-                        StartCoroutine(FadeSprite(transitionInElement, false));
+                    // foreach (var transitionInElement in transitionInElements)
+                    //     // StartCoroutine(FadeSprite(transitionInElement, false));
+                    //     transitionInElement.SetActive(false);
+                    //
+                    // foreach (var transitionOutElement in transitionOutElements)
+                    //     // StartCoroutine(FadeSprite(transitionOutElement, true));
+                    //     transitionOutElement.SetActive(true);
+                    apartmentsShade.SetActive(true);
+                    hallwayShade.SetActive(false);
+                    foreach (var hallway in hallways)
+                        hallway.GetComponent<SpriteRenderer>().sortingOrder = 2;
 
-                    foreach (var transitionOutElement in transitionOutElements)
-                        StartCoroutine(FadeSprite(transitionOutElement, true));
+                    foreach (var boundary in apartmentsBoundaries.GetComponents<Collider2D>())
+                        boundary.enabled = false;
+                    foreach (var boundary in hallwayBoundaries.GetComponents<Collider2D>())
+                        boundary.enabled = true;
                     break;
 
                 case GameEvents.EnterApartment:
+                    print("ENTER APARTMENT");
                     // mainCamera.gameObject.transform.parent = null;
                     // StartCoroutine(SmoothCameraTransition(new Vector3(0, 3, -10)));
                     // mainCamera.gameObject.GetComponent<Zoom>().endSize = 9.28f;
 
-                    foreach (var transitionInElement in transitionInElements)
-                        StartCoroutine(FadeSprite(transitionInElement, true));
+                    // foreach (var transitionInElement in transitionInElements)
+                    //     // StartCoroutine(FadeSprite(transitionInElement, true));
+                    //     transitionInElement.SetActive(true);
+                    //
+                    // foreach (var transitionOutElement in transitionOutElements)
+                    //     // StartCoroutine(FadeSprite(transitionOutElement, false));
+                    //     transitionOutElement.SetActive(false);
+                    apartmentsShade.SetActive(false);
+                    hallwayShade.SetActive(true);
 
-                    foreach (var transitionOutElement in transitionOutElements)
-                        StartCoroutine(FadeSprite(transitionOutElement, false));
+                    foreach (var hallway in hallways)
+                        hallway.GetComponent<SpriteRenderer>().sortingOrder = 0;
+                    foreach (var boundary in apartmentsBoundaries.GetComponents<Collider2D>())
+                        boundary.enabled = true;
+                    foreach (var boundary in hallwayBoundaries.GetComponents<Collider2D>())
+                        boundary.enabled = false;
                     break;
 
                 case GameEvents.KillDependents:
@@ -124,16 +158,16 @@ namespace common.scripts
             var spriteRenderer = transitionalElement.GetComponent<SpriteRenderer>();
             // if (fadeIn) spriteRenderer.GetComponent<Collider2D>().enabled = false;
 
-            Color startColor = spriteRenderer.color;
-            Color blackTransparent = new Color(0, 0, 0, 0);
-            Color blackHalf = new Color(0, 0, 0, 0.5f);
-            Color endColor = fadeIn ? blackHalf : blackTransparent;
-            float elapsedTime = 0f;
+            var startColor = spriteRenderer.color;
+            var blackTransparent = new Color(0, 0, 0, 0);
+            var blackHalf = new Color(0, 0, 0, 0.5f);
+            var endColor = fadeIn ? blackHalf : blackTransparent;
+            var elapsedTime = 0f;
 
             while (elapsedTime < transitionDuration)
             {
                 elapsedTime += Time.deltaTime;
-                float t = Mathf.Clamp01(elapsedTime / transitionDuration);
+                var t = Mathf.Clamp01(elapsedTime / transitionDuration);
                 spriteRenderer.color = Color.Lerp(startColor, endColor, t);
                 yield return null;
             }
