@@ -13,16 +13,18 @@ namespace Object.Scripts
         [SerializeField] private bool lockY;
         [SerializeField] private int centerOnObjectDelay;
         [SerializeField] private int transitionDuration = 5;
-        [SerializeField] private bool catchUpMode = false;
+        [SerializeField] private bool catchUpMode;
         [SerializeField] private float catchUpSpeed = 5f;
         private bool _centerOnObject;
         private float _initialZ;
         private bool _isActive;
+        private bool _isCatchingUp;
+        private Vector3 _lastTargetPosition;
+
         private Camera _mainCamera;
+
         // For SmoothDamp
         private Vector3 _velocity = Vector3.zero;
-        private Vector3 _lastTargetPosition;
-        private bool _isCatchingUp = false;
 
         private void Start()
         {
@@ -39,18 +41,19 @@ namespace Object.Scripts
 
             if (catchUpMode)
             {
-                Vector3 targetPos = target.position;
+                var targetPos = target.position;
                 targetPos.y += yOffset;
                 if (lockZ) targetPos.z = _initialZ;
                 if (lockY) targetPos.y = yOffset;
 
                 // Check if target is moving
-                bool isMoving = (target.position - _lastTargetPosition).sqrMagnitude > 0.001f;
+                var isMoving = (target.position - _lastTargetPosition).sqrMagnitude > 0.001f;
 
                 if (isMoving)
                 {
                     // Camera follows with lag
-                    transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref _velocity, 1f / catchUpSpeed);
+                    transform.position =
+                        Vector3.SmoothDamp(transform.position, targetPos, ref _velocity, 1f / catchUpSpeed);
                     _isCatchingUp = true;
                 }
                 else if (_isCatchingUp)
@@ -60,6 +63,7 @@ namespace Object.Scripts
                     StopAllCoroutines();
                     StartCoroutine(SmoothCameraTransition(targetPos));
                 }
+
                 _lastTargetPosition = target.position;
                 return;
             }
@@ -116,6 +120,8 @@ namespace Object.Scripts
 
                 elapsedTime += Time.deltaTime;
                 var t = elapsedTime / transitionDuration;
+                // var t = elapsedTime / 1;
+                // var t = 2f;
                 _mainCamera.gameObject.transform.position = Vector3.Lerp(startPosition, currentTargetPosition, t);
                 yield return null;
             }

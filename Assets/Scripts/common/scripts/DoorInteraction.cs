@@ -5,6 +5,9 @@ namespace common.scripts
     [RequireComponent(typeof(Collider2D))]
     public class DoorInteraction : ObserverSubject
     {
+        [SerializeField] private TransitionController transitionImage;
+        [SerializeField] private Transform playerTransform;
+        [SerializeField] private GameObject hallwayDoor;
         private bool _isDoorOpen;
         private bool _isPlayerInsideApartment = true;
         private bool _isPlayerOnDoor;
@@ -16,7 +19,17 @@ namespace common.scripts
                 return;
 
             if (_isPlayerOnDoor && _isDoorOpen)
+            {
                 Notify(_isPlayerInsideApartment ? GameEvents.ExitApartment : GameEvents.EnterApartment);
+                var x = _isPlayerInsideApartment ? hallwayDoor.transform.position.x : gameObject.transform.position.x;
+                playerTransform.position = new Vector3(x, playerTransform.position.y, playerTransform.position.z);
+                if (_isPlayerInsideApartment)
+                    transitionImage.FadeOutIn();
+                else
+                    transitionImage.FadeInOut();
+
+                _isPlayerInsideApartment = !_isPlayerInsideApartment;
+            }
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -28,13 +41,10 @@ namespace common.scripts
         private void OnTriggerExit2D(Collider2D other)
         {
             if (other.CompareTag("Player"))
-            {
-                if (_isDoorOpen)
-                    // Notify(GameEvents.EnterHallway);
-                    _isPlayerInsideApartment = !_isPlayerInsideApartment;
-
+                // if (_isDoorOpen)
+                //     // Notify(GameEvents.EnterHallway);
+                //     _isPlayerInsideApartment = !_isPlayerInsideApartment;
                 _isPlayerOnDoor = false;
-            }
         }
 
         public void OnNotify(GameEventData gameEventData)
@@ -43,7 +53,10 @@ namespace common.scripts
             {
                 var itemName = (string)gameEventData.Data;
                 if (itemName.ToLower().Contains("door"))
+                {
                     _isDoorOpen = !_isDoorOpen;
+                    hallwayDoor.SetActive(!_isDoorOpen);
+                }
             }
         }
     }

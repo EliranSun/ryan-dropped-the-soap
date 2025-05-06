@@ -72,7 +72,7 @@ namespace common.scripts
                     apartmentsShade.SetActive(true);
                     hallwayShade.SetActive(false);
                     foreach (var hallway in hallways)
-                        hallway.GetComponent<SpriteRenderer>().sortingOrder = 2;
+                        hallway.GetComponent<SpriteRenderer>().sortingOrder = 5;
 
                     foreach (var boundary in apartmentsBoundaries.GetComponents<Collider2D>())
                         boundary.enabled = false;
