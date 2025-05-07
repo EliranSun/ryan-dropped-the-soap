@@ -30,14 +30,14 @@ namespace common.scripts
         {
             StopAllCoroutines();
             StartCoroutine(Fade(true));
-            Invoke(nameof(FadeOut), 1);
+            Invoke(nameof(FadeOut), 0.3f);
         }
 
         public void FadeOutIn()
         {
             StopAllCoroutines();
             StartCoroutine(Fade(false));
-            Invoke(nameof(FadeIn), 1);
+            Invoke(nameof(FadeIn), 0.3f);
         }
 
         private IEnumerator Fade(bool fadeIn)
@@ -47,20 +47,20 @@ namespace common.scripts
             var startAlpha = fadeIn ? 0f : 1f;
             var endAlpha = fadeIn ? 1f : 0f;
             var elapsedTime = 0f;
-            var transitionDuration = 1f;
+            var transitionDuration = 0.2f;
 
             while (elapsedTime < transitionDuration)
             {
                 elapsedTime += Time.deltaTime;
                 var alpha = Mathf.Lerp(startAlpha, endAlpha, elapsedTime / transitionDuration);
-                _overlayImage.color = new Color(1f, 1f, 1f, alpha);
+                _overlayImage.color = new Color(0f, 0f, 0f, alpha);
                 yield return null;
             }
 
             // Ensure the final alpha is set exactly
-            _overlayImage.color = new Color(1f, 1f, 1f, endAlpha);
+            _overlayImage.color = new Color(0f, 0f, 0f, endAlpha);
 
-            yield return new WaitForSeconds(1);
+            yield return new WaitForEndOfFrame();
         }
     }
 }

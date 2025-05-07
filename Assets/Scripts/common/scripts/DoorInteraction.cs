@@ -20,15 +20,8 @@ namespace common.scripts
 
             if (_isPlayerOnDoor && _isDoorOpen)
             {
-                Notify(_isPlayerInsideApartment ? GameEvents.ExitApartment : GameEvents.EnterApartment);
-                var x = _isPlayerInsideApartment ? hallwayDoor.transform.position.x : gameObject.transform.position.x;
-                playerTransform.position = new Vector3(x, playerTransform.position.y, playerTransform.position.z);
-                if (_isPlayerInsideApartment)
-                    transitionImage.FadeOutIn();
-                else
-                    transitionImage.FadeInOut();
-
-                _isPlayerInsideApartment = !_isPlayerInsideApartment;
+                transitionImage.FadeInOut();
+                Invoke(nameof(MovePlayerToLinkedDoor), 0.3f);
             }
         }
 
@@ -45,6 +38,14 @@ namespace common.scripts
                 //     // Notify(GameEvents.EnterHallway);
                 //     _isPlayerInsideApartment = !_isPlayerInsideApartment;
                 _isPlayerOnDoor = false;
+        }
+
+        private void MovePlayerToLinkedDoor()
+        {
+            Notify(_isPlayerInsideApartment ? GameEvents.ExitApartment : GameEvents.EnterApartment);
+            var x = _isPlayerInsideApartment ? hallwayDoor.transform.position.x : gameObject.transform.position.x;
+            playerTransform.position = new Vector3(x, playerTransform.position.y, playerTransform.position.z);
+            _isPlayerInsideApartment = !_isPlayerInsideApartment;
         }
 
         public void OnNotify(GameEventData gameEventData)
