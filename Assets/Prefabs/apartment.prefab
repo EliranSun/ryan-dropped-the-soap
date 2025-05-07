@@ -188,6 +188,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8680712829747692429}
+  - {fileID: 8575063570603304623}
   - {fileID: 7075201022561310556}
   - {fileID: 849381560076993343}
   m_Father: {fileID: 0}
@@ -284,7 +285,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 38, y: 12.1}
+    oldSize: {x: 30.9, y: 12.1}
     newSize: {x: 44.714287, y: 17}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -303,6 +304,8 @@ GameObject:
   - component: {fileID: 7075201022561310556}
   - component: {fileID: 5199260141000934715}
   - component: {fileID: 6759641169285516235}
+  - component: {fileID: 3840855370722444565}
+  - component: {fileID: 4479934211928299109}
   m_Layer: 0
   m_Name: "\U0001F6AA apartment door"
   m_TagString: Untagged
@@ -319,7 +322,7 @@ Transform:
   m_GameObject: {fileID: 5886537008606517864}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -14.76, y: 0.6999998, z: 0}
+  m_LocalPosition: {x: -11.21, y: 0.6999998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -428,6 +431,68 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.3, y: 7.3}
   m_EdgeRadius: 0
+--- !u!114 &3840855370722444565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5886537008606517864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44d81f1156582314b968cc910e083de5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: common.scripts.LevelEvents, CommonScriptsAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  doorNumberTextMeshPro: {fileID: 0}
+  transitionImage: {fileID: 0}
+  playerTransform: {fileID: 0}
+  hallwayDoor: {fileID: 2228552086491992496}
+--- !u!114 &4479934211928299109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5886537008606517864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a92b55e90f5afb64c84613c6074a20c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3840855370722444565}
+        m_TargetAssemblyTypeName: common.scripts.DoorInteraction, CommonScriptsAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  objectType: 0
+  interactionType: 3
+  disableGameObjectOnClick: 1
+  isEnabled: 1
 --- !u!1 &6049926249126208074
 GameObject:
   m_ObjectHideFlags: 0
@@ -734,7 +799,7 @@ Transform:
   m_GameObject: {fileID: 8523905763775894102}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.39, y: 0, z: 0}
+  m_LocalPosition: {x: 19.07, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -880,3 +945,78 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &8704452597474964522
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5657632891430558896}
+    m_Modifications:
+    - target: {fileID: 1138517242611978885, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -20.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 1138517242611978885, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 1138517242611978885, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1138517242611978885, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1138517242611978885, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1138517242611978885, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1138517242611978885, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1138517242611978885, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1138517242611978885, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1138517242611978885, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7359169675709064602, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
+      propertyPath: m_Name
+      value: "\U0001F6AA apartment 404 hallway door"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8058356978489650868, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
+      propertyPath: m_Size.x
+      value: 2.3211498
+      objectReference: {fileID: 0}
+    - target: {fileID: 8058356978489650868, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.0105752945
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
+--- !u!1 &2228552086491992496 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7359169675709064602, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
+  m_PrefabInstance: {fileID: 8704452597474964522}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8575063570603304623 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1138517242611978885, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
+  m_PrefabInstance: {fileID: 8704452597474964522}
+  m_PrefabAsset: {fileID: 0}

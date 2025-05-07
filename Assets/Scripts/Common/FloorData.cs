@@ -10,5 +10,10 @@ namespace Common
         [SerializeField] public int playerFloorNumber = 20;
         [SerializeField] public int elevatorFloorNumber = 20;
         public bool playerExitElevator;
+        public int charlotteInitFloorNumber = 42;
+        public int playerApartmentNumber = 423;
+        public readonly int playerApartmentFloor = 42;
+        public readonly int stacyFloorNumber = 38;
+        public readonly int zekeFloorNumber = 50;
     }
 }

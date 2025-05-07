@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 namespace common.scripts
@@ -5,6 +6,7 @@ namespace common.scripts
     [RequireComponent(typeof(Collider2D))]
     public class DoorController : ObserverSubject
     {
+        [SerializeField] private TextMeshPro doorNumberTextMeshPro;
         [SerializeField] private TransitionController transitionImage;
         [SerializeField] private Transform playerTransform;
         [SerializeField] private GameObject hallwayDoor;
@@ -62,8 +64,9 @@ namespace common.scripts
             }
         }
 
-        public void SetDoorNumber()
+        public void SetDoorNumber(string doorNumber)
         {
+            doorNumberTextMeshPro.text = doorNumber;
         }
     }
 }

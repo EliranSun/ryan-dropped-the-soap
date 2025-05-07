@@ -11,10 +11,11 @@ namespace Elevator.scripts
         [SerializeField] private Transform playerTransform;
         [SerializeField] private TextMeshPro[] floorNumbers;
         [SerializeField] private ElevatorDoorsController[] elevators;
-
+        [SerializeField] private GameObject charlotte;
+        [SerializeField] private GameObject zeke;
+        [SerializeField] private GameObject stacy;
         [SerializeField] private Common.FloorData floorData;
-        // [FormerlySerializedAs("doors")] 
-        //
+
         // [SerializeField] private SpriteRenderer outsideElevatorSprite;
         // [SerializeField] private GameObject[] outsideElevatorObjects;
         // [SerializeField] private GameObject[] insideElevatorObjects;
@@ -28,10 +29,13 @@ namespace Elevator.scripts
 
         private void Start()
         {
-            // floorSprite.SetActive(false);
-            // floorDoors.SetActive(false);
-            // FadeElevatorBasedOnPlayerProximity();
-            if (floorData.playerExitElevator)
+            var isStrangerApartment = floorData.playerFloorNumber != floorData.playerApartmentFloor;
+
+            charlotte.gameObject.SetActive(floorData.playerFloorNumber == floorData.charlotteInitFloorNumber);
+            zeke.gameObject.SetActive(floorData.playerFloorNumber == floorData.zekeFloorNumber);
+            stacy.gameObject.SetActive(floorData.playerFloorNumber == floorData.stacyFloorNumber);
+
+            if (floorData.playerExitElevator || isStrangerApartment)
             {
                 var newPosition = playerTransform.position;
                 newPosition.x = elevators[1].transform.position.x;
@@ -45,7 +49,9 @@ namespace Elevator.scripts
 
             for (var i = 0; i < elevators.Length; i++)
                 elevators[i].SetElevatorCurrentFloorNumber(floorData.elevatorFloorNumber);
-            // elevators[i].SetCurrentFloorNumber(floorData.playerFloorNumber - i);
+
+            for (var i = 0; i < hallwayDoors.Length; i++)
+                hallwayDoors[i].SetDoorNumber($"{floorData.playerFloorNumber}{i}");
         }
 
         private void Update()
