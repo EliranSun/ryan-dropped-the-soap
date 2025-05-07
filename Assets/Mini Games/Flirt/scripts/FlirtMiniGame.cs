@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Dialog;
 using Dialog.Scripts;
 using TMPro;
 using UnityEngine;

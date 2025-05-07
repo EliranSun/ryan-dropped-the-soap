@@ -1,6 +1,6 @@
 using System;
 using Character_Creator.scripts;
-using Dialog.Scripts;
+using Dialog;
 using Mini_Games.Organize_Desk.scripts;
 using TMPro;
 using UnityEngine;

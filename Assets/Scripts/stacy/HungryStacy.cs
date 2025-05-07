@@ -1,16 +1,15 @@
 using System.Collections;
-using System.Collections.Generic;
-using Dialog.Scripts;
+using Dialog;
 using UnityEngine;
 
 public class HungryStacy : ObserverSubject
 {
-    [SerializeField] GameObject imageContainer;
-    [SerializeField] NarrationDialogLine[] lines;
+    [SerializeField] private GameObject imageContainer;
+    [SerializeField] private NarrationDialogLine[] lines;
     [SerializeField] private float hungerInterval = 20f;
     [SerializeField] private GameEvents fedEvent = GameEvents.None;
-    private bool _isFed;
     private int _dialogIndex;
+    private bool _isFed;
 
     private void Start()
     {

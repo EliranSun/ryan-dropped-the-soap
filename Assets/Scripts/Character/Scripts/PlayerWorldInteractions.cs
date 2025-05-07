@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Dialog.Scripts;
+using Dialog;
 using UnityEngine;
 
 namespace Character.Scripts
@@ -34,16 +34,16 @@ namespace Character.Scripts
         {
             _camera = Camera.main;
         }
-        
+
         private void Update()
         {
-            if (!Input.GetMouseButtonDown(0) || !_camera) 
+            if (!Input.GetMouseButtonDown(0) || !_camera)
                 return; // Detect left mouse button click
-            
+
             var ray = _camera.ScreenPointToRay(Input.mousePosition);
             var layerMask = LayerMask.GetMask("PlayerChoiceDialogBubbles");
 
-            if (!Physics.Raycast(ray, out var hit, Mathf.Infinity, layerMask)) 
+            if (!Physics.Raycast(ray, out var hit, Mathf.Infinity, layerMask))
                 return;
 
             print(hit.collider.gameObject);
@@ -58,7 +58,7 @@ namespace Character.Scripts
 
                     var triggeredEvents = _triggeredEvents
                         .FindAll(triggerName => triggerName == trigger.name);
-                    
+
                     if (triggeredEvents.Count > 0)
                         return triggeredEvents.Count == trigger.duplicateCount &&
                                trigger.triggerObject.CompareTag(other.tag);

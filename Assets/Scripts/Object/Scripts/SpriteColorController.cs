@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+using Dialog;
 using UnityEngine;
-using Dialog.Scripts;
+
 public class SpriteColorController : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer spriteRenderer;

@@ -3,11 +3,12 @@ using UnityEngine;
 namespace common.scripts
 {
     [RequireComponent(typeof(Collider2D))]
-    public class DoorInteraction : ObserverSubject
+    public class DoorController : ObserverSubject
     {
         [SerializeField] private TransitionController transitionImage;
         [SerializeField] private Transform playerTransform;
         [SerializeField] private GameObject hallwayDoor;
+        private int _doorNumber;
         private bool _isDoorOpen;
         private bool _isPlayerInsideApartment = true;
         private bool _isPlayerOnDoor;
@@ -59,6 +60,10 @@ namespace common.scripts
                     hallwayDoor.SetActive(!_isDoorOpen);
                 }
             }
+        }
+
+        public void SetDoorNumber()
+        {
         }
     }
 }

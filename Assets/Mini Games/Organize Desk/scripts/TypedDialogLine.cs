@@ -1,5 +1,5 @@
 using System;
-using Dialog.Scripts;
+using Dialog;
 
 namespace Mini_Games.Organize_Desk.scripts
 {

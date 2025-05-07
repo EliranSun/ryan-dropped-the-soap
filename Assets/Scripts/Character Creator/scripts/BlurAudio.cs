@@ -1,16 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
+using Dialog;
 using UnityEngine;
-using Dialog.Scripts;
 
 [RequireComponent(typeof(AudioSource))]
 public class BlurAudio : MonoBehaviour
 {
-    private AudioSource _audioSource;
-    private AudioLowPassFilter _lowPassFilter;
-
     [SerializeField] private float _defaultCutoffFrequency = 22000f; // Default cutoff (no filter)
     [SerializeField] private float _minCutoffFrequency = 400f; // Heavy muffling
+    private AudioSource _audioSource;
+    private AudioLowPassFilter _lowPassFilter;
 
     private void Start()
     {
@@ -26,7 +23,7 @@ public class BlurAudio : MonoBehaviour
     }
 
     /// <summary>
-    /// Applies a muffled effect to the audio based on the blur level
+    ///     Applies a muffled effect to the audio based on the blur level
     /// </summary>
     /// <param name="blurLevel">0 = no blur, 1 = maximum blur</param>
     public void ApplyBlurEffect(float blurLevel)
@@ -43,21 +40,18 @@ public class BlurAudio : MonoBehaviour
         {
             // Calculate cutoff frequency based on blur level
             // As blur increases, cutoff frequency decreases (more muffled)
-            float cutoffFrequency = Mathf.Lerp(_defaultCutoffFrequency, _minCutoffFrequency, blurLevel);
+            var cutoffFrequency = Mathf.Lerp(_defaultCutoffFrequency, _minCutoffFrequency, blurLevel);
             _lowPassFilter.cutoffFrequency = cutoffFrequency;
         }
     }
 
     /// <summary>
-    /// Apply blur effect from a NarrationDialogLine
+    ///     Apply blur effect from a NarrationDialogLine
     /// </summary>
     /// <param name="dialogLine">The dialog line containing blur level</param>
     public void ApplyBlurFromDialogLine(NarrationDialogLine dialogLine)
     {
-        if (dialogLine != null)
-        {
-            ApplyBlurEffect(dialogLine.angerLevel);
-        }
+        if (dialogLine != null) ApplyBlurEffect(dialogLine.angerLevel);
     }
 
     public void OnNotify(GameEventData gameEventData)

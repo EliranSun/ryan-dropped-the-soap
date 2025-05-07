@@ -1,4 +1,4 @@
-using Dialog.Scripts;
+using Dialog;
 using UnityEngine;
 
 namespace Scenes.Stacy.scripts
@@ -23,10 +23,7 @@ namespace Scenes.Stacy.scripts
 
         private void NotifyEvent()
         {
-            if (toggleTriggerLine)
-            {
-                toggleTriggerLine.lineCondition.isMet = true;
-            }
+            if (toggleTriggerLine) toggleTriggerLine.lineCondition.isMet = true;
 
             Notify(gameEventName);
         }

@@ -1,6 +1,6 @@
 using Character.Scripts;
 using common.scripts;
-using Dialog.Scripts;
+using Dialog;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 

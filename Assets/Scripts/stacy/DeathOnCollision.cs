@@ -1,11 +1,11 @@
-using Dialog.Scripts;
+using Dialog;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class DeathOnCollision : ObserverSubject
 {
-    [SerializeField] bool isEnabled = true;
-    [SerializeField] NarrationDialogLine[] lines;
+    [SerializeField] private bool isEnabled = true;
+    [SerializeField] private NarrationDialogLine[] lines;
     private int _linesIndex;
 
     private void OnCollisionEnter2D(Collision2D collision)

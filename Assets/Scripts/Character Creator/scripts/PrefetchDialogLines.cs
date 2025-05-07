@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Dialog;
 using Dialog.Scripts;
 using museum_dialog.scripts;
 using UnityEngine;

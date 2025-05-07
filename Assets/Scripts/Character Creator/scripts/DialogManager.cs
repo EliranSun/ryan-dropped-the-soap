@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Linq;
 using common.scripts;
+using Dialog;
 using Dialog.Scripts;
 using museum_dialog.scripts;
 using TMPro;

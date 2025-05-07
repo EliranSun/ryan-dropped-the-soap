@@ -1,7 +1,8 @@
 using System;
+using Dialog.Scripts;
 using UnityEngine;
 
-namespace Dialog.Scripts
+namespace Dialog
 {
     public enum ChoiceType
     {

@@ -1,18 +1,17 @@
-using System.Collections;
 using System.Collections.Generic;
-using Dialog.Scripts;
+using Dialog;
 using UnityEngine;
 
 public class BackpackController : ObserverSubject
 {
-    [SerializeField] private HashSet<GameObject> itemsInBackpack = new HashSet<GameObject>();
     [SerializeField] private GameObject[] items;
     [SerializeField] private NarrationDialogLine itemDoesNotFitDialogLine;
     [SerializeField] private KeyCode toggleKey = KeyCode.F;
 
     private bool isItemActive;
+    private readonly HashSet<GameObject> itemsInBackpack = new();
 
-    void Update()
+    private void Update()
     {
         // on right mouse click, remove the flashlight from the backpack
         if (Input.GetMouseButtonDown(1) && isItemActive)
@@ -28,14 +27,12 @@ public class BackpackController : ObserverSubject
         {
             var flashLight = GetActiveItemByName("flashlight");
             if (!flashLight.activeSelf)
-            {
                 // notify only for non flashlight items
                 Notify(GameEvents.TriggerSpecificDialogLine, itemDoesNotFitDialogLine);
-            }
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Collectible Item"))
         {
@@ -56,9 +53,8 @@ public class BackpackController : ObserverSubject
     public GameObject GetItemInBackpack(string itemName)
     {
         foreach (var item in itemsInBackpack)
-        {
-            if (item.name == itemName) return item;
-        }
+            if (item.name == itemName)
+                return item;
 
         return null;
     }
@@ -66,9 +62,8 @@ public class BackpackController : ObserverSubject
     public GameObject GetActiveItemByName(string itemName)
     {
         foreach (var item in items)
-        {
-            if (item.name == itemName) return item;
-        }
+            if (item.name == itemName)
+                return item;
 
         return null;
     }
@@ -97,10 +92,7 @@ public class BackpackController : ObserverSubject
 
                 foreach (var backpackItem in itemsInBackpack)
                 {
-                    if (backpackItem.name != itemName)
-                    {
-                        backpackItem.GetComponent<SpriteRenderer>().enabled = true;
-                    }
+                    if (backpackItem.name != itemName) backpackItem.GetComponent<SpriteRenderer>().enabled = true;
 
                     if (item.name != "")
                     {

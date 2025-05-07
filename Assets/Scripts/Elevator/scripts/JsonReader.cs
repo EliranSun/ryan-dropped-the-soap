@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace common.scripts
+namespace Elevator.scripts
 {
     [Serializable]
     public class FloorData

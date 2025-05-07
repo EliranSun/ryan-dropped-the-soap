@@ -19,6 +19,7 @@ namespace Elevator.scripts
         [SerializeField] private float debounce = 3f;
         [SerializeField] private float lightLoop = 3f;
         [SerializeField] private float apartmentsPanelMoveSpeed = 1;
+        [SerializeField] private Common.FloorData floorData;
 
         private int _currentFloor;
         private Vector3 _initLightPosition;
@@ -34,17 +35,19 @@ namespace Elevator.scripts
 
         private void Start()
         {
-            _initLightPosition = shaftLight.transform.position;
+            // _initLightPosition = shaftLight.transform.position;
+            //
+            // var panelChildren = panel.transform.childCount;
+            // for (var i = 0; i < panelChildren; i++)
+            // {
+            //     var child = panel.transform.GetChild(i);
+            //     var button = child.GetComponent<Button>();
+            //     button.onClick.AddListener(() => UpdateFloor(button));
+            // }
+            //
+            // StartCoroutine(ControlShaftLight());
 
-            var panelChildren = panel.transform.childCount;
-            for (var i = 0; i < panelChildren; i++)
-            {
-                var child = panel.transform.GetChild(i);
-                var button = child.GetComponent<Button>();
-                button.onClick.AddListener(() => UpdateFloor(button));
-            }
-
-            StartCoroutine(ControlShaftLight());
+            if (floorText) floorText.text = floorData.currentFloorNumber.ToString();
         }
 
         private void Update()
@@ -63,8 +66,8 @@ namespace Elevator.scripts
             if (_timeSinceLastClick - _timeDiff < debounce)
                 return;
 
-            var floor = int.Parse(floorText.text);
-            GoToFloor(floor);
+            // var floor = int.Parse(floorText.text);
+            // GoToFloor(floor);
         }
 
         public void OnNotify(GameEventData eventData)

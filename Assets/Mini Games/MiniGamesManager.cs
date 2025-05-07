@@ -1,5 +1,5 @@
 using System;
-using Dialog.Scripts;
+using Dialog;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
