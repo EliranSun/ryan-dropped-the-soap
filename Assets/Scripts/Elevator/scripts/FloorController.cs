@@ -8,10 +8,11 @@ namespace Elevator.scripts
     public class FloorController : MonoBehaviour
     {
         [SerializeField] private DoorController[] hallwayDoors;
-
+        [SerializeField] private Transform playerTransform;
         [SerializeField] private TextMeshPro[] floorNumbers;
         [SerializeField] private ElevatorDoorsController[] elevators;
 
+        [SerializeField] private Common.FloorData floorData;
         // [FormerlySerializedAs("doors")] 
         //
         // [SerializeField] private SpriteRenderer outsideElevatorSprite;
@@ -22,23 +23,29 @@ namespace Elevator.scripts
         // [SerializeField] private Transform elevatorTransform;
         // [SerializeField] private SpriteRenderer elevatorSprite;
         // private bool _isElevatorReachedFloor;
-        private readonly int _floorNumber = 20;
-        private int _elevatorCurrentFloorNumber = 15;
+        // private readonly int _floorNumber = 20;
+        // private int _elevatorCurrentFloorNumber = 15;
 
         private void Start()
         {
             // floorSprite.SetActive(false);
             // floorDoors.SetActive(false);
             // FadeElevatorBasedOnPlayerProximity();
+            if (floorData.playerExitElevator)
+            {
+                var newPosition = playerTransform.position;
+                newPosition.x = elevators[1].transform.position.x;
+                playerTransform.position = newPosition;
+                floorData.playerExitElevator = false;
+            }
 
-            for (var i = 0; i < floorNumbers.Length; i++)
-                floorNumbers[i].text = (_floorNumber - i).ToString();
+            floorNumbers[0].text = (floorData.playerFloorNumber - 1).ToString();
+            floorNumbers[1].text = floorData.playerFloorNumber.ToString();
+            floorNumbers[2].text = (floorData.playerFloorNumber + 1).ToString();
 
             for (var i = 0; i < elevators.Length; i++)
-            {
-                elevators[i].SetElevatorCurrentFloorNumber(_elevatorCurrentFloorNumber);
-                elevators[i].SetCurrentFloorNumber(_floorNumber - i);
-            }
+                elevators[i].SetElevatorCurrentFloorNumber(floorData.elevatorFloorNumber);
+            // elevators[i].SetCurrentFloorNumber(floorData.playerFloorNumber - i);
         }
 
         private void Update()
@@ -119,17 +126,17 @@ namespace Elevator.scripts
         {
             while (true)
             {
-                if (_elevatorCurrentFloorNumber == requestedElevator.currentFloorNumber)
+                if (floorData.playerFloorNumber == floorData.elevatorFloorNumber)
                 {
                     requestedElevator.OpenDoors();
                     break;
                 }
 
-                if (_elevatorCurrentFloorNumber < requestedElevator.currentFloorNumber) _elevatorCurrentFloorNumber++;
-                if (_elevatorCurrentFloorNumber > requestedElevator.currentFloorNumber) _elevatorCurrentFloorNumber--;
+                if (floorData.elevatorFloorNumber < floorData.playerFloorNumber) floorData.elevatorFloorNumber++;
+                if (floorData.elevatorFloorNumber > floorData.playerFloorNumber) floorData.elevatorFloorNumber--;
 
                 foreach (var elevator in elevators)
-                    elevator.SetElevatorCurrentFloorNumber(_elevatorCurrentFloorNumber);
+                    elevator.SetElevatorCurrentFloorNumber(floorData.elevatorFloorNumber);
 
                 yield return new WaitForSeconds(1f);
             }

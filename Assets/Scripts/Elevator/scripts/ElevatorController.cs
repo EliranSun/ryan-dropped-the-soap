@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Elevator.scripts
 {
@@ -33,7 +34,7 @@ namespace Elevator.scripts
         private void Awake()
         {
             // making sure to notify this before any other event
-            Notify(GameEvents.FloorChange, floorData.currentFloorNumber);
+            Notify(GameEvents.FloorChange, floorData.elevatorFloorNumber);
         }
 
         private void Start()
@@ -51,17 +52,23 @@ namespace Elevator.scripts
             //
             // StartCoroutine(ControlShaftLight());
 
-            if (floorText) floorText.text = floorData.currentFloorNumber.ToString();
+            if (floorText) floorText.text = floorData.elevatorFloorNumber.ToString();
         }
 
         private void Update()
         {
+            if (Input.GetKeyDown(KeyCode.X) && !_isFloorMoving)
+            {
+                floorData.playerExitElevator = true;
+                SceneManager.LoadScene("3. building scene");
+            }
+
             _timeSinceLastClick += Time.deltaTime;
 
             if (_isFloorMoving)
                 return;
 
-            if (floorData.currentFloorNumber == int.Parse(floorText.text))
+            if (floorData.elevatorFloorNumber == int.Parse(floorText.text))
                 return;
 
             if (_timeSinceLastClick == 0)
@@ -105,8 +112,8 @@ namespace Elevator.scripts
         {
             StartCoroutine(Move(floorNumber));
             // StartCoroutine(MoveApartmentsGrid());
-            print("Desired floor - " + floorNumber + "; current floor - " + floorData.currentFloorNumber);
-            shakeableCamera.Shake(Mathf.Abs(floorNumber - floorData.currentFloorNumber));
+            print("Desired floor - " + floorNumber + "; current floor - " + floorData.elevatorFloorNumber);
+            shakeableCamera.Shake(Mathf.Abs(floorNumber - floorData.elevatorFloorNumber));
             shaftLight.SetActive(false);
         }
 
@@ -123,21 +130,27 @@ namespace Elevator.scripts
 
             _isFloorMoving = true;
 
-            while (floorData.currentFloorNumber != floorNumber)
+            while (floorData.elevatorFloorNumber != floorNumber)
             {
                 yield return new WaitForSeconds(1);
 
-                if (floorData.currentFloorNumber < floorNumber)
-                    floorData.currentFloorNumber++;
+                if (floorData.elevatorFloorNumber < floorNumber)
+                {
+                    floorData.elevatorFloorNumber++;
+                    floorData.playerFloorNumber++;
+                }
                 else
-                    floorData.currentFloorNumber--;
+                {
+                    floorData.elevatorFloorNumber--;
+                    floorData.playerFloorNumber--;
+                }
 
-                Notify(GameEvents.FloorChange, floorData.currentFloorNumber);
-                floorText.text = $"{floorData.currentFloorNumber}";
+                Notify(GameEvents.FloorChange, floorData.elevatorFloorNumber);
+                floorText.text = $"{floorData.elevatorFloorNumber}";
                 for (var i = 0; i < apartmentNumbers.Length; i++)
                 {
                     var apt = apartmentNumbers[i];
-                    apt.text = $"{floorData.currentFloorNumber}0{i + 1}";
+                    apt.text = $"{floorData.elevatorFloorNumber}0{i + 1}";
                 }
             }
 

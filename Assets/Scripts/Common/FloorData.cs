@@ -7,6 +7,8 @@ namespace Common
     [CreateAssetMenu(fileName = "Data", menuName = "Floor")]
     public class FloorData : ScriptableObject
     {
-        [SerializeField] public int currentFloorNumber = 20;
+        [SerializeField] public int playerFloorNumber = 20;
+        [SerializeField] public int elevatorFloorNumber = 20;
+        public bool playerExitElevator;
     }
 }

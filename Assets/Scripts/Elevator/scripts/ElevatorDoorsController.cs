@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Elevator.scripts
 {
@@ -17,7 +18,7 @@ namespace Elevator.scripts
         [SerializeField] private float delayBeforeClosing = 2f;
         [SerializeField] private TextMeshPro elevatorCurrentFloorNumberUI;
         [SerializeField] private FloorController floorController;
-        public int currentFloorNumber;
+        [SerializeField] private Common.FloorData floorData;
 
         private float _closeLerpTime;
         private Collider2D _collider2D;
@@ -62,11 +63,11 @@ namespace Elevator.scripts
         {
             if (_doorsAreOpen)
             {
-                print("ENTER ELEVATOR");
+                SceneManager.LoadScene("Scenes/inside elevator");
                 return;
             }
 
-            print("Call elevator to floor " + currentFloorNumber);
+            print("Call elevator to floor " + floorData.playerFloorNumber);
             StartCoroutine(floorController.CallElevator(this));
         }
 
@@ -127,7 +128,7 @@ namespace Elevator.scripts
 
         public void SetCurrentFloorNumber(int floorNumber)
         {
-            currentFloorNumber = floorNumber;
+            floorData.playerFloorNumber = floorNumber;
         }
 
         public void OpenDoors()
