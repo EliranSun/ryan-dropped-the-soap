@@ -1,7 +1,6 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Elevator.scripts
 {
@@ -9,12 +8,16 @@ namespace Elevator.scripts
     {
         [SerializeField] private AudioSource elevatorAudioSource;
         [SerializeField] private AudioClip elevatorMovingSound;
+
         [SerializeField] private AudioClip elevatorReachedFloorSound;
-        [SerializeField] private Transform apartmentsGridTransform;
+
+        // [SerializeField] private Transform apartmentsGridTransform;
         [SerializeField] private ElevatorShake shakeableCamera;
         [SerializeField] private GameObject panel;
         [SerializeField] private TextMeshPro floorText;
+        [SerializeField] private TextMeshPro desiredFloorText;
         [SerializeField] private TextMeshPro[] apartmentNumbers;
+        [SerializeField] private GameObject[] panelNumbers;
         [SerializeField] private GameObject shaftLight;
         [SerializeField] private float debounce = 3f;
         [SerializeField] private float lightLoop = 3f;
@@ -35,6 +38,7 @@ namespace Elevator.scripts
 
         private void Start()
         {
+            Debug.Log("ElevatorController Start method called");
             // _initLightPosition = shaftLight.transform.position;
             //
             // var panelChildren = panel.transform.childCount;
@@ -80,7 +84,7 @@ namespace Elevator.scripts
             }
         }
 
-        private void UpdateFloor(Button button)
+        private void UpdateFloor(int floorNumber)
         {
             if (_isFloorMoving)
                 return;
@@ -88,18 +92,15 @@ namespace Elevator.scripts
             _timeSinceLastClick = 0;
             _timeDiff = Time.deltaTime;
 
-            var buttonName = button.name;
-            var floor = int.Parse(buttonName);
-
-            floorText.text = floorText.text == "00" // init state
-                ? $"{floor}"
-                : $"{floorText.text}{floor}";
+            desiredFloorText.text = desiredFloorText.text == "00" // init state
+                ? $"{floorNumber}"
+                : $"{desiredFloorText.text}{floorNumber}";
         }
 
         private void GoToFloor(int floorNumber)
         {
             StartCoroutine(Move(floorNumber));
-            StartCoroutine(MoveApartmentsGrid());
+            // StartCoroutine(MoveApartmentsGrid());
             shakeableCamera.Shake(Mathf.Abs(floorNumber - _currentFloor));
         }
 
@@ -145,20 +146,20 @@ namespace Elevator.scripts
             Notify(GameEvents.ElevatorReachedFloor);
         }
 
-        private IEnumerator MoveApartmentsGrid()
-        {
-            while (_isFloorMoving)
-            {
-                var time = Time.deltaTime;
-                var pointA = apartmentsGridTransform.localPosition;
-                var pointB = apartmentsGridTransform.localPosition;
-                pointB.y -= Time.deltaTime * apartmentsPanelMoveSpeed;
-
-                apartmentsGridTransform.localPosition = Vector3.Lerp(pointA, pointB, Time.deltaTime);
-
-                yield return new WaitForEndOfFrame();
-            }
-        }
+        // private IEnumerator MoveApartmentsGrid()
+        // {
+        //     while (_isFloorMoving)
+        //     {
+        //         var time = Time.deltaTime;
+        //         var pointA = apartmentsGridTransform.localPosition;
+        //         var pointB = apartmentsGridTransform.localPosition;
+        //         pointB.y -= Time.deltaTime * apartmentsPanelMoveSpeed;
+        //
+        //         apartmentsGridTransform.localPosition = Vector3.Lerp(pointA, pointB, Time.deltaTime);
+        //
+        //         yield return new WaitForEndOfFrame();
+        //     }
+        // }
 
         private IEnumerator ControlShaftLight()
         {
@@ -168,6 +169,13 @@ namespace Elevator.scripts
                 shaftLight.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
                 shaftLight.transform.position = _initLightPosition;
             }
+        }
+
+        public void OnElevatorButtonClick(string buttonNumberString)
+        {
+            int.TryParse(buttonNumberString, out var buttonNumber);
+
+            UpdateFloor(buttonNumber);
         }
     }
 }
