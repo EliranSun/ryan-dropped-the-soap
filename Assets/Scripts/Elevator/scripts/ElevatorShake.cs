@@ -13,8 +13,12 @@ namespace Elevator.scripts
         {
             if (shakeDuration > 0)
             {
-                Vector2 newPosition = _originalPos + Random.insideUnitSphere * shakeAmount;
-                transform.localPosition = newPosition;
+                Vector2 shakeOffset = Random.insideUnitCircle * shakeAmount;
+                transform.localPosition = new Vector3(
+                    _originalPos.x + shakeOffset.x,
+                    _originalPos.y + shakeOffset.y,
+                    _originalPos.z // preserve original Z
+                );
                 shakeDuration -= Time.deltaTime * decreaseFactor;
             }
             else

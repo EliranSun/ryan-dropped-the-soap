@@ -24,7 +24,7 @@ namespace Elevator.scripts
         [SerializeField] private float apartmentsPanelMoveSpeed = 1;
         [SerializeField] private Common.FloorData floorData;
 
-        private int _currentFloor;
+        private int _desiredFloor;
         private Vector3 _initLightPosition;
         private bool _isFloorMoving;
         private float _timeDiff;
@@ -33,7 +33,7 @@ namespace Elevator.scripts
         private void Awake()
         {
             // making sure to notify this before any other event
-            Notify(GameEvents.FloorChange, _currentFloor);
+            Notify(GameEvents.FloorChange, floorData.currentFloorNumber);
         }
 
         private void Start()
@@ -61,7 +61,7 @@ namespace Elevator.scripts
             if (_isFloorMoving)
                 return;
 
-            if (_currentFloor == int.Parse(floorText.text))
+            if (floorData.currentFloorNumber == int.Parse(floorText.text))
                 return;
 
             if (_timeSinceLastClick == 0)
@@ -92,51 +92,64 @@ namespace Elevator.scripts
             _timeSinceLastClick = 0;
             _timeDiff = Time.deltaTime;
 
+
             desiredFloorText.text = desiredFloorText.text == "00" // init state
                 ? $"{floorNumber}"
                 : $"{desiredFloorText.text}{floorNumber}";
+
+
+            _desiredFloor = int.Parse(desiredFloorText.text);
         }
 
         private void GoToFloor(int floorNumber)
         {
             StartCoroutine(Move(floorNumber));
             // StartCoroutine(MoveApartmentsGrid());
-            shakeableCamera.Shake(Mathf.Abs(floorNumber - _currentFloor));
+            print("Desired floor - " + floorNumber + "; current floor - " + floorData.currentFloorNumber);
+            shakeableCamera.Shake(Mathf.Abs(floorNumber - floorData.currentFloorNumber));
+            shaftLight.SetActive(false);
         }
 
         private IEnumerator Move(int floorNumber)
         {
             Notify(GameEvents.ElevatorMoving);
 
-            elevatorAudioSource.clip = elevatorMovingSound;
-            elevatorAudioSource.loop = true;
-            elevatorAudioSource.Play();
+            if (elevatorAudioSource)
+            {
+                elevatorAudioSource.clip = elevatorMovingSound;
+                elevatorAudioSource.loop = true;
+                elevatorAudioSource.Play();
+            }
 
             _isFloorMoving = true;
 
-            while (_currentFloor != floorNumber)
+            while (floorData.currentFloorNumber != floorNumber)
             {
                 yield return new WaitForSeconds(1);
 
-                if (_currentFloor < floorNumber)
-                    _currentFloor++;
+                if (floorData.currentFloorNumber < floorNumber)
+                    floorData.currentFloorNumber++;
                 else
-                    _currentFloor--;
+                    floorData.currentFloorNumber--;
 
-                Notify(GameEvents.FloorChange, _currentFloor);
-                floorText.text = $"{_currentFloor}";
+                Notify(GameEvents.FloorChange, floorData.currentFloorNumber);
+                floorText.text = $"{floorData.currentFloorNumber}";
                 for (var i = 0; i < apartmentNumbers.Length; i++)
                 {
                     var apt = apartmentNumbers[i];
-                    apt.text = $"{_currentFloor}0{i + 1}";
+                    apt.text = $"{floorData.currentFloorNumber}0{i + 1}";
                 }
             }
 
             _isFloorMoving = false;
+            shaftLight.SetActive(true);
 
-            elevatorAudioSource.clip = elevatorReachedFloorSound;
-            elevatorAudioSource.loop = false;
-            elevatorAudioSource.Play();
+            if (elevatorAudioSource)
+            {
+                elevatorAudioSource.clip = elevatorReachedFloorSound;
+                elevatorAudioSource.loop = false;
+                elevatorAudioSource.Play();
+            }
 
             Invoke(nameof(NotifyElevatorReachedFloor), 2);
         }
@@ -173,6 +186,18 @@ namespace Elevator.scripts
 
         public void OnElevatorButtonClick(string buttonNumberString)
         {
+            if (buttonNumberString == "go")
+            {
+                GoToFloor(_desiredFloor);
+                return;
+            }
+
+            if (buttonNumberString == "reset")
+            {
+                desiredFloorText.text = "00";
+                return;
+            }
+
             int.TryParse(buttonNumberString, out var buttonNumber);
 
             UpdateFloor(buttonNumber);
