@@ -40,7 +40,7 @@ namespace Character.Scripts
             if (isRigidBodyMovement)
                 RigidBodyMovement();
             else
-                CharacterControllerMovement();
+                TransformMovement();
 
             HandleHeadAndHair();
         }
@@ -88,7 +88,7 @@ namespace Character.Scripts
             }
         }
 
-        private void CharacterControllerMovement()
+        private void TransformMovement()
         {
             var horizontal = Input.GetAxis("Horizontal");
             transform.Translate(new Vector3(horizontal, 0, 0) * (speed * Time.deltaTime));
