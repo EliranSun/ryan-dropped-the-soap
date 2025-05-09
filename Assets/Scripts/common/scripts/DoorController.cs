@@ -60,6 +60,9 @@ namespace common.scripts
                 {
                     _isDoorOpen = !_isDoorOpen;
                     hallwayDoor.SetActive(!_isDoorOpen);
+                    Notify(!_isDoorOpen
+                        ? GameEvents.PlayerApartmentDoorClosed
+                        : GameEvents.PlayerApartmentDoorOpened);
                 }
             }
         }

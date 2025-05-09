@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
+using Common;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using Random = UnityEngine.Random;
 
 namespace common.scripts
 {
@@ -27,17 +29,25 @@ namespace common.scripts
         // [SerializeField] private GameObject[] transitionOutElements;
         // [SerializeField] private GameObject[] transitionInElements;
 
-        [Header("Apartment")] [SerializeField] private KillingDependents killingDependents;
+        [SerializeField] private KillingDependents killingDependents;
 
-        [SerializeField] private GameObject hallwayShade;
+        [Header("Apartment")] [SerializeField] private GameObject hallwayShade;
+
         [SerializeField] private GameObject apartmentsShade;
         [SerializeField] private GameObject[] hallways;
         [SerializeField] private GameObject apartmentsBoundaries;
         [SerializeField] private GameObject hallwayBoundaries;
-
+        [SerializeField] private AudioSource sfxAudioSource;
+        [SerializeField] private AudioClip knockingSound;
+        [SerializeField] private FloorData floorData;
+        [SerializeField] private GameObject npcKnockingOnPlayerApartment;
+        [SerializeField] private GameObject playerApartmentDoor;
 
         private void Start()
         {
+            if (!floorData.zekeStoryDone && !floorData.stacyStoryDone)
+                StartCoroutine(Knock());
+
             var zekeSceneEnded = PlayerPrefs.GetString("Zeke Scene End");
             if (zekeSceneEnded == "")
                 return;
@@ -45,6 +55,15 @@ namespace common.scripts
             print("@@@@@@@@@@ Zeke ended");
             MoveToBoat();
             Invoke(nameof(BoatStart), 5f);
+        }
+
+        private IEnumerator Knock()
+        {
+            while (true)
+            {
+                yield return new WaitForSeconds(Random.Range(6f, 8f));
+                sfxAudioSource.PlayOneShot(knockingSound);
+            }
         }
 
         public void OnNotify(GameEventData eventData)
@@ -129,6 +148,16 @@ namespace common.scripts
                     break;
 
                 case GameEvents.Dead:
+                    break;
+
+                case GameEvents.PlayerApartmentDoorOpened:
+                    if (npcKnockingOnPlayerApartment)
+                    {
+                        npcKnockingOnPlayerApartment.transform.position = playerApartmentDoor.transform.position;
+                        npcKnockingOnPlayerApartment = null;
+                        StopAllCoroutines();
+                    }
+
                     break;
             }
         }

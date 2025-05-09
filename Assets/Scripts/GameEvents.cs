@@ -165,5 +165,8 @@
 
     TreasureFound,
 
-    GlobalLightToggle
+    GlobalLightToggle,
+
+    PlayerApartmentDoorClosed,
+    PlayerApartmentDoorOpened
 }

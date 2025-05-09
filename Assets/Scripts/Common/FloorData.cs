@@ -12,6 +12,8 @@ namespace Common
         public bool playerExitElevator;
         public int charlotteInitFloorNumber = 42;
         public int playerApartmentNumber = 423;
+        public bool zekeStoryDone;
+        public bool stacyStoryDone;
         public readonly int playerApartmentFloor = 42;
         public readonly int stacyFloorNumber = 38;
         public readonly int zekeFloorNumber = 50;
