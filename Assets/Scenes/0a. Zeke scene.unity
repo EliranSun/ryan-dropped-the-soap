@@ -1906,6 +1906,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: 2
   speed: 0
+  stopAtX: 0
+  start: 0
 --- !u!212 &458689105
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2530,6 +2532,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 293726409603882291, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 647855953910941618, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -4111,6 +4117,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: 2
   speed: 0
+  stopAtX: 0
+  start: 0
 --- !u!1 &872909248
 GameObject:
   m_ObjectHideFlags: 0
@@ -4589,6 +4597,8 @@ MonoBehaviour:
   lockY: 0
   centerOnObjectDelay: 0
   transitionDuration: 5
+  catchUpMode: 0
+  catchUpSpeed: 5
 --- !u!1 &949187171
 GameObject:
   m_ObjectHideFlags: 0
@@ -5509,22 +5519,6 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 114
       objectReference: {fileID: 0}
-    - target: {fileID: 1830173016011987285, guid: 8bbc861aaaf38418e867160e512aba4d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064613221702911802, guid: 8bbc861aaaf38418e867160e512aba4d, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064613221702911802, guid: 8bbc861aaaf38418e867160e512aba4d, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064613221702911802, guid: 8bbc861aaaf38418e867160e512aba4d, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2064613221702911802, guid: 8bbc861aaaf38418e867160e512aba4d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6
@@ -5564,10 +5558,6 @@ PrefabInstance:
     - target: {fileID: 2064613221702911802, guid: 8bbc861aaaf38418e867160e512aba4d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064613221702911802, guid: 8bbc861aaaf38418e867160e512aba4d, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3865121698738950310, guid: 8bbc861aaaf38418e867160e512aba4d, type: 3}
       propertyPath: m_Color.a
@@ -5692,14 +5682,6 @@ PrefabInstance:
     - target: {fileID: 5295414340872861896, guid: 8bbc861aaaf38418e867160e512aba4d, type: 3}
       propertyPath: m_SortingOrder
       value: 114
-      objectReference: {fileID: 0}
-    - target: {fileID: 5643342562770218732, guid: 8bbc861aaaf38418e867160e512aba4d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5643342562770218732, guid: 8bbc861aaaf38418e867160e512aba4d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 5921064355679165961, guid: 8bbc861aaaf38418e867160e512aba4d, type: 3}
       propertyPath: m_Color.a
@@ -6344,6 +6326,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: 2
   speed: 0
+  stopAtX: 0
+  start: 0
 --- !u!1 &1305133460
 GameObject:
   m_ObjectHideFlags: 0
@@ -6947,6 +6931,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: 2
   speed: 0
+  stopAtX: 0
+  start: 0
 --- !u!212 &1451419421
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8670,6 +8656,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: 2
   speed: 0
+  stopAtX: 0
+  start: 0
 --- !u!1 &1734589534
 GameObject:
   m_ObjectHideFlags: 0
@@ -10535,6 +10523,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: 2
   speed: 0
+  stopAtX: 0
+  start: 0
 --- !u!212 &1996311697
 SpriteRenderer:
   m_ObjectHideFlags: 0
