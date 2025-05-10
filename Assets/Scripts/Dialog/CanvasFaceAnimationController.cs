@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Dialog.Scripts
+namespace Dialog
 {
     public enum ActorName
     {

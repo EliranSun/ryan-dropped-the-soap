@@ -1,4 +1,5 @@
 using System.Collections;
+using Dialog;
 using Dialog.Scripts;
 using UnityEngine;
 

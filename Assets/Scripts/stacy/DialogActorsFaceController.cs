@@ -2,11 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Dialog;
-using Dialog.Scripts;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Scenes.Stacy.scripts
+namespace stacy
 {
     [Serializable]
     public class ActorReactionImage
@@ -25,6 +24,7 @@ namespace Scenes.Stacy.scripts
         [SerializeField] private List<ActorReactionImage> stacyReactions;
         [SerializeField] private List<ActorReactionImage> oldManReactions;
         [SerializeField] private List<ActorReactionImage> zekeReactions;
+        [SerializeField] private List<ActorReactionImage> charlotteReactions;
 
 
         private void Start()
@@ -69,6 +69,13 @@ namespace Scenes.Stacy.scripts
                     var reaction = zekeReactions.First(stacy => stacy.reaction == dialogLine.actorReaction);
                     leftSideImage.sprite = reaction.image;
                     leftSideContainer.SetActive(true);
+                }
+
+                if (dialogLine.actorName == ActorName.Charlotte)
+                {
+                    var reaction = charlotteReactions.First(a => a.reaction == dialogLine.actorReaction);
+                    rightSideImage.sprite = reaction.image;
+                    rightSideContainer.SetActive(true);
                 }
             }
 

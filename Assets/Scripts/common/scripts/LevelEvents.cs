@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Common;
+using Dialog;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using Random = UnityEngine.Random;
@@ -42,6 +43,7 @@ namespace common.scripts
         [SerializeField] private FloorData floorData;
         [SerializeField] private GameObject npcKnockingOnPlayerApartment;
         [SerializeField] private GameObject playerApartmentDoor;
+        [SerializeField] private NarrationDialogLine initLine;
 
         private void Start()
         {
@@ -156,6 +158,7 @@ namespace common.scripts
                         npcKnockingOnPlayerApartment.transform.position = playerApartmentDoor.transform.position;
                         npcKnockingOnPlayerApartment = null;
                         StopAllCoroutines();
+                        if (initLine) Notify(GameEvents.TriggerSpecificDialogLine, initLine);
                     }
 
                     break;
