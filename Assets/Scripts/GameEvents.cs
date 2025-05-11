@@ -168,5 +168,11 @@
     GlobalLightToggle,
 
     PlayerApartmentDoorClosed,
-    PlayerApartmentDoorOpened
+    PlayerApartmentDoorOpened,
+
+    KnockOnPlayerApartment,
+    CeaseKnocking,
+    FreePlayerFromBox,
+    PlayerTookPlantFromCharlotte,
+    CharlotteGavePlayerPlant
 }

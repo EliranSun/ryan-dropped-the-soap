@@ -44,11 +44,17 @@ namespace common.scripts
         [SerializeField] private GameObject npcKnockingOnPlayerApartment;
         [SerializeField] private GameObject playerApartmentDoor;
         [SerializeField] private NarrationDialogLine initLine;
+        [SerializeField] private NarrationDialogLine playerTookPlantWithoutPermission;
+        [SerializeField] private GameObject playerBox;
+        private bool _charlotteGavePlayerPlant;
 
         private void Start()
         {
             if (!floorData.zekeStoryDone && !floorData.stacyStoryDone)
+            {
                 StartCoroutine(Knock());
+                Notify(GameEvents.KnockOnPlayerApartment);
+            }
 
             var zekeSceneEnded = PlayerPrefs.GetString("Zeke Scene End");
             if (zekeSceneEnded == "")
@@ -63,8 +69,8 @@ namespace common.scripts
         {
             while (true)
             {
-                yield return new WaitForSeconds(Random.Range(6f, 8f));
                 sfxAudioSource.PlayOneShot(knockingSound);
+                yield return new WaitForSeconds(Random.Range(6f, 8f));
             }
         }
 
@@ -152,6 +158,14 @@ namespace common.scripts
                 case GameEvents.Dead:
                     break;
 
+                case GameEvents.CeaseKnocking:
+                    StopAllCoroutines();
+                    break;
+
+                case GameEvents.FreePlayerFromBox:
+                    playerBox.SetActive(false);
+                    break;
+
                 case GameEvents.PlayerApartmentDoorOpened:
                     if (npcKnockingOnPlayerApartment)
                     {
@@ -161,6 +175,16 @@ namespace common.scripts
                         if (initLine) Notify(GameEvents.TriggerSpecificDialogLine, initLine);
                     }
 
+                    break;
+
+                case GameEvents.CharlotteGavePlayerPlant:
+                    _charlotteGavePlayerPlant = true;
+                    break;
+
+                case GameEvents.PlayerTookPlantFromCharlotte:
+                    if (!_charlotteGavePlayerPlant)
+                        Notify(GameEvents.TriggerSpecificDialogLine, playerTookPlantWithoutPermission);
+                    
                     break;
             }
         }

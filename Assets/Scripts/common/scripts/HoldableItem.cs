@@ -3,8 +3,9 @@ using UnityEngine;
 namespace common.scripts
 {
     [RequireComponent(typeof(Collider2D), typeof(Rigidbody2D))]
-    public class HoldableItem : MonoBehaviour
+    public class HoldableItem : ObserverSubject
     {
+        [SerializeField] private GameEvents triggerGameEvent;
         [SerializeField] private Transform playerTransform;
         private Collider2D _collider2D;
         private Rigidbody2D _rigidbody2D;
@@ -28,7 +29,8 @@ namespace common.scripts
             _rigidbody2D.isKinematic = true;
             _collider2D.isTrigger = true;
             transform.SetParent(playerTransform);
-            transform.localPosition = new Vector2(0.1f, 1f);
+            transform.localPosition = new Vector2(1f, 1.5f);
+            Notify(triggerGameEvent);
         }
     }
 }

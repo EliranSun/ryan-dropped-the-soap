@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
+  m_Name: charlotte - what happened
+  m_EditorClassIdentifier: 
+  playerName: 
+  waitBeforeLine: 0
+  mandatoryPlayerChoice: 1
+  overlayImageSprite: {fileID: 0}
+  voicedLines:
+  - text: "There you go! All free now.  Hmm... if you don\u2019t mind me asking\u2014what
+      exactly happened to you?"
+    clip: {fileID: 8300000, guid: bbd280b4c3aff2349a3b2c17d232d1e7, type: 3}
+    gender: 0
+  playerOptions:
+  - text: WHAT
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 0}
+    actionAfterPlayerChoice: 0
+  - text: FORGOT
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 0}
+    actionAfterPlayerChoice: 0
+  - text: RUDE
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 0}
+    actionAfterPlayerChoice: 0
+  - text: WHO
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 0}
+    actionAfterPlayerChoice: 0
+  playerReactions: []
+  nextDialogueLine: {fileID: 0}
+  randomizedDialogLines: []
+  objectReferringDialogLines: []
+  wait: 0
+  actorName: 1
+  actionBeforeLine: 0
+  actionAfterLine: 140
+  actorReaction: 0
+  angerLevel: 0
+  toggleLineCondition: {fileID: 0}
+  lineCondition:
+    condition: 0
+    isMet: 0

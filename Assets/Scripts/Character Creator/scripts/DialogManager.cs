@@ -358,7 +358,7 @@ namespace Character_Creator.scripts
                 case GameEvents.DependentClicked:
                     var interactionData = (InteractionData)gameEventData.Data;
                     InteractionStateService.Instance.SetCurrentInteraction(interactionData);
-                    TriggerLine(interactionData.DialogLine);
+                    TriggerLine(interactionData.DialogLine, false);
                     break;
 
                 case GameEvents.KillDialog:
@@ -367,10 +367,10 @@ namespace Character_Creator.scripts
             }
         }
 
-        private void TriggerLine(NarrationDialogLine line)
+        private void TriggerLine(NarrationDialogLine line, bool overrideAudio = true)
         {
-            // if (_audioSource.isPlaying)
-            //     return;
+            if (!overrideAudio && _audioSource.isPlaying)
+                return;
 
             UpdateDialogState(line);
 
@@ -435,6 +435,8 @@ namespace Character_Creator.scripts
                 return;
 
             narratorText.text = "";
+
+            PostDialogAdvanceActions();
 
             Notify(GameEvents.LineNarrationEnd, new
             {

@@ -6,6 +6,7 @@ namespace Dialog.Scripts
     public class Thought : MonoBehaviour
     {
         [SerializeField] private TextMeshPro textContainer;
+        public int destroyTime;
         private NarrationDialogLine _nextLine;
         private PlayerDataEnum _playerDataType;
         private int _score;
@@ -15,7 +16,7 @@ namespace Dialog.Scripts
         private void Start()
         {
             _thoughtsManager = FindFirstObjectByType<ThoughtsManager>();
-            Destroy(gameObject, 15f);
+            if (destroyTime > 0) Destroy(gameObject, destroyTime);
         }
 
         private void OnCollisionEnter2D(Collision2D other)
