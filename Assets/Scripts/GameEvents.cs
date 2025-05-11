@@ -173,6 +173,9 @@
     KnockOnPlayerApartment,
     CeaseKnocking,
     FreePlayerFromBox,
-    PlayerTookPlantFromCharlotte,
-    CharlotteGavePlayerPlant
+    PlayerHoldPlant,
+    CharlotteGavePlayerPlant,
+    CharlotteWaitingTheory,
+    PlayerPlacePlant,
+    PlayerGrowth
 }

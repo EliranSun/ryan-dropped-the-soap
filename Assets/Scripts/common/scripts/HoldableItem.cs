@@ -5,8 +5,9 @@ namespace common.scripts
     [RequireComponent(typeof(Collider2D), typeof(Rigidbody2D))]
     public class HoldableItem : ObserverSubject
     {
-        [SerializeField] private GameEvents triggerGameEvent;
         [SerializeField] private Transform playerTransform;
+        [SerializeField] private GameEvents holdGameEvent;
+        [SerializeField] private GameEvents releaseGameEvent;
         private Collider2D _collider2D;
         private Rigidbody2D _rigidbody2D;
 
@@ -23,6 +24,7 @@ namespace common.scripts
                 _rigidbody2D.isKinematic = false;
                 _collider2D.isTrigger = false;
                 transform.SetParent(null);
+                Notify(releaseGameEvent);
                 return;
             }
 
@@ -30,7 +32,7 @@ namespace common.scripts
             _collider2D.isTrigger = true;
             transform.SetParent(playerTransform);
             transform.localPosition = new Vector2(1f, 1.5f);
-            Notify(triggerGameEvent);
+            Notify(holdGameEvent);
         }
     }
 }

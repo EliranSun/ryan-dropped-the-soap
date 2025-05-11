@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
+  m_Name: 17. charlotte - zeke in 501
+  m_EditorClassIdentifier: 
+  playerName: 
+  waitBeforeLine: 0
+  mandatoryPlayerChoice: 1
+  overlayImageSprite: {fileID: 0}
+  voicedLines:
+  - text: "Don\u2019t mind that. I\u2019ll tell you what\u2014Zeke, over in 501?
+      Brilliant artist. His place is packed with amazing pieces. Why don\u2019t you
+      pop over, explain your situation? I\u2019m sure he\u2019d be more than happy
+      to lend\u2014or even sell\u2014you something special"
+    clip: {fileID: 8300000, guid: 79bd6ace84f96284faa48cee50562218, type: 3}
+    gender: 0
+  playerOptions: []
+  playerReactions: []
+  nextDialogueLine: {fileID: 0}
+  randomizedDialogLines: []
+  objectReferringDialogLines: []
+  wait: 0
+  actorName: 1
+  actionBeforeLine: 0
+  actionAfterLine: 0
+  actorReaction: 0
+  angerLevel: 0
+  toggleLineCondition: {fileID: 0}
+  lineCondition:
+    condition: 0
+    isMet: 0

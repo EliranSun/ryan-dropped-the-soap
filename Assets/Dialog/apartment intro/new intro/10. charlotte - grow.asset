@@ -10,41 +10,43 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
-  m_Name: 4. charlotte - what happened
+  m_Name: 10. charlotte - grow
   m_EditorClassIdentifier: 
   playerName: 
   waitBeforeLine: 0
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
   voicedLines:
-  - text: "There you go! All free now.  Hmm... if you don\u2019t mind me asking\u2014what
-      exactly happened to you?"
-    clip: {fileID: 8300000, guid: bbd280b4c3aff2349a3b2c17d232d1e7, type: 3}
+  - text: "Yes, I couldn\u2019t help but notice \u2014 you\u2019re not quite moving
+      the way one normally might, are you? No jumping, barely any speech\u2026 That\u2019s,
+      well\u2014highly irregular. But don\u2019t worry. I believe I know what\u2019s
+      going on. You just need to\u2026 grow."
+    clip: {fileID: 8300000, guid: f3834bf8352ccd343b9cdc82512b9f78, type: 3}
     gender: 0
   playerOptions:
   - text: WHAT
     type: 0
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 0}
+    next: {fileID: 11400000, guid: b9b79f67b531241ef9d552574d620e43, type: 2}
     actionAfterPlayerChoice: 0
-  - text: FORGOT
+  - text: GROW
     type: 0
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 11400000, guid: 1c4aa3b8f21d04d368344ddd0f0e5e7a, type: 2}
+    next: {fileID: 11400000, guid: b9b79f67b531241ef9d552574d620e43, type: 2}
     actionAfterPlayerChoice: 0
-  - text: RUDE
+  - text: HOW
     type: 0
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 11400000, guid: 1c4aa3b8f21d04d368344ddd0f0e5e7a, type: 2}
+    next: {fileID: 11400000, guid: b9b79f67b531241ef9d552574d620e43, type: 2}
     actionAfterPlayerChoice: 0
-  - text: WHO
+  - text: NO
     type: 0
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 11400000, guid: 1c4aa3b8f21d04d368344ddd0f0e5e7a, type: 2}
+    next: {fileID: 11400000, guid: b9b79f67b531241ef9d552574d620e43, type: 2}
     actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
@@ -53,7 +55,7 @@ MonoBehaviour:
   wait: 0
   actorName: 1
   actionBeforeLine: 0
-  actionAfterLine: 140
+  actionAfterLine: 0
   actorReaction: 0
   angerLevel: 0
   toggleLineCondition: {fileID: 0}

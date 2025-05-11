@@ -10,41 +10,47 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
-  m_Name: 4. charlotte - what happened
+  m_Name: 8. charlotte - lovely to meet you - your name
   m_EditorClassIdentifier: 
   playerName: 
   waitBeforeLine: 0
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
   voicedLines:
-  - text: "There you go! All free now.  Hmm... if you don\u2019t mind me asking\u2014what
-      exactly happened to you?"
-    clip: {fileID: 8300000, guid: bbd280b4c3aff2349a3b2c17d232d1e7, type: 3}
+  - text: Lovely to meet you. And if you don't mind me poking one more time - what's
+      your name?
+    clip: {fileID: 8300000, guid: 3d139bb0b6984f243ad7f86424f7d0c8, type: 3}
     gender: 0
   playerOptions:
-  - text: WHAT
+  - text: Eliran
     type: 0
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 0}
+    next: {fileID: 11400000, guid: 5e01aa03543b64f5c9afd897739d9b90, type: 2}
     actionAfterPlayerChoice: 0
-  - text: FORGOT
+  - text: Or
     type: 0
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 11400000, guid: 1c4aa3b8f21d04d368344ddd0f0e5e7a, type: 2}
+    next: {fileID: 11400000, guid: 5e01aa03543b64f5c9afd897739d9b90, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: Nofar
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 5e01aa03543b64f5c9afd897739d9b90, type: 2}
     actionAfterPlayerChoice: 0
   - text: RUDE
     type: 0
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 11400000, guid: 1c4aa3b8f21d04d368344ddd0f0e5e7a, type: 2}
+    next: {fileID: 11400000, guid: 5e01aa03543b64f5c9afd897739d9b90, type: 2}
     actionAfterPlayerChoice: 0
-  - text: WHO
+  - text: FORGOT
     type: 0
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 11400000, guid: 1c4aa3b8f21d04d368344ddd0f0e5e7a, type: 2}
+    next: {fileID: 11400000, guid: 5e01aa03543b64f5c9afd897739d9b90, type: 2}
     actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}

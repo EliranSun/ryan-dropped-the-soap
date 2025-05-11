@@ -17,7 +17,7 @@ namespace common.scripts
 
     public sealed class LevelEvents : ObserverSubject
     {
-        [SerializeField] private Transform player;
+        [SerializeField] private GameObject player;
         [SerializeField] private Transform charlotte;
         [SerializeField] private GameObject ship;
         [SerializeField] private Transform insideSewerPosition;
@@ -47,6 +47,7 @@ namespace common.scripts
         [SerializeField] private NarrationDialogLine playerTookPlantWithoutPermission;
         [SerializeField] private GameObject playerBox;
         private bool _charlotteGavePlayerPlant;
+        private bool _charlotteWaitingTheory;
 
         private void Start()
         {
@@ -181,10 +182,18 @@ namespace common.scripts
                     _charlotteGavePlayerPlant = true;
                     break;
 
-                case GameEvents.PlayerTookPlantFromCharlotte:
+                case GameEvents.PlayerHoldPlant:
                     if (!_charlotteGavePlayerPlant)
                         Notify(GameEvents.TriggerSpecificDialogLine, playerTookPlantWithoutPermission);
-                    
+                    break;
+
+                case GameEvents.CharlotteWaitingTheory:
+                    _charlotteWaitingTheory = true;
+                    break;
+
+                case GameEvents.PlayerPlacePlant:
+                    if (_charlotteWaitingTheory)
+                        Notify(GameEvents.PlayerGrowth);
                     break;
             }
         }

@@ -4,7 +4,6 @@ using UnityEngine;
 namespace Character.Scripts
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    [RequireComponent(typeof(SpriteRenderer))]
     public class Movement : MonoBehaviour
     {
         [SerializeField] private float speed = 5f;
@@ -13,6 +12,7 @@ namespace Character.Scripts
         [SerializeField] private GameObject hairGameObject;
         [SerializeField] private bool isRigidBodyMovement = true;
         [SerializeField] private bool addWobblyMovement;
+        [SerializeField] public SpriteRenderer spriteRenderer;
         private bool _flipEnabled = true;
 
 
@@ -22,7 +22,6 @@ namespace Character.Scripts
         private bool _isMoving;
         private bool _isOnGround;
         private Rigidbody2D _rigidbody2D;
-        private SpriteRenderer _spriteRenderer;
 
         private void Start()
         {
@@ -30,7 +29,7 @@ namespace Character.Scripts
             if (hairGameObject) _hairSpriteRenderer = hairGameObject.GetComponent<SpriteRenderer>();
 
             _rigidbody2D = GetComponent<Rigidbody2D>();
-            _spriteRenderer = GetComponent<SpriteRenderer>();
+            spriteRenderer = GetComponent<SpriteRenderer>();
 
             if (addWobblyMovement) StartCoroutine(WobblyMovement());
         }
@@ -72,7 +71,7 @@ namespace Character.Scripts
                 if (_isCrawling) xVelocity /= 2;
 
                 _rigidbody2D.velocity = new Vector2(xVelocity, _rigidbody2D.velocity.y);
-                if (_flipEnabled) _spriteRenderer.flipX = horizontal > 0;
+                if (_flipEnabled) spriteRenderer.flipX = horizontal > 0;
                 if (_isMoving)
                     return;
 
@@ -92,6 +91,7 @@ namespace Character.Scripts
         {
             var horizontal = Input.GetAxis("Horizontal");
             transform.Translate(new Vector3(horizontal, 0, 0) * (speed * Time.deltaTime));
+            if (_flipEnabled && spriteRenderer) spriteRenderer.flipX = horizontal > 0;
         }
 
         private void HandleHeadAndHair()
@@ -105,12 +105,12 @@ namespace Character.Scripts
             switch (horizontal)
             {
                 case > 0:
-                    _spriteRenderer.flipX = false;
+                    spriteRenderer.flipX = false;
                     if (headGameObject) oldHeadPosition.x = 0.3f;
                     if (hairGameObject) oldHairPosition.x = 0.3f;
                     break;
                 case < 0:
-                    _spriteRenderer.flipX = true;
+                    spriteRenderer.flipX = true;
                     if (headGameObject) oldHeadPosition.x = -0.3f;
                     if (hairGameObject) oldHairPosition.x = -0.3f;
                     break;
@@ -122,8 +122,8 @@ namespace Character.Scripts
 
             if (headGameObject) headGameObject.transform.localPosition = oldHeadPosition;
             if (hairGameObject) hairGameObject.transform.localPosition = oldHairPosition;
-            if (headGameObject) _headSpriteRenderer.flipX = _spriteRenderer.flipX;
-            if (hairGameObject) _hairSpriteRenderer.flipX = _spriteRenderer.flipX;
+            if (headGameObject) _headSpriteRenderer.flipX = spriteRenderer.flipX;
+            if (hairGameObject) _hairSpriteRenderer.flipX = spriteRenderer.flipX;
         }
 
         private IEnumerator WobblyMovement()
