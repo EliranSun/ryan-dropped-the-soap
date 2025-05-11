@@ -42,11 +42,14 @@ namespace common.scripts
         [SerializeField] private AudioClip knockingSound;
         [SerializeField] private FloorData floorData;
         [SerializeField] private GameObject npcKnockingOnPlayerApartment;
-        [SerializeField] private GameObject playerApartmentDoor;
+        
+        [SerializeField] private GameObject playerApartmentHallwayDoor;
         [SerializeField] private NarrationDialogLine initLine;
         [SerializeField] private NarrationDialogLine playerTookPlantWithoutPermission;
+        [SerializeField] private NarrationDialogLine charlottePlayerGrowthLine;
         [SerializeField] private GameObject playerBox;
         private bool _charlotteGavePlayerPlant;
+        private bool _charlotteRespondedToPlayerGrowth;
         private bool _charlotteWaitingTheory;
 
         private void Start()
@@ -170,9 +173,10 @@ namespace common.scripts
                 case GameEvents.PlayerApartmentDoorOpened:
                     if (npcKnockingOnPlayerApartment)
                     {
-                        npcKnockingOnPlayerApartment.transform.position = playerApartmentDoor.transform.position;
-                        npcKnockingOnPlayerApartment = null;
                         StopAllCoroutines();
+                        npcKnockingOnPlayerApartment.transform.position = playerApartmentHallwayDoor.transform.position;
+                        npcKnockingOnPlayerApartment = null;
+
                         if (initLine) Notify(GameEvents.TriggerSpecificDialogLine, initLine);
                     }
 
@@ -194,6 +198,15 @@ namespace common.scripts
                 case GameEvents.PlayerPlacePlant:
                     if (_charlotteWaitingTheory)
                         Notify(GameEvents.PlayerGrowth);
+                    break;
+
+                case GameEvents.PlayerGrew:
+                    if (!_charlotteRespondedToPlayerGrowth)
+                    {
+                        Notify(GameEvents.TriggerSpecificDialogLine, charlottePlayerGrowthLine);
+                        _charlotteRespondedToPlayerGrowth = true;
+                    }
+
                     break;
             }
         }

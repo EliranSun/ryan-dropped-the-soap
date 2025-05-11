@@ -177,5 +177,8 @@
     CharlotteGavePlayerPlant,
     CharlotteWaitingTheory,
     PlayerPlacePlant,
-    PlayerGrowth
+    PlayerGrowth,
+    PlayerGrew,
+
+    FollowPlayer
 }

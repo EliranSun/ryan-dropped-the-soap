@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Player
 {
-    public class PlayerGrowth : MonoBehaviour
+    public class PlayerGrowth : ObserverSubject
     {
         [SerializeField] private GameObject starterBody;
         [SerializeField] private GameObject levelOneBody;
@@ -27,6 +27,7 @@ namespace Player
                 starterBody.SetActive(false);
                 levelOneBody.SetActive(true);
                 movement.spriteRenderer = levelOneBody.GetComponent<SpriteRenderer>();
+                Notify(GameEvents.PlayerGrew);
             }
         }
     }

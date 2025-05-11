@@ -91,7 +91,7 @@ namespace Character.Scripts
         {
             var horizontal = Input.GetAxis("Horizontal");
             transform.Translate(new Vector3(horizontal, 0, 0) * (speed * Time.deltaTime));
-            if (_flipEnabled && spriteRenderer) spriteRenderer.flipX = horizontal > 0;
+            if (_flipEnabled && spriteRenderer) spriteRenderer.flipX = horizontal < 0;
         }
 
         private void HandleHeadAndHair()

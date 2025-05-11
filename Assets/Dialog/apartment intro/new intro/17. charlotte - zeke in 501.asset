@@ -23,7 +23,31 @@ MonoBehaviour:
       to lend\u2014or even sell\u2014you something special"
     clip: {fileID: 8300000, guid: 79bd6ace84f96284faa48cee50562218, type: 3}
     gender: 0
-  playerOptions: []
+  playerOptions:
+  - text: OK
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 8ce357d5d153e4ddcac7448afe7bf70d, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: NO
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 414664a46f3c6462eb708f7a06c74f3c, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: NEED HELP
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 414664a46f3c6462eb708f7a06c74f3c, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: FOLLOW ME
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 414664a46f3c6462eb708f7a06c74f3c, type: 2}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []

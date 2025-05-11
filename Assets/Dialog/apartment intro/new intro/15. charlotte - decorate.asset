@@ -22,7 +22,31 @@ MonoBehaviour:
       lovely is that?"
     clip: {fileID: 8300000, guid: f6e36d15cc4f8c9439aa93f9c8b0cf9a, type: 3}
     gender: 0
-  playerOptions: []
+  playerOptions:
+  - text: WHAT
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 5414b6164a70b4b4fad6ec16accc25bd, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: IS STUPID
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 5414b6164a70b4b4fad6ec16accc25bd, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: IS GENIUS
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 5414b6164a70b4b4fad6ec16accc25bd, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: SPEAK WORDS
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 5414b6164a70b4b4fad6ec16accc25bd, type: 2}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []

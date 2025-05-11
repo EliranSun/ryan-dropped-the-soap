@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace npc
@@ -106,6 +107,32 @@ namespace npc
         private void CharacterControllerMovement(Vector2 direction, float distanceFromPlayer)
         {
             transform.Translate(new Vector3(direction.x, 0, 0) * (speed * Time.deltaTime));
+        }
+
+        public void OnNotify(GameEventData eventData)
+        {
+            if (eventData.Name == GameEvents.FollowPlayer)
+                if (playerTransform != null)
+                {
+                    // Create a new array with one more element
+                    var newPointsOfInterest = new Transform[pointsOfInterest != null ? pointsOfInterest.Length + 1 : 1];
+
+                    // Copy existing points of interest if any
+                    if (pointsOfInterest is { Length: > 0 })
+                        Array.Copy(pointsOfInterest, newPointsOfInterest, pointsOfInterest.Length);
+
+                    // Add player transform as the last point of interest
+                    newPointsOfInterest[^1] = playerTransform;
+
+                    // Update the points of interest array
+                    pointsOfInterest = newPointsOfInterest;
+
+                    // Reset current index to ensure we start following
+                    _currentPointOfInterestIndex = 0;
+
+                    // Set the target position to the player
+                    SetNextPointOfInterest();
+                }
         }
     }
 }

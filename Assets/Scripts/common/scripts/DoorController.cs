@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -14,6 +16,7 @@ namespace common.scripts
         private bool _isDoorOpen;
         private bool _isPlayerInsideApartment = true;
         private bool _isPlayerOnDoor;
+        private GameObject[] _objectsInsideApartment = { };
 
         // Update is called once per frame
         private void Update()
@@ -24,7 +27,8 @@ namespace common.scripts
             if (_isPlayerOnDoor && _isDoorOpen)
             {
                 transitionImage.FadeInOut();
-                Invoke(nameof(MovePlayerToLinkedDoor), 0.3f);
+                // Invoke(nameof(MoveObjectToLinkedDoor), 0.3f);
+                MovePlayerToLinkedDoor();
             }
         }
 
@@ -32,6 +36,9 @@ namespace common.scripts
         {
             if (other.CompareTag("Player"))
                 _isPlayerOnDoor = true;
+
+            if (other.CompareTag("NPC"))
+                MoveObjectToLinkedDoor(other.transform);
         }
 
         private void OnTriggerExit2D(Collider2D other)
@@ -49,6 +56,21 @@ namespace common.scripts
             var x = _isPlayerInsideApartment ? hallwayDoor.transform.position.x : gameObject.transform.position.x;
             playerTransform.position = new Vector3(x, playerTransform.position.y, playerTransform.position.z);
             _isPlayerInsideApartment = !_isPlayerInsideApartment;
+        }
+
+        private void MoveObjectToLinkedDoor(Transform objectTransform)
+        {
+            var isObjectInsideApartment = Array.Exists(_objectsInsideApartment, obj =>
+                obj.transform == objectTransform);
+            var x = isObjectInsideApartment ? hallwayDoor.transform.position.x : gameObject.transform.position.x;
+            objectTransform.position = new Vector3(x, objectTransform.position.y, objectTransform.position.z);
+
+            if (isObjectInsideApartment)
+                _objectsInsideApartment = _objectsInsideApartment.Where(obj =>
+                    obj.transform != objectTransform).ToArray();
+            else
+                Array.Resize(ref _objectsInsideApartment, _objectsInsideApartment.Length + 1);
+            _objectsInsideApartment[^1] = objectTransform.gameObject;
         }
 
         public void OnNotify(GameEventData gameEventData)
