@@ -189,7 +189,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8680712829747692429}
-  - {fileID: 8575063570603304623}
   - {fileID: 7075201022561310556}
   - {fileID: 849381560076993343}
   - {fileID: 2246176039355030389}
@@ -353,7 +352,6 @@ GameObject:
   - component: {fileID: 5199260141000934715}
   - component: {fileID: 6759641169285516235}
   - component: {fileID: 3840855370722444565}
-  - component: {fileID: 4479934211928299109}
   m_Layer: 0
   m_Name: "\U0001F6AA apartment door"
   m_TagString: Untagged
@@ -374,6 +372,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8575063570603304623}
   - {fileID: 719781857862723927}
   - {fileID: 6913677038196680922}
   - {fileID: 7165144391093358349}
@@ -506,53 +505,11 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  doorNumberTextMeshPro: {fileID: 0}
+  doorNumberTextMeshPro: {fileID: 114790122234888281}
   transitionImage: {fileID: 0}
   playerTransform: {fileID: 0}
   hallwayDoor: {fileID: 2228552086491992496}
---- !u!114 &4479934211928299109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5886537008606517864}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a92b55e90f5afb64c84613c6074a20c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  observers:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3840855370722444565}
-        m_TargetAssemblyTypeName: common.scripts.DoorInteraction, CommonScriptsAssembly
-        m_MethodName: OnNotify
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: common.scripts.LevelEvents, CommonScriptsAssembly
-        m_MethodName: OnNotify
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  objectType: 0
-  interactionType: 3
-  disableGameObjectOnClick: 1
-  isEnabled: 1
+  floorData: {fileID: 11400000, guid: 0d331cf434876ec44a2376c813275b06, type: 2}
 --- !u!1 &6049926249126208074
 GameObject:
   m_ObjectHideFlags: 0
@@ -1097,15 +1054,15 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 5657632891430558896}
+    m_TransformParent: {fileID: 7075201022561310556}
     m_Modifications:
     - target: {fileID: 1138517242611978885, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -20.95
+      value: -9.740001
       objectReference: {fileID: 0}
     - target: {fileID: 1138517242611978885, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.76
+      value: 0.06000018
       objectReference: {fileID: 0}
     - target: {fileID: 1138517242611978885, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1141,7 +1098,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7359169675709064602, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
       propertyPath: m_Name
-      value: "\U0001F6AA apartment 404 hallway door"
+      value: hallway door
       objectReference: {fileID: 0}
     - target: {fileID: 8058356978489650868, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
       propertyPath: m_Size.x
@@ -1156,6 +1113,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
+--- !u!114 &114790122234888281 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8744790389060301939, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
+  m_PrefabInstance: {fileID: 8704452597474964522}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2228552086491992496 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7359169675709064602, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}

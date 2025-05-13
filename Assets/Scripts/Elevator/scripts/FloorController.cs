@@ -47,8 +47,8 @@ namespace Elevator.scripts
             floorNumbers[1].text = floorData.playerFloorNumber.ToString();
             floorNumbers[2].text = (floorData.playerFloorNumber + 1).ToString();
 
-            for (var i = 0; i < elevators.Length; i++)
-                elevators[i].SetElevatorCurrentFloorNumber(floorData.elevatorFloorNumber);
+            foreach (var elevator in elevators)
+                elevator.SetElevatorCurrentFloorNumber(floorData.elevatorFloorNumber);
 
             for (var i = 0; i < hallwayDoors.Length; i++)
                 hallwayDoors[i].SetDoorNumber($"{floorData.playerFloorNumber}{i}");

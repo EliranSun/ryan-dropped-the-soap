@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Common;
 using TMPro;
 using UnityEngine;
 
@@ -12,6 +13,7 @@ namespace common.scripts
         [SerializeField] private TransitionController transitionImage;
         [SerializeField] private Transform playerTransform;
         [SerializeField] private GameObject hallwayDoor;
+        [SerializeField] private FloorData floorData;
         private int _doorNumber;
         private bool _isDoorOpen;
         private bool _isPlayerInsideApartment = true;
@@ -30,6 +32,11 @@ namespace common.scripts
                 // Invoke(nameof(MoveObjectToLinkedDoor), 0.3f);
                 MovePlayerToLinkedDoor();
             }
+        }
+
+        private void OnMouseDown()
+        {
+            print("CLICK ON DOOR:" + _doorNumber);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -75,23 +82,23 @@ namespace common.scripts
 
         public void OnNotify(GameEventData gameEventData)
         {
-            if (gameEventData.Name == GameEvents.ClickOnItem)
-            {
-                var itemName = (string)gameEventData.Data;
-                if (itemName.ToLower().Contains("door"))
-                {
-                    _isDoorOpen = !_isDoorOpen;
-                    hallwayDoor.SetActive(!_isDoorOpen);
-                    Notify(!_isDoorOpen
-                        ? GameEvents.PlayerApartmentDoorClosed
-                        : GameEvents.PlayerApartmentDoorOpened);
-                }
-            }
+            if (gameEventData.Name != GameEvents.ClickOnItem) return;
+
+            var itemName = (string)gameEventData.Data;
+            if (!itemName.ToLower().Contains("door")) return;
+
+
+            _isDoorOpen = !_isDoorOpen;
+            hallwayDoor.SetActive(!_isDoorOpen);
+            Notify(!_isDoorOpen
+                ? GameEvents.PlayerApartmentDoorClosed
+                : GameEvents.PlayerApartmentDoorOpened);
         }
 
         public void SetDoorNumber(string doorNumber)
         {
             doorNumberTextMeshPro.text = doorNumber;
+            _doorNumber = int.Parse(doorNumber);
         }
     }
 }
