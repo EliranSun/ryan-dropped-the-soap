@@ -13,6 +13,7 @@ namespace common.scripts
         [SerializeField] private TransitionController transitionImage;
         [SerializeField] private Transform playerTransform;
         [SerializeField] private GameObject hallwayDoor;
+        [SerializeField] private GameObject insideDoor;
         [SerializeField] private FloorData floorData;
         private int _doorNumber;
         private bool _isDoorOpen;
@@ -36,7 +37,23 @@ namespace common.scripts
 
         private void OnMouseDown()
         {
-            print("CLICK ON DOOR:" + _doorNumber);
+            print("Click on door: " + _doorNumber);
+            if (_doorNumber != floorData.playerApartmentNumber)
+            {
+                print("Tried open someone else's door - " +
+                      _doorNumber +
+                      "; player - " +
+                      floorData.playerApartmentNumber);
+                return;
+            }
+
+            print("Changing player door state");
+            _isDoorOpen = !_isDoorOpen;
+            hallwayDoor.SetActive(!_isDoorOpen);
+            insideDoor.SetActive(!_isDoorOpen);
+            Notify(!_isDoorOpen
+                ? GameEvents.PlayerApartmentDoorClosed
+                : GameEvents.PlayerApartmentDoorOpened);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -78,21 +95,6 @@ namespace common.scripts
             else
                 Array.Resize(ref _objectsInsideApartment, _objectsInsideApartment.Length + 1);
             _objectsInsideApartment[^1] = objectTransform.gameObject;
-        }
-
-        public void OnNotify(GameEventData gameEventData)
-        {
-            if (gameEventData.Name != GameEvents.ClickOnItem) return;
-
-            var itemName = (string)gameEventData.Data;
-            if (!itemName.ToLower().Contains("door")) return;
-
-
-            _isDoorOpen = !_isDoorOpen;
-            hallwayDoor.SetActive(!_isDoorOpen);
-            Notify(!_isDoorOpen
-                ? GameEvents.PlayerApartmentDoorClosed
-                : GameEvents.PlayerApartmentDoorOpened);
         }
 
         public void SetDoorNumber(string doorNumber)
