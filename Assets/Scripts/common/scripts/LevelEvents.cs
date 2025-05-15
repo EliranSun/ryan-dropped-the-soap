@@ -34,6 +34,7 @@ namespace common.scripts
 
         [Header("Apartment")] [SerializeField] private GameObject hallwayShade;
 
+        // TODO: Maybe move everything related to floor to floor controller
         [SerializeField] private GameObject apartmentsShade;
         [SerializeField] private GameObject[] hallways;
         [SerializeField] private GameObject apartmentsBoundaries;
@@ -42,7 +43,7 @@ namespace common.scripts
         [SerializeField] private AudioClip knockingSound;
         [SerializeField] private FloorData floorData;
         [SerializeField] private GameObject npcKnockingOnPlayerApartment;
-        
+
         [SerializeField] private GameObject playerApartmentHallwayDoor;
         [SerializeField] private NarrationDialogLine initLine;
         [SerializeField] private NarrationDialogLine playerTookPlantWithoutPermission;

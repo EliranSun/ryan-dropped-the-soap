@@ -137,12 +137,12 @@ namespace Elevator.scripts
                 if (floorData.elevatorFloorNumber < floorNumber)
                 {
                     floorData.elevatorFloorNumber++;
-                    floorData.playerFloorNumber++;
+                    floorData.currentFloorNumber++;
                 }
                 else
                 {
                     floorData.elevatorFloorNumber--;
-                    floorData.playerFloorNumber--;
+                    floorData.currentFloorNumber--;
                 }
 
                 Notify(GameEvents.FloorChange, floorData.elevatorFloorNumber);

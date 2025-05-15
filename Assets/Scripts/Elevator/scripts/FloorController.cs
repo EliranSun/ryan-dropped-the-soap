@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using common.scripts;
 using TMPro;
@@ -5,6 +6,13 @@ using UnityEngine;
 
 namespace Elevator.scripts
 {
+    [Serializable]
+    public class Apartment
+    {
+        public int number;
+        public GameObject prefab;
+    }
+
     public class FloorController : MonoBehaviour
     {
         [SerializeField] private DoorController[] hallwayDoors;
@@ -14,6 +22,8 @@ namespace Elevator.scripts
         [SerializeField] private GameObject charlotte;
         [SerializeField] private GameObject zeke;
         [SerializeField] private GameObject stacy;
+        [SerializeField] private GameObject floorPrefab;
+        [SerializeField] private Apartment[] significantApartments;
         [SerializeField] private Common.FloorData floorData;
 
         // [SerializeField] private SpriteRenderer outsideElevatorSprite;
@@ -29,11 +39,11 @@ namespace Elevator.scripts
 
         private void Start()
         {
-            var isStrangerApartment = floorData.playerFloorNumber != floorData.playerApartmentFloor;
+            var isStrangerApartment = floorData.currentFloorNumber != floorData.playerApartmentFloor;
 
-            charlotte.gameObject.SetActive(floorData.playerFloorNumber == floorData.charlotteInitFloorNumber);
-            zeke.gameObject.SetActive(floorData.playerFloorNumber == floorData.zekeFloorNumber);
-            stacy.gameObject.SetActive(floorData.playerFloorNumber == floorData.stacyFloorNumber);
+            charlotte.gameObject.SetActive(floorData.currentFloorNumber == floorData.charlotteInitFloorNumber);
+            zeke.gameObject.SetActive(floorData.currentFloorNumber == floorData.zekeFloorNumber);
+            stacy.gameObject.SetActive(floorData.currentFloorNumber == floorData.stacyFloorNumber);
 
             if (floorData.playerExitElevator || isStrangerApartment)
             {
@@ -43,15 +53,15 @@ namespace Elevator.scripts
                 floorData.playerExitElevator = false;
             }
 
-            floorNumbers[0].text = (floorData.playerFloorNumber - 1).ToString();
-            floorNumbers[1].text = floorData.playerFloorNumber.ToString();
-            floorNumbers[2].text = (floorData.playerFloorNumber + 1).ToString();
+            floorNumbers[0].text = (floorData.currentFloorNumber - 1).ToString();
+            floorNumbers[1].text = floorData.currentFloorNumber.ToString();
+            floorNumbers[2].text = (floorData.currentFloorNumber + 1).ToString();
 
             foreach (var elevator in elevators)
                 elevator.SetElevatorCurrentFloorNumber(floorData.elevatorFloorNumber);
 
             for (var i = 0; i < hallwayDoors.Length; i++)
-                hallwayDoors[i].SetDoorNumber($"{floorData.playerFloorNumber}{i}");
+                hallwayDoors[i].SetDoorNumber($"{floorData.currentFloorNumber}{i}");
         }
 
         private void Update()
@@ -132,14 +142,14 @@ namespace Elevator.scripts
         {
             while (true)
             {
-                if (floorData.playerFloorNumber == floorData.elevatorFloorNumber)
+                if (floorData.currentFloorNumber == floorData.elevatorFloorNumber)
                 {
                     requestedElevator.OpenDoors();
                     break;
                 }
 
-                if (floorData.elevatorFloorNumber < floorData.playerFloorNumber) floorData.elevatorFloorNumber++;
-                if (floorData.elevatorFloorNumber > floorData.playerFloorNumber) floorData.elevatorFloorNumber--;
+                if (floorData.elevatorFloorNumber < floorData.currentFloorNumber) floorData.elevatorFloorNumber++;
+                if (floorData.elevatorFloorNumber > floorData.currentFloorNumber) floorData.elevatorFloorNumber--;
 
                 foreach (var elevator in elevators)
                     elevator.SetElevatorCurrentFloorNumber(floorData.elevatorFloorNumber);

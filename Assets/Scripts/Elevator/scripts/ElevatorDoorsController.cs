@@ -67,7 +67,7 @@ namespace Elevator.scripts
                 return;
             }
 
-            print("Call elevator to floor " + floorData.playerFloorNumber);
+            print("Call elevator to floor " + floorData.currentFloorNumber);
             StartCoroutine(floorController.CallElevator(this));
         }
 
@@ -128,7 +128,7 @@ namespace Elevator.scripts
 
         public void SetCurrentFloorNumber(int floorNumber)
         {
-            floorData.playerFloorNumber = floorNumber;
+            floorData.currentFloorNumber = floorNumber;
         }
 
         public void OpenDoors()

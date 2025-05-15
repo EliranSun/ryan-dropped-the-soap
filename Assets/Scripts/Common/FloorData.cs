@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Common
 {
@@ -7,7 +8,7 @@ namespace Common
     [CreateAssetMenu(fileName = "Data", menuName = "Floor")]
     public class FloorData : ScriptableObject
     {
-        [SerializeField] public int playerFloorNumber = 20;
+        [FormerlySerializedAs("playerFloorNumber")] [SerializeField] public int currentFloorNumber = 20;
         [SerializeField] public int elevatorFloorNumber = 20;
         public bool playerExitElevator;
         public int charlotteInitFloorNumber = 42;
