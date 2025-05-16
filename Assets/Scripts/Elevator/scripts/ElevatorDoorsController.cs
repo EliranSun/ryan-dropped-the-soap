@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 namespace Elevator.scripts
 {
@@ -17,7 +18,10 @@ namespace Elevator.scripts
         [SerializeField] private float delayBeforeOpening = 2f;
         [SerializeField] private float delayBeforeClosing = 2f;
         [SerializeField] private TextMeshPro elevatorCurrentFloorNumberUI;
-        [SerializeField] private FloorController floorController;
+
+        [FormerlySerializedAs("floorController")] [SerializeField]
+        private BuildingController buildingController;
+
         [SerializeField] private Common.FloorData floorData;
 
         private float _closeLerpTime;
@@ -68,7 +72,7 @@ namespace Elevator.scripts
             }
 
             print("Call elevator to floor " + floorData.currentFloorNumber);
-            StartCoroutine(floorController.CallElevator(this));
+            StartCoroutine(buildingController.CallElevator(this));
         }
 
         private IEnumerator OpenDoorsWithDelay()

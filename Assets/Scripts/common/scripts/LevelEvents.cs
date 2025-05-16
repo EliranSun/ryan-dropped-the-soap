@@ -55,11 +55,11 @@ namespace common.scripts
 
         private void Start()
         {
-            if (!floorData.zekeStoryDone && !floorData.stacyStoryDone)
-            {
-                StartCoroutine(Knock());
-                Notify(GameEvents.KnockOnPlayerApartment);
-            }
+            // if (!floorData.zekeStoryDone && !floorData.stacyStoryDone)
+            // {
+            //     StartCoroutine(Knock());
+            //     Notify(GameEvents.KnockOnPlayerApartment);
+            // }
 
             var zekeSceneEnded = PlayerPrefs.GetString("Zeke Scene End");
             if (zekeSceneEnded == "")
@@ -214,6 +214,8 @@ namespace common.scripts
 
         private void MoveToBoat()
         {
+            if (!ship || !player || !charlotte) return;
+
             player.transform.parent = ship.transform;
             charlotte.transform.parent = ship.transform;
 

@@ -13,6 +13,7 @@ namespace Character.Scripts
         [SerializeField] private bool isRigidBodyMovement = true;
         [SerializeField] private bool addWobblyMovement;
         [SerializeField] public SpriteRenderer spriteRenderer;
+        [SerializeField] public bool allowFlight;
         private bool _flipEnabled = true;
 
 
@@ -90,8 +91,12 @@ namespace Character.Scripts
         private void TransformMovement()
         {
             var horizontal = Input.GetAxis("Horizontal");
-            transform.Translate(new Vector3(horizontal, 0, 0) * (speed * Time.deltaTime));
-            if (_flipEnabled && spriteRenderer) spriteRenderer.flipX = horizontal < 0;
+            var vertical = allowFlight ? Input.GetAxis("Vertical") : 0;
+
+            transform.Translate(new Vector3(horizontal, vertical, 0) * (speed * Time.deltaTime));
+
+            if (_flipEnabled && spriteRenderer)
+                spriteRenderer.flipX = horizontal < 0;
         }
 
         private void HandleHeadAndHair()

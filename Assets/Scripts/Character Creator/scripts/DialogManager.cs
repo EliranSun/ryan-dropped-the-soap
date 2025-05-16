@@ -113,9 +113,10 @@ namespace Character_Creator.scripts
 
         private void ReadCurrentLine()
         {
-            print($"Reading current line for {_currentDialogue.voicedLines.First().text}");
             if (!_currentDialogue)
                 return;
+
+            print($"Reading current line for {_currentDialogue}");
 
             if (_currentDialogue.actionBeforeLine != GameEvents.None)
                 TriggerAnAct(_currentDialogue.actionBeforeLine);
@@ -196,7 +197,10 @@ namespace Character_Creator.scripts
             //     overlayImage.sprite = null;
             // }
 
-            if (_currentDialogue.playerOptions.Length > 0 && NoPlayerInputsExist())
+            if (!_currentDialogue)
+                return;
+
+            if (_currentDialogue.playerOptions?.Length > 0 && NoPlayerInputsExist())
                 // GeneratePlayerInputs(_currentDialogue);
                 if (_currentDialogue.mandatoryPlayerChoice)
                     return;
@@ -204,10 +208,10 @@ namespace Character_Creator.scripts
             if (_currentDialogue.actionAfterLine != GameEvents.None)
                 TriggerAnAct(_currentDialogue.actionAfterLine);
 
-            if (_currentDialogue.playerReactions.Length > 0)
+            if (_currentDialogue.playerReactions?.Length > 0)
                 return;
 
-            if (_currentDialogue.randomizedDialogLines.Length > 0)
+            if (_currentDialogue.randomizedDialogLines?.Length > 0)
             {
                 var randomIndex = Random.Range(0, _currentDialogue.randomizedDialogLines.Length);
                 UpdateDialogState(_currentDialogue.randomizedDialogLines[randomIndex]);
@@ -215,7 +219,7 @@ namespace Character_Creator.scripts
                 return;
             }
 
-            if (_currentDialogue.objectReferringDialogLines.Length > 0)
+            if (_currentDialogue.objectReferringDialogLines?.Length > 0)
             {
                 var choiceType = _currentDialogue.objectReferringDialogLines[0].objectType;
                 var playerChosenObject = PlayerPrefs.GetString(choiceType.ToString());
