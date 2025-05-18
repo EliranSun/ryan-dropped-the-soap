@@ -2755,6 +2755,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &280493706
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 280493707}
+  m_Layer: 0
+  m_Name: Floors Container
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &280493707
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 280493706}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.8082323, y: -20.937536, z: -0.7688992}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &283342872
 GameObject:
   m_ObjectHideFlags: 0
@@ -7862,7 +7893,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floorPrefab: {fileID: 2193044454335554706, guid: ac98bf460c718a542b8bf3d57dc5f99e, type: 3}
   floorData: {fileID: 11400000, guid: 0d331cf434876ec44a2376c813275b06, type: 2}
-  significantApartments: []
+  significantApartments:
+  - number: 501
+    prefab: {fileID: 5023264232389034183, guid: 9ae82c3bfbb75be4ba49d923bcde8248, type: 3}
+  floorsContainer: {fileID: 280493706}
   playerTransform: {fileID: 4144411059709439033}
   charlotte: {fileID: 0}
   zeke: {fileID: 0}
@@ -9538,3 +9572,4 @@ SceneRoots:
   - {fileID: 1893929534}
   - {fileID: 738705476}
   - {fileID: 362866774}
+  - {fileID: 280493707}

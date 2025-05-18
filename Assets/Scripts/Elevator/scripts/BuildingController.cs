@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Elevator.scripts
 {
@@ -20,7 +21,7 @@ namespace Elevator.scripts
         [SerializeField] private GameObject floorPrefab;
         [SerializeField] private Common.FloorData floorData;
         [SerializeField] private Apartment[] significantApartments;
-
+        [SerializeField] private GameObject floorsContainer;
         [SerializeField] private Transform playerTransform;
 
         // [SerializeField] private TextMeshPro[] floorNumbers;
@@ -30,8 +31,7 @@ namespace Elevator.scripts
         [SerializeField] private GameObject stacy;
 
         private readonly List<GameObject> _floors = new();
-        private int _floorIndex = -2;
-        private int _highestActiveFloorIndex = -1; // Track the highest active floor index
+        private UnityEvent<GameEventData> _floorObservers;
 
         // [SerializeField] private SpriteRenderer outsideElevatorSprite;
         // [SerializeField] private GameObject[] outsideElevatorObjects;
@@ -46,91 +46,88 @@ namespace Elevator.scripts
 
         private void Start()
         {
-            for (var i = _floorIndex; i < 3; i++)
-                AddFloorAt(i, floorData.currentFloorNumber);
+            _floorObservers = new UnityEvent<GameEventData>();
+            _floorObservers.AddListener(OnNotify);
 
-            // var isStrangerApartment = floorData.currentFloorNumber != floorData.playerApartmentFloor;
-            //
-            // charlotte.gameObject.SetActive(floorData.currentFloorNumber == floorData.charlotteInitFloorNumber);
-            // zeke.gameObject.SetActive(floorData.currentFloorNumber == floorData.zekeFloorNumber);
-            // stacy.gameObject.SetActive(floorData.currentFloorNumber == floorData.stacyFloorNumber);
-            //
-            // if (floorData.playerExitElevator || isStrangerApartment)
-            // {
-            //     var newPosition = playerTransform.position;
-            //     newPosition.x = elevators[1].transform.position.x;
-            //     playerTransform.position = newPosition;
-            //     floorData.playerExitElevator = false;
-            // }
-            //
-            // floorNumbers[0].text = (floorData.currentFloorNumber - 1).ToString();
-            // floorNumbers[1].text = floorData.currentFloorNumber.ToString();
-            // floorNumbers[2].text = (floorData.currentFloorNumber + 1).ToString();
-            //
-            // foreach (var elevator in elevators)
-            //     elevator.SetElevatorCurrentFloorNumber(floorData.elevatorFloorNumber);
-            //
-            // for (var i = 0; i < hallwayDoors.Length; i++)
-            //     hallwayDoors[i].SetDoorNumber($"{floorData.currentFloorNumber}{i}");
+            for (var i = 2; i > -2; i--)
+                AddFloorAtBottom(floorData.currentFloorNumber + i, true);
+
+            playerTransform.position = _floors
+                .Find(floor => floor.name == $"Floor {floorData.currentFloorNumber}")
+                .transform.position;
         }
 
-        private void Update()
+        private enum FloorDirection
         {
-            if (_floors.Count == 0) return;
+            Top,
+            Bottom
+        }
 
-            var nearLowestFloor = _floors[0];
-            if (!nearLowestFloor) return;
+        private void AddFloor(int floorNumber, FloorDirection direction, bool init = false)
+        {
+            float yPosition;
+            var existingFloor = _floors.Find(f => f.name == $"Floor {floorNumber}");
 
-
-            if (playerTransform.position.y <= nearLowestFloor.transform.position.y)
+            if (existingFloor)
             {
-                print("Should add floors below");
-                AddFloorAt(_floorIndex - 1, floorData.currentFloorNumber);
-            }
-        }
-
-        private void DisableFloorAt(int index)
-        {
-            if (index < 0 || index >= _floors.Count) return;
-
-            var floor = _floors[index];
-            if (floor == null) return;
-
-            floor.SetActive(false);
-        }
-
-        private void AddFloorAt(int index, int currentFloorNumber)
-        {
-            var floor = Instantiate(floorPrefab, new Vector3(0, index * 10, 0), Quaternion.identity);
-            floor.GetComponent<FloorController>().SetFloorNumber(currentFloorNumber + index);
-
-            // Check if a floor already exists at this position before adding
-            if (_floors.Any(f => Math.Abs(f.transform.position.y - floor.transform.position.y) < 0.1f))
+                existingFloor.SetActive(true);
+                if (direction == FloorDirection.Bottom)
+                    _floors.FindLast(f => f.activeSelf).SetActive(false);
+                else
+                    _floors.Find(f => f.activeSelf).SetActive(false);
                 return;
-
-            print("Adding floor at index" + _floors.Count);
-            _floors.Insert(0, floor); // Add to beginning to maintain the lowest floor at index 0
-
-            // Update the highest active floor index after insertion
-            _highestActiveFloorIndex++;
-            _floorIndex--;
-
-            // If we have more than 5 active floors, disable the highest one
-            if (_floors.Count > 5)
-            {
-                DisableFloorAt(_highestActiveFloorIndex);
-                // Find the new highest active floor index
-                for (var i = _highestActiveFloorIndex - 1; i >= 0; i--)
-                    if (_floors[i] != null && _floors[i].activeSelf)
-                    {
-                        _highestActiveFloorIndex = i;
-                        break;
-                    }
             }
+
+            if (direction == FloorDirection.Bottom)
+                yPosition = _floors.Count > 0 ? _floors[0].transform.position.y - 10 : 0;
+            else
+                yPosition = _floors.Count > 0 ? _floors.Last().transform.position.y + 10 : 0;
+
+            var floor = Instantiate(floorPrefab, new Vector3(0, yPosition, 0), Quaternion.identity);
+            floor.transform.SetParent(floorsContainer.transform);
+            floor.name = $"Floor {floorNumber}";
+            floor.GetComponent<FloorController>().SetFloorNumber(floorNumber);
+            floor.GetComponent<FloorController>().SetObserver(_floorObservers);
+
+            if (direction == FloorDirection.Bottom)
+                _floors.Insert(0, floor);
+            else
+                _floors.Add(floor);
+
+            if (init) return;
+
+            if (direction == FloorDirection.Bottom)
+                _floors.FindLast(f => f.activeSelf).SetActive(false);
+            else
+                _floors.Find(f => f.activeSelf).SetActive(false);
+        }
+
+        private void AddFloorAtBottom(int floorNumber, bool init = false)
+        {
+            AddFloor(floorNumber, FloorDirection.Bottom, init);
+        }
+
+        private void AddFloorAtTop(int floorNumber)
+        {
+            AddFloor(floorNumber, FloorDirection.Top);
         }
 
         public void OnNotify(GameEventData eventData)
         {
+            if (eventData.Name == GameEvents.FloorChange)
+            {
+                print("FLOOR CHANGE!");
+                var floorNumber = (int)eventData.Data;
+                var playerFloorIndex = _floors.FindIndex(f => f.name == $"Floor {floorNumber}");
+
+                if (playerFloorIndex >= _floors.Count - 1 ||
+                    playerFloorIndex == _floors.FindLastIndex(f => f.activeSelf))
+                    AddFloorAtTop(floorNumber + 1);
+
+                else if (playerFloorIndex == 0 || playerFloorIndex == _floors.FindIndex(f => f.activeSelf))
+                    AddFloorAtBottom(floorNumber - 1);
+            }
+
             // switch (eventData.Name)
             // {
             //     case GameEvents.ElevatorMoving:
