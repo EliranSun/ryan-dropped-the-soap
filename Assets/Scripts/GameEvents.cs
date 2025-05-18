@@ -180,5 +180,10 @@
     PlayerGrowth,
     PlayerGrew,
 
-    FollowPlayer
+    FollowPlayer,
+
+    TriggerSoundEffect,
+
+    OpenNpcDoor,
+    KnockOnNpcDoor
 }

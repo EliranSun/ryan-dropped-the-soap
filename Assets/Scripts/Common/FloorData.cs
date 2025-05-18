@@ -15,7 +15,7 @@ namespace Common
         public bool zekeStoryDone;
         public bool stacyStoryDone;
         public readonly int playerApartmentFloor = 42;
-        public readonly int playerApartmentNumber = 420;
+        public readonly int playerApartmentNumber = 422;
         public readonly int stacyFloorNumber = 38;
         public readonly int zekeFloorNumber = 50;
     }

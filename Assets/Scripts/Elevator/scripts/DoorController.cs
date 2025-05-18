@@ -1,10 +1,11 @@
 using System;
 using System.Linq;
-using Common;
+using common.scripts;
+using Common.scripts;
 using TMPro;
 using UnityEngine;
 
-namespace common.scripts
+namespace Elevator.scripts
 {
     [RequireComponent(typeof(Collider2D))]
     public class DoorController : ObserverSubject
@@ -12,9 +13,9 @@ namespace common.scripts
         [SerializeField] private TextMeshPro doorNumberTextMeshPro;
         [SerializeField] private TransitionController transitionImage;
         [SerializeField] private Transform playerTransform;
-        [SerializeField] private GameObject hallwayDoor;
-        [SerializeField] private GameObject insideDoor;
-        [SerializeField] private FloorData floorData;
+        [SerializeField] private GameObject[] doors;
+        [SerializeField] private Common.FloorData floorData;
+        [SerializeField] private AudioClip knockSound;
         private int _doorNumber;
         private bool _isDoorOpen;
         private bool _isPlayerInsideApartment = true;
@@ -37,20 +38,27 @@ namespace common.scripts
 
         private void OnMouseDown()
         {
-            print("Click on door: " + _doorNumber);
             if (_doorNumber != floorData.playerApartmentNumber)
             {
-                print("Tried open someone else's door - " +
-                      _doorNumber +
-                      "; player - " +
-                      floorData.playerApartmentNumber);
+                // Notify(GameEvents.TriggerSoundEffect, knockSound);
+
+                // TODO: Another way then find with string
+                var soundEffects = GameObject.Find("📣 Sound Effects Audio Source");
+                var eventController = GameObject.Find("🏢 Building controller");
+
+                if (soundEffects)
+                    soundEffects.GetComponent<SoundEffectsController>().PlaySoundEffect(knockSound);
+
+                if (eventController && eventController.GetComponent<BuildingController>())
+                    eventController.GetComponent<BuildingController>()
+                        .OnNotify(new GameEventData(GameEvents.KnockOnNpcDoor, _doorNumber));
+
                 return;
             }
 
             print("Changing player door state");
             _isDoorOpen = !_isDoorOpen;
-            hallwayDoor.SetActive(!_isDoorOpen);
-            insideDoor.SetActive(!_isDoorOpen);
+            foreach (var door in doors) door.SetActive(!_isDoorOpen);
             Notify(!_isDoorOpen
                 ? GameEvents.PlayerApartmentDoorClosed
                 : GameEvents.PlayerApartmentDoorOpened);
@@ -74,11 +82,20 @@ namespace common.scripts
                 _isPlayerOnDoor = false;
         }
 
+        public void OnNotify(GameEventData eventData)
+        {
+            if (eventData.Name == GameEvents.OpenNpcDoor)
+            {
+                _isDoorOpen = true;
+                foreach (var door in doors) door.SetActive(true);
+            }
+        }
+
         private void MovePlayerToLinkedDoor()
         {
             Notify(_isPlayerInsideApartment ? GameEvents.ExitApartment : GameEvents.EnterApartment);
-            var x = _isPlayerInsideApartment ? hallwayDoor.transform.position.x : gameObject.transform.position.x;
-            playerTransform.position = new Vector3(x, playerTransform.position.y, playerTransform.position.z);
+            // var x = _isPlayerInsideApartment ? hallwayDoor.transform.position.x : gameObject.transform.position.x;
+            // playerTransform.position = new Vector3(x, playerTransform.position.y, playerTransform.position.z);
             _isPlayerInsideApartment = !_isPlayerInsideApartment;
         }
 
@@ -86,8 +103,8 @@ namespace common.scripts
         {
             var isObjectInsideApartment = Array.Exists(_objectsInsideApartment, obj =>
                 obj.transform == objectTransform);
-            var x = isObjectInsideApartment ? hallwayDoor.transform.position.x : gameObject.transform.position.x;
-            objectTransform.position = new Vector3(x, objectTransform.position.y, objectTransform.position.z);
+            // var x = isObjectInsideApartment ? hallwayDoor.transform.position.x : gameObject.transform.position.x;
+            // objectTransform.position = new Vector3(x, objectTransform.position.y, objectTransform.position.z);
 
             if (isObjectInsideApartment)
                 _objectsInsideApartment = _objectsInsideApartment.Where(obj =>

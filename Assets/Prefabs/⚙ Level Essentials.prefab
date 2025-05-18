@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2507119260470874071}
   - component: {fileID: 6381851352204090758}
+  - component: {fileID: 988605597037038231}
   m_Layer: 0
   m_Name: "\U0001F4E3 Sound Effects Audio Source"
   m_TagString: Untagged
@@ -129,6 +130,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &988605597037038231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652461185213201574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e5f1cfc03e562e4a80cfc7e1e063eb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1338710738119981748
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,13 +356,21 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   globalLight: {fileID: 0}
   transitionDuration: 2
-  transitionOutElement:
-    elementContainer: {fileID: 0}
-    elementShade: {fileID: 0}
-  transitionInElement:
-    elementContainer: {fileID: 0}
-    elementShade: {fileID: 0}
   killingDependents: {fileID: 0}
+  hallwayShade: {fileID: 0}
+  apartmentsShade: {fileID: 0}
+  hallways: []
+  apartmentsBoundaries: {fileID: 0}
+  hallwayBoundaries: {fileID: 0}
+  sfxAudioSource: {fileID: 0}
+  knockingSound: {fileID: 0}
+  floorData: {fileID: 0}
+  npcKnockingOnPlayerApartment: {fileID: 0}
+  playerApartmentHallwayDoor: {fileID: 0}
+  initLine: {fileID: 0}
+  playerTookPlantWithoutPermission: {fileID: 0}
+  charlottePlayerGrowthLine: {fileID: 0}
+  playerBox: {fileID: 0}
 --- !u!114 &6858920165759656711
 MonoBehaviour:
   m_ObjectHideFlags: 0

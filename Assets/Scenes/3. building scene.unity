@@ -666,9 +666,9 @@ MonoBehaviour:
   doorNumberTextMeshPro: {fileID: 0}
   transitionImage: {fileID: 0}
   playerTransform: {fileID: 0}
-  hallwayDoor: {fileID: 0}
-  insideDoor: {fileID: 0}
+  doors: []
   floorData: {fileID: 0}
+  knockSound: {fileID: 0}
 --- !u!61 &159878912
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2360,9 +2360,9 @@ MonoBehaviour:
   doorNumberTextMeshPro: {fileID: 0}
   transitionImage: {fileID: 0}
   playerTransform: {fileID: 0}
-  hallwayDoor: {fileID: 0}
-  insideDoor: {fileID: 0}
+  doors: []
   floorData: {fileID: 0}
+  knockSound: {fileID: 0}
 --- !u!61 &255157955
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2633,9 +2633,9 @@ MonoBehaviour:
   doorNumberTextMeshPro: {fileID: 0}
   transitionImage: {fileID: 0}
   playerTransform: {fileID: 0}
-  hallwayDoor: {fileID: 0}
-  insideDoor: {fileID: 0}
+  doors: []
   floorData: {fileID: 0}
+  knockSound: {fileID: 0}
 --- !u!61 &274592683
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3519,9 +3519,9 @@ MonoBehaviour:
   doorNumberTextMeshPro: {fileID: 0}
   transitionImage: {fileID: 0}
   playerTransform: {fileID: 0}
-  hallwayDoor: {fileID: 0}
-  insideDoor: {fileID: 0}
+  doors: []
   floorData: {fileID: 0}
+  knockSound: {fileID: 0}
 --- !u!61 &464781718
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4471,9 +4471,9 @@ MonoBehaviour:
   doorNumberTextMeshPro: {fileID: 0}
   transitionImage: {fileID: 0}
   playerTransform: {fileID: 0}
-  hallwayDoor: {fileID: 0}
-  insideDoor: {fileID: 0}
+  doors: []
   floorData: {fileID: 0}
+  knockSound: {fileID: 0}
 --- !u!61 &697126067
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5235,9 +5235,9 @@ MonoBehaviour:
   doorNumberTextMeshPro: {fileID: 0}
   transitionImage: {fileID: 0}
   playerTransform: {fileID: 0}
-  hallwayDoor: {fileID: 0}
-  insideDoor: {fileID: 0}
+  doors: []
   floorData: {fileID: 0}
+  knockSound: {fileID: 0}
 --- !u!61 &979296797
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6493,9 +6493,9 @@ MonoBehaviour:
   doorNumberTextMeshPro: {fileID: 0}
   transitionImage: {fileID: 0}
   playerTransform: {fileID: 0}
-  hallwayDoor: {fileID: 0}
-  insideDoor: {fileID: 0}
+  doors: []
   floorData: {fileID: 0}
+  knockSound: {fileID: 0}
 --- !u!61 &1191397836
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6923,9 +6923,9 @@ MonoBehaviour:
   doorNumberTextMeshPro: {fileID: 0}
   transitionImage: {fileID: 0}
   playerTransform: {fileID: 0}
-  hallwayDoor: {fileID: 0}
-  insideDoor: {fileID: 0}
+  doors: []
   floorData: {fileID: 0}
+  knockSound: {fileID: 0}
 --- !u!61 &1344301336
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7448,9 +7448,9 @@ MonoBehaviour:
   doorNumberTextMeshPro: {fileID: 0}
   transitionImage: {fileID: 0}
   playerTransform: {fileID: 0}
-  hallwayDoor: {fileID: 0}
-  insideDoor: {fileID: 0}
+  doors: []
   floorData: {fileID: 0}
+  knockSound: {fileID: 0}
 --- !u!61 &1417349204
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7873,7 +7873,7 @@ Transform:
   m_GameObject: {fileID: 1630145637}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.000061035156, y: -0.000030517578, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7891,11 +7891,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d0b5df747b0a4a66bb0a9c515b50de2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 109004085}
+        m_TargetAssemblyTypeName: Character_Creator.scripts.DialogueManager, CharacterCreatorScriptsAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   floorPrefab: {fileID: 2193044454335554706, guid: ac98bf460c718a542b8bf3d57dc5f99e, type: 3}
   floorData: {fileID: 11400000, guid: 0d331cf434876ec44a2376c813275b06, type: 2}
   significantApartments:
-  - number: 501
+  - floorNumber: 50
+    apartmentNumber: 1
     prefab: {fileID: 5023264232389034183, guid: 9ae82c3bfbb75be4ba49d923bcde8248, type: 3}
+    isPopulated: 0
+    narrationLine: {fileID: 11400000, guid: 0808da3c34edfe44b8591992c9b05417, type: 2}
   floorsContainer: {fileID: 280493706}
   playerTransform: {fileID: 4144411059709439033}
   charlotte: {fileID: 0}

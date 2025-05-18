@@ -1,9 +1,9 @@
 using System;
 using System.Collections;
-using Common;
 using Dialog;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using FloorData = Common.FloorData;
 using Random = UnityEngine.Random;
 
 namespace common.scripts
@@ -49,6 +49,7 @@ namespace common.scripts
         [SerializeField] private NarrationDialogLine playerTookPlantWithoutPermission;
         [SerializeField] private NarrationDialogLine charlottePlayerGrowthLine;
         [SerializeField] private GameObject playerBox;
+
         private bool _charlotteGavePlayerPlant;
         private bool _charlotteRespondedToPlayerGrowth;
         private bool _charlotteWaitingTheory;

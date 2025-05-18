@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Dialog;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,17 +11,20 @@ namespace Elevator.scripts
     [Serializable]
     public class Apartment
     {
-        public int number;
+        public int floorNumber;
+        public int apartmentNumber;
         public GameObject prefab;
+        public bool isPopulated;
+        public NarrationDialogLine narrationLine;
     }
 
-    public class BuildingController : MonoBehaviour
+    public class BuildingController : ObserverSubject
     {
         // [SerializeField] private DoorController[] hallwayDoors;
 
         [SerializeField] private GameObject floorPrefab;
         [SerializeField] private Common.FloorData floorData;
-        [SerializeField] private Apartment[] significantApartments;
+        [SerializeField] public Apartment[] significantApartments;
         [SerializeField] private GameObject floorsContainer;
         [SerializeField] private Transform playerTransform;
 
@@ -55,12 +59,28 @@ namespace Elevator.scripts
             playerTransform.position = _floors
                 .Find(floor => floor.name == $"Floor {floorData.currentFloorNumber}")
                 .transform.position;
+
+            PopulateApartments();
         }
 
-        private enum FloorDirection
+        private void PopulateApartments()
         {
-            Top,
-            Bottom
+            foreach (var significantApartment in significantApartments)
+            {
+                var floor = _floors.Find(f =>
+                    f.GetComponent<FloorController>().floorNumber == significantApartment.floorNumber);
+
+                if (floor == null) continue;
+
+                var apartment = floor.GetComponent<FloorController>().apartments
+                    .First(apartment => apartment.apartmentNumber == significantApartment.apartmentNumber);
+
+                if (apartment.prefab != null && !apartment.isPopulated)
+                {
+                    Instantiate(significantApartment.prefab, apartment.prefab.transform);
+                    apartment.isPopulated = true;
+                }
+            }
         }
 
         private void AddFloor(int floorNumber, FloorDirection direction, bool init = false)
@@ -126,6 +146,19 @@ namespace Elevator.scripts
 
                 else if (playerFloorIndex == 0 || playerFloorIndex == _floors.FindIndex(f => f.activeSelf))
                     AddFloorAtBottom(floorNumber - 1);
+
+                PopulateApartments();
+            }
+
+            if (eventData.Name == GameEvents.KnockOnNpcDoor)
+            {
+                var npcDoorNumber = (int)eventData.Data;
+                var npcApartment =
+                    significantApartments.FirstOrDefault(apartment =>
+                        int.Parse($"{apartment.floorNumber}{apartment.apartmentNumber}") == npcDoorNumber);
+
+                if (npcApartment != null && npcApartment.narrationLine != null)
+                    Notify(GameEvents.TriggerSpecificDialogLine, npcApartment.narrationLine);
             }
 
             // switch (eventData.Name)
@@ -210,6 +243,12 @@ namespace Elevator.scripts
 
                 yield return new WaitForSeconds(1f);
             }
+        }
+
+        private enum FloorDirection
+        {
+            Top,
+            Bottom
         }
     }
 }
