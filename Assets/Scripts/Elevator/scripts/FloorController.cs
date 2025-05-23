@@ -1,4 +1,3 @@
-using common.scripts;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -31,7 +30,7 @@ namespace Elevator.scripts
             {
                 apartments[i].apartmentNumber = i;
                 apartments[i].floorNumber = floorNumber;
-                doors[i].SetDoorNumber($"{floorNumber}{i + 1}");
+                doors[i].SetDoorNumber($"{floorNumber}{i}");
             }
         }
 

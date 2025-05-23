@@ -38,30 +38,29 @@ namespace Elevator.scripts
 
         private void OnMouseDown()
         {
-            if (_doorNumber != floorData.playerApartmentNumber)
+            if (_doorNumber == floorData.playerApartmentNumber)
             {
-                // Notify(GameEvents.TriggerSoundEffect, knockSound);
-
-                // TODO: Another way then find with string
-                var soundEffects = GameObject.Find("📣 Sound Effects Audio Source");
-                var eventController = GameObject.Find("🏢 Building controller");
-
-                if (soundEffects)
-                    soundEffects.GetComponent<SoundEffectsController>().PlaySoundEffect(knockSound);
-
-                if (eventController && eventController.GetComponent<BuildingController>())
-                    eventController.GetComponent<BuildingController>()
-                        .OnNotify(new GameEventData(GameEvents.KnockOnNpcDoor, _doorNumber));
-
+                // player apartment
+                print("Changing player door state");
+                _isDoorOpen = !_isDoorOpen;
+                foreach (var door in doors) door.SetActive(!_isDoorOpen);
+                Notify(!_isDoorOpen
+                    ? GameEvents.PlayerApartmentDoorClosed
+                    : GameEvents.PlayerApartmentDoorOpened);
                 return;
             }
 
-            print("Changing player door state");
-            _isDoorOpen = !_isDoorOpen;
-            foreach (var door in doors) door.SetActive(!_isDoorOpen);
-            Notify(!_isDoorOpen
-                ? GameEvents.PlayerApartmentDoorClosed
-                : GameEvents.PlayerApartmentDoorOpened);
+            // npc apartment
+            // TODO: Another way then find with string
+            var soundEffects = GameObject.Find("📣 Sound Effects Audio Source");
+            var eventController = GameObject.Find("🏢 Building controller");
+
+            if (soundEffects)
+                soundEffects.GetComponent<SoundEffectsController>().PlaySoundEffect(knockSound);
+
+            if (eventController && eventController.GetComponent<BuildingController>())
+                eventController.GetComponent<BuildingController>()
+                    .OnNotify(new GameEventData(GameEvents.KnockOnNpcDoor, _doorNumber));
         }
 
         private void OnTriggerEnter2D(Collider2D other)
