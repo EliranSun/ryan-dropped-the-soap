@@ -14,7 +14,7 @@ namespace Elevator.scripts
         [SerializeField] private TransitionController transitionImage;
         [SerializeField] private Transform playerTransform;
         [SerializeField] private GameObject[] doors;
-        [SerializeField] private Common.FloorData floorData;
+        [SerializeField] private FloorData floorData;
         [SerializeField] private AudioClip knockSound;
         private int _doorNumber;
         private bool _isDoorOpen;
@@ -51,16 +51,8 @@ namespace Elevator.scripts
             }
 
             // npc apartment
-            // TODO: Another way then find with string
-            var soundEffects = GameObject.Find("📣 Sound Effects Audio Source");
-            var eventController = GameObject.Find("🏢 Building controller");
-
-            if (soundEffects)
-                soundEffects.GetComponent<SoundEffectsController>().PlaySoundEffect(knockSound);
-
-            if (eventController && eventController.GetComponent<BuildingController>())
-                eventController.GetComponent<BuildingController>()
-                    .OnNotify(new GameEventData(GameEvents.KnockOnNpcDoor, _doorNumber));
+            KnockOnDoor();
+            TriggerKnockOnNpcDoor();
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -81,6 +73,23 @@ namespace Elevator.scripts
                 _isPlayerOnDoor = false;
         }
 
+        private void KnockOnDoor()
+        {
+            // TODO: Another way then find with string
+            var soundEffects = GameObject.Find("📣 Sound Effects Audio Source");
+
+            if (soundEffects)
+                soundEffects.GetComponent<SoundEffectsController>().PlaySoundEffect(knockSound);
+        }
+
+        private void TriggerKnockOnNpcDoor()
+        {
+            var eventController = GameObject.Find("🏢 Building controller");
+            if (eventController && eventController.GetComponent<BuildingController>())
+                eventController.GetComponent<BuildingController>()
+                    .OnNotify(new GameEventData(GameEvents.KnockOnNpcDoor, _doorNumber));
+        }
+
         public void OnNotify(GameEventData eventData)
         {
             if (eventData.Name == GameEvents.OpenNpcDoor)
@@ -88,6 +97,13 @@ namespace Elevator.scripts
                 _isDoorOpen = true;
                 foreach (var door in doors) door.SetActive(true);
             }
+        }
+
+        public void OpenNpcDoor()
+        {
+            _isDoorOpen = true;
+            foreach (var door in doors) door.SetActive(true);
+            // Notify(GameEvents.OpenNpcDoor);
         }
 
         private void MovePlayerToLinkedDoor()

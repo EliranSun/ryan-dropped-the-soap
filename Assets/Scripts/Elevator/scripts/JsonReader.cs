@@ -1,20 +1,23 @@
-using System;
 using UnityEngine;
 
 namespace Elevator.scripts
 {
-    [Serializable]
-    public class FloorData
-    {
-        public int floorNumber;
-        public int apartmentsCount;
-    }
+    // TODO: This is from an old scene and conflicts with the new FloorData,
+    // consider removing or changing
 
-    [Serializable]
-    public class FloorsData
-    {
-        public FloorData[] data;
-    }
+
+    // [Serializable]
+    // public class FloorData
+    // {
+    //     public int floorNumber;
+    //     public int apartmentsCount;
+    // }
+
+    // [Serializable]
+    // public class FloorsData
+    // {
+    //     public FloorData[] data;
+    // }
 
     public class JsonReader : ObserverSubject
     {
@@ -30,9 +33,9 @@ namespace Elevator.scripts
             if (jsonFile != null)
             {
                 // Read the JSON content from the TextAsset
-                var json = jsonFile.text;
-                var data = JsonUtility.FromJson<FloorsData>(json);
-                Notify(GameEvents.FloorsUpdate, data);
+                // var json = jsonFile.text;
+                // var data = JsonUtility.FromJson<FloorsData>(json);
+                // Notify(GameEvents.FloorsUpdate, data);
             }
             else
             {

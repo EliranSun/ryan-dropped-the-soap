@@ -23,7 +23,7 @@ namespace Elevator.scripts
         [SerializeField] private float debounce = 3f;
         [SerializeField] private float lightLoop = 3f;
         [SerializeField] private float apartmentsPanelMoveSpeed = 1;
-        [SerializeField] private Common.FloorData floorData;
+        [SerializeField] private FloorData floorData;
 
         private int _desiredFloor;
         private Vector3 _initLightPosition;

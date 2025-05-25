@@ -1,5 +1,4 @@
 using System.Linq;
-using common.scripts;
 using UnityEngine;
 
 namespace Elevator.scripts
@@ -24,27 +23,25 @@ namespace Elevator.scripts
             {
                 print(eventData.Data);
 
-                if (eventData.Data is not FloorsData floorsData)
-                {
-                    print("Data is not FloorsData");
-                    return;
-                }
+                if (eventData.Data is not FloorData floorsData) print("Data is not FloorsData");
 
-                print($"Number of floors: {floorsData.data.Length}");
+                // TODO: Old
 
-                for (var i = 0; i < floorsData.data.Length; i++)
-                for (var j = 0; j < floorsData.data[i].apartmentsCount; j++)
-                {
-                    var floorButton = Instantiate(floorPrefab, elevatorButtonsPanelTransform);
-                    floorButton.gameObject.name = _currentFloorNumber == i
-                        ? $"apt_active-{i + 1}:{j + 1}"
-                        : $"apt_inactive-{i + 1}:{j + 1}";
-
-                    floorButton.transform.localPosition = new Vector2(j / 10f, i / 20f);
-                    floorButton.GetComponent<SpriteRenderer>().color = _currentFloorNumber == i
-                        ? new Color(1, 1, 1, 1)
-                        : new Color(1, 1, 1, 0.5f);
-                }
+                // print($"Number of floors: {floorsData.data.Length}");
+                //
+                // for (var i = 0; i < floorsData.data.Length; i++)
+                // for (var j = 0; j < floorsData.data[i].apartmentsCount; j++)
+                // {
+                //     var floorButton = Instantiate(floorPrefab, elevatorButtonsPanelTransform);
+                //     floorButton.gameObject.name = _currentFloorNumber == i
+                //         ? $"apt_active-{i + 1}:{j + 1}"
+                //         : $"apt_inactive-{i + 1}:{j + 1}";
+                //
+                //     floorButton.transform.localPosition = new Vector2(j / 10f, i / 20f);
+                //     floorButton.GetComponent<SpriteRenderer>().color = _currentFloorNumber == i
+                //         ? new Color(1, 1, 1, 1)
+                //         : new Color(1, 1, 1, 0.5f);
+                // }
             }
         }
 

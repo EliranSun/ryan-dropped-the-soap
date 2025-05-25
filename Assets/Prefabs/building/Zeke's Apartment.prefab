@@ -142,6 +142,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2026209542690905595}
+  - component: {fileID: 1442130448480437418}
   m_Layer: 0
   m_Name: Zeke's Apartment
   m_TagString: Untagged
@@ -167,6 +168,26 @@ Transform:
   - {fileID: 5051037791990544974}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1442130448480437418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5023264232389034183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb298a2c9709c3d46ba3b09fae57e795, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floorNumber: 0
+  apartmentNumber: 0
+  prefab: {fileID: 5023264232389034183}
+  isPopulated: 0
+  narrationLine: {fileID: 0}
+  door: {fileID: 0}
+  tenants:
+  - {fileID: 9044269461175498600}
 --- !u!1 &7526133315814922255
 GameObject:
   m_ObjectHideFlags: 0

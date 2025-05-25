@@ -1,12 +1,12 @@
 using System;
 using System.Collections;
+using common.scripts;
 using Dialog;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
-using FloorData = Common.FloorData;
 using Random = UnityEngine.Random;
 
-namespace common.scripts
+namespace Elevator.scripts
 {
     [Serializable]
     public class TransitionalElement

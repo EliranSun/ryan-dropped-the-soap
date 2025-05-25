@@ -22,7 +22,7 @@ namespace Elevator.scripts
         [FormerlySerializedAs("floorController")] [SerializeField]
         private BuildingController buildingController;
 
-        [SerializeField] private Common.FloorData floorData;
+        [SerializeField] private FloorData floorData;
 
         private float _closeLerpTime;
         private Collider2D _collider2D;
