@@ -49,7 +49,7 @@ MonoBehaviour:
   apartmentNumber: 0
   door: {fileID: 4182809299472876510}
   tenants: []
-  floorData: {fileID: 11400000, guid: 0d331cf434876ec44a2376c813275b06, type: 2}
+  buildingController: {fileID: 0}
   prefab: {fileID: 0}
   isPopulated: 0
   narrationLine: {fileID: 0}
@@ -334,6 +334,7 @@ MonoBehaviour:
   - {fileID: 8633550221004181033}
   - {fileID: 6392269136284500121}
   - {fileID: 908956285799347127}
+  buildingController: {fileID: 0}
   floorNumber: 0
 --- !u!61 &4033596294138612375
 BoxCollider2D:
@@ -636,7 +637,7 @@ MonoBehaviour:
   apartmentNumber: 0
   door: {fileID: 7702943207693940097}
   tenants: []
-  floorData: {fileID: 11400000, guid: 0d331cf434876ec44a2376c813275b06, type: 2}
+  buildingController: {fileID: 0}
   prefab: {fileID: 0}
   isPopulated: 0
   narrationLine: {fileID: 0}
@@ -1433,6 +1434,22 @@ PrefabInstance:
     - target: {fileID: 2407830784406473562, guid: 6698d8d0431109446885d915960ceba4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4764635869999141494, guid: 6698d8d0431109446885d915960ceba4, type: 3}
+      propertyPath: m_Size.x
+      value: 40.26299
+      objectReference: {fileID: 0}
+    - target: {fileID: 4764635869999141494, guid: 6698d8d0431109446885d915960ceba4, type: 3}
+      propertyPath: m_Size.y
+      value: 3.1111503
+      objectReference: {fileID: 0}
+    - target: {fileID: 4764635869999141494, guid: 6698d8d0431109446885d915960ceba4, type: 3}
+      propertyPath: m_Offset.x
+      value: 2.8379192
+      objectReference: {fileID: 0}
+    - target: {fileID: 4764635869999141494, guid: 6698d8d0431109446885d915960ceba4, type: 3}
+      propertyPath: m_Offset.y
+      value: -4.494425
       objectReference: {fileID: 0}
     - target: {fileID: 6481417502207983499, guid: 6698d8d0431109446885d915960ceba4, type: 3}
       propertyPath: door

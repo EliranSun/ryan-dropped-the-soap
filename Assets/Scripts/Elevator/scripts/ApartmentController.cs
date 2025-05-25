@@ -27,7 +27,10 @@ namespace Elevator.scripts
             foreach (var tenant in buildingController.tenants)
                 if (tenant.floorNumber == floorNumber && tenant.apartmentNumber == apartmentNumber)
                     if (tenant.name == Tenant.Zeke)
-                        Instantiate(tenant.tenantPrefab, transform.position, Quaternion.identity);
+                    {
+                        tenant.tenantPrefab.transform.position = transform.position;
+                        tenant.currentApartmentNumber = floorNumber * 10 + apartmentNumber;
+                    }
         }
     }
 }

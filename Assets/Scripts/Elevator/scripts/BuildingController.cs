@@ -18,6 +18,7 @@ namespace Elevator.scripts
     public class TenantApartment
     {
         public int apartmentNumber;
+        public int currentApartmentNumber;
         public int floorNumber;
         public Tenant name;
         public GameObject tenantPrefab;
@@ -43,7 +44,7 @@ namespace Elevator.scripts
         private readonly List<GameObject> _floors = new();
         private UnityEvent<GameEventData> _floorObservers;
 
-        private void Start()
+        private void Awake()
         {
             _floorObservers = new UnityEvent<GameEventData>();
             _floorObservers.AddListener(OnNotify);
