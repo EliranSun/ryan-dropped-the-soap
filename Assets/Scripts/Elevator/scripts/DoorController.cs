@@ -86,7 +86,8 @@ namespace Elevator.scripts
         {
             var eventController = GameObject.Find("🏢 Building controller");
             if (eventController && eventController.GetComponent<BuildingController>())
-                eventController.GetComponent<BuildingController>()
+                eventController
+                    .GetComponent<BuildingController>()
                     .OnNotify(new GameEventData(GameEvents.KnockOnNpcDoor, _doorNumber));
         }
 

@@ -6399,6 +6399,38 @@ PrefabInstance:
       propertyPath: buildingController
       value: 
       objectReference: {fileID: 1630145639}
+    - target: {fileID: 497700870944723493, guid: d6297e1698957484c804cbdaea2722a5, type: 3}
+      propertyPath: knockOnDoorLines.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 497700870944723493, guid: d6297e1698957484c804cbdaea2722a5, type: 3}
+      propertyPath: 'knockOnDoorLines.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 0808da3c34edfe44b8591992c9b05417, type: 2}
+    - target: {fileID: 497700870944723493, guid: d6297e1698957484c804cbdaea2722a5, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 497700870944723493, guid: d6297e1698957484c804cbdaea2722a5, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 109004085}
+    - target: {fileID: 497700870944723493, guid: d6297e1698957484c804cbdaea2722a5, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 497700870944723493, guid: d6297e1698957484c804cbdaea2722a5, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnNotify
+      objectReference: {fileID: 0}
+    - target: {fileID: 497700870944723493, guid: d6297e1698957484c804cbdaea2722a5, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Character_Creator.scripts.DialogueManager, CharacterCreatorScriptsAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 497700870944723493, guid: d6297e1698957484c804cbdaea2722a5, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1137094454097543630, guid: d6297e1698957484c804cbdaea2722a5, type: 3}
       propertyPath: m_GravityScale
       value: 1
@@ -6461,6 +6493,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3739804740310463349, guid: d6297e1698957484c804cbdaea2722a5, type: 3}
   m_PrefabInstance: {fileID: 1178285042}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1178285044 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 497700870944723493, guid: d6297e1698957484c804cbdaea2722a5, type: 3}
+  m_PrefabInstance: {fileID: 1178285042}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178285043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9e45c83d32f1794eba302925fc43f6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1178552445
 GameObject:
   m_ObjectHideFlags: 0
@@ -8211,6 +8254,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1178285044}
+        m_TargetAssemblyTypeName: Npc.NpcController, NpcAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   floorPrefab: {fileID: 2193044454335554706, guid: ac98bf460c718a542b8bf3d57dc5f99e, type: 3}
   floorData: {fileID: 11400000, guid: 0d331cf434876ec44a2376c813275b06, type: 2}
   npcApartments:
@@ -9679,10 +9734,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9e45c83d32f1794eba302925fc43f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  apartmentDoor: {fileID: 0}
-  floorData: {fileID: 0}
-  currentApartmentNumber: 0
+  observers:
+    m_PersistentCalls:
+      m_Calls: []
   buildingController: {fileID: 0}
+  tenant: 0
+  knockOnDoorLines: []
 --- !u!1 &2123199471
 GameObject:
   m_ObjectHideFlags: 0
@@ -9995,6 +10052,7 @@ SceneRoots:
   - {fileID: 2116912081}
   - {fileID: 8221110539711036879}
   - {fileID: 12380332}
+  - {fileID: 1178285042}
   - {fileID: 251644626}
   - {fileID: 981217594}
   - {fileID: 219787493}
@@ -10011,5 +10069,4 @@ SceneRoots:
   - {fileID: 362866774}
   - {fileID: 280493707}
   - {fileID: 827538638}
-  - {fileID: 1178285042}
   - {fileID: 1393981363}

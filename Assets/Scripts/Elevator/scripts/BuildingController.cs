@@ -22,6 +22,7 @@ namespace Elevator.scripts
         public int floorNumber;
         public Tenant name;
         public GameObject tenantPrefab;
+        public GameObject door;
     }
 
 
@@ -152,15 +153,16 @@ namespace Elevator.scripts
             }
 
             if (eventData.Name == GameEvents.KnockOnNpcDoor)
-            {
-                var npcDoorNumber = (int)eventData.Data;
-                var npcApartment =
-                    npcApartments.FirstOrDefault(apartment =>
-                        int.Parse($"{apartment.floorNumber}{apartment.apartmentNumber}") == npcDoorNumber);
-
-                if (npcApartment != null && npcApartment.narrationLine != null)
-                    Notify(GameEvents.TriggerSpecificDialogLine, npcApartment.narrationLine);
-            }
+                // var npcDoorNumber = (int)eventData.Data;
+                // var npcApartment =
+                //     npcApartments.FirstOrDefault(apartment =>
+                //         int.Parse($"{apartment.floorNumber}{apartment.apartmentNumber}") == npcDoorNumber);
+                //
+                // if (npcApartment != null && npcApartment.narrationLine != null)
+                //     Notify(GameEvents.TriggerSpecificDialogLine, npcApartment.narrationLine);
+                // notify again because doors are triggering original and is only connected to BuildingController
+                // since they are dynamically created
+                Notify(GameEvents.KnockOnNpcDoor, eventData.Data);
         }
 
         public IEnumerator CallElevator(ElevatorDoorsController requestedElevator)

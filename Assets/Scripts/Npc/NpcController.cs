@@ -1,21 +1,25 @@
 using System.Linq;
+using Dialog;
 using Elevator.scripts;
 using UnityEngine;
 
 namespace Npc
 {
-    public class NpcController : MonoBehaviour
+    public class NpcController : ObserverSubject
     {
-        public GameObject apartmentDoor;
-        public FloorData floorData;
+        // public GameObject apartmentDoor;
+        // public FloorData floorData;
         [SerializeField] private BuildingController buildingController;
         [SerializeField] private Tenant tenant;
-        private TenantApartment apartment;
+        [SerializeField] private NarrationDialogLine[] knockOnDoorLines;
+        private readonly bool _isInApartment = true;
+        private TenantApartment _apartment;
 
         private void Start()
         {
             // FIXME:
-            apartment = buildingController.tenants.FirstOrDefault(t => t.name == tenant);
+            _apartment = buildingController.tenants.FirstOrDefault(t => t.name == tenant);
+            print(_apartment);
         }
 
         public void OnNotify(GameEventData eventData)
@@ -23,12 +27,16 @@ namespace Npc
             if (eventData.Name == GameEvents.KnockOnNpcDoor)
             {
                 var doorNumber = (int)eventData.Data;
-                // if (buildingController.tenants == doorNumber)
-                {
-                    // print("KNOCK ON ZEKE DOOR");
-                    // var doorController = apartmentDoor.GetComponent<DoorController>();
-                    // if (doorController) doorController.OpenNpcDoor();
-                }
+                var npcDoorNumber = _apartment.floorNumber * 10 + _apartment.apartmentNumber;
+                if (npcDoorNumber == doorNumber)
+                    if (_isInApartment && knockOnDoorLines.Length > 0)
+                    {
+                        Notify(GameEvents.TriggerSpecificDialogLine,
+                            knockOnDoorLines[Random.Range(0, knockOnDoorLines.Length)]);
+
+                        if (_apartment.door)
+                            transform.position = _apartment.door.transform.position;
+                    }
             }
         }
     }

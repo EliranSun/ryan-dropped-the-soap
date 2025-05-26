@@ -30,6 +30,7 @@ namespace Elevator.scripts
                     {
                         tenant.tenantPrefab.transform.position = transform.position;
                         tenant.currentApartmentNumber = floorNumber * 10 + apartmentNumber;
+                        tenant.door = door.gameObject;
                     }
         }
     }
