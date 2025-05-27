@@ -103,7 +103,7 @@ namespace Elevator.scripts
         public void OpenNpcDoor()
         {
             _isDoorOpen = true;
-            foreach (var door in doors) door.SetActive(true);
+            foreach (var door in doors) door.SetActive(false);
             // Notify(GameEvents.OpenNpcDoor);
         }
 

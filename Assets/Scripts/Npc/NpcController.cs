@@ -17,7 +17,6 @@ namespace Npc
 
         private void Start()
         {
-            // FIXME:
             _apartment = buildingController.tenants.FirstOrDefault(t => t.name == tenant);
             print(_apartment);
         }
@@ -34,10 +33,19 @@ namespace Npc
                         Notify(GameEvents.TriggerSpecificDialogLine,
                             knockOnDoorLines[Random.Range(0, knockOnDoorLines.Length)]);
 
-                        if (_apartment.door)
-                            transform.position = _apartment.door.transform.position;
+                        Invoke(nameof(NpcOpenDoor), 4f);
                     }
             }
+        }
+
+        private void NpcOpenDoor()
+        {
+            if (!_apartment.door) return;
+
+            // TODO: move npc to actually hallway door location
+            transform.position = _apartment.door.transform.position - new Vector3(10, 0, 0);
+            var doorController = _apartment.door.GetComponent<DoorController>();
+            doorController.OpenNpcDoor();
         }
     }
 }
