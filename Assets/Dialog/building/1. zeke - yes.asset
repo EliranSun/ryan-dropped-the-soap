@@ -20,13 +20,31 @@ MonoBehaviour:
   - text: yes?
     clip: {fileID: 8300000, guid: 49d096fc87cd1d84a8c29560a068da97, type: 3}
     gender: 0
-  playerOptions: []
+  playerOptions:
+  - text: HELLO
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 3256de1c8ef8e9e43b3fc43b655bc35a, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: HI
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 3256de1c8ef8e9e43b3fc43b655bc35a, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: HAVE PROBLEM
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: d1ccfd6418f0f6a49b43e795ec1d0449, type: 2}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []
   objectReferringDialogLines: []
   wait: 0
-  actorName: 0
+  actorName: 3
   actionBeforeLine: 0
   actionAfterLine: 149
   actorReaction: 0
