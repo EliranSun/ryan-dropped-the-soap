@@ -20,7 +20,31 @@ MonoBehaviour:
   - text: "What? One of my paintings? But\u2026 why?"
     clip: {fileID: 8300000, guid: 82d12cd7c309a744583a70455b6443ac, type: 3}
     gender: 0
-  playerOptions: []
+  playerOptions:
+  - text: JUST CAUSE
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 6e36f039d22b73f4590476ab552cce8d, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: LIKE IT
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 22f419ac14179d648b71ccbf168e22a0, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: MY CONDITION
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 2fd29e98dcbbd2a42bbe99110187505b, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: DECORATE APARTMENT
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 334223a2c61b8964d9e614bdc0dfbf55, type: 2}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []
@@ -28,7 +52,7 @@ MonoBehaviour:
   wait: 0
   actorName: 3
   actionBeforeLine: 0
-  actionAfterLine: 149
+  actionAfterLine: 0
   actorReaction: 0
   angerLevel: 0
   toggleLineCondition: {fileID: 0}

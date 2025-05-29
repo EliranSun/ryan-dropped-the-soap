@@ -21,7 +21,13 @@ MonoBehaviour:
       of butter we\u2019re talking about\u2014it\u2019s culture!"
     clip: {fileID: 8300000, guid: 58727dbeebb7142408258a3d53c3e099, type: 3}
     gender: 0
-  playerOptions: []
+  playerOptions:
+  - text: FAKE PAINTING
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 334223a2c61b8964d9e614bdc0dfbf55, type: 2}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []
@@ -29,7 +35,7 @@ MonoBehaviour:
   wait: 0
   actorName: 3
   actionBeforeLine: 0
-  actionAfterLine: 149
+  actionAfterLine: 0
   actorReaction: 0
   angerLevel: 0
   toggleLineCondition: {fileID: 0}

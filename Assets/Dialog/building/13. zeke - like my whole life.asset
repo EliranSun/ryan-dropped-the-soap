@@ -21,7 +21,25 @@ MonoBehaviour:
       be shocked if one of these turned out to be a fake. Like my whole life really.
     clip: {fileID: 8300000, guid: 9edca5cdc5a16f348bae829223b82bed, type: 3}
     gender: 0
-  playerOptions: []
+  playerOptions:
+  - text: WHAT
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 82c190a36ccda2943aec1d98bf442230, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: EXPLAIN
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 82c190a36ccda2943aec1d98bf442230, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: WHY
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 82c190a36ccda2943aec1d98bf442230, type: 2}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []
@@ -29,7 +47,7 @@ MonoBehaviour:
   wait: 0
   actorName: 3
   actionBeforeLine: 0
-  actionAfterLine: 149
+  actionAfterLine: 0
   actorReaction: 0
   angerLevel: 0
   toggleLineCondition: {fileID: 0}

@@ -20,7 +20,25 @@ MonoBehaviour:
   - text: Sometimes I wonder if there's something real left in my life.
     clip: {fileID: 8300000, guid: d2a6ec1cc7ebd024c83ed62119f2c66d, type: 3}
     gender: 0
-  playerOptions: []
+  playerOptions:
+  - text: TELL MORE
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: e0dcec9a161807d43a1f63f55c53373e, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: STORY TIME
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: e0dcec9a161807d43a1f63f55c53373e, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: ALL EARS
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: e0dcec9a161807d43a1f63f55c53373e, type: 2}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []
@@ -28,7 +46,7 @@ MonoBehaviour:
   wait: 0
   actorName: 3
   actionBeforeLine: 0
-  actionAfterLine: 149
+  actionAfterLine: 0
   actorReaction: 0
   angerLevel: 0
   toggleLineCondition: {fileID: 0}

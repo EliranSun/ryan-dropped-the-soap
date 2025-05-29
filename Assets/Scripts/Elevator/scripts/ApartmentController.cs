@@ -28,7 +28,18 @@ namespace Elevator.scripts
                 if (tenant.floorNumber == floorNumber && tenant.apartmentNumber == apartmentNumber)
                     if (tenant.name == Tenant.Zeke)
                     {
-                        tenant.tenantPrefab.transform.position = transform.position;
+                        if (tenant.tenantPrefab)
+                        {
+                            tenant.tenantPrefab.transform.position = transform.position;
+                            tenant.tenantPrefab.SetActive(true);
+                        }
+
+                        if (tenant.apartmentContents)
+                        {
+                            tenant.apartmentContents.SetActive(true);
+                            tenant.apartmentContents.transform.position = transform.position;
+                        }
+
                         tenant.currentApartmentNumber = floorNumber * 10 + apartmentNumber;
                         tenant.door = door.gameObject;
                     }

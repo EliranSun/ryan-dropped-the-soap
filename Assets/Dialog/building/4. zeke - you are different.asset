@@ -22,7 +22,13 @@ MonoBehaviour:
       after all. So that's something.
     clip: {fileID: 8300000, guid: 4d485b9f51917a440ab708d908f1c3e8, type: 3}
     gender: 0
-  playerOptions: []
+  playerOptions:
+  - text: PAINTINGS
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: fc97a97985eed9940abd945fb12b5b34, type: 2}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []
@@ -30,7 +36,7 @@ MonoBehaviour:
   wait: 0
   actorName: 3
   actionBeforeLine: 0
-  actionAfterLine: 149
+  actionAfterLine: 0
   actorReaction: 0
   angerLevel: 0
   toggleLineCondition: {fileID: 0}

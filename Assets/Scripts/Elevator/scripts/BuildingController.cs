@@ -23,6 +23,7 @@ namespace Elevator.scripts
         public Tenant name;
         public GameObject tenantPrefab;
         public GameObject door;
+        public GameObject apartmentContents;
     }
 
 
