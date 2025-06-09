@@ -155,7 +155,7 @@ public class DraggableObject : ObserverSubject
         {
             if (_rigidbody3D)
             {
-                _rigidbody3D.velocity = Vector3.zero;
+                _rigidbody3D.linearVelocity = Vector3.zero;
                 _isDragging = true;
                 Notify(onDragEvent);
 
@@ -175,7 +175,7 @@ public class DraggableObject : ObserverSubject
         {
             if (_rigidbody2D)
             {
-                _rigidbody2D.velocity = Vector2.zero;
+                _rigidbody2D.linearVelocity = Vector2.zero;
                 _isDragging = true;
                 Notify(onDragEvent);
             }

@@ -44,7 +44,7 @@ public class BackpackController : ObserverSubject
             collision.gameObject.transform.SetParent(transform);
             var rigidbody = collision.gameObject.GetComponent<Rigidbody2D>();
 
-            rigidbody.velocity = Vector2.zero;
+            rigidbody.linearVelocity = Vector2.zero;
             rigidbody.mass = 0.1f;
             rigidbody.gravityScale = 10;
         }

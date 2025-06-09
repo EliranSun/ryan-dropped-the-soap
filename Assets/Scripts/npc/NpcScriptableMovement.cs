@@ -92,7 +92,7 @@ namespace npc
         private void RigidBodyMovement(Vector2 direction, float distanceFromPlayer)
         {
             _spriteRenderer.flipX = direction.x > 0;
-            _rigidBody2D.velocityX = direction.x * speed;
+            _rigidBody2D.linearVelocityX = direction.x * speed;
 
             if (_isWalking && !_isJumping && Mathf.Abs(distanceFromPlayer) < distanceToPlayer)
             {
