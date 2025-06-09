@@ -185,5 +185,7 @@
     TriggerSoundEffect,
 
     OpenNpcDoor,
-    KnockOnNpcDoor
+    KnockOnNpcDoor,
+    
+    PlayerOutsideTrigger,
 }
