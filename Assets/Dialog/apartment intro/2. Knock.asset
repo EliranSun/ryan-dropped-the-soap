@@ -15,10 +15,11 @@ MonoBehaviour:
   playerName: 
   waitBeforeLine: 5
   mandatoryPlayerChoice: 0
+  overlayImageSprite: {fileID: 0}
   voicedLines:
   - text: '*knock knock knock*'
     clip: {fileID: 8300000, guid: 1c9c36f43daf74648b66f66905279b19, type: 3}
-    gender: 2
+    gender: 0
   playerOptions:
   - text: Just a sec
     type: 0
@@ -34,3 +35,9 @@ MonoBehaviour:
   actorName: 0
   actionBeforeLine: 0
   actionAfterLine: 0
+  actorReaction: 0
+  angerLevel: 0
+  toggleLineCondition: {fileID: 0}
+  lineCondition:
+    condition: 0
+    isMet: 0

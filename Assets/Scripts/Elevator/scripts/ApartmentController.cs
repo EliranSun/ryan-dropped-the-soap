@@ -1,5 +1,6 @@
 using Dialog;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Elevator.scripts
 {
@@ -43,6 +44,12 @@ namespace Elevator.scripts
                         tenant.currentApartmentNumber = floorNumber * 10 + apartmentNumber;
                         tenant.door = door.gameObject;
                     }
+        }
+
+        public void OnNotify(GameEventData eventData)
+        {
+            if (eventData.Name == GameEvents.ClickOnItem)
+                SceneManager.LoadScene("3a. building front scene");
         }
     }
 }
