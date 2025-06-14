@@ -4,6 +4,7 @@ using common.scripts;
 using Common.scripts;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Elevator.scripts
 {
@@ -16,7 +17,8 @@ namespace Elevator.scripts
         [SerializeField] private GameObject[] doors;
         [SerializeField] private FloorData floorData;
         [SerializeField] private AudioClip knockSound;
-        private int _doorNumber;
+        [SerializeField] private int doorNumber;
+       
         private bool _isDoorOpen;
         private bool _isPlayerInsideApartment = true;
         private bool _isPlayerOnDoor;
@@ -38,7 +40,9 @@ namespace Elevator.scripts
 
         private void OnMouseDown()
         {
-            if (_doorNumber == floorData.playerApartmentNumber)
+            print("Door controller mouse down");
+
+            if (doorNumber == floorData.playerApartmentNumber)
             {
                 // player apartment
                 print("Changing player door state");
@@ -88,7 +92,7 @@ namespace Elevator.scripts
             if (eventController && eventController.GetComponent<BuildingController>())
                 eventController
                     .GetComponent<BuildingController>()
-                    .OnNotify(new GameEventData(GameEvents.KnockOnNpcDoor, _doorNumber));
+                    .OnNotify(new GameEventData(GameEvents.KnockOnNpcDoor, doorNumber));
         }
 
         public void OnNotify(GameEventData eventData)
@@ -133,7 +137,7 @@ namespace Elevator.scripts
         public void SetDoorNumber(string doorNumber)
         {
             doorNumberTextMeshPro.text = doorNumber;
-            _doorNumber = int.Parse(doorNumber);
+            this.doorNumber = int.Parse(doorNumber);
         }
     }
 }
