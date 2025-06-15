@@ -4,7 +4,6 @@ using common.scripts;
 using Common.scripts;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Elevator.scripts
 {
@@ -18,7 +17,8 @@ namespace Elevator.scripts
         [SerializeField] private FloorData floorData;
         [SerializeField] private AudioClip knockSound;
         [SerializeField] private int doorNumber;
-       
+        [SerializeField] private GameObject npcAtDoor;
+
         private bool _isDoorOpen;
         private bool _isPlayerInsideApartment = true;
         private bool _isPlayerOnDoor;
@@ -38,27 +38,6 @@ namespace Elevator.scripts
             }
         }
 
-        private void OnMouseDown()
-        {
-            print("Door controller mouse down");
-
-            if (doorNumber == floorData.playerApartmentNumber)
-            {
-                // player apartment
-                print("Changing player door state");
-                _isDoorOpen = !_isDoorOpen;
-                foreach (var door in doors) door.SetActive(!_isDoorOpen);
-                Notify(!_isDoorOpen
-                    ? GameEvents.PlayerApartmentDoorClosed
-                    : GameEvents.PlayerApartmentDoorOpened);
-                return;
-            }
-
-            // npc apartment
-            KnockOnDoor();
-            TriggerKnockOnNpcDoor();
-        }
-
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.CompareTag("Player"))
@@ -75,6 +54,39 @@ namespace Elevator.scripts
                 //     // Notify(GameEvents.EnterHallway);
                 //     _isPlayerInsideApartment = !_isPlayerInsideApartment;
                 _isPlayerOnDoor = false;
+        }
+
+        // private void OnMouseDown()
+        // {
+        //     print("Door controller mouse down");
+        //
+        //     if (doorNumber == floorData.playerApartmentNumber)
+        //     {
+        //         HandlePlayerApartmentDoorClick();
+        //         return;
+        //     }
+        //
+        //     KnockOnDoor();
+        //     TriggerKnockOnNpcDoor();
+        // }
+
+        private void HandlePlayerApartmentDoorClick()
+        {
+            print($"Changing door open from {_isDoorOpen} to {!_isDoorOpen}");
+            _isDoorOpen = !_isDoorOpen;
+
+            foreach (var door in doors)
+            {
+                // door.SetActive(!_isDoorOpen);
+                door.GetComponent<SpriteRenderer>().color =
+                    _isDoorOpen ? new Color(0, 0, 0, 0) : Color.white;
+
+                npcAtDoor.SetActive(_isDoorOpen);
+            }
+
+            Notify(!_isDoorOpen
+                ? GameEvents.PlayerApartmentDoorClosed
+                : GameEvents.PlayerApartmentDoorOpened);
         }
 
         private void KnockOnDoor()
@@ -101,6 +113,20 @@ namespace Elevator.scripts
             {
                 _isDoorOpen = true;
                 foreach (var door in doors) door.SetActive(true);
+            }
+
+            if (eventData.Name == GameEvents.ClickOnItem && (string)eventData.Data == "inside door")
+            {
+                print("CLICK ON DOOR");
+
+                if (doorNumber == floorData.playerApartmentNumber)
+                {
+                    HandlePlayerApartmentDoorClick();
+                    return;
+                }
+
+                KnockOnDoor();
+                TriggerKnockOnNpcDoor();
             }
         }
 

@@ -127,6 +127,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1189569618695742240, guid: 75294b7eb74bad1478ea528759232155, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1488316240282451585, guid: 75294b7eb74bad1478ea528759232155, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.15
@@ -167,10 +171,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1995813291357967147, guid: 75294b7eb74bad1478ea528759232155, type: 3}
+      propertyPath: m_SortingOrder
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2821092148071052213, guid: 75294b7eb74bad1478ea528759232155, type: 3}
       propertyPath: m_Name
       value: "\U0001F6AA apartment door"
       objectReference: {fileID: 0}
+    - target: {fileID: 4889453408019655880, guid: 75294b7eb74bad1478ea528759232155, type: 3}
+      propertyPath: npcAtDoor
+      value: 
+      objectReference: {fileID: 274944511}
+    - target: {fileID: 4889453408019655880, guid: 75294b7eb74bad1478ea528759232155, type: 3}
+      propertyPath: doorNumber
+      value: 422
+      objectReference: {fileID: 0}
+    - target: {fileID: 4889453408019655880, guid: 75294b7eb74bad1478ea528759232155, type: 3}
+      propertyPath: doors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4889453408019655880, guid: 75294b7eb74bad1478ea528759232155, type: 3}
+      propertyPath: 'doors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 946700526}
+    - target: {fileID: 4889453408019655880, guid: 75294b7eb74bad1478ea528759232155, type: 3}
+      propertyPath: 'doors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1005306007}
     - target: {fileID: 4889453408019655880, guid: 75294b7eb74bad1478ea528759232155, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -183,10 +211,50 @@ PrefabInstance:
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Elevator.scripts.DoorController, ElevatorScriptsAssembly
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 5776433970927153896, guid: 75294b7eb74bad1478ea528759232155, type: 3}
+      propertyPath: gameEvent
+      value: 37
+      objectReference: {fileID: 0}
+    - target: {fileID: 5776433970927153896, guid: 75294b7eb74bad1478ea528759232155, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5776433970927153896, guid: 75294b7eb74bad1478ea528759232155, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1932532665}
+    - target: {fileID: 5776433970927153896, guid: 75294b7eb74bad1478ea528759232155, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5776433970927153896, guid: 75294b7eb74bad1478ea528759232155, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnNotify
+      objectReference: {fileID: 0}
+    - target: {fileID: 5776433970927153896, guid: 75294b7eb74bad1478ea528759232155, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Elevator.scripts.DoorController, ElevatorScriptsAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 5776433970927153896, guid: 75294b7eb74bad1478ea528759232155, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6002392716608176036, guid: 75294b7eb74bad1478ea528759232155, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6165900036439298293, guid: 75294b7eb74bad1478ea528759232155, type: 3}
+      propertyPath: texture
+      value: 
+      objectReference: {fileID: 2800000, guid: eaf018cadd4b70341b856b61b56acf2b, type: 3}
+    m_RemovedComponents:
+    - {fileID: 4517354419459779814, guid: 75294b7eb74bad1478ea528759232155, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8897280718720232934, guid: 75294b7eb74bad1478ea528759232155, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 946700530}
     - targetCorrespondingSourceObject: {fileID: 8217635911092827122, guid: 75294b7eb74bad1478ea528759232155, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
@@ -248,6 +316,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ba704b2e086f044e9cf0eee71a31a67, type: 3}
+--- !u!1 &274944511 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3930049543282524055, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
+  m_PrefabInstance: {fileID: 507758525}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &333554974
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -321,6 +394,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "\U0001F7E4 Charlotte Variant"
       objectReference: {fileID: 0}
+    - target: {fileID: 3930049543282524055, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4060874364467996741, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.33
@@ -361,9 +438,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5977066305376715075, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
+      propertyPath: texture
+      value: 
+      objectReference: {fileID: 2800000, guid: eaf018cadd4b70341b856b61b56acf2b, type: 3}
     - target: {fileID: 7336793025691390500, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
       propertyPath: m_SortingOrder
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549147449976439754, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -503,6 +588,51 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!1 &946700526 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8897280718720232934, guid: 75294b7eb74bad1478ea528759232155, type: 3}
+  m_PrefabInstance: {fileID: 50804837}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &946700530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946700526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a92b55e90f5afb64c84613c6074a20c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1932532665}
+        m_TargetAssemblyTypeName: Elevator.scripts.DoorController, ElevatorScriptsAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  objectType: 0
+  interactionType: 0
+  disableGameObjectOnClick: 0
+  isEnabled: 1
+  interactableLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  _is3D: 0
+--- !u!1 &1005306007 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7528556452144363629, guid: 75294b7eb74bad1478ea528759232155, type: 3}
+  m_PrefabInstance: {fileID: 50804837}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1316087750
 GameObject:
   m_ObjectHideFlags: 0
