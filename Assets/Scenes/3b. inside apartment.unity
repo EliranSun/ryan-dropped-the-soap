@@ -273,7 +273,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1369805628356096570, guid: 3ba704b2e086f044e9cf0eee71a31a67, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.03
+      value: -1.38
       objectReference: {fileID: 0}
     - target: {fileID: 1369805628356096570, guid: 3ba704b2e086f044e9cf0eee71a31a67, type: 3}
       propertyPath: m_LocalPosition.z
@@ -321,6 +321,34 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3930049543282524055, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
   m_PrefabInstance: {fileID: 507758525}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &274944512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 274944511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 865acb28d17ef4c22beceab3876b5393, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1399502419}
+        m_TargetAssemblyTypeName: Character_Creator.scripts.DialogueManager, CharacterCreatorScriptsAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  dialog: {fileID: 11400000, guid: 15f93624778ce4aef9070b37ad68e5d9, type: 2}
 --- !u!1001 &333554974
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -453,7 +481,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3930049543282524055, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 274944512}
   m_SourcePrefab: {fileID: 100100000, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
 --- !u!1 &807680837
 GameObject:
@@ -770,6 +801,50 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!1 &1337420457
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1337420459}
+  - component: {fileID: 1337420458}
+  m_Layer: 0
+  m_Name: level events
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1337420458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337420457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85a883a16cd8a4ad28f2faad072f6c35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1337420459
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337420457}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.17706, y: 0.30352, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1399502418
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -806,9 +881,29 @@ PrefabInstance:
       propertyPath: finalState.dialogLineToPlay
       value: 
       objectReference: {fileID: 11400000, guid: 82016d7d2868e3841a707a75fd048a23, type: 2}
+    - target: {fileID: 1559977669171636965, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 700
+      objectReference: {fileID: 0}
     - target: {fileID: 2966023187645510561, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       propertyPath: m_Name
       value: "\U0001F4AC Dialog Manager"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6535512598348505234, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: charlotteReactions.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6535512598348505234, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: charlotteReactions.Array.data[0].image
+      value: 
+      objectReference: {fileID: 21300000, guid: 93a0c7d0e955d8f44b01a5453ea9ec76, type: 3}
+    - target: {fileID: 6535512598348505234, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: charlotteReactions.Array.data[1].image
+      value: 
+      objectReference: {fileID: -1223659595, guid: f6aefe0f28796314cb3871b6c385b237, type: 3}
+    - target: {fileID: 6535512598348505234, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: charlotteReactions.Array.data[1].reaction
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7785975423134745563, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -855,6 +950,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+--- !u!114 &1399502419 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+  m_PrefabInstance: {fileID: 1399502418}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32aec04699863124dad61598cf7e3cc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1776817273 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2684897507050103084, guid: 18bc23390df011442b819617737dd1bd, type: 3}
@@ -1193,3 +1299,4 @@ SceneRoots:
   - {fileID: 507758525}
   - {fileID: 1399502418}
   - {fileID: 50804837}
+  - {fileID: 1337420459}
