@@ -80,7 +80,7 @@ namespace Scenes.Stacy.scripts
                 }
 
                 // Move player
-                _playerRb.velocity = Vector2.zero;
+                _playerRb.linearVelocity = Vector2.zero;
                 _playerRb.MovePosition(newPosition);
             }
         }

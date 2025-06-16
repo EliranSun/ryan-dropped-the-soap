@@ -31,9 +31,9 @@ namespace Scenes.Stacy.scripts
             var releaseLeft = Input.GetKeyUp(KeyCode.A);
 
             // Clamp horizontal velocity to max speed
-            var currentVelocity = _rigidbody2D.velocity;
+            var currentVelocity = _rigidbody2D.linearVelocity;
             currentVelocity.x = Mathf.Clamp(currentVelocity.x, -maxSpeed, maxSpeed);
-            _rigidbody2D.velocity = currentVelocity;
+            _rigidbody2D.linearVelocity = currentVelocity;
 
             // TODO: Move sprite to inner game object to avoid rotation issues
             // rotate is just cosmetic, forces are applied to the rigidbody
@@ -41,7 +41,7 @@ namespace Scenes.Stacy.scripts
             if (Input.GetAxis("Horizontal") > 0)
             {
                 // _rigidbody2D.AddForce((Vector2.right + Vector2.up) * movementSpeed, ForceMode2D.Impulse);
-                _rigidbody2D.velocity = new Vector2(movementSpeed, _rigidbody2D.velocity.y);
+                _rigidbody2D.linearVelocity = new Vector2(movementSpeed, _rigidbody2D.linearVelocity.y);
                 // transform.Rotate(0, 0, -5);
                 _spriteRenderer.flipX = false;
                 _isMoving = true;
@@ -49,7 +49,7 @@ namespace Scenes.Stacy.scripts
             else if (Input.GetAxis("Horizontal") < 0)
             {
                 // _rigidbody2D.AddForce((Vector2.left + Vector2.up) * movementSpeed, ForceMode2D.Impulse);
-                _rigidbody2D.velocity = new Vector2(-movementSpeed, _rigidbody2D.velocity.y);
+                _rigidbody2D.linearVelocity = new Vector2(-movementSpeed, _rigidbody2D.linearVelocity.y);
                 // 
                 _spriteRenderer.flipX = true;
                 _isMoving = true;

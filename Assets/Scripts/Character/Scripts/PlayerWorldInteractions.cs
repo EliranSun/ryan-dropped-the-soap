@@ -29,6 +29,7 @@ namespace Character.Scripts
         private readonly List<DialogLineTriggerName> _triggeredEvents = new();
         private readonly HashSet<DialogLineTriggerName> _triggeredEventSet = new();
         private Camera _camera;
+        private bool _isPlayerInTrigger;
 
         private void Start()
         {
@@ -37,20 +38,43 @@ namespace Character.Scripts
 
         private void Update()
         {
+            if (_isPlayerInTrigger && Input.GetKeyDown(KeyCode.X))
+            {
+                print("TRIGGER ACTION");
+                Notify(GameEvents.ClickOnItem);
+            }
+
             if (!Input.GetMouseButtonDown(0) || !_camera)
-                return; // Detect left mouse button click
-
-            var ray = _camera.ScreenPointToRay(Input.mousePosition);
-            var layerMask = LayerMask.GetMask("PlayerChoiceDialogBubbles");
-
-            if (!Physics.Raycast(ray, out var hit, Mathf.Infinity, layerMask))
                 return;
 
-            print(hit.collider.gameObject);
+            var ray = _camera.ScreenPointToRay(Input.mousePosition);
+            var dialogBubblesLayerMask = LayerMask.GetMask("PlayerChoiceDialogBubbles");
+            var interactableObjectsLayerMask = LayerMask.GetMask("Interactables");
+
+            if (Physics.Raycast(
+                    ray,
+                    out var interactableObject,
+                    Mathf.Infinity,
+                    interactableObjectsLayerMask
+                ))
+                print(interactableObject.collider.gameObject);
+
+            if (!Physics.Raycast(
+                    ray,
+                    out var playerChoiceDialogBubble,
+                    Mathf.Infinity,
+                    dialogBubblesLayerMask
+                ))
+                return;
+
+            print(playerChoiceDialogBubble.collider.gameObject);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            if (other.gameObject.CompareTag("Player"))
+                _isPlayerInTrigger = true;
+
             var dialogLine = dialogLineMap
                 .Find(trigger =>
                 {
@@ -85,6 +109,9 @@ namespace Character.Scripts
 
         private void OnTriggerExit2D(Collider2D other)
         {
+            if (other.gameObject.CompareTag("Player"))
+                _isPlayerInTrigger = false;
+
             switch (other.tag)
             {
                 case "Inside Elevator":

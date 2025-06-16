@@ -71,7 +71,7 @@ namespace Character.Scripts
                 var xVelocity = horizontal * speed;
                 if (_isCrawling) xVelocity /= 2;
 
-                _rigidbody2D.velocity = new Vector2(xVelocity, _rigidbody2D.velocity.y);
+                _rigidbody2D.linearVelocity = new Vector2(xVelocity, _rigidbody2D.linearVelocity.y);
                 if (_flipEnabled) spriteRenderer.flipX = horizontal > 0;
                 if (_isMoving)
                     return;
@@ -81,7 +81,7 @@ namespace Character.Scripts
             }
             else if (_isMoving)
             {
-                _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
+                _rigidbody2D.linearVelocity = new Vector2(0, _rigidbody2D.linearVelocity.y);
                 _isMoving = false;
                 transform.rotation = Quaternion.identity;
                 StopAllCoroutines();
@@ -136,7 +136,7 @@ namespace Character.Scripts
             while (true)
                 if (_isMoving)
                 {
-                    var direction = Mathf.Sign(_rigidbody2D.velocity.x);
+                    var direction = Mathf.Sign(_rigidbody2D.linearVelocity.x);
                     transform.Rotate(new Vector3(0, 0, -5f * direction));
                     yield return new WaitForSeconds(0.2f);
                     transform.Rotate(new Vector3(0, 0, 5f * direction));

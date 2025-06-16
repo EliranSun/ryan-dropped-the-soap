@@ -1,9 +1,10 @@
 using Dialog;
+using Player;
 using UnityEngine;
 
 namespace Elevator.scripts
 {
-    public class ApartmentController : MonoBehaviour
+    public class ApartmentController : ObserverSubject
     {
         public int floorNumber;
         public int apartmentNumber;
@@ -43,6 +44,13 @@ namespace Elevator.scripts
                         tenant.currentApartmentNumber = floorNumber * 10 + apartmentNumber;
                         tenant.door = door.gameObject;
                     }
+        }
+
+        public void OnNotify(GameEventData eventData)
+        {
+            if (eventData.Name == GameEvents.ClickOnItem)
+                // SceneManager.LoadScene("3a. building front scene");
+                Notify(GameEvents.ChangePlayerLocation, Location.BuildingFrontView);
         }
     }
 }

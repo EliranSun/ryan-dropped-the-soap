@@ -46,7 +46,7 @@ public class DraggableObject3D : ObserverSubject
 
     private void OnMouseDown()
     {
-        _rigidbody.velocity = Vector3.zero;
+        _rigidbody.linearVelocity = Vector3.zero;
         _isDragging = true;
 
         // Create a plane that is perpendicular to the camera view

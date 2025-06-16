@@ -38,7 +38,7 @@ namespace Ryan.Scripts {
             if (!_isHolding || !GameState.IsPlayerInShower)
                 return;
 
-            _targetRigidBody.velocity = Vector2.zero;
+            _targetRigidBody.linearVelocity = Vector2.zero;
             _targetRigidBody.angularVelocity = 0f;
 
             var zRotation = (1.0f - scrollbarValue) * 1.0f - 0.5f;

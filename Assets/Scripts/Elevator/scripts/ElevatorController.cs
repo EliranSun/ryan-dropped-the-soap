@@ -192,7 +192,7 @@ namespace Elevator.scripts
             while (true)
             {
                 yield return new WaitForSeconds(lightLoop);
-                shaftLight.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+                shaftLight.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(0, 0);
                 shaftLight.transform.position = _initLightPosition;
             }
         }

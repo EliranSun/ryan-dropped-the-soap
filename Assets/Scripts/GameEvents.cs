@@ -185,5 +185,8 @@
     TriggerSoundEffect,
 
     OpenNpcDoor,
-    KnockOnNpcDoor
+    KnockOnNpcDoor,
+
+    PlayerOutsideTrigger,
+    ChangePlayerLocation
 }
