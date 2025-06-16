@@ -186,6 +186,7 @@
 
     OpenNpcDoor,
     KnockOnNpcDoor,
-    
+
     PlayerOutsideTrigger,
+    ChangePlayerLocation
 }

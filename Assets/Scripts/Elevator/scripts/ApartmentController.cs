@@ -1,10 +1,10 @@
 using Dialog;
+using Player;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Elevator.scripts
 {
-    public class ApartmentController : MonoBehaviour
+    public class ApartmentController : ObserverSubject
     {
         public int floorNumber;
         public int apartmentNumber;
@@ -49,7 +49,8 @@ namespace Elevator.scripts
         public void OnNotify(GameEventData eventData)
         {
             if (eventData.Name == GameEvents.ClickOnItem)
-                SceneManager.LoadScene("3a. building front scene");
+                // SceneManager.LoadScene("3a. building front scene");
+                Notify(GameEvents.ChangePlayerLocation, Location.BuildingFrontView);
         }
     }
 }

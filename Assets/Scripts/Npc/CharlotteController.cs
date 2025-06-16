@@ -5,6 +5,7 @@ namespace Npc
     public class CharlotteController : ObserverSubject
     {
         [SerializeField] private NpcDialogScriptableObjectScript dialog;
+        [SerializeField] private GameObject playerBox;
 
         private void OnEnable()
         {
@@ -13,19 +14,8 @@ namespace Npc
 
         public void OnNotify(GameEventData gameEvent)
         {
-            if (gameEvent.Name == GameEvents.PlayerApartmentDoorOpened)
-            {
-            }
-            // if (npcKnockingOnPlayerApartment)
-            // {
-            //     StopAllCoroutines();
-            //     npcKnockingOnPlayerApartment.transform.position = playerApartmentHallwayDoor.transform.position;
-            //     npcKnockingOnPlayerApartment = null;
-            //
-            //     if (initLine) Notify(GameEvents.TriggerSpecificDialogLine, initLine);
-            // }
-            //
-            // break;
+            if (gameEvent.Name == GameEvents.FreePlayerFromBox)
+                playerBox.SetActive(false);
         }
     }
 }

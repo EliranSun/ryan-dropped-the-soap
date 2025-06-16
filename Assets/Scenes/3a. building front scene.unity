@@ -387,6 +387,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ba704b2e086f044e9cf0eee71a31a67, type: 3}
+--- !u!1 &438264575 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6557338767467333895, guid: 3ba704b2e086f044e9cf0eee71a31a67, type: 3}
+  m_PrefabInstance: {fileID: 438264574}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &484733756
 GameObject:
   m_ObjectHideFlags: 0
@@ -1044,6 +1049,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73c810c5d9807fd43b267b1b79e2cce5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1793132432}
+        m_TargetAssemblyTypeName: Player.PlayerStatesController, PlayerScriptsAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1277082891
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1096,6 +1116,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "\U0001F636 Player"
       objectReference: {fileID: 0}
+    - target: {fileID: 8768322118471126704, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+      propertyPath: playerBox
+      value: 
+      objectReference: {fileID: 438264575}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 1018364714618210765, guid: 18bc23390df011442b819617737dd1bd, type: 3}
@@ -1873,6 +1897,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 265860665}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1793132432 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8768322118471126704, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+  m_PrefabInstance: {fileID: 1277082891}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47caf408f3a6048b0b32848ec60ad268, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1813424850
 GameObject:
   m_ObjectHideFlags: 0
@@ -2081,6 +2116,7 @@ SceneRoots:
   - {fileID: 1561390172}
   - {fileID: 1517961623}
   - {fileID: 1277082891}
+  - {fileID: 438264574}
   - {fileID: 2020361516}
   - {fileID: 1836134174}
   - {fileID: 1813424852}
@@ -2089,5 +2125,4 @@ SceneRoots:
   - {fileID: 265860665}
   - {fileID: 630156804}
   - {fileID: 1275866237}
-  - {fileID: 438264574}
   - {fileID: 611963938}
