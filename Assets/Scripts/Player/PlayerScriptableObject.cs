@@ -18,6 +18,8 @@ namespace Player
     {
         public bool isPlayerInBox = true;
         public Location location = Location.BuildingFrontView;
+        public Vector2 position;
         public int playerGrowth;
+        public bool heardCharlottePlantInstructions;
     }
 }

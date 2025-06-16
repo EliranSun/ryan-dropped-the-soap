@@ -13,11 +13,15 @@ namespace Npc
     ]
     public class NpcDialogScriptableObjectScript : ScriptableObject
     {
+        public NarrationDialogLine lastSpokenLine;
         [SerializeField] private NarrationDialogLine[] lines;
         [SerializeField] private int dialogIndex;
 
         public NarrationDialogLine GetNextLine()
         {
+            if (lastSpokenLine)
+                return lastSpokenLine;
+
             var line = lines[dialogIndex];
             if (dialogIndex + 1 < lines.Length) dialogIndex++;
             return line;

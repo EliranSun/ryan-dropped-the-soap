@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Linq;
-using common.scripts;
 using Dialog;
 using Dialog.Scripts;
 using museum_dialog.scripts;
@@ -445,7 +444,8 @@ namespace Character_Creator.scripts
             Notify(GameEvents.LineNarrationEnd, new
             {
                 _currentDialogue.actorName,
-                _currentDialogue.playerOptions
+                _currentDialogue.playerOptions,
+                _currentDialogue
             });
 
             if (_currentDialogue.nextDialogueLine)

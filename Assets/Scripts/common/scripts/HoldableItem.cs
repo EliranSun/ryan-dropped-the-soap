@@ -21,14 +21,14 @@ namespace common.scripts
         {
             if (transform.parent == playerTransform)
             {
-                _rigidbody2D.isKinematic = false;
+                _rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
                 _collider2D.isTrigger = false;
                 transform.SetParent(null);
                 Notify(releaseGameEvent);
                 return;
             }
 
-            _rigidbody2D.isKinematic = true;
+            _rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
             _collider2D.isTrigger = true;
             transform.SetParent(playerTransform);
             transform.localPosition = new Vector2(1f, 1.5f);

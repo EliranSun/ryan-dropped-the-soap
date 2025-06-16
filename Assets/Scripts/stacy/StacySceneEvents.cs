@@ -1,10 +1,11 @@
-using Character.Scripts;
 using common.scripts;
 using Dialog;
+using Player;
+using Scenes.Stacy.scripts;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-namespace Scenes.Stacy.scripts
+namespace stacy
 {
     public class StacySceneEvents : ObserverSubject
     {

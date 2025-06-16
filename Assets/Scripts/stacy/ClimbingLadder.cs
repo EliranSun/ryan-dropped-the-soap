@@ -1,7 +1,7 @@
-using Character.Scripts;
+using Player;
 using UnityEngine;
 
-namespace Scenes.Stacy.scripts
+namespace stacy
 {
     public class ClimbingLadder : MonoBehaviour
     {

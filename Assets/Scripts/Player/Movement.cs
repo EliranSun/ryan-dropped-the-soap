@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Character.Scripts
+namespace Player
 {
     [RequireComponent(typeof(Rigidbody2D))]
     public class Movement : MonoBehaviour
@@ -14,6 +14,7 @@ namespace Character.Scripts
         [SerializeField] private bool addWobblyMovement;
         [SerializeField] public SpriteRenderer spriteRenderer;
         [SerializeField] public bool allowFlight;
+        [SerializeField] public PlayerScriptableObject playerData;
         private bool _flipEnabled = true;
 
 
@@ -43,6 +44,8 @@ namespace Character.Scripts
                 TransformMovement();
 
             HandleHeadAndHair();
+
+            playerData.position = transform.position;
         }
 
         private void OnCollisionEnter2D(Collision2D collision)

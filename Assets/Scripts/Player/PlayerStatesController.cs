@@ -16,6 +16,7 @@ namespace Player
         private void Start()
         {
             playerBox.SetActive(playerData.isPlayerInBox);
+            transform.position = playerData.position;
         }
 
         public void OnNotify(GameEventData eventData)
@@ -27,6 +28,9 @@ namespace Player
                 playerBox.SetActive(playerData.isPlayerInBox);
                 ChangeScene();
             }
+
+            if (eventData.Name == GameEvents.CharlotteWaitingTheory)
+                playerData.heardCharlottePlantInstructions = true;
         }
 
         private void ChangeScene()

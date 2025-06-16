@@ -49,8 +49,6 @@ namespace Character_Creator.scripts
                 _nextLines[i] = playerOptionsValue[i].next;
                 _playerOptionsText.text += $"{i + 1}. {playerOptionsValue[i].text}\r\n";
             }
-
-            print("OK");
         }
     }
 }
