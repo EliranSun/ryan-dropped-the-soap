@@ -14,7 +14,6 @@ namespace Player
         [SerializeField] private bool addWobblyMovement;
         [SerializeField] public SpriteRenderer spriteRenderer;
         [SerializeField] public bool allowFlight;
-        [SerializeField] public PlayerScriptableObject playerData;
         private bool _flipEnabled = true;
 
 
@@ -45,7 +44,7 @@ namespace Player
 
             HandleHeadAndHair();
 
-            playerData.position = transform.position;
+            PlayerPrefs.SetString("PlayerPosition", $"{transform.position.x},{transform.position.y}");
         }
 
         private void OnCollisionEnter2D(Collision2D collision)

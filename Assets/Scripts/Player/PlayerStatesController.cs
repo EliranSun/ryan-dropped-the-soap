@@ -5,7 +5,6 @@ namespace Player
 {
     public class PlayerStatesController : MonoBehaviour
     {
-        [SerializeField] private PlayerScriptableObject playerData;
         [SerializeField] private GameObject playerBox;
 
         private void Awake()
@@ -15,8 +14,27 @@ namespace Player
 
         private void Start()
         {
-            playerBox.SetActive(playerData.isPlayerInBox);
-            transform.position = playerData.position;
+            SetPlayerInBox();
+            SetPosition();
+        }
+
+        private void SetPlayerInBox()
+        {
+            var storedIsPlayerInBox = PlayerPrefs.GetInt("IsPlayerInBox");
+            playerBox.SetActive(storedIsPlayerInBox == 1);
+        }
+
+        private void SetPosition()
+        {
+            var storedPosition = PlayerPrefs.GetString("PlayerPosition");
+            var positionParts = storedPosition.Split(',');
+
+            if (
+                positionParts.Length == 2 &&
+                float.TryParse(positionParts[0], out var x) &&
+                float.TryParse(positionParts[1], out var y)
+            )
+                transform.position = new Vector2(x, y);
         }
 
         public void OnNotify(GameEventData eventData)
@@ -24,26 +42,26 @@ namespace Player
             if (eventData.Name == GameEvents.ChangePlayerLocation)
             {
                 var newLocation = (Location)eventData.Data;
-                playerData.location = newLocation;
-                playerBox.SetActive(playerData.isPlayerInBox);
+                PlayerPrefs.SetString("PlayerLocation", newLocation.ToString());
+                playerBox.SetActive(newLocation == Location.PlayerApartment);
                 ChangeScene();
             }
 
             if (eventData.Name == GameEvents.CharlotteWaitingTheory)
-                playerData.heardCharlottePlantInstructions = true;
+                PlayerPrefs.SetInt("HeardCharlottePlantInstructions", 1);
         }
 
         private void ChangeScene()
         {
             var currentScene = SceneManager.GetActiveScene();
-            switch (playerData.location)
+            switch (PlayerPrefs.GetString("PlayerLocation"))
             {
-                case Location.BuildingFrontView:
+                case nameof(Location.BuildingFrontView):
                     if (currentScene.name != "3a. building front scene")
                         SceneManager.LoadScene("3a. building front scene");
                     break;
 
-                case Location.PlayerApartment:
+                case nameof(Location.PlayerApartment):
                     if (currentScene.name != "3b. inside apartment")
                         SceneManager.LoadScene("3b. inside apartment");
                     break;
