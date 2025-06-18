@@ -14,6 +14,7 @@ namespace Player
         [SerializeField] private bool addWobblyMovement;
         [SerializeField] public SpriteRenderer spriteRenderer;
         [SerializeField] public bool allowFlight;
+        [SerializeField] public bool resetPlayerStoredPosition;
         private bool _flipEnabled = true;
 
 
@@ -23,6 +24,11 @@ namespace Player
         private bool _isMoving;
         private bool _isOnGround;
         private Rigidbody2D _rigidbody2D;
+
+        private void Awake()
+        {
+            if (resetPlayerStoredPosition) PlayerPrefs.SetString("PlayerPosition", "0,0");
+        }
 
         private void Start()
         {
@@ -37,10 +43,8 @@ namespace Player
 
         private void Update()
         {
-            if (isRigidBodyMovement)
-                RigidBodyMovement();
-            else
-                TransformMovement();
+            if (isRigidBodyMovement) RigidBodyMovement();
+            else TransformMovement();
 
             HandleHeadAndHair();
 

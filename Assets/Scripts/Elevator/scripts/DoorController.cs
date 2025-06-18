@@ -4,6 +4,7 @@ using common.scripts;
 using Common.scripts;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Elevator.scripts
 {
@@ -31,11 +32,10 @@ namespace Elevator.scripts
                 return;
 
             if (_isPlayerOnDoor && _isDoorOpen)
-            {
-                transitionImage.FadeInOut();
+                // transitionImage.FadeInOut();
                 // Invoke(nameof(MoveObjectToLinkedDoor), 0.3f);
-                MovePlayerToLinkedDoor();
-            }
+                // MovePlayerToLinkedDoor();
+                SceneManager.LoadScene("3. building scene");
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -50,9 +50,6 @@ namespace Elevator.scripts
         private void OnTriggerExit2D(Collider2D other)
         {
             if (other.CompareTag("Player"))
-                // if (_isDoorOpen)
-                //     // Notify(GameEvents.EnterHallway);
-                //     _isPlayerInsideApartment = !_isPlayerInsideApartment;
                 _isPlayerOnDoor = false;
         }
 
@@ -72,7 +69,6 @@ namespace Elevator.scripts
 
         private void HandlePlayerApartmentDoorClick()
         {
-            print($"Changing door open from {_isDoorOpen} to {!_isDoorOpen}");
             _isDoorOpen = !_isDoorOpen;
 
             foreach (var door in doors)

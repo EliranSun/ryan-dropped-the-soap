@@ -35,19 +35,25 @@ namespace Character_Creator.scripts
 
         public void OnNotify(GameEventData eventData)
         {
-            if (eventData.Name != GameEvents.LineNarrationEnd) return;
-            var playerOptions = eventData.Data.GetType().GetProperty("playerOptions");
-            if (playerOptions == null) return;
+            if (eventData.Name == GameEvents.LineNarrationEnd)
+            {
+                var playerOptions = eventData.Data.GetType().GetProperty("playerOptions");
+                if (playerOptions == null) return;
+                var playerOptionsValue = (PlayerChoice[])playerOptions.GetValue(eventData.Data);
 
-            var playerOptionsValue = (PlayerChoice[])playerOptions.GetValue(eventData.Data);
-            if (playerOptionsValue == null || playerOptionsValue.Length == 0)
+                HandlePlayerOptions(playerOptionsValue);
+            }
+        }
+
+        private void HandlePlayerOptions(PlayerChoice[] playerOptions)
+        {
+            if (playerOptions == null || playerOptions.Length == 0)
                 return;
 
-            // , option.next, option.choiceDataType);
-            for (var i = 0; i < playerOptionsValue.Length; i++)
+            for (var i = 0; i < playerOptions.Length; i++)
             {
-                _nextLines[i] = playerOptionsValue[i].next;
-                _playerOptionsText.text += $"{i + 1}. {playerOptionsValue[i].text}\r\n";
+                _nextLines[i] = playerOptions[i].next;
+                _playerOptionsText.text += $"{i + 1}. {playerOptions[i].text}\r\n";
             }
         }
     }

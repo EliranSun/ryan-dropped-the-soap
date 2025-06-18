@@ -24,7 +24,7 @@ namespace common.scripts
                 _rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
                 _collider2D.isTrigger = false;
                 transform.SetParent(null);
-                Notify(releaseGameEvent);
+                Notify(releaseGameEvent, gameObject.transform.position);
                 return;
             }
 
@@ -32,7 +32,7 @@ namespace common.scripts
             _collider2D.isTrigger = true;
             transform.SetParent(playerTransform);
             transform.localPosition = new Vector2(1f, 1.5f);
-            Notify(holdGameEvent);
+            Notify(holdGameEvent, gameObject.transform.position);
         }
     }
 }

@@ -115,8 +115,6 @@ namespace Character_Creator.scripts
             if (!_currentDialogue)
                 return;
 
-            print($"Reading current line for {_currentDialogue}");
-
             if (_currentDialogue.actionBeforeLine != GameEvents.None)
                 TriggerAnAct(_currentDialogue.actionBeforeLine);
 
@@ -300,8 +298,6 @@ namespace Character_Creator.scripts
 
         public void OnNotify(GameEventData gameEventData)
         {
-            print("DialogueManager: OnNotify " + gameEventData.Name);
-
             try
             {
                 var eventLine = eventToDialogMap.dialogLineEvents.First(dialogLineEvent =>

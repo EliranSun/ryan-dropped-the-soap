@@ -3,25 +3,44 @@ using UnityEngine.SceneManagement;
 
 namespace Player
 {
-    public class PlayerStatesController : MonoBehaviour
+    public class PlayerStatesController : ObserverSubject
     {
         [SerializeField] private GameObject playerBox;
+        [SerializeField] private GameObject playerPlant;
 
         private void Awake()
         {
+            // PlayerPrefs.DeleteAll();
             ChangeScene();
         }
 
         private void Start()
         {
             SetPlayerInBox();
-            SetPosition();
+            // SetPosition();
+            PositionPlant();
+        }
+
+        private void PositionPlant()
+        {
+            var storedPlantPosition = PlayerPrefs.GetString("PlayerPlantPosition");
+            var plantPositionParts = storedPlantPosition.Split(',');
+
+            if (
+                plantPositionParts.Length == 2 &&
+                float.TryParse(plantPositionParts[0], out var x) &&
+                float.TryParse(plantPositionParts[1], out var y)
+            )
+                playerPlant.transform.position = new Vector2(x, y);
         }
 
         private void SetPlayerInBox()
         {
-            var storedIsPlayerInBox = PlayerPrefs.GetInt("IsPlayerInBox");
-            playerBox.SetActive(storedIsPlayerInBox == 1);
+            var storedIsPlayerOutsideBox = PlayerPrefs.GetInt("PlayerOutsideBox");
+            var isPlayerOutsideBox = storedIsPlayerOutsideBox == 1;
+            playerBox.SetActive(!isPlayerOutsideBox);
+
+            if (isPlayerOutsideBox) Notify(GameEvents.FreePlayerFromBox);
         }
 
         private void SetPosition()
@@ -49,6 +68,13 @@ namespace Player
 
             if (eventData.Name == GameEvents.CharlotteWaitingTheory)
                 PlayerPrefs.SetInt("HeardCharlottePlantInstructions", 1);
+
+
+            if (eventData.Name == GameEvents.PlayerPlacePlant)
+            {
+                var plantPosition = (Vector3)eventData.Data;
+                PlayerPrefs.SetString("PlayerPlantPosition", $"{plantPosition.x},{plantPosition.y}");
+            }
         }
 
         private void ChangeScene()

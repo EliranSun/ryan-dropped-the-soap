@@ -7,36 +7,38 @@ namespace Player
         [SerializeField] private GameObject starterBody;
         [SerializeField] private GameObject levelOneBody;
         [SerializeField] private Movement movement;
-        private int _level;
+        [SerializeField] private bool resetPlayerGrowth;
+        [SerializeField] private int level;
+
+        private void Awake()
+        {
+            if (resetPlayerGrowth) PlayerPrefs.SetInt("PlayerGrowth", 0);
+        }
 
         private void Start()
         {
-            _level = PlayerPrefs.GetInt("PlayerGrowth");
-            starterBody.SetActive(_level == 0);
-            levelOneBody.SetActive(_level == 1);
+            level = PlayerPrefs.GetInt("PlayerGrowth");
+            starterBody.SetActive(level == 0);
+
+            if (level > 0)
+            {
+                levelOneBody.SetActive(true);
+                Notify(GameEvents.PlayerGrew);
+            }
         }
 
         public void OnNotify(GameEventData data)
         {
-            if (data.Name == GameEvents.PlayerPlacePlant &&
-                PlayerPrefs.GetInt("HeardCharlottePlantInstructions") == 1)
+            var heardCharlotteInstructions = PlayerPrefs.GetInt("HeardCharlottePlantInstructions") == 1;
+            if (data.Name == GameEvents.PlayerPlacePlant && heardCharlotteInstructions)
             {
-                _level++;
-                PlayerPrefs.SetInt("PlayerGrowth", _level);
+                level = 1;
+                PlayerPrefs.SetInt("PlayerGrowth", level);
                 starterBody.SetActive(false);
                 levelOneBody.SetActive(true);
                 movement.spriteRenderer = levelOneBody.GetComponent<SpriteRenderer>();
                 Notify(GameEvents.PlayerGrew);
             }
-
-            // if (data.Name != GameEvents.PlayerGrowth) 
-            //     return;
-            //
-            // _level++;
-            //
-            // if (_level == 1)
-            // {
-            // }
         }
     }
 }
