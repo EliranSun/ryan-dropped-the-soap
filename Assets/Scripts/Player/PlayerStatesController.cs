@@ -100,6 +100,11 @@ namespace Player
                     if (currentScene.name != "3. building scene")
                         SceneManager.LoadScene("3. building scene");
                     break;
+
+                case nameof(Location.Elevator):
+                    if (currentScene.name != "inside elevator")
+                        SceneManager.LoadScene("inside elevator");
+                    break;
             }
         }
     }

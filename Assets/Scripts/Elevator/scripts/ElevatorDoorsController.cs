@@ -1,13 +1,12 @@
 using System.Collections;
+using Player;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 namespace Elevator.scripts
 {
     [RequireComponent(typeof(Collider2D))]
-    public class ElevatorDoorsController : MonoBehaviour
+    public class ElevatorDoorsController : ObserverSubject
     {
         [SerializeField] private Transform doorsOpenPosition;
         [SerializeField] private Transform leftDoorTransform;
@@ -18,11 +17,8 @@ namespace Elevator.scripts
         [SerializeField] private float delayBeforeOpening = 2f;
         [SerializeField] private float delayBeforeClosing = 2f;
         [SerializeField] private TextMeshPro elevatorCurrentFloorNumberUI;
-
-        [FormerlySerializedAs("floorController")] [SerializeField]
-        private BuildingController buildingController;
-
         [SerializeField] private FloorData floorData;
+        private BuildingController _buildingController;
 
         private float _closeLerpTime;
         private Collider2D _collider2D;
@@ -42,6 +38,15 @@ namespace Elevator.scripts
             if (leftDoorTransform) _initialPositionLeft = leftDoorTransform.position;
 
             _doorsAreOpen = false;
+
+            // TODO: Better than hardcoded string
+            _buildingController = GameObject.Find("🏢 Building controller").GetComponent<BuildingController>();
+
+            // Add player as observer
+            var playerStatesController = FindObjectOfType<PlayerStatesController>();
+            if (playerStatesController != null) observers.AddListener(playerStatesController.OnNotify);
+
+            SetElevatorCurrentFloorNumber(floorData.elevatorFloorNumber.ToString());
         }
 
         private void Update()
@@ -63,16 +68,21 @@ namespace Elevator.scripts
             }
         }
 
-        public void OnMouseDown()
+        public void OnNotify(GameEventData eventData)
         {
+            if (eventData.Name != GameEvents.ClickOnItem) return;
+            if (eventData.Data is not string itemName) return;
+            if (!itemName.ToLower().Contains("elevator")) return;
+
             if (_doorsAreOpen)
             {
-                SceneManager.LoadScene("Scenes/inside elevator");
+                // FIXME: This won't work as well since player scene is determined via PlayerStatesController
+                // SceneManager.LoadScene("inside elevator");
+                Notify(GameEvents.ChangePlayerLocation, Location.Elevator);
                 return;
             }
 
-            print("Call elevator to floor " + floorData.currentFloorNumber);
-            StartCoroutine(buildingController.CallElevator(this));
+            StartCoroutine(_buildingController.CallElevator(this));
         }
 
         private IEnumerator OpenDoorsWithDelay()
@@ -124,10 +134,9 @@ namespace Elevator.scripts
             _doorOpenCoroutineStarted = false;
         }
 
-        public void SetElevatorCurrentFloorNumber(int floorNumber)
+        public void SetElevatorCurrentFloorNumber(string floorNumber)
         {
-            _elevatorCurrentFloorNumber = floorNumber;
-            elevatorCurrentFloorNumberUI.text = _elevatorCurrentFloorNumber.ToString();
+            elevatorCurrentFloorNumberUI.text = floorNumber;
         }
 
         public void SetCurrentFloorNumber(int floorNumber)

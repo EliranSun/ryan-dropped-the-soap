@@ -1,7 +1,7 @@
 using System.Collections;
+using Player;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Elevator.scripts
 {
@@ -60,7 +60,8 @@ namespace Elevator.scripts
             if (Input.GetKeyDown(KeyCode.X) && !_isFloorMoving)
             {
                 floorData.playerExitElevator = true;
-                SceneManager.LoadScene("3. building scene");
+                // SceneManager.LoadScene("3. building scene");
+                Notify(GameEvents.ChangePlayerLocation, Location.Hallway);
             }
 
             _timeSinceLastClick += Time.deltaTime;

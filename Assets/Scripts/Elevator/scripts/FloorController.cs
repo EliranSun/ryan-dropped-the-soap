@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,14 +8,8 @@ namespace Elevator.scripts
     {
         public int floorNumber;
         [SerializeField] private TextMeshPro floorNumberText;
-        [SerializeField] private GameObject outsideView;
         [SerializeField] public BuildingController buildingController;
         [SerializeField] private ApartmentController[] apartments;
-
-        private void Start()
-        {
-            outsideView.SetActive(false);
-        }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
@@ -41,18 +34,6 @@ namespace Elevator.scripts
             observers = observer;
         }
 
-        public void OnNotify(GameEventData eventData)
-        {
-            if (eventData.Name == GameEvents.PlayerOutsideTrigger)
-            {
-                outsideView.SetActive(true);
-                foreach (var apartment in apartments)
-                {
-                    // TODO: Disable all apartments?
-                    apartment.gameObject.SetActive(false);
-                }
-            }
-        }
         private void PopulateApartments()
         {
             // for (var i = 0; i < apartments.Length - 1; i++)
