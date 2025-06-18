@@ -54,11 +54,18 @@ namespace Elevator.scripts
             for (var i = 2; i > -2; i--)
                 AddFloorAtBottom(floorData.currentFloorNumber + i, true);
 
-            playerTransform.position = _floors
+
+            PositionPlayerOnFloor();
+            // PopulateApartments();
+        }
+
+        private void PositionPlayerOnFloor()
+        {
+            var playerPosition = _floors
                 .Find(floor => floor.name == $"Floor {floorData.currentFloorNumber}")
                 .transform.position;
-
-            // PopulateApartments();
+            playerPosition.x = playerTransform.position.x;
+            playerTransform.position = playerPosition;
         }
 
         // private void PopulateApartments()

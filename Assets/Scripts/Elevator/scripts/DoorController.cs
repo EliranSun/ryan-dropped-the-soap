@@ -2,9 +2,9 @@ using System;
 using System.Linq;
 using common.scripts;
 using Common.scripts;
+using Player;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Elevator.scripts
 {
@@ -32,10 +32,7 @@ namespace Elevator.scripts
                 return;
 
             if (_isPlayerOnDoor && _isDoorOpen)
-                // transitionImage.FadeInOut();
-                // Invoke(nameof(MoveObjectToLinkedDoor), 0.3f);
-                // MovePlayerToLinkedDoor();
-                SceneManager.LoadScene("3. building scene");
+                Notify(GameEvents.ChangePlayerLocation, Location.Hallway);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -52,20 +49,6 @@ namespace Elevator.scripts
             if (other.CompareTag("Player"))
                 _isPlayerOnDoor = false;
         }
-
-        // private void OnMouseDown()
-        // {
-        //     print("Door controller mouse down");
-        //
-        //     if (doorNumber == floorData.playerApartmentNumber)
-        //     {
-        //         HandlePlayerApartmentDoorClick();
-        //         return;
-        //     }
-        //
-        //     KnockOnDoor();
-        //     TriggerKnockOnNpcDoor();
-        // }
 
         private void HandlePlayerApartmentDoorClick()
         {

@@ -23,6 +23,8 @@ namespace Player
 
         private void PositionPlant()
         {
+            if (!playerPlant) return;
+
             var storedPlantPosition = PlayerPrefs.GetString("PlayerPlantPosition");
             var plantPositionParts = storedPlantPosition.Split(',');
 
@@ -36,6 +38,8 @@ namespace Player
 
         private void SetPlayerInBox()
         {
+            if (!playerBox) return;
+
             var storedIsPlayerOutsideBox = PlayerPrefs.GetInt("PlayerOutsideBox");
             var isPlayerOutsideBox = storedIsPlayerOutsideBox == 1;
             playerBox.SetActive(!isPlayerOutsideBox);
@@ -62,7 +66,7 @@ namespace Player
             {
                 var newLocation = (Location)eventData.Data;
                 PlayerPrefs.SetString("PlayerLocation", newLocation.ToString());
-                playerBox.SetActive(newLocation == Location.PlayerApartment);
+                // playerBox.SetActive(newLocation == Location.PlayerApartment);
                 ChangeScene();
             }
 
@@ -90,6 +94,11 @@ namespace Player
                 case nameof(Location.PlayerApartment):
                     if (currentScene.name != "3b. inside apartment")
                         SceneManager.LoadScene("3b. inside apartment");
+                    break;
+
+                case nameof(Location.Hallway):
+                    if (currentScene.name != "3. building scene")
+                        SceneManager.LoadScene("3. building scene");
                     break;
             }
         }

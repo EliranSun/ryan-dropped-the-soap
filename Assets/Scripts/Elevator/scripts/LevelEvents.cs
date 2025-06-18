@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using common.scripts;
-using Dialog;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using Random = UnityEngine.Random;
@@ -44,11 +43,11 @@ namespace Elevator.scripts
         [SerializeField] private FloorData floorData;
         [SerializeField] private GameObject npcKnockingOnPlayerApartment;
 
-        [SerializeField] private GameObject playerApartmentHallwayDoor;
-        [SerializeField] private NarrationDialogLine initLine;
-        [SerializeField] private NarrationDialogLine playerTookPlantWithoutPermission;
-        [SerializeField] private NarrationDialogLine charlottePlayerGrowthLine;
-        [SerializeField] private GameObject playerBox;
+        // [SerializeField] private GameObject playerApartmentHallwayDoor;
+        // [SerializeField] private NarrationDialogLine initLine;
+        // [SerializeField] private NarrationDialogLine playerTookPlantWithoutPermission;
+        // [SerializeField] private NarrationDialogLine charlottePlayerGrowthLine;
+        // [SerializeField] private GameObject playerBox;
 
         private bool _charlotteGavePlayerPlant;
         private bool _charlotteRespondedToPlayerGrowth;
@@ -168,48 +167,48 @@ namespace Elevator.scripts
                     StopAllCoroutines();
                     break;
 
-                case GameEvents.FreePlayerFromBox:
-                    playerBox.SetActive(false);
-                    break;
-
-                case GameEvents.PlayerApartmentDoorOpened:
-                    if (npcKnockingOnPlayerApartment)
-                    {
-                        StopAllCoroutines();
-                        npcKnockingOnPlayerApartment.transform.position = playerApartmentHallwayDoor.transform.position;
-                        npcKnockingOnPlayerApartment = null;
-
-                        if (initLine) Notify(GameEvents.TriggerSpecificDialogLine, initLine);
-                    }
-
-                    break;
-
-                case GameEvents.CharlotteGavePlayerPlant:
-                    _charlotteGavePlayerPlant = true;
-                    break;
-
-                case GameEvents.PlayerHoldPlant:
-                    if (!_charlotteGavePlayerPlant)
-                        Notify(GameEvents.TriggerSpecificDialogLine, playerTookPlantWithoutPermission);
-                    break;
-
-                case GameEvents.CharlotteWaitingTheory:
-                    _charlotteWaitingTheory = true;
-                    break;
-
-                case GameEvents.PlayerPlacePlant:
-                    if (_charlotteWaitingTheory)
-                        Notify(GameEvents.PlayerGrowth);
-                    break;
-
-                case GameEvents.PlayerGrew:
-                    if (!_charlotteRespondedToPlayerGrowth)
-                    {
-                        Notify(GameEvents.TriggerSpecificDialogLine, charlottePlayerGrowthLine);
-                        _charlotteRespondedToPlayerGrowth = true;
-                    }
-
-                    break;
+                // case GameEvents.FreePlayerFromBox:
+                //     playerBox.SetActive(false);
+                //     break;
+                //
+                // case GameEvents.PlayerApartmentDoorOpened:
+                //     if (npcKnockingOnPlayerApartment)
+                //     {
+                //         StopAllCoroutines();
+                //         npcKnockingOnPlayerApartment.transform.position = playerApartmentHallwayDoor.transform.position;
+                //         npcKnockingOnPlayerApartment = null;
+                //
+                //         if (initLine) Notify(GameEvents.TriggerSpecificDialogLine, initLine);
+                //     }
+                //
+                //     break;
+                //
+                // case GameEvents.CharlotteGavePlayerPlant:
+                //     _charlotteGavePlayerPlant = true;
+                //     break;
+                //
+                // case GameEvents.PlayerHoldPlant:
+                //     if (!_charlotteGavePlayerPlant)
+                //         Notify(GameEvents.TriggerSpecificDialogLine, playerTookPlantWithoutPermission);
+                //     break;
+                //
+                // case GameEvents.CharlotteWaitingTheory:
+                //     _charlotteWaitingTheory = true;
+                //     break;
+                //
+                // case GameEvents.PlayerPlacePlant:
+                //     if (_charlotteWaitingTheory)
+                //         Notify(GameEvents.PlayerGrowth);
+                //     break;
+                //
+                // case GameEvents.PlayerGrew:
+                //     if (!_charlotteRespondedToPlayerGrowth)
+                //     {
+                //         Notify(GameEvents.TriggerSpecificDialogLine, charlottePlayerGrowthLine);
+                //         _charlotteRespondedToPlayerGrowth = true;
+                //     }
+                //
+                //     break;
             }
         }
 
