@@ -3322,11 +3322,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: "\U0001F636 Player"
       objectReference: {fileID: 0}
+    - target: {fileID: 8768322118471126704, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 556124125}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+--- !u!20 &556124125 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 6747548351525221153, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+  m_PrefabInstance: {fileID: 556124124}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &577014107
 GameObject:
   m_ObjectHideFlags: 0
@@ -4078,7 +4087,6 @@ Transform:
   - {fileID: 738705476}
   - {fileID: 362866774}
   - {fileID: 827538642}
-  - {fileID: 1393981363}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &789680238
@@ -5698,12 +5706,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3739804740310463349, guid: d6297e1698957484c804cbdaea2722a5, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4298850470285762675, guid: d6297e1698957484c804cbdaea2722a5, type: 3}
       propertyPath: playerTransform
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 432403212}
     - target: {fileID: 5676638991223794915, guid: d6297e1698957484c804cbdaea2722a5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 94.33658
@@ -6889,7 +6897,7 @@ GameObject:
   - component: {fileID: 1393981362}
   - component: {fileID: 1393981364}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Zeke temp platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6959,11 +6967,11 @@ Transform:
   m_GameObject: {fileID: 1393981361}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 94.5, y: -31.8, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 764530475}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1393981364
 BoxCollider2D:
@@ -8965,6 +8973,7 @@ SceneRoots:
   - {fileID: 556124124}
   - {fileID: 1217722547475054906}
   - {fileID: 1178285042}
+  - {fileID: 1393981363}
   - {fileID: 8552583364996925444}
   - {fileID: 981217594}
   - {fileID: 219787493}

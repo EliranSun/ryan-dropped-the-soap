@@ -60,7 +60,6 @@ namespace Elevator.scripts
             if (Input.GetKeyDown(KeyCode.X) && !_isFloorMoving)
             {
                 floorData.playerExitElevator = true;
-                // SceneManager.LoadScene("3. building scene");
                 Notify(GameEvents.ChangePlayerLocation, Location.Hallway);
             }
 

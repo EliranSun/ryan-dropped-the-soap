@@ -79,11 +79,16 @@ namespace Elevator.scripts
 
         private void TriggerKnockOnNpcDoor()
         {
-            var eventController = GameObject.Find("🏢 Building controller");
-            if (eventController && eventController.GetComponent<BuildingController>())
-                eventController
-                    .GetComponent<BuildingController>()
-                    .OnNotify(new GameEventData(GameEvents.KnockOnNpcDoor, doorNumber));
+            // this is needed because doors are dynamically instantiated and are not connected to 
+            // anything outside floors, like NPCs
+            var building = GameObject.Find("🏢 Building controller");
+            var buildingController = building.GetComponent<BuildingController>();
+
+            if (building && buildingController)
+            {
+                print($"Door notifying knock: {doorNumber}");
+                buildingController.OnNotify(new GameEventData(GameEvents.KnockOnNpcDoor, doorNumber));
+            }
         }
 
         public void OnNotify(GameEventData eventData)
@@ -94,7 +99,10 @@ namespace Elevator.scripts
                 foreach (var door in doors) door.SetActive(true);
             }
 
-            if (eventData.Name == GameEvents.ClickOnItem && (string)eventData.Data == "inside door")
+            var isDoor = ((string)eventData.Data).ToLower().Contains("inside door") ||
+                         ((string)eventData.Data).ToLower().Contains("hallway door");
+
+            if (eventData.Name == GameEvents.ClickOnItem && isDoor)
             {
                 print("CLICK ON DOOR");
 
@@ -136,13 +144,15 @@ namespace Elevator.scripts
                     obj.transform != objectTransform).ToArray();
             else
                 Array.Resize(ref _objectsInsideApartment, _objectsInsideApartment.Length + 1);
+
             _objectsInsideApartment[^1] = objectTransform.gameObject;
         }
 
-        public void SetDoorNumber(string doorNumber)
+        public void SetDoorNumber(string newDoorNumber)
         {
-            doorNumberTextMeshPro.text = doorNumber;
-            this.doorNumber = int.Parse(doorNumber);
+            doorNumberTextMeshPro.text = newDoorNumber;
+            print($"Setting door number?? {int.Parse(newDoorNumber)}");
+            doorNumber = int.Parse(newDoorNumber);
         }
     }
 }

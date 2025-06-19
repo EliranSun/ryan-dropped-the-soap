@@ -18,23 +18,25 @@ namespace Npc
         private void Start()
         {
             _apartment = buildingController.tenants.FirstOrDefault(t => t.name == tenant);
-            print(_apartment);
+            if (_apartment != null)
+                print($"{gameObject.name} floor: {_apartment.floorNumber}; number: {_apartment.apartmentNumber}");
         }
 
         public void OnNotify(GameEventData eventData)
         {
             if (eventData.Name == GameEvents.KnockOnNpcDoor)
             {
+                if (!gameObject.activeSelf) return;
+                
                 var doorNumber = (int)eventData.Data;
                 var npcDoorNumber = _apartment.floorNumber * 10 + _apartment.apartmentNumber;
-                if (npcDoorNumber == doorNumber)
-                    if (_isInApartment && knockOnDoorLines.Length > 0)
-                    {
-                        Notify(GameEvents.TriggerSpecificDialogLine,
-                            knockOnDoorLines[Random.Range(0, knockOnDoorLines.Length)]);
 
-                        Invoke(nameof(NpcOpenDoor), 4f);
-                    }
+                print($"door knock on: {doorNumber}; my door:{npcDoorNumber}");
+                if (npcDoorNumber != doorNumber) return;
+                if (!_isInApartment || knockOnDoorLines.Length == 0) return;
+                
+                Notify(GameEvents.TriggerSpecificDialogLine, knockOnDoorLines[Random.Range(0, knockOnDoorLines.Length)]);
+                Invoke(nameof(NpcOpenDoor), 4f);
             }
         }
 

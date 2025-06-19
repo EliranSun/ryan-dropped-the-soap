@@ -46,6 +46,8 @@ namespace Elevator.scripts
         private readonly List<GameObject> _floors = new();
         private UnityEvent<GameEventData> _floorObservers;
 
+        private const float FloorMargin = 12f;
+        
         private void Awake()
         {
             _floorObservers = new UnityEvent<GameEventData>();
@@ -108,9 +110,9 @@ namespace Elevator.scripts
             }
 
             if (direction == FloorDirection.Bottom)
-                yPosition = _floors.Count > 0 ? _floors[0].transform.position.y - 10 : 0;
+                yPosition = _floors.Count > 0 ? _floors[0].transform.position.y - FloorMargin : 0;
             else
-                yPosition = _floors.Count > 0 ? _floors.Last().transform.position.y + 10 : 0;
+                yPosition = _floors.Count > 0 ? _floors.Last().transform.position.y + FloorMargin : 0;
 
             var floor = Instantiate(floorPrefab, new Vector3(0, yPosition, 0), Quaternion.identity);
             floor.transform.SetParent(floorsContainer.transform);
@@ -161,7 +163,10 @@ namespace Elevator.scripts
             }
 
             if (eventData.Name == GameEvents.KnockOnNpcDoor)
+            {
+                print($"Building controller notifying knock: {eventData.Data}");
                 Notify(GameEvents.KnockOnNpcDoor, eventData.Data);
+            }
         }
 
         public IEnumerator CallElevator(ElevatorDoorsController requestedElevator)

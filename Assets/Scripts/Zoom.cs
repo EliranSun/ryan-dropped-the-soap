@@ -6,7 +6,7 @@ public class Zoom : ObserverSubject
     private const float Tolerance = 0.01f;
     [SerializeField] private float delay;
     [SerializeField] private float speed = 1;
-    [SerializeField] private float startSize = 1;
+    [SerializeField] public float startSize = 1;
     [SerializeField] public float endSize = 6;
     [SerializeField] private bool isActiveByTrigger = false;
     [SerializeField] Transform target;
