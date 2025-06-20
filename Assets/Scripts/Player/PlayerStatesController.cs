@@ -22,16 +22,18 @@ namespace Player
             PositionPlant();
         }
 
-        private void PositionPlayer() {
+        private void PositionPlayer()
+        {
             var placePlayerAtElevator = PlayerPrefs.GetInt("PlacePlayerAtElevator");
             var currentSceneName = SceneManager.GetActiveScene().name;
 
             print("currentSceneName: " + currentSceneName);
             print("placePlayerAtElevator: " + placePlayerAtElevator);
 
-            if (placePlayerAtElevator == 1 && currentSceneName == "3. building scene") {
+            if (placePlayerAtElevator == 1 && currentSceneName == "hallway scene")
+            {
                 transform.position = new Vector2(0, 0);
-                mainCamera.GetComponent<Zoom>().startSize = 5;  
+                mainCamera.GetComponent<Zoom>().startSize = 5;
                 mainCamera.GetComponent<Zoom>().endSize = 10;
             }
         }
@@ -111,13 +113,14 @@ namespace Player
                         SceneManager.LoadScene("3b. inside apartment");
                     break;
 
-                case nameof(Location.Hallway): {
+                case nameof(Location.Hallway):
+                {
                     var placePlayerAtElevator = currentScene.name == "inside elevator" ? 1 : 0;
                     print("placePlayerAtElevator: " + placePlayerAtElevator);
                     PlayerPrefs.SetInt("PlacePlayerAtElevator", placePlayerAtElevator);
-                    
-                    if (currentScene.name != "3. building scene")
-                        SceneManager.LoadScene("3. building scene");
+
+                    if (currentScene.name != "hallway scene")
+                        SceneManager.LoadScene("hallway scene");
                     break;
                 }
 

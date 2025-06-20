@@ -29,6 +29,7 @@ namespace Elevator.scripts
 
     public class BuildingController : ObserverSubject
     {
+        private const float FloorMargin = 20f;
         [SerializeField] private GameObject floorPrefab;
         [SerializeField] private FloorData floorData;
 
@@ -46,8 +47,6 @@ namespace Elevator.scripts
         private readonly List<GameObject> _floors = new();
         private UnityEvent<GameEventData> _floorObservers;
 
-        private const float FloorMargin = 12f;
-        
         private void Awake()
         {
             _floorObservers = new UnityEvent<GameEventData>();

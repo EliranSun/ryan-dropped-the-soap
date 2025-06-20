@@ -17,7 +17,7 @@ namespace Elevator.scripts
         [SerializeField] private GameObject[] doors;
         [SerializeField] private FloorData floorData;
         [SerializeField] private AudioClip knockSound;
-        [SerializeField] private int doorNumber;
+        [SerializeField] public int doorNumber;
         [SerializeField] private GameObject npcAtDoor;
 
         private bool _isDoorOpen;

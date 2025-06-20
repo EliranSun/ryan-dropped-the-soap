@@ -50,7 +50,7 @@ MonoBehaviour:
       m_Calls: []
   floorNumber: 0
   apartmentNumber: 0
-  door: {fileID: 0}
+  door: {fileID: 6410327494891000602}
   tenants: []
   buildingController: {fileID: 0}
   prefab: {fileID: 0}
@@ -815,7 +815,7 @@ MonoBehaviour:
       m_Calls: []
   floorNumber: 0
   apartmentNumber: 0
-  door: {fileID: 0}
+  door: {fileID: 8125672022868828857}
   tenants: []
   buildingController: {fileID: 0}
   prefab: {fileID: 0}
@@ -1188,7 +1188,7 @@ MonoBehaviour:
       m_Calls: []
   floorNumber: 0
   apartmentNumber: 0
-  door: {fileID: 0}
+  door: {fileID: 7522321244753696131}
   tenants: []
   buildingController: {fileID: 0}
   prefab: {fileID: 0}
@@ -1204,7 +1204,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 498481076521556823, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1138517242611978885, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1246,6 +1246,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6768881771598670301, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
+      propertyPath: doors.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6768881771598670301, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
+      propertyPath: 'doors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 7404306360472565538}
     - target: {fileID: 7359169675709064602, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
       propertyPath: m_Name
       value: "\U0001F6AA hallway door"
@@ -1289,12 +1297,17 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6768881771598670301, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
   m_PrefabInstance: {fileID: 63161118542451384}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 7404306360472565538}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44d81f1156582314b968cc910e083de5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &7404306360472565538 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7359169675709064602, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
+  m_PrefabInstance: {fileID: 63161118542451384}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &367581026926770887
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1305,7 +1318,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 498481076521556823, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1138517242611978885, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1347,6 +1360,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6768881771598670301, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
+      propertyPath: doors.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6768881771598670301, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
+      propertyPath: 'doors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 7149725178502815581}
     - target: {fileID: 7359169675709064602, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
       propertyPath: m_Name
       value: "\U0001F6AA hallway door"
@@ -1383,6 +1404,22 @@ PrefabInstance:
 --- !u!4 &780595640625260610 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1138517242611978885, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
+  m_PrefabInstance: {fileID: 367581026926770887}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6410327494891000602 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6768881771598670301, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
+  m_PrefabInstance: {fileID: 367581026926770887}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7149725178502815581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44d81f1156582314b968cc910e083de5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &7149725178502815581 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7359169675709064602, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
   m_PrefabInstance: {fileID: 367581026926770887}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2844909332381032888
@@ -1544,7 +1581,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 498481076521556823, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1138517242611978885, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1586,6 +1623,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6768881771598670301, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
+      propertyPath: doors.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6768881771598670301, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
+      propertyPath: 'doors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 5407359053365735166}
     - target: {fileID: 7359169675709064602, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
       propertyPath: m_Name
       value: "\U0001F6AA hallway door"
@@ -1624,6 +1669,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1138517242611978885, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
   m_PrefabInstance: {fileID: 3254916967255788388}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5407359053365735166 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7359169675709064602, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
+  m_PrefabInstance: {fileID: 3254916967255788388}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8125672022868828857 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6768881771598670301, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
+  m_PrefabInstance: {fileID: 3254916967255788388}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5407359053365735166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44d81f1156582314b968cc910e083de5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3399485018499605372
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1859,7 +1920,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 498481076521556823, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1138517242611978885, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1901,6 +1962,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6768881771598670301, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
+      propertyPath: doors.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6768881771598670301, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
+      propertyPath: 'doors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 6028706499929135556}
     - target: {fileID: 7359169675709064602, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
       propertyPath: m_Name
       value: "\U0001F6AA hallway door"
@@ -1939,6 +2008,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1138517242611978885, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
   m_PrefabInstance: {fileID: 3858249294493154398}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6028706499929135556 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7359169675709064602, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
+  m_PrefabInstance: {fileID: 3858249294493154398}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7522321244753696131 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6768881771598670301, guid: 2d467abbbff85d0409cd3fe2c8528035, type: 3}
+  m_PrefabInstance: {fileID: 3858249294493154398}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6028706499929135556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44d81f1156582314b968cc910e083de5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5143841514262162751
 PrefabInstance:
   m_ObjectHideFlags: 0

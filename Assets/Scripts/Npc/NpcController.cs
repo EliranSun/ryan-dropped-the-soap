@@ -27,27 +27,26 @@ namespace Npc
             if (eventData.Name == GameEvents.KnockOnNpcDoor)
             {
                 if (!gameObject.activeSelf) return;
-                
+
                 var doorNumber = (int)eventData.Data;
                 var npcDoorNumber = _apartment.floorNumber * 10 + _apartment.apartmentNumber;
 
                 print($"door knock on: {doorNumber}; my door:{npcDoorNumber}");
                 if (npcDoorNumber != doorNumber) return;
                 if (!_isInApartment || knockOnDoorLines.Length == 0) return;
-                
-                Notify(GameEvents.TriggerSpecificDialogLine, knockOnDoorLines[Random.Range(0, knockOnDoorLines.Length)]);
-                Invoke(nameof(NpcOpenDoor), 4f);
+
+                Notify(GameEvents.TriggerSpecificDialogLine, knockOnDoorLines[0]);
+                Invoke(nameof(NpcOpenDoor), 8f);
             }
         }
 
         private void NpcOpenDoor()
         {
             if (!_apartment.door) return;
-
-            // TODO: move npc to actually hallway door location
-            transform.position = _apartment.door.transform.position - new Vector3(10, 0, 0);
             var doorController = _apartment.door.GetComponent<DoorController>();
+
             doorController.OpenNpcDoor();
+            Notify(GameEvents.TriggerSpecificDialogLine, knockOnDoorLines[1]);
         }
     }
 }
