@@ -24,20 +24,21 @@ namespace Npc
 
         public void OnNotify(GameEventData eventData)
         {
-            if (eventData.Name == GameEvents.KnockOnNpcDoor)
-            {
-                if (!gameObject.activeSelf) return;
+            if (eventData.Name != GameEvents.KnockOnNpcDoor)
+                return;
 
-                var doorNumber = (int)eventData.Data;
-                var npcDoorNumber = _apartment.floorNumber * 10 + _apartment.apartmentNumber;
+            if (!gameObject.activeSelf)
+                return;
 
-                print($"door knock on: {doorNumber}; my door:{npcDoorNumber}");
-                if (npcDoorNumber != doorNumber) return;
-                if (!_isInApartment || knockOnDoorLines.Length == 0) return;
+            var doorNumber = (int)eventData.Data;
+            var npcDoorNumber = _apartment.floorNumber * 10 + _apartment.apartmentNumber;
 
-                Notify(GameEvents.TriggerSpecificDialogLine, knockOnDoorLines[0]);
-                Invoke(nameof(NpcOpenDoor), 8f);
-            }
+            print($"door knock on: {doorNumber}; my door:{npcDoorNumber}");
+            if (npcDoorNumber != doorNumber) return;
+            if (!_isInApartment || knockOnDoorLines.Length == 0) return;
+
+            Notify(GameEvents.TriggerSpecificDialogLine, knockOnDoorLines[0]);
+            Invoke(nameof(NpcOpenDoor), 8f);
         }
 
         private void NpcOpenDoor()

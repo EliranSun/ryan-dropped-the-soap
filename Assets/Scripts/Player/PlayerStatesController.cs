@@ -32,7 +32,7 @@ namespace Player
 
             if (placePlayerAtElevator == 1 && currentSceneName == "hallway scene")
             {
-                transform.position = new Vector2(0, 0);
+                transform.position = new Vector2(0, transform.position.y);
                 mainCamera.GetComponent<Zoom>().startSize = 5;
                 mainCamera.GetComponent<Zoom>().endSize = 10;
             }
@@ -127,6 +127,16 @@ namespace Player
                 case nameof(Location.Elevator):
                     if (currentScene.name != "inside elevator")
                         SceneManager.LoadScene("inside elevator");
+                    break;
+
+                case nameof(Location.EmptyApartment):
+                    if (currentScene.name != "apartment scene - empty")
+                        SceneManager.LoadScene("apartment scene - empty");
+                    break;
+
+                case nameof(Location.ZekeApartment):
+                    if (currentScene.name != "apartment scene - zeke")
+                        SceneManager.LoadScene("apartment scene - zeke");
                     break;
             }
         }

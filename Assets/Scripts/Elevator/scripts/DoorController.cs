@@ -1,10 +1,10 @@
 using System;
 using System.Linq;
 using common.scripts;
-using Common.scripts;
 using Player;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Elevator.scripts
 {
@@ -19,26 +19,46 @@ namespace Elevator.scripts
         [SerializeField] private AudioClip knockSound;
         [SerializeField] public int doorNumber;
         [SerializeField] private GameObject npcAtDoor;
-
-        private bool _isDoorOpen;
+        [SerializeField] private bool isDoorOpen;
+        private AudioSource _audioSource;
         private bool _isPlayerInsideApartment = true;
         private bool _isPlayerOnDoor;
         private GameObject[] _objectsInsideApartment = { };
 
-        // Update is called once per frame
+        private void Start()
+        {
+            _audioSource = GetComponent<AudioSource>();
+            ToggleDoorState();
+
+            _isPlayerInsideApartment =
+                SceneManager.GetActiveScene().name.ToLower().Contains("apartment");
+
+            var playerStatesController = FindFirstObjectByType<PlayerStatesController>();
+            if (playerStatesController != null) observers.AddListener(playerStatesController.OnNotify);
+        }
+
         private void Update()
         {
-            if (!Input.GetKeyDown(KeyCode.X))
-                return;
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                if (!_isPlayerOnDoor || !isDoorOpen)
+                    return;
 
-            if (_isPlayerOnDoor && _isDoorOpen)
-                Notify(GameEvents.ChangePlayerLocation, Location.Hallway);
+                var location = doorNumber switch
+                {
+                    var n when n == floorData.PlayerApartmentNumber => Location.PlayerApartment,
+                    var n when n == floorData.ZekeApartmentNumber => Location.ZekeApartment,
+                    _ => Location.EmptyApartment
+                };
+
+                Notify(GameEvents.ChangePlayerLocation,
+                    _isPlayerInsideApartment ? Location.Hallway : location);
+            }
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.CompareTag("Player"))
-                _isPlayerOnDoor = true;
+            if (other.CompareTag("Player")) _isPlayerOnDoor = true;
 
             if (other.CompareTag("NPC"))
                 MoveObjectToLinkedDoor(other.transform);
@@ -46,82 +66,69 @@ namespace Elevator.scripts
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            if (other.CompareTag("Player"))
-                _isPlayerOnDoor = false;
+            if (other.CompareTag("Player")) _isPlayerOnDoor = false;
         }
 
         private void HandlePlayerApartmentDoorClick()
         {
-            _isDoorOpen = !_isDoorOpen;
+            isDoorOpen = !isDoorOpen;
 
-            foreach (var door in doors)
-            {
-                // door.SetActive(!_isDoorOpen);
-                door.GetComponent<SpriteRenderer>().color =
-                    _isDoorOpen ? new Color(0, 0, 0, 0) : Color.white;
+            ToggleDoorState();
 
-                npcAtDoor.SetActive(_isDoorOpen);
-            }
-
-            Notify(!_isDoorOpen
-                ? GameEvents.PlayerApartmentDoorClosed
-                : GameEvents.PlayerApartmentDoorOpened);
+            Notify(isDoorOpen
+                ? GameEvents.PlayerApartmentDoorOpened
+                : GameEvents.PlayerApartmentDoorClosed);
         }
 
-        private void KnockOnDoor()
-        {
-            // TODO: Another way then find with string
-            var soundEffects = GameObject.Find("📣 Sound Effects Audio Source");
-
-            if (soundEffects)
-                soundEffects.GetComponent<SoundEffectsController>().PlaySoundEffect(knockSound);
-        }
 
         private void TriggerKnockOnNpcDoor()
         {
             // this is needed because doors are dynamically instantiated and are not connected to 
             // anything outside floors, like NPCs
             var building = GameObject.Find("🏢 Building controller");
-            var buildingController = building.GetComponent<BuildingController>();
+            if (!building)
+                return;
 
-            if (building && buildingController)
-            {
-                print($"Door notifying knock: {doorNumber}");
-                buildingController.OnNotify(new GameEventData(GameEvents.KnockOnNpcDoor, doorNumber));
-            }
+            var buildingController = building.GetComponent<BuildingController>();
+            if (!buildingController)
+                return;
+
+            buildingController.OnNotify(new GameEventData(GameEvents.KnockOnNpcDoor, doorNumber));
         }
 
         public void OnNotify(GameEventData eventData)
         {
+            print("Door controller on notify");
             if (eventData.Name == GameEvents.OpenNpcDoor)
             {
-                _isDoorOpen = true;
-                foreach (var door in doors) door.SetActive(true);
+                isDoorOpen = true;
+                ToggleDoorState();
             }
 
-            var isDoor = ((string)eventData.Data).ToLower().Contains("inside door") ||
-                         ((string)eventData.Data).ToLower().Contains("hallway door");
 
-            if (eventData.Name == GameEvents.ClickOnItem && isDoor)
+            if (eventData.Name == GameEvents.ClickOnItem)
             {
-                print("CLICK ON DOOR");
+                var isDoor = ((string)eventData.Data).ToLower().Contains("inside door") ||
+                             ((string)eventData.Data).ToLower().Contains("hallway door");
 
-                if (doorNumber == floorData.playerApartmentNumber)
+                if (!isDoor || isDoorOpen)
+                    return;
+
+                if (doorNumber == floorData.PlayerApartmentNumber)
                 {
                     HandlePlayerApartmentDoorClick();
                     return;
                 }
 
-                KnockOnDoor();
+                _audioSource.PlayOneShot(knockSound);
                 TriggerKnockOnNpcDoor();
             }
         }
 
         public void OpenNpcDoor()
         {
-            _isDoorOpen = true;
-            foreach (var door in doors) door.SetActive(false);
-            // Notify(GameEvents.OpenNpcDoor);
+            isDoorOpen = true;
+            ToggleDoorState();
         }
 
         private void MovePlayerToLinkedDoor()
@@ -153,6 +160,13 @@ namespace Elevator.scripts
             doorNumberTextMeshPro.text = newDoorNumber;
             print($"Setting door number?? {int.Parse(newDoorNumber)}");
             doorNumber = int.Parse(newDoorNumber);
+        }
+
+        private void ToggleDoorState()
+        {
+            if (npcAtDoor) npcAtDoor.SetActive(isDoorOpen);
+            foreach (var door in doors)
+                door.GetComponent<SpriteRenderer>().enabled = !isDoorOpen;
         }
     }
 }

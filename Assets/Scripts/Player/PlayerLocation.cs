@@ -5,6 +5,9 @@ namespace Player
         PlayerApartment,
         Hallway,
         Elevator,
-        BuildingFrontView
+        BuildingFrontView,
+        ZekeApartment,
+        StacyApartment,
+        EmptyApartment
     }
 }

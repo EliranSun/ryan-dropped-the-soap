@@ -50,6 +50,8 @@ namespace Character_Creator.scripts
             if (playerOptions == null || playerOptions.Length == 0)
                 return;
 
+            _playerOptionsText.text = "";
+
             for (var i = 0; i < playerOptions.Length; i++)
             {
                 _nextLines[i] = playerOptions[i].next;

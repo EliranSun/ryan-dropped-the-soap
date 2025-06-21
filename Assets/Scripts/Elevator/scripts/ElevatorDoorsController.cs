@@ -43,7 +43,7 @@ namespace Elevator.scripts
             _buildingController = GameObject.Find("🏢 Building controller").GetComponent<BuildingController>();
 
             // Add player as observer
-            var playerStatesController = FindObjectOfType<PlayerStatesController>();
+            var playerStatesController = FindFirstObjectByType<PlayerStatesController>();
             if (playerStatesController != null) observers.AddListener(playerStatesController.OnNotify);
 
             SetElevatorCurrentFloorNumber(floorData.elevatorFloorNumber.ToString());
