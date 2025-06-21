@@ -73,6 +73,8 @@ namespace Elevator.scripts
         {
             isDoorOpen = !isDoorOpen;
 
+            print($"Door is {isDoorOpen}");
+
             ToggleDoorState();
 
             Notify(isDoorOpen
@@ -98,7 +100,6 @@ namespace Elevator.scripts
 
         public void OnNotify(GameEventData eventData)
         {
-            print("Door controller on notify");
             if (eventData.Name == GameEvents.OpenNpcDoor)
             {
                 isDoorOpen = true;
@@ -111,7 +112,7 @@ namespace Elevator.scripts
                 var isDoor = ((string)eventData.Data).ToLower().Contains("inside door") ||
                              ((string)eventData.Data).ToLower().Contains("hallway door");
 
-                if (!isDoor || isDoorOpen)
+                if (!isDoor)
                     return;
 
                 if (doorNumber == floorData.PlayerApartmentNumber)
@@ -119,6 +120,9 @@ namespace Elevator.scripts
                     HandlePlayerApartmentDoorClick();
                     return;
                 }
+
+                if (isDoorOpen)
+                    return;
 
                 _audioSource.PlayOneShot(knockSound);
                 TriggerKnockOnNpcDoor();
@@ -164,7 +168,9 @@ namespace Elevator.scripts
 
         private void ToggleDoorState()
         {
-            if (npcAtDoor) npcAtDoor.SetActive(isDoorOpen);
+            if (npcAtDoor)
+                npcAtDoor.SetActive(isDoorOpen);
+
             foreach (var door in doors)
                 door.GetComponent<SpriteRenderer>().enabled = !isDoorOpen;
         }
