@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Dialog;
 using Elevator.scripts;
@@ -7,8 +8,6 @@ namespace Npc
 {
     public class NpcController : ObserverSubject
     {
-        // public GameObject apartmentDoor;
-        // public FloorData floorData;
         [SerializeField] private BuildingController buildingController;
         [SerializeField] private Tenant tenant;
         [SerializeField] private NarrationDialogLine[] knockOnDoorLines;
@@ -18,22 +17,33 @@ namespace Npc
         private void Start()
         {
             _apartment = buildingController.tenants.FirstOrDefault(t => t.name == tenant);
-            if (_apartment != null)
-                print($"{gameObject.name} floor: {_apartment.floorNumber}; number: {_apartment.apartmentNumber}");
         }
 
         public void OnNotify(GameEventData eventData)
         {
-            if (eventData.Name != GameEvents.KnockOnNpcDoor)
-                return;
+            if (eventData.Name == GameEvents.KnockOnNpcDoor)
+            {
+                var doorNumber = (int)eventData.Data;
+                HandleDoorKnock(doorNumber);
+            }
 
+            if (eventData.Name == GameEvents.HideSelf)
+            {
+                var actorName = (ActorName)eventData.Data;
+                if (string.Equals(actorName.ToString(), tenant.ToString(), StringComparison.CurrentCultureIgnoreCase))
+                    gameObject.SetActive(false);
+            }
+        }
+
+        private void HandleDoorKnock(int doorNumber)
+        {
             if (!gameObject.activeSelf)
                 return;
 
-            var doorNumber = (int)eventData.Data;
             var npcDoorNumber = _apartment.floorNumber * 10 + _apartment.apartmentNumber;
 
-            print($"door knock on: {doorNumber}; my door:{npcDoorNumber}");
+            print($"I am {tenant}. door knock on: {doorNumber}; my door:{npcDoorNumber}");
+
             if (npcDoorNumber != doorNumber) return;
             if (!_isInApartment || knockOnDoorLines.Length == 0) return;
 

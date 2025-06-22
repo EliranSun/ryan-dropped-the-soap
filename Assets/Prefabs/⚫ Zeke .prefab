@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 1746614290803434827}
   - component: {fileID: 4298850470285762675}
   - component: {fileID: 497700870944723493}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: "\u26AB Zeke "
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55,6 +55,7 @@ SpriteRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -92,7 +93,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!50 &1137094454097543630
 Rigidbody2D:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -103,8 +104,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -188,5 +189,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9e45c83d32f1794eba302925fc43f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  apartmentDoor: {fileID: 0}
-  floorData: {fileID: 0}
+  observers:
+    m_PersistentCalls:
+      m_Calls: []
+  buildingController: {fileID: 0}
+  tenant: 0
+  knockOnDoorLines: []

@@ -48,6 +48,7 @@ namespace Elevator.scripts
                 {
                     var n when n == floorData.PlayerApartmentNumber => Location.PlayerApartment,
                     var n when n == floorData.ZekeApartmentNumber => Location.ZekeApartment,
+                    var n when n == floorData.StacyApartmentNumber => Location.StacyApartment,
                     _ => Location.EmptyApartment
                 };
 

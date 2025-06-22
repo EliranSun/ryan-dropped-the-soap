@@ -267,7 +267,7 @@ namespace Character_Creator.scripts
                     break;
 
                 default:
-                    Notify(action);
+                    Notify(action, _currentDialogue.actorName);
                     break;
             }
         }

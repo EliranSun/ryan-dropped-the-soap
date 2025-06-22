@@ -188,5 +188,8 @@
     KnockOnNpcDoor,
 
     PlayerOutsideTrigger,
-    ChangePlayerLocation
+    ChangePlayerLocation,
+
+    HideSelf,
+    ShowSelf
 }

@@ -27,7 +27,7 @@ namespace Elevator.scripts
 
             foreach (var tenant in buildingController.tenants)
                 if (tenant.floorNumber == floorNumber && tenant.apartmentNumber == apartmentNumber)
-                    if (tenant.name == Tenant.Zeke)
+                    if (tenant.name is Tenant.Zeke or Tenant.Stacy)
                     {
                         if (tenant.tenantPrefab)
                         {

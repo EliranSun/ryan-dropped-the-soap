@@ -19,6 +19,7 @@ namespace Elevator.scripts
 
         public readonly int PlayerApartmentFloor = 42;
         public readonly int PlayerApartmentNumber = 422;
+        public readonly int StacyApartmentNumber = 22;
         public readonly int ZekeApartmentNumber = 503;
     }
 }
