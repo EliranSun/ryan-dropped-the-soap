@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
-  m_Name: 0. Stacy - Go away
+  m_Name: 0aa. Stacy - go away fucker
   m_EditorClassIdentifier: 
   playerName: 
   waitBeforeLine: 0
@@ -20,12 +20,30 @@ MonoBehaviour:
   - text: Go away.
     clip: {fileID: 0}
     gender: 0
-  playerOptions: []
+  playerOptions:
+  - text: Police
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 0}
+    actionAfterPlayerChoice: 0
+  - text: Neighbour.
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 0}
+    actionAfterPlayerChoice: 0
+  - text: Stranger.
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []
   objectReferringDialogLines: []
-  wait: 0.5
+  wait: 0
   actorName: 5
   actionBeforeLine: 0
   actionAfterLine: 0
