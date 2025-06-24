@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
+  m_Name: 1i. stacy - yes - body wrong
+  m_EditorClassIdentifier: 
+  playerName: 
+  waitBeforeLine: 0
+  mandatoryPlayerChoice: 1
+  overlayImageSprite: {fileID: 0}
+  voicedLines:
+  - text: Are you hurt? Your body looks wrong...
+    clip: {fileID: 8300000, guid: 9b61e6a9b277c43b19f8192bf8dbdbfe, type: 3}
+    gender: 0
+  playerOptions:
+  - text: is stolen
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 0}
+    actionAfterPlayerChoice: 0
+  - text: is broken
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 0}
+    actionAfterPlayerChoice: 0
+  - text: not remember
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 0}
+    actionAfterPlayerChoice: 0
+  - text: in private
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 935746aa8227b401b933097425a98106, type: 2}
+    actionAfterPlayerChoice: 0
+  playerReactions: []
+  nextDialogueLine: {fileID: 0}
+  randomizedDialogLines: []
+  objectReferringDialogLines: []
+  wait: 0
+  actorName: 5
+  actionBeforeLine: 0
+  actionAfterLine: 0
+  actorReaction: 0
+  angerLevel: 0
+  toggleLineCondition: {fileID: 0}
+  lineCondition:
+    condition: 0
+    isMet: 0
