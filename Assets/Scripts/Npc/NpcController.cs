@@ -8,10 +8,11 @@ namespace Npc
 {
     public class NpcController : ObserverSubject
     {
+        private const bool IsInApartment = true;
         [SerializeField] private BuildingController buildingController;
         [SerializeField] private Tenant tenant;
         [SerializeField] private NarrationDialogLine[] knockOnDoorLines;
-        private readonly bool _isInApartment = true;
+        [SerializeField] private bool shouldOpenDoor = true;
         private TenantApartment _apartment;
 
         private void Start()
@@ -33,22 +34,36 @@ namespace Npc
                 if (string.Equals(actorName.ToString(), tenant.ToString(), StringComparison.CurrentCultureIgnoreCase))
                     gameObject.SetActive(false);
             }
+
+            if (eventData.Name == GameEvents.OpenNpcDoor)
+            {
+                var doorNumber = (int)eventData.Data;
+                if (IsEligibleForDoorOpen(doorNumber)) Invoke(nameof(NpcOpenDoor), 1f);
+            }
         }
 
-        private void HandleDoorKnock(int doorNumber)
+        private bool IsEligibleForDoorOpen(int doorNumber)
         {
             if (!gameObject.activeSelf)
-                return;
+                return false;
 
             var npcDoorNumber = _apartment.floorNumber * 10 + _apartment.apartmentNumber;
 
             print($"I am {tenant}. door knock on: {doorNumber}; my door:{npcDoorNumber}");
 
-            if (npcDoorNumber != doorNumber) return;
-            if (!_isInApartment || knockOnDoorLines.Length == 0) return;
+            if (npcDoorNumber != doorNumber) return false;
+            if (!IsInApartment || knockOnDoorLines.Length == 0) return false;
 
-            Notify(GameEvents.TriggerSpecificDialogLine, knockOnDoorLines[0]);
-            Invoke(nameof(NpcOpenDoor), 8f);
+            return true;
+        }
+
+        private void HandleDoorKnock(int doorNumber)
+        {
+            if (IsEligibleForDoorOpen(doorNumber))
+            {
+                Notify(GameEvents.TriggerSpecificDialogLine, knockOnDoorLines[0]);
+                if (shouldOpenDoor) Invoke(nameof(NpcOpenDoor), 8f);
+            }
         }
 
         private void NpcOpenDoor()

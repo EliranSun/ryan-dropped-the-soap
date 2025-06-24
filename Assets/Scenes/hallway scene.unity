@@ -1228,7 +1228,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3560832367629595899, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.size
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3560832367629595899, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
@@ -1267,6 +1267,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1178285044}
     - target: {fileID: 3560832367629595899, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[7].m_Target
+      value: 
+      objectReference: {fileID: 1981304062}
+    - target: {fileID: 3560832367629595899, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
       value: 2
       objectReference: {fileID: 0}
@@ -1280,6 +1284,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3560832367629595899, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[6].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3560832367629595899, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[7].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3560832367629595899, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
@@ -1300,6 +1308,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3560832367629595899, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[6].m_MethodName
+      value: OnNotify
+      objectReference: {fileID: 0}
+    - target: {fileID: 3560832367629595899, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[7].m_MethodName
       value: OnNotify
       objectReference: {fileID: 0}
     - target: {fileID: 3560832367629595899, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
@@ -1327,6 +1339,10 @@ PrefabInstance:
       value: Npc.NpcController, NpcAssembly
       objectReference: {fileID: 0}
     - target: {fileID: 3560832367629595899, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[7].m_TargetAssemblyTypeName
+      value: Npc.NpcController, NpcAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 3560832367629595899, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
@@ -1340,6 +1356,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3560832367629595899, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[6].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3560832367629595899, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[7].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3804229301443890250, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
@@ -8600,6 +8620,7 @@ MonoBehaviour:
   tenant: 1
   knockOnDoorLines:
   - {fileID: 11400000, guid: 459e868977f684576adfa2cb498b42d9, type: 2}
+  shouldOpenDoor: 0
 --- !u!114 &1981304063
 MonoBehaviour:
   m_ObjectHideFlags: 0
