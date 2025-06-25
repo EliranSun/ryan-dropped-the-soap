@@ -83,7 +83,6 @@ namespace Player
             {
                 var newLocation = (Location)eventData.Data;
                 PlayerPrefs.SetString("PlayerLocation", newLocation.ToString());
-                // playerBox.SetActive(newLocation == Location.PlayerApartment);
                 ChangeScene();
             }
 
@@ -137,6 +136,11 @@ namespace Player
                 case nameof(Location.ZekeApartment):
                     if (currentScene.name != "apartment scene - zeke")
                         SceneManager.LoadScene("apartment scene - zeke");
+                    break;
+
+                case nameof(Location.StacyApartment):
+                    if (currentScene.name != "apartment scene - stacy")
+                        SceneManager.LoadScene("apartment scene - stacy");
                     break;
             }
         }

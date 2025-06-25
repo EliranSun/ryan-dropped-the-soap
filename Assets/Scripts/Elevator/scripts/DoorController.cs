@@ -41,6 +41,8 @@ namespace Elevator.scripts
         {
             if (Input.GetKeyDown(KeyCode.X))
             {
+                print($"Is player on door? {_isPlayerOnDoor}; is door open? {isDoorOpen}");
+
                 if (!_isPlayerOnDoor || !isDoorOpen)
                     return;
 
@@ -51,6 +53,8 @@ namespace Elevator.scripts
                     var n when n == floorData.StacyApartmentNumber => Location.StacyApartment,
                     _ => Location.EmptyApartment
                 };
+
+                print(location);
 
                 Notify(GameEvents.ChangePlayerLocation,
                     _isPlayerInsideApartment ? Location.Hallway : location);

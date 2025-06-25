@@ -30,16 +30,27 @@ namespace Npc
 
             if (eventData.Name == GameEvents.HideSelf)
             {
-                var actorName = (ActorName)eventData.Data;
-                if (string.Equals(actorName.ToString(), tenant.ToString(), StringComparison.CurrentCultureIgnoreCase))
+                var actorNameProperty = eventData.Data.GetType().GetProperty("actorName");
+                if (actorNameProperty == null) return;
+
+                var actorName = (ActorName)actorNameProperty.GetValue(eventData.Data);
+                if (IsActorMatchingTenant(actorName))
                     gameObject.SetActive(false);
             }
 
             if (eventData.Name == GameEvents.OpenNpcDoor)
             {
-                var doorNumber = (int)eventData.Data;
+                var actionData = eventData.Data.GetType().GetProperty("actionNumberData");
+                if (actionData == null) return;
+
+                var doorNumber = (int)actionData.GetValue(eventData.Data);
                 if (IsEligibleForDoorOpen(doorNumber)) Invoke(nameof(NpcOpenDoor), 1f);
             }
+        }
+
+        private bool IsActorMatchingTenant(ActorName actorName)
+        {
+            return string.Equals(actorName.ToString(), tenant.ToString(), StringComparison.CurrentCultureIgnoreCase);
         }
 
         private bool IsEligibleForDoorOpen(int doorNumber)
@@ -72,7 +83,9 @@ namespace Npc
             var doorController = _apartment.door.GetComponent<DoorController>();
 
             doorController.OpenNpcDoor();
-            Notify(GameEvents.TriggerSpecificDialogLine, knockOnDoorLines[1]);
+
+            if (knockOnDoorLines.Length > 1)
+                Notify(GameEvents.TriggerSpecificDialogLine, knockOnDoorLines[1]);
         }
     }
 }

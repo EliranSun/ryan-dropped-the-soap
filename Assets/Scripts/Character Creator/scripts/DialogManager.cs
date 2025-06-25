@@ -267,7 +267,7 @@ namespace Character_Creator.scripts
                     break;
 
                 default:
-                    Notify(action, _currentDialogue.actorName);
+                    Notify(action, new { _currentDialogue.actorName, _currentDialogue.actionNumberData });
                     break;
             }
         }
@@ -434,8 +434,8 @@ namespace Character_Creator.scripts
                 return;
 
             narratorText.text = "";
-
-            PostDialogAdvanceActions();
+            _audioSource.Stop();
+            _audioSource.clip = null;
 
             Notify(GameEvents.LineNarrationEnd, new
             {
