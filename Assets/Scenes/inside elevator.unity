@@ -422,11 +422,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3637131745237976192, guid: e353ef99cd15a914d936e254978559b3, type: 3}
       propertyPath: m_Name
-      value: "\U0001F9CD\u200D\u2640\uFE0F Charlotte guide"
+      value: "\U0001F7E4 Charlotte"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3637131745237976192, guid: e353ef99cd15a914d936e254978559b3, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3637131745237976192, guid: e353ef99cd15a914d936e254978559b3, type: 3}
+      propertyPath: m_TagString
+      value: NPC
       objectReference: {fileID: 0}
     - target: {fileID: 4371016708318843730, guid: e353ef99cd15a914d936e254978559b3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.36
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4371016708318843730, guid: e353ef99cd15a914d936e254978559b3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1468,12 +1476,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 245318501731487299, guid: 74c9e4d4d98912c4b8dc07d6ffed775e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 245318501731487299, guid: 74c9e4d4d98912c4b8dc07d6ffed775e, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 536150925389476208, guid: 74c9e4d4d98912c4b8dc07d6ffed775e, type: 3}
       propertyPath: m_Name
       value: Dino
+      objectReference: {fileID: 0}
+    - target: {fileID: 536150925389476208, guid: 74c9e4d4d98912c4b8dc07d6ffed775e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 536150925389476208, guid: 74c9e4d4d98912c4b8dc07d6ffed775e, type: 3}
+      propertyPath: m_TagString
+      value: NPC
       objectReference: {fileID: 0}
     - target: {fileID: 1934076538719534953, guid: 74c9e4d4d98912c4b8dc07d6ffed775e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1517,7 +1537,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7199552660100878915, guid: 74c9e4d4d98912c4b8dc07d6ffed775e, type: 3}
       propertyPath: m_FlipX
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1526,6 +1546,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 536150925389476208, guid: 74c9e4d4d98912c4b8dc07d6ffed775e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 834631265}
+    - targetCorrespondingSourceObject: {fileID: 536150925389476208, guid: 74c9e4d4d98912c4b8dc07d6ffed775e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 834631269}
+    - targetCorrespondingSourceObject: {fileID: 536150925389476208, guid: 74c9e4d4d98912c4b8dc07d6ffed775e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 834631270}
   m_SourcePrefab: {fileID: 100100000, guid: 74c9e4d4d98912c4b8dc07d6ffed775e, type: 3}
 --- !u!1 &834631264 stripped
 GameObject:
@@ -1539,12 +1565,85 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 834631264}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 08ed81895a08a0942975e119b35594ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 2030238361}
+--- !u!61 &834631269
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834631264}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: -0.4055822}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.4, y: 2.4}
+    newSize: {x: 0.24, y: 0.24}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.8071685, y: 0.998898}
+  m_EdgeRadius: 0
+--- !u!50 &834631270
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834631264}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &976804666
 GameObject:
   m_ObjectHideFlags: 0
@@ -1792,6 +1891,74 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   highlightColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+--- !u!1 &1072330284
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1072330285}
+  - component: {fileID: 1072330286}
+  m_Layer: 0
+  m_Name: Elevator Final Sequence
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1072330285
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1072330284}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 471.5, y: 93.09895, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1072330286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1072330284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b538e136203568444b33cb4fb4ec96f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1835763230}
+        m_TargetAssemblyTypeName: Elevator.scripts.ElevatorController, ElevatorScriptsAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  stopAtFloors: 2d0000002a00000026000000
+  npcs:
+  - {fileID: 81668284518784549, guid: b56c1e2fecc384d65b8c164d527f5498, type: 3}
+  - {fileID: 3739804740310463349, guid: d6297e1698957484c804cbdaea2722a5, type: 3}
+  - {fileID: 6247616132557856313, guid: cf1c3616d61571f4bb49e7d1448ba09f, type: 3}
+  xPositions:
+  - 4.8
+  - -3
+  - -1
 --- !u!1 &1121189226
 GameObject:
   m_ObjectHideFlags: 0
@@ -2861,7 +3028,7 @@ GameObject:
   - component: {fileID: 1835763227}
   - component: {fileID: 1835763229}
   m_Layer: 11
-  m_Name: inside elevator
+  m_Name: Elevator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3138,6 +3305,18 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 493977679}
         m_TargetAssemblyTypeName: Player.PlayerStatesController, PlayerScriptsAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1072330286}
+        m_TargetAssemblyTypeName: Elevator.scripts.ElevatorFinalSequence, ElevatorScriptsAssembly
         m_MethodName: OnNotify
         m_Mode: 0
         m_Arguments:
@@ -3509,14 +3688,15 @@ SceneRoots:
   m_Roots:
   - {fileID: 1770857986}
   - {fileID: 1835763225}
+  - {fileID: 1072330285}
   - {fileID: 478327586}
+  - {fileID: 493977678}
+  - {fileID: 221338920}
   - {fileID: 61865875}
   - {fileID: 1419732019}
-  - {fileID: 221338920}
   - {fileID: 834631263}
   - {fileID: 1562637606}
   - {fileID: 1685465008}
   - {fileID: 976804668}
   - {fileID: 1297841511}
   - {fileID: 36760397}
-  - {fileID: 493977678}

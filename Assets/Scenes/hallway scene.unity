@@ -4273,6 +4273,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c99047920ed84adf894b38dfacf89d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &888536282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 12380333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08ed81895a08a0942975e119b35594ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 432403212}
 --- !u!1 &920338660
 GameObject:
   m_ObjectHideFlags: 0
@@ -8823,15 +8836,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3930049543282524055, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4060874364467996741, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -28.27
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4060874364467996741, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.59
+      value: -41
       objectReference: {fileID: 0}
     - target: {fileID: 4060874364467996741, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8868,7 +8881,15 @@ PrefabInstance:
     - target: {fileID: 6621240152084822304, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
       propertyPath: playerTransform
       value: 
+      objectReference: {fileID: 432403212}
+    - target: {fileID: 6621240152084822304, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
+      propertyPath: pointsOfInterest.Array.size
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6621240152084822304, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
+      propertyPath: 'pointsOfInterest.Array.data[0]'
+      value: 
+      objectReference: {fileID: 432403212}
     - target: {fileID: 7549147449976439754, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -8876,7 +8897,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3930049543282524055, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 888536282}
   m_SourcePrefab: {fileID: 100100000, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
 --- !u!1001 &4068198194827888004
 PrefabInstance:

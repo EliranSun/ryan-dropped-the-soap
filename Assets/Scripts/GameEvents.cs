@@ -191,5 +191,9 @@
     ChangePlayerLocation,
 
     HideSelf,
-    ShowSelf
+    ShowSelf,
+
+    StartElevatorFinalSequence,
+    StopElevator,
+    ResumeElevator
 }

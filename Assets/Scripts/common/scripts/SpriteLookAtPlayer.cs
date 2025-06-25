@@ -14,6 +14,7 @@ namespace common.scripts
 
         private void Update()
         {
+            if (!playerTransform) return;
             _spriteRenderer.flipX = transform.position.x < playerTransform.position.x;
         }
     }

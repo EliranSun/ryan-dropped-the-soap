@@ -39,20 +39,8 @@ namespace Elevator.scripts
 
         private void Start()
         {
-            Debug.Log("ElevatorController Start method called");
-            // _initLightPosition = shaftLight.transform.position;
-            //
-            // var panelChildren = panel.transform.childCount;
-            // for (var i = 0; i < panelChildren; i++)
-            // {
-            //     var child = panel.transform.GetChild(i);
-            //     var button = child.GetComponent<Button>();
-            //     button.onClick.AddListener(() => UpdateFloor(button));
-            // }
-            //
-            // StartCoroutine(ControlShaftLight());
-
             if (floorText) floorText.text = floorData.elevatorFloorNumber.ToString();
+            Notify(GameEvents.StartElevatorFinalSequence);
         }
 
         private void Update()
@@ -85,10 +73,15 @@ namespace Elevator.scripts
         {
             if (eventData.Name == GameEvents.ElevatorButtonPress)
             {
-                print("Elevator Button Press event " + eventData.Data);
                 var floor = (int)eventData.Data;
                 GoToFloor(floor);
             }
+
+            if (eventData.Name == GameEvents.StopElevator)
+                StopElevator();
+
+            if (eventData.Name == GameEvents.ResumeElevator)
+                GoToFloor(_desiredFloor);
         }
 
         private void UpdateFloor(int floorNumber)
@@ -154,8 +147,16 @@ namespace Elevator.scripts
                 }
             }
 
+            StopElevator();
+            Invoke(nameof(NotifyElevatorReachedFloor), 2);
+        }
+
+        private void StopElevator()
+        {
+            StopAllCoroutines();
+
             _isFloorMoving = false;
-            shaftLight.SetActive(true);
+            Invoke(nameof(OpenDoors), 1);
 
             if (elevatorAudioSource)
             {
@@ -164,7 +165,12 @@ namespace Elevator.scripts
                 elevatorAudioSource.Play();
             }
 
-            Invoke(nameof(NotifyElevatorReachedFloor), 2);
+            shakeableCamera.Shake(0);
+        }
+
+        private void OpenDoors()
+        {
+            shaftLight.SetActive(true);
         }
 
         private void NotifyElevatorReachedFloor()
