@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: charlotte - hmm, fine
   m_EditorClassIdentifier: 
   playerName: 
+  waitBeforeLine: 0
+  mandatoryPlayerChoice: 1
+  overlayImageSprite: {fileID: 0}
   voicedLines:
   - text: Hmm, fine.
     clip: {fileID: 8300000, guid: fc7a44aed18881f4db44a85c3766eb71, type: 3}
-    gender: 2
+    gender: 0
   playerOptions: []
   playerReactions: []
   nextDialogueLine: {fileID: 0}
@@ -28,4 +31,13 @@ MonoBehaviour:
   objectReferringDialogLines: []
   wait: 0.5
   actorName: 1
+  actionBeforeLine: 0
   actionAfterLine: 0
+  actorReaction: 0
+  angerLevel: 0
+  toggleLineCondition: {fileID: 0}
+  lineCondition:
+    condition: 0
+    isMet: 0
+  blurAudio: 0
+  actionNumberData: 0

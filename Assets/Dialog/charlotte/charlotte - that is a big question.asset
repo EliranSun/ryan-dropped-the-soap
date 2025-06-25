@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: charlotte - that is a big question
   m_EditorClassIdentifier: 
   playerName: 
+  waitBeforeLine: 0
+  mandatoryPlayerChoice: 1
+  overlayImageSprite: {fileID: 0}
   voicedLines:
   - text: That is a big question! Well...
     clip: {fileID: 8300000, guid: 9170b6636aed8504db8b32de71db49da, type: 3}
-    gender: 2
+    gender: 0
   playerOptions: []
   playerReactions: []
   nextDialogueLine: {fileID: 11400000, guid: 3e89189ef33f4444c893f0dad93c07a8, type: 2}
@@ -24,4 +27,13 @@ MonoBehaviour:
   objectReferringDialogLines: []
   wait: 0.5
   actorName: 1
+  actionBeforeLine: 0
   actionAfterLine: 0
+  actorReaction: 0
+  angerLevel: 0
+  toggleLineCondition: {fileID: 0}
+  lineCondition:
+    condition: 0
+    isMet: 0
+  blurAudio: 0
+  actionNumberData: 0

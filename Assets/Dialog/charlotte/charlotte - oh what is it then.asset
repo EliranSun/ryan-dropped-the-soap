@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: charlotte - oh what is it then
   m_EditorClassIdentifier: 
   playerName: 
+  waitBeforeLine: 0
+  mandatoryPlayerChoice: 1
+  overlayImageSprite: {fileID: 0}
   voicedLines:
   - text: Oh, what is it then?
     clip: {fileID: 8300000, guid: 43e386e48a6fef24790004d8b4cf1de5, type: 3}
-    gender: 2
+    gender: 0
   playerOptions:
   - text: Input favourite color
     type: 2
@@ -42,4 +45,13 @@ MonoBehaviour:
   objectReferringDialogLines: []
   wait: 0.5
   actorName: 1
+  actionBeforeLine: 0
   actionAfterLine: 0
+  actorReaction: 0
+  angerLevel: 0
+  toggleLineCondition: {fileID: 0}
+  lineCondition:
+    condition: 0
+    isMet: 0
+  blurAudio: 0
+  actionNumberData: 0

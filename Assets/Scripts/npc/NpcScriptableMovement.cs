@@ -9,7 +9,10 @@ namespace npc
     public class NpcScriptableMovement : MonoBehaviour
     {
         private static readonly int IsWalking = Animator.StringToHash("IsWalking");
-        [SerializeField] private int speed;
+
+        // if PoI is player, speed should be lower than player speed to avoid animation jitter
+        // (because the NPC constantly reaching and stopping)
+        [SerializeField] private float speed;
         [SerializeField] private Transform[] pointsOfInterest;
         [SerializeField] private float distanceToChangePoint = 4f;
         [SerializeField] private Transform playerTransform;
@@ -46,6 +49,7 @@ namespace npc
 
             if (distance <= distanceToChangePoint)
             {
+                // reached point
                 if (_isWalking)
                 {
                     _animator.SetBool(IsWalking, false);
@@ -86,7 +90,7 @@ namespace npc
             if (isRigidBodyMovement)
                 RigidBodyMovement(direction, distanceFromPlayer);
             else
-                CharacterControllerMovement(direction, distanceFromPlayer);
+                TransformMovement(direction, distanceFromPlayer);
         }
 
         private void RigidBodyMovement(Vector2 direction, float distanceFromPlayer)
@@ -104,7 +108,7 @@ namespace npc
             }
         }
 
-        private void CharacterControllerMovement(Vector2 direction, float distanceFromPlayer)
+        private void TransformMovement(Vector2 direction, float distanceFromPlayer)
         {
             transform.Translate(new Vector3(direction.x, 0, 0) * (speed * Time.deltaTime));
         }

@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: charlotte - why do you ask
   m_EditorClassIdentifier: 
   playerName: 
+  waitBeforeLine: 0
+  mandatoryPlayerChoice: 1
+  overlayImageSprite: {fileID: 0}
   voicedLines:
   - text: Why do you ask?
     clip: {fileID: 8300000, guid: 555c00280430ca443865c6f13cb41c42, type: 3}
-    gender: 2
+    gender: 0
   playerOptions:
   - text: Just a random thought that popped up
     type: 0
@@ -60,4 +63,13 @@ MonoBehaviour:
   objectReferringDialogLines: []
   wait: 0.5
   actorName: 1
+  actionBeforeLine: 0
   actionAfterLine: 0
+  actorReaction: 0
+  angerLevel: 0
+  toggleLineCondition: {fileID: 0}
+  lineCondition:
+    condition: 0
+    isMet: 0
+  blurAudio: 0
+  actionNumberData: 0

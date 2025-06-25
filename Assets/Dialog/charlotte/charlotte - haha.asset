@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: charlotte - haha
   m_EditorClassIdentifier: 
   playerName: 
+  waitBeforeLine: 0
+  mandatoryPlayerChoice: 1
+  overlayImageSprite: {fileID: 0}
   voicedLines:
   - text: haha
     clip: {fileID: 8300000, guid: 397de708a0ff99d4f8a8ed944f5cdade, type: 3}
-    gender: 2
+    gender: 0
   playerOptions: []
   playerReactions: []
   nextDialogueLine: {fileID: 11400000, guid: 56afb097e6bab8143bde00328c4f07ff, type: 2}
@@ -24,4 +27,13 @@ MonoBehaviour:
   objectReferringDialogLines: []
   wait: 0
   actorName: 1
+  actionBeforeLine: 0
   actionAfterLine: 0
+  actorReaction: 0
+  angerLevel: 0
+  toggleLineCondition: {fileID: 0}
+  lineCondition:
+    condition: 0
+    isMet: 0
+  blurAudio: 0
+  actionNumberData: 0

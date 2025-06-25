@@ -1,16 +1,19 @@
 using UnityEngine;
 
-public class ActorLines : MonoBehaviour
+namespace Dialog
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class ActorLines : ObserverSubject
     {
-        
-    }
+        [SerializeField] private NarrationDialogLine[] lines;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void Start()
+        {
+            if (lines.Length > 0) Invoke(nameof(InvokeLine), 2);
+        }
+
+        private void InvokeLine()
+        {
+            Notify(GameEvents.TriggerSpecificDialogLine, lines[0]);
+        }
     }
 }

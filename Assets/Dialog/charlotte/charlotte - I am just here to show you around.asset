@@ -13,11 +13,14 @@ MonoBehaviour:
   m_Name: charlotte - I am just here to show you around
   m_EditorClassIdentifier: 
   playerName: 
+  waitBeforeLine: 0
+  mandatoryPlayerChoice: 1
+  overlayImageSprite: {fileID: 0}
   voicedLines:
   - text: I am just here to show you around and make sure you are familiar with your
       surroundings
     clip: {fileID: 8300000, guid: 1e7a6e2b91d85fb46a6938c96a502417, type: 3}
-    gender: 2
+    gender: 0
   playerOptions: []
   playerReactions: []
   nextDialogueLine: {fileID: 11400000, guid: 37acaf5037317214c9e8fc5cd607fcad, type: 2}
@@ -25,4 +28,13 @@ MonoBehaviour:
   objectReferringDialogLines: []
   wait: 0.5
   actorName: 1
+  actionBeforeLine: 0
   actionAfterLine: 0
+  actorReaction: 0
+  angerLevel: 0
+  toggleLineCondition: {fileID: 0}
+  lineCondition:
+    condition: 0
+    isMet: 0
+  blurAudio: 0
+  actionNumberData: 0

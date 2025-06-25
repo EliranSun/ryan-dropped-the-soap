@@ -67,8 +67,8 @@ namespace Elevator.scripts
         {
             if (other.CompareTag("Player")) _isPlayerOnDoor = true;
 
-            if (other.CompareTag("NPC"))
-                MoveObjectToLinkedDoor(other.transform);
+            // if (other.CompareTag("NPC"))
+            //     MoveObjectToLinkedDoor(other.transform);
         }
 
         private void OnTriggerExit2D(Collider2D other)

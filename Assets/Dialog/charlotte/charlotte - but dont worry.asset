@@ -13,11 +13,14 @@ MonoBehaviour:
   m_Name: charlotte - but dont worry
   m_EditorClassIdentifier: 
   playerName: 
+  waitBeforeLine: 0
+  mandatoryPlayerChoice: 1
+  overlayImageSprite: {fileID: 0}
   voicedLines:
   - text: "But don\u2019t worry, as time will go on I\u2019m sure we\u2019ll come
       to get each other better, and then you might try to ask again."
     clip: {fileID: 8300000, guid: 4156f2c829cf0234dbfcf88127507c85, type: 3}
-    gender: 2
+    gender: 0
   playerOptions: []
   playerReactions: []
   nextDialogueLine: {fileID: 11400000, guid: 4df49782c6b396d46ac0a471a8d5031c, type: 2}
@@ -25,4 +28,13 @@ MonoBehaviour:
   objectReferringDialogLines: []
   wait: 0.5
   actorName: 1
+  actionBeforeLine: 0
   actionAfterLine: 0
+  actorReaction: 0
+  angerLevel: 0
+  toggleLineCondition: {fileID: 0}
+  lineCondition:
+    condition: 0
+    isMet: 0
+  blurAudio: 0
+  actionNumberData: 0

@@ -13,11 +13,14 @@ MonoBehaviour:
   m_Name: charlotte - politely avoid question
   m_EditorClassIdentifier: 
   playerName: 
+  waitBeforeLine: 0
+  mandatoryPlayerChoice: 1
+  overlayImageSprite: {fileID: 0}
   voicedLines:
   - text: Well, as I am trying to keep things professional, I'll have to politely
       avoid this question.
     clip: {fileID: 8300000, guid: 1189863eeaee7d046956fad24deddb0c, type: 3}
-    gender: 2
+    gender: 0
   playerOptions: []
   playerReactions: []
   nextDialogueLine: {fileID: 11400000, guid: cb048775e2c907f4a8f7ae8d974583a3, type: 2}
@@ -25,4 +28,13 @@ MonoBehaviour:
   objectReferringDialogLines: []
   wait: 0.5
   actorName: 1
+  actionBeforeLine: 0
   actionAfterLine: 0
+  actorReaction: 0
+  angerLevel: 0
+  toggleLineCondition: {fileID: 0}
+  lineCondition:
+    condition: 0
+    isMet: 0
+  blurAudio: 0
+  actionNumberData: 0

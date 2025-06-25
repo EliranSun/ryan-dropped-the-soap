@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: charlotte - my dad is malik
   m_EditorClassIdentifier: 
   playerName: 
+  waitBeforeLine: 0
+  mandatoryPlayerChoice: 1
+  overlayImageSprite: {fileID: 0}
   voicedLines:
   - text: My dad's name is Malik.
     clip: {fileID: 8300000, guid: 46ba8aaa2d6326241a4af20737e200ba, type: 3}
-    gender: 2
+    gender: 0
   playerOptions:
   - text: Thanks
     type: 0
@@ -36,4 +39,13 @@ MonoBehaviour:
   objectReferringDialogLines: []
   wait: 0.5
   actorName: 1
+  actionBeforeLine: 0
   actionAfterLine: 0
+  actorReaction: 0
+  angerLevel: 0
+  toggleLineCondition: {fileID: 0}
+  lineCondition:
+    condition: 0
+    isMet: 0
+  blurAudio: 0
+  actionNumberData: 0

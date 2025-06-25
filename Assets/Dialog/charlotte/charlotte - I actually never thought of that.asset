@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: charlotte - I actually never thought of that
   m_EditorClassIdentifier: 
   playerName: 
+  waitBeforeLine: 0
+  mandatoryPlayerChoice: 1
+  overlayImageSprite: {fileID: 0}
   voicedLines:
   - text: I actually never thought about that.
     clip: {fileID: 8300000, guid: 0472d5de90a82a242b87eaf7c3f30e87, type: 3}
-    gender: 2
+    gender: 0
   playerOptions: []
   playerReactions: []
   nextDialogueLine: {fileID: 0}
@@ -42,4 +45,13 @@ MonoBehaviour:
     objectType: 3
   wait: 0.5
   actorName: 1
+  actionBeforeLine: 0
   actionAfterLine: 0
+  actorReaction: 0
+  angerLevel: 0
+  toggleLineCondition: {fileID: 0}
+  lineCondition:
+    condition: 0
+    isMet: 0
+  blurAudio: 0
+  actionNumberData: 0
