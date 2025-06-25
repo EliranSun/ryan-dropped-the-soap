@@ -36,7 +36,7 @@ namespace Player
             if (hairGameObject) _hairSpriteRenderer = hairGameObject.GetComponent<SpriteRenderer>();
 
             _rigidbody2D = GetComponent<Rigidbody2D>();
-            spriteRenderer = GetComponent<SpriteRenderer>();
+            // spriteRenderer = GetComponent<SpriteRenderer>();
 
             if (addWobblyMovement) StartCoroutine(WobblyMovement());
         }
@@ -100,6 +100,8 @@ namespace Player
             var vertical = allowFlight ? Input.GetAxis("Vertical") : 0;
 
             transform.Translate(new Vector3(horizontal, vertical, 0) * (speed * Time.deltaTime));
+
+            if (horizontal == 0) return;
 
             if (_flipEnabled && spriteRenderer)
                 spriteRenderer.flipX = horizontal < 0;
@@ -166,6 +168,13 @@ namespace Player
             {
                 _flipEnabled = true;
                 _isCrawling = false;
+            }
+
+            if (eventData.Name == GameEvents.PlayerGrew)
+            {
+                var playerGameObject = (GameObject)eventData.Data;
+                if (playerGameObject)
+                    spriteRenderer = playerGameObject.GetComponent<SpriteRenderer>();
             }
         }
 

@@ -65,7 +65,28 @@ namespace Elevator.scripts
             var playerPosition = _floors
                 .Find(floor => floor.name == $"Floor {floorData.currentFloorNumber}")
                 .transform.position;
-            playerPosition.x = playerTransform.position.x;
+            if (PlayerPrefs.HasKey("ExitFromApartment"))
+            {
+                var doorNumber = PlayerPrefs.GetInt("ExitFromApartment");
+                var tenant = tenants.FirstOrDefault(t =>
+                    $"{t.floorNumber}{t.apartmentNumber}" == doorNumber.ToString());
+
+                if (tenant == null)
+                {
+                    playerPosition.x = playerTransform.position.x;
+                    return;
+                }
+
+                var apartmentDoorPosition = tenant.door.transform.position;
+                tenant.door.GetComponent<DoorController>().OpenNpcDoor();
+                playerPosition.x = apartmentDoorPosition.x;
+                PlayerPrefs.DeleteKey("ExitFromApartment");
+            }
+            else
+            {
+                playerPosition.x = playerTransform.position.x;
+            }
+
             playerTransform.position = playerPosition;
         }
 
@@ -180,6 +201,8 @@ namespace Elevator.scripts
 
                 if (floorData.elevatorFloorNumber < floorData.currentFloorNumber) floorData.elevatorFloorNumber++;
                 if (floorData.elevatorFloorNumber > floorData.currentFloorNumber) floorData.elevatorFloorNumber--;
+
+                requestedElevator.SetElevatorCurrentFloorNumber(floorData.elevatorFloorNumber.ToString());
 
                 yield return new WaitForSeconds(1f);
             }

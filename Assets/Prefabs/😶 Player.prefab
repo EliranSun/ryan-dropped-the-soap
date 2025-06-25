@@ -476,6 +476,7 @@ MonoBehaviour:
       m_Calls: []
   playerBox: {fileID: 0}
   playerPlant: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!114 &2399393931622321621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -512,7 +513,7 @@ MonoBehaviour:
   observers:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2399393931622321621}
         m_TargetAssemblyTypeName: common.scripts.LevelEvents, CommonScriptsAssembly
         m_MethodName: OnNotify
         m_Mode: 0
@@ -526,7 +527,6 @@ MonoBehaviour:
         m_CallState: 2
   starterBody: {fileID: 5997937471221846265}
   levelOneBody: {fileID: 8602698033964744991}
-  movement: {fileID: 2399393931622321621}
   resetPlayerGrowth: 0
   level: 0
 --- !u!1001 &2386206964033387706

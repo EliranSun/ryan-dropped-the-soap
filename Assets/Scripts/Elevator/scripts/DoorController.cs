@@ -56,6 +56,8 @@ namespace Elevator.scripts
 
                 print(location);
 
+                PlayerPrefs.SetInt("ExitFromApartment", doorNumber);
+
                 Notify(GameEvents.ChangePlayerLocation,
                     _isPlayerInsideApartment ? Location.Hallway : location);
             }
@@ -173,11 +175,13 @@ namespace Elevator.scripts
 
         private void ToggleDoorState()
         {
-            if (npcAtDoor)
-                npcAtDoor.SetActive(isDoorOpen);
+            if (npcAtDoor) npcAtDoor.SetActive(isDoorOpen);
 
             foreach (var door in doors)
+            {
                 door.GetComponent<SpriteRenderer>().enabled = !isDoorOpen;
+                if (doorNumberTextMeshPro) doorNumberTextMeshPro.enabled = !isDoorOpen;
+            }
         }
     }
 }

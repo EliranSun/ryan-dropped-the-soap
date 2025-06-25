@@ -6,7 +6,6 @@ namespace Player
     {
         [SerializeField] private GameObject starterBody;
         [SerializeField] private GameObject levelOneBody;
-        [SerializeField] private Movement movement;
         [SerializeField] private bool resetPlayerGrowth;
         [SerializeField] private int level;
 
@@ -23,7 +22,7 @@ namespace Player
             if (level > 0)
             {
                 levelOneBody.SetActive(true);
-                Notify(GameEvents.PlayerGrew);
+                Notify(GameEvents.PlayerGrew, levelOneBody);
             }
         }
 
@@ -36,8 +35,7 @@ namespace Player
                 PlayerPrefs.SetInt("PlayerGrowth", level);
                 starterBody.SetActive(false);
                 levelOneBody.SetActive(true);
-                movement.spriteRenderer = levelOneBody.GetComponent<SpriteRenderer>();
-                Notify(GameEvents.PlayerGrew);
+                Notify(GameEvents.PlayerGrew, levelOneBody);
             }
         }
     }

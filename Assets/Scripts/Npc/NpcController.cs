@@ -17,7 +17,13 @@ namespace Npc
 
         private void Start()
         {
-            _apartment = buildingController.tenants.FirstOrDefault(t => t.name == tenant);
+            try
+            {
+                _apartment = buildingController.tenants.FirstOrDefault(t => t.name == tenant);
+            }
+            catch (NullReferenceException e)
+            {
+            }
         }
 
         public void OnNotify(GameEventData eventData)
