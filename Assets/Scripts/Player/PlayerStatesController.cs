@@ -8,18 +8,18 @@ namespace Player
         [SerializeField] private GameObject playerBox;
         [SerializeField] private GameObject playerPlant;
         [SerializeField] private Camera mainCamera;
+        [SerializeField] private bool resetPlayerPrefs;
 
         private void Awake()
         {
-            // PlayerPrefs.DeleteAll();
+            if (resetPlayerPrefs) PlayerPrefs.DeleteAll();
             // ChangeScene();
             PositionPlayer();
         }
 
         private void Start()
         {
-            SetPlayerInBox();
-            PositionPlant();
+            SetPlayerBoxState();
         }
 
         private void PositionPlayer()
@@ -38,30 +38,14 @@ namespace Player
             }
         }
 
-        private void PositionPlant()
+        private void SetPlayerBoxState()
         {
-            if (!playerPlant) return;
-
-            var storedPlantPosition = PlayerPrefs.GetString("PlayerPlantPosition");
-            var plantPositionParts = storedPlantPosition.Split(',');
-
-            if (
-                plantPositionParts.Length == 2 &&
-                float.TryParse(plantPositionParts[0], out var x) &&
-                float.TryParse(plantPositionParts[1], out var y)
-            )
-                playerPlant.transform.position = new Vector2(x, y);
-        }
-
-        private void SetPlayerInBox()
-        {
-            if (!playerBox) return;
+            if (!playerBox)
+                return;
 
             var storedIsPlayerOutsideBox = PlayerPrefs.GetInt("PlayerOutsideBox");
             var isPlayerOutsideBox = storedIsPlayerOutsideBox == 1;
             playerBox.SetActive(!isPlayerOutsideBox);
-
-            if (isPlayerOutsideBox) Notify(GameEvents.FreePlayerFromBox);
         }
 
         private void SetPosition()
@@ -79,6 +63,13 @@ namespace Player
 
         public void OnNotify(GameEventData eventData)
         {
+            if (eventData.Name == GameEvents.FreePlayerFromBox)
+            {
+                print("Freeing player from box");
+                PlayerPrefs.SetInt("PlayerOutsideBox", 1);
+                SetPlayerBoxState();
+            }
+
             if (eventData.Name == GameEvents.ChangePlayerLocation)
             {
                 var newLocation = (Location)eventData.Data;
@@ -108,8 +99,8 @@ namespace Player
                     break;
 
                 case nameof(Location.PlayerApartment):
-                    if (currentScene.name != "3b. inside apartment")
-                        SceneManager.LoadScene("3b. inside apartment");
+                    if (currentScene.name != "apartment scene - player")
+                        SceneManager.LoadScene("apartment scene - player");
                     break;
 
                 case nameof(Location.Hallway):

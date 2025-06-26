@@ -430,28 +430,27 @@ namespace Character_Creator.scripts
         // TODO: Controller support
         private void AdvanceDialogOnClick()
         {
-            if (!Input.GetKeyDown(KeyCode.N))
-                return;
-
-            narratorText.text = "";
-            _audioSource.Stop();
-            _audioSource.clip = null;
-
-            Notify(GameEvents.LineNarrationEnd, new
+            if (Input.GetKeyDown(KeyCode.N))
             {
-                _currentDialogue.actorName,
-                _currentDialogue.playerOptions,
-                _currentDialogue
-            });
+                PostDialogAdvanceActions();
 
-            if (_currentDialogue.nextDialogueLine)
-            {
-                UpdateDialogState(_currentDialogue.nextDialogueLine);
-                ReadCurrentLine();
-                return;
+                narratorText.text = "";
+                _audioSource.Stop();
+                _audioSource.clip = null;
+
+                Notify(GameEvents.LineNarrationEnd, new
+                {
+                    _currentDialogue.actorName,
+                    _currentDialogue.playerOptions,
+                    _currentDialogue
+                });
+
+                if (_currentDialogue.nextDialogueLine)
+                {
+                    UpdateDialogState(_currentDialogue.nextDialogueLine);
+                    ReadCurrentLine();
+                }
             }
-
-            PostDialogAdvanceActions();
         }
     }
 }

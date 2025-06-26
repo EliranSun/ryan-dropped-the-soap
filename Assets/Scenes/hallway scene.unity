@@ -8851,6 +8851,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1359049527740455149, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2844366699017945156, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
       propertyPath: playerTransform
       value: 
@@ -8909,7 +8913,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6621240152084822304, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
       propertyPath: speed
-      value: 7
+      value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 6621240152084822304, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
       propertyPath: playerTransform

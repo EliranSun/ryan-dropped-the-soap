@@ -473,10 +473,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   observers:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4870723208328116504}
+        m_TargetAssemblyTypeName: Player.PlayerGrowth, PlayerScriptsAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   playerBox: {fileID: 0}
   playerPlant: {fileID: 0}
   mainCamera: {fileID: 0}
+  resetPlayerPrefs: 0
 --- !u!114 &2399393931622321621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -513,8 +526,20 @@ MonoBehaviour:
   observers:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Npc.CharlotteController, NpcAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 2399393931622321621}
-        m_TargetAssemblyTypeName: common.scripts.LevelEvents, CommonScriptsAssembly
+        m_TargetAssemblyTypeName: Player.Movement, PlayerScriptsAssembly
         m_MethodName: OnNotify
         m_Mode: 0
         m_Arguments:
@@ -637,7 +662,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4377049612630693443, guid: bf6358cbd93e8784c9595fc96028d446, type: 3}
       propertyPath: m_SortingOrder
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6394399298096863323, guid: bf6358cbd93e8784c9595fc96028d446, type: 3}
       propertyPath: m_Layer

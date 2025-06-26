@@ -42,9 +42,9 @@ namespace Npc
         {
             switch (gameEvent.Name)
             {
-                case GameEvents.FreePlayerFromBox:
-                    playerBox.SetActive(false);
-                    break;
+                // case GameEvents.FreePlayerFromBox:
+                //     playerBox.SetActive(false);
+                //     break;
 
                 case GameEvents.LineNarrationEnd:
                 {
