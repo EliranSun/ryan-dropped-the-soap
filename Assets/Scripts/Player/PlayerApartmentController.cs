@@ -12,8 +12,8 @@ namespace Player
         private void Start()
         {
             PositionPlant();
-            PositionPainting();
-            PositionMirror();
+            // PositionPainting();
+            // PositionMirror();
         }
 
         public void OnNotify(GameEventData data)

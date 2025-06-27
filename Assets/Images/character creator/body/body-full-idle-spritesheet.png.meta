@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: af42a876acc17af5980cecbd69d55957
+guid: 1e7f751bc12ff6943b70e4b015655d10
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1885901285062943967
-    second: body-idle-spritesheet_0
+      213: -9211864820390512186
+    second: body-full-idle-spritesheet_0
   - first:
-      213: -134631854779881448
-    second: body-idle-spritesheet_1
+      213: 2871072789956237309
+    second: body-full-idle-spritesheet_1
   - first:
-      213: 3892802134694350896
-    second: body-idle-spritesheet_2
+      213: 7068903318659919793
+    second: body-full-idle-spritesheet_2
   - first:
-      213: 3352415147201827581
-    second: body-idle-spritesheet_3
+      213: -7600323004042775870
+    second: body-full-idle-spritesheet_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -105,30 +105,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: body-idle-spritesheet_0
+      name: body-full-idle-spritesheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 8
-        height: 22
+        height: 30
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 12bde5ee5cee3d5e0800000000000000
-      internalID: -1885901285062943967
+      spriteID: 6c9b4bd90c1e82080800000000000000
+      internalID: -9211864820390512186
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: body-idle-spritesheet_1
+      name: body-full-idle-spritesheet_1
       rect:
         serializedVersion: 2
         x: 10
         y: 0
         width: 8
-        height: 22
+        height: 30
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -159,20 +146,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 818a4689a01b12ef0800000000000000
-      internalID: -134631854779881448
+      spriteID: df791a9ad7918d720800000000000000
+      internalID: 2871072789956237309
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: body-idle-spritesheet_2
+      name: body-full-idle-spritesheet_2
       rect:
         serializedVersion: 2
         x: 20
         y: 0
         width: 8
-        height: 22
+        height: 30
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -181,20 +168,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 030d653aae2060630800000000000000
-      internalID: 3892802134694350896
+      spriteID: 1bfed4c9d1ac91260800000000000000
+      internalID: 7068903318659919793
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: body-idle-spritesheet_3
+      name: body-full-idle-spritesheet_3
       rect:
         serializedVersion: 2
         x: 30
         y: 0
         width: 8
-        height: 22
+        height: 30
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -203,8 +190,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: df29a9480db268e20800000000000000
-      internalID: 3352415147201827581
+      spriteID: 2c2fccdfe7a368690800000000000000
+      internalID: -7600323004042775870
       vertices: []
       indices: 
       edges: []
@@ -213,7 +200,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5f1e04d631381c27c90ead732417f80e
+    spriteID: 8c3a2682f3e4c124fa40330cf9297978
     internalID: 0
     vertices: []
     indices: 
@@ -221,14 +208,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      body-idle-spritesheet_0: -1885901285062943967
-      body-idle-spritesheet_1: -134631854779881448
-      body-idle-spritesheet_2: 3892802134694350896
-      body-idle-spritesheet_3: 3352415147201827581
+      body-full-idle-spritesheet_0: -9211864820390512186
+      body-full-idle-spritesheet_1: 2871072789956237309
+      body-full-idle-spritesheet_2: 7068903318659919793
+      body-full-idle-spritesheet_3: -7600323004042775870
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

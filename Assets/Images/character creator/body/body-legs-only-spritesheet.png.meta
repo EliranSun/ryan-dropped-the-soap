@@ -1,31 +1,31 @@
 fileFormatVersion: 2
-guid: 82bab302d4c5e466481defd15155e6a9
+guid: 10388fe5813c9b846a77e9ba7a0059ff
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2798710215441488597
-    second: body-spritesheet_0
+      213: -6926845516690600746
+    second: body-legs-only-spritesheet_0
   - first:
-      213: -8564212978228239367
-    second: body-spritesheet_1
+      213: -6603929510282526261
+    second: body-legs-only-spritesheet_1
   - first:
-      213: -6424995307826777819
-    second: body-spritesheet_2
+      213: 5534038833421439201
+    second: body-legs-only-spritesheet_2
   - first:
-      213: -5541879509348084902
-    second: body-spritesheet_3
+      213: -6844811085513225772
+    second: body-legs-only-spritesheet_3
   - first:
-      213: -8852285510962228774
-    second: body-spritesheet_4
+      213: 3163761285981274434
+    second: body-legs-only-spritesheet_4
   - first:
-      213: 203478798855512481
-    second: body-spritesheet_5
+      213: -4554418665295930519
+    second: body-legs-only-spritesheet_5
   - first:
-      213: 1545436733114741364
-    second: body-spritesheet_6
+      213: -8703886587526640166
+    second: body-legs-only-spritesheet_6
   - first:
-      213: -682420598641227776
-    second: body-spritesheet_7
+      213: 9210895083001132993
+    second: body-legs-only-spritesheet_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -58,7 +58,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -72,7 +72,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 5
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -121,177 +121,177 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: body-spritesheet_0
+      name: body-legs-only-spritesheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 10
-        height: 21
+        height: 23
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b256a5323ebf829d0800000000000000
-      internalID: -2798710215441488597
+      spriteID: 6dc46abd3b6eedf90800000000000000
+      internalID: -6926845516690600746
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: body-spritesheet_1
+      name: body-legs-only-spritesheet_1
       rect:
         serializedVersion: 2
-        x: 10
+        x: 11
         y: 0
         width: 14
-        height: 21
+        height: 23
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9f36ae3ebadc52980800000000000000
-      internalID: -8564212978228239367
+      spriteID: bc104e979112a54a0800000000000000
+      internalID: -6603929510282526261
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: body-spritesheet_2
+      name: body-legs-only-spritesheet_2
       rect:
         serializedVersion: 2
-        x: 25
+        x: 26
         y: 0
         width: 13
-        height: 20
+        height: 23
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 521fe610fc4d5d6a0800000000000000
-      internalID: -6424995307826777819
+      spriteID: 1e05d479ffadccc40800000000000000
+      internalID: 5534038833421439201
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: body-spritesheet_3
+      name: body-legs-only-spritesheet_3
       rect:
         serializedVersion: 2
-        x: 39
-        y: 0
-        width: 11
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a539a49c2f94713b0800000000000000
-      internalID: -5541879509348084902
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: body-spritesheet_4
-      rect:
-        serializedVersion: 2
-        x: 50
-        y: 0
-        width: 11
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ad152ccaa3d562580800000000000000
-      internalID: -8852285510962228774
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: body-spritesheet_5
-      rect:
-        serializedVersion: 2
-        x: 61
-        y: 0
-        width: 14
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1a12b15b3e6e2d200800000000000000
-      internalID: 203478798855512481
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: body-spritesheet_6
-      rect:
-        serializedVersion: 2
-        x: 76
-        y: 0
-        width: 13
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 472f42c458e727510800000000000000
-      internalID: 1545436733114741364
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: body-spritesheet_7
-      rect:
-        serializedVersion: 2
-        x: 90
+        x: 40
         y: 0
         width: 9
-        height: 21
+        height: 23
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0088496c41e8786f0800000000000000
-      internalID: -682420598641227776
+      spriteID: 4d9045545985201a0800000000000000
+      internalID: -6844811085513225772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: body-legs-only-spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 0
+        width: 10
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2410c059020f7eb20800000000000000
+      internalID: 3163761285981274434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: body-legs-only-spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 0
+        width: 14
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96b90a0ba547bc0c0800000000000000
+      internalID: -4554418665295930519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: body-legs-only-spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 0
+        width: 13
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: add00398345953780800000000000000
+      internalID: -8703886587526640166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: body-legs-only-spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 0
+        width: 9
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c7bcadc64ca3df70800000000000000
+      internalID: 9210895083001132993
       vertices: []
       indices: 
       edges: []
@@ -300,7 +300,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: a503c09a678df1f42a2c0b1f35098ff0
     internalID: 0
     vertices: []
     indices: 
@@ -310,14 +310,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      body-spritesheet_0: -2798710215441488597
-      body-spritesheet_1: -8564212978228239367
-      body-spritesheet_2: -6424995307826777819
-      body-spritesheet_3: -5541879509348084902
-      body-spritesheet_4: -8852285510962228774
-      body-spritesheet_5: 203478798855512481
-      body-spritesheet_6: 1545436733114741364
-      body-spritesheet_7: -682420598641227776
+      body-legs-only-spritesheet_0: -6926845516690600746
+      body-legs-only-spritesheet_1: -6603929510282526261
+      body-legs-only-spritesheet_2: 5534038833421439201
+      body-legs-only-spritesheet_3: -6844811085513225772
+      body-legs-only-spritesheet_4: 3163761285981274434
+      body-legs-only-spritesheet_5: -4554418665295930519
+      body-legs-only-spritesheet_6: -8703886587526640166
+      body-legs-only-spritesheet_7: 9210895083001132993
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

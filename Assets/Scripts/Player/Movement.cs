@@ -101,6 +101,11 @@ namespace Player
 
             transform.Translate(new Vector3(horizontal, vertical, 0) * (speed * Time.deltaTime));
 
+            if (Input.GetKeyDown(KeyCode.W) ||
+                Input.GetKeyDown(KeyCode.UpArrow) ||
+                Input.GetButtonDown("Jump"))
+                _rigidbody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+
             if (horizontal == 0) return;
 
             if (_flipEnabled && spriteRenderer)

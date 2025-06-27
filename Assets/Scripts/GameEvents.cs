@@ -195,5 +195,8 @@
 
     StartElevatorFinalSequence,
     StopElevator,
-    ResumeElevator
+    ResumeElevator,
+
+    PlayerPlacePainting,
+    PlayerPlaceMirror
 }

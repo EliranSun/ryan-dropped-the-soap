@@ -4,39 +4,78 @@ namespace Player
 {
     public class PlayerGrowth : ObserverSubject
     {
-        [SerializeField] private GameObject starterBody;
-        [SerializeField] private GameObject levelOneBody;
-        [SerializeField] private bool resetPlayerGrowth;
         [SerializeField] private int level;
+        [SerializeField] private bool resetPlayerGrowth;
+        [SerializeField] private bool testMode;
+        [SerializeField] private GameObject[] bodies;
 
         private void Awake()
         {
-            if (resetPlayerGrowth) PlayerPrefs.SetInt("PlayerGrowth", 0);
+            if (resetPlayerGrowth)
+                PlayerPrefs.SetInt("PlayerGrowth", 0);
         }
 
         private void Start()
         {
-            level = PlayerPrefs.GetInt("PlayerGrowth");
-            starterBody.SetActive(level == 0);
-
-            if (level > 0)
-            {
-                levelOneBody.SetActive(true);
-                Notify(GameEvents.PlayerGrew, levelOneBody);
-            }
+            if (!testMode) level = PlayerPrefs.GetInt("PlayerGrowth");
+            UpdateBodies();
         }
 
         public void OnNotify(GameEventData data)
         {
-            var heardCharlotteInstructions = PlayerPrefs.GetInt("HeardCharlottePlantInstructions") == 1;
-            if (data.Name == GameEvents.PlayerPlacePlant && heardCharlotteInstructions)
+            if (testMode) return;
+
+
+            switch (data.Name)
             {
-                level = 1;
-                PlayerPrefs.SetInt("PlayerGrowth", level);
-                starterBody.SetActive(false);
-                levelOneBody.SetActive(true);
-                Notify(GameEvents.PlayerGrew, levelOneBody);
+                case GameEvents.PlayerPlacePlant:
+                {
+                    if (PlayerPrefs.GetInt("HeardCharlottePlantInstructions") != 1)
+                        return;
+
+                    Grow();
+                    break;
+                }
+
+                case GameEvents.PlayerPlaceMirror:
+                {
+                    if (PlayerPrefs.GetInt("HeardCharlottePlantInstructions") != 1)
+                        return;
+
+                    Grow();
+                    break;
+                }
+
+                case GameEvents.PlayerPlacePainting:
+                {
+                    if (PlayerPrefs.GetInt("HeardCharlottePlantInstructions") != 1)
+                        return;
+
+                    Grow();
+                    break;
+                }
             }
+        }
+
+        private void Grow()
+        {
+            level++;
+            PlayerPrefs.SetInt("PlayerGrowth", level);
+            UpdateBodies();
+        }
+
+        private void UpdateBodies()
+        {
+            print($"Current growth level {level}");
+
+            for (var i = 0; i < bodies.Length; i++)
+            {
+                print($"Setting {bodies[i].name} to {level == i}");
+                bodies[i].SetActive(level == i);
+            }
+
+            if (level > 0)
+                Notify(GameEvents.PlayerGrew, bodies[level]);
         }
     }
 }
