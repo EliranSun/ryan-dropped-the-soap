@@ -11,44 +11,40 @@ namespace Player
 
         private void Start()
         {
-            PositionPlant();
-            // PositionPainting();
-            // PositionMirror();
+            PositionItem(plant, "PlayerPlacePlantPosition");
+            PositionItem(painting, "PlayerPlacePaintingPosition");
+            PositionItem(mirror, "PlayerPlaceMirrorPosition");
         }
 
-        public void OnNotify(GameEventData data)
+        public void OnNotify(GameEventData eventData)
         {
+            switch (eventData.Name)
+            {
+                case GameEvents.PlayerPlacePlant:
+                case GameEvents.PlayerPlaceMirror:
+                case GameEvents.PlayerPlacePainting:
+                {
+                    var itemPosition = (Vector3)eventData.Data;
+                    PlayerPrefs.SetString($"{eventData.Name}Position", $"{itemPosition.x},{itemPosition.y}");
+                    break;
+                }
+            }
         }
 
-        // TODO: DRY
-        private void PositionPainting()
+        private static void PositionItem(GameObject item, string key)
         {
-            var storedPaintingPosition = PlayerPrefs.GetString("PlayerPaintingPosition");
-            if (storedPaintingPosition == "")
-                painting.SetActive(false);
-        }
+            var storedPosition = PlayerPrefs.GetString(key);
+            if (storedPosition == "")
+                item.SetActive(false);
 
-        private void PositionMirror()
-        {
-            var storedMirrorPosition = PlayerPrefs.GetString("PlayerMirrorPosition");
-            if (storedMirrorPosition == "")
-                mirror.SetActive(false);
-        }
-
-        private void PositionPlant()
-        {
-            var storedPlantPosition = PlayerPrefs.GetString("PlayerPlantPosition");
-            if (storedPlantPosition == "")
-                plant.SetActive(false);
-
-            var plantPositionParts = storedPlantPosition.Split(',');
+            var positionParts = storedPosition.Split(',');
 
             if (
-                plantPositionParts.Length == 2 &&
-                float.TryParse(plantPositionParts[0], out var x) &&
-                float.TryParse(plantPositionParts[1], out var y)
+                positionParts.Length == 2 &&
+                float.TryParse(positionParts[0], out var x) &&
+                float.TryParse(positionParts[1], out var y)
             )
-                plant.transform.position = new Vector2(x, -1.5f);
+                item.transform.position = new Vector2(x, -1.5f);
         }
     }
 }

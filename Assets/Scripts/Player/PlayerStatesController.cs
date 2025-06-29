@@ -79,13 +79,6 @@ namespace Player
 
             if (eventData.Name == GameEvents.CharlotteWaitingTheory)
                 PlayerPrefs.SetInt("HeardCharlottePlantInstructions", 1);
-
-
-            if (eventData.Name == GameEvents.PlayerPlacePlant)
-            {
-                var plantPosition = (Vector3)eventData.Data;
-                PlayerPrefs.SetString("PlayerPlantPosition", $"{plantPosition.x},{plantPosition.y}");
-            }
         }
 
         private void ChangeScene()

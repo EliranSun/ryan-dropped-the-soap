@@ -25,32 +25,15 @@ namespace Player
         {
             if (testMode) return;
 
+            if (PlayerPrefs.GetInt("HeardCharlottePlantInstructions") != 1)
+                return;
 
             switch (data.Name)
             {
                 case GameEvents.PlayerPlacePlant:
-                {
-                    if (PlayerPrefs.GetInt("HeardCharlottePlantInstructions") != 1)
-                        return;
-
-                    Grow();
-                    break;
-                }
-
                 case GameEvents.PlayerPlaceMirror:
-                {
-                    if (PlayerPrefs.GetInt("HeardCharlottePlantInstructions") != 1)
-                        return;
-
-                    Grow();
-                    break;
-                }
-
                 case GameEvents.PlayerPlacePainting:
                 {
-                    if (PlayerPrefs.GetInt("HeardCharlottePlantInstructions") != 1)
-                        return;
-
                     Grow();
                     break;
                 }
@@ -59,6 +42,8 @@ namespace Player
 
         private void Grow()
         {
+            if (level + 1 >= bodies.Length) return;
+
             level++;
             PlayerPrefs.SetInt("PlayerGrowth", level);
             UpdateBodies();
