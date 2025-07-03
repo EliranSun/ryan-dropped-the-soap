@@ -51,13 +51,7 @@ namespace Player
 
         private void UpdateBodies()
         {
-            print($"Current growth level {level}");
-
-            for (var i = 0; i < bodies.Length; i++)
-            {
-                print($"Setting {bodies[i].name} to {level == i}");
-                bodies[i].SetActive(level == i);
-            }
+            for (var i = 0; i < bodies.Length; i++) bodies[i].SetActive(level == i);
 
             if (level > 0)
                 Notify(GameEvents.PlayerGrew, bodies[level]);
