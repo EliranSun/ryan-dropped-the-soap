@@ -4,11 +4,19 @@ namespace Elevator.scripts
 {
     public class ElevatorFinalSequence : ObserverSubject
     {
+        [SerializeField] private GameObject sequence;
+        [SerializeField] private GameObject elevator;
         [SerializeField] private int[] stopAtFloors;
         [SerializeField] private GameObject[] npcs;
         [SerializeField] private float[] xPositions = { -1, -2, 3.5f };
         private bool _isActivated;
         private int _npcIndex;
+
+        private void Start()
+        {
+            sequence.SetActive(false);
+            elevator.SetActive(true);
+        }
 
         public void OnNotify(GameEventData eventData)
         {
