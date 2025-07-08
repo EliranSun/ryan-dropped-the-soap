@@ -101,16 +101,25 @@ namespace Elevator.scripts
             _desiredFloor = int.Parse(desiredFloorText.text);
         }
 
-        private void GoToFloor(int floorNumber)
+        public void GoToFloor(int floorNumber)
         {
-            StartCoroutine(Move(floorNumber));
+            _desiredFloor = floorNumber;
+
+            if (_isFloorMoving)
+            {
+                // If we are already moving, just update the shake amount for the new destination.
+                shakeableCamera.Shake(Mathf.Abs(floorNumber - floorData.elevatorFloorNumber));
+                return;
+            }
+
+            StartCoroutine(Move());
             // StartCoroutine(MoveApartmentsGrid());
             print("Desired floor - " + floorNumber + "; current floor - " + floorData.elevatorFloorNumber);
             shakeableCamera.Shake(Mathf.Abs(floorNumber - floorData.elevatorFloorNumber));
             shaftLight.SetActive(false);
         }
 
-        private IEnumerator Move(int floorNumber)
+        private IEnumerator Move()
         {
             Notify(GameEvents.ElevatorMoving);
 
@@ -123,11 +132,11 @@ namespace Elevator.scripts
 
             _isFloorMoving = true;
 
-            while (floorData.elevatorFloorNumber != floorNumber)
+            while (floorData.elevatorFloorNumber != _desiredFloor)
             {
                 yield return new WaitForSeconds(1);
 
-                if (floorData.elevatorFloorNumber < floorNumber)
+                if (floorData.elevatorFloorNumber < _desiredFloor)
                 {
                     floorData.elevatorFloorNumber++;
                     floorData.currentFloorNumber++;

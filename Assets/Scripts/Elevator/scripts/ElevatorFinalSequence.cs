@@ -6,9 +6,11 @@ namespace Elevator.scripts
     {
         [SerializeField] private GameObject sequence;
         [SerializeField] private GameObject elevator;
+        [SerializeField] private ElevatorController elevatorController;
         [SerializeField] private int[] stopAtFloors;
         [SerializeField] private GameObject[] npcs;
         [SerializeField] private float[] xPositions = { -1, -2, 3.5f };
+        private int _currentFloorNumber;
         private bool _isActivated;
         private int _npcIndex;
 
@@ -23,8 +25,16 @@ namespace Elevator.scripts
             if (eventData.Name == GameEvents.StartElevatorFinalSequence)
                 _isActivated = true;
 
-            if (eventData.Name == GameEvents.FloorChange && _isActivated && _npcIndex < stopAtFloors.Length)
+            if (eventData.Name == GameEvents.FloorChange && _isActivated)
             {
+                _currentFloorNumber = (int)eventData.Data;
+
+                if (_npcIndex >= stopAtFloors.Length)
+                {
+                    Invoke(nameof(StartFinalSequence), 5f);
+                    return;
+                }
+
                 var floorNumber = (int)eventData.Data;
                 if (floorNumber != stopAtFloors[_npcIndex]) return;
 
@@ -43,6 +53,18 @@ namespace Elevator.scripts
         private void ResumeElevator()
         {
             Notify(GameEvents.ResumeElevator);
+            ChangeFloorNumber();
+        }
+
+        private void StartFinalSequence()
+        {
+            sequence.SetActive(true);
+            elevator.SetActive(false);
+        }
+
+        private void ChangeFloorNumber()
+        {
+            elevatorController.GoToFloor(_currentFloorNumber + 10);
         }
     }
 }
