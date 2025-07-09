@@ -32,7 +32,10 @@ namespace Player
         private void Update()
         {
             if (_attackAction.IsPressed() && _allowGun && !gun.activeSelf)
+            {
                 gun.SetActive(true);
+                Notify(GameEvents.GunIsOut);
+            }
         }
 
         private void PositionPlayer()
@@ -94,7 +97,9 @@ namespace Player
                 PlayerPrefs.SetInt("HeardCharlottePlantInstructions", 1);
 
             if (eventData.Name == GameEvents.AllowGun)
+            {
                 _allowGun = true;
+            }
         }
 
         private void ChangeScene()

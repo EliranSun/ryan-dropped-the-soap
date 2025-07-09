@@ -201,5 +201,5 @@
     PlayerPlaceMirror,
 
     AllowGun,
-    StartElevatorKillScene
+    GunIsOut
 }

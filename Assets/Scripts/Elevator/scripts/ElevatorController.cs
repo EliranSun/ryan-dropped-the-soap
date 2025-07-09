@@ -114,7 +114,6 @@ namespace Elevator.scripts
 
             StartCoroutine(Move());
             // StartCoroutine(MoveApartmentsGrid());
-            print("Desired floor - " + floorNumber + "; current floor - " + floorData.elevatorFloorNumber);
             shakeableCamera.Shake(Mathf.Abs(floorNumber - floorData.elevatorFloorNumber));
             shaftLight.SetActive(false);
         }

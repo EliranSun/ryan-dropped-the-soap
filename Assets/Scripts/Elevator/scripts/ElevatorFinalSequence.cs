@@ -17,9 +17,11 @@ namespace Elevator.scripts
 
         private void Start()
         {
-            takeOutTheGunText.SetActive(false);
-            sequence.SetActive(false);
-            elevator.SetActive(true);
+            // takeOutTheGunText.SetActive(false);
+            // sequence.SetActive(false);
+            // elevator.SetActive(true);
+
+            StartKillSequence();
         }
 
         public void OnNotify(GameEventData eventData)
@@ -31,7 +33,6 @@ namespace Elevator.scripts
             {
                 _currentFloorNumber = (int)eventData.Data;
 
-                print($"NPC reveal {_npcIndex}. Floors to stop at {stopAtFloors.Length}");
                 if (_npcIndex >= stopAtFloors.Length)
                 {
                     _isActivated = false;
@@ -47,11 +48,8 @@ namespace Elevator.scripts
                 Invoke(nameof(ResumeElevator), 3);
             }
 
-            if (eventData.Name == GameEvents.StartElevatorKillScene)
-            {
-                sequence.SetActive(true);
-                elevator.SetActive(false);
-            }
+            if (eventData.Name == GameEvents.GunIsOut)
+                Invoke(nameof(StartKillSequence), 3f);
         }
 
         private void InstantiateNpc()
@@ -72,6 +70,12 @@ namespace Elevator.scripts
             Notify(GameEvents.AllowGun);
         }
 
+        private void StartKillSequence()
+        {
+            sequence.SetActive(true);
+            elevator.SetActive(false);
+        }
+        
         private void ChangeFloorNumber()
         {
             elevatorController.GoToFloor(_currentFloorNumber + 10);
