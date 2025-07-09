@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 namespace Player
@@ -8,7 +9,11 @@ namespace Player
         [SerializeField] private GameObject playerBox;
         [SerializeField] private GameObject playerPlant;
         [SerializeField] private Camera mainCamera;
+        [SerializeField] private GameObject gun;
         [SerializeField] private bool resetPlayerPrefs;
+        private bool _allowGun;
+
+        private InputAction _attackAction;
 
         private void Awake()
         {
@@ -19,7 +24,15 @@ namespace Player
 
         private void Start()
         {
+            _attackAction = InputSystem.actions.FindAction("Attack");
+            gun.SetActive(false);
             SetPlayerBoxState();
+        }
+
+        private void Update()
+        {
+            if (_attackAction.IsPressed() && _allowGun && !gun.activeSelf)
+                gun.SetActive(true);
         }
 
         private void PositionPlayer()
@@ -79,6 +92,9 @@ namespace Player
 
             if (eventData.Name == GameEvents.CharlotteWaitingTheory)
                 PlayerPrefs.SetInt("HeardCharlottePlantInstructions", 1);
+
+            if (eventData.Name == GameEvents.AllowGun)
+                _allowGun = true;
         }
 
         private void ChangeScene()

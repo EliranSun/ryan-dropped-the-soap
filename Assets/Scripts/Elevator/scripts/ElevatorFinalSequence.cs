@@ -7,6 +7,7 @@ namespace Elevator.scripts
         [SerializeField] private GameObject sequence;
         [SerializeField] private GameObject elevator;
         [SerializeField] private ElevatorController elevatorController;
+        [SerializeField] private GameObject takeOutTheGunText;
         [SerializeField] private int[] stopAtFloors;
         [SerializeField] private GameObject[] npcs;
         [SerializeField] private float[] xPositions = { -1, -2, 3.5f };
@@ -16,6 +17,7 @@ namespace Elevator.scripts
 
         private void Start()
         {
+            takeOutTheGunText.SetActive(false);
             sequence.SetActive(false);
             elevator.SetActive(true);
         }
@@ -29,9 +31,11 @@ namespace Elevator.scripts
             {
                 _currentFloorNumber = (int)eventData.Data;
 
+                print($"NPC reveal {_npcIndex}. Floors to stop at {stopAtFloors.Length}");
                 if (_npcIndex >= stopAtFloors.Length)
                 {
-                    Invoke(nameof(StartFinalSequence), 5f);
+                    _isActivated = false;
+                    Invoke(nameof(StartFinalSequence), 2f);
                     return;
                 }
 
@@ -41,6 +45,12 @@ namespace Elevator.scripts
                 Notify(GameEvents.StopElevator);
                 Invoke(nameof(InstantiateNpc), 1.5f); // shaft light takes 1s
                 Invoke(nameof(ResumeElevator), 3);
+            }
+
+            if (eventData.Name == GameEvents.StartElevatorKillScene)
+            {
+                sequence.SetActive(true);
+                elevator.SetActive(false);
             }
         }
 
@@ -58,8 +68,8 @@ namespace Elevator.scripts
 
         private void StartFinalSequence()
         {
-            sequence.SetActive(true);
-            elevator.SetActive(false);
+            takeOutTheGunText.SetActive(true);
+            Notify(GameEvents.AllowGun);
         }
 
         private void ChangeFloorNumber()

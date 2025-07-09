@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Player
 {
@@ -17,12 +18,13 @@ namespace Player
         [SerializeField] public bool resetPlayerStoredPosition;
         private bool _flipEnabled = true;
 
-
         private SpriteRenderer _hairSpriteRenderer;
         private SpriteRenderer _headSpriteRenderer;
         private bool _isCrawling;
         private bool _isMoving;
         private bool _isOnGround;
+
+        private InputAction _moveAction;
         private Rigidbody2D _rigidbody2D;
 
         private void Awake()
@@ -32,6 +34,8 @@ namespace Player
 
         private void Start()
         {
+            _moveAction = InputSystem.actions.FindAction("Move");
+
             if (headGameObject) _headSpriteRenderer = headGameObject.GetComponent<SpriteRenderer>();
             if (hairGameObject) _hairSpriteRenderer = hairGameObject.GetComponent<SpriteRenderer>();
 
@@ -96,20 +100,22 @@ namespace Player
 
         private void TransformMovement()
         {
-            var horizontal = Input.GetAxis("Horizontal");
+            // var horizontal = Input.GetAxis("Horizontal");
+            var moveValue = _moveAction.ReadValue<Vector2>();
+
             var vertical = allowFlight ? Input.GetAxis("Vertical") : 0;
 
-            transform.Translate(new Vector3(horizontal, vertical, 0) * (speed * Time.deltaTime));
+            transform.Translate(new Vector3(moveValue.x, vertical, 0) * (speed * Time.deltaTime));
 
             if (Input.GetKeyDown(KeyCode.W) ||
                 Input.GetKeyDown(KeyCode.UpArrow) ||
                 Input.GetButtonDown("Jump"))
                 _rigidbody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
 
-            if (horizontal == 0) return;
+            if (moveValue.x == 0) return;
 
             if (_flipEnabled && spriteRenderer)
-                spriteRenderer.flipX = horizontal < 0;
+                spriteRenderer.flipX = moveValue.x < 0;
         }
 
         private void HandleHeadAndHair()

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Scenes.Stacy.scripts
+namespace stacy
 {
     public class PointableObjectController : MonoBehaviour
     {

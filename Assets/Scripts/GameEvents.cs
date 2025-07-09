@@ -198,5 +198,8 @@
     ResumeElevator,
 
     PlayerPlacePainting,
-    PlayerPlaceMirror
+    PlayerPlaceMirror,
+
+    AllowGun,
+    StartElevatorKillScene
 }
