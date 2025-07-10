@@ -303,7 +303,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 81668284518784549, guid: b56c1e2fecc384d65b8c164d527f5498, type: 3}
       propertyPath: m_Name
-      value: "\U0001F7E1 Stacy Variant"
+      value: "\U0001F7E1 Stacy"
       objectReference: {fileID: 0}
     - target: {fileID: 3059878184661238569, guid: b56c1e2fecc384d65b8c164d527f5498, type: 3}
       propertyPath: m_LocalScale.x
@@ -1309,6 +1309,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4870723208328116504, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+      propertyPath: testMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6862535366279046487, guid: 18bc23390df011442b819617737dd1bd, type: 3}
       propertyPath: m_Name
       value: "\U0001F636 Player"
@@ -2252,7 +2256,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4174637171906912197, guid: 0f32cf1a567852a41bc7ac183b3102a0, type: 3}
       propertyPath: m_Name
-      value: Morgan
+      value: "\U0001F7E3 Morgan"
       objectReference: {fileID: 0}
     - target: {fileID: 4174637171906912197, guid: 0f32cf1a567852a41bc7ac183b3102a0, type: 3}
       propertyPath: m_IsActive
@@ -2638,7 +2642,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4174637171906912197, guid: 0f32cf1a567852a41bc7ac183b3102a0, type: 3}
       propertyPath: m_Name
-      value: Player
+      value: "\U0001F636 Player"
       objectReference: {fileID: 0}
     - target: {fileID: 4174637171906912197, guid: 0f32cf1a567852a41bc7ac183b3102a0, type: 3}
       propertyPath: m_IsActive
@@ -2836,7 +2840,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4174637171906912197, guid: 0f32cf1a567852a41bc7ac183b3102a0, type: 3}
       propertyPath: m_Name
-      value: Ryan
+      value: "\U0001F535 Ryan"
       objectReference: {fileID: 0}
     - target: {fileID: 4174637171906912197, guid: 0f32cf1a567852a41bc7ac183b3102a0, type: 3}
       propertyPath: m_IsActive
@@ -4068,7 +4072,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4174637171906912197, guid: 0f32cf1a567852a41bc7ac183b3102a0, type: 3}
       propertyPath: m_Name
-      value: Stacy
+      value: "\U0001F7E1 Stacy"
       objectReference: {fileID: 0}
     - target: {fileID: 4174637171906912197, guid: 0f32cf1a567852a41bc7ac183b3102a0, type: 3}
       propertyPath: m_IsActive
@@ -4312,10 +4316,16 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   testSequence: 1
+  player: {fileID: 1775164538}
   sequence: {fileID: 1089671999}
   elevator: {fileID: 1835763223}
   elevatorController: {fileID: 1835763230}
   takeOutTheGunText: {fileID: 609945246}
+  npcsToKill:
+  - {fileID: 2092549464}
+  - {fileID: 634530479}
+  - {fileID: 328068838}
+  - {fileID: 55210568}
   stopAtFloors: 2a0000002c0000002e00000030000000
   npcs:
   - {fileID: 2092549464}
@@ -6038,7 +6048,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4174637171906912197, guid: 0f32cf1a567852a41bc7ac183b3102a0, type: 3}
       propertyPath: m_Name
-      value: Zeke
+      value: "\u26AB Zeke "
       objectReference: {fileID: 0}
     - target: {fileID: 4174637171906912197, guid: 0f32cf1a567852a41bc7ac183b3102a0, type: 3}
       propertyPath: m_IsActive
@@ -7102,6 +7112,11 @@ MonoBehaviour:
   shakeDuration: 0
   shakeAmount: 0.01
   decreaseFactor: 1
+--- !u!1 &1775164538 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4538959989534152049, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+  m_PrefabInstance: {fileID: 493977678}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1787815694
 GameObject:
   m_ObjectHideFlags: 0
@@ -8535,7 +8550,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4174637171906912197, guid: 0f32cf1a567852a41bc7ac183b3102a0, type: 3}
       propertyPath: m_Name
-      value: Charlotte
+      value: "\U0001F7E4 Charlotte"
       objectReference: {fileID: 0}
     - target: {fileID: 4174637171906912197, guid: 0f32cf1a567852a41bc7ac183b3102a0, type: 3}
       propertyPath: m_IsActive

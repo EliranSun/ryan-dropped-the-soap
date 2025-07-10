@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Elevator.scripts
@@ -5,17 +6,18 @@ namespace Elevator.scripts
     public class ElevatorFinalSequence : ObserverSubject
     {
         [SerializeField] private bool testSequence;
+        [SerializeField] private GameObject player;
         [SerializeField] private GameObject sequence;
         [SerializeField] private GameObject elevator;
         [SerializeField] private ElevatorController elevatorController;
         [SerializeField] private GameObject takeOutTheGunText;
+        [SerializeField] private List<GameObject> npcsToKill;
         [SerializeField] private int[] stopAtFloors;
         [SerializeField] private GameObject[] npcs;
         [SerializeField] private float[] xPositions = { -1, -2, 3.5f };
         private int _currentFloorNumber;
         private bool _isActivated;
         private int _npcIndex;
-        private int _npcKillCount;
 
         private void Start()
         {
@@ -59,8 +61,21 @@ namespace Elevator.scripts
 
             if (eventData.Name == GameEvents.MurderedNpc)
             {
-                _npcKillCount++;
-                if (_npcKillCount == 3) Invoke(nameof(ExitKillSequence), 6f);
+                var npcName = (string)eventData.Data;
+                npcsToKill.Remove(npcsToKill.Find(npc => npc.gameObject.name == npcName));
+
+                print($"npcsToKill.Count {npcsToKill.Count}");
+                if (npcsToKill.Count > 1)
+                    return;
+
+                // last npc standing
+                Invoke(nameof(ExitKillSequence), 6f);
+
+                player.GetComponent<Animator>().enabled = false;
+                player.GetComponent<SpriteRenderer>().sprite =
+                    npcsToKill[0].gameObject.GetComponent<SpriteRenderer>().sprite;
+
+                npcsToKill[0].gameObject.SetActive(false);
             }
         }
 

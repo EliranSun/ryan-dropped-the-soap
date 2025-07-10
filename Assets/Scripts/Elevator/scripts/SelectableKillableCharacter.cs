@@ -27,9 +27,10 @@ namespace Elevator.scripts
 
         public void OnNotify()
         {
-            Notify(GameEvents.TriggerSpecificDialogLine, lines[_attemptKillCount]);
+            if (lines.Length > 0)
+                Notify(GameEvents.TriggerSpecificDialogLine, lines[_attemptKillCount]);
 
-            if (_attemptKillCount == lines.Length - 1)
+            if (_attemptKillCount == lines.Length - 1 || lines.Length == 0)
             {
                 ToggleBloodyScreen();
                 bloodyScreen.GetComponent<TransitionController>().FadeInOut(3);
