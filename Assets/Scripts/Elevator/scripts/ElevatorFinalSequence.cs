@@ -4,6 +4,7 @@ namespace Elevator.scripts
 {
     public class ElevatorFinalSequence : ObserverSubject
     {
+        [SerializeField] private bool testSequence;
         [SerializeField] private GameObject sequence;
         [SerializeField] private GameObject elevator;
         [SerializeField] private ElevatorController elevatorController;
@@ -14,14 +15,19 @@ namespace Elevator.scripts
         private int _currentFloorNumber;
         private bool _isActivated;
         private int _npcIndex;
+        private int _npcKillCount;
 
         private void Start()
         {
-            // takeOutTheGunText.SetActive(false);
-            // sequence.SetActive(false);
-            // elevator.SetActive(true);
+            if (testSequence) StartKillSequence();
+            else ExitKillSequence();
+        }
 
-            StartKillSequence();
+        private void ExitKillSequence()
+        {
+            takeOutTheGunText.SetActive(false);
+            sequence.SetActive(false);
+            elevator.SetActive(true);
         }
 
         public void OnNotify(GameEventData eventData)
@@ -50,11 +56,17 @@ namespace Elevator.scripts
 
             if (eventData.Name == GameEvents.GunIsOut)
                 Invoke(nameof(StartKillSequence), 3f);
+
+            if (eventData.Name == GameEvents.MurderedNpc)
+            {
+                _npcKillCount++;
+                if (_npcKillCount == 3) Invoke(nameof(ExitKillSequence), 6f);
+            }
         }
 
         private void InstantiateNpc()
         {
-            Instantiate(npcs[_npcIndex], new Vector2(xPositions[_npcIndex], -1.39f), Quaternion.identity);
+            npcs[_npcIndex].transform.position = new Vector2(xPositions[_npcIndex], -1.39f);
             _npcIndex++;
         }
 
@@ -75,10 +87,10 @@ namespace Elevator.scripts
             sequence.SetActive(true);
             elevator.SetActive(false);
         }
-        
+
         private void ChangeFloorNumber()
         {
-            elevatorController.GoToFloor(_currentFloorNumber + 10);
+            elevatorController.GoToFloor(_currentFloorNumber + 60 * 60); // an hour
         }
     }
 }

@@ -432,11 +432,11 @@ namespace Character_Creator.scripts
         {
             if (Input.GetKeyDown(KeyCode.N))
             {
-                PostDialogAdvanceActions();
-
                 narratorText.text = "";
                 _audioSource.Stop();
                 _audioSource.clip = null;
+
+                PostDialogAdvanceActions();
 
                 Notify(GameEvents.LineNarrationEnd, new
                 {

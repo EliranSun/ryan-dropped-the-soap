@@ -19,17 +19,20 @@ namespace Character_Creator.scripts
         private void Update()
         {
             NarrationDialogLine nextLine = null;
+            var keyPressed = false;
 
-            if (Input.GetKeyDown(KeyCode.Alpha1) && _nextLines[0] != null) nextLine = _nextLines[0];
-            if (Input.GetKeyDown(KeyCode.Alpha2) && _nextLines[1] != null) nextLine = _nextLines[1];
-            if (Input.GetKeyDown(KeyCode.Alpha3) && _nextLines[2] != null) nextLine = _nextLines[2];
-            if (Input.GetKeyDown(KeyCode.Alpha4) && _nextLines[3] != null) nextLine = _nextLines[3];
+            for (var i = 0; i < 4; i++)
+                if (Input.GetKeyDown(KeyCode.Alpha1 + i))
+                {
+                    keyPressed = true;
+                    if (_nextLines[i])
+                        nextLine = _nextLines[i];
+                }
 
-            if (nextLine)
-            {
-                Notify(GameEvents.TriggerSpecificDialogLine, nextLine);
+            if (keyPressed)
                 _playerOptionsText.text = "";
-            }
+
+            if (nextLine) Notify(GameEvents.TriggerSpecificDialogLine, nextLine);
         }
 
 

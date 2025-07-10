@@ -201,5 +201,6 @@
     PlayerPlaceMirror,
 
     AllowGun,
-    GunIsOut
+    GunIsOut,
+    MurderedNpc
 }
