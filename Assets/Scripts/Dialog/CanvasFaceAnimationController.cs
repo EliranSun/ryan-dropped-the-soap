@@ -9,7 +9,7 @@ namespace Dialog
         Charlotte, // voiced by: Charlotte (XB0fDUnXU5powFXDhCwa)
         Morgan, // voiced by: Grace (4zDsWfgtAP9O9F9kJlUk)
         Zeke, // voiced by: Roger (CwhRBWXzGAHq8TQ4Fs17)
-        Ryan, //
+        Ryan, // voiced by: Thomas (GBv7mTt0atIp3Br8iCZE)
         Stacy, // voiced by: Violet (j7KV53NgP8U4LRS2k2Gs)
         Pigeon, // 
         Boss, // voiced by: Bubba Marshel (YEkUdc7PezGaXaRslSHB)
