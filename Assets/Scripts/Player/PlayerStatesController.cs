@@ -25,13 +25,13 @@ namespace Player
         private void Start()
         {
             _attackAction = InputSystem.actions.FindAction("Attack");
-            gun.SetActive(false);
+            if (gun) gun.SetActive(false);
             SetPlayerBoxState();
         }
 
         private void Update()
         {
-            if (_attackAction.IsPressed() && _allowGun && !gun.activeSelf)
+            if (gun && _attackAction.IsPressed() && _allowGun && !gun.activeSelf)
             {
                 gun.SetActive(true);
                 Notify(GameEvents.GunIsOut);
