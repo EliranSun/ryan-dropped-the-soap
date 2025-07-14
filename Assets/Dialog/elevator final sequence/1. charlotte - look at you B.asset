@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
+  m_Name: 1. charlotte - look at you B
+  m_EditorClassIdentifier: 
+  playerName: 
+  waitBeforeLine: 0
+  mandatoryPlayerChoice: 1
+  overlayImageSprite: {fileID: 0}
+  voicedLines:
+  - text: Something its still missing... and this time it's not just about how you
+      look.
+    clip: {fileID: 8300000, guid: ce0b8c4f83bdf4d6d9ee71dc8c372ade, type: 3}
+    gender: 0
+  playerOptions:
+  - text: It is about soul
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 3a276c7e7469a914f96d5852734b0246, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: What?
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 3a276c7e7469a914f96d5852734b0246, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: It is about mind
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 3a276c7e7469a914f96d5852734b0246, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: It is about perspective
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 3a276c7e7469a914f96d5852734b0246, type: 2}
+    actionAfterPlayerChoice: 0
+  playerReactions: []
+  nextDialogueLine: {fileID: 0}
+  randomizedDialogLines: []
+  objectReferringDialogLines: []
+  wait: 0.5
+  actorName: 0
+  actionBeforeLine: 0
+  actionAfterLine: 0
+  actorReaction: 0
+  angerLevel: 0
+  toggleLineCondition: {fileID: 0}
+  lineCondition:
+    condition: 0
+    isMet: 0
+  blurAudio: 0
+  actionNumberData: 0
