@@ -7,14 +7,29 @@ namespace Npc
     public class CharlotteController : ObserverSubject
     {
         [SerializeField] private GameObject playerBox;
+        [SerializeField] private bool isAtPlayerApartment;
+        [SerializeField] private bool isKnockingOnPlayerDoor;
         [SerializeField] private NarrationDialogLine[] lines;
+        [SerializeField] private NarrationDialogLine knockingLine;
         [SerializeField] private NarrationDialogLine playerIsFreeLine;
         [SerializeField] private NarrationDialogLine theoryLine;
         private bool _awaitsPlayerGrowthTheory;
 
         private void OnEnable()
         {
-            Notify(GameEvents.TriggerSpecificDialogLine, GetNextLine());
+            // Notify(GameEvents.TriggerSpecificDialogLine, GetNextLine());
+            // gameObject.SetActive(isAtPlayerApartment);
+        }
+
+        private void Start()
+        {
+            if (isAtPlayerApartment) Invoke(nameof(KnockOnDoor), 1);
+        }
+
+        private void KnockOnDoor()
+        {
+            if (isKnockingOnPlayerDoor) 
+                Notify(GameEvents.TriggerSpecificDialogLine, knockingLine);
         }
 
         private NarrationDialogLine GetNextLine()

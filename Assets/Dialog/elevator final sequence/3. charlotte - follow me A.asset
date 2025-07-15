@@ -17,10 +17,28 @@ MonoBehaviour:
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
   voicedLines:
-  - text: 
+  - text: 'You''ll find out soon enough. Follow me up to the rooftop.  '
     clip: {fileID: 8300000, guid: 322bee4ed95e0433cb6bfee09ca49c4d, type: 3}
     gender: 0
-  playerOptions: []
+  playerOptions:
+  - text: What's up there?
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: cef67de3d230e8d4dad8ca3900922b0e, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: Rooftop?
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: cef67de3d230e8d4dad8ca3900922b0e, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: OK
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []

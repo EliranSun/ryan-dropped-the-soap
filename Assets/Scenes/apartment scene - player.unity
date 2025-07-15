@@ -296,6 +296,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 946700530}
   m_SourcePrefab: {fileID: 100100000, guid: 75294b7eb74bad1478ea528759232155, type: 3}
+--- !u!1 &50804838 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2821092148071052213, guid: 75294b7eb74bad1478ea528759232155, type: 3}
+  m_PrefabInstance: {fileID: 50804837}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &112896324
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -474,6 +479,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   playerBox: {fileID: 1750653266}
+  isAtPlayerApartment: 1
+  isKnockingOnPlayerDoor: 1
   lines:
   - {fileID: 11400000, guid: 84490ee8cc80a634cae830ca09fdb5d0, type: 2}
   - {fileID: 11400000, guid: 6a7454f7548e3f74eb5b1a7646e99ebc, type: 2}
@@ -482,6 +489,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 173788a423fdf4625bdd0b4bedbae86a, type: 2}
   - {fileID: 11400000, guid: 8ce357d5d153e4ddcac7448afe7bf70d, type: 2}
   - {fileID: 11400000, guid: e1e0016417b374706810abdac1c4f01a, type: 2}
+  knockingLine: {fileID: 11400000, guid: 82016d7d2868e3841a707a75fd048a23, type: 2}
   playerIsFreeLine: {fileID: 11400000, guid: 6a7454f7548e3f74eb5b1a7646e99ebc, type: 2}
   theoryLine: {fileID: 11400000, guid: 95e8a6fc4615c4a1990991f93fed9ba0, type: 2}
 --- !u!1001 &333554974
@@ -854,7 +862,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3930049543282524055, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4060874364467996741, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2100,7 +2108,7 @@ PrefabInstance:
     - target: {fileID: 1311371035374852291, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       propertyPath: finalState.dialogLineToPlay
       value: 
-      objectReference: {fileID: 11400000, guid: 82016d7d2868e3841a707a75fd048a23, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 1559977669171636965, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       propertyPath: m_SizeDelta.x
       value: 700
@@ -2252,6 +2260,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e541637f0837b0d4892b2159cd5c2be4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1399502419}
+        m_TargetAssemblyTypeName: Character_Creator.scripts.DialogueManager, CharacterCreatorScriptsAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 50804838}
+        m_TargetAssemblyTypeName: Character_Creator.scripts.DialogueManager, CharacterCreatorScriptsAssembly
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   plant: {fileID: 942185328}
   painting: {fileID: 1575083501}
   mirror: {fileID: 621350529}
@@ -2887,7 +2922,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4889453408019655880, guid: 75294b7eb74bad1478ea528759232155, type: 3}
   m_PrefabInstance: {fileID: 50804837}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 50804838}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44d81f1156582314b968cc910e083de5, type: 3}

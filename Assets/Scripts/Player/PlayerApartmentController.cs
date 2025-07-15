@@ -1,14 +1,15 @@
+using Dialog;
 using UnityEngine;
 
 namespace Player
 {
-    public class PlayerApartmentController : MonoBehaviour
+    public class PlayerApartmentController : ObserverSubject
     {
         // TODO: DRY
         [SerializeField] private GameObject plant;
         [SerializeField] private GameObject painting;
         [SerializeField] private GameObject mirror;
-
+        
         private void Start()
         {
             PositionItem(plant, "PlayerPlacePlantPosition");

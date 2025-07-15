@@ -18,7 +18,7 @@ namespace Elevator.scripts
         [SerializeField] private FloorData floorData;
         [SerializeField] private AudioClip knockSound;
         [SerializeField] public int doorNumber;
-        [SerializeField] private GameObject npcAtDoor;
+        // [SerializeField] public GameObject npcAtDoor;
         [SerializeField] private bool isDoorOpen;
         private AudioSource _audioSource;
         private bool _isPlayerInsideApartment = true;
@@ -175,7 +175,7 @@ namespace Elevator.scripts
 
         private void ToggleDoorState()
         {
-            if (npcAtDoor) npcAtDoor.SetActive(isDoorOpen);
+            // if (npcAtDoor) npcAtDoor.SetActive(isDoorOpen);
 
             foreach (var door in doors)
             {

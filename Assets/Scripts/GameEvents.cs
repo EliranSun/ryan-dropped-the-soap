@@ -202,5 +202,7 @@
 
     AllowGun,
     GunIsOut,
-    MurderedNpc
+    MurderedNpc,
+    
+    NpcAtPlayerDoor,
 }

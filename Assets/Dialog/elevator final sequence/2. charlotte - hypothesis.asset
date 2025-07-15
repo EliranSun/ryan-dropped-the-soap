@@ -17,10 +17,29 @@ MonoBehaviour:
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
   voicedLines:
-  - text: 
+  - text: "My hypothesis isn't complete without this final step. I'm honestly thrilled\u2014this
+      could be groundbreaking!  "
     clip: {fileID: 8300000, guid: 13c6a283261ef40979cd8caa1aacccc8, type: 3}
     gender: 0
-  playerOptions: []
+  playerOptions:
+  - text: What exactly is it
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: cf4e68bed1912bb41ba889b3eaf856bb, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: I don't understand
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: cf4e68bed1912bb41ba889b3eaf856bb, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: OK
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: cf4e68bed1912bb41ba889b3eaf856bb, type: 2}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []
