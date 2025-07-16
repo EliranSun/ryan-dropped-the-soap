@@ -14,13 +14,19 @@ namespace Player
         private void Start()
         {
             _isZekeSceneEnded = PlayerPrefs.GetString("Zeke Scene End", "") != "";
+            var storedPainting = PlayerPrefs.GetString("PlayerHoldingPainting", "");
+
+            if (storedPainting != "")
+                return;
+
             if (_isZekeSceneEnded)
             {
-                var randomPainting = paintings[Random.Range(0, paintings.Length)];
-                randomPainting.gameObject.transform.parent = player.transform;
-                randomPainting.transform.localPosition = new Vector3(0, 1.5f, 0);
-                randomPainting.transform.localRotation = Quaternion.identity;
-                randomPainting.GetComponent<SpriteRenderer>().sortingOrder = 10;
+                var painting = paintings[Random.Range(0, paintings.Length)];
+                painting.gameObject.transform.parent = player.transform;
+                painting.transform.localPosition = new Vector3(0, 2.5f, 0);
+                painting.transform.localRotation = Quaternion.identity;
+                painting.GetComponent<SpriteRenderer>().sortingOrder = 10;
+                PlayerPrefs.SetString("PlayerHoldingPainting", painting.name);
             }
         }
     }

@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -10,6 +11,7 @@ namespace Player
         [SerializeField] private GameObject playerPlant;
         [SerializeField] private Camera mainCamera;
         [SerializeField] private GameObject gun;
+        [SerializeField] private GameObject[] paintings;
         [SerializeField] private bool resetPlayerPrefs;
         private bool _allowGun;
 
@@ -17,7 +19,8 @@ namespace Player
 
         private void Awake()
         {
-            if (resetPlayerPrefs) PlayerPrefs.DeleteAll();
+            if (resetPlayerPrefs)
+                PlayerPrefs.DeleteAll();
             // ChangeScene();
             PositionPlayer();
         }
@@ -26,7 +29,9 @@ namespace Player
         {
             _attackAction = InputSystem.actions.FindAction("Attack");
             if (gun) gun.SetActive(false);
+
             SetPlayerBoxState();
+            SetPlayerHoldingPainting();
         }
 
         private void Update()
@@ -36,6 +41,12 @@ namespace Player
                 gun.SetActive(true);
                 Notify(GameEvents.GunIsOut);
             }
+        }
+
+        private void SetPlayerHoldingPainting()
+        {
+            var storedPainting = PlayerPrefs.GetString("PlayerHoldingPainting", "");
+            if (storedPainting != "") paintings.First(p => p.name == storedPainting).SetActive(true);
         }
 
         private void PositionPlayer()
@@ -96,10 +107,7 @@ namespace Player
             if (eventData.Name == GameEvents.CharlotteWaitingTheory)
                 PlayerPrefs.SetInt("HeardCharlottePlantInstructions", 1);
 
-            if (eventData.Name == GameEvents.AllowGun)
-            {
-                _allowGun = true;
-            }
+            if (eventData.Name == GameEvents.AllowGun) _allowGun = true;
         }
 
         private void ChangeScene()
@@ -118,15 +126,15 @@ namespace Player
                     break;
 
                 case nameof(Location.Hallway):
-                {
-                    var placePlayerAtElevator = currentScene.name == "inside elevator" ? 1 : 0;
-                    print("placePlayerAtElevator: " + placePlayerAtElevator);
-                    PlayerPrefs.SetInt("PlacePlayerAtElevator", placePlayerAtElevator);
+                    {
+                        var placePlayerAtElevator = currentScene.name == "inside elevator" ? 1 : 0;
+                        print("placePlayerAtElevator: " + placePlayerAtElevator);
+                        PlayerPrefs.SetInt("PlacePlayerAtElevator", placePlayerAtElevator);
 
-                    if (currentScene.name != "hallway scene")
-                        SceneManager.LoadScene("hallway scene");
-                    break;
-                }
+                        if (currentScene.name != "hallway scene")
+                            SceneManager.LoadScene("hallway scene");
+                        break;
+                    }
 
                 case nameof(Location.Elevator):
                     if (currentScene.name != "inside elevator")
