@@ -40,7 +40,6 @@ namespace Elevator.scripts
         private void Start()
         {
             if (floorText) floorText.text = floorData.elevatorFloorNumber.ToString();
-            Notify(GameEvents.StartElevatorFinalSequence);
         }
 
         private void Update()
@@ -91,7 +90,6 @@ namespace Elevator.scripts
 
             _timeSinceLastClick = 0;
             _timeDiff = Time.deltaTime;
-
 
             desiredFloorText.text = desiredFloorText.text == "00" // init state
                 ? $"{floorNumber}"

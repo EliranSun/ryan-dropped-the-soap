@@ -55,6 +55,7 @@ namespace Character_Creator.scripts
 
             _playerOptionsText.text = "";
 
+            // FIXME: This allows only 4 options
             for (var i = 0; i < playerOptions.Length; i++)
             {
                 _nextLines[i] = playerOptions[i].next;

@@ -17,16 +17,28 @@ MonoBehaviour:
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
   voicedLines:
-  - text: 
+  - text: "Oh\u2014hey. Is this going up? Guess I\u2019ll tag along."
     clip: {fileID: 8300000, guid: ee43018a0b8554143bb2e3870fc929b4, type: 3}
     gender: 0
-  playerOptions: []
+  playerOptions:
+  - text: Might take some time
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 1d933bbf62a520d4cae793ad181c2fed, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: Don't you have work
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 1d933bbf62a520d4cae793ad181c2fed, type: 2}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []
   objectReferringDialogLines: []
   wait: 0.5
-  actorName: 0
+  actorName: 3
   actionBeforeLine: 0
   actionAfterLine: 0
   actorReaction: 0

@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
-  m_Name: 11. charlotte + zeke - scoot back B
+  m_Name: 11a. zeke - scoot back A
   m_EditorClassIdentifier: 
   playerName: 
   waitBeforeLine: 0
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
   voicedLines:
-  - text: 
-    clip: {fileID: 8300000, guid: 13a15c7f1dde74beaaddef956ef08e18, type: 3}
+  - text: I can scoot back, if that helps.
+    clip: {fileID: 8300000, guid: 7abaebd3e7f5e4f97b825d5b72c95bb6, type: 3}
     gender: 0
   playerOptions: []
   playerReactions: []
-  nextDialogueLine: {fileID: 0}
+  nextDialogueLine: {fileID: 11400000, guid: 38822af1dad6f844f8374bba9ef29d8d, type: 2}
   randomizedDialogLines: []
   objectReferringDialogLines: []
   wait: 0.5
-  actorName: 0
+  actorName: 3
   actionBeforeLine: 0
   actionAfterLine: 0
   actorReaction: 0

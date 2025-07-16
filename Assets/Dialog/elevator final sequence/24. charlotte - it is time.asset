@@ -17,16 +17,47 @@ MonoBehaviour:
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
   voicedLines:
-  - text: 
+  - text: "Accept it, resist it\u2014it doesn\u2019t matter. It\u2019s time, {playerName}.
+      _Take out the gun I gave you._"
     clip: {fileID: 8300000, guid: ccb43d4a18c88d142982f05107a714f7, type: 3}
     gender: 0
-  playerOptions: []
+  playerOptions:
+  - text: What?!
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 26e0d9dad60404925ae61b0803521fee, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: No fucking way
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 26e0d9dad60404925ae61b0803521fee, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: You're insane
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 26e0d9dad60404925ae61b0803521fee, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: OK
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 26e0d9dad60404925ae61b0803521fee, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: NO
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 26e0d9dad60404925ae61b0803521fee, type: 2}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []
   objectReferringDialogLines: []
   wait: 0.5
-  actorName: 0
+  actorName: 1
   actionBeforeLine: 0
   actionAfterLine: 0
   actorReaction: 0

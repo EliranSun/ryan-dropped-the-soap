@@ -10,13 +10,11 @@ namespace Npc
     {
         [SerializeField] private bool isAtPlayerApartment;
         [SerializeField] private bool isKnockingOnPlayerDoor;
-
         [SerializeField] private NarrationDialogLine[] lines;
         [SerializeField] private NarrationDialogLine knockingLine;
         [SerializeField] private NarrationDialogLine theoryLine;
         [SerializeField] private NarrationDialogLine playerGrewLine;
         [SerializeField] private NarrationDialogLine goToRooftopLine;
-
         [SerializeField] private GameObject playerApartmentDoor;
         private bool _awaitGoingRooftop;
         private bool _awaitsPlayerGrowthTheory;
@@ -30,7 +28,9 @@ namespace Npc
             if (isAtPlayerApartment)
                 Invoke(nameof(KnockOnDoor), 1);
 
-            if (_awaitGoingRooftop && SceneManager.GetActiveScene().name == "inside elevator")
+            if (_awaitGoingRooftop &&
+                goToRooftopLine &&
+                SceneManager.GetActiveScene().name == "inside elevator")
                 StartCoroutine(TriggerLine(goToRooftopLine));
         }
 

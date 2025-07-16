@@ -10,28 +10,40 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
-  m_Name: 10. charlotte - bit crowded
+  m_Name: 15b. charlotte - open mind
   m_EditorClassIdentifier: 
   playerName: 
   waitBeforeLine: 0
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
   voicedLines:
-  - text: "Huh. Bit crowded in here, isn\u2019t it?"
-    clip: {fileID: 8300000, guid: c6701fd8cc4a647c79df0e8103bf4c94, type: 3}
+  - text: Listen, {playerName}. Remember when I said to keep an open mind?
+    clip: {fileID: 8300000, guid: d8e4ef1b8d787e24ebf5f60e508339d8, type: 3}
     gender: 0
   playerOptions:
   - text: Yes
     type: 0
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 11400000, guid: 6e5cd7389e0cbc146a472744dc895fb0, type: 2}
+    next: {fileID: 11400000, guid: 4eda05ac0d09d87409694186b64eb919, type: 2}
     actionAfterPlayerChoice: 0
   - text: No
     type: 0
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 11400000, guid: 6e5cd7389e0cbc146a472744dc895fb0, type: 2}
+    next: {fileID: 11400000, guid: 4eda05ac0d09d87409694186b64eb919, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: What of it
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 4eda05ac0d09d87409694186b64eb919, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: Speak
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 4eda05ac0d09d87409694186b64eb919, type: 2}
     actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}

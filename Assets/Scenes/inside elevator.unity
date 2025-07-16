@@ -2384,6 +2384,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 1072330286}
+    - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: OnNotify
+      objectReference: {fileID: 0}
+    - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: Elevator.scripts.ElevatorFinalSequence, ElevatorScriptsAssembly
+      objectReference: {fileID: 0}
     - target: {fileID: 2966023187645510561, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       propertyPath: m_Name
       value: "\U0001F4AC Dialog Manager"
@@ -4227,28 +4239,47 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 731405453}
+        m_TargetAssemblyTypeName: Character_Creator.scripts.DialogueManager, CharacterCreatorScriptsAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   testSequence: 0
   player: {fileID: 1775164538}
   sequence: {fileID: 1089671999}
   elevator: {fileID: 1835763223}
   elevatorController: {fileID: 1835763230}
+  allInElevatorLine: {fileID: 11400000, guid: ebdf6c67c37589042b60cb2d17d42805, type: 2}
+  sequenceStartLine: {fileID: 11400000, guid: c3702ed0ccc7a43bb8332321a99e0e9d, type: 2}
   takeOutTheGunText: {fileID: 609945246}
-  npcsToKill:
-  - {fileID: 2092549464}
-  - {fileID: 634530479}
-  - {fileID: 328068838}
-  - {fileID: 55210568}
-  stopAtFloors: 2a0000002c0000002e00000030000000
   npcs:
-  - {fileID: 2092549464}
-  - {fileID: 634530479}
-  - {fileID: 328068838}
-  - {fileID: 55210568}
-  xPositions:
-  - 4.8
-  - -3
-  - -1
-  - -4.2
+  - npc: {fileID: 2092549464}
+    line: {fileID: 11400000, guid: e9500ac1eec90854f8a967c267006738, type: 2}
+    awaitAtFloor: 42
+    xPosition: 4.8
+    isDead: 0
+  - npc: {fileID: 634530479}
+    line: {fileID: 11400000, guid: 9f58ec63fe797ce4294b3db9879e456a, type: 2}
+    awaitAtFloor: 50
+    xPosition: -3
+    isDead: 0
+  - npc: {fileID: 328068838}
+    line: {fileID: 0}
+    awaitAtFloor: 52
+    xPosition: -1
+    isDead: 0
+  - npc: {fileID: 55210568}
+    line: {fileID: 0}
+    awaitAtFloor: 54
+    xPosition: -4.2
+    isDead: 0
 --- !u!1 &1072963704
 GameObject:
   m_ObjectHideFlags: 0
@@ -7296,9 +7327,10 @@ GameObject:
   - component: {fileID: 1835763228}
   - component: {fileID: 1835763227}
   - component: {fileID: 1835763229}
+  - component: {fileID: 1835763231}
   m_Layer: 11
   m_Name: Elevator
-  m_TagString: Untagged
+  m_TagString: Elevator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7634,6 +7666,52 @@ MonoBehaviour:
   lightLoop: 3
   apartmentsPanelMoveSpeed: 1
   floorData: {fileID: 11400000, guid: 0d331cf434876ec44a2376c813275b06, type: 2}
+--- !u!61 &1835763231
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1835763223}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 6.2, y: 3.9}
+    newSize: {x: 6.2, y: 3.9}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 6.2, y: 3.9}
+  m_EdgeRadius: 0
 --- !u!1 &1841036321
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,41 +10,53 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
-  m_Name: 23. charlotte - remember E
+  m_Name: 22. charlotte - body and soul
   m_EditorClassIdentifier: 
   playerName: 
   waitBeforeLine: 0
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
   voicedLines:
-  - text: Do you want your **soul**? Do you want to _remember_ who you are, and what
-      happened to you?
-    clip: {fileID: 8300000, guid: be22cb74119b56d479e365008e99e7ec, type: 3}
+  - text: "You did all this. And I let you. Because it mattered\u2014not just for
+      your body... but for your _soul_."
+    clip: {fileID: 8300000, guid: e56142e673987194498d2f3be997082f, type: 3}
     gender: 0
   playerOptions:
-  - text: Yes
+  - text: I want out.
     type: 0
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 11400000, guid: 9d8949e1ef2ac4146a2dd04769f95b41, type: 2}
+    next: {fileID: 11400000, guid: 509dfd91fc5e943d5aa334c3cffcc232, type: 2}
     actionAfterPlayerChoice: 0
-  - text: No
+  - text: I see now.
     type: 0
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 11400000, guid: 9d8949e1ef2ac4146a2dd04769f95b41, type: 2}
+    next: {fileID: 11400000, guid: bb3b7c377e1e84d2698b60224e3c1521, type: 2}
     actionAfterPlayerChoice: 0
-  - text: Don't believe in miracles
+  - text: You're out of your mind.
     type: 0
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 11400000, guid: 9d8949e1ef2ac4146a2dd04769f95b41, type: 2}
+    next: {fileID: 11400000, guid: 509dfd91fc5e943d5aa334c3cffcc232, type: 2}
     actionAfterPlayerChoice: 0
-  - text: Praise the lord
+  - text: I understand.
     type: 0
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 11400000, guid: 9d8949e1ef2ac4146a2dd04769f95b41, type: 2}
+    next: {fileID: 11400000, guid: bb3b7c377e1e84d2698b60224e3c1521, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: OK
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: bb3b7c377e1e84d2698b60224e3c1521, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: We passed the rooftop
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 509dfd91fc5e943d5aa334c3cffcc232, type: 2}
     actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
