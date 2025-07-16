@@ -54,7 +54,10 @@ namespace Player
             for (var i = 0; i < bodies.Length; i++) bodies[i].SetActive(level == i);
 
             if (level > 0)
-                Notify(GameEvents.PlayerGrew, bodies[level]);
+            {
+                var body = bodies[level];
+                Notify(GameEvents.PlayerGrew, new { level, body });
+            }
         }
     }
 }

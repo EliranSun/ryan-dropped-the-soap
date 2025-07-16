@@ -1,19 +1,38 @@
 using System;
+using System.Collections;
 using Dialog;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Npc
 {
     public class CharlotteController : ObserverSubject
     {
-        [SerializeField] private GameObject playerBox;
         [SerializeField] private bool isAtPlayerApartment;
         [SerializeField] private bool isKnockingOnPlayerDoor;
+
         [SerializeField] private NarrationDialogLine[] lines;
         [SerializeField] private NarrationDialogLine knockingLine;
-        [SerializeField] private NarrationDialogLine playerIsFreeLine;
         [SerializeField] private NarrationDialogLine theoryLine;
+        [SerializeField] private NarrationDialogLine playerGrewLine;
+        [SerializeField] private NarrationDialogLine goToRooftopLine;
+
+        [SerializeField] private GameObject playerApartmentDoor;
+        private bool _awaitGoingRooftop;
         private bool _awaitsPlayerGrowthTheory;
+        private bool _isExitingDoor;
+        private int _playerGrowthLevel;
+
+        private void Start()
+        {
+            _awaitGoingRooftop = PlayerPrefs.GetInt("CharlotteAwaitGoingRooftop", 0) == 1;
+
+            if (isAtPlayerApartment)
+                Invoke(nameof(KnockOnDoor), 1);
+
+            if (_awaitGoingRooftop && SceneManager.GetActiveScene().name == "inside elevator")
+                StartCoroutine(TriggerLine(goToRooftopLine));
+        }
 
         private void OnEnable()
         {
@@ -21,15 +40,35 @@ namespace Npc
             // gameObject.SetActive(isAtPlayerApartment);
         }
 
-        private void Start()
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            if (isAtPlayerApartment) Invoke(nameof(KnockOnDoor), 1);
+            if (other.CompareTag("Apartment Door") && _isExitingDoor)
+                Invoke(nameof(DisableSelf), 0.5f);
+        }
+
+        private void DisableSelf()
+        {
+            gameObject.SetActive(false);
+        }
+
+        private void ExitPlayerApartment()
+        {
+            _isExitingDoor = true;
+            _awaitGoingRooftop = true;
+            PlayerPrefs.SetInt("CharlotteAwaitGoingRooftop", 1);
+            Notify(GameEvents.NpcGoTo, playerApartmentDoor);
         }
 
         private void KnockOnDoor()
         {
-            if (isKnockingOnPlayerDoor) 
+            if (isKnockingOnPlayerDoor)
                 Notify(GameEvents.TriggerSpecificDialogLine, knockingLine);
+        }
+
+        private IEnumerator TriggerLine(NarrationDialogLine line)
+        {
+            yield return new WaitForSeconds(1);
+            Notify(GameEvents.TriggerSpecificDialogLine, line);
         }
 
         private NarrationDialogLine GetNextLine()
@@ -57,10 +96,6 @@ namespace Npc
         {
             switch (gameEvent.Name)
             {
-                // case GameEvents.FreePlayerFromBox:
-                //     playerBox.SetActive(false);
-                //     break;
-
                 case GameEvents.LineNarrationEnd:
                 {
                     var prop = gameEvent.Data.GetType().GetProperty("_currentDialogue");
@@ -80,7 +115,29 @@ namespace Npc
                     _awaitsPlayerGrowthTheory = true;
                     break;
 
+                case GameEvents.ExitPlayerApartment:
+                {
+                    var actorNameProperty = gameEvent.Data.GetType().GetProperty("actorName");
+                    if (actorNameProperty == null)
+                        break;
+
+                    var actorName = (ActorName)actorNameProperty.GetValue(gameEvent.Data);
+
+                    if (actorName == ActorName.Charlotte)
+                        Invoke(nameof(ExitPlayerApartment), 1);
+                    break;
+                }
+
                 case GameEvents.PlayerGrew:
+                {
+                    var levelProperty = gameEvent.Data.GetType().GetProperty("level");
+                    if (levelProperty != null)
+                    {
+                        _playerGrowthLevel = (int)levelProperty.GetValue(gameEvent.Data);
+                        if (_playerGrowthLevel == 4)
+                            StartCoroutine(TriggerLine(playerGrewLine));
+                    }
+
                     if (_awaitsPlayerGrowthTheory)
                     {
                         _awaitsPlayerGrowthTheory = false;
@@ -88,6 +145,7 @@ namespace Npc
                     }
 
                     break;
+                }
             }
         }
     }

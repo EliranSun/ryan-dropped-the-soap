@@ -203,6 +203,9 @@
     AllowGun,
     GunIsOut,
     MurderedNpc,
-    
+
     NpcAtPlayerDoor,
+    AddPointOfInterest,
+    NpcGoTo,
+    ExitPlayerApartment
 }

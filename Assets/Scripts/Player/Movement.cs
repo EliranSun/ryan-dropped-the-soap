@@ -183,9 +183,12 @@ namespace Player
 
             if (eventData.Name == GameEvents.PlayerGrew)
             {
-                var playerGameObject = (GameObject)eventData.Data;
-                if (playerGameObject)
-                    spriteRenderer = playerGameObject.GetComponent<SpriteRenderer>();
+                var bodyProperty = eventData.Data.GetType().GetProperty("body");
+                if (bodyProperty == null) return;
+
+                var bodyValue = (GameObject)bodyProperty.GetValue(eventData.Data);
+                if (bodyValue)
+                    spriteRenderer = bodyValue.GetComponent<SpriteRenderer>();
             }
         }
 

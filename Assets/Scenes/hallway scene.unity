@@ -466,7 +466,6 @@ MonoBehaviour:
   floorData: {fileID: 0}
   knockSound: {fileID: 0}
   doorNumber: 0
-  npcAtDoor: {fileID: 0}
   isDoorOpen: 0
 --- !u!61 &159878912
 BoxCollider2D:
@@ -1782,7 +1781,6 @@ MonoBehaviour:
   floorData: {fileID: 0}
   knockSound: {fileID: 0}
   doorNumber: 0
-  npcAtDoor: {fileID: 0}
   isDoorOpen: 0
 --- !u!61 &255157955
 BoxCollider2D:
@@ -2069,7 +2067,6 @@ MonoBehaviour:
   floorData: {fileID: 0}
   knockSound: {fileID: 0}
   doorNumber: 0
-  npcAtDoor: {fileID: 0}
   isDoorOpen: 0
 --- !u!61 &274592683
 BoxCollider2D:
@@ -2888,7 +2885,6 @@ MonoBehaviour:
   floorData: {fileID: 0}
   knockSound: {fileID: 0}
   doorNumber: 0
-  npcAtDoor: {fileID: 0}
   isDoorOpen: 0
 --- !u!61 &464781718
 BoxCollider2D:
@@ -3288,6 +3284,10 @@ PrefabInstance:
     - target: {fileID: 2684897507050103084, guid: 18bc23390df011442b819617737dd1bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4870723208328116504, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+      propertyPath: testMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4874692296979805832, guid: 18bc23390df011442b819617737dd1bd, type: 3}
       propertyPath: endSize
@@ -3752,7 +3752,6 @@ MonoBehaviour:
   floorData: {fileID: 0}
   knockSound: {fileID: 0}
   doorNumber: 0
-  npcAtDoor: {fileID: 0}
   isDoorOpen: 0
 --- !u!61 &697126067
 BoxCollider2D:
@@ -4313,8 +4312,44 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  invokeOnStart: 0
   lines:
-  - {fileID: 11400000, guid: e1e0016417b374706810abdac1c4f01a, type: 2}
+  - {fileID: 11400000, guid: 8a265633a8539e14a8dba78a71726acb, type: 2}
+--- !u!114 &888536284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 12380333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a92b55e90f5afb64c84613c6074a20c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 888536283}
+        m_TargetAssemblyTypeName: Dialog.ActorLines, DialogAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  objectType: 0
+  interactionType: 0
+  disableGameObjectOnClick: 0
+  isEnabled: 1
+  interactableLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  _is3D: 0
 --- !u!1 &920338660
 GameObject:
   m_ObjectHideFlags: 0
@@ -4691,7 +4726,6 @@ MonoBehaviour:
   floorData: {fileID: 0}
   knockSound: {fileID: 0}
   doorNumber: 0
-  npcAtDoor: {fileID: 0}
   isDoorOpen: 0
 --- !u!61 &979296797
 BoxCollider2D:
@@ -6029,7 +6063,6 @@ MonoBehaviour:
   floorData: {fileID: 0}
   knockSound: {fileID: 0}
   doorNumber: 0
-  npcAtDoor: {fileID: 0}
   isDoorOpen: 0
 --- !u!61 &1191397836
 BoxCollider2D:
@@ -6463,7 +6496,6 @@ MonoBehaviour:
   floorData: {fileID: 0}
   knockSound: {fileID: 0}
   doorNumber: 0
-  npcAtDoor: {fileID: 0}
   isDoorOpen: 0
 --- !u!61 &1344301336
 BoxCollider2D:
@@ -7132,7 +7164,6 @@ MonoBehaviour:
   floorData: {fileID: 0}
   knockSound: {fileID: 0}
   doorNumber: 0
-  npcAtDoor: {fileID: 0}
   isDoorOpen: 0
 --- !u!61 &1417349204
 BoxCollider2D:
@@ -8716,6 +8747,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd2edf6bc0ef70741b2a6f24750cf2f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &2137700047
 GameObject:
   m_ObjectHideFlags: 0
@@ -8873,7 +8905,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4060874364467996741, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4060874364467996741, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8939,7 +8971,8 @@ PrefabInstance:
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 109004085}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7549147449976439754, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -8949,6 +8982,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3930049543282524055, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
       insertIndex: -1
       addedObject: {fileID: 888536283}
+    - targetCorrespondingSourceObject: {fileID: 3930049543282524055, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 888536284}
   m_SourcePrefab: {fileID: 100100000, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
 --- !u!1001 &4068198194827888004
 PrefabInstance:

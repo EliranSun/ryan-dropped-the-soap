@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 19. charlotte - of course I'll help
   m_EditorClassIdentifier: 
   playerName: 
-  waitBeforeLine: 0
+  waitBeforeLine: 5
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
   voicedLines:
@@ -21,7 +21,19 @@ MonoBehaviour:
       I have an hour to spare."
     clip: {fileID: 8300000, guid: 97d0ec298ba852047ae82a88d68e40c5, type: 3}
     gender: 0
-  playerOptions: []
+  playerOptions:
+  - text: Oh wow thank you
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 76077d4d73527b9468c9a46aff4fbca4, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: No thanks
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 017326c68bffb0a4a8cc5558f3716237, type: 2}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   nextDialogueLine: {fileID: 0}
   randomizedDialogLines: []
@@ -36,3 +48,5 @@ MonoBehaviour:
   lineCondition:
     condition: 0
     isMet: 0
+  blurAudio: 0
+  actionNumberData: 0

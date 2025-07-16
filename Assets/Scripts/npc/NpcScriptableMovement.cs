@@ -117,26 +117,48 @@ namespace npc
         {
             if (eventData.Name == GameEvents.FollowPlayer)
                 if (playerTransform != null)
-                {
-                    // Create a new array with one more element
-                    var newPointsOfInterest = new Transform[pointsOfInterest != null ? pointsOfInterest.Length + 1 : 1];
+                    AddPointOfInterest(playerTransform);
 
-                    // Copy existing points of interest if any
-                    if (pointsOfInterest is { Length: > 0 })
-                        Array.Copy(pointsOfInterest, newPointsOfInterest, pointsOfInterest.Length);
+            if (eventData.Name == GameEvents.NpcGoTo)
+            {
+                var pointOfInterest = (GameObject)eventData.Data;
+                if (pointOfInterest != null)
+                    ReplacePointOfInterest(pointOfInterest.transform);
+            }
+        }
 
-                    // Add player transform as the last point of interest
-                    newPointsOfInterest[^1] = playerTransform;
+        private void AddPointOfInterest(Transform newPointOfInterest)
+        {
+            // Create a new array with one more element
+            var newPointsOfInterest = new Transform[pointsOfInterest != null ? pointsOfInterest.Length + 1 : 1];
 
-                    // Update the points of interest array
-                    pointsOfInterest = newPointsOfInterest;
+            // Copy existing points of interest if any
+            if (pointsOfInterest is { Length: > 0 })
+                Array.Copy(pointsOfInterest, newPointsOfInterest, pointsOfInterest.Length);
 
-                    // Reset current index to ensure we start following
-                    _currentPointOfInterestIndex = 0;
+            // Add player transform as the last point of interest
+            newPointsOfInterest[^1] = newPointOfInterest;
 
-                    // Set the target position to the player
-                    SetNextPointOfInterest();
-                }
+            UpdatePointsOfInterest(newPointsOfInterest);
+        }
+
+        private void ReplacePointOfInterest(Transform newPointOfInterest)
+        {
+            // Create a new array with just the new point
+            var newPointsOfInterest = new[] { newPointOfInterest };
+            UpdatePointsOfInterest(newPointsOfInterest);
+        }
+
+        private void UpdatePointsOfInterest(Transform[] newPointsOfInterest)
+        {
+            // Update the points of interest array
+            pointsOfInterest = newPointsOfInterest;
+
+            // Reset current index to ensure we start following
+            _currentPointOfInterestIndex = 0;
+
+            // Set the target position to the player
+            SetNextPointOfInterest();
         }
     }
 }
