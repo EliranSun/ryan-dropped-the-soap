@@ -307,15 +307,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3059878184661238569, guid: b56c1e2fecc384d65b8c164d527f5498, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3059878184661238569, guid: b56c1e2fecc384d65b8c164d527f5498, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3059878184661238569, guid: b56c1e2fecc384d65b8c164d527f5498, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3059878184661238569, guid: b56c1e2fecc384d65b8c164d527f5498, type: 3}
       propertyPath: m_LocalPosition.x
@@ -356,6 +356,10 @@ PrefabInstance:
     - target: {fileID: 3059878184661238569, guid: b56c1e2fecc384d65b8c164d527f5498, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3059878184661238569, guid: b56c1e2fecc384d65b8c164d527f5498, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7673,7 +7677,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1835763223}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}

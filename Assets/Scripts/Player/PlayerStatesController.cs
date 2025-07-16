@@ -107,7 +107,23 @@ namespace Player
             if (eventData.Name == GameEvents.CharlotteWaitingTheory)
                 PlayerPrefs.SetInt("HeardCharlottePlantInstructions", 1);
 
-            if (eventData.Name == GameEvents.AllowGun) _allowGun = true;
+            if (eventData.Name == GameEvents.AllowGun)
+                _allowGun = true;
+
+            switch (eventData.Name)
+            {
+                case GameEvents.PlayerPlacePlant:
+                case GameEvents.PlayerPlaceMirror:
+                case GameEvents.PlayerPlacePainting:
+                {
+                    var itemPosition = (Vector3)eventData.Data;
+                    PlayerPrefs.SetString($"{eventData.Name}Position", $"{itemPosition.x},{itemPosition.y}");
+
+                    if (eventData.Name == GameEvents.PlayerPlacePainting)
+                        PlayerPrefs.DeleteKey("PlayerHoldingPainting");
+                    break;
+                }
+            }
         }
 
         private void ChangeScene()
@@ -126,15 +142,15 @@ namespace Player
                     break;
 
                 case nameof(Location.Hallway):
-                    {
-                        var placePlayerAtElevator = currentScene.name == "inside elevator" ? 1 : 0;
-                        print("placePlayerAtElevator: " + placePlayerAtElevator);
-                        PlayerPrefs.SetInt("PlacePlayerAtElevator", placePlayerAtElevator);
+                {
+                    var placePlayerAtElevator = currentScene.name == "inside elevator" ? 1 : 0;
+                    print("placePlayerAtElevator: " + placePlayerAtElevator);
+                    PlayerPrefs.SetInt("PlacePlayerAtElevator", placePlayerAtElevator);
 
-                        if (currentScene.name != "hallway scene")
-                            SceneManager.LoadScene("hallway scene");
-                        break;
-                    }
+                    if (currentScene.name != "hallway scene")
+                        SceneManager.LoadScene("hallway scene");
+                    break;
+                }
 
                 case nameof(Location.Elevator):
                     if (currentScene.name != "inside elevator")

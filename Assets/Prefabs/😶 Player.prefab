@@ -1349,10 +1349,59 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 20
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5977148894747349154, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
+    - {fileID: 2688415851693782097, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
+    - {fileID: 1458731018694385666, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
+    - {fileID: 1237150602940413579, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
+    - {fileID: 2897883044921784973, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
+    - {fileID: 8014824403275279761, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
+    - {fileID: 5883079230415621489, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1315841415592253536, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5096201040041441820}
+    - targetCorrespondingSourceObject: {fileID: 1315841415592253536, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3610282124387751873}
+    - targetCorrespondingSourceObject: {fileID: 3314600478009426107, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5123019315721890185}
+    - targetCorrespondingSourceObject: {fileID: 3314600478009426107, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6595798048456458958}
+    - targetCorrespondingSourceObject: {fileID: 4194305550867804385, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 836071743733313289}
+    - targetCorrespondingSourceObject: {fileID: 4194305550867804385, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2862188082963341038}
+    - targetCorrespondingSourceObject: {fileID: 4289040020389242892, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4951429969373488042}
+    - targetCorrespondingSourceObject: {fileID: 4289040020389242892, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2713036388893760460}
+    - targetCorrespondingSourceObject: {fileID: 3603166748842104883, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5974500832163376798}
+    - targetCorrespondingSourceObject: {fileID: 3603166748842104883, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6037151893611139815}
+    - targetCorrespondingSourceObject: {fileID: 5238118593999080823, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2789094199128075123}
+    - targetCorrespondingSourceObject: {fileID: 5238118593999080823, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 708561386075715812}
+    - targetCorrespondingSourceObject: {fileID: 6508700209800799102, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1620873243278783535}
+    - targetCorrespondingSourceObject: {fileID: 6508700209800799102, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2369385190534819174}
   m_SourcePrefab: {fileID: 100100000, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
 --- !u!4 &152104519257127633 stripped
 Transform:
@@ -1364,36 +1413,442 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6508700209800799102, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
   m_PrefabInstance: {fileID: 8450956743783778091}
   m_PrefabAsset: {fileID: 0}
+--- !u!50 &1620873243278783535
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3392433421551887445}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &2369385190534819174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3392433421551887445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3badbeb1dbabb204e9e64c67b81ec5ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8768322118471126704}
+        m_TargetAssemblyTypeName: Player.PlayerStatesController, PlayerScriptsAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  playerTransform: {fileID: 2684897507050103084}
+  holdGameEvent: 35
+  releaseGameEvent: 158
+  isHeld: 1
 --- !u!1 &4464858858678094428 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5238118593999080823, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
   m_PrefabInstance: {fileID: 8450956743783778091}
   m_PrefabAsset: {fileID: 0}
+--- !u!50 &2789094199128075123
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4464858858678094428}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &708561386075715812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4464858858678094428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3badbeb1dbabb204e9e64c67b81ec5ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8768322118471126704}
+        m_TargetAssemblyTypeName: Player.PlayerStatesController, PlayerScriptsAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  playerTransform: {fileID: 2684897507050103084}
+  holdGameEvent: 35
+  releaseGameEvent: 158
+  isHeld: 1
 --- !u!1 &5136022718899494680 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3603166748842104883, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
   m_PrefabInstance: {fileID: 8450956743783778091}
   m_PrefabAsset: {fileID: 0}
+--- !u!50 &5974500832163376798
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5136022718899494680}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &6037151893611139815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5136022718899494680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3badbeb1dbabb204e9e64c67b81ec5ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8768322118471126704}
+        m_TargetAssemblyTypeName: Player.PlayerStatesController, PlayerScriptsAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  playerTransform: {fileID: 2684897507050103084}
+  holdGameEvent: 35
+  releaseGameEvent: 158
+  isHeld: 1
 --- !u!1 &5675220864456503079 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4289040020389242892, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
   m_PrefabInstance: {fileID: 8450956743783778091}
   m_PrefabAsset: {fileID: 0}
+--- !u!50 &4951429969373488042
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5675220864456503079}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &2713036388893760460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5675220864456503079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3badbeb1dbabb204e9e64c67b81ec5ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8768322118471126704}
+        m_TargetAssemblyTypeName: Player.PlayerStatesController, PlayerScriptsAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  playerTransform: {fileID: 2684897507050103084}
+  holdGameEvent: 35
+  releaseGameEvent: 158
+  isHeld: 1
 --- !u!1 &5724918242217048010 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4194305550867804385, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
   m_PrefabInstance: {fileID: 8450956743783778091}
   m_PrefabAsset: {fileID: 0}
+--- !u!50 &836071743733313289
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5724918242217048010}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &2862188082963341038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5724918242217048010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3badbeb1dbabb204e9e64c67b81ec5ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8768322118471126704}
+        m_TargetAssemblyTypeName: Player.PlayerStatesController, PlayerScriptsAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  playerTransform: {fileID: 2684897507050103084}
+  holdGameEvent: 35
+  releaseGameEvent: 158
+  isHeld: 1
 --- !u!1 &6392868402276009872 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3314600478009426107, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
   m_PrefabInstance: {fileID: 8450956743783778091}
   m_PrefabAsset: {fileID: 0}
+--- !u!50 &5123019315721890185
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6392868402276009872}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &6595798048456458958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6392868402276009872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3badbeb1dbabb204e9e64c67b81ec5ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8768322118471126704}
+        m_TargetAssemblyTypeName: Player.PlayerStatesController, PlayerScriptsAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  playerTransform: {fileID: 2684897507050103084}
+  holdGameEvent: 35
+  releaseGameEvent: 158
+  isHeld: 1
 --- !u!1 &7423368876499607371 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1315841415592253536, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
   m_PrefabInstance: {fileID: 8450956743783778091}
   m_PrefabAsset: {fileID: 0}
+--- !u!50 &5096201040041441820
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7423368876499607371}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &3610282124387751873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7423368876499607371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3badbeb1dbabb204e9e64c67b81ec5ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8768322118471126704}
+        m_TargetAssemblyTypeName: Player.PlayerStatesController, PlayerScriptsAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  playerTransform: {fileID: 2684897507050103084}
+  holdGameEvent: 35
+  releaseGameEvent: 158
+  isHeld: 1
 --- !u!1001 &9042645399959950941
 PrefabInstance:
   m_ObjectHideFlags: 0

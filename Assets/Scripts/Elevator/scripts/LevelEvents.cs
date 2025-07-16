@@ -31,7 +31,7 @@ namespace Elevator.scripts
 
         [SerializeField] private KillingDependents killingDependents;
 
-        [Header("Apartment")] [SerializeField] private GameObject hallwayShade;
+        [Header("Apartment")][SerializeField] private GameObject hallwayShade;
 
         // TODO: Maybe move everything related to floor to floor controller
         [SerializeField] private GameObject apartmentsShade;
@@ -40,27 +40,9 @@ namespace Elevator.scripts
         [SerializeField] private GameObject hallwayBoundaries;
         [SerializeField] private AudioSource sfxAudioSource;
         [SerializeField] private AudioClip knockingSound;
-        [SerializeField] private FloorData floorData;
-        [SerializeField] private GameObject npcKnockingOnPlayerApartment;
-
-        // [SerializeField] private GameObject playerApartmentHallwayDoor;
-        // [SerializeField] private NarrationDialogLine initLine;
-        // [SerializeField] private NarrationDialogLine playerTookPlantWithoutPermission;
-        // [SerializeField] private NarrationDialogLine charlottePlayerGrowthLine;
-        // [SerializeField] private GameObject playerBox;
-
-        private bool _charlotteGavePlayerPlant;
-        private bool _charlotteRespondedToPlayerGrowth;
-        private bool _charlotteWaitingTheory;
 
         private void Start()
         {
-            // if (!floorData.zekeStoryDone && !floorData.stacyStoryDone)
-            // {
-            //     StartCoroutine(Knock());
-            //     Notify(GameEvents.KnockOnPlayerApartment);
-            // }
-
             var zekeSceneEnded = PlayerPrefs.GetString("Zeke Scene End");
             if (zekeSceneEnded == "")
                 return;
@@ -166,48 +148,48 @@ namespace Elevator.scripts
                     StopAllCoroutines();
                     break;
 
-                // case GameEvents.FreePlayerFromBox:
-                //     playerBox.SetActive(false);
-                //     break;
-                //
-                // case GameEvents.PlayerApartmentDoorOpened:
-                //     if (npcKnockingOnPlayerApartment)
-                //     {
-                //         StopAllCoroutines();
-                //         npcKnockingOnPlayerApartment.transform.position = playerApartmentHallwayDoor.transform.position;
-                //         npcKnockingOnPlayerApartment = null;
-                //
-                //         if (initLine) Notify(GameEvents.TriggerSpecificDialogLine, initLine);
-                //     }
-                //
-                //     break;
-                //
-                // case GameEvents.CharlotteGavePlayerPlant:
-                //     _charlotteGavePlayerPlant = true;
-                //     break;
-                //
-                // case GameEvents.PlayerHoldPlant:
-                //     if (!_charlotteGavePlayerPlant)
-                //         Notify(GameEvents.TriggerSpecificDialogLine, playerTookPlantWithoutPermission);
-                //     break;
-                //
-                // case GameEvents.CharlotteWaitingTheory:
-                //     _charlotteWaitingTheory = true;
-                //     break;
-                //
-                // case GameEvents.PlayerPlacePlant:
-                //     if (_charlotteWaitingTheory)
-                //         Notify(GameEvents.PlayerGrowth);
-                //     break;
-                //
-                // case GameEvents.PlayerGrew:
-                //     if (!_charlotteRespondedToPlayerGrowth)
-                //     {
-                //         Notify(GameEvents.TriggerSpecificDialogLine, charlottePlayerGrowthLine);
-                //         _charlotteRespondedToPlayerGrowth = true;
-                //     }
-                //
-                //     break;
+                    // case GameEvents.FreePlayerFromBox:
+                    //     playerBox.SetActive(false);
+                    //     break;
+                    //
+                    // case GameEvents.PlayerApartmentDoorOpened:
+                    //     if (npcKnockingOnPlayerApartment)
+                    //     {
+                    //         StopAllCoroutines();
+                    //         npcKnockingOnPlayerApartment.transform.position = playerApartmentHallwayDoor.transform.position;
+                    //         npcKnockingOnPlayerApartment = null;
+                    //
+                    //         if (initLine) Notify(GameEvents.TriggerSpecificDialogLine, initLine);
+                    //     }
+                    //
+                    //     break;
+                    //
+                    // case GameEvents.CharlotteGavePlayerPlant:
+                    //     _charlotteGavePlayerPlant = true;
+                    //     break;
+                    //
+                    // case GameEvents.PlayerHoldPlant:
+                    //     if (!_charlotteGavePlayerPlant)
+                    //         Notify(GameEvents.TriggerSpecificDialogLine, playerTookPlantWithoutPermission);
+                    //     break;
+                    //
+                    // case GameEvents.CharlotteWaitingTheory:
+                    //     _charlotteWaitingTheory = true;
+                    //     break;
+                    //
+                    // case GameEvents.PlayerPlacePlant:
+                    //     if (_charlotteWaitingTheory)
+                    //         Notify(GameEvents.PlayerGrowth);
+                    //     break;
+                    //
+                    // case GameEvents.PlayerGrew:
+                    //     if (!_charlotteRespondedToPlayerGrowth)
+                    //     {
+                    //         Notify(GameEvents.TriggerSpecificDialogLine, charlottePlayerGrowthLine);
+                    //         _charlotteRespondedToPlayerGrowth = true;
+                    //     }
+                    //
+                    //     break;
             }
         }
 

@@ -33,7 +33,7 @@ namespace Elevator.scripts
 
         private void Start()
         {
-            if (PlayerPrefs.GetInt("CharlotteAwaitGoingRooftop") == 1) _isActivated = true;
+            // if (PlayerPrefs.GetInt("CharlotteAwaitGoingRooftop") == 1) _isActivated = true;
             if (testSequence) StartKillSequence();
             else ExitKillSequence();
         }

@@ -19,17 +19,17 @@ namespace Player
 
         public void OnNotify(GameEventData eventData)
         {
-            switch (eventData.Name)
-            {
-                case GameEvents.PlayerPlacePlant:
-                case GameEvents.PlayerPlaceMirror:
-                case GameEvents.PlayerPlacePainting:
-                {
-                    var itemPosition = (Vector3)eventData.Data;
-                    PlayerPrefs.SetString($"{eventData.Name}Position", $"{itemPosition.x},{itemPosition.y}");
-                    break;
-                }
-            }
+            // switch (eventData.Name)
+            // {
+            //     case GameEvents.PlayerPlacePlant:
+            //     case GameEvents.PlayerPlaceMirror:
+            //     case GameEvents.PlayerPlacePainting:
+            //     {
+            //         var itemPosition = (Vector3)eventData.Data;
+            //         PlayerPrefs.SetString($"{eventData.Name}Position", $"{itemPosition.x},{itemPosition.y}");
+            //         break;
+            //     }
+            // }
         }
 
         private static void PositionItem(GameObject item, string key)
