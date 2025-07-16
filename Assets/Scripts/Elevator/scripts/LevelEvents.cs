@@ -65,7 +65,6 @@ namespace Elevator.scripts
             if (zekeSceneEnded == "")
                 return;
 
-            print("@@@@@@@@@@ Zeke ended");
             MoveToBoat();
             Invoke(nameof(BoatStart), 5f);
         }

@@ -26,6 +26,7 @@ namespace Mini_Games
         private const int BestEmployeeScore = 100;
         private const int BossOfficeScore = -100;
 
+        [SerializeField] private int pointsPerGame = 10;
         [SerializeField] private GameObject player;
         [SerializeField] private MiniGameName[] instructions;
         [SerializeField] private Slider scoreSlider;
@@ -88,20 +89,19 @@ namespace Mini_Games
             if (eventData.Name == GameEvents.StartMiniGames)
                 Invoke(nameof(SetRandomInstruction), initiateMiniGameDelay);
 
-            if (eventData.Name == GameEvents.ThoughtScoreChange)
-            {
-                var newScore = (int)eventData.Data;
-                print("@@@@@@@ SCORE CHANGE: " + newScore);
-                currentScore += newScore * 3;
-            }
+            // if (eventData.Name == GameEvents.ThoughtScoreChange)
+            // {
+            //     var newScore = (int)eventData.Data;
+            //     print("@@@@@@@ SCORE CHANGE: " + newScore);
+            //     currentScore += newScore * 3;
+            // }
 
             if (eventData.Name == GameEvents.MiniGameStart && !_isMiniGameInitiated)
                 _isMiniGameInitiated = true;
 
             if (eventData.Name == GameEvents.MiniGameWon)
             {
-                print("@@@@@@@ GAME WON");
-                currentScore += 20f * 2;
+                currentScore += pointsPerGame;
                 _isMiniGameInitiated = false;
                 inGameInstructionsText.text = "GOOD EMPLOYEE";
                 // CloseMiniGame();
@@ -111,8 +111,7 @@ namespace Mini_Games
 
             if (eventData.Name == GameEvents.MiniGameLost)
             {
-                print("@@@@@@@ GAME LOST");
-                currentScore -= 20f * 2;
+                currentScore -= pointsPerGame;
                 _isMiniGameInitiated = false;
                 inGameInstructionsText.text = "BAD EMPLOYEE";
                 // CloseMiniGame();

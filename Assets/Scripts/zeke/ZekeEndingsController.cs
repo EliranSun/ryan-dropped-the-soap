@@ -1,8 +1,9 @@
+using Scenes.ZEKE.scripts;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Scenes.ZEKE.scripts
+namespace zeke
 {
     public class ZekeEndingsController : MonoBehaviour
     {
@@ -38,12 +39,6 @@ namespace Scenes.ZEKE.scripts
                     break;
                 }
 
-                case GameEvents.EndZekeShouts:
-                    PlayerPrefs.SetString("Zeke Scene End", "Shout");
-                    zekeShouts.SetActive(false);
-                    _isZekeShoutsActive = false;
-                    SceneManager.LoadScene(nextScene.name);
-                    break;
 
                 case GameEvents.TriggerZekeSuicide:
                 {
@@ -55,11 +50,17 @@ namespace Scenes.ZEKE.scripts
 
                     break;
                 }
+                case GameEvents.EndZekeShouts:
+                    PlayerPrefs.SetString("Zeke Scene End", "Shout");
+                    zekeShouts.SetActive(false);
+                    _isZekeShoutsActive = false;
+                    SceneManager.LoadScene("apartment scene - zeke");
+                    break;
 
                 case GameEvents.ZekeSuicideEnd:
                     PlayerPrefs.SetString("Zeke Scene End", "Suicide");
                     zekeSuicide.SetActive(false);
-                    SceneManager.LoadScene(nextScene.name);
+                    SceneManager.LoadScene("apartment scene - zeke");
                     break;
             }
         }

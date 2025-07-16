@@ -17,15 +17,12 @@ namespace Mini_Games
         public float moveSpeed = 5f;
 
         [SerializeField] private float jumpForce = 5f;
-        private bool _hasMoved;
-        private bool _isFacingRight = true;
         private bool _isOnGround = false;
         private SpriteRenderer _spriteRenderer;
 
         private void Start()
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
-            _isFacingRight = _spriteRenderer.flipX;
         }
 
         private void Update()
@@ -61,16 +58,8 @@ namespace Mini_Games
 
         private Vector2 PushForward(Vector2 direction, Vector2 movementVector)
         {
-            if (!_hasMoved)
-            {
-                Notify(GameEvents.FirstTimePlayerMove);
-                _hasMoved = true;
-            }
-
-            // reset rotation
-            // transform.rotation = Quaternion.identity;
-
-            FlipSprite(direction);
+            // Flip sprite based on direction
+            _spriteRenderer.flipX = direction.x > 0;
 
             if (!_isOnGround) return movementVector;
 
@@ -80,22 +69,6 @@ namespace Mini_Games
             transform.Rotate(Vector3.forward, direction.x * -5f);
 
             return movementVector;
-        }
-
-        private void FlipSprite(Vector2 direction)
-        {
-            print("FlipSprite: " + direction);
-
-            if (_isFacingRight && direction == Vector2.left)
-            {
-                _spriteRenderer.flipX = true;
-                _isFacingRight = false;
-            }
-            else if (!_isFacingRight && direction == Vector2.right)
-            {
-                _spriteRenderer.flipX = false;
-                _isFacingRight = true;
-            }
         }
 
         private void OnCollisionEnter2D(Collision2D collision)

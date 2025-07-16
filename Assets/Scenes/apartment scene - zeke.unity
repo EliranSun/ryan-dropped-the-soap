@@ -119,6 +119,16 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &233683778 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5238118593999080823, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
+  m_PrefabInstance: {fileID: 661169506}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &251689860 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1315841415592253536, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
+  m_PrefabInstance: {fileID: 661169506}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &304890443
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -253,6 +263,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
+--- !u!1 &788031442 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3314600478009426107, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
+  m_PrefabInstance: {fileID: 661169506}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &913006248
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -268,7 +283,7 @@ PrefabInstance:
     - target: {fileID: 1311371035374852291, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       propertyPath: finalState.dialogLineToPlay
       value: 
-      objectReference: {fileID: 11400000, guid: bbc7b0378a0fdd346ab56a038af68843, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 2966023187645510561, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       propertyPath: m_Name
       value: "\U0001F4AC Dialog Manager"
@@ -384,6 +399,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2684897507050103084, guid: 18bc23390df011442b819617737dd1bd, type: 3}
   m_PrefabInstance: {fileID: 965814319}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &978118901 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4289040020389242892, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
+  m_PrefabInstance: {fileID: 661169506}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1238844273
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -462,16 +482,58 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6901208334905094463, guid: 6698d8d0431109446885d915960ceba4, type: 3}
       propertyPath: m_Name
-      value: right wing apartment
+      value: Zeke Apartment
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6531578356621939455, guid: 6698d8d0431109446885d915960ceba4, type: 3}
     - {fileID: 3613777651734027297, guid: 6698d8d0431109446885d915960ceba4, type: 3}
+    - {fileID: 6481417502207983499, guid: 6698d8d0431109446885d915960ceba4, type: 3}
     m_RemovedGameObjects:
     - {fileID: 8143860681453274714, guid: 6698d8d0431109446885d915960ceba4, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6901208334905094463, guid: 6698d8d0431109446885d915960ceba4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1238844275}
   m_SourcePrefab: {fileID: 100100000, guid: 6698d8d0431109446885d915960ceba4, type: 3}
+--- !u!1 &1238844274 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6901208334905094463, guid: 6698d8d0431109446885d915960ceba4, type: 3}
+  m_PrefabInstance: {fileID: 1238844273}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1238844275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1238844274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6f0c626e97389c4fb7db397b497daca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerNeedPaintingLine: {fileID: 0}
+  sceneEndedLine: {fileID: 0}
+  paintings:
+  - {fileID: 251689860}
+  - {fileID: 788031442}
+  - {fileID: 1320149742}
+  - {fileID: 978118901}
+  - {fileID: 2031818841}
+  - {fileID: 233683778}
+  - {fileID: 2126596824}
+  player: {fileID: 965814320}
+--- !u!1 &1320149742 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4194305550867804385, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
+  m_PrefabInstance: {fileID: 661169506}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2031818841 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3603166748842104883, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
+  m_PrefabInstance: {fileID: 661169506}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2077712448
 GameObject:
   m_ObjectHideFlags: 0
@@ -609,13 +671,18 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!1 &2126596824 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6508700209800799102, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
+  m_PrefabInstance: {fileID: 661169506}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 2077712451}
-  - {fileID: 304890443}
   - {fileID: 1238844273}
+  - {fileID: 304890443}
   - {fileID: 661169506}
   - {fileID: 965814319}
   - {fileID: 913006248}

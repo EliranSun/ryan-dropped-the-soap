@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using Dialog;
+using Mini_Games;
 using UnityEngine;
 
 namespace Elevator.scripts
@@ -91,6 +92,7 @@ namespace Elevator.scripts
                 player.GetComponent<Animator>().enabled = false;
                 player.GetComponent<SpriteRenderer>().sprite =
                     aliveNpcs[0].npc.GetComponent<SpriteRenderer>().sprite;
+                player.AddComponent<WobblyMovement>();
 
                 aliveNpcs[0].npc.SetActive(false);
             }
