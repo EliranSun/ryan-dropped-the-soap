@@ -529,6 +529,530 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4194305550867804385, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
   m_PrefabInstance: {fileID: 661169506}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1631223739
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1631223741}
+  - component: {fileID: 1631223740}
+  m_Layer: 0
+  m_Name: Post Scene - DEAD - Lines
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1631223740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1631223739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ea806d017a313640b076f242d0f2af8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - text: 
+    audioClip: {fileID: 8300000, guid: 2cfd54e0e22cf1747a6bad62f6a318df, type: 3}
+    actor: 3
+    playerOptions:
+      text: 
+      response:
+        text: 
+        audioClip: {fileID: 0}
+        actor: 0
+        playerOptions:
+          text: 
+          response:
+            text: 
+            audioClip: {fileID: 0}
+            actor: 0
+            playerOptions:
+              text: 
+              response:
+                text: 
+                audioClip: {fileID: 0}
+                actor: 0
+                playerOptions:
+                  text: 
+                  response:
+                    text: 
+                    audioClip: {fileID: 0}
+                    actor: 0
+                    playerOptions:
+                      text: 
+                      response:
+                        text: 
+  - text: 
+    audioClip: {fileID: 8300000, guid: cca3021a1fa3eb34093f24c1fe101de6, type: 3}
+    actor: 3
+    playerOptions:
+      text: 
+      response:
+        text: 
+        audioClip: {fileID: 0}
+        actor: 0
+        playerOptions:
+          text: 
+          response:
+            text: 
+            audioClip: {fileID: 0}
+            actor: 0
+            playerOptions:
+              text: 
+              response:
+                text: 
+                audioClip: {fileID: 0}
+                actor: 0
+                playerOptions:
+                  text: 
+                  response:
+                    text: 
+                    audioClip: {fileID: 0}
+                    actor: 0
+                    playerOptions:
+                      text: 
+                      response:
+                        text: 
+  - text: 
+    audioClip: {fileID: 0}
+    actor: 3
+    playerOptions:
+      text: 
+      response:
+        text: 
+        audioClip: {fileID: 0}
+        actor: 0
+        playerOptions:
+          text: 
+          response:
+            text: 
+            audioClip: {fileID: 0}
+            actor: 0
+            playerOptions:
+              text: 
+              response:
+                text: 
+                audioClip: {fileID: 0}
+                actor: 0
+                playerOptions:
+                  text: 
+                  response:
+                    text: 
+                    audioClip: {fileID: 0}
+                    actor: 0
+                    playerOptions:
+                      text: 
+                      response:
+                        text: 
+  - text: 
+    audioClip: {fileID: 0}
+    actor: 3
+    playerOptions:
+      text: 
+      response:
+        text: 
+        audioClip: {fileID: 0}
+        actor: 0
+        playerOptions:
+          text: 
+          response:
+            text: 
+            audioClip: {fileID: 0}
+            actor: 0
+            playerOptions:
+              text: 
+              response:
+                text: 
+                audioClip: {fileID: 0}
+                actor: 0
+                playerOptions:
+                  text: 
+                  response:
+                    text: 
+                    audioClip: {fileID: 0}
+                    actor: 0
+                    playerOptions:
+                      text: 
+                      response:
+                        text: 
+--- !u!4 &1631223741
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1631223739}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1809551769
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1809551771}
+  - component: {fileID: 1809551770}
+  m_Layer: 0
+  m_Name: Post Scene - ALIVE - Lines
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1809551770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809551769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ea806d017a313640b076f242d0f2af8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - text: Yeah... it's been a week since I left this miserable job
+    audioClip: {fileID: 8300000, guid: 2cfd54e0e22cf1747a6bad62f6a318df, type: 3}
+    actor: 3
+    playerOptions:
+      text: 
+      response:
+        text: 
+        audioClip: {fileID: 0}
+        actor: 0
+        playerOptions:
+          text: 
+          response:
+            text: 
+            audioClip: {fileID: 0}
+            actor: 0
+            playerOptions:
+              text: 
+              response:
+                text: 
+                audioClip: {fileID: 0}
+                actor: 0
+                playerOptions:
+                  text: 
+                  response:
+                    text: 
+                    audioClip: {fileID: 0}
+                    actor: 0
+                    playerOptions:
+                      text: 
+                      response:
+                        text: 
+  - text: 
+    audioClip: {fileID: 8300000, guid: cca3021a1fa3eb34093f24c1fe101de6, type: 3}
+    actor: 3
+    playerOptions:
+      text: 
+      response:
+        text: 
+        audioClip: {fileID: 0}
+        actor: 0
+        playerOptions:
+          text: 
+          response:
+            text: 
+            audioClip: {fileID: 0}
+            actor: 0
+            playerOptions:
+              text: 
+              response:
+                text: 
+                audioClip: {fileID: 0}
+                actor: 0
+                playerOptions:
+                  text: 
+                  response:
+                    text: 
+                    audioClip: {fileID: 0}
+                    actor: 0
+                    playerOptions:
+                      text: 
+                      response:
+                        text: 
+  - text: 
+    audioClip: {fileID: 8300000, guid: d172ec344fd352544a8b7bf77a6970d0, type: 3}
+    actor: 3
+    playerOptions:
+      text: 
+      response:
+        text: 
+        audioClip: {fileID: 0}
+        actor: 0
+        playerOptions:
+          text: 
+          response:
+            text: 
+            audioClip: {fileID: 0}
+            actor: 0
+            playerOptions:
+              text: 
+              response:
+                text: 
+                audioClip: {fileID: 0}
+                actor: 0
+                playerOptions:
+                  text: 
+                  response:
+                    text: 
+                    audioClip: {fileID: 0}
+                    actor: 0
+                    playerOptions:
+                      text: 
+                      response:
+                        text: 
+  - text: 
+    audioClip: {fileID: 8300000, guid: 012a384ad484b864eb8d2be25305f61c, type: 3}
+    actor: 3
+    playerOptions:
+      text: 
+      response:
+        text: 
+        audioClip: {fileID: 0}
+        actor: 0
+        playerOptions:
+          text: 
+          response:
+            text: 
+            audioClip: {fileID: 0}
+            actor: 0
+            playerOptions:
+              text: 
+              response:
+                text: 
+                audioClip: {fileID: 0}
+                actor: 0
+                playerOptions:
+                  text: 
+                  response:
+                    text: 
+                    audioClip: {fileID: 0}
+                    actor: 0
+                    playerOptions:
+                      text: 
+                      response:
+                        text: 
+  - text: 
+    audioClip: {fileID: 8300000, guid: 1354e1ec956dee849aa8d05d8e935cce, type: 3}
+    actor: 3
+    playerOptions:
+      text: 
+      response:
+        text: 
+        audioClip: {fileID: 0}
+        actor: 0
+        playerOptions:
+          text: 
+          response:
+            text: 
+            audioClip: {fileID: 0}
+            actor: 0
+            playerOptions:
+              text: 
+              response:
+                text: 
+                audioClip: {fileID: 0}
+                actor: 0
+                playerOptions:
+                  text: 
+                  response:
+                    text: 
+                    audioClip: {fileID: 0}
+                    actor: 0
+                    playerOptions:
+                      text: 
+                      response:
+                        text: 
+  - text: 
+    audioClip: {fileID: 8300000, guid: 87dfcaff73bb38d46930c68d7e70df23, type: 3}
+    actor: 3
+    playerOptions:
+      text: 
+      response:
+        text: 
+        audioClip: {fileID: 0}
+        actor: 0
+        playerOptions:
+          text: 
+          response:
+            text: 
+            audioClip: {fileID: 0}
+            actor: 0
+            playerOptions:
+              text: 
+              response:
+                text: 
+                audioClip: {fileID: 0}
+                actor: 0
+                playerOptions:
+                  text: 
+                  response:
+                    text: 
+                    audioClip: {fileID: 0}
+                    actor: 0
+                    playerOptions:
+                      text: 
+                      response:
+                        text: 
+  - text: 
+    audioClip: {fileID: 8300000, guid: 9a884e2b7a3ea6648bcdbdc4a3ca9a1a, type: 3}
+    actor: 3
+    playerOptions:
+      text: 
+      response:
+        text: 
+        audioClip: {fileID: 0}
+        actor: 0
+        playerOptions:
+          text: 
+          response:
+            text: 
+            audioClip: {fileID: 0}
+            actor: 0
+            playerOptions:
+              text: 
+              response:
+                text: 
+                audioClip: {fileID: 0}
+                actor: 0
+                playerOptions:
+                  text: 
+                  response:
+                    text: 
+                    audioClip: {fileID: 0}
+                    actor: 0
+                    playerOptions:
+                      text: 
+                      response:
+                        text: 
+  - text: 
+    audioClip: {fileID: 8300000, guid: ef0d7897bd4f7e948a9ef7a8fd019cc6, type: 3}
+    actor: 3
+    playerOptions:
+      text: 
+      response:
+        text: 
+        audioClip: {fileID: 0}
+        actor: 0
+        playerOptions:
+          text: 
+          response:
+            text: 
+            audioClip: {fileID: 0}
+            actor: 0
+            playerOptions:
+              text: 
+              response:
+                text: 
+                audioClip: {fileID: 0}
+                actor: 0
+                playerOptions:
+                  text: 
+                  response:
+                    text: 
+                    audioClip: {fileID: 0}
+                    actor: 0
+                    playerOptions:
+                      text: 
+                      response:
+                        text: 
+  - text: 
+    audioClip: {fileID: 8300000, guid: ef0d7897bd4f7e948a9ef7a8fd019cc6, type: 3}
+    actor: 3
+    playerOptions:
+      text: 
+      response:
+        text: 
+        audioClip: {fileID: 0}
+        actor: 0
+        playerOptions:
+          text: 
+          response:
+            text: 
+            audioClip: {fileID: 0}
+            actor: 0
+            playerOptions:
+              text: 
+              response:
+                text: 
+                audioClip: {fileID: 0}
+                actor: 0
+                playerOptions:
+                  text: 
+                  response:
+                    text: 
+                    audioClip: {fileID: 0}
+                    actor: 0
+                    playerOptions:
+                      text: 
+                      response:
+                        text: 
+  - text: 
+    audioClip: {fileID: 8300000, guid: ef0d7897bd4f7e948a9ef7a8fd019cc6, type: 3}
+    actor: 3
+    playerOptions:
+      text: 
+      response:
+        text: 
+        audioClip: {fileID: 0}
+        actor: 0
+        playerOptions:
+          text: 
+          response:
+            text: 
+            audioClip: {fileID: 0}
+            actor: 0
+            playerOptions:
+              text: 
+              response:
+                text: 
+                audioClip: {fileID: 0}
+                actor: 0
+                playerOptions:
+                  text: 
+                  response:
+                    text: 
+                    audioClip: {fileID: 0}
+                    actor: 0
+                    playerOptions:
+                      text: 
+                      response:
+                        text: 
+--- !u!4 &1809551771
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809551769}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2031818841 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3603166748842104883, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
@@ -686,3 +1210,5 @@ SceneRoots:
   - {fileID: 661169506}
   - {fileID: 965814319}
   - {fileID: 913006248}
+  - {fileID: 1809551771}
+  - {fileID: 1631223741}
