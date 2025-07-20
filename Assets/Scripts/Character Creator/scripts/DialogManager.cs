@@ -450,6 +450,19 @@ namespace Character_Creator.scripts
                     UpdateDialogState(_currentDialogue.nextDialogueLine);
                     ReadCurrentLine();
                 }
+
+                if (_currentDialogue.conditionalNextLines.Length > 0)
+                {
+                    var nextLine =
+                        _currentDialogue.conditionalNextLines.First(line =>
+                            PlayerPrefs.GetString(line.key) == line.value).line;
+
+                    if (nextLine)
+                    {
+                        UpdateDialogState(nextLine);
+                        ReadCurrentLine();
+                    }
+                }
             }
         }
     }

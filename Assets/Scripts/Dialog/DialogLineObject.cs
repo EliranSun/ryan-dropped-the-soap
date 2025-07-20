@@ -12,7 +12,8 @@ namespace Dialog.Scripts
         ZoomOut
     }
 
-    [CreateAssetMenu(fileName = "Line", menuName = "Dialogue/Line")]
+    // TODO: Deprecated
+    // [CreateAssetMenu(fileName = "Line", menuName = "Dialogue/Line")]
     public class DialogLineObject : ScriptableObject
     {
         public string subtitles;

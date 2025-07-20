@@ -149,6 +149,14 @@ namespace Dialog
     }
 
     [Serializable]
+    public class ConditionalNextLine
+    {
+        public string key; // PlayerPrefs
+        public string value; // PlayerPrefs
+        public NarrationDialogLine line;
+    }
+
+    [Serializable]
     [CreateAssetMenu(fileName = "NarrationLine", menuName = "Line")]
     public class NarrationDialogLine : ScriptableObject
     {
@@ -166,6 +174,7 @@ namespace Dialog
         public PlayerChoice[] playerOptions;
         public EmotionalReactionLine[] playerReactions;
         public NarrationDialogLine nextDialogueLine;
+        public ConditionalNextLine[] conditionalNextLines;
         public NarrationDialogLine[] randomizedDialogLines;
         public ObjectReferringLine[] objectReferringDialogLines;
 

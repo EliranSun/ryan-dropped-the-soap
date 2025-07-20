@@ -4,10 +4,10 @@ using UnityEngine;
 namespace Dialog
 {
     [Serializable]
-    public class Options
+    public class Option
     {
         public string text;
-        public DialogLine response;
+        [SerializeField] public DialogLine response;
     }
 
     [Serializable]
@@ -15,15 +15,20 @@ namespace Dialog
     {
         public string text;
         public AudioClip audioClip;
-
         public ActorName actor;
+        public Option[] playerOptions;
 
-        // public DialogLine nextLine;
-        public Options playerOptions;
+        [SerializeField] public DialogLine nextLine;
     }
 
     public class DialogLines : MonoBehaviour
     {
         [SerializeField] private DialogLine[] lines;
+
+        // FIXME: Maximum depth exceeded
+        public DialogLine[] GetLines()
+        {
+            return lines;
+        }
     }
 }
