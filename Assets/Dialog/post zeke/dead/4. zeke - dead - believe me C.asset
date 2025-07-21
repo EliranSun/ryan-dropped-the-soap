@@ -17,12 +17,13 @@ MonoBehaviour:
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
   voicedLines:
-  - text: 
+  - text: "You knew that, you saw that. So please\u2014Don't judge me."
     clip: {fileID: 8300000, guid: 66d643239d43dfb428c981886c9d862f, type: 3}
     gender: 0
+  nextDialogueLine: {fileID: 11400000, guid: fc85a7b7122edcf4d91ff4d7028fe3a5, type: 2}
   playerOptions: []
   playerReactions: []
-  nextDialogueLine: {fileID: 0}
+  conditionalNextLines: []
   randomizedDialogLines: []
   objectReferringDialogLines: []
   wait: 0.5

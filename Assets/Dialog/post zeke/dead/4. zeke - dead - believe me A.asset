@@ -17,12 +17,13 @@ MonoBehaviour:
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
   voicedLines:
-  - text: 
+  - text: "It was my choice\u2014maybe the only real choice I ever had. "
     clip: {fileID: 8300000, guid: 62e3a6c30fbd35947808845dba4eec78, type: 3}
     gender: 0
+  nextDialogueLine: {fileID: 11400000, guid: 8b71f820d4e9aa74187b5620bb5b2e55, type: 2}
   playerOptions: []
   playerReactions: []
-  nextDialogueLine: {fileID: 0}
+  conditionalNextLines: []
   randomizedDialogLines: []
   objectReferringDialogLines: []
   wait: 0.5

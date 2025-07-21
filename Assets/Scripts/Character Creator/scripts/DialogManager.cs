@@ -208,7 +208,7 @@ namespace Character_Creator.scripts
             if (_currentDialogue.playerReactions?.Length > 0)
                 return;
 
-            if (_currentDialogue.randomizedDialogLines?.Length > 0)
+            if (_currentDialogue.randomizedDialogLines.Length > 0)
             {
                 var randomIndex = Random.Range(0, _currentDialogue.randomizedDialogLines.Length);
                 UpdateDialogState(_currentDialogue.randomizedDialogLines[randomIndex]);

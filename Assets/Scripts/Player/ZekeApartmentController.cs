@@ -14,6 +14,8 @@ namespace Player
 
         private void Start()
         {
+            PlayerPrefs.SetString("Zeke Scene End", "Shout");
+            
             var zekeSceneOutcome = PlayerPrefs.GetString("Zeke Scene End", "");
             _isZekeSceneEnded = zekeSceneOutcome != "";
             var storedPainting = PlayerPrefs.GetString("PlayerHoldingPainting", "");

@@ -17,12 +17,13 @@ MonoBehaviour:
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
   voicedLines:
-  - text: 
+  - text: I know I did the right thing.
     clip: {fileID: 8300000, guid: b337fd54c342a8d4db5fa9ce4c8ecd4a, type: 3}
     gender: 0
+  nextDialogueLine: {fileID: 11400000, guid: d2e023dff1375ed4e82e01ebea5842a0, type: 2}
   playerOptions: []
   playerReactions: []
-  nextDialogueLine: {fileID: 0}
+  conditionalNextLines: []
   randomizedDialogLines: []
   objectReferringDialogLines: []
   wait: 0.5

@@ -10,19 +10,42 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
-  m_Name: 3. zeke - alive - your name C
+  m_Name: 1. zeke - dead - loses meaning C
   m_EditorClassIdentifier: 
   playerName: 
   waitBeforeLine: 0
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
   voicedLines:
-  - text: "Who would've thought a stranger\u2014a neighbor, even\u2014would be the
-      voice of reason I needed?"
-    clip: {fileID: 8300000, guid: 9a884e2b7a3ea6648bcdbdc4a3ca9a1a, type: 3}
+  - text: Did you... smell something from the hallway? Is that why you knocked?
+    clip: {fileID: 8300000, guid: 6c87a194877c08c4686b96301280b48b, type: 3}
     gender: 0
-  nextDialogueLine: {fileID: 11400000, guid: 570430e0d6884e640bf5c065bb51e82a, type: 2}
-  playerOptions: []
+  nextDialogueLine: {fileID: 0}
+  playerOptions:
+  - text: ...
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: e67e85d3c19eb444f801edc5e2301363, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: I'm sorry
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 0}
+    actionAfterPlayerChoice: 0
+  - text: Why
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 0}
+    actionAfterPlayerChoice: 0
+  - text: Ghost
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   conditionalNextLines: []
   randomizedDialogLines: []

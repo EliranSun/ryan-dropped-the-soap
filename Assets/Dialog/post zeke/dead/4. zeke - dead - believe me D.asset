@@ -17,12 +17,25 @@ MonoBehaviour:
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
   voicedLines:
-  - text: 
+  - text: Do you understand, at least? Can you... can you grasp why I did it?
     clip: {fileID: 8300000, guid: 70640b0c1ae8a934b883889fbe010b43, type: 3}
     gender: 0
-  playerOptions: []
-  playerReactions: []
   nextDialogueLine: {fileID: 0}
+  playerOptions:
+  - text: Yes
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 09eb0e9ce06834847b7d7123d64d310c, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: No
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: ccaf2f740f0c54948b42464ff1d7a94d, type: 2}
+    actionAfterPlayerChoice: 0
+  playerReactions: []
+  conditionalNextLines: []
   randomizedDialogLines: []
   objectReferringDialogLines: []
   wait: 0.5
