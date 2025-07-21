@@ -31,7 +31,7 @@ namespace Player
             if (gun) gun.SetActive(false);
 
             SetPlayerBoxState();
-            SetPlayerHoldingPainting();
+            // SetPlayerHoldingPainting();
         }
 
         private void Update()

@@ -171,9 +171,9 @@ namespace Dialog
         public Sprite overlayImageSprite;
 
         public VoicedLine[] voicedLines;
+        public NarrationDialogLine nextDialogueLine;
         public PlayerChoice[] playerOptions;
         public EmotionalReactionLine[] playerReactions;
-        public NarrationDialogLine nextDialogueLine;
         public ConditionalNextLine[] conditionalNextLines;
         public NarrationDialogLine[] randomizedDialogLines;
         public ObjectReferringLine[] objectReferringDialogLines;
