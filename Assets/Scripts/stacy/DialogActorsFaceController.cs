@@ -10,7 +10,7 @@ namespace stacy
     [Serializable]
     public class ActorReactionImage
     {
-        public Reaction reaction;
+        public Reaction reaction;   
         public Sprite image;
     }
 

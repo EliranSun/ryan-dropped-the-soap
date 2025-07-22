@@ -207,5 +207,13 @@
     NpcAtPlayerDoor,
     AddPointOfInterest,
     NpcGoTo,
-    ExitPlayerApartment
+    ExitPlayerApartment,
+    
+    PaintingChosenKiss,
+    PaintingChosenComposition,
+    PaintingChosenWanderer,
+    PaintingChosenNighthawks,
+    PaintingChosenStarryNight,
+    PaintingChosenAngelus,
+    PaintingChosenImpression
 }

@@ -1,3 +1,4 @@
+using System.Linq;
 using Dialog;
 using UnityEngine;
 
@@ -35,6 +36,16 @@ namespace Player
             painting.transform.localRotation = Quaternion.identity;
             painting.GetComponent<SpriteRenderer>().sortingOrder = 10;
             PlayerPrefs.SetString("PlayerHoldingPainting", painting.name);
+        }
+
+        public void OnNotify(GameEventData gameEvent)
+        {
+            if (gameEvent.Name.ToString().StartsWith("PaintingChosen"))
+            {
+                var paintingName = gameEvent.Name.ToString().Split("PaintingChosen").Last();
+                var painting = paintings.First(x => x.name == paintingName);
+                painting.gameObject.SetActive(false);
+            }
         }
     }
 }

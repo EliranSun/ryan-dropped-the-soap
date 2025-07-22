@@ -67,6 +67,7 @@ namespace Character_Creator.scripts
             if (playerName != "" && !PrefetchDialogLines.Instance.isFetched)
                 yield return StartCoroutine(PrefetchDialogLines.Instance.FetchAndPopulatePlayerLines());
 
+            TriggerAnAct(_currentDialogue.actionBeforeLine);
             Invoke(nameof(ReadCurrentLine), _currentDialogue.waitBeforeLine);
         }
 
@@ -114,9 +115,6 @@ namespace Character_Creator.scripts
         {
             if (!_currentDialogue)
                 return;
-
-            if (_currentDialogue.actionBeforeLine != GameEvents.None)
-                TriggerAnAct(_currentDialogue.actionBeforeLine);
 
             var line = GetLineByGender(_currentDialogue);
 
@@ -208,14 +206,6 @@ namespace Character_Creator.scripts
             if (_currentDialogue.playerReactions?.Length > 0)
                 return;
 
-            if (_currentDialogue.randomizedDialogLines.Length > 0)
-            {
-                var randomIndex = Random.Range(0, _currentDialogue.randomizedDialogLines.Length);
-                UpdateDialogState(_currentDialogue.randomizedDialogLines[randomIndex]);
-                ReadCurrentLine();
-                return;
-            }
-
             if (_currentDialogue.objectReferringDialogLines?.Length > 0)
             {
                 var choiceType = _currentDialogue.objectReferringDialogLines[0].objectType;
@@ -230,6 +220,7 @@ namespace Character_Creator.scripts
                     if (dialogLine.line)
                     {
                         UpdateDialogState(dialogLine.line);
+                        TriggerAnAct(_currentDialogue.actionBeforeLine);
                         ReadCurrentLine();
                     }
                 }
@@ -241,6 +232,7 @@ namespace Character_Creator.scripts
             {
                 UpdateDialogState(_triggeredDialogueLine);
                 _triggeredDialogueLine = null;
+                TriggerAnAct(_currentDialogue.actionBeforeLine);
                 ReadCurrentLine();
             }
         }
@@ -292,6 +284,7 @@ namespace Character_Creator.scripts
             else
             {
                 HandlePlayerNameLines();
+                TriggerAnAct(_currentDialogue.actionBeforeLine);
                 ReadCurrentLine();
             }
         }
@@ -372,11 +365,8 @@ namespace Character_Creator.scripts
                 return;
 
             UpdateDialogState(line);
-
-            if (line.waitBeforeLine > 0)
-                Invoke(nameof(ReadCurrentLine), line.waitBeforeLine);
-            else
-                ReadCurrentLine();
+            TriggerAnAct(line.actionBeforeLine);
+            Invoke(nameof(ReadCurrentLine), line.waitBeforeLine);
         }
 
         private void FastForwardDialog()
@@ -436,7 +426,16 @@ namespace Character_Creator.scripts
                 _audioSource.Stop();
                 _audioSource.clip = null;
 
-                PostDialogAdvanceActions();
+                // PostDialogAdvanceActions();
+
+                if (_currentDialogue.randomizedDialogLines.Length > 0)
+                {
+                    var randomIndex = Random.Range(0, _currentDialogue.randomizedDialogLines.Length);
+                    UpdateDialogState(_currentDialogue.randomizedDialogLines[randomIndex]);
+                    TriggerAnAct(_currentDialogue.actionBeforeLine);
+                    Invoke(nameof(ReadCurrentLine), _currentDialogue.waitBeforeLine);
+                    return;
+                }
 
                 Notify(GameEvents.LineNarrationEnd, new
                 {
@@ -448,7 +447,8 @@ namespace Character_Creator.scripts
                 if (_currentDialogue.nextDialogueLine)
                 {
                     UpdateDialogState(_currentDialogue.nextDialogueLine);
-                    ReadCurrentLine();
+                    TriggerAnAct(_currentDialogue.actionBeforeLine);
+                    Invoke(nameof(ReadCurrentLine), _currentDialogue.waitBeforeLine);
                 }
 
                 if (_currentDialogue.conditionalNextLines.Length > 0)
@@ -460,7 +460,8 @@ namespace Character_Creator.scripts
                     if (nextLine)
                     {
                         UpdateDialogState(nextLine);
-                        ReadCurrentLine();
+                        TriggerAnAct(_currentDialogue.actionBeforeLine);
+                        Invoke(nameof(ReadCurrentLine), _currentDialogue.waitBeforeLine);
                     }
                 }
             }

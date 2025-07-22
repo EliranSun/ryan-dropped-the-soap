@@ -209,6 +209,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1315841415592253536, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
+      propertyPath: m_Name
+      value: Nighthawks
+      objectReference: {fileID: 0}
+    - target: {fileID: 3314600478009426107, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
+      propertyPath: m_Name
+      value: Composition
+      objectReference: {fileID: 0}
+    - target: {fileID: 3603166748842104883, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
+      propertyPath: m_Name
+      value: Impression
+      objectReference: {fileID: 0}
+    - target: {fileID: 4194305550867804385, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
+      propertyPath: m_Name
+      value: Kiss
+      objectReference: {fileID: 0}
+    - target: {fileID: 4289040020389242892, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
+      propertyPath: m_Name
+      value: Angelus
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238118593999080823, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
+      propertyPath: m_Name
+      value: StarryNight
+      objectReference: {fileID: 0}
+    - target: {fileID: 6508700209800799102, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
+      propertyPath: m_Name
+      value: Wanderer
+      objectReference: {fileID: 0}
     - target: {fileID: 7186481640470634458, guid: b73a36cdc45a34054884cd608e7cf999, type: 3}
       propertyPath: m_Name
       value: Paintings
@@ -288,8 +316,36 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 1238844275}
+    - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: OnNotify
+      objectReference: {fileID: 0}
+    - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: OnNotify
+      objectReference: {fileID: 0}
+    - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: stacy.DialogActorsFaceController, StacyScriptAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: Character_Creator.scripts.PlayerOptionsController, CharacterCreatorScriptsAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: Player.ZekeApartmentController, PlayerScriptsAssembly
       objectReference: {fileID: 0}
     - target: {fileID: 1311371035374852291, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       propertyPath: finalState.dialogLineToPlay
