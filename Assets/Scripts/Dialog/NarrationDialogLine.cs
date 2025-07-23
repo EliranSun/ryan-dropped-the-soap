@@ -33,6 +33,7 @@ namespace Dialog
     public class VoicedLine
     {
         public string text;
+        public string translation;
         public AudioClip clip;
         public CharacterType gender;
     }

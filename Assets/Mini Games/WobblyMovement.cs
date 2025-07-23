@@ -75,7 +75,6 @@ namespace Mini_Games
         {
             if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Collectible Item"))
             {
-                print("Collision enter with: " + collision.gameObject.name + ";" + collision.gameObject.tag);
                 _isOnGround = true;
             }
         }

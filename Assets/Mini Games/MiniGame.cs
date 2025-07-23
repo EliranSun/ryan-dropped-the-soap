@@ -14,6 +14,7 @@ namespace Mini_Games
         private TextMeshProUGUI timerTextContainer;
 
         [SerializeField] private int timer = 60;
+        [SerializeField] public GameObject mainCamera;
         [SerializeField] public GameObject miniGameContainer;
         [SerializeField] private GameObject hideOnStart;
         [SerializeField] public GameObject inGameTrigger;
@@ -21,6 +22,7 @@ namespace Mini_Games
         [Header("Game dialog responses")] [SerializeField]
         public TypedDialogLine[] dialogLines;
 
+        public int score;
         public bool isGameActive;
 
         private float _currentTime;
@@ -50,13 +52,11 @@ namespace Mini_Games
         {
             _currentTime -= Time.deltaTime;
 
-            // Update the timer display
             var timeRemaining = Mathf.CeilToInt(_currentTime);
             if (timerTextContainer) timerTextContainer.text = timeRemaining.ToString();
 
-            // Check if timer has reached zero
-            if (_currentTime <= 0)
-                CloseMiniGame();
+            // if (_currentTime <= 0)
+            //     CloseMiniGame(score > 0);
         }
 
         protected virtual void StartMiniGame()
@@ -64,9 +64,16 @@ namespace Mini_Games
             _currentTime = timer;
             _isTimerRunning = true;
 
-            if (timerTextContainer) timerTextContainer.text = timer.ToString();
-            if (miniGameContainer) miniGameContainer.SetActive(true);
             if (hideOnStart) hideOnStart.SetActive(false);
+            if (timerTextContainer) timerTextContainer.text = timer.ToString();
+            if (miniGameContainer)
+            {
+                miniGameContainer.SetActive(true);
+                var newPosition = mainCamera.transform.position;
+                newPosition.z = miniGameContainer.transform.position.z;
+                miniGameContainer.transform.position = newPosition;
+            }
+
 
             Notify(GameEvents.MiniGameStart);
         }
@@ -84,7 +91,7 @@ namespace Mini_Games
             Notify(GameEvents.MiniGameClosed);
 
 
-            // Get a random dialog line based on game outcome
+            // Get a random dialog line based on the game outcome
             NarrationDialogLine dialogLine = null;
             if (dialogLines != null)
                 dialogLine = GetRandomLine(
@@ -94,8 +101,8 @@ namespace Mini_Games
             // Trigger the dialog line if one was found
             if (dialogLine != null) Notify(GameEvents.TriggerSpecificDialogLine, dialogLine);
 
-            // Notify about game outcome
-            Notify(isGameWon ? GameEvents.MiniGameWon : GameEvents.MiniGameLost);
+            // Notify about the game outcome
+            Notify(isGameWon ? GameEvents.MiniGameWon : GameEvents.MiniGameLost, score);
         }
 
         public virtual void OnNotify(GameEventData eventData)

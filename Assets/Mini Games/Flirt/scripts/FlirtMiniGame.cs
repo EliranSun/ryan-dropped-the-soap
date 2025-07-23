@@ -19,8 +19,6 @@ namespace Mini_Games.Flirt.scripts
 
     public class FlirtMiniGame : MiniGame
     {
-        [Header("Flirt Game Settings")] public int score = 50;
-
         [SerializeField] private ActorName actorName = ActorName.Morgan;
         [SerializeField] private NarrationDialogLine[] initialResponses;
         [SerializeField] private NarrationDialogLine emptyResponse;
@@ -73,6 +71,7 @@ namespace Mini_Games.Flirt.scripts
                     if (newScore != 0)
                     {
                         score = newScore;
+                        print($"Flirt mini game new score: {newScore}");
                         scoreTextContainer.text = score.ToString();
 
                         if (score is <= 0 or >= 100)
@@ -104,6 +103,7 @@ namespace Mini_Games.Flirt.scripts
 
         private void EndGame()
         {
+            print($"Closing the game with score {score}");
             CloseMiniGame(score > 0);
         }
 

@@ -19,11 +19,19 @@ MonoBehaviour:
   voicedLines:
   - text: Anyway, make sure to make note of that clock up there. I want everything
       COMPLETE by the end of the day. Is that OK?
+    translation: " \u05D1 \u05DB \u05DC   \u05DE \u05E7 \u05E8 \u05D4 ,   \u05EA
+      \u05D3 \u05D0 \u05D2   \u05DC \u05E9 \u05D9 \u05DD   \u05DC \u05D1   \u05DC
+      \u05D6 \u05DE \u05DF   \u05E9 \u05DD   \u05DC \u05DE \u05E2 \u05DC \u05D4 .  
+      \u05D0 \u05E0 \u05D9   \u05E8 \u05D5 \u05E6 \u05D4   \u05E9 \u05DB \u05DC  
+      \u05D4 \u05DE \u05E9 \u05D9 \u05DE \u05D5 \u05EA   \u05D9 \u05D5 \u05E9 \u05DC
+      \u05DE \u05D5   \u05E2 \u05D3   \u05E1 \u05D5 \u05E3   \u05D4 \u05D9 \u05D5
+      \u05DD !   \u05D6 \u05D4   \u05D1 \u05E1 \u05D3 \u05E8 ?"
     clip: {fileID: 8300000, guid: aa6de2ce3c828544a8b94b4b102bba55, type: 3}
     gender: 0
+  nextDialogueLine: {fileID: 0}
   playerOptions: []
   playerReactions: []
-  nextDialogueLine: {fileID: 0}
+  conditionalNextLines: []
   randomizedDialogLines: []
   objectReferringDialogLines: []
   wait: 0.5
@@ -31,4 +39,10 @@ MonoBehaviour:
   actionBeforeLine: 0
   actionAfterLine: 98
   actorReaction: 0
-  blurAudioLevel: 0
+  angerLevel: 0
+  toggleLineCondition: {fileID: 0}
+  lineCondition:
+    condition: 0
+    isMet: 0
+  blurAudio: 0
+  actionNumberData: 0

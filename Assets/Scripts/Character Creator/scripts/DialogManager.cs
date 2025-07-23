@@ -128,6 +128,13 @@ namespace Character_Creator.scripts
                 .Replace("{playerName}", PlayerData.GetPlayerName())
                 .Replace("{partnerName}", PlayerData.GetPartnerName());
 
+            narratorText.isRightToLeftText = line.translation != "";
+            // Unity messes up Hebrew characters even with RTL enabled, so 
+            // the hack is to insert space after each character, then condense character spacing
+            narratorText.characterSpacing = line.translation == "" ? 0 : -12.99f;
+
+            if (line.translation != "") narratorText.text = line.translation;
+
             if (_currentDialogue.overlayImageSprite)
             {
                 print("Fading image");

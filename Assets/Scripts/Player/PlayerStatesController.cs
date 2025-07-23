@@ -31,7 +31,7 @@ namespace Player
             if (gun) gun.SetActive(false);
 
             SetPlayerBoxState();
-            // SetPlayerHoldingPainting();
+            SetPlayerHoldingPainting();
         }
 
         private void Update()
@@ -46,7 +46,8 @@ namespace Player
         private void SetPlayerHoldingPainting()
         {
             var storedPainting = PlayerPrefs.GetString("PlayerHoldingPainting", "");
-            if (storedPainting != "") paintings.First(p => p.name == storedPainting).SetActive(true);
+            if (storedPainting != "")
+                paintings.First(p => p.name == storedPainting).SetActive(true);
         }
 
         private void PositionPlayer()

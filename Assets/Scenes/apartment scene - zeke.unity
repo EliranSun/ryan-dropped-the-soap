@@ -452,9 +452,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3392433421551887445, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+      propertyPath: m_Name
+      value: Wanderer
+      objectReference: {fileID: 0}
+    - target: {fileID: 4464858858678094428, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+      propertyPath: m_Name
+      value: StarryNight
+      objectReference: {fileID: 0}
+    - target: {fileID: 5136022718899494680, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+      propertyPath: m_Name
+      value: Impression
+      objectReference: {fileID: 0}
+    - target: {fileID: 5675220864456503079, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+      propertyPath: m_Name
+      value: Angelus
+      objectReference: {fileID: 0}
+    - target: {fileID: 5724918242217048010, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+      propertyPath: m_Name
+      value: Kiss
+      objectReference: {fileID: 0}
+    - target: {fileID: 6392868402276009872, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+      propertyPath: m_Name
+      value: Composition
+      objectReference: {fileID: 0}
     - target: {fileID: 6862535366279046487, guid: 18bc23390df011442b819617737dd1bd, type: 3}
       propertyPath: m_Name
       value: "\U0001F636 Player"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7423368876499607371, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+      propertyPath: m_Name
+      value: Nighthawks
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -464,6 +492,41 @@ PrefabInstance:
 --- !u!4 &965814320 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2684897507050103084, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+  m_PrefabInstance: {fileID: 965814319}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &965814321 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3392433421551887445, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+  m_PrefabInstance: {fileID: 965814319}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &965814322 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4464858858678094428, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+  m_PrefabInstance: {fileID: 965814319}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &965814323 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5136022718899494680, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+  m_PrefabInstance: {fileID: 965814319}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &965814324 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5675220864456503079, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+  m_PrefabInstance: {fileID: 965814319}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &965814325 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5724918242217048010, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+  m_PrefabInstance: {fileID: 965814319}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &965814326 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6392868402276009872, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+  m_PrefabInstance: {fileID: 965814319}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &965814327 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7423368876499607371, guid: 18bc23390df011442b819617737dd1bd, type: 3}
   m_PrefabInstance: {fileID: 965814319}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &978118901 stripped
@@ -606,6 +669,14 @@ MonoBehaviour:
   - {fileID: 2031818841}
   - {fileID: 233683778}
   - {fileID: 2126596824}
+  playerPaintings:
+  - {fileID: 965814327}
+  - {fileID: 965814326}
+  - {fileID: 965814325}
+  - {fileID: 965814324}
+  - {fileID: 965814323}
+  - {fileID: 965814322}
+  - {fileID: 965814321}
   player: {fileID: 965814320}
 --- !u!1 &1320149742 stripped
 GameObject:

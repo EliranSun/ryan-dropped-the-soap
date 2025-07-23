@@ -192,7 +192,7 @@ namespace Dialog.Scripts
             _lastPlayerDataType = lastPlayerDataType;
             _score = score;
 
-            print("OnSpeak:" + _choice);
+            print($"OnSpeak: {_choice}; Score: {score}");
         }
 
         public void KillThoughtsAndSayings()
