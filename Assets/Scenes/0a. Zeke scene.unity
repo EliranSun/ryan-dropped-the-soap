@@ -946,6 +946,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1770348921}
   - {fileID: 1695868102}
   - {fileID: 7202907}
   - {fileID: 468551040}
@@ -1007,8 +1008,8 @@ Canvas:
   m_GameObject: {fileID: 158297798}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 937176693}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -1019,7 +1020,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 16
   m_TargetDisplay: 0
 --- !u!1 &184026649
 GameObject:
@@ -2949,8 +2950,8 @@ Canvas:
   m_GameObject: {fileID: 478838317}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 937176693}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -2961,7 +2962,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 40
   m_TargetDisplay: 0
 --- !u!1 &483327927
 GameObject:
@@ -4696,7 +4697,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 124, y: 53}
+  m_AnchoredPosition: {x: 67, y: 50}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &669070334
@@ -7215,7 +7216,7 @@ Transform:
   m_GameObject: {fileID: 987681571}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -578.2355, y: -283.25723, z: 4.890483}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7299,7 +7300,7 @@ MonoBehaviour:
   - text: where are you.
     choices:
     - text: where else would i be
-      score: -10
+      score: 10
       actorLine: {fileID: 11400000, guid: 6126cdbc74e449446922cd1396cb34d4, type: 2}
     - text: work
       score: 10
@@ -7308,7 +7309,7 @@ MonoBehaviour:
       score: 20
       actorLine: {fileID: 11400000, guid: 6126cdbc74e449446922cd1396cb34d4, type: 2}
     - text: work haha
-      score: -30
+      score: 10
       actorLine: {fileID: 11400000, guid: a736915d30a2b4442ae20699db131d04, type: 2}
   - text: When are you coming back home.
     choices:
@@ -7319,10 +7320,10 @@ MonoBehaviour:
       score: 1
       actorLine: {fileID: 11400000, guid: 7b0ba1f770886604880c02bbb7f04760, type: 2}
     - text: 20 like we said
-      score: -20
+      score: -10
       actorLine: {fileID: 11400000, guid: 58fd104cedb73b142b1dcee4dc9d280f, type: 2}
     - text: 20 is that ok
-      score: -50
+      score: -20
       actorLine: {fileID: 11400000, guid: f11862d5c4945c14781132b69c932dbe, type: 2}
     - text: late
       score: 10
@@ -7333,30 +7334,30 @@ MonoBehaviour:
   - text: Did you buy the groceries.
     choices:
     - text: shit no
-      score: -50
+      score: 20
       actorLine: {fileID: 11400000, guid: 6126cdbc74e449446922cd1396cb34d4, type: 2}
     - text: no
-      score: -20
+      score: 20
       actorLine: {fileID: 11400000, guid: e5e5c9cd80c022344aa889765d2d9edc, type: 2}
     - text: yes
-      score: 10
+      score: -10
       actorLine: {fileID: 11400000, guid: df8c3c5f5da2e23489e6d5771b0d29a0, type: 2}
     - text: of course
-      score: 20
+      score: -20
       actorLine: {fileID: 11400000, guid: 58fd104cedb73b142b1dcee4dc9d280f, type: 2}
     - text: didnt feel like it
-      score: 50
+      score: 20
       actorLine: {fileID: 11400000, guid: 099d22b60d9d1654fad196acb366f3cf, type: 2}
   - text: Are you staying late today.
     choices:
     - text: yes
-      score: 50
+      score: 20
       actorLine: {fileID: 11400000, guid: a736915d30a2b4442ae20699db131d04, type: 2}
     - text: no
       score: -10
       actorLine: {fileID: 11400000, guid: 58fd104cedb73b142b1dcee4dc9d280f, type: 2}
     - text: no i promise
-      score: -40
+      score: -20
       actorLine: {fileID: 11400000, guid: f11862d5c4945c14781132b69c932dbe, type: 2}
   flashSpeed: 3
   minOpacity: 0
@@ -8931,7 +8932,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 31, y: 86}
+  m_AnchoredPosition: {x: -21, y: 119}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1310000824
@@ -11572,14 +11573,14 @@ RectTransform:
   m_GameObject: {fileID: 1695868101}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5.546117, z: 1.2135923}
+  m_LocalScale: {x: 12, y: 6.75, z: 1.477024}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 158297799}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -84.6}
+  m_AnchoredPosition: {x: 0, y: -44.7}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1695868103
@@ -11602,7 +11603,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 362cb50f5a96ade47a0b0b6442af19b0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7dfef065fb7b01445b9a407d8da40c3f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12273,6 +12274,81 @@ AudioLowPassFilter:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1770348920
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1770348921}
+  - component: {fileID: 1770348923}
+  - component: {fileID: 1770348922}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1770348921
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1770348920}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 8.399999, y: 4.7249994, z: 1.0339167}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 158297799}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1770348922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1770348920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0.9932153, b: 0.8632076, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1770348923
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1770348920}
+  m_CullTransparentMesh: 1
 --- !u!1 &1790484763
 GameObject:
   m_ObjectHideFlags: 0
