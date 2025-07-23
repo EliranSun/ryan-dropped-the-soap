@@ -43,6 +43,7 @@ namespace Player
             {
                 var scenario = postSceneScenarios.First(scenario => scenario.name == sceneOutcome);
                 Notify(GameEvents.TriggerSpecificDialogLine, scenario.line);
+                return;
             }
 
             // var painting = items[Random.Range(0, items.Length)];
@@ -51,6 +52,7 @@ namespace Player
             // painting.transform.localRotation = Quaternion.identity;
             // painting.GetComponent<SpriteRenderer>().sortingOrder = 10;
             // PlayerPrefs.SetString("PlayerHoldingItem", painting.name);
+            Notify(GameEvents.TriggerSpecificDialogLine, preSceneInitLine);
         }
 
         public void OnNotify(GameEventData gameEvent)
