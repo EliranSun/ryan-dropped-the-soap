@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using Dialog;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Player
 {
@@ -26,9 +25,6 @@ namespace Player
 
         private void Start()
         {
-            // TODO: Move this to zeke scene end
-            // PlayerPrefs.SetString(sceneEndKey, "Shout");
-
             var sceneOutcome = PlayerPrefs.GetString(sceneEndKey, "");
             _isSceneEnded = sceneOutcome != "";
             var hasItem = PlayerPrefs.GetInt(itemKey, 0);
@@ -36,8 +32,12 @@ namespace Player
             print($"SCENE OUTCOME {sceneOutcome}");
 
             if (hasItem != 0)
+            {
                 // the player already has an item
+                var apartmentItem = items.First(x => x.name == itemKey);
+                apartmentItem.gameObject.SetActive(false);
                 return;
+            }
 
             if (_isSceneEnded)
             {
@@ -45,12 +45,12 @@ namespace Player
                 Notify(GameEvents.TriggerSpecificDialogLine, scenario.line);
             }
 
-            var painting = items[Random.Range(0, items.Length)];
-            painting.gameObject.transform.parent = player.transform;
-            painting.transform.localPosition = new Vector3(0, 2.5f, 0);
-            painting.transform.localRotation = Quaternion.identity;
-            painting.GetComponent<SpriteRenderer>().sortingOrder = 10;
-            PlayerPrefs.SetString("PlayerHoldingItem", painting.name);
+            // var painting = items[Random.Range(0, items.Length)];
+            // painting.gameObject.transform.parent = player.transform;
+            // painting.transform.localPosition = new Vector3(0, 2.5f, 0);
+            // painting.transform.localRotation = Quaternion.identity;
+            // painting.GetComponent<SpriteRenderer>().sortingOrder = 10;
+            // PlayerPrefs.SetString("PlayerHoldingItem", painting.name);
         }
 
         public void OnNotify(GameEventData gameEvent)

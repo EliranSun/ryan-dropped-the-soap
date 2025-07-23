@@ -11,7 +11,7 @@ namespace Player
         [SerializeField] private GameObject playerPlant;
         [SerializeField] private Camera mainCamera;
         [SerializeField] private GameObject gun;
-        [SerializeField] private GameObject[] paintings;
+        [SerializeField] private GameObject[] items;
         [SerializeField] private bool resetPlayerPrefs;
         private bool _allowGun;
 
@@ -31,7 +31,7 @@ namespace Player
             if (gun) gun.SetActive(false);
 
             SetPlayerBoxState();
-            SetPlayerHoldingPainting();
+            SetPlayerHoldingItem();
         }
 
         private void Update()
@@ -43,11 +43,15 @@ namespace Player
             }
         }
 
-        private void SetPlayerHoldingPainting()
+        private void SetPlayerHoldingItem()
         {
-            var storedPainting = PlayerPrefs.GetString("PlayerHoldingItem", "");
-            if (paintings is { Length: > 0 } && storedPainting != "")
-                paintings.First(p => p.name == storedPainting).SetActive(true);
+            var storedItem = PlayerPrefs.GetString("PlayerHoldingItem", "");
+            if (storedItem == "")
+                return;
+
+            print($"Stored item {storedItem}");
+            var item = items.FirstOrDefault(p => p.name == storedItem);
+            if (item) item.SetActive(true);
         }
 
         private void PositionPlayer()
