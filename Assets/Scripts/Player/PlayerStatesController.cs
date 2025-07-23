@@ -45,8 +45,8 @@ namespace Player
 
         private void SetPlayerHoldingPainting()
         {
-            var storedPainting = PlayerPrefs.GetString("PlayerHoldingPainting", "");
-            if (paintings.Length > 0 && storedPainting != "")
+            var storedPainting = PlayerPrefs.GetString("PlayerHoldingItem", "");
+            if (paintings is { Length: > 0 } && storedPainting != "")
                 paintings.First(p => p.name == storedPainting).SetActive(true);
         }
 
@@ -121,7 +121,7 @@ namespace Player
                     PlayerPrefs.SetString($"{eventData.Name}Position", $"{itemPosition.x},{itemPosition.y}");
 
                     if (eventData.Name == GameEvents.PlayerPlacePainting)
-                        PlayerPrefs.DeleteKey("PlayerHoldingPainting");
+                        PlayerPrefs.DeleteKey("PlayerHoldingItem");
                     break;
                 }
             }
