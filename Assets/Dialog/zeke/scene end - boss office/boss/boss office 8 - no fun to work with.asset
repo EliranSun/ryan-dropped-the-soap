@@ -18,8 +18,10 @@ MonoBehaviour:
   overlayImageSprite: {fileID: 0}
   voicedLines:
   - text: ...
+    translation: 
     clip: {fileID: 8300000, guid: 0c303a173dffcdc4ab40b8f46a21521e, type: 3}
     gender: 0
+  nextDialogueLine: {fileID: 11400000, guid: 1a07c97b12c6d9042bc99f81a7b292e8, type: 2}
   playerOptions:
   - text: SHOUT
     type: 0
@@ -27,32 +29,8 @@ MonoBehaviour:
     choiceDataOption: 0
     next: {fileID: 11400000, guid: 1db6ae882cbc0d6499c21234be82feba, type: 2}
     actionAfterPlayerChoice: 0
-  - text: STUB
-    type: 0
-    choiceDataType: 0
-    choiceDataOption: 0
-    next: {fileID: 0}
-    actionAfterPlayerChoice: 0
-  - text: WALK AWAY
-    type: 0
-    choiceDataType: 0
-    choiceDataOption: 0
-    next: {fileID: 0}
-    actionAfterPlayerChoice: 0
-  - text: PUNCH
-    type: 0
-    choiceDataType: 0
-    choiceDataOption: 0
-    next: {fileID: 0}
-    actionAfterPlayerChoice: 0
-  - text: WALK AWAY
-    type: 0
-    choiceDataType: 0
-    choiceDataOption: 0
-    next: {fileID: 0}
-    actionAfterPlayerChoice: 0
   playerReactions: []
-  nextDialogueLine: {fileID: 11400000, guid: 1a07c97b12c6d9042bc99f81a7b292e8, type: 2}
+  conditionalNextLines: []
   randomizedDialogLines: []
   objectReferringDialogLines: []
   wait: 0.5
@@ -61,3 +39,9 @@ MonoBehaviour:
   actionAfterLine: 104
   actorReaction: 0
   angerLevel: 0.3
+  toggleLineCondition: {fileID: 0}
+  lineCondition:
+    condition: 0
+    isMet: 0
+  blurAudio: 0
+  actionNumberData: 0

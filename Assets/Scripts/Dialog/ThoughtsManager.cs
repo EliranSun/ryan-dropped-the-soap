@@ -154,7 +154,7 @@ namespace Dialog.Scripts
             DisableSayings();
 
             _choice = "";
-            // Invoke(nameof(RestartSayingBottomCollider), 1f);
+            Invoke(nameof(EnableSayings), 5f);
         }
 
         private void DisableSayings()

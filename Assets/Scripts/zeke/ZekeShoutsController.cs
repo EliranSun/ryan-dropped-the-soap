@@ -3,7 +3,7 @@ using Dialog.Scripts;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Scenes.ZEKE.scripts
+namespace zeke
 {
     public class ZekeShoutsController : ObserverSubject
     {
@@ -32,21 +32,20 @@ namespace Scenes.ZEKE.scripts
                 return;
 
             _shoutsCount++;
-            print("SHOUTS % " + _shoutsCount % zekeShoutsSprites.Length);
             StartCoroutine(ThinkRandomThought());
 
-            if (_shoutsCount % zekeShoutsSprites.Length == 0)
+            if (_shoutsCount % 4 == 0) // every X
             {
                 _activeSpriteIndex++;
 
-                if (_activeSpriteIndex >= zekeShoutsSprites.Length / 2)
+                if (_activeSpriteIndex >= zekeShoutsSprites.Length)
                 {
+                    // last
                     StopAllCoroutines();
                     Notify(GameEvents.KillThoughtsAndSayings);
                     _isInitialized = false;
                     zekeShoutsImage.sprite = zekeShoutsSprites[0];
                     Invoke(nameof(CloseSequence), 5f);
-                    // TODO: notify the final piece of dialog
                     return;
                 }
 

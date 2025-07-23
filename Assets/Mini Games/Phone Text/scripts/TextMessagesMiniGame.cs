@@ -16,10 +16,10 @@ namespace Mini_Games.Phone_Text.scripts
 
     public class TextMessagesMiniGame : MiniGame
     {
-        private const int InitialScore = -50;
-
-        [Header("Game Settings")] [SerializeField]
-        private int score = InitialScore;
+        // private const int InitialScore = -50;
+        //
+        // [Header("Game Settings")] [SerializeField]
+        // private int score = InitialScore;
 
         [Header("UI References")] [SerializeField]
         private float messageSpacing = 20f;

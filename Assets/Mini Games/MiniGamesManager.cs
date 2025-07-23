@@ -25,7 +25,7 @@ namespace Mini_Games
         private const float MaxMoveSpeed = 15f; // Maximum move speed to prevent too fast movement
         private const int BestEmployeeScore = 100;
         private const int BossOfficeScore = -100;
-
+        [SerializeField] private float currentScore;
         [SerializeField] private int pointsPerGame = 10;
         [SerializeField] private GameObject player;
         [SerializeField] private MiniGameName[] instructions;
@@ -33,7 +33,6 @@ namespace Mini_Games
         [SerializeField] private GameObject scoreWrapper;
         [SerializeField] private TextMeshProUGUI inGameInstructionsText;
         [SerializeField] private GameObject inGameInstructions;
-        [SerializeField] private float currentScore;
         [SerializeField] private int initiateMiniGameDelay = 3;
         [SerializeField] private NarrationDialogLine goodEndingDialogLine;
         [SerializeField] private NarrationDialogLine badEndingDialogLine;
@@ -45,6 +44,7 @@ namespace Mini_Games
         {
             scoreSlider.minValue = -100;
             scoreSlider.maxValue = 100;
+            scoreSlider.value = currentScore;
 
             // set color to half the brightness of player sprite
             var playerSprite = player.GetComponent<SpriteRenderer>();
