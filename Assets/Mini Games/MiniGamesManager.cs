@@ -103,8 +103,7 @@ namespace Mini_Games
             {
                 var gameScore = (int)eventData.Data;
                 print($"GAME WON WITH {gameScore}");
-                // currentScore += pointsPerGame;
-                currentScore += gameScore;
+                currentScore += gameScore != 0 ? gameScore : pointsPerGame;
                 _isMiniGameInitiated = false;
                 inGameInstructionsText.text = "GOOD EMPLOYEE";
                 // CloseMiniGame();
@@ -116,9 +115,8 @@ namespace Mini_Games
             {
                 // TODO: Fixed score vs. outcome score. which is better
                 var gameScore = (int)eventData.Data;
-                // currentScore -= pointsPerGame;
                 print($"GAME LOST WITH {gameScore}");
-                currentScore += gameScore;
+                currentScore += gameScore != 0 ? gameScore : -pointsPerGame;
                 _isMiniGameInitiated = false;
                 inGameInstructionsText.text = "BAD EMPLOYEE";
                 // CloseMiniGame();

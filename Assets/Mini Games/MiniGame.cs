@@ -55,8 +55,8 @@ namespace Mini_Games
             var timeRemaining = Mathf.CeilToInt(_currentTime);
             if (timerTextContainer) timerTextContainer.text = timeRemaining.ToString();
 
-            // if (_currentTime <= 0)
-            //     CloseMiniGame(score > 0);
+            if (_currentTime <= 0)
+                CloseMiniGame(score > 0);
         }
 
         protected virtual void StartMiniGame()

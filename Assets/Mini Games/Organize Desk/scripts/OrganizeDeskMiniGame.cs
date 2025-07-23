@@ -64,7 +64,7 @@ namespace Mini_Games.Organize_Desk.scripts
             var padding = 0.5f; // Adjust this value based on your object sizes
             var minX = containerBounds.min.x + padding;
             var maxX = containerBounds.max.x - padding;
-            var minY = containerBounds.min.y + padding;
+            var minY = containerBounds.min.y + padding + 2;
             var maxY = containerBounds.max.y - padding;
             var z = itemsContainer.transform.position.z;
 
