@@ -71,10 +71,6 @@ namespace Player
         {
             var horizontal = Input.GetAxis("Horizontal");
 
-            if (_isOnGround && (Input.GetKeyDown(KeyCode.W) ||
-                                Input.GetKeyDown(KeyCode.UpArrow) ||
-                                Input.GetButtonDown("Jump")))
-                _rigidbody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
 
             if (horizontal != 0)
             {
@@ -82,7 +78,7 @@ namespace Player
                 if (_isCrawling) xVelocity /= 2;
 
                 _rigidbody2D.linearVelocity = new Vector2(xVelocity, _rigidbody2D.linearVelocity.y);
-                if (_flipEnabled) spriteRenderer.flipX = horizontal > 0;
+                if (_flipEnabled) spriteRenderer.flipX = horizontal < 0;
                 if (_isMoving)
                     return;
 
@@ -95,6 +91,16 @@ namespace Player
                 _isMoving = false;
                 transform.rotation = Quaternion.identity;
                 StopAllCoroutines();
+            }
+
+
+            if (_isOnGround && (Input.GetKeyDown(KeyCode.W) ||
+                                Input.GetKeyDown(KeyCode.UpArrow) ||
+                                Input.GetButtonDown("Jump")))
+            {
+                var force = Vector2.up * jumpForce;
+                print($"Adding force {force}");
+                _rigidbody2D.AddForce(force, ForceMode2D.Impulse);
             }
         }
 
@@ -110,7 +116,11 @@ namespace Player
             if (Input.GetKeyDown(KeyCode.W) ||
                 Input.GetKeyDown(KeyCode.UpArrow) ||
                 Input.GetButtonDown("Jump"))
-                _rigidbody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            {
+                var force = Vector2.up * jumpForce;
+                print($"Adding force {force}");
+                _rigidbody2D.AddForce(force, ForceMode2D.Impulse);
+            }
 
             if (moveValue.x == 0) return;
 

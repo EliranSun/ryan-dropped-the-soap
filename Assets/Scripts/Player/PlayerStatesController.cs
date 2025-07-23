@@ -46,7 +46,7 @@ namespace Player
         private void SetPlayerHoldingPainting()
         {
             var storedPainting = PlayerPrefs.GetString("PlayerHoldingPainting", "");
-            if (storedPainting != "")
+            if (paintings.Length > 0 && storedPainting != "")
                 paintings.First(p => p.name == storedPainting).SetActive(true);
         }
 
