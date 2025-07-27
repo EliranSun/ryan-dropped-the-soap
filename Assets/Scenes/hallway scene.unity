@@ -3285,6 +3285,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3155647263560602460, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+      propertyPath: yOffset
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3155647263560602460, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+      propertyPath: transitionDuration
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3392433421551887445, guid: 18bc23390df011442b819617737dd1bd, type: 3}
       propertyPath: m_Name
       value: Wanderer
@@ -3299,11 +3307,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4874692296979805832, guid: 18bc23390df011442b819617737dd1bd, type: 3}
       propertyPath: endSize
-      value: 14
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4874692296979805832, guid: 18bc23390df011442b819617737dd1bd, type: 3}
       propertyPath: startSize
-      value: 15
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5136022718899494680, guid: 18bc23390df011442b819617737dd1bd, type: 3}
       propertyPath: m_Name
@@ -3327,7 +3335,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6747548351525221153, guid: 18bc23390df011442b819617737dd1bd, type: 3}
       propertyPath: orthographic size
-      value: 20
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6747548351525221153, guid: 18bc23390df011442b819617737dd1bd, type: 3}
       propertyPath: m_BackGroundColor.b
@@ -4278,7 +4286,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1442130448480437418, guid: 9ae82c3bfbb75be4ba49d923bcde8248, type: 3}
   m_PrefabInstance: {fileID: 827538638}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 263257391}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb298a2c9709c3d46ba3b09fae57e795, type: 3}

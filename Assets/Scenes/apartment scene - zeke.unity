@@ -418,7 +418,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1018364714618210765, guid: 18bc23390df011442b819617737dd1bd, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2684897507050103084, guid: 18bc23390df011442b819617737dd1bd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -460,6 +460,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3155647263560602460, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+      propertyPath: yOffset
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3155647263560602460, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+      propertyPath: transitionDuration
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3392433421551887445, guid: 18bc23390df011442b819617737dd1bd, type: 3}
       propertyPath: m_Name
       value: Wanderer
@@ -483,6 +491,22 @@ PrefabInstance:
     - target: {fileID: 6392868402276009872, guid: 18bc23390df011442b819617737dd1bd, type: 3}
       propertyPath: m_Name
       value: Composition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6747548351525221153, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+      propertyPath: orthographic size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6747548351525221153, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6747548351525221153, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6747548351525221153, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6862535366279046487, guid: 18bc23390df011442b819617737dd1bd, type: 3}
       propertyPath: m_Name
@@ -581,7 +605,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &2077712449
 AudioListener:
   m_ObjectHideFlags: 0
@@ -625,7 +649,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 11
+  orthographic size: 7
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
