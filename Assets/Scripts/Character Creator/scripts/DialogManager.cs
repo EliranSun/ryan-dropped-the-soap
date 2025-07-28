@@ -133,7 +133,8 @@ namespace Character_Creator.scripts
             // the hack is to insert space after each character, then condense character spacing
             narratorText.characterSpacing = line.translation == "" ? 0 : -12.99f;
 
-            if (line.translation != "") narratorText.text = line.translation;
+            if (!string.IsNullOrEmpty(line.translation))
+                narratorText.text = line.translation;
 
             if (_currentDialogue.overlayImageSprite)
             {

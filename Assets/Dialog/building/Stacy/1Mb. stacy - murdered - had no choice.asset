@@ -18,11 +18,13 @@ MonoBehaviour:
   overlayImageSprite: {fileID: 0}
   voicedLines:
   - text: You don't understand Ryan - I had no choice!
+    translation: 
     clip: {fileID: 8300000, guid: 9befdd86535c742198c08adfabf6da88, type: 3}
     gender: 0
+  nextDialogueLine: {fileID: 11400000, guid: 77a6389bd5f6945058d0352e1b8ade21, type: 2}
   playerOptions: []
   playerReactions: []
-  nextDialogueLine: {fileID: 11400000, guid: 77a6389bd5f6945058d0352e1b8ade21, type: 2}
+  conditionalNextLines: []
   randomizedDialogLines: []
   objectReferringDialogLines: []
   wait: 0
@@ -35,3 +37,5 @@ MonoBehaviour:
   lineCondition:
     condition: 0
     isMet: 0
+  blurAudio: 0
+  actionNumberData: 0

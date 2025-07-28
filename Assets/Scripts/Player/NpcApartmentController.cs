@@ -23,6 +23,11 @@ namespace Player
         [SerializeField] private GameObject[] playerItems;
         private bool _isSceneEnded;
 
+        private void Awake()
+        {
+            PlayerPrefs.SetString(sceneEndKey, "Stacy Killed Some");
+        }
+
         private void Start()
         {
             var sceneOutcome = PlayerPrefs.GetString(sceneEndKey, "");

@@ -194,7 +194,15 @@ PrefabInstance:
       objectReference: {fileID: 814087948}
     - target: {fileID: 4016431093149258434, guid: 388a088a02273ea46a3ec3521004c0e5, type: 3}
       propertyPath: postSceneScenarios.Array.size
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4016431093149258434, guid: 388a088a02273ea46a3ec3521004c0e5, type: 3}
+      propertyPath: postSceneScenarios.Array.data[0].line
+      value: 
+      objectReference: {fileID: 11400000, guid: 4aa555e357edc9f4384add608f8ec320, type: 2}
+    - target: {fileID: 4016431093149258434, guid: 388a088a02273ea46a3ec3521004c0e5, type: 3}
+      propertyPath: postSceneScenarios.Array.data[0].name
+      value: Stacy Killed Some
       objectReference: {fileID: 0}
     - target: {fileID: 4016431093149258434, guid: 388a088a02273ea46a3ec3521004c0e5, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -536,6 +544,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1018364714618210765, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2684897507050103084, guid: 18bc23390df011442b819617737dd1bd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.342079
@@ -574,6 +586,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2684897507050103084, guid: 18bc23390df011442b819617737dd1bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3155647263560602460, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+      propertyPath: yOffset
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3155647263560602460, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+      propertyPath: catchUpMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3155647263560602460, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+      propertyPath: transitionDuration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4874692296979805832, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+      propertyPath: endSize
+      value: 6.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4874692296979805832, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+      propertyPath: startSize
+      value: 6.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6747548351525221153, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6747548351525221153, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6747548351525221153, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+      propertyPath: m_BackGroundColor.r
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6862535366279046487, guid: 18bc23390df011442b819617737dd1bd, type: 3}
@@ -852,7 +896,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &2077712449
 AudioListener:
   m_ObjectHideFlags: 0
@@ -977,7 +1021,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 2077712451}
   - {fileID: 225324839}
-  - {fileID: 1284420755}
   - {fileID: 1238639579}
+  - {fileID: 1284420755}
   - {fileID: 913006248}
   - {fileID: 1214894480}
