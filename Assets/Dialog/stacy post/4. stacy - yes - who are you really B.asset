@@ -17,12 +17,36 @@ MonoBehaviour:
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
   voicedLines:
-  - text: 
+  - text: So tell me, who are you, really?
     translation: 
     clip: {fileID: 8300000, guid: 55181f85e89b74f0db441038a72959a3, type: 3}
     gender: 0
   nextDialogueLine: {fileID: 0}
-  playerOptions: []
+  playerOptions:
+  - text: My name is Eliran
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: e01bd1099be464c438779687ed86e2c5, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: Does not matter
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: e01bd1099be464c438779687ed86e2c5, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: Too afraid to tell
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: e01bd1099be464c438779687ed86e2c5, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: Mirror
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: e01bd1099be464c438779687ed86e2c5, type: 2}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   conditionalNextLines: []
   randomizedDialogLines: []

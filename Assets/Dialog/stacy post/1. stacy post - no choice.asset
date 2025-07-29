@@ -23,7 +23,37 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 29f5875d631c6054981818a7e73895b7, type: 3}
     gender: 0
   nextDialogueLine: {fileID: 0}
-  playerOptions: []
+  playerOptions:
+  - text: Oh God.
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: d508d599978bddf4c80e92d745ee8631, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: What
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: d508d599978bddf4c80e92d745ee8631, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: Why
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: d508d599978bddf4c80e92d745ee8631, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: Delusional
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 995548e53a27685408ca61d3a304a564, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: Mirror
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: e01bd1099be464c438779687ed86e2c5, type: 2}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   conditionalNextLines: []
   randomizedDialogLines: []

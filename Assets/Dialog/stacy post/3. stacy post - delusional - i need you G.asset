@@ -17,12 +17,66 @@ MonoBehaviour:
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
   voicedLines:
-  - text: 
+  - text: I can't have anyone else leave me. Please...
     translation: 
     clip: {fileID: 8300000, guid: 17375cd4fa347f24ba623fff599cd1e0, type: 3}
     gender: 0
   nextDialogueLine: {fileID: 0}
-  playerOptions: []
+  playerOptions:
+  - text: Not Ryan
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: dc6b08e2d32ef41dbaa4a8c78f1c10e1, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: You murdered Ryan
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: dc6b08e2d32ef41dbaa4a8c78f1c10e1, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: You murdered Zeke
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: dc6b08e2d32ef41dbaa4a8c78f1c10e1, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: Charlotte warned me
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: dc6b08e2d32ef41dbaa4a8c78f1c10e1, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: Your daughter is dead
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: dc6b08e2d32ef41dbaa4a8c78f1c10e1, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: Your sister is dead
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: dc6b08e2d32ef41dbaa4a8c78f1c10e1, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: I have a gun
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 428170587a87b44c585ad351c4fc1679, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: I take your side
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: e01bd1099be464c438779687ed86e2c5, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: I understand
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: e01bd1099be464c438779687ed86e2c5, type: 2}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   conditionalNextLines: []
   randomizedDialogLines: []

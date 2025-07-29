@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Dialog;
 using TMPro;
 using UnityEngine;
@@ -7,7 +8,7 @@ namespace Character_Creator.scripts
     [RequireComponent(typeof(TextMeshProUGUI))]
     public class PlayerOptionsController : ObserverSubject
     {
-        private readonly NarrationDialogLine[] _nextLines = new NarrationDialogLine[4];
+        private readonly List<NarrationDialogLine> _nextLines = new();
         private TextMeshProUGUI _playerOptionsText;
 
         private void Start()
@@ -21,20 +22,19 @@ namespace Character_Creator.scripts
             NarrationDialogLine nextLine = null;
             var keyPressed = false;
 
-            for (var i = 0; i < 4; i++)
+            // Check for numeric key presses from 1 to 9
+            for (var i = 0; i < Mathf.Min(_nextLines.Count, 9); i++)
                 if (Input.GetKeyDown(KeyCode.Alpha1 + i))
                 {
                     keyPressed = true;
-                    if (_nextLines[i])
-                        nextLine = _nextLines[i];
+                    if (_nextLines[i]) nextLine = _nextLines[i];
                 }
 
-            if (keyPressed)
-                _playerOptionsText.text = "";
+            if (keyPressed) _playerOptionsText.text = "";
 
-            if (nextLine) Notify(GameEvents.TriggerSpecificDialogLine, nextLine);
+            if (nextLine)
+                Notify(GameEvents.TriggerSpecificDialogLine, nextLine);
         }
-
 
         public void OnNotify(GameEventData eventData)
         {
@@ -50,17 +50,22 @@ namespace Character_Creator.scripts
 
         private void HandlePlayerOptions(PlayerChoice[] playerOptions)
         {
-            if (playerOptions == null || playerOptions.Length == 0)
-                return;
+            if (playerOptions == null || playerOptions.Length == 0) return;
 
             _playerOptionsText.text = "";
+            _nextLines.Clear();
 
-            // FIXME: This allows only 4 options
-            for (var i = 0; i < playerOptions.Length; i++)
+            // Support up to 9 options (keys 1-9)
+            var maxOptions = Mathf.Min(playerOptions.Length, 9);
+            for (var i = 0; i < maxOptions; i++)
             {
-                _nextLines[i] = playerOptions[i].next;
+                _nextLines.Add(playerOptions[i].next);
                 _playerOptionsText.text += $"{i + 1}. {playerOptions[i].text}\r\n";
             }
+
+            // If there are more options than we can display, add a note
+            if (playerOptions.Length > 9)
+                _playerOptionsText.text += "\n(Additional options not shown)";
         }
     }
 }

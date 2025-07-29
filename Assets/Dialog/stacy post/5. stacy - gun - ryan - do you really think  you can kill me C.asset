@@ -17,12 +17,18 @@ MonoBehaviour:
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
   voicedLines:
-  - text: 
+  - text: ...do you really think you can kill me?
     translation: 
     clip: {fileID: 8300000, guid: 2cafa81e2ca544e06bba8868ccafd4bf, type: 3}
     gender: 0
   nextDialogueLine: {fileID: 0}
-  playerOptions: []
+  playerOptions:
+  - text: Mirror
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: e01bd1099be464c438779687ed86e2c5, type: 2}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   conditionalNextLines: []
   randomizedDialogLines: []

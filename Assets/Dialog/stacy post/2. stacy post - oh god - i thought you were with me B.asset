@@ -17,12 +17,30 @@ MonoBehaviour:
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
   voicedLines:
-  - text: 
+  - text: I... I thought you were with me, Ryan. Please say something...
     translation: 
     clip: {fileID: 8300000, guid: 16dfd9ce2b068104798d4f679889c8b7, type: 3}
     gender: 0
   nextDialogueLine: {fileID: 0}
-  playerOptions: []
+  playerOptions:
+  - text: Not Ryan
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: dc6b08e2d32ef41dbaa4a8c78f1c10e1, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: Murderer
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 995548e53a27685408ca61d3a304a564, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: Delusional
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 995548e53a27685408ca61d3a304a564, type: 2}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   conditionalNextLines: []
   randomizedDialogLines: []

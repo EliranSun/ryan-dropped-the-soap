@@ -17,12 +17,30 @@ MonoBehaviour:
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
   voicedLines:
-  - text: 
+  - text: Did you lie to get close to me?
     translation: 
     clip: {fileID: 8300000, guid: 918f591c60760f848821de8155209f2f, type: 3}
     gender: 0
   nextDialogueLine: {fileID: 0}
-  playerOptions: []
+  playerOptions:
+  - text: Yes
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 8a9a0a1017ac346f9be71c2504d774b5, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: No
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: d20e63352437e4a68acfc2de81777688, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: I have a gun
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 428170587a87b44c585ad351c4fc1679, type: 2}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   conditionalNextLines: []
   randomizedDialogLines: []

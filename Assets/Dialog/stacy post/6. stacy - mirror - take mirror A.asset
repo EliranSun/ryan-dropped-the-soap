@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
-  m_Name: 6. stacy - mirror 2 - neighbor A - take mirror
+  m_Name: 6. stacy - mirror - take mirror A
   m_EditorClassIdentifier: 
   playerName: 
   waitBeforeLine: 0
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
   voicedLines:
-  - text: 
+  - text: OK. Take this fucking mirror. It suits you.
     translation: 
     clip: {fileID: 8300000, guid: 09896eb83628b4722b758dc1ce0658a5, type: 3}
     gender: 0
@@ -25,7 +25,11 @@ MonoBehaviour:
   playerOptions: []
   playerReactions: []
   conditionalNextLines: []
-  randomizedDialogLines: []
+  randomizedDialogLines:
+  - {fileID: 11400000, guid: ac8598e8158194040b1446c0ae4e8029, type: 2}
+  - {fileID: 11400000, guid: 318deb7494f18400c839cf1bbb1259ce, type: 2}
+  - {fileID: 11400000, guid: 217ed4a29e242480da5c2199f1dedea3, type: 2}
+  - {fileID: 11400000, guid: 446ba9b5ea6a94ee8ab918f29773144f, type: 2}
   objectReferringDialogLines: []
   wait: 0.5
   actorName: 5
