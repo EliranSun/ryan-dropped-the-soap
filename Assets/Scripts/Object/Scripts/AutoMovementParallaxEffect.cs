@@ -13,13 +13,14 @@ namespace Object.Scripts
     public class AutoMovementParallaxEffect : MonoBehaviour
     {
         [SerializeField] private float speed = 0.5f;
+        [SerializeField] private Camera mainCamera;
         [SerializeField] private Direction direction;
         [SerializeField] private GameObject[] children;
         private float _screenHeight;
 
         private void Start()
         {
-            _screenHeight = Camera.main.orthographicSize * 2;
+            _screenHeight = mainCamera.orthographicSize * 2;
         }
 
         private void Update()
@@ -44,22 +45,41 @@ namespace Object.Scripts
                     break;
             }
 
-            var highestChild = GetHighestObject(children);
-            if (highestChild.transform.position.y > _screenHeight + 1)
-                highestChild.transform.position = new Vector3(highestChild.transform.position.x,
-                    -_screenHeight - 2, highestChild.transform.position.z);
-
+            HandleObjectRepositioning();
             transform.position = position;
         }
 
-        private GameObject GetHighestObject(GameObject[] objects)
+        private void HandleObjectRepositioning()
         {
-            var highest = objects[0];
-            foreach (var obj in objects)
-                if (obj.transform.position.y > highest.transform.position.y)
-                    highest = obj;
+            switch (direction)
+            {
+                case Direction.Up:
+                    var highestChild = GetExtremeObject(children, true);
+                    if (highestChild.transform.position.y > _screenHeight)
+                        highestChild.transform.position = new Vector3(highestChild.transform.position.x,
+                            -_screenHeight, highestChild.transform.position.z);
+                    break;
 
-            return highest;
+                case Direction.Down:
+                    var lowestChild = GetExtremeObject(children, false);
+                    if (lowestChild.transform.position.y < -_screenHeight)
+                        lowestChild.transform.position = new Vector3(lowestChild.transform.position.x,
+                            _screenHeight, lowestChild.transform.position.z);
+                    break;
+            }
+        }
+
+        private GameObject GetExtremeObject(GameObject[] objects, bool highest)
+        {
+            var extreme = objects[0];
+            foreach (var obj in objects)
+            {
+                if (highest && obj.transform.position.y > extreme.transform.position.y)
+                    extreme = obj;
+                else if (!highest && obj.transform.position.y < extreme.transform.position.y)
+                    extreme = obj;
+            }
+            return extreme;
         }
     }
 }
