@@ -276,7 +276,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 364053030426377705, guid: 08b4185048bd83a4dacf9a2c9cc4e2a4, type: 3}
       propertyPath: m_Name
-      value: EgyptianMirror
+      value: Egyptian
       objectReference: {fileID: 0}
     - target: {fileID: 4827712456379719653, guid: 08b4185048bd83a4dacf9a2c9cc4e2a4, type: 3}
       propertyPath: m_SortingOrder
@@ -351,7 +351,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 469618549399176623, guid: c1c3ee77783454f43972f77068aa9b9e, type: 3}
       propertyPath: m_Name
-      value: RomanMirror
+      value: Roman
       objectReference: {fileID: 0}
     - target: {fileID: 2351734397525021311, guid: c1c3ee77783454f43972f77068aa9b9e, type: 3}
       propertyPath: m_SortingOrder
@@ -431,11 +431,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 1096761341}
+    - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: OnNotify
       objectReference: {fileID: 0}
     - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: Character_Creator.scripts.PlayerOptionsController, CharacterCreatorScriptsAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: Player.NpcApartmentController, PlayerScriptsAssembly
       objectReference: {fileID: 0}
     - target: {fileID: 1311371035374852291, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       propertyPath: finalState.dialogLineToPlay
@@ -501,6 +513,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32aec04699863124dad61598cf7e3cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1096761341 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4016431093149258434, guid: 388a088a02273ea46a3ec3521004c0e5, type: 3}
+  m_PrefabInstance: {fileID: 225324839}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6f0c626e97389c4fb7db397b497daca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1214894479
 GameObject:
   m_ObjectHideFlags: 0
@@ -544,9 +567,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 863019458798051087, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+      propertyPath: m_Name
+      value: Greek
+      objectReference: {fileID: 0}
     - target: {fileID: 1018364714618210765, guid: 18bc23390df011442b819617737dd1bd, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1163290335506447646, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+      propertyPath: m_Name
+      value: Roman
       objectReference: {fileID: 0}
     - target: {fileID: 2684897507050103084, guid: 18bc23390df011442b819617737dd1bd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -600,6 +631,10 @@ PrefabInstance:
       propertyPath: transitionDuration
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4573218720836377978, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+      propertyPath: m_Name
+      value: Samaritan
+      objectReference: {fileID: 0}
     - target: {fileID: 4874692296979805832, guid: 18bc23390df011442b819617737dd1bd, type: 3}
       propertyPath: endSize
       value: 6.5
@@ -607,6 +642,10 @@ PrefabInstance:
     - target: {fileID: 4874692296979805832, guid: 18bc23390df011442b819617737dd1bd, type: 3}
       propertyPath: startSize
       value: 6.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5838612409933209697, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+      propertyPath: m_Name
+      value: Egyptian
       objectReference: {fileID: 0}
     - target: {fileID: 6747548351525221153, guid: 18bc23390df011442b819617737dd1bd, type: 3}
       propertyPath: m_BackGroundColor.b
@@ -772,7 +811,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8651019750574860686, guid: cd4b6b1fab8c575459dde533bd9e21de, type: 3}
       propertyPath: m_Name
-      value: SameritanMirror
+      value: Samaritan
       objectReference: {fileID: 0}
     - target: {fileID: 8972009587173037672, guid: cd4b6b1fab8c575459dde533bd9e21de, type: 3}
       propertyPath: m_SortingOrder
@@ -851,7 +890,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3503996871657521010, guid: 06f2a852c3c4c2044b22f5ee8f9da663, type: 3}
       propertyPath: m_Name
-      value: GreekMirror
+      value: Greek
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

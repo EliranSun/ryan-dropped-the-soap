@@ -1,5 +1,3 @@
-using Scenes.ZEKE.scripts;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,7 +9,6 @@ namespace zeke
         [SerializeField] private GameObject zekeSuicide;
         [SerializeField] private GameObject zekeBossStub;
         [SerializeField] private AudioSource bgAudioSource;
-        [SerializeField] private SceneAsset nextScene;
 
         private bool _isZekeShoutsActive;
 

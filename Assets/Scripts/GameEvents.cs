@@ -208,12 +208,17 @@
     AddPointOfInterest,
     NpcGoTo,
     ExitPlayerApartment,
-    
+
     PaintingChosenKiss,
     PaintingChosenComposition,
     PaintingChosenWanderer,
     PaintingChosenNighthawks,
     PaintingChosenStarryNight,
     PaintingChosenAngelus,
-    PaintingChosenImpression
+    PaintingChosenImpression,
+
+    MirrorChosenSamaritan,
+    MirrorChosenEgyptian,
+    MirrorChosenRoman,
+    MirrorChosenGreek
 }

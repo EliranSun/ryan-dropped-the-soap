@@ -56,7 +56,9 @@ namespace Player
             // painting.transform.localPosition = new Vector3(0, 2.5f, 0);
             // painting.transform.localRotation = Quaternion.identity;
             // painting.GetComponent<SpriteRenderer>().sortingOrder = 10;
+
             // PlayerPrefs.SetString("PlayerHoldingItem", painting.name);
+
             Notify(GameEvents.TriggerSpecificDialogLine, preSceneInitLine);
         }
 

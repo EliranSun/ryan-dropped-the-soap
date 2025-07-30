@@ -118,7 +118,6 @@ namespace Player
                 Input.GetButtonDown("Jump"))
             {
                 var force = Vector2.up * jumpForce;
-                print($"Adding force {force}");
                 _rigidbody2D.AddForce(force, ForceMode2D.Impulse);
             }
 

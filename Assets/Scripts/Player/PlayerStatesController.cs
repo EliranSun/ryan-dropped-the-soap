@@ -7,6 +7,8 @@ namespace Player
 {
     public class PlayerStatesController : ObserverSubject
     {
+        public static PlayerStatesController Instance { get; private set; }
+
         [SerializeField] private GameObject playerBox;
         [SerializeField] private GameObject playerPlant;
         [SerializeField] private Camera mainCamera;
@@ -14,13 +16,24 @@ namespace Player
         [SerializeField] private GameObject[] items;
         [SerializeField] private bool resetPlayerPrefs;
         private bool _allowGun;
-
         private InputAction _attackAction;
+        private int _currentApartmentNumber = 420;
+
 
         private void Awake()
         {
-            if (resetPlayerPrefs)
-                PlayerPrefs.DeleteAll();
+            // If there is an instance, and it's not this one, destroy this one
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            // Set the instance and make it persistent
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+
+            if (resetPlayerPrefs) PlayerPrefs.DeleteAll();
             // ChangeScene();
             PositionPlayer();
         }
@@ -31,7 +44,7 @@ namespace Player
             if (gun) gun.SetActive(false);
 
             SetPlayerBoxState();
-            SetPlayerHoldingItem();
+            // SetPlayerHoldingItem();
         }
 
         private void Update()
@@ -115,20 +128,35 @@ namespace Player
             if (eventData.Name == GameEvents.AllowGun)
                 _allowGun = true;
 
-            switch (eventData.Name)
+            if (eventData.Name == GameEvents.ChangePlayerLocation)
             {
-                case GameEvents.PlayerPlacePlant:
-                case GameEvents.PlayerPlaceMirror:
-                case GameEvents.PlayerPlacePainting:
-                {
-                    var itemPosition = (Vector3)eventData.Data;
-                    PlayerPrefs.SetString($"{eventData.Name}Position", $"{itemPosition.x},{itemPosition.y}");
-
-                    if (eventData.Name == GameEvents.PlayerPlacePainting)
-                        PlayerPrefs.DeleteKey("PlayerHoldingItem");
-                    break;
-                }
+                var location = (Location)eventData.Data;
+                PlayerPrefs.SetInt("PlayerLocation", (int)location);
+                _currentApartmentNumber = (int)location;
             }
+
+            // TODO: It makes more sense to move this to apartment controller
+            // however - this is here because the items are children to the player prefab
+            // and are notifying via the prefab itself...
+            // switch (eventData.Name)
+            // {
+            //     case GameEvents.PlayerPlacePlant:
+            //     case GameEvents.PlayerPlaceMirror:
+            //     case GameEvents.PlayerPlacePainting:
+            //     {
+            //         print($"{eventData.Name}, Position: {transform.position}");
+            //
+            //         var itemPosition = (Vector3)eventData.Data;
+            //         PlayerPrefs.SetString($"{eventData.Name}Position", $"{itemPosition.x},{itemPosition.y}");
+            //         PlayerPrefs.DeleteKey("PlayerHoldingItem");
+            //         break;
+            //     }
+            // }
+        }
+
+        public int GetCurrentApartmentNumber()
+        {
+            return _currentApartmentNumber;
         }
 
         private void ChangeScene()
@@ -147,15 +175,15 @@ namespace Player
                     break;
 
                 case nameof(Location.Hallway):
-                {
-                    var placePlayerAtElevator = currentScene.name == "inside elevator" ? 1 : 0;
-                    print("placePlayerAtElevator: " + placePlayerAtElevator);
-                    PlayerPrefs.SetInt("PlacePlayerAtElevator", placePlayerAtElevator);
+                    {
+                        var placePlayerAtElevator = currentScene.name == "inside elevator" ? 1 : 0;
+                        print("placePlayerAtElevator: " + placePlayerAtElevator);
+                        PlayerPrefs.SetInt("PlacePlayerAtElevator", placePlayerAtElevator);
 
-                    if (currentScene.name != "hallway scene")
-                        SceneManager.LoadScene("hallway scene");
-                    break;
-                }
+                        if (currentScene.name != "hallway scene")
+                            SceneManager.LoadScene("hallway scene");
+                        break;
+                    }
 
                 case nameof(Location.Elevator):
                     if (currentScene.name != "inside elevator")

@@ -16,6 +16,7 @@ namespace Object.Scripts
         [SerializeField] private Camera mainCamera;
         [SerializeField] private Direction direction;
         [SerializeField] private GameObject[] children;
+        [SerializeField] private bool randomizeSpeed;
         private float _screenHeight;
 
         private void Start()
@@ -29,19 +30,19 @@ namespace Object.Scripts
             switch (direction)
             {
                 case Direction.Up:
-                    position.y += Time.deltaTime * speed;
+                    position.y += Time.deltaTime * speed * (randomizeSpeed ? Random.Range(0.5f, 1.5f) : 1);
                     break;
 
                 case Direction.Down:
-                    position.y -= Time.deltaTime * speed;
+                    position.y -= Time.deltaTime * speed * (randomizeSpeed ? Random.Range(0.5f, 1.5f) : 1);
                     break;
 
                 case Direction.Left:
-                    position.x -= Time.deltaTime * speed;
+                    position.x -= Time.deltaTime * speed * (randomizeSpeed ? Random.Range(0.5f, 1.5f) : 1);
                     break;
 
                 case Direction.Right:
-                    position.x += Time.deltaTime * speed;
+                    position.x += Time.deltaTime * speed * (randomizeSpeed ? Random.Range(0.5f, 1.5f) : 1);
                     break;
             }
 
@@ -73,12 +74,10 @@ namespace Object.Scripts
         {
             var extreme = objects[0];
             foreach (var obj in objects)
-            {
                 if (highest && obj.transform.position.y > extreme.transform.position.y)
                     extreme = obj;
                 else if (!highest && obj.transform.position.y < extreme.transform.position.y)
                     extreme = obj;
-            }
             return extreme;
         }
     }
