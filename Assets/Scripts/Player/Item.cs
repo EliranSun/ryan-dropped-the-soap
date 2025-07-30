@@ -1,21 +1,42 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Player
 {
     [RequireComponent(typeof(Collider2D), typeof(Rigidbody2D))]
-    public class HoldableItem : ObserverSubject
+    public class Item : ObserverSubject
     {
-        [SerializeField] private Transform playerTransform;
+        // Static dictionary to track all item instances by their name
+        private static readonly Dictionary<string, Item> ItemInstances = new();
+
         [SerializeField] private GameEvents holdGameEvent;
         [SerializeField] private GameEvents releaseGameEvent;
-        [SerializeField] private PlayerStatesController playerStatesController;
-        [SerializeField] private bool isHeld;
+
+        // [SerializeField] private PlayerStatesController playerStatesController;
+
+        // private bool _isHeld;
         private Collider2D _collider2D;
         private int _itemRoomNumber;
+        private Transform _playerTransform;
         private Rigidbody2D _rigidbody2D;
+
+        private void Awake()
+        {
+            // Check if an instance with this name already exists
+            if (ItemInstances.TryGetValue(gameObject.name, out var existingItem))
+            {
+                // If this item already exists, destroy this new instance
+                Destroy(gameObject);
+                return;
+            }
+
+            // If this is the first instance, add it to our dictionary
+            ItemInstances[gameObject.name] = this;
+        }
 
         private void Start()
         {
+            _playerTransform = PlayerStatesController.Instance.transform;
             // PlayerPrefs.SetInt("Wanderer-room", 420);
             //
             // _itemRoomNumber = PlayerPrefs.GetInt($"{gameObject.name}-room");
@@ -24,18 +45,27 @@ namespace Player
             // var currentPlayerApartment = playerStatesController.GetCurrentApartmentNumber();
             //
 
-            if (isHeld) Hold();
+            PositionItem();
+
+            // if (_isHeld) Hold();
             // // else 
             // if (_itemRoomNumber == currentPlayerApartment)
             // {
             //     Release();
-            //     PositionItem();
+            //     
             // }
+        }
+
+        private void OnDestroy()
+        {
+            // Remove this instance from the dictionary when destroyed
+            if (ItemInstances.ContainsKey(gameObject.name) && ItemInstances[gameObject.name] == this)
+                ItemInstances.Remove(gameObject.name);
         }
 
         private void OnMouseDown()
         {
-            if (transform.parent == playerTransform)
+            if (transform.parent == _playerTransform)
             {
                 Release();
                 return;
@@ -46,12 +76,15 @@ namespace Player
 
         private void Hold()
         {
-            SetHoldingItem();
+            DontDestroyOnLoad(gameObject);
+
+            // SetHoldingItem();
             // DeleteStoredPosition();
             _rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
             _collider2D.isTrigger = true;
-            transform.SetParent(playerTransform);
-            transform.position = (Vector2)playerTransform.position + new Vector2(0f, 3f);
+            // We already have player reference through _playerTransform
+            transform.SetParent(_playerTransform);
+            transform.position = (Vector2)_playerTransform.position + new Vector2(0f, 3f);
             gameObject.GetComponent<SpriteRenderer>().sortingOrder = 20;
             Notify(holdGameEvent, gameObject.transform.position);
         }
@@ -71,10 +104,10 @@ namespace Player
             Notify(releaseGameEvent, gameObject.transform.position);
         }
 
-        private void SetHoldingItem()
-        {
-            PlayerPrefs.SetString("PlayerHoldingItem", gameObject.name);
-        }
+        // private void SetHoldingItem()
+        // {
+        //     PlayerPrefs.SetString("PlayerHoldingItem", gameObject.name);
+        // }
 
         private void StorePosition()
         {
@@ -103,8 +136,14 @@ namespace Player
 
         private void PositionItem()
         {
-            gameObject.SetActive(true);
-            gameObject.transform.position = GetStoredPosition();
+            var position = GetStoredPosition();
+
+            if (position != Vector2.zero)
+            {
+                _rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
+                _collider2D.isTrigger = true;
+                gameObject.transform.position = position;
+            }
         }
     }
 }

@@ -383,6 +383,37 @@ Transform:
   - {fileID: 7423555928334885137}
   m_Father: {fileID: 2684897507050103084}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3600894720641013827
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 551345787286027204}
+  m_Layer: 0
+  m_Name: Items New
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &551345787286027204
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3600894720641013827}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.40798855, y: -0.15036488, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2684897507050103084}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5997937471221846265
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,6 +516,7 @@ GameObject:
   - component: {fileID: 2399393931622321621}
   - component: {fileID: 4870723208328116504}
   - component: {fileID: 6510644328472155439}
+  - component: {fileID: 2932466176947114359}
   m_Layer: 3
   m_Name: "\U0001F636 Player"
   m_TagString: Player
@@ -509,6 +541,7 @@ Transform:
   - {fileID: 1322393245066321162}
   - {fileID: 4448281402582547328}
   - {fileID: 3965395809614431005}
+  - {fileID: 551345787286027204}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1006159294126530808
@@ -663,6 +696,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5ed54be04b02e543bcd8659e8c33cb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2932466176947114359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6862535366279046487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cddff834a57c194281136aaf356d2dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryManager: {fileID: 11400000, guid: 83bcc9708a348a244a9df2c7507618c8, type: 2}
+  carriedItemsParent: {fileID: 551345787286027204}
+  defaultCarriedOffset: {x: 0, y: 3}
+  carriedItemLayer:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1001 &468628326378177189
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -794,11 +845,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  playerTransform: {fileID: 2684897507050103084}
   holdGameEvent: 35
   releaseGameEvent: 158
-  playerStatesController: {fileID: 8768322118471126704}
-  isHeld: 1
 --- !u!4 &8678085787743618216 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9146291811317581325, guid: 5ca027f56a1c35a48828b35e07059ad9, type: 3}
@@ -940,11 +988,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  playerTransform: {fileID: 2684897507050103084}
   holdGameEvent: 35
   releaseGameEvent: 158
-  playerStatesController: {fileID: 8768322118471126704}
-  isHeld: 1
 --- !u!1001 &1630511906590488753
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1080,11 +1125,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  playerTransform: {fileID: 2684897507050103084}
   holdGameEvent: 36
   releaseGameEvent: 159
-  playerStatesController: {fileID: 8768322118471126704}
-  isHeld: 1
 --- !u!4 &6930717601819589301 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8542878795103601156, guid: c1c3ee77783454f43972f77068aa9b9e, type: 3}
@@ -1226,11 +1268,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  playerTransform: {fileID: 2684897507050103084}
   holdGameEvent: 35
   releaseGameEvent: 158
-  playerStatesController: {fileID: 8768322118471126704}
-  isHeld: 1
 --- !u!1001 &2386206964033387706
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1598,11 +1637,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  playerTransform: {fileID: 2684897507050103084}
   holdGameEvent: 36
   releaseGameEvent: 159
-  playerStatesController: {fileID: 8768322118471126704}
-  isHeld: 1
 --- !u!4 &2084772862459736877 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2860952249093903184, guid: 06f2a852c3c4c2044b22f5ee8f9da663, type: 3}
@@ -1744,11 +1780,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  playerTransform: {fileID: 2684897507050103084}
   holdGameEvent: 35
   releaseGameEvent: 158
-  playerStatesController: {fileID: 8768322118471126704}
-  isHeld: 1
 --- !u!1001 &4407218355258315199
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2015,11 +2048,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  playerTransform: {fileID: 2684897507050103084}
   holdGameEvent: 35
   releaseGameEvent: 158
-  playerStatesController: {fileID: 8768322118471126704}
-  isHeld: 1
 --- !u!4 &2418128916943848558 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7071400070652512693, guid: 0825c898a2b0a944fa42e1d51d6e3c84, type: 3}
@@ -2160,11 +2190,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  playerTransform: {fileID: 2684897507050103084}
   holdGameEvent: 36
   releaseGameEvent: 159
-  playerStatesController: {fileID: 8768322118471126704}
-  isHeld: 1
 --- !u!4 &6649834012967486187 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1959411496610280991, guid: cd4b6b1fab8c575459dde533bd9e21de, type: 3}
@@ -2306,11 +2333,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  playerTransform: {fileID: 2684897507050103084}
   holdGameEvent: 35
   releaseGameEvent: 158
-  playerStatesController: {fileID: 8768322118471126704}
-  isHeld: 1
 --- !u!1001 &6056087231304981896
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2447,11 +2471,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  playerTransform: {fileID: 2684897507050103084}
   holdGameEvent: 36
   releaseGameEvent: 159
-  playerStatesController: {fileID: 8768322118471126704}
-  isHeld: 1
 --- !u!1001 &8410149021545366993
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2877,8 +2898,5 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  playerTransform: {fileID: 2684897507050103084}
   holdGameEvent: 35
   releaseGameEvent: 158
-  playerStatesController: {fileID: 8768322118471126704}
-  isHeld: 1
