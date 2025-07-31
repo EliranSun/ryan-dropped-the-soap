@@ -19,7 +19,7 @@ namespace Player
         // 1. TODO: set collider & rigid here ✅
         // 2. holding & releasing just means the item follows/unfollow player location ✅
         // 3. The notify just change the STATE in ItemsManager - for scene reload and location change ✅
-        // 4. upon reload/location change, simply load the item in scene/player based on this updated state
+        // 4. upon reload/location change, simply load the item in scene/player based on this updated state ✅
         // 5. upon destroy (game exit?) should save state in PlayerPrefs to reload correct data
         // 5a. reload already handled because player DontDestroyOnLoad
 

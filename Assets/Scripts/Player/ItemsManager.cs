@@ -44,11 +44,20 @@ namespace Player
         {
             var currentSceneName = scene.name;
             foreach (var item in items)
+            {
+                LoadItemState(item);
+
                 if (item.activeInScene == currentSceneName)
                 {
                     var newItem = SpawnItem(item);
                     if (item.isHeldByPlayer) newItem.GetComponent<HoldableItem>().Hold();
                 }
+                else if (item.isHeldByPlayer)
+                {
+                    var newItem = SpawnItem(item);
+                    newItem.GetComponent<HoldableItem>().Hold();
+                }
+            }
         }
 
         private GameObject SpawnItem(Item item)
@@ -64,7 +73,11 @@ namespace Player
             if (eventData.Name == GameEvents.PickedItem)
             {
                 var item = GetItem(eventData.Data.ToString());
-                if (item != null) item.isHeldByPlayer = true;
+                if (item != null)
+                {
+                    item.isHeldByPlayer = true;
+                    StoreItemState(item);
+                }
             }
 
             if (eventData.Name == GameEvents.DroppedItem)
@@ -75,8 +88,21 @@ namespace Player
                     item.isHeldByPlayer = false;
                     item.activeInScene = SceneManager.GetActiveScene().name;
                     item.position = player.transform.position;
+                    StoreItemState(item);
                 }
             }
+        }
+
+        private void StoreItemState(Item item)
+        {
+            var itemJson = JsonUtility.ToJson(item);
+            PlayerPrefs.SetString(item.name, itemJson);
+        }
+
+        private void LoadItemState(Item item)
+        {
+            var itemJson = PlayerPrefs.GetString(item.name);
+            if (!string.IsNullOrEmpty(itemJson)) JsonUtility.FromJsonOverwrite(itemJson, item);
         }
 
         private Item GetItem(string itemName)
