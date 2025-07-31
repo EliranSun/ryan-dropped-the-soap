@@ -220,5 +220,7 @@
     MirrorChosenSamaritan,
     MirrorChosenEgyptian,
     MirrorChosenRoman,
-    MirrorChosenGreek
+    MirrorChosenGreek,
+
+    PlayerReleaseItem
 }

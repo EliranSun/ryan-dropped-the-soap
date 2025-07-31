@@ -2,109 +2,58 @@ using UnityEngine;
 
 namespace Player
 {
-    [RequireComponent(typeof(Collider2D), typeof(Rigidbody2D))]
+    [RequireComponent(
+        typeof(Collider2D),
+        typeof(Rigidbody2D),
+        typeof(SpriteRenderer)
+    )]
     public class HoldableItem : ObserverSubject
     {
-        [SerializeField] private Transform playerTransform;
         [SerializeField] private GameEvents holdGameEvent;
         [SerializeField] private GameEvents releaseGameEvent;
-        [SerializeField] private PlayerStatesController playerStatesController;
-        [SerializeField] private bool isHeld;
-        private Collider2D _collider2D;
-        private int _itemRoomNumber;
-        private Rigidbody2D _rigidbody2D;
+        private bool _isHeld;
+        private Transform _playerTransform;
+
+        // TODOS because current implementation make items DontDestroyOnLoad as well,
+        // I guess because they inherit it from player once transformed under him
+        // 1. TODO: set collider & rigid here ✅
+        // 2. holding & releasing just means the item follows/unfollow player location ✅
+        // 3. The notify just change the STATE in ItemsManager - for scene reload and location change ✅
+        // 4. upon reload/location change, simply load the item in scene/player based on this updated state ✅
+        // 5. upon destroy (game exit?) should save state in PlayerPrefs to reload correct data
+        // 5a. reload already handled because player DontDestroyOnLoad
 
         private void Start()
         {
-            // PlayerPrefs.SetInt("Wanderer-room", 420);
-            //
-            // _itemRoomNumber = PlayerPrefs.GetInt($"{gameObject.name}-room");
-            _collider2D = GetComponent<Collider2D>();
-            _rigidbody2D = GetComponent<Rigidbody2D>();
-            // var currentPlayerApartment = playerStatesController.GetCurrentApartmentNumber();
-            //
+            _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        }
 
-            if (isHeld) Hold();
-            // // else 
-            // if (_itemRoomNumber == currentPlayerApartment)
-            // {
-            //     Release();
-            //     PositionItem();
-            // }
+        private void Update()
+        {
+            if (_isHeld && _playerTransform)
+                transform.position = (Vector2)_playerTransform.position + new Vector2(0, 2);
         }
 
         private void OnMouseDown()
         {
-            if (transform.parent == playerTransform)
-            {
-                Release();
-                return;
-            }
-
-            Hold();
+            if (_isHeld) Release();
+            else Hold();
         }
 
-        private void Hold()
+        public void Hold()
         {
-            SetHoldingItem();
-            // DeleteStoredPosition();
-            _rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
-            _collider2D.isTrigger = true;
-            transform.SetParent(playerTransform);
-            transform.position = (Vector2)playerTransform.position + new Vector2(0f, 3f);
-            gameObject.GetComponent<SpriteRenderer>().sortingOrder = 20;
-            Notify(holdGameEvent, gameObject.transform.position);
+            _isHeld = true;
+            GetComponent<SpriteRenderer>().sortingOrder = 20;
+            GetComponent<Collider2D>().isTrigger = true;
+            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+            Notify(holdGameEvent, gameObject.name);
         }
 
         private void Release()
         {
-            StorePosition();
-            // _rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
-            _collider2D.isTrigger = false;
-            transform.SetParent(null);
-            gameObject.GetComponent<SpriteRenderer>().sortingOrder = 4;
-            Invoke(nameof(NotifyRelease), 1f);
-        }
-
-        private void NotifyRelease()
-        {
-            Notify(releaseGameEvent, gameObject.transform.position);
-        }
-
-        private void SetHoldingItem()
-        {
-            PlayerPrefs.SetString("PlayerHoldingItem", gameObject.name);
-        }
-
-        private void StorePosition()
-        {
-            PlayerPrefs.SetString($"{gameObject.name}-position",
-                $"{gameObject.transform.position.x},{gameObject.transform.position.y}");
-        }
-
-        private Vector2 GetStoredPosition()
-        {
-            var storedPosition = PlayerPrefs.GetString($"{gameObject.name}-position");
-
-            if (storedPosition == "")
-                return Vector2.zero;
-
-            var positionParts = storedPosition.Split(',');
-
-            if (
-                positionParts.Length == 2 &&
-                float.TryParse(positionParts[0], out var x) &&
-                float.TryParse(positionParts[1], out var y)
-            )
-                return new Vector2(x, y);
-
-            return Vector2.zero;
-        }
-
-        private void PositionItem()
-        {
-            gameObject.SetActive(true);
-            gameObject.transform.position = GetStoredPosition();
+            _isHeld = false;
+            GetComponent<SpriteRenderer>().sortingOrder = 4;
+            Notify(releaseGameEvent, gameObject.name);
         }
     }
 }
