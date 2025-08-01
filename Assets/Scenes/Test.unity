@@ -401,60 +401,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1004157752 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6862535366279046487, guid: 18bc23390df011442b819617737dd1bd, type: 3}
-  m_PrefabInstance: {fileID: 1328571480}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1004157759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1004157752}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b0d80b6715190f49a7b1995a3165665, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  items:
-  - name: Wanderer
-    gameObject: {fileID: 453643083023655612, guid: 5ca027f56a1c35a48828b35e07059ad9, type: 3}
-    position: {x: 0, y: 1, z: 0}
-    activeInScene: Test
-    isHeldByPlayer: 0
-  - name: Nighthawks
-    gameObject: {fileID: 6773758808137700198, guid: ae48a946651c45244b410fca24844e4e, type: 3}
-    position: {x: 2, y: 1, z: 0}
-    activeInScene: Test
-    isHeldByPlayer: 0
-  - name: Composition
-    gameObject: {fileID: 8895372069434441957, guid: d0a8c3a0394a3bd489ab0319807c7c69, type: 3}
-    position: {x: 4, y: 1, z: 0}
-    activeInScene: Test
-    isHeldByPlayer: 0
-  - name: Kiss
-    gameObject: {fileID: 3461208392519771585, guid: 50f56a76629c85548ab0d70629b84ed4, type: 3}
-    position: {x: 6, y: 1, z: 0}
-    activeInScene: Test
-    isHeldByPlayer: 0
-  - name: Angelus
-    gameObject: {fileID: 6708643834335732075, guid: 8bfdc03bddc2a544db2f359752973a18, type: 3}
-    position: {x: 8, y: 1, z: 0}
-    activeInScene: Test
-    isHeldByPlayer: 0
-  - name: Impression
-    gameObject: {fileID: 1683152180633488730, guid: 8dec0e115b1843c40aadff5f285b7d4a, type: 3}
-    position: {x: 10, y: 1, z: 0}
-    activeInScene: Test
-    isHeldByPlayer: 0
-  - name: StarryNight
-    gameObject: {fileID: 5874112099330180043, guid: 0825c898a2b0a944fa42e1d51d6e3c84, type: 3}
-    position: {x: 6, y: 1, z: 0}
-    activeInScene: Test
-    isHeldByPlayer: 0
-  player: {fileID: 1004157752}
 --- !u!1 &1004727249
 GameObject:
   m_ObjectHideFlags: 0
@@ -919,10 +865,7 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 284931354267945257, guid: 18bc23390df011442b819617737dd1bd, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6862535366279046487, guid: 18bc23390df011442b819617737dd1bd, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1004157759}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18bc23390df011442b819617737dd1bd, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

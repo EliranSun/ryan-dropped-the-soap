@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 1959411496610280991}
   - component: {fileID: 8972009587173037672}
   - component: {fileID: 2209075464432033514}
-  - component: {fileID: 2895900556056749838}
-  m_Layer: 10
+  - component: {fileID: 5642671377429400891}
+  - component: {fileID: 809127789555118682}
+  m_Layer: 0
   m_Name: sameritan-square-mirror
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,6 +54,7 @@ SpriteRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -76,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: f7836a7be59cf22418df061966564f22, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -134,7 +136,34 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 4.3166666, y: 5.0633335}
   m_EdgeRadius: 0
---- !u!114 &2895900556056749838
+--- !u!50 &5642671377429400891
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8651019750574860686}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &809127789555118682
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,30 +172,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8651019750574860686}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b15b47ad22222ad4ca3d6e88e90e36ef, type: 3}
+  m_Script: {fileID: 11500000, guid: 3badbeb1dbabb204e9e64c67b81ec5ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   observers:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: museum_dialog.scripts.DialogueManager, DialogAssemblyDefinition
-        m_MethodName: OnNotify
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  interactableObjectName: 11
-  interactableObjectType: 2
-  gameEvent: 36
-  dialogLine:
-  - {fileID: 11400000, guid: 161481394093e934f868d6e64704c964, type: 2}
-  - {fileID: 11400000, guid: 822b9a8d7fc15914f9aec4160ac4c061, type: 2}
-  interactionType: 0
-  repeatLastInteraction: 1
-  repeatAllInteractions: 0
+      m_Calls: []
+  holdGameEvent: 25
+  releaseGameEvent: 26
