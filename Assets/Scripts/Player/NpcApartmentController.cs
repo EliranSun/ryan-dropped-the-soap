@@ -21,11 +21,6 @@ namespace Player
         [SerializeField] private Scenario[] postSceneScenarios;
         private bool _isSceneEnded;
 
-        private void Awake()
-        {
-            PlayerPrefs.SetString(sceneEndKey, "Stacy Killed Some");
-        }
-
         private void Start()
         {
             var sceneOutcome = PlayerPrefs.GetString(sceneEndKey, "");
@@ -33,10 +28,11 @@ namespace Player
             var hasItem = PlayerPrefs.GetInt(itemKey, 0);
 
             print($"SCENE OUTCOME {sceneOutcome}");
+            var scenario = postSceneScenarios.FirstOrDefault(scenario => 
+                scenario.name == sceneOutcome);
 
-            if (_isSceneEnded)
+            if (scenario != null)
             {
-                var scenario = postSceneScenarios.First(scenario => scenario.name == sceneOutcome);
                 Notify(GameEvents.TriggerSpecificDialogLine, scenario.line);
                 return;
             }
