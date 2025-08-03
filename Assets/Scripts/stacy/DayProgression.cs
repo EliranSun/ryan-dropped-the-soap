@@ -1,26 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-[RequireComponent(typeof(TextMeshProUGUI))]
-public class DayProgression : MonoBehaviour
+namespace stacy
 {
-    private TextMeshProUGUI _dayIndicatorText;
-    private int _dayStart = 8;
-
-
-    private void Start()
+    [RequireComponent(typeof(TextMeshProUGUI))]
+    public class DayProgression : MonoBehaviour
     {
-        _dayIndicatorText = GetComponent<TextMeshProUGUI>();
-        _dayIndicatorText.text = $"Day {_dayStart}";
-    }
+        [SerializeField] private TextMeshProUGUI dayIndicatorText;
+        [SerializeField] private Image panel;
+        private int _dayStart = 8;
 
-    public void OnNotify(GameEventData eventData)
-    {
-        if (eventData.Name == GameEvents.Dead) {
-            _dayStart++;
-            _dayIndicatorText.text = $"Day {_dayStart}";
+
+        private void Start()
+        {
+            dayIndicatorText = GetComponent<TextMeshProUGUI>();
+            dayIndicatorText.text = $"Day {_dayStart}";
+
+            Invoke(nameof(HideUI), 5f);
+        }
+
+        private void HideUI()
+        {
+            panel.gameObject.SetActive(false);
+            dayIndicatorText.gameObject.SetActive(false);
+        }
+
+        public void OnNotify(GameEventData eventData)
+        {
+            if (eventData.Name == GameEvents.Dead)
+            {
+                _dayStart++;
+                dayIndicatorText.text = $"Day {_dayStart}";
+            }
         }
     }
 }
