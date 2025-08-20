@@ -129,9 +129,11 @@ namespace Character_Creator.scripts
                 .Replace("{partnerName}", PlayerData.GetPartnerName());
 
             narratorText.isRightToLeftText = line.translation != "";
+            print("narratorText.isRightToLeftText " + narratorText.isRightToLeftText);
+
             // Unity messes up Hebrew characters even with RTL enabled, so 
             // the hack is to insert space after each character, then condense character spacing
-            narratorText.characterSpacing = line.translation == "" ? 0 : -12.99f;
+            narratorText.characterSpacing = narratorText.isRightToLeftText ? -12.99f : 0f;
 
             if (!string.IsNullOrEmpty(line.translation))
                 narratorText.text = line.translation;

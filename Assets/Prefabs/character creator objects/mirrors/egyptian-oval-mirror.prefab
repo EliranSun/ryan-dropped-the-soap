@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 8725369802243078192}
   - component: {fileID: 4827712456379719653}
   - component: {fileID: 6092054300858248773}
-  - component: {fileID: 3646382466856300233}
-  m_Layer: 10
+  - component: {fileID: -6012588475919796279}
+  - component: {fileID: 5702253944805409497}
+  m_Layer: 0
   m_Name: egyptian-oval-mirror
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 20
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 22e358f3d8698a04f99f958b1913b88c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -135,7 +136,34 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 4.7966666, y: 5.363333}
   m_EdgeRadius: 0
---- !u!114 &3646382466856300233
+--- !u!50 &-6012588475919796279
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 364053030426377705}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &5702253944805409497
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,30 +172,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 364053030426377705}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b15b47ad22222ad4ca3d6e88e90e36ef, type: 3}
+  m_Script: {fileID: 11500000, guid: 3badbeb1dbabb204e9e64c67b81ec5ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   observers:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: museum_dialog.scripts.DialogueManager, DialogAssemblyDefinition
-        m_MethodName: OnNotify
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  interactableObjectName: 10
-  interactableObjectType: 2
-  gameEvent: 36
-  dialogLine:
-  - {fileID: 11400000, guid: 78d558b36c84bf14cba047f3f3a1ae15, type: 2}
-  - {fileID: 11400000, guid: 822b9a8d7fc15914f9aec4160ac4c061, type: 2}
-  interactionType: 0
-  repeatLastInteraction: 1
-  repeatAllInteractions: 0
+      m_Calls: []
+  holdGameEvent: 25
+  releaseGameEvent: 26

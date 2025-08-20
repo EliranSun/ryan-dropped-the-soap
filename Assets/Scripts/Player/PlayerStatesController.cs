@@ -7,8 +7,6 @@ namespace Player
 {
     public class PlayerStatesController : ObserverSubject
     {
-        public static PlayerStatesController Instance { get; private set; }
-
         [SerializeField] private GameObject playerBox;
         [SerializeField] private GameObject playerPlant;
         [SerializeField] private Camera mainCamera;
@@ -18,6 +16,7 @@ namespace Player
         private bool _allowGun;
         private InputAction _attackAction;
         private int _currentApartmentNumber = 420;
+        public static PlayerStatesController Instance { get; private set; }
 
 
         private void Awake()
@@ -44,7 +43,13 @@ namespace Player
             if (gun) gun.SetActive(false);
 
             SetPlayerBoxState();
-            // SetPlayerHoldingItem();
+
+
+            var storedItem = PlayerPrefs.GetString("PlayerHoldingItem", "");
+            if (storedItem == "")
+                return;
+
+            SetPlayerHoldingItem(storedItem);
         }
 
         private void Update()
@@ -56,14 +61,9 @@ namespace Player
             }
         }
 
-        private void SetPlayerHoldingItem()
+        private void SetPlayerHoldingItem(string itemName)
         {
-            var storedItem = PlayerPrefs.GetString("PlayerHoldingItem", "");
-            if (storedItem == "")
-                return;
-
-            print($"Stored item {storedItem}");
-            var item = items.FirstOrDefault(p => p.name == storedItem);
+            var item = items.FirstOrDefault(p => p.name == itemName);
             if (item) item.SetActive(true);
         }
 
@@ -135,23 +135,11 @@ namespace Player
                 _currentApartmentNumber = (int)location;
             }
 
-            // TODO: It makes more sense to move this to apartment controller
-            // however - this is here because the items are children to the player prefab
-            // and are notifying via the prefab itself...
-            // switch (eventData.Name)
-            // {
-            //     case GameEvents.PlayerPlacePlant:
-            //     case GameEvents.PlayerPlaceMirror:
-            //     case GameEvents.PlayerPlacePainting:
-            //     {
-            //         print($"{eventData.Name}, Position: {transform.position}");
-            //
-            //         var itemPosition = (Vector3)eventData.Data;
-            //         PlayerPrefs.SetString($"{eventData.Name}Position", $"{itemPosition.x},{itemPosition.y}");
-            //         PlayerPrefs.DeleteKey("PlayerHoldingItem");
-            //         break;
-            //     }
-            // }
+            if (eventData.Name == GameEvents.PickedItem)
+            {
+                var itemName = (string)eventData.Data;
+                SetPlayerHoldingItem(itemName);
+            }
         }
 
         public int GetCurrentApartmentNumber()
@@ -175,15 +163,15 @@ namespace Player
                     break;
 
                 case nameof(Location.Hallway):
-                    {
-                        var placePlayerAtElevator = currentScene.name == "inside elevator" ? 1 : 0;
-                        print("placePlayerAtElevator: " + placePlayerAtElevator);
-                        PlayerPrefs.SetInt("PlacePlayerAtElevator", placePlayerAtElevator);
+                {
+                    var placePlayerAtElevator = currentScene.name == "inside elevator" ? 1 : 0;
+                    print("placePlayerAtElevator: " + placePlayerAtElevator);
+                    PlayerPrefs.SetInt("PlacePlayerAtElevator", placePlayerAtElevator);
 
-                        if (currentScene.name != "hallway scene")
-                            SceneManager.LoadScene("hallway scene");
-                        break;
-                    }
+                    if (currentScene.name != "hallway scene")
+                        SceneManager.LoadScene("hallway scene");
+                    break;
+                }
 
                 case nameof(Location.Elevator):
                     if (currentScene.name != "inside elevator")
