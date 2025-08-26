@@ -1,10 +1,11 @@
 using UnityEngine;
 
-namespace Scenes.Stacy.scripts
+namespace stacy
 {
     public class CameraSectionMovement : MonoBehaviour
     {
         [SerializeField] private Transform target;
+        [SerializeField] private bool isEnabled = true;
 
         private Camera _camera;
         private float _cameraHeight;
@@ -14,8 +15,21 @@ namespace Scenes.Stacy.scripts
 
         private void Start()
         {
+            if (!isEnabled) return;
+
             _camera = GetComponent<Camera>();
             UpdateCameraData();
+        }
+
+        private void LateUpdate()
+        {
+            if (!isEnabled) return;
+
+            // Check if the target has moved outside the camera boundaries
+            CheckBoundaries();
+
+            // Update the last known position of the target
+            _lastPosition = target.position;
         }
 
         private void UpdateCameraData()
@@ -35,18 +49,7 @@ namespace Scenes.Stacy.scripts
 
         public void OnNotify(GameEventData eventData)
         {
-            if (eventData.Name == GameEvents.ZoomChangeEnd) {
-                UpdateCameraData();
-            }
-        }
-
-        private void LateUpdate()
-        {
-            // Check if the target has moved outside the camera boundaries
-            CheckBoundaries();
-
-            // Update the last known position of the target
-            _lastPosition = target.position;
+            if (eventData.Name == GameEvents.ZoomChangeEnd) UpdateCameraData();
         }
 
         private void AlignCameraWithTarget()
