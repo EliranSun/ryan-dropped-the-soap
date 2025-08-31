@@ -19,7 +19,7 @@ namespace Common.scripts
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.CompareTag("Player"))
-                transform.parent.GetComponent<Collider2D>().enabled = isUpperTrigger;
+                transform.parent.GetComponent<Collider2D>().enabled = œ;
         }
     }
 }

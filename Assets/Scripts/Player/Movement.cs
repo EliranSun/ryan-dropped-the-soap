@@ -112,10 +112,12 @@ namespace Player
             var vertical = allowFlight ? Input.GetAxis("Vertical") : 0;
 
             transform.Translate(new Vector3(moveValue.x, vertical, 0) * (speed * Time.deltaTime));
-
-            if (Input.GetKeyDown(KeyCode.W) ||
+            var jumpPressed =
+                Input.GetKeyDown(KeyCode.W) ||
                 Input.GetKeyDown(KeyCode.UpArrow) ||
-                Input.GetButtonDown("Jump"))
+                Input.GetButtonDown("Jump");
+
+            if (_isOnGround && jumpPressed)
             {
                 var force = Vector2.up * jumpForce;
                 _rigidbody2D.AddForce(force, ForceMode2D.Impulse);
