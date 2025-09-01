@@ -13,7 +13,7 @@ namespace Common.scripts
                 Input.GetKeyDown(KeyCode.DownArrow);
 
             if (downKeyDown)
-                transform.parent.GetComponent<Collider2D>().enabled = false;
+                transform.parent.GetComponent<Collider2D>().enabled = true;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -21,5 +21,7 @@ namespace Common.scripts
             if (other.CompareTag("Player"))
                 transform.parent.GetComponent<Collider2D>().enabled = isUpperTrigger;
         }
+        
+         
     }
 }
