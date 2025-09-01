@@ -43,6 +43,8 @@ namespace Player
             // spriteRenderer = GetComponent<SpriteRenderer>();
 
             if (addWobblyMovement) StartCoroutine(WobblyMovement());
+
+            if (allowFlight) _rigidbody2D.gravityScale = 0f;
         }
 
         private void Update()
@@ -106,12 +108,12 @@ namespace Player
 
         private void TransformMovement()
         {
-            // var horizontal = Input.GetAxis("Horizontal");
             var moveValue = _moveAction.ReadValue<Vector2>();
+            var y = allowFlight ? moveValue.y : 0;
+            transform.Translate(new Vector3(moveValue.x, y, 0) * (speed * Time.deltaTime));
 
-            var vertical = allowFlight ? Input.GetAxis("Vertical") : 0;
+            if (allowFlight) return;
 
-            transform.Translate(new Vector3(moveValue.x, vertical, 0) * (speed * Time.deltaTime));
             var jumpPressed =
                 Input.GetKeyDown(KeyCode.W) ||
                 Input.GetKeyDown(KeyCode.UpArrow) ||

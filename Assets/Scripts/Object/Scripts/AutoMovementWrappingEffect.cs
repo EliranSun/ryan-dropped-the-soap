@@ -10,7 +10,7 @@ namespace Object.Scripts
         Right
     }
 
-    public class AutoMovementParallaxEffect : MonoBehaviour
+    public class AutoMovementWrappingEffect : MonoBehaviour
     {
         [SerializeField] private float speed = 0.5f;
         [SerializeField] private Camera mainCamera;
@@ -70,7 +70,7 @@ namespace Object.Scripts
             }
         }
 
-        private GameObject GetExtremeObject(GameObject[] objects, bool highest)
+        private static GameObject GetExtremeObject(GameObject[] objects, bool highest)
         {
             var extreme = objects[0];
             foreach (var obj in objects)
