@@ -59,13 +59,15 @@ namespace Player
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("NPC"))
+            if (collision.gameObject.CompareTag("Ground") ||
+                collision.gameObject.CompareTag("NPC"))
                 _isOnGround = true;
         }
 
         private void OnCollisionExit2D(Collision2D collision)
         {
-            if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("NPC"))
+            if (collision.gameObject.CompareTag("Ground") ||
+                collision.gameObject.CompareTag("NPC"))
                 _isOnGround = false;
         }
 

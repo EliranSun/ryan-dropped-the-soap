@@ -7,7 +7,7 @@ namespace Object.Scripts
         [SerializeField] private GameObject player;
         [SerializeField] private Camera mainCamera;
         [SerializeField] private float childHeight = 9.6f;
-        [SerializeField] private float minY = 14f;
+        [SerializeField] private float minY = 54f;
 
         [SerializeField] private GameObject[] children;
 
@@ -27,22 +27,21 @@ namespace Object.Scripts
 
         private void HandleObjectRepositioning()
         {
-
             var highestChild = GetExtremeObject(children, true);
             var lowestChild = GetExtremeObject(children, false);
 
             if (_yDirection > 0) // up
             {
                 // Check if camera's bottom edge passed the top of the lowest child
-                float cameraBottomEdge = mainCamera.transform.position.y - (mainCamera.orthographicSize);
-                if (cameraBottomEdge > lowestChild.transform.position.y)
+                var cameraBottomEdge = mainCamera.transform.position.y - mainCamera.orthographicSize;
+                if (cameraBottomEdge > lowestChild.transform.position.y + childHeight)
                     WrapObject(lowestChild, highestChild.transform.position.y + childHeight);
             }
             else if (_yDirection < 0) // down
             {
                 // Check if camera's top edge passed the bottom of the highest child
-                float cameraTopEdge = mainCamera.transform.position.y + (mainCamera.orthographicSize);
-                if (cameraTopEdge < highestChild.transform.position.y)
+                var cameraTopEdge = mainCamera.transform.position.y + mainCamera.orthographicSize;
+                if (cameraTopEdge < highestChild.transform.position.y - childHeight)
                     WrapObject(highestChild, lowestChild.transform.position.y - childHeight);
             }
         }

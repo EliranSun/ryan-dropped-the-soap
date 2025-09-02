@@ -229,7 +229,8 @@ PrefabInstance:
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Character_Creator.scripts.DialogueManager, CharacterCreatorScriptsAssembly
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7795751477906700509, guid: e353ef99cd15a914d936e254978559b3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4371016708318843730, guid: e353ef99cd15a914d936e254978559b3, type: 3}
@@ -239,6 +240,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3637131745237976192, guid: e353ef99cd15a914d936e254978559b3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2858360098208313649}
+    - targetCorrespondingSourceObject: {fileID: 3637131745237976192, guid: e353ef99cd15a914d936e254978559b3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3547674541077311001}
+    - targetCorrespondingSourceObject: {fileID: 3637131745237976192, guid: e353ef99cd15a914d936e254978559b3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1572359318330684820}
+    - targetCorrespondingSourceObject: {fileID: 3637131745237976192, guid: e353ef99cd15a914d936e254978559b3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5426200272149917683}
   m_SourcePrefab: {fileID: 100100000, guid: e353ef99cd15a914d936e254978559b3, type: 3}
 --- !u!1 &3930049543282524055 stripped
 GameObject:
@@ -299,6 +309,84 @@ MonoBehaviour:
   playerGrewLine: {fileID: 11400000, guid: 4c9a65680f161f945a803dcb34c18117, type: 2}
   goToRooftopLine: {fileID: 11400000, guid: 4c674868499ddbe41a1b45e67d245c9f, type: 2}
   playerApartmentDoor: {fileID: 0}
+--- !u!114 &3547674541077311001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3930049543282524055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08ed81895a08a0942975e119b35594ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 0}
+--- !u!114 &1572359318330684820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3930049543282524055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c4a74725666a0f40b9c5638c7543e70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Character_Creator.scripts.DialogueManager, CharacterCreatorScriptsAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  invokeOnStart: 0
+  lines:
+  - {fileID: 11400000, guid: 8a265633a8539e14a8dba78a71726acb, type: 2}
+--- !u!114 &5426200272149917683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3930049543282524055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a92b55e90f5afb64c84613c6074a20c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1572359318330684820}
+        m_TargetAssemblyTypeName: Dialog.ActorLines, DialogAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  objectType: 0
+  interactionType: 0
+  disableGameObjectOnClick: 0
+  isEnabled: 1
+  interactableLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  _is3D: 0
 --- !u!4 &4060874364467996741 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4371016708318843730, guid: e353ef99cd15a914d936e254978559b3, type: 3}

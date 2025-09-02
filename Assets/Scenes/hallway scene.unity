@@ -4312,84 +4312,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c99047920ed84adf894b38dfacf89d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &888536282
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 12380333}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08ed81895a08a0942975e119b35594ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerTransform: {fileID: 432403212}
---- !u!114 &888536283
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 12380333}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c4a74725666a0f40b9c5638c7543e70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  observers:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 109004085}
-        m_TargetAssemblyTypeName: Character_Creator.scripts.DialogueManager, CharacterCreatorScriptsAssembly
-        m_MethodName: OnNotify
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  invokeOnStart: 0
-  lines:
-  - {fileID: 11400000, guid: 8a265633a8539e14a8dba78a71726acb, type: 2}
---- !u!114 &888536284
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 12380333}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a92b55e90f5afb64c84613c6074a20c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  observers:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 888536283}
-        m_TargetAssemblyTypeName: Dialog.ActorLines, DialogAssembly
-        m_MethodName: OnNotify
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  objectType: 0
-  interactionType: 0
-  disableGameObjectOnClick: 0
-  isEnabled: 1
-  interactableLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  _is3D: 0
 --- !u!1 &920338660
 GameObject:
   m_ObjectHideFlags: 0
@@ -8927,6 +8849,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1572359318330684820, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 109004085}
     - target: {fileID: 2844366699017945156, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
       propertyPath: playerTransform
       value: 
@@ -8935,6 +8861,10 @@ PrefabInstance:
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 222591562}
+    - target: {fileID: 3547674541077311001, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 432403212}
     - target: {fileID: 3930049543282524055, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
       propertyPath: m_Name
       value: "\U0001F7E4 Charlotte"
@@ -9011,20 +8941,10 @@ PrefabInstance:
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 109004085}
-    m_RemovedComponents:
-    - {fileID: 7549147449976439754, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3930049543282524055, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 888536282}
-    - targetCorrespondingSourceObject: {fileID: 3930049543282524055, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 888536283}
-    - targetCorrespondingSourceObject: {fileID: 3930049543282524055, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 888536284}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
 --- !u!1001 &4068198194827888004
 PrefabInstance:
