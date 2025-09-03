@@ -1,3 +1,4 @@
+using Object.Scripts;
 using TMPro;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ namespace Player
     public class InteractionsTrigger : ObserverSubject
     {
         [SerializeField] private TextMeshPro interactionText;
-        private GameObject _interactedObject;
+        private ObjectNames _interactedObjectName;
 
         private void Start()
         {
@@ -15,11 +16,8 @@ namespace Player
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.X) && _interactedObject)
-            {
-                print("Interacted with object: " + _interactedObject.name);
-                Notify(GameEvents.PlayerInteraction, _interactedObject);
-            }
+            if (Input.GetKeyDown(KeyCode.X) && _interactedObjectName != ObjectNames.None)
+                Notify(GameEvents.PlayerInteraction, _interactedObjectName);
         }
 
         private void OnCollisionEnter2D(Collision2D other)
@@ -47,10 +45,12 @@ namespace Player
             if (other.CompareTag("Apartment Door") ||
                 other.CompareTag("Door") ||
                 other.CompareTag("Building Entrance") ||
+                other.CompareTag("Elevator") ||
+                other.CompareTag("Staircase Entrance") ||
                 other.CompareTag("NPC"))
             {
                 interactionText.text = "";
-                _interactedObject = null;
+                _interactedObjectName = ObjectNames.None;
             }
         }
 
@@ -58,18 +58,26 @@ namespace Player
         {
             if (other.CompareTag("Building Entrance"))
             {
-                interactionText.text = "Press X to enter";
-                _interactedObject = other.gameObject;
+                interactionText.text = "Press X to ENTER";
+                _interactedObjectName = ObjectNames.BuildingEntrance;
             }
 
             if (other.CompareTag("Door"))
             {
-                interactionText.text = "Press X to open door";
-                _interactedObject = other.gameObject;
+                interactionText.text = "OPEN";
+                _interactedObjectName = ObjectNames.BuildingEntranceDoors;
             }
 
-            if (other.CompareTag("Apartment Door")) interactionText.text = "Press X to knock";
-            if (other.CompareTag("NPC")) interactionText.text = "Press X to talk";
+            if (other.CompareTag("Item")) interactionText.text = "OBSERVE";
+            if (other.CompareTag("Elevator"))
+            {
+                interactionText.text = "CALL";
+                _interactedObjectName = ObjectNames.Elevator;
+            }
+
+            if (other.CompareTag("Staircase Entrance")) interactionText.text = "CLIMB";
+            if (other.CompareTag("Apartment Door")) interactionText.text = "KNOCK";
+            if (other.CompareTag("NPC")) interactionText.text = "TALK";
         }
     }
 }

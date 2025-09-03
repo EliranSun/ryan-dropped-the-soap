@@ -1,3 +1,4 @@
+using Object.Scripts;
 using UnityEngine;
 
 namespace Elevator.scripts
@@ -7,16 +8,15 @@ namespace Elevator.scripts
         [SerializeField] private GameObject initDoor;
         [SerializeField] private GameObject alternateDoor;
         [SerializeField] private GameEvents enterDoorEvent;
+        [SerializeField] private ObjectNames doorName;
 
         public void OnNotify(GameEventData data)
         {
             if (data.Name == GameEvents.PlayerInteraction)
             {
-                var interactedObject = (GameObject)data.Data;
-                if (!interactedObject || !interactedObject.GetComponent<ObjectName>())
+                var interactedObjectName = (ObjectNames)data.Data;
+                if (interactedObjectName == ObjectNames.None)
                     return;
-
-                var interactedObjectName = interactedObject.GetComponent<ObjectName>().objectName;
 
                 if (interactedObjectName == initDoor.GetComponent<ObjectName>().objectName)
                 {

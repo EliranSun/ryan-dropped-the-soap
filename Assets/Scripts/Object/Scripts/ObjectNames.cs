@@ -7,6 +7,7 @@ namespace Object.Scripts
     {
         None,
         BuildingEntranceDoors,
-        BuildingEntrance
+        BuildingEntrance,
+        Elevator
     }
 }

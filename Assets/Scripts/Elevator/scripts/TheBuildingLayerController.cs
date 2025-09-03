@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Object.Scripts;
 using UnityEngine;
 
 namespace Elevator.scripts
@@ -7,19 +8,41 @@ namespace Elevator.scripts
     public class TheBuildingLayerController : MonoBehaviour
     {
         [SerializeField] private GameObject[] layers;
+        [SerializeField] private Camera mainCamera;
+        [SerializeField] private Color skyColor;
+        [SerializeField] private Color halfDarkHalfSkyColor;
+        [SerializeField] private Color fullDarkColor;
 
         public void OnNotify(GameEventData eventData)
         {
-            if (eventData.Name == GameEvents.EnterTheBuilding)
-            {
-                StartCoroutine(FadeOutLayer(0));
-                StartCoroutine(FadeInLayer(1));
-            }
+            if (eventData.Name != GameEvents.PlayerInteraction)
+                return;
 
-            if (eventData.Name == GameEvents.ExitTheBuilding)
+            var interactedObject = (ObjectNames)eventData.Data;
+            switch (interactedObject)
             {
-                StartCoroutine(FadeOutLayer(1));
-                StartCoroutine(FadeInLayer(0));
+                case ObjectNames.BuildingEntrance:
+                    StartCoroutine(FadeOutLayer(0));
+                    StartCoroutine(FadeInLayer(1));
+                    StartCoroutine(DarkenCamera(halfDarkHalfSkyColor));
+                    break;
+                case ObjectNames.Elevator:
+                    StartCoroutine(DarkenCamera(fullDarkColor));
+                    break;
+            }
+        }
+
+        private IEnumerator DarkenCamera(Color targetColor)
+        {
+            var startColor = mainCamera.backgroundColor;
+            var t = 0f;
+
+            while (t < 2f)
+            {
+                t += 0.1f;
+                t = Mathf.Min(t, 1f);
+                mainCamera.backgroundColor = Color.Lerp(startColor, targetColor, t);
+                yield return new WaitForSeconds(0.1f);
             }
         }
 
@@ -34,7 +57,7 @@ namespace Elevator.scripts
                 yield break;
             }
 
-            float currentAlpha = spriteRenderers[0].color.a;
+            var currentAlpha = spriteRenderers[0].color.a;
 
             while (currentAlpha > 0)
             {
@@ -58,7 +81,7 @@ namespace Elevator.scripts
             if (spriteRenderers.Count == 0)
                 yield break;
 
-            float currentAlpha = spriteRenderers[0].color.a;
+            var currentAlpha = spriteRenderers[0].color.a;
 
             while (currentAlpha < 1)
             {
@@ -81,16 +104,11 @@ namespace Elevator.scripts
         {
             // Check if current object has a SpriteRenderer
             var spriteRenderer = parent.GetComponent<SpriteRenderer>();
-            if (spriteRenderer != null)
-            {
-                spriteRenderers.Add(spriteRenderer);
-            }
+            if (spriteRenderer != null) spriteRenderers.Add(spriteRenderer);
 
             // Recursively check all children
-            for (int i = 0; i < parent.childCount; i++)
-            {
+            for (var i = 0; i < parent.childCount; i++)
                 GetSpriteRenderersRecursive(parent.GetChild(i), spriteRenderers);
-            }
         }
 
         private void SetAlphaForAllSprites(List<SpriteRenderer> spriteRenderers, float alpha)
