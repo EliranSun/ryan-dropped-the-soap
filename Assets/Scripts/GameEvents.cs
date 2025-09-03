@@ -225,5 +225,6 @@
     PlayerReleaseItem,
 
     PlayerInteraction,
-    EnterTheBuilding
+    EnterTheBuilding,
+    ExitTheBuilding
 }

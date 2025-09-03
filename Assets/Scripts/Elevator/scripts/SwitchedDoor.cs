@@ -29,6 +29,7 @@ namespace Elevator.scripts
                     initDoor.SetActive(true);
                     alternateDoor.SetActive(false);
 
+                    print("Switching door: " + enterDoorEvent);
                     Notify(enterDoorEvent);
                 }
             }

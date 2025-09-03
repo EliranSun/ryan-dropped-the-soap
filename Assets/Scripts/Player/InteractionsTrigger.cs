@@ -16,7 +16,10 @@ namespace Player
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.X) && _interactedObject)
+            {
+                print("Interacted with object: " + _interactedObject.name);
                 Notify(GameEvents.PlayerInteraction, _interactedObject);
+            }
         }
 
         private void OnCollisionEnter2D(Collision2D other)
@@ -53,14 +56,20 @@ namespace Player
 
         private void InstructBasedOnTag(GameObject other)
         {
-            if (other.CompareTag("Building Entrance")) interactionText.text = "Press X to enter";
-            if (other.CompareTag("Apartment Door")) interactionText.text = "Press X to knock";
-            if (other.CompareTag("NPC")) interactionText.text = "Press X to talk";
+            if (other.CompareTag("Building Entrance"))
+            {
+                interactionText.text = "Press X to enter";
+                _interactedObject = other.gameObject;
+            }
+
             if (other.CompareTag("Door"))
             {
                 interactionText.text = "Press X to open door";
                 _interactedObject = other.gameObject;
             }
+
+            if (other.CompareTag("Apartment Door")) interactionText.text = "Press X to knock";
+            if (other.CompareTag("NPC")) interactionText.text = "Press X to talk";
         }
     }
 }
