@@ -2,10 +2,11 @@ using UnityEngine;
 
 namespace Elevator.scripts
 {
-    public class SwitchedDoor : MonoBehaviour
+    public class SwitchedDoor : ObserverSubject
     {
         [SerializeField] private GameObject initDoor;
         [SerializeField] private GameObject alternateDoor;
+        [SerializeField] private GameEvents enterDoorEvent;
 
         public void OnNotify(GameEventData data)
         {
@@ -27,6 +28,8 @@ namespace Elevator.scripts
                 {
                     initDoor.SetActive(true);
                     alternateDoor.SetActive(false);
+
+                    Notify(enterDoorEvent);
                 }
             }
         }

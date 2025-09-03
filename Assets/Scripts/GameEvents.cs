@@ -224,5 +224,6 @@
 
     PlayerReleaseItem,
 
-    PlayerInteraction
+    PlayerInteraction,
+    EnterTheBuilding
 }

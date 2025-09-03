@@ -2583,6 +2583,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectName: 2
+--- !u!1 &2044988165
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2044988166}
+  - component: {fileID: 2044988167}
+  m_Layer: 0
+  m_Name: "\u2699 Building Controller"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2044988166
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2044988165}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2044988167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2044988165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4460ea24b208744684767a7cd1e5d6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2048837978
 GameObject:
   m_ObjectHideFlags: 0
@@ -2629,9 +2673,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73ad736ce5f736d4695479904ba8c990, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls: []
   initDoor: {fileID: 930278414}
   alternateDoor: {fileID: 2025283905}
-  objectName: 1
+  enterDoorEvent: 180
 --- !u!1 &2071457678
 GameObject:
   m_ObjectHideFlags: 0
@@ -2861,6 +2908,7 @@ SceneRoots:
   - {fileID: 1783641136}
   - {fileID: 1820758853}
   - {fileID: 29905566}
+  - {fileID: 2044988166}
   - {fileID: 2071457680}
   - {fileID: 1978461028}
   - {fileID: 309266036}
