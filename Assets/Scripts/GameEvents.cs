@@ -222,5 +222,7 @@
     MirrorChosenRoman,
     MirrorChosenGreek,
 
-    PlayerReleaseItem
+    PlayerReleaseItem,
+
+    PlayerInteraction
 }

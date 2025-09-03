@@ -1993,11 +1993,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &263257391 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5023264232389034183, guid: 9ae82c3bfbb75be4ba49d923bcde8248, type: 3}
-  m_PrefabInstance: {fileID: 827538638}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &274592680
 GameObject:
   m_ObjectHideFlags: 0
@@ -3355,7 +3350,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6862535366279046487, guid: 18bc23390df011442b819617737dd1bd, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7423368876499607371, guid: 18bc23390df011442b819617737dd1bd, type: 3}
       propertyPath: m_Name
@@ -4125,7 +4120,6 @@ Transform:
   - {fileID: 1893929534}
   - {fileID: 738705476}
   - {fileID: 362866774}
-  - {fileID: 827538642}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &789680238
@@ -4212,95 +4206,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 920338661}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &827538638
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 764530475}
-    m_Modifications:
-    - target: {fileID: 1442130448480437418, guid: 9ae82c3bfbb75be4ba49d923bcde8248, type: 3}
-      propertyPath: door
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2026209542690905595, guid: 9ae82c3bfbb75be4ba49d923bcde8248, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.16342163
-      objectReference: {fileID: 0}
-    - target: {fileID: 2026209542690905595, guid: 9ae82c3bfbb75be4ba49d923bcde8248, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 6.5181904
-      objectReference: {fileID: 0}
-    - target: {fileID: 2026209542690905595, guid: 9ae82c3bfbb75be4ba49d923bcde8248, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2026209542690905595, guid: 9ae82c3bfbb75be4ba49d923bcde8248, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2026209542690905595, guid: 9ae82c3bfbb75be4ba49d923bcde8248, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2026209542690905595, guid: 9ae82c3bfbb75be4ba49d923bcde8248, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2026209542690905595, guid: 9ae82c3bfbb75be4ba49d923bcde8248, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2026209542690905595, guid: 9ae82c3bfbb75be4ba49d923bcde8248, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2026209542690905595, guid: 9ae82c3bfbb75be4ba49d923bcde8248, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2026209542690905595, guid: 9ae82c3bfbb75be4ba49d923bcde8248, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5023264232389034183, guid: 9ae82c3bfbb75be4ba49d923bcde8248, type: 3}
-      propertyPath: m_Name
-      value: Zeke's Apartment
-      objectReference: {fileID: 0}
-    - target: {fileID: 5023264232389034183, guid: 9ae82c3bfbb75be4ba49d923bcde8248, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9044269461175498600, guid: 9ae82c3bfbb75be4ba49d923bcde8248, type: 3}
-      propertyPath: m_Name
-      value: "\u26AB Zeke"
-      objectReference: {fileID: 0}
-    - target: {fileID: 9044269461175498600, guid: 9ae82c3bfbb75be4ba49d923bcde8248, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9ae82c3bfbb75be4ba49d923bcde8248, type: 3}
---- !u!114 &827538641 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1442130448480437418, guid: 9ae82c3bfbb75be4ba49d923bcde8248, type: 3}
-  m_PrefabInstance: {fileID: 827538638}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb298a2c9709c3d46ba3b09fae57e795, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &827538642 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2026209542690905595, guid: 9ae82c3bfbb75be4ba49d923bcde8248, type: 3}
-  m_PrefabInstance: {fileID: 827538638}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &888536275 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6621240152084822304, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
@@ -7612,7 +7517,7 @@ MonoBehaviour:
   floorPrefab: {fileID: 2193044454335554706, guid: ac98bf460c718a542b8bf3d57dc5f99e, type: 3}
   floorData: {fileID: 11400000, guid: 0d331cf434876ec44a2376c813275b06, type: 2}
   npcApartments:
-  - {fileID: 827538641}
+  - {fileID: 0}
   floorsContainer: {fileID: 280493706}
   playerTransform: {fileID: 432403212}
   tenants:
@@ -7622,14 +7527,14 @@ MonoBehaviour:
     name: 0
     tenantPrefab: {fileID: 1178285043}
     door: {fileID: 0}
-    apartmentContents: {fileID: 263257391}
+    apartmentContents: {fileID: 0}
   - apartmentNumber: 2
     currentApartmentNumber: 0
     floorNumber: 2
     name: 1
     tenantPrefab: {fileID: 1981304054}
     door: {fileID: 0}
-    apartmentContents: {fileID: 263257391}
+    apartmentContents: {fileID: 0}
 --- !u!1 &1672594351
 GameObject:
   m_ObjectHideFlags: 0

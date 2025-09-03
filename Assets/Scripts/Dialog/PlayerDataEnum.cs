@@ -1,6 +1,6 @@
 using System;
 
-namespace Dialog.Scripts
+namespace Dialog
 {
     [Serializable]
     public enum PlayerDataEnum
