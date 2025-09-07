@@ -8,6 +8,8 @@ namespace Object.Scripts
         None,
         BuildingEntranceDoors,
         BuildingEntrance,
-        Elevator
+        Elevator,
+        StaircaseEntrance,
+        StaircaseExit
     }
 }

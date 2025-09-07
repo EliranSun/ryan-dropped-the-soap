@@ -56,28 +56,45 @@ namespace Player
 
         private void InstructBasedOnTag(GameObject other)
         {
-            if (other.CompareTag("Building Entrance"))
+            switch (other.tag)
             {
-                interactionText.text = "Press X to ENTER";
-                _interactedObjectName = ObjectNames.BuildingEntrance;
-            }
+                case "Building Entrance":
+                    interactionText.text = "Press X to ENTER";
+                    _interactedObjectName = ObjectNames.BuildingEntrance;
+                    break;
 
-            if (other.CompareTag("Door"))
-            {
-                interactionText.text = "OPEN";
-                _interactedObjectName = ObjectNames.BuildingEntranceDoors;
-            }
+                case "Door":
+                    interactionText.text = "OPEN";
+                    _interactedObjectName = ObjectNames.BuildingEntranceDoors;
+                    break;
 
-            if (other.CompareTag("Item")) interactionText.text = "OBSERVE";
-            if (other.CompareTag("Elevator"))
-            {
-                interactionText.text = "CALL";
-                _interactedObjectName = ObjectNames.Elevator;
-            }
+                case "Item":
+                    interactionText.text = "OBSERVE";
+                    break;
 
-            if (other.CompareTag("Staircase Entrance")) interactionText.text = "CLIMB";
-            if (other.CompareTag("Apartment Door")) interactionText.text = "KNOCK";
-            if (other.CompareTag("NPC")) interactionText.text = "TALK";
+                case "Elevator":
+                    interactionText.text = "CALL";
+                    _interactedObjectName = ObjectNames.Elevator;
+                    break;
+
+                case "Staircase Entrance":
+                    interactionText.text = "CLIMB";
+                    _interactedObjectName = ObjectNames.StaircaseEntrance;
+                    break;
+
+                case "Staircase Exit":
+                    interactionText.text = "EXIT";
+                    _interactedObjectName = ObjectNames.StaircaseExit;
+                    break;
+
+                case "Apartment Door":
+                    interactionText.text = "KNOCK";
+                    break;
+
+                case "NPC":
+                    interactionText.text = "TALK";
+                    break;
+            }
         }
     }
 }

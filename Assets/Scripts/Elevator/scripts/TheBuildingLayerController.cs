@@ -19,7 +19,7 @@ namespace Elevator.scripts
                 return;
 
             var interactedObject = (ObjectNames)eventData.Data;
-            
+
             switch (interactedObject)
             {
                 case ObjectNames.BuildingEntrance:
@@ -27,6 +27,19 @@ namespace Elevator.scripts
                     StartCoroutine(FadeInLayer(1));
                     StartCoroutine(DarkenCamera(halfDarkHalfSkyColor));
                     break;
+
+                case ObjectNames.StaircaseEntrance:
+                    StartCoroutine(FadeOutLayer(1));
+                    StartCoroutine(FadeInLayer(2));
+                    StartCoroutine(DarkenCamera(fullDarkColor));
+                    break;
+
+                case ObjectNames.StaircaseExit:
+                    StartCoroutine(FadeInLayer(1));
+                    StartCoroutine(FadeOutLayer(2));
+                    StartCoroutine(DarkenCamera(halfDarkHalfSkyColor));
+                    break;
+
                 case ObjectNames.Elevator:
                     StartCoroutine(DarkenCamera(fullDarkColor));
                     break;
