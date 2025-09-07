@@ -19,6 +19,7 @@ namespace Elevator.scripts
                 return;
 
             var interactedObject = (ObjectNames)eventData.Data;
+            
             switch (interactedObject)
             {
                 case ObjectNames.BuildingEntrance:

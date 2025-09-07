@@ -13,7 +13,7 @@ namespace Common.scripts
                 Input.GetKeyDown(KeyCode.DownArrow);
 
             if (downKeyDown)
-                transform.parent.GetComponent<Collider2D>().enabled = true;
+                transform.parent.GetComponent<Collider2D>().enabled = false;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
