@@ -7,11 +7,11 @@ namespace Elevator.scripts
 {
     public class TheBuildingLayerController : MonoBehaviour
     {
-        [SerializeField] private GameObject[] layers;
         [SerializeField] private Camera mainCamera;
         [SerializeField] private Color skyColor;
         [SerializeField] private Color halfDarkHalfSkyColor;
         [SerializeField] private Color fullDarkColor;
+        [SerializeField] private GameObject[] layers;
 
         public void OnNotify(GameEventData eventData)
         {
