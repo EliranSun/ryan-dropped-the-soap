@@ -25,7 +25,6 @@ namespace Common.scripts
         {
             if (other.gameObject.CompareTag("Ladder"))
             {
-                print("ON LADDER");
                 _isOnLadder = true;
                 // rigidbody2D.gravityScale = 0f;
             }

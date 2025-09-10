@@ -14,6 +14,12 @@ namespace Object.Scripts
         private float _previousYPosition;
         private float _yDirection;
 
+        private void Start()
+        {
+            for (var i = 0; i < children.Length; i++)
+                children[i].GetComponent<ObjectIndexController>().UpdateFloorNumber(i + 1);
+        }
+
         private void Update()
         {
             _yDirection = player.transform.position.y - _previousYPosition;
@@ -48,11 +54,56 @@ namespace Object.Scripts
 
         private void WrapObject(GameObject child, float y)
         {
-            child.transform.position = new Vector3(
-                child.transform.position.x,
-                y,
-                child.transform.position.z
-            );
+            var x = child.transform.position.x;
+            var z = child.transform.position.z;
+            child.transform.position = new Vector3(x, y, z);
+
+            // Calculate the correct floor number based on wrapping direction
+            int newFloorNumber;
+            if (_yDirection > 0) // Moving up: object goes above highest, gets highest floor + 1
+            {
+                var highestFloor = GetHighestFloorNumber();
+                newFloorNumber = highestFloor + 1;
+            }
+            else // Moving down: object goes below lowest, gets lowest floor - 1
+            {
+                var lowestFloor = GetLowestFloorNumber();
+                newFloorNumber = lowestFloor - 1;
+            }
+
+            child.GetComponent<ObjectIndexController>().UpdateFloorNumber(newFloorNumber);
+        }
+
+        private int GetHighestFloorNumber()
+        {
+            var highest = 0;
+            foreach (var child in children)
+            {
+                var controller = child.GetComponent<ObjectIndexController>();
+                if (controller != null)
+                {
+                    var floorText = controller.GetFloorNumberText();
+                    if (int.TryParse(floorText, out var floorNumber) && floorNumber > highest)
+                        highest = floorNumber;
+                }
+            }
+            return highest;
+        }
+
+        private int GetLowestFloorNumber()
+        {
+            var lowest = int.MaxValue;
+            foreach (var child in children)
+            {
+                var controller = child.GetComponent<ObjectIndexController>();
+                if (controller != null)
+                {
+                    var floorText = controller.GetFloorNumberText();
+                    if (int.TryParse(floorText, out var floorNumber) && floorNumber < lowest)
+                        lowest = floorNumber;
+                }
+            }
+            return lowest == int.MaxValue ? 0 : lowest;
         }
 
         private static GameObject GetExtremeObject(GameObject[] objects, bool highest)

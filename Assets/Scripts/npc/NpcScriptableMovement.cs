@@ -13,12 +13,13 @@ namespace npc
         // if PoI is player, speed should be lower than player speed to avoid animation jitter
         // (because the NPC constantly reaching and stopping)
         [SerializeField] private float speed;
-        [SerializeField] private Transform[] pointsOfInterest;
         [SerializeField] private float distanceToChangePoint = 4f;
         [SerializeField] private Transform playerTransform;
         [SerializeField] private float jumpForce = 20f;
         [SerializeField] private float distanceToPlayer = 4f;
         [SerializeField] private bool isRigidBodyMovement = true;
+        [SerializeField] private bool avoidPlayer;
+        [SerializeField] private Transform[] pointsOfInterest;
 
         private Animator _animator;
         private int _currentPointOfInterestIndex;
@@ -44,8 +45,6 @@ namespace npc
                 return;
 
             var distance = Vector2.Distance(transform.position, pointsOfInterest[0].transform.position);
-
-            // print($"distance: {distance}, distanceFromPlayer: {distanceFromPlayer}");
 
             if (distance <= distanceToChangePoint)
             {
@@ -90,7 +89,7 @@ namespace npc
             if (isRigidBodyMovement)
                 RigidBodyMovement(direction, distanceFromPlayer);
             else
-                TransformMovement(direction, distanceFromPlayer);
+                TransformMovement(direction);
         }
 
         private void RigidBodyMovement(Vector2 direction, float distanceFromPlayer)
@@ -98,18 +97,19 @@ namespace npc
             _spriteRenderer.flipX = direction.x > 0;
             _rigidBody2D.linearVelocityX = direction.x * speed;
 
-            if (_isWalking && !_isJumping && Mathf.Abs(distanceFromPlayer) < distanceToPlayer)
+            if (avoidPlayer && _isWalking && !_isJumping && Mathf.Abs(distanceFromPlayer) < distanceToPlayer)
             {
                 // avoid player by jumping over them.
-                // of course the optimal solution would be to prevent collision,
+                // of course, the optimal solution would be to prevent collision,
                 // but this solution might be more fun.
                 _rigidBody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
                 _isJumping = true;
             }
         }
 
-        private void TransformMovement(Vector2 direction, float distanceFromPlayer)
+        private void TransformMovement(Vector2 direction)
         {
+            _spriteRenderer.flipX = direction.x < 0;
             transform.Translate(new Vector3(direction.x, 0, 0) * (speed * Time.deltaTime));
         }
 
