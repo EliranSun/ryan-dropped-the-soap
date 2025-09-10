@@ -56,6 +56,9 @@ namespace Object.Scripts
         {
             var x = child.transform.position.x;
             var z = child.transform.position.z;
+
+            print($"Wrapped object {child.gameObject.name} to {y}");
+
             child.transform.position = new Vector3(x, y, z);
 
             // Calculate the correct floor number based on wrapping direction
@@ -87,6 +90,7 @@ namespace Object.Scripts
                         highest = floorNumber;
                 }
             }
+
             return highest;
         }
 
@@ -103,6 +107,7 @@ namespace Object.Scripts
                         lowest = floorNumber;
                 }
             }
+
             return lowest == int.MaxValue ? 0 : lowest;
         }
 

@@ -4,6 +4,7 @@ namespace Elevator.scripts
 {
     public class ElevatorShake : MonoBehaviour
     {
+        [SerializeField] private Camera mainCamera;
         [SerializeField] private float shakeDuration = 0.5f;
         [SerializeField] private float shakeAmount = 0.7f;
         [SerializeField] private float decreaseFactor = 1.0f;
@@ -13,8 +14,8 @@ namespace Elevator.scripts
         {
             if (shakeDuration > 0)
             {
-                Vector2 shakeOffset = Random.insideUnitCircle * shakeAmount;
-                transform.localPosition = new Vector3(
+                var shakeOffset = Random.insideUnitCircle * shakeAmount;
+                mainCamera.transform.localPosition = new Vector3(
                     _originalPos.x + shakeOffset.x,
                     _originalPos.y + shakeOffset.y,
                     _originalPos.z // preserve original Z
@@ -29,7 +30,7 @@ namespace Elevator.scripts
 
         public void Shake(float duration)
         {
-            _originalPos = transform.localPosition;
+            _originalPos = mainCamera.transform.localPosition;
             shakeDuration = duration;
         }
     }

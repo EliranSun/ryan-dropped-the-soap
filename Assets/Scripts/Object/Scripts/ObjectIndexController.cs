@@ -6,10 +6,12 @@ namespace Object.Scripts
     public class ObjectIndexController : MonoBehaviour
     {
         [SerializeField] private TextMeshPro floorNumberText;
+        public int ObjectNumber { get; private set; }
 
-        public void UpdateFloorNumber(int floorNumber)
+        public void UpdateFloorNumber(int objectNumber)
         {
-            floorNumberText.text = floorNumber < 10 ? "0" + floorNumber : floorNumber.ToString();
+            floorNumberText.text = objectNumber < 10 ? "0" + objectNumber : objectNumber.ToString();
+            ObjectNumber = objectNumber;
         }
 
         public string GetFloorNumberText()

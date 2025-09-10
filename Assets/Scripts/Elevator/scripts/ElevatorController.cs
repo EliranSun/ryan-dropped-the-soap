@@ -9,12 +9,8 @@ namespace Elevator.scripts
     {
         [SerializeField] private AudioSource elevatorAudioSource;
         [SerializeField] private AudioClip elevatorMovingSound;
-
         [SerializeField] private AudioClip elevatorReachedFloorSound;
-
-        // [SerializeField] private Transform apartmentsGridTransform;
         [SerializeField] private ElevatorShake shakeableCamera;
-        [SerializeField] private GameObject panel;
         [SerializeField] private TextMeshPro floorText;
         [SerializeField] private TextMeshPro desiredFloorText;
         [SerializeField] private TextMeshPro[] apartmentNumbers;
@@ -23,7 +19,10 @@ namespace Elevator.scripts
         [SerializeField] private float debounce = 3f;
         [SerializeField] private float lightLoop = 3f;
         [SerializeField] private float apartmentsPanelMoveSpeed = 1;
-        [SerializeField] private FloorData floorData;
+        [SerializeField] private float elevatorSpeed = 0.1f;
+
+        private int _currentFloor;
+        // [SerializeField] private FloorData floorData;
 
         private int _desiredFloor;
         private Vector3 _initLightPosition;
@@ -33,36 +32,37 @@ namespace Elevator.scripts
 
         private void Awake()
         {
-            // making sure to notify this before any other event
-            Notify(GameEvents.FloorChange, floorData.elevatorFloorNumber);
+            // if (floorData)
+            //     Notify(GameEvents.FloorChange, floorData.elevatorFloorNumber);
         }
 
         private void Start()
         {
-            if (floorText) floorText.text = floorData.elevatorFloorNumber.ToString();
+            if (floorText) floorText.text = _currentFloor.ToString();
         }
 
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.X) && !_isFloorMoving)
-            {
-                floorData.playerExitElevator = true;
+                // if (floorData) floorData.playerExitElevator = true;
                 Notify(GameEvents.ChangePlayerLocation, Location.Hallway);
-            }
 
             _timeSinceLastClick += Time.deltaTime;
 
             if (_isFloorMoving)
-                return;
+            {
+                var y = (_desiredFloor < _currentFloor ? -elevatorSpeed : elevatorSpeed) * Time.deltaTime;
+                transform.Translate(0, y, 0);
+            }
 
-            if (floorData.elevatorFloorNumber == int.Parse(floorText.text))
-                return;
-
-            if (_timeSinceLastClick == 0)
-                return;
-
-            if (_timeSinceLastClick - _timeDiff < debounce)
-                return;
+            // if (floorData && floorData.elevatorFloorNumber == int.Parse(floorText.text))
+            //     return;
+            //
+            // if (_timeSinceLastClick == 0)
+            //     return;
+            //
+            // if (_timeSinceLastClick - _timeDiff < debounce)
+            //     return;
 
             // var floor = int.Parse(floorText.text);
             // GoToFloor(floor);
@@ -70,6 +70,21 @@ namespace Elevator.scripts
 
         public void OnNotify(GameEventData eventData)
         {
+            if (eventData.Name == GameEvents.FloorChange)
+            {
+                var floorNumber = (int)eventData.Data;
+                _currentFloor = floorNumber;
+
+                Notify(GameEvents.FloorChange, _currentFloor);
+                floorText.text = $"{_currentFloor}";
+                for (var i = 0; i < apartmentNumbers.Length; i++)
+                {
+                    var apt = apartmentNumbers[i];
+                    apt.text = $"{_currentFloor}0{i + 1}";
+                }
+            }
+
+
             if (eventData.Name == GameEvents.ElevatorButtonPress)
             {
                 var floor = (int)eventData.Data;
@@ -106,13 +121,13 @@ namespace Elevator.scripts
             if (_isFloorMoving)
             {
                 // If we are already moving, just update the shake amount for the new destination.
-                shakeableCamera.Shake(Mathf.Abs(floorNumber - floorData.elevatorFloorNumber));
+                shakeableCamera.Shake(Mathf.Abs(floorNumber - _currentFloor));
                 return;
             }
 
             StartCoroutine(Move());
             // StartCoroutine(MoveApartmentsGrid());
-            shakeableCamera.Shake(Mathf.Abs(floorNumber - floorData.elevatorFloorNumber));
+            shakeableCamera.Shake(Mathf.Abs(floorNumber - _currentFloor));
             shaftLight.SetActive(false);
         }
 
@@ -129,29 +144,8 @@ namespace Elevator.scripts
 
             _isFloorMoving = true;
 
-            while (floorData.elevatorFloorNumber != _desiredFloor)
-            {
-                yield return new WaitForSeconds(1);
-
-                if (floorData.elevatorFloorNumber < _desiredFloor)
-                {
-                    floorData.elevatorFloorNumber++;
-                    floorData.currentFloorNumber++;
-                }
-                else
-                {
-                    floorData.elevatorFloorNumber--;
-                    floorData.currentFloorNumber--;
-                }
-
-                Notify(GameEvents.FloorChange, floorData.elevatorFloorNumber);
-                floorText.text = $"{floorData.elevatorFloorNumber}";
-                for (var i = 0; i < apartmentNumbers.Length; i++)
-                {
-                    var apt = apartmentNumbers[i];
-                    apt.text = $"{floorData.elevatorFloorNumber}0{i + 1}";
-                }
-            }
+            while (_currentFloor != _desiredFloor)
+                yield return new WaitForSeconds(0.5f);
 
             StopElevator();
             Invoke(nameof(NotifyElevatorReachedFloor), 2);
@@ -183,21 +177,6 @@ namespace Elevator.scripts
         {
             Notify(GameEvents.ElevatorReachedFloor);
         }
-
-        // private IEnumerator MoveApartmentsGrid()
-        // {
-        //     while (_isFloorMoving)
-        //     {
-        //         var time = Time.deltaTime;
-        //         var pointA = apartmentsGridTransform.localPosition;
-        //         var pointB = apartmentsGridTransform.localPosition;
-        //         pointB.y -= Time.deltaTime * apartmentsPanelMoveSpeed;
-        //
-        //         apartmentsGridTransform.localPosition = Vector3.Lerp(pointA, pointB, Time.deltaTime);
-        //
-        //         yield return new WaitForEndOfFrame();
-        //     }
-        // }
 
         private IEnumerator ControlShaftLight()
         {

@@ -72,7 +72,7 @@ namespace Player
                     interactionText.text = "OBSERVE";
                     break;
 
-                case "Elevator":
+                case "Elevator Entrance":
                     interactionText.text = "CALL";
                     _interactedObjectName = ObjectNames.Elevator;
                     break;
