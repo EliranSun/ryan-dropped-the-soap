@@ -204,6 +204,7 @@ namespace Elevator.scripts
 
             int.TryParse(buttonNumberString, out var buttonNumber);
 
+            print("Button number clicked: " + buttonNumber);
             UpdateFloor(buttonNumber);
         }
     }
