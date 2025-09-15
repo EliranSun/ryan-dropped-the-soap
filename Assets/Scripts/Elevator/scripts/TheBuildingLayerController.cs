@@ -12,6 +12,7 @@ namespace Elevator.scripts
         [SerializeField] private Color halfDarkHalfSkyColor;
         [SerializeField] private Color fullDarkColor;
         [SerializeField] private GameObject[] layers;
+        [SerializeField] private Collider2D[] staircaseColliders;
 
         public void OnNotify(GameEventData eventData)
         {
@@ -40,9 +41,9 @@ namespace Elevator.scripts
                     StartCoroutine(DarkenCamera(halfDarkHalfSkyColor));
                     break;
 
-                case ObjectNames.Elevator:
-                    StartCoroutine(DarkenCamera(fullDarkColor));
-                    break;
+                // case ObjectNames.Elevator:
+                //     StartCoroutine(DarkenCamera(fullDarkColor));
+                //     break;
             }
         }
 

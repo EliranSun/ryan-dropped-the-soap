@@ -21,8 +21,7 @@ namespace Elevator.scripts
         [SerializeField] private float apartmentsPanelMoveSpeed = 1;
         [SerializeField] private float elevatorSpeed = 0.1f;
 
-        private int _currentFloor;
-        // [SerializeField] private FloorData floorData;
+        [SerializeField] private int currentFloor;
 
         private int _desiredFloor;
         private Vector3 _initLightPosition;
@@ -30,15 +29,13 @@ namespace Elevator.scripts
         private float _timeDiff;
         private float _timeSinceLastClick;
 
-        private void Awake()
-        {
-            // if (floorData)
-            //     Notify(GameEvents.FloorChange, floorData.elevatorFloorNumber);
-        }
-
         private void Start()
         {
-            if (floorText) floorText.text = _currentFloor.ToString();
+            var storedCurrentFloor = PlayerPrefs.GetInt("currentFloor");
+            if (storedCurrentFloor != 0) currentFloor = storedCurrentFloor;
+            if (floorText) floorText.text = currentFloor.ToString();
+
+            transform.position = new Vector3(transform.position.x, GetElevatorYPosition(), transform.position.z);
         }
 
         private void Update()
@@ -51,7 +48,7 @@ namespace Elevator.scripts
 
             if (_isFloorMoving)
             {
-                var y = (_desiredFloor < _currentFloor ? -elevatorSpeed : elevatorSpeed) * Time.deltaTime;
+                var y = (_desiredFloor < currentFloor ? -elevatorSpeed : elevatorSpeed) * Time.deltaTime;
                 transform.Translate(0, y, 0);
             }
 
@@ -68,19 +65,30 @@ namespace Elevator.scripts
             // GoToFloor(floor);
         }
 
+        private float GetElevatorYPosition()
+        {
+            // Calculate Y position based on current floor
+            // Each floor is separated by 20 units (FloorMargin from BuildingController)
+            const float floorHeight = 20f;
+
+            // Assuming floor 0 is at Y position 0, calculate position for current floor
+            return currentFloor * floorHeight + (transform.localScale.y / 2f);
+        }
+
         public void OnNotify(GameEventData eventData)
         {
             if (eventData.Name == GameEvents.FloorChange)
             {
                 var floorNumber = (int)eventData.Data;
-                _currentFloor = floorNumber;
+                currentFloor = floorNumber;
+                PlayerPrefs.SetInt("currentFloor", currentFloor);
 
-                Notify(GameEvents.FloorChange, _currentFloor);
-                floorText.text = $"{_currentFloor}";
+                Notify(GameEvents.FloorChange, currentFloor);
+                floorText.text = $"{currentFloor}";
                 for (var i = 0; i < apartmentNumbers.Length; i++)
                 {
                     var apt = apartmentNumbers[i];
-                    apt.text = $"{_currentFloor}0{i + 1}";
+                    apt.text = $"{currentFloor}0{i + 1}";
                 }
             }
 
@@ -121,13 +129,13 @@ namespace Elevator.scripts
             if (_isFloorMoving)
             {
                 // If we are already moving, just update the shake amount for the new destination.
-                shakeableCamera.Shake(Mathf.Abs(floorNumber - _currentFloor));
+                shakeableCamera.Shake(Mathf.Abs(floorNumber - currentFloor));
                 return;
             }
 
             StartCoroutine(Move());
             // StartCoroutine(MoveApartmentsGrid());
-            shakeableCamera.Shake(Mathf.Abs(floorNumber - _currentFloor));
+            shakeableCamera.Shake(Mathf.Abs(floorNumber - currentFloor));
             shaftLight.SetActive(false);
         }
 
@@ -144,7 +152,7 @@ namespace Elevator.scripts
 
             _isFloorMoving = true;
 
-            while (_currentFloor != _desiredFloor)
+            while (currentFloor != _desiredFloor)
                 yield return new WaitForSeconds(0.5f);
 
             StopElevator();
