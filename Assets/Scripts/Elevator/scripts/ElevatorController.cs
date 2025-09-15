@@ -1,4 +1,5 @@
 using System.Collections;
+using Object.Scripts;
 using Player;
 using TMPro;
 using UnityEngine;
@@ -72,11 +73,19 @@ namespace Elevator.scripts
             const float floorHeight = 20f;
 
             // Assuming floor 0 is at Y position 0, calculate position for current floor
-            return currentFloor * floorHeight + (transform.localScale.y / 2f);
+            return currentFloor * floorHeight + transform.localScale.y / 2f;
         }
 
         public void OnNotify(GameEventData eventData)
         {
+            if (eventData.Name == GameEvents.PlayerInteraction)
+            {
+                var objectName = (ObjectNames)eventData.Data;
+                if (objectName == ObjectNames.Elevator) print("player called elevator" + transform.position);
+
+                return;
+            }
+
             if (eventData.Name == GameEvents.FloorChange)
             {
                 var floorNumber = (int)eventData.Data;
