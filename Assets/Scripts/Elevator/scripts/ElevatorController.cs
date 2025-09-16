@@ -23,13 +23,16 @@ namespace Elevator.scripts
         [SerializeField] private float elevatorSpeed = 0.1f;
         [SerializeField] private int currentFloor;
         [SerializeField] private float floorHeight;
+        [SerializeField] private GameObject[] children;
+
 
         private int _desiredFloor;
         private Vector3 _initLightPosition;
+        private bool _isActive;
         private bool _isFloorMoving;
         private float _timeDiff;
         private float _timeSinceLastClick;
-        private float yTarget;
+        private float _yTarget;
 
         private void Start()
         {
@@ -38,14 +41,23 @@ namespace Elevator.scripts
             if (floorText) floorText.text = currentFloor.ToString();
 
             transform.position = new Vector3(transform.position.x, GetElevatorYPosition(), transform.position.z);
-            yTarget = transform.position.y;
+            _yTarget = transform.position.y;
+
+            Notify(GameEvents.FloorChange, currentFloor);
+
+            if (!_isActive)
+            {
+                gameObject.GetComponent<Collider2D>().enabled = false;
+                foreach (var child in children)
+                    child.SetActive(false);
+            }
         }
 
         private void Update()
         {
-            if (Mathf.Abs(yTarget - transform.position.y) > 1f)
+            if (Mathf.Abs(_yTarget - transform.position.y) > 1f)
             {
-                var direction = yTarget > transform.position.y ? Vector3.up : Vector3.down;
+                var direction = _yTarget > transform.position.y ? Vector3.up : Vector3.down;
                 transform.Translate(direction * (Time.deltaTime * elevatorSpeed));
 
                 // Update floor number based on current position
@@ -87,13 +99,13 @@ namespace Elevator.scripts
         }
 
         /// <summary>
-        /// Updates the current floor number based on the elevator's Y position
+        ///     Updates the current floor number based on the elevator's Y position
         /// </summary>
         private void UpdateFloorBasedOnPosition()
         {
             // Calculate which floor we're currently on based on Y position
             // Assuming floor 0 is at Y position 0, each floor is floorHeight units apart
-            int calculatedFloor = Mathf.RoundToInt((transform.position.y - transform.localScale.y / 2f) / floorHeight);
+            var calculatedFloor = Mathf.RoundToInt((transform.position.y - transform.localScale.y / 2f) / floorHeight);
 
             // Only update if the floor has actually changed
             if (calculatedFloor != currentFloor)
@@ -177,7 +189,7 @@ namespace Elevator.scripts
         public void CallElevator(float yPosition)
         {
             print("Should go to " + yPosition);
-            yTarget = yPosition;
+            _yTarget = yPosition;
         }
 
         public void GoToFloor(int floorNumber)

@@ -30,7 +30,10 @@ namespace Elevator.scripts
         public void OnNotify(GameEventData eventData)
         {
             if (eventData.Name == GameEvents.FloorChange)
-                currentElevatorFloorIndication.text = (string)eventData.Data;
+            {
+                var floorNumber = (int)eventData.Data;
+                currentElevatorFloorIndication.text = floorNumber.ToString();
+            }
         }
     }
 }
