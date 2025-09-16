@@ -21,14 +21,15 @@ namespace Elevator.scripts
         [SerializeField] private float lightLoop = 3f;
         [SerializeField] private float apartmentsPanelMoveSpeed = 1;
         [SerializeField] private float elevatorSpeed = 0.1f;
-
         [SerializeField] private int currentFloor;
+        [SerializeField] private float floorHeight;
 
         private int _desiredFloor;
         private Vector3 _initLightPosition;
         private bool _isFloorMoving;
         private float _timeDiff;
         private float _timeSinceLastClick;
+        private float yTarget;
 
         private void Start()
         {
@@ -37,10 +38,20 @@ namespace Elevator.scripts
             if (floorText) floorText.text = currentFloor.ToString();
 
             transform.position = new Vector3(transform.position.x, GetElevatorYPosition(), transform.position.z);
+            yTarget = transform.position.y;
         }
 
         private void Update()
         {
+            if (Mathf.Abs(yTarget - transform.position.y) > 1f)
+            {
+                var direction = yTarget > transform.position.y ? Vector3.up : Vector3.down;
+                transform.Translate(direction * (Time.deltaTime * elevatorSpeed));
+
+                // Update floor number based on current position
+                UpdateFloorBasedOnPosition();
+            }
+
             if (Input.GetKeyDown(KeyCode.X) && !_isFloorMoving)
                 // if (floorData) floorData.playerExitElevator = true;
                 Notify(GameEvents.ChangePlayerLocation, Location.Hallway);
@@ -51,6 +62,9 @@ namespace Elevator.scripts
             {
                 var y = (_desiredFloor < currentFloor ? -elevatorSpeed : elevatorSpeed) * Time.deltaTime;
                 transform.Translate(0, y, 0);
+
+                // Update floor number based on current position during movement
+                UpdateFloorBasedOnPosition();
             }
 
             // if (floorData && floorData.elevatorFloorNumber == int.Parse(floorText.text))
@@ -68,12 +82,41 @@ namespace Elevator.scripts
 
         private float GetElevatorYPosition()
         {
-            // Calculate Y position based on current floor
-            // Each floor is separated by 20 units (FloorMargin from BuildingController)
-            const float floorHeight = 20f;
-
             // Assuming floor 0 is at Y position 0, calculate position for current floor
             return currentFloor * floorHeight + transform.localScale.y / 2f;
+        }
+
+        /// <summary>
+        /// Updates the current floor number based on the elevator's Y position
+        /// </summary>
+        private void UpdateFloorBasedOnPosition()
+        {
+            // Calculate which floor we're currently on based on Y position
+            // Assuming floor 0 is at Y position 0, each floor is floorHeight units apart
+            int calculatedFloor = Mathf.RoundToInt((transform.position.y - transform.localScale.y / 2f) / floorHeight);
+
+            // Only update if the floor has actually changed
+            if (calculatedFloor != currentFloor)
+            {
+                currentFloor = calculatedFloor;
+                PlayerPrefs.SetInt("currentFloor", currentFloor);
+
+                // Update floor display
+                if (floorText) floorText.text = currentFloor.ToString();
+
+                // Update apartment numbers
+                for (var i = 0; i < apartmentNumbers.Length; i++)
+                {
+                    var apt = apartmentNumbers[i];
+                    apt.text = $"{currentFloor}0{i + 1}";
+                }
+
+                // Notify other systems of floor change
+                Notify(GameEvents.FloorChange, currentFloor);
+
+                // Optional: Add some feedback when floor changes
+                Debug.Log($"Elevator reached floor: {currentFloor}");
+            }
         }
 
         public void OnNotify(GameEventData eventData)
@@ -129,6 +172,12 @@ namespace Elevator.scripts
 
 
             _desiredFloor = int.Parse(desiredFloorText.text);
+        }
+
+        public void CallElevator(float yPosition)
+        {
+            print("Should go to " + yPosition);
+            yTarget = yPosition;
         }
 
         public void GoToFloor(int floorNumber)

@@ -355,9 +355,10 @@ GameObject:
   - component: {fileID: 6630647510670217741}
   - component: {fileID: 3392601377719524303}
   - component: {fileID: 1572237949616954712}
+  - component: {fileID: 5219581391847585710}
   m_Layer: 0
-  m_Name: Elevator
-  m_TagString: Elevator
+  m_Name: Elevator Doors
+  m_TagString: Elevator Doors
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -479,6 +480,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 7.8, y: 10.4}
   m_EdgeRadius: 0
+--- !u!114 &5219581391847585710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2520232589276832532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2db49caffd55684b85590c7422aa470, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minDistanceForCall: 5
 --- !u!1 &3296747152381777049
 GameObject:
   m_ObjectHideFlags: 0

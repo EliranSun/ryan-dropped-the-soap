@@ -77,10 +77,10 @@ namespace Player
                     interactionText.text = "OBSERVE";
                     break;
 
-                case "Elevator Entrance":
-                    interactionText.text = "CALL";
-                    _interactedObjectName = ObjectNames.Elevator;
-                    break;
+                // case "Elevator Entrance":
+                //     interactionText.text = "CALL";
+                //     _interactedObjectName = ObjectNames.Elevator;
+                //     break;
 
                 case "Staircase Entrance":
                     interactionText.text = "CLIMB";

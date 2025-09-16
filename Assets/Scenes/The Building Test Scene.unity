@@ -898,7 +898,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1110011517}
+    m_TransformParent: {fileID: 2044988166}
     m_Modifications:
     - target: {fileID: 200448330324487598, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
       propertyPath: m_IsActive
@@ -914,11 +914,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1444872401170620559, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 23.5
       objectReference: {fileID: 0}
     - target: {fileID: 1444872401170620559, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.54
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1444872401170620559, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
       propertyPath: m_LocalPosition.z
@@ -951,6 +951,14 @@ PrefabInstance:
     - target: {fileID: 1444872401170620559, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1681089805387102776, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: floorHeight
+      value: 22.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1681089805387102776, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: currentFloor
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1681089805387102776, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
       propertyPath: elevatorSpeed
@@ -1046,7 +1054,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6707060983621058362, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
       propertyPath: m_Name
-      value: Elevator
+      value: Elevator 333
       objectReference: {fileID: 0}
     - target: {fileID: 6707060983621058362, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
       propertyPath: m_Layer
@@ -1101,6 +1109,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6707060983621058362, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
       insertIndex: -1
       addedObject: {fileID: 465482028}
+    - targetCorrespondingSourceObject: {fileID: 5709802752918494203, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 8245667740988976817, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
 --- !u!1 &465482022 stripped
 GameObject:
@@ -1383,6 +1397,7 @@ GameObject:
   - component: {fileID: 542953918}
   - component: {fileID: 542953917}
   - component: {fileID: 542953919}
+  - component: {fileID: 542953920}
   m_Layer: 0
   m_Name: new elevator
   m_TagString: Elevator Entrance
@@ -1507,6 +1522,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 7.8, y: 10.4}
   m_EdgeRadius: 0
+--- !u!114 &542953920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542953916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2db49caffd55684b85590c7422aa470, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minDistanceForCall: 4
 --- !u!1001 &555777867
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2792,7 +2820,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1903997313}
-  - {fileID: 465482026}
   - {fileID: 1967140693}
   m_Father: {fileID: 2044988166}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6243,6 +6270,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 465482026}
   - {fileID: 29905566}
   - {fileID: 1733212577}
   - {fileID: 1110011517}
@@ -6551,6 +6579,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1331625177}
     m_Modifications:
+    - target: {fileID: 2520232589276832532, guid: 609b1f35e8dc57c4993a46a526bfe903, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 3133187248416594773, guid: 609b1f35e8dc57c4993a46a526bfe903, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

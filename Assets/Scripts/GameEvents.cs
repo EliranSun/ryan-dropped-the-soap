@@ -226,5 +226,7 @@
 
     PlayerInteraction,
     EnterTheBuilding,
-    ExitTheBuilding
+    ExitTheBuilding,
+
+    CallElevator
 }
