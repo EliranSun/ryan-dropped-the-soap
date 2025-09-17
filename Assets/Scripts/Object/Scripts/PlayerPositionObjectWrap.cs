@@ -7,8 +7,7 @@ namespace Object.Scripts
         [SerializeField] private GameObject player;
         [SerializeField] private Camera mainCamera;
         [SerializeField] private float childHeight = 9.6f;
-        [SerializeField] private float minY = 54f;
-
+        [SerializeField] private float stopWrapBelowY = 54f;
         [SerializeField] private GameObject[] children;
 
         private float _previousYPosition;
@@ -25,7 +24,7 @@ namespace Object.Scripts
             _yDirection = player.transform.position.y - _previousYPosition;
             _previousYPosition = player.transform.position.y;
 
-            if (player.transform.position.y < minY)
+            if (player.transform.position.y < stopWrapBelowY)
                 return;
 
             HandleObjectRepositioning();

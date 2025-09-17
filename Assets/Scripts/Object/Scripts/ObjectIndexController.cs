@@ -10,13 +10,17 @@ namespace Object.Scripts
 
         public void UpdateFloorNumber(int objectNumber)
         {
-            floorNumberText.text = objectNumber < 10 ? "0" + objectNumber : objectNumber.ToString();
             ObjectNumber = objectNumber;
+
+            if (floorNumberText)
+                floorNumberText.text = objectNumber < 10
+                    ? "0" + objectNumber
+                    : objectNumber.ToString();
         }
 
         public string GetFloorNumberText()
         {
-            return floorNumberText.text;
+            return ObjectNumber.ToString();
         }
     }
 }

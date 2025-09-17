@@ -1,5 +1,4 @@
 using System.Collections;
-using Object.Scripts;
 using Player;
 using TMPro;
 using UnityEngine;
@@ -14,61 +13,68 @@ namespace Elevator.scripts
         [SerializeField] private ElevatorShake shakeableCamera;
         [SerializeField] private TextMeshPro floorText;
         [SerializeField] private TextMeshPro desiredFloorText;
-        [SerializeField] private TextMeshPro[] apartmentNumbers;
-        [SerializeField] private GameObject[] panelNumbers;
+        [SerializeField] private GameObject exit;
         [SerializeField] private GameObject shaftLight;
+        [SerializeField] private bool restoreElevatorFloor = true;
         [SerializeField] private float debounce = 3f;
         [SerializeField] private float lightLoop = 3f;
         [SerializeField] private float apartmentsPanelMoveSpeed = 1;
         [SerializeField] private float elevatorSpeed = 0.1f;
         [SerializeField] private int currentFloor;
         [SerializeField] private float floorHeight;
+        [SerializeField] private float minYToStop;
         [SerializeField] private GameObject[] children;
-
+        [SerializeField] private TextMeshPro[] apartmentNumbers;
+        [SerializeField] private GameObject[] panelNumbers;
 
         private int _desiredFloor;
+        private bool _hasReachedYTarget = true; // Track if we've reached the yTarget to prevent multiple notifications
         private Vector3 _initLightPosition;
-        private bool _isActive;
         private bool _isFloorMoving;
-        private float _timeDiff;
-        private float _timeSinceLastClick;
         private float _yTarget;
 
         private void Start()
         {
             var storedCurrentFloor = PlayerPrefs.GetInt("currentFloor");
-            if (storedCurrentFloor != 0) currentFloor = storedCurrentFloor;
-            if (floorText) floorText.text = currentFloor.ToString();
+            if (storedCurrentFloor != 0 && restoreElevatorFloor)
+                currentFloor = storedCurrentFloor;
 
-            transform.position = new Vector3(transform.position.x, GetElevatorYPosition(), transform.position.z);
+            if (floorText)
+                floorText.text = currentFloor.ToString();
+
+            transform.position = new Vector3(
+                transform.position.x,
+                CalculateElevatorYPosition(currentFloor),
+                transform.position.z
+            );
             _yTarget = transform.position.y;
 
             Notify(GameEvents.FloorChange, currentFloor);
-
-            if (!_isActive)
-            {
-                gameObject.GetComponent<Collider2D>().enabled = false;
-                foreach (var child in children)
-                    child.SetActive(false);
-            }
         }
 
         private void Update()
         {
-            if (Mathf.Abs(_yTarget - transform.position.y) > 1f)
+            if (Mathf.Abs(_yTarget - transform.position.y) > minYToStop)
             {
                 var direction = _yTarget > transform.position.y ? Vector3.up : Vector3.down;
                 transform.Translate(direction * (Time.deltaTime * elevatorSpeed));
 
                 // Update floor number based on current position
                 UpdateFloorBasedOnPosition();
+
+                // Mark that we're moving towards target
+                _hasReachedYTarget = false;
+            }
+            else if (!_hasReachedYTarget)
+            {
+                // Elevator has reached the yTarget destination
+                _hasReachedYTarget = true;
+                OnReachFloor();
             }
 
             if (Input.GetKeyDown(KeyCode.X) && !_isFloorMoving)
                 // if (floorData) floorData.playerExitElevator = true;
                 Notify(GameEvents.ChangePlayerLocation, Location.Hallway);
-
-            _timeSinceLastClick += Time.deltaTime;
 
             if (_isFloorMoving)
             {
@@ -78,24 +84,13 @@ namespace Elevator.scripts
                 // Update floor number based on current position during movement
                 UpdateFloorBasedOnPosition();
             }
-
-            // if (floorData && floorData.elevatorFloorNumber == int.Parse(floorText.text))
-            //     return;
-            //
-            // if (_timeSinceLastClick == 0)
-            //     return;
-            //
-            // if (_timeSinceLastClick - _timeDiff < debounce)
-            //     return;
-
-            // var floor = int.Parse(floorText.text);
-            // GoToFloor(floor);
         }
 
-        private float GetElevatorYPosition()
+        private float CalculateElevatorYPosition(int floorNumber)
         {
             // Assuming floor 0 is at Y position 0, calculate position for current floor
-            return currentFloor * floorHeight + transform.localScale.y / 2f;
+            // return floorNumber * floorHeight + transform.localScale.y / 2f;
+            return floorNumber * floorHeight + transform.localScale.y * 2;
         }
 
         /// <summary>
@@ -133,13 +128,14 @@ namespace Elevator.scripts
 
         public void OnNotify(GameEventData eventData)
         {
-            if (eventData.Name == GameEvents.PlayerInteraction)
-            {
-                var objectName = (ObjectNames)eventData.Data;
-                if (objectName == ObjectNames.Elevator) print("player called elevator" + transform.position);
-
-                return;
-            }
+            // if (eventData.Name == GameEvents.PlayerInteraction)
+            // {
+            //     var objectName = (ObjectNames)eventData.Data;
+            //     if (objectName == ObjectNames.Elevator) 
+            //         print("player called elevator" + transform.position);
+            //
+            //     return;
+            // }
 
             if (eventData.Name == GameEvents.FloorChange)
             {
@@ -175,9 +171,6 @@ namespace Elevator.scripts
             if (_isFloorMoving)
                 return;
 
-            _timeSinceLastClick = 0;
-            _timeDiff = Time.deltaTime;
-
             desiredFloorText.text = desiredFloorText.text == "00" // init state
                 ? $"{floorNumber}"
                 : $"{desiredFloorText.text}{floorNumber}";
@@ -188,28 +181,31 @@ namespace Elevator.scripts
 
         public void CallElevator(float yPosition)
         {
+            exit.SetActive(false);
             print("Should go to " + yPosition);
-            _yTarget = yPosition;
+            _yTarget = yPosition; // height to reach floor as this is the middle of the floor
+            _hasReachedYTarget = false; // Reset flag when setting new target
         }
 
         public void GoToFloor(int floorNumber)
         {
             _desiredFloor = floorNumber;
+            CallElevator(CalculateElevatorYPosition(_desiredFloor));
 
             if (_isFloorMoving)
             {
-                // If we are already moving, just update the shake amount for the new destination.
+                // If we are already moving, update the shake amount for the new destination.
                 shakeableCamera.Shake(Mathf.Abs(floorNumber - currentFloor));
                 return;
             }
 
-            StartCoroutine(Move());
+            StartCoroutine(InsideElevatorMove());
             // StartCoroutine(MoveApartmentsGrid());
             shakeableCamera.Shake(Mathf.Abs(floorNumber - currentFloor));
             shaftLight.SetActive(false);
         }
 
-        private IEnumerator Move()
+        private IEnumerator InsideElevatorMove()
         {
             Notify(GameEvents.ElevatorMoving);
 
@@ -226,7 +222,7 @@ namespace Elevator.scripts
                 yield return new WaitForSeconds(0.5f);
 
             StopElevator();
-            Invoke(nameof(NotifyElevatorReachedFloor), 2);
+            Invoke(nameof(OnReachFloor), 2);
         }
 
         private void StopElevator()
@@ -251,9 +247,11 @@ namespace Elevator.scripts
             shaftLight.SetActive(true);
         }
 
-        private void NotifyElevatorReachedFloor()
+        private void OnReachFloor()
         {
-            Notify(GameEvents.ElevatorReachedFloor);
+            exit.SetActive(true);
+            Debug.Log($"OnReachFloor reached destination: {_yTarget}");
+            Notify(GameEvents.ElevatorReachedFloor, _yTarget);
         }
 
         private IEnumerator ControlShaftLight()

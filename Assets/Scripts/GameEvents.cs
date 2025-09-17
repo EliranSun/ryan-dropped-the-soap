@@ -228,5 +228,6 @@
     EnterTheBuilding,
     ExitTheBuilding,
 
-    CallElevator
+    CallElevator,
+    EnterElevator
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Object.Scripts;
@@ -5,17 +6,43 @@ using UnityEngine;
 
 namespace Elevator.scripts
 {
+    [Serializable]
+    public class BuildingLayers
+    {
+        public GameObject outsideLayer;
+        public GameObject inBuildingLayer;
+        public GameObject staircaseLayer;
+        public GameObject elevatorLayer;
+    }
+
     public class TheBuildingLayerController : MonoBehaviour
     {
         [SerializeField] private Camera mainCamera;
         [SerializeField] private Color skyColor;
         [SerializeField] private Color halfDarkHalfSkyColor;
         [SerializeField] private Color fullDarkColor;
-        [SerializeField] private GameObject[] layers;
-        [SerializeField] private Collider2D[] staircaseColliders;
+        [SerializeField] private BuildingLayers layers;
+
+        private void Start()
+        {
+            StartCoroutine(FadeOutLayer(layers.outsideLayer));
+            layers.outsideLayer.SetActive(true);
+            StartCoroutine(FadeOutLayer(layers.inBuildingLayer));
+            layers.inBuildingLayer.SetActive(true);
+            StartCoroutine(FadeOutLayer(layers.staircaseLayer));
+            layers.staircaseLayer.SetActive(true);
+            StartCoroutine(FadeInLayer(layers.elevatorLayer));
+            layers.elevatorLayer.SetActive(true);
+        }
 
         public void OnNotify(GameEventData eventData)
         {
+            if (eventData.Name == GameEvents.EnterElevator)
+            {
+                StartCoroutine(FadeOutLayer(layers.inBuildingLayer));
+                StartCoroutine(FadeInLayer(layers.elevatorLayer));
+            }
+
             if (eventData.Name != GameEvents.PlayerInteraction)
                 return;
 
@@ -24,26 +51,27 @@ namespace Elevator.scripts
             switch (interactedObject)
             {
                 case ObjectNames.BuildingEntrance:
-                    StartCoroutine(FadeOutLayer(0));
-                    StartCoroutine(FadeInLayer(1));
-                    StartCoroutine(DarkenCamera(halfDarkHalfSkyColor));
+                    StartCoroutine(FadeOutLayer(layers.outsideLayer));
+                    StartCoroutine(FadeInLayer(layers.inBuildingLayer));
                     break;
 
                 case ObjectNames.StaircaseEntrance:
-                    StartCoroutine(FadeOutLayer(1));
-                    StartCoroutine(FadeInLayer(2));
-                    StartCoroutine(DarkenCamera(fullDarkColor));
+                    StartCoroutine(FadeOutLayer(layers.inBuildingLayer));
+                    StartCoroutine(FadeInLayer(layers.staircaseLayer));
                     break;
 
                 case ObjectNames.StaircaseExit:
-                    StartCoroutine(FadeInLayer(1));
-                    StartCoroutine(FadeOutLayer(2));
-                    StartCoroutine(DarkenCamera(halfDarkHalfSkyColor));
+                    StartCoroutine(FadeInLayer(layers.inBuildingLayer));
+                    StartCoroutine(FadeOutLayer(layers.staircaseLayer));
                     break;
 
-                // case ObjectNames.Elevator:
-                //     StartCoroutine(DarkenCamera(fullDarkColor));
-                //     break;
+                // TODO: Confusing. That's the exit object trigger
+                case ObjectNames.Elevator:
+                {
+                    StartCoroutine(FadeOutLayer(layers.elevatorLayer));
+                    StartCoroutine(FadeInLayer(layers.inBuildingLayer));
+                    break;
+                }
             }
         }
 
@@ -61,16 +89,14 @@ namespace Elevator.scripts
             }
         }
 
-        private IEnumerator FadeOutLayer(int layerIndex)
+        private IEnumerator FadeOutLayer(GameObject layer)
         {
-            var layer = layers[layerIndex];
             var spriteRenderers = GetAllSpriteRenderers(layer);
 
-            if (spriteRenderers.Count == 0)
-            {
-                layer.SetActive(false);
-                yield break;
-            }
+            var colliders = layer.GetComponentsInChildren<Collider2D>();
+            foreach (var col in colliders) col.enabled = false;
+
+            if (spriteRenderers.Count == 0) yield break;
 
             var currentAlpha = spriteRenderers[0].color.a;
 
@@ -82,16 +108,14 @@ namespace Elevator.scripts
                 SetAlphaForAllSprites(spriteRenderers, currentAlpha);
                 yield return new WaitForSeconds(0.1f);
             }
-
-            layer.SetActive(false);
         }
 
-        private IEnumerator FadeInLayer(int layerIndex)
+        private IEnumerator FadeInLayer(GameObject layer)
         {
-            var layer = layers[layerIndex];
-            layer.SetActive(true);
-
             var spriteRenderers = GetAllSpriteRenderers(layer);
+
+            var colliders = layer.GetComponentsInChildren<Collider2D>();
+            foreach (var col in colliders) col.enabled = true;
 
             if (spriteRenderers.Count == 0)
                 yield break;
@@ -108,22 +132,9 @@ namespace Elevator.scripts
             }
         }
 
-        private List<SpriteRenderer> GetAllSpriteRenderers(GameObject parent)
+        private static List<SpriteRenderer> GetAllSpriteRenderers(GameObject parent)
         {
-            var spriteRenderers = new List<SpriteRenderer>();
-            GetSpriteRenderersRecursive(parent.transform, spriteRenderers);
-            return spriteRenderers;
-        }
-
-        private void GetSpriteRenderersRecursive(Transform parent, List<SpriteRenderer> spriteRenderers)
-        {
-            // Check if current object has a SpriteRenderer
-            var spriteRenderer = parent.GetComponent<SpriteRenderer>();
-            if (spriteRenderer != null) spriteRenderers.Add(spriteRenderer);
-
-            // Recursively check all children
-            for (var i = 0; i < parent.childCount; i++)
-                GetSpriteRenderersRecursive(parent.GetChild(i), spriteRenderers);
+            return new List<SpriteRenderer>(parent.GetComponentsInChildren<SpriteRenderer>());
         }
 
         private void SetAlphaForAllSprites(List<SpriteRenderer> spriteRenderers, float alpha)

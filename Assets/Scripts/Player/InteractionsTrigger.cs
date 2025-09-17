@@ -16,11 +16,6 @@ namespace Player
 
         private void Update()
         {
-            // TODO: Need to report the floor number here (but then we break this class being generic)
-            // OR pass something generic as player position and let the elevator controller 
-            // move the elevator according to that. Option 1 sounds way better if we find some
-            // other way to pass the info. That's probably option 3 - to add a dedicated elevator call 
-            // class or inherit from this class...
             if (Input.GetKeyDown(KeyCode.X) && _interactedObjectName != ObjectNames.None)
                 Notify(GameEvents.PlayerInteraction, _interactedObjectName);
         }
@@ -77,10 +72,10 @@ namespace Player
                     interactionText.text = "OBSERVE";
                     break;
 
-                // case "Elevator Entrance":
-                //     interactionText.text = "CALL";
-                //     _interactedObjectName = ObjectNames.Elevator;
-                //     break;
+                case "Elevator Entrance":
+                    interactionText.text = "EXIT ELEVATOR";
+                    _interactedObjectName = ObjectNames.Elevator;
+                    break;
 
                 case "Staircase Entrance":
                     interactionText.text = "CLIMB";
@@ -88,7 +83,7 @@ namespace Player
                     break;
 
                 case "Staircase Exit":
-                    interactionText.text = "EXIT";
+                    interactionText.text = "EXIT STAIRCASE";
                     _interactedObjectName = ObjectNames.StaircaseExit;
                     break;
 
