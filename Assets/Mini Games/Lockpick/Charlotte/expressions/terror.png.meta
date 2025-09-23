@@ -1,22 +1,28 @@
 fileFormatVersion: 2
-guid: 5e55fff9a811a477b9aa990bd023e874
+guid: a169dcb3ce04c9f4c80cfb375654873b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8778522675610792573
-    second: charlotte Rage_0
+      213: -3298725260898234834
+    second: charlotte terror_0
   - first:
-      213: -1020880550503374396
-    second: charlotte Rage_1
+      213: -3868745829293552963
+    second: charlotte terror_1
   - first:
-      213: 58631414431573340
-    second: charlotte Rage_2
+      213: -7838044704448020102
+    second: charlotte terror_2
   - first:
-      213: -7822448850676865389
-    second: charlotte Rage_3
+      213: 7623713733635727524
+    second: charlotte terror_3
   - first:
-      213: -3300890404880542086
-    second: charlotte Rage_4
+      213: 8392121839979627596
+    second: charlotte terror_4
+  - first:
+      213: 6080035849652449133
+    second: charlotte terror_5
+  - first:
+      213: 5077252299680390643
+    second: charlotte terror_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,7 +115,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: iOS
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -125,13 +131,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: charlotte Rage_0
+      name: charlotte terror_0
       rect:
         serializedVersion: 2
-        x: 31
-        y: 62
-        width: 54
-        height: 42
+        x: 40
+        y: 85
+        width: 46
+        height: 22
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,20 +146,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 38dc18b132c6c2680800000000000000
-      internalID: -8778522675610792573
+      spriteID: e2e8d844ad29832d0800000000000000
+      internalID: -3298725260898234834
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: charlotte Rage_1
+      name: charlotte terror_1
       rect:
         serializedVersion: 2
-        x: 41
-        y: 93
-        width: 23
-        height: 16
+        x: 45
+        y: 57
+        width: 41
+        height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -162,20 +168,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4c124255c8a15d1f0800000000000000
-      internalID: -1020880550503374396
+      spriteID: dba0fae6a247f4ac0800000000000000
+      internalID: -3868745829293552963
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: charlotte Rage_2
+      name: charlotte terror_2
       rect:
         serializedVersion: 2
         x: 0
-        y: 28
-        width: 12
-        height: 27
+        y: 0
+        width: 9
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,19 +190,85 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c556fd5f5fc40d000800000000000000
-      internalID: 58631414431573340
+      spriteID: a718eb97edba93390800000000000000
+      internalID: -7838044704448020102
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: charlotte Rage_3
+      name: charlotte terror_3
       rect:
         serializedVersion: 2
-        x: 39
-        y: 47
-        width: 14
+        x: 7
+        y: 4
+        width: 12
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a0ef92af3fdcc960800000000000000
+      internalID: 7623713733635727524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: charlotte terror_4
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 0
+        width: 54
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4488cf995ec67470800000000000000
+      internalID: 8392121839979627596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: charlotte terror_5
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 7
+        width: 7
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6fac205460a06450800000000000000
+      internalID: 6080035849652449133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: charlotte terror_6
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 9
+        width: 7
         height: 11
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -206,30 +278,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3962eb52734117390800000000000000
-      internalID: -7822448850676865389
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: charlotte Rage_4
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 61
-        height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a7699966aa1e032d0800000000000000
-      internalID: -3300890404880542086
+      spriteID: 3fd1c7de016067640800000000000000
+      internalID: 5077252299680390643
       vertices: []
       indices: 
       edges: []
@@ -248,11 +298,13 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      charlotte Rage_0: -8778522675610792573
-      charlotte Rage_1: -1020880550503374396
-      charlotte Rage_2: 58631414431573340
-      charlotte Rage_3: -7822448850676865389
-      charlotte Rage_4: -3300890404880542086
+      charlotte terror_0: -3298725260898234834
+      charlotte terror_1: -3868745829293552963
+      charlotte terror_2: -7838044704448020102
+      charlotte terror_3: 7623713733635727524
+      charlotte terror_4: 8392121839979627596
+      charlotte terror_5: 6080035849652449133
+      charlotte terror_6: 5077252299680390643
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

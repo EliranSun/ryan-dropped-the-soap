@@ -1,13 +1,25 @@
 fileFormatVersion: 2
-guid: 2775b012fbfcd4569a3acbbcb6e7714b
+guid: 1b9748b79b1358b4ba59e9af96e28024
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 734253559672279033
-    second: charlotte sterness_0
+      213: 4287612391694996407
+    second: charlotte fear_0
   - first:
-      213: -4908695696507694178
-    second: charlotte sterness_1
+      213: 3607101166570728251
+    second: charlotte fear_1
+  - first:
+      213: -2721018999749947874
+    second: charlotte fear_2
+  - first:
+      213: 3437116601156532486
+    second: charlotte fear_3
+  - first:
+      213: -5682373284674698996
+    second: charlotte fear_4
+  - first:
+      213: -5589091948903416964
+    second: charlotte fear_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +112,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: iOS
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -116,13 +128,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: charlotte sterness_0
+      name: charlotte fear_0
       rect:
         serializedVersion: 2
-        x: 32
-        y: 51
-        width: 43
-        height: 32
+        x: 25
+        y: 85
+        width: 8
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,19 +143,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9ff0557e8b7903a00800000000000000
-      internalID: 734253559672279033
+      spriteID: 7b31b85e0c8a08b30800000000000000
+      internalID: 4287612391694996407
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: charlotte sterness_1
+      name: charlotte fear_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 42
+        x: 31
+        y: 84
+        width: 46
         height: 11
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -153,8 +165,96 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e939b2b754fc0ebb0800000000000000
-      internalID: -4908695696507694178
+      spriteID: b3b6856566ffe0230800000000000000
+      internalID: 3607101166570728251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: charlotte fear_2
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 55
+        width: 38
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1ec0d4e2affc3ad0800000000000000
+      internalID: -2721018999749947874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: charlotte fear_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5
+        width: 8
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 609788f865713bf20800000000000000
+      internalID: 3437116601156532486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: charlotte fear_4
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 0
+        width: 41
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c018bc5aa972421b0800000000000000
+      internalID: -5682373284674698996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: charlotte fear_5
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 6
+        width: 11
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7bbd981c7e8f62b0800000000000000
+      internalID: -5589091948903416964
       vertices: []
       indices: 
       edges: []
@@ -173,8 +273,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      charlotte sterness_0: 734253559672279033
-      charlotte sterness_1: -4908695696507694178
+      charlotte fear_0: 4287612391694996407
+      charlotte fear_1: 3607101166570728251
+      charlotte fear_2: -2721018999749947874
+      charlotte fear_3: 3437116601156532486
+      charlotte fear_4: -5682373284674698996
+      charlotte fear_5: -5589091948903416964
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
