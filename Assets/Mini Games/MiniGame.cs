@@ -10,16 +10,19 @@ namespace Mini_Games
 {
     public class MiniGame : ObserverSubject
     {
-        [Header("Mini Game Settings")] [SerializeField]
-        private TextMeshProUGUI timerTextContainer;
+        [Header("Mini Game Settings")]
+        [SerializeField]
+        private MiniGameName miniGameName;
 
+        [SerializeField] private TextMeshProUGUI timerTextContainer;
         [SerializeField] private int timer = 60;
         [SerializeField] public GameObject mainCamera;
         [SerializeField] public GameObject miniGameContainer;
         [SerializeField] private GameObject hideOnStart;
         [SerializeField] public GameObject inGameTrigger;
 
-        [Header("Game dialog responses")] [SerializeField]
+        [Header("Game dialog responses")]
+        [SerializeField]
         public TypedDialogLine[] dialogLines;
 
         public int score;
@@ -28,8 +31,9 @@ namespace Mini_Games
         private float _currentTime;
         private bool _isTimerRunning;
 
-        private void Update()
+        protected virtual void Update()
         {
+            print($"_isTimerRunning? {_isTimerRunning}");
             if (_isTimerRunning)
                 UpdateTimer();
         }
@@ -48,8 +52,10 @@ namespace Mini_Games
             return filteredLines[randomIndex].dialogLine;
         }
 
-        protected virtual void UpdateTimer()
+        private void UpdateTimer()
         {
+            print("Update timer>?");
+
             _currentTime -= Time.deltaTime;
 
             var timeRemaining = Mathf.CeilToInt(_currentTime);
@@ -66,15 +72,10 @@ namespace Mini_Games
 
             if (hideOnStart) hideOnStart.SetActive(false);
             if (timerTextContainer) timerTextContainer.text = timer.ToString();
-            if (miniGameContainer)
-            {
-                miniGameContainer.SetActive(true);
-                var newPosition = mainCamera.transform.position;
-                newPosition.z = miniGameContainer.transform.position.z;
-                miniGameContainer.transform.position = newPosition;
-            }
-
-
+            if (miniGameContainer) miniGameContainer.SetActive(true);
+            // var newPosition = mainCamera.transform.position;
+            // newPosition.z = miniGameContainer.transform.position.z;
+            // miniGameContainer.transform.position = newPosition;
             Notify(GameEvents.MiniGameStart);
         }
 
@@ -109,6 +110,11 @@ namespace Mini_Games
         {
             switch (eventData.Name)
             {
+                case GameEvents.StartMiniGames:
+                    var eventMiniGameName = (MiniGameName)eventData.Data;
+                    if (eventMiniGameName == miniGameName) StartMiniGame();
+                    break;
+
                 case GameEvents.ClickOnNpc:
                     var interactionData = eventData.Data as InteractionData;
                     if (interactionData == null) return;
