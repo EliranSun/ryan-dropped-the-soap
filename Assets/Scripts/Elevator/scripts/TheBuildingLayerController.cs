@@ -6,41 +6,89 @@ using UnityEngine;
 
 namespace Elevator.scripts
 {
+    public enum BuildingLayerType
+    {
+        Outside,
+        InBuilding,
+        Staircase,
+        Elevator
+    }
+
     [Serializable]
     public class BuildingLayers
     {
-        public GameObject outsideLayer;
-        public GameObject inBuildingLayer;
-        public GameObject staircaseLayer;
-        public GameObject elevatorLayer;
+        [SerializeField] private GameObject outsideLayer;
+        [SerializeField] private GameObject inBuildingLayer;
+        [SerializeField] private GameObject staircaseLayer;
+        [SerializeField] private GameObject elevatorLayer;
+
+        public GameObject GetLayer(BuildingLayerType layerType)
+        {
+            return layerType switch
+            {
+                BuildingLayerType.Outside => outsideLayer,
+                BuildingLayerType.InBuilding => inBuildingLayer,
+                BuildingLayerType.Staircase => staircaseLayer,
+                BuildingLayerType.Elevator => elevatorLayer,
+                _ => throw new ArgumentOutOfRangeException(nameof(layerType), layerType, null)
+            };
+        }
     }
 
     public class TheBuildingLayerController : MonoBehaviour
     {
+        [SerializeField] private BuildingLayerType initialLayer = BuildingLayerType.Elevator;
+        [SerializeField] private BuildingLayers layers;
         [SerializeField] private Camera mainCamera;
         [SerializeField] private Color skyColor;
         [SerializeField] private Color halfDarkHalfSkyColor;
         [SerializeField] private Color fullDarkColor;
-        [SerializeField] private BuildingLayers layers;
+
+        private BuildingLayerType _currentActiveLayer;
 
         private void Start()
         {
-            StartCoroutine(FadeOutLayer(layers.outsideLayer));
-            layers.outsideLayer.SetActive(true);
-            StartCoroutine(FadeOutLayer(layers.inBuildingLayer));
-            layers.inBuildingLayer.SetActive(true);
-            StartCoroutine(FadeOutLayer(layers.staircaseLayer));
-            layers.staircaseLayer.SetActive(true);
-            StartCoroutine(FadeInLayer(layers.elevatorLayer));
-            layers.elevatorLayer.SetActive(true);
+            // Initialize all layers and set the initial layer as active
+            // InitializeAllLayers();
+            SetActiveLayer(initialLayer);
+        }
+
+        private void InitializeAllLayers()
+        {
+            // Set all layers active and fade them out, except the initial layer
+            foreach (BuildingLayerType layerType in Enum.GetValues(typeof(BuildingLayerType)))
+            {
+                var layerObject = layers.GetLayer(layerType);
+                layerObject.SetActive(true);
+
+                if (layerType != initialLayer)
+                {
+                    StartCoroutine(FadeOutLayer(layerObject));
+                }
+                else
+                {
+                    StartCoroutine(FadeInLayer(layerObject));
+                    _currentActiveLayer = layerType;
+                }
+            }
+        }
+
+        private void SetActiveLayer(BuildingLayerType targetLayer)
+        {
+            if (_currentActiveLayer == targetLayer) return;
+
+            // Fade out current layer and fade in target layer
+            StartCoroutine(FadeOutLayer(layers.GetLayer(_currentActiveLayer)));
+            StartCoroutine(FadeInLayer(layers.GetLayer(targetLayer)));
+            _currentActiveLayer = targetLayer;
         }
 
         public void OnNotify(GameEventData eventData)
         {
             if (eventData.Name == GameEvents.EnterElevator)
             {
-                StartCoroutine(FadeOutLayer(layers.inBuildingLayer));
-                StartCoroutine(FadeInLayer(layers.elevatorLayer));
+                SetActiveLayer(BuildingLayerType.Elevator);
+                return;
             }
 
             if (eventData.Name != GameEvents.PlayerInteraction)
@@ -51,27 +99,21 @@ namespace Elevator.scripts
             switch (interactedObject)
             {
                 case ObjectNames.BuildingEntrance:
-                    StartCoroutine(FadeOutLayer(layers.outsideLayer));
-                    StartCoroutine(FadeInLayer(layers.inBuildingLayer));
+                    SetActiveLayer(BuildingLayerType.InBuilding);
                     break;
 
                 case ObjectNames.StaircaseEntrance:
-                    StartCoroutine(FadeOutLayer(layers.inBuildingLayer));
-                    StartCoroutine(FadeInLayer(layers.staircaseLayer));
+                    SetActiveLayer(BuildingLayerType.Staircase);
                     break;
 
                 case ObjectNames.StaircaseExit:
-                    StartCoroutine(FadeInLayer(layers.inBuildingLayer));
-                    StartCoroutine(FadeOutLayer(layers.staircaseLayer));
+                    SetActiveLayer(BuildingLayerType.InBuilding);
                     break;
 
                 // TODO: Confusing. That's the exit object trigger
                 case ObjectNames.Elevator:
-                {
-                    StartCoroutine(FadeOutLayer(layers.elevatorLayer));
-                    StartCoroutine(FadeInLayer(layers.inBuildingLayer));
+                    SetActiveLayer(BuildingLayerType.InBuilding);
                     break;
-                }
             }
         }
 

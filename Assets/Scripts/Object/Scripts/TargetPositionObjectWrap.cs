@@ -1,10 +1,13 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Object.Scripts
 {
-    public class PlayerPositionObjectWrap : MonoBehaviour
+    public class TargetPositionObjectWrap : MonoBehaviour
     {
-        [SerializeField] private GameObject player;
+        [FormerlySerializedAs("player")] [SerializeField]
+        private GameObject target;
+
         [SerializeField] private Camera mainCamera;
         [SerializeField] private float childHeight = 9.6f;
         [SerializeField] private float stopWrapBelowY = 54f;
@@ -21,10 +24,10 @@ namespace Object.Scripts
 
         private void Update()
         {
-            _yDirection = player.transform.position.y - _previousYPosition;
-            _previousYPosition = player.transform.position.y;
+            _yDirection = target.transform.position.y - _previousYPosition;
+            _previousYPosition = target.transform.position.y;
 
-            if (player.transform.position.y < stopWrapBelowY)
+            if (target.transform.position.y < stopWrapBelowY)
                 return;
 
             HandleObjectRepositioning();
