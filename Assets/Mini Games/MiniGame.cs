@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Character_Creator.scripts;
 using Dialog;
 using Mini_Games.Organize_Desk.scripts;
@@ -10,8 +11,7 @@ namespace Mini_Games
 {
     public class MiniGame : ObserverSubject
     {
-        [Header("Mini Game Settings")]
-        [SerializeField]
+        [Header("Mini Game Settings")] [SerializeField]
         private MiniGameName miniGameName;
 
         [SerializeField] private TextMeshProUGUI timerTextContainer;
@@ -20,9 +20,16 @@ namespace Mini_Games
         [SerializeField] public GameObject miniGameContainer;
         [SerializeField] private GameObject hideOnStart;
         [SerializeField] public GameObject inGameTrigger;
+        [SerializeField] public GameObject winState;
+        [SerializeField] public GameObject loseState;
 
-        [Header("Game dialog responses")]
-        [SerializeField]
+        [Header("Animation Settings")] [SerializeField]
+        private float animationDuration = 1f;
+
+        [SerializeField] private float jumpHeight = 0.5f;
+        [SerializeField] private float shakeIntensity = 0.2f;
+
+        [Header("Game dialog responses")] [SerializeField]
         public TypedDialogLine[] dialogLines;
 
         public int score;
@@ -33,7 +40,6 @@ namespace Mini_Games
 
         protected virtual void Update()
         {
-            print($"_isTimerRunning? {_isTimerRunning}");
             if (_isTimerRunning)
                 UpdateTimer();
         }
@@ -85,25 +91,167 @@ namespace Mini_Games
             isGameActive = false;
 
             if (miniGameContainer) miniGameContainer.SetActive(false);
+
+            switch (isGameWon)
+            {
+                case true when winState:
+                    winState.SetActive(true);
+                    StartCoroutine(PlayWinAnimation(winState));
+                    break;
+                case false when loseState:
+                    loseState.SetActive(true);
+                    StartCoroutine(PlayLoseAnimation(loseState));
+                    break;
+            }
+
+            var dialogLine = GetRandomLine(isGameWon ? DialogLineType.Good : DialogLineType.Bad);
+            if (dialogLine) Notify(GameEvents.TriggerSpecificDialogLine, dialogLine);
+            Notify(isGameWon ? GameEvents.MiniGameWon : GameEvents.MiniGameLost, score);
+
+            Invoke(nameof(MiniGameCleanups), 4);
+        }
+
+        private void MiniGameCleanups()
+        {
+            if (winState) winState.SetActive(false);
+            if (loseState) loseState.SetActive(false);
             if (hideOnStart) hideOnStart.SetActive(true);
 
             Notify(GameEvents.KillThoughtsAndSayings);
             Notify(GameEvents.KillDialog);
             Notify(GameEvents.MiniGameClosed);
+        }
 
+        private IEnumerator PlayWinAnimation(GameObject target)
+        {
+            if (target == null) yield break;
 
-            // Get a random dialog line based on the game outcome
-            NarrationDialogLine dialogLine = null;
-            if (dialogLines != null)
-                dialogLine = GetRandomLine(
-                    isGameWon ? DialogLineType.Good : DialogLineType.Bad
+            yield return new WaitForSeconds(1);
+
+            var targetTransform = target.transform;
+            var originalPosition = targetTransform.position;
+            var originalScale = targetTransform.localScale;
+
+            // Happy celebration sequence: flip, jump, scale bounce
+            var elapsedTime = 0f;
+
+            // Phase 1: Quick scale up and flip
+            while (elapsedTime < animationDuration * 0.3f)
+            {
+                var progress = elapsedTime / (animationDuration * 0.3f);
+                var scaleMultiplier = 1f + Mathf.Sin(progress * Mathf.PI) * 0.3f;
+                targetTransform.localScale = originalScale * scaleMultiplier;
+
+                // Flip effect by scaling X negative and back
+                if (progress < 0.5f)
+                    targetTransform.localScale = new Vector3(-originalScale.x * scaleMultiplier,
+                        originalScale.y * scaleMultiplier,
+                        originalScale.z * scaleMultiplier);
+
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+
+            // Reset scale
+            targetTransform.localScale = originalScale;
+
+            // Phase 2: Jump animation
+            elapsedTime = 0f;
+            while (elapsedTime < animationDuration * 0.7f)
+            {
+                var progress = elapsedTime / (animationDuration * 0.7f);
+                var jumpOffset = Mathf.Sin(progress * Mathf.PI * 2) * jumpHeight;
+                var scaleOffset = 1f + Mathf.Sin(progress * Mathf.PI * 4) * 0.1f;
+
+                targetTransform.position = originalPosition + Vector3.up * jumpOffset;
+                targetTransform.localScale = originalScale * scaleOffset;
+
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+
+            // Reset to original state
+            targetTransform.position = originalPosition;
+            targetTransform.localScale = originalScale;
+        }
+
+        private IEnumerator PlayLoseAnimation(GameObject target)
+        {
+            if (target == null) yield break;
+
+            yield return new WaitForSeconds(1);
+
+            var targetTransform = target.transform;
+            var originalPosition = targetTransform.position;
+            var originalScale = targetTransform.localScale;
+
+            // Sad defeat sequence: shake, shrink, droop
+            var elapsedTime = 0f;
+
+            // Phase 1: Shake and shrink
+            while (elapsedTime < animationDuration * 0.5f)
+            {
+                var progress = elapsedTime / (animationDuration * 0.5f);
+
+                // Shake effect - random offset
+                var shakeOffset = new Vector3(
+                    Random.Range(-shakeIntensity, shakeIntensity),
+                    Random.Range(-shakeIntensity * 0.5f, shakeIntensity * 0.5f),
+                    0f
                 );
 
-            // Trigger the dialog line if one was found
-            if (dialogLine != null) Notify(GameEvents.TriggerSpecificDialogLine, dialogLine);
+                // Shrinking scale
+                var shrinkAmount = 1f - progress * 0.2f;
+                targetTransform.localScale = originalScale * shrinkAmount;
+                targetTransform.position = originalPosition + shakeOffset;
 
-            // Notify about the game outcome
-            Notify(isGameWon ? GameEvents.MiniGameWon : GameEvents.MiniGameLost, score);
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+
+            // Phase 2: Droop down (sad slump)
+            elapsedTime = 0f;
+            while (elapsedTime < animationDuration * 0.5f)
+            {
+                var progress = elapsedTime / (animationDuration * 0.5f);
+
+                // Droop effect - scale Y down and position slightly down
+                var droopScale = 1f - progress * 0.3f;
+                var droopOffset = -progress * 0.1f;
+
+                targetTransform.localScale = new Vector3(
+                    originalScale.x * 0.8f,
+                    originalScale.y * droopScale,
+                    originalScale.z * 0.8f
+                );
+                targetTransform.position = originalPosition + Vector3.up * droopOffset;
+
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+
+            // Hold the sad pose briefly
+            yield return new WaitForSeconds(0.3f);
+
+            // Slowly return to original state
+            elapsedTime = 0f;
+            var currentScale = targetTransform.localScale;
+            var currentPos = targetTransform.position;
+
+            while (elapsedTime < 0.5f)
+            {
+                var progress = elapsedTime / 0.5f;
+
+                targetTransform.localScale = Vector3.Lerp(currentScale, originalScale, progress);
+                targetTransform.position = Vector3.Lerp(currentPos, originalPosition, progress);
+
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+
+            // Ensure exact reset
+            targetTransform.position = originalPosition;
+            targetTransform.localScale = originalScale;
         }
 
         public virtual void OnNotify(GameEventData eventData)

@@ -10,8 +10,7 @@ namespace Mini_Games.Lockpick
 {
     public class UnlockExpressionController : MiniGame, IPointerClickHandler
     {
-        [Header("Expression Lock Pick Mini Game")]
-        [SerializeField]
+        [Header("Expression Lock Pick Mini Game")] [SerializeField]
         private int gridSize = 3;
 
         [SerializeField] private TextMeshProUGUI expressionText;
@@ -37,11 +36,7 @@ namespace Mini_Games.Lockpick
             _previousMousePosition = Input.mousePosition;
             _hasMouseMoved = false;
 
-            // Initialize timer
-            // _timeLeft = timeLimit;
-
             SetActiveExpression(GetRandomExpression());
-            // StartCoroutine(Timer());
         }
 
         protected override void Update()
@@ -79,7 +74,12 @@ namespace Mini_Games.Lockpick
             progressBar[_progressBarIndex].color = Color.black;
             _progressBarIndex++;
 
-            if (_progressBarIndex >= progressBar.Length) StopAllCoroutines();
+            if (_progressBarIndex >= progressBar.Length)
+            {
+                // win state
+                StopAllCoroutines();
+                base.CloseMiniGame(true);
+            }
         }
 
         /// <summary>
@@ -111,19 +111,6 @@ namespace Mini_Games.Lockpick
 
             return null;
         }
-
-        // private IEnumerator Timer()
-        // {
-        //     while (_timeLeft > 0)
-        //     {
-        //         timer.text = _timeLeft.ToString();
-        //         _timeLeft--;
-        //         yield return new WaitForSeconds(1);
-        //     }
-        //
-        //     // Timer has reached zero
-        //     timer.text = "0";
-        // }
 
         private bool IsCorrectExpression(Expression clickedExpression)
         {
