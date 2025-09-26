@@ -1606,8 +1606,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eba1a93ef642814ba0109069eac8484, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1277082916}
+        m_TargetAssemblyTypeName: Player.Movement, PlayerScriptsAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   mainTitle: {fileID: 8274259420403304857}
-  cameraPan: {fileID: 1387538230}
+  player: {fileID: 1277082892}
+  mainCamera: {fileID: 1387538226}
 --- !u!1001 &461964698
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4256,6 +4272,17 @@ Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 1006159294126530808, guid: 18bc23390df011442b819617737dd1bd, type: 3}
   m_PrefabInstance: {fileID: 1277082891}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1277082916 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2399393931622321621, guid: 18bc23390df011442b819617737dd1bd, type: 3}
+  m_PrefabInstance: {fileID: 1277082891}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277082892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 816c6a3b82c95990a8d814b81feb0599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1298910408
 GameObject:
   m_ObjectHideFlags: 0
@@ -5096,6 +5123,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22cebfbe5e564624c932e8185283e24d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 394857707}
+        m_TargetAssemblyTypeName: Common.scripts.TheBuildingGameController, CommonScriptsAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   direction: 0
   speed: 1
   transitionDuration: 5
@@ -8291,9 +8333,9 @@ SceneRoots:
   - {fileID: 3832314960262174216}
   - {fileID: 1387538227}
   - {fileID: 1612350818}
+  - {fileID: 394857706}
   - {fileID: 22539551}
   - {fileID: 1277082891}
-  - {fileID: 394857706}
   - {fileID: 2044988166}
   - {fileID: 1978461028}
   - {fileID: 309266036}

@@ -13,7 +13,7 @@ namespace Common.scripts
         Right
     }
 
-    public class CameraPan : MonoBehaviour
+    public class CameraPan : ObserverSubject
     {
         [SerializeField] private Direction direction;
         [SerializeField] private float speed;
@@ -23,18 +23,16 @@ namespace Common.scripts
         private float _stopAtY;
         private Direction _targetDirection;
         private float _targetSpeed;
-        private bool _isTransitioning = false;
         private Coroutine _transitionCoroutine;
+
+        public bool IsTransitioning { get; private set; }
 
         private void Update()
         {
             if (_stopAtY != 0 && direction == Direction.Down && transform.position.y <= _stopAtY)
                 return;
 
-            if (!_isTransitioning)
-            {
-                MoveCamera();
-            }
+            if (!IsTransitioning) MoveCamera();
         }
 
         private void MoveCamera()
@@ -61,16 +59,16 @@ namespace Common.scripts
 
         private IEnumerator SmoothTransition(Direction newDirection, float newSpeed)
         {
-            _isTransitioning = true;
+            IsTransitioning = true;
 
-            Direction startDirection = direction;
-            float startSpeed = speed;
-            float elapsedTime = 0f;
+            var startDirection = direction;
+            var startSpeed = speed;
+            var elapsedTime = 0f;
 
             while (elapsedTime < transitionDuration)
             {
-                float t = elapsedTime / transitionDuration;
-                float curveValue = transitionCurve.Evaluate(t);
+                var t = elapsedTime / transitionDuration;
+                var curveValue = transitionCurve.Evaluate(t);
 
                 // Smoothly interpolate speed
                 speed = Mathf.Lerp(startSpeed, newSpeed, curveValue);
@@ -86,10 +84,7 @@ namespace Common.scripts
                     else
                     {
                         // Second half: change direction and speed up
-                        if (direction != newDirection)
-                        {
-                            direction = newDirection;
-                        }
+                        if (direction != newDirection) direction = newDirection;
                         speed = Mathf.Lerp(0, newSpeed, (curveValue - 0.5f) * 2);
                     }
                 }
@@ -104,7 +99,8 @@ namespace Common.scripts
             // Ensure final values are set
             direction = newDirection;
             speed = newSpeed;
-            _isTransitioning = false;
+            IsTransitioning = false;
+            Notify(GameEvents.CameraTransitionEnded);
         }
 
         public void GoToGroundFloor()
@@ -116,10 +112,7 @@ namespace Common.scripts
         public void StartSmoothTransition(Direction newDirection, float newSpeed)
         {
             // Stop any existing transition
-            if (_transitionCoroutine != null)
-            {
-                StopCoroutine(_transitionCoroutine);
-            }
+            if (_transitionCoroutine != null) StopCoroutine(_transitionCoroutine);
 
             _transitionCoroutine = StartCoroutine(SmoothTransition(newDirection, newSpeed));
         }
@@ -133,7 +126,5 @@ namespace Common.scripts
         {
             transitionCurve = curve ?? AnimationCurve.EaseInOut(0, 0, 1, 1);
         }
-
-        public bool IsTransitioning => _isTransitioning;
     }
 }

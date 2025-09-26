@@ -21,6 +21,7 @@ namespace Player
         private SpriteRenderer _hairSpriteRenderer;
         private SpriteRenderer _headSpriteRenderer;
         private bool _isCrawling;
+        private bool _isDisabled;
         private bool _isMoving;
         private bool _isOnGround;
 
@@ -49,6 +50,8 @@ namespace Player
 
         private void Update()
         {
+            if (_isDisabled) return;
+
             if (isRigidBodyMovement) RigidBodyMovement();
             else TransformMovement();
 
@@ -184,6 +187,10 @@ namespace Player
 
         public void OnNotify(GameEventData eventData)
         {
+            if (eventData.Name == GameEvents.DisablePlayerMovement) _isDisabled = true;
+
+            if (eventData.Name == GameEvents.EnablePlayerMovement) _isDisabled = false;
+
             if (eventData.Name == GameEvents.CrawlTrigger)
             {
                 _flipEnabled = !_flipEnabled;

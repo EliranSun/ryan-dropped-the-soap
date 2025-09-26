@@ -229,5 +229,9 @@
     ExitTheBuilding,
 
     CallElevator,
-    EnterElevator
+    EnterElevator,
+
+    CameraTransitionEnded,
+    DisablePlayerMovement,
+    EnablePlayerMovement
 }
