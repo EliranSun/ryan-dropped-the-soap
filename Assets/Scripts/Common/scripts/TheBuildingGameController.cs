@@ -7,9 +7,17 @@ namespace Common.scripts
         [SerializeField] private GameObject mainTitle;
         [SerializeField] private GameObject player;
         [SerializeField] private Camera mainCamera;
+        [SerializeField] private bool skipTitle;
 
         private void Start()
         {
+            if (skipTitle)
+            {
+                StartGame();
+                // EnablePlayerControl();
+                return;
+            }
+
             Notify(GameEvents.DisablePlayerMovement);
         }
 

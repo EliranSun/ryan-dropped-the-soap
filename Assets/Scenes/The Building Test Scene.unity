@@ -616,7 +616,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 256039260}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -1573,7 +1573,7 @@ GameObject:
   - component: {fileID: 394857706}
   - component: {fileID: 394857707}
   m_Layer: 0
-  m_Name: Game Controller
+  m_Name: "\u2699 Game Controller"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1624,6 +1624,7 @@ MonoBehaviour:
   mainTitle: {fileID: 8274259420403304857}
   player: {fileID: 1277082892}
   mainCamera: {fileID: 1387538226}
+  skipTitle: 1
 --- !u!1001 &461964698
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8334,9 +8335,9 @@ SceneRoots:
   - {fileID: 1387538227}
   - {fileID: 1612350818}
   - {fileID: 394857706}
+  - {fileID: 2044988166}
   - {fileID: 22539551}
   - {fileID: 1277082891}
-  - {fileID: 2044988166}
   - {fileID: 1978461028}
   - {fileID: 309266036}
   - {fileID: 1397438330}

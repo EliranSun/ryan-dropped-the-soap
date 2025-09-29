@@ -37,7 +37,7 @@ namespace Elevator.scripts
 
     public class TheBuildingLayerController : MonoBehaviour
     {
-        [SerializeField] private BuildingLayerType initialLayer = BuildingLayerType.Elevator;
+        [SerializeField] private BuildingLayerType initialLayer = BuildingLayerType.Outside;
         [SerializeField] private BuildingLayers layers;
         [SerializeField] private Camera mainCamera;
         [SerializeField] private Color skyColor;
@@ -50,7 +50,7 @@ namespace Elevator.scripts
         {
             // Initialize all layers and set the initial layer as active
             // InitializeAllLayers();
-            SetActiveLayer(initialLayer);
+            // SetActiveLayer(initialLayer);
         }
 
         private void InitializeAllLayers()
