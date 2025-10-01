@@ -10,12 +10,12 @@ namespace Elevator.scripts
         [SerializeField] private AudioSource elevatorAudioSource;
         [SerializeField] private AudioClip elevatorMovingSound;
         [SerializeField] private AudioClip elevatorReachedFloorSound;
+        [SerializeField] private GameObject elevator;
         [SerializeField] private ElevatorShake shakeableCamera;
         [SerializeField] private TextMeshPro floorText;
         [SerializeField] private TextMeshPro desiredFloorText;
         [SerializeField] private GameObject exit;
         [SerializeField] private GameObject shaftLight;
-        [SerializeField] private bool restoreElevatorFloor = true;
         [SerializeField] private float debounce = 3f;
         [SerializeField] private float lightLoop = 3f;
         [SerializeField] private float apartmentsPanelMoveSpeed = 1;
@@ -23,6 +23,7 @@ namespace Elevator.scripts
         [SerializeField] private int currentFloor;
         [SerializeField] private float floorHeight;
         [SerializeField] private float minYToStop;
+        [SerializeField] private bool restoreElevatorFloor = true;
         [SerializeField] private TextMeshPro[] apartmentNumbers;
         [SerializeField] private GameObject[] panelNumbers;
 
@@ -41,22 +42,22 @@ namespace Elevator.scripts
             if (floorText)
                 floorText.text = currentFloor.ToString();
 
-            transform.position = new Vector3(
-                transform.position.x,
+            elevator.transform.position = new Vector3(
+                elevator.transform.position.x,
                 CalculateElevatorYPosition(currentFloor),
-                transform.position.z
+                elevator.transform.position.z
             );
-            _yTarget = transform.position.y;
+            _yTarget = elevator.transform.position.y;
 
             Notify(GameEvents.FloorChange, currentFloor);
         }
 
         private void Update()
         {
-            if (Mathf.Abs(_yTarget - transform.position.y) > minYToStop)
+            if (Mathf.Abs(_yTarget - elevator.transform.position.y) > minYToStop)
             {
-                var direction = _yTarget > transform.position.y ? Vector3.up : Vector3.down;
-                transform.Translate(direction * (Time.deltaTime * elevatorSpeed));
+                var direction = _yTarget > elevator.transform.position.y ? Vector3.up : Vector3.down;
+                elevator.transform.Translate(direction * (Time.deltaTime * elevatorSpeed));
 
                 // Update floor number based on current position
                 UpdateFloorBasedOnPosition();
@@ -75,21 +76,21 @@ namespace Elevator.scripts
                 // if (floorData) floorData.playerExitElevator = true;
                 Notify(GameEvents.ChangePlayerLocation, Location.Hallway);
 
-            if (_isFloorMoving)
-            {
-                var y = (_desiredFloor < currentFloor ? -elevatorSpeed : elevatorSpeed) * Time.deltaTime;
-                transform.Translate(0, y, 0);
-
-                // Update floor number based on current position during movement
-                UpdateFloorBasedOnPosition();
-            }
+            // if (_isFloorMoving)
+            // {
+            //     var y = (_desiredFloor < currentFloor ? -elevatorSpeed : elevatorSpeed) * Time.deltaTime;
+            //     transform.Translate(0, y, 0);
+            //
+            //     // Update floor number based on current position during movement
+            //     UpdateFloorBasedOnPosition();
+            // }
         }
 
         private float CalculateElevatorYPosition(int floorNumber)
         {
             // Assuming floor 0 is at Y position 0, calculate position for current floor
-            // return floorNumber * floorHeight + transform.localScale.y / 2f;
-            return floorNumber * floorHeight + transform.localScale.y * 2;
+            // return floorNumber * floorHeight + elevator.transform.localScale.y / 2f;
+            return floorNumber * floorHeight + elevator.transform.localScale.y * 2;
         }
 
         /// <summary>
@@ -99,7 +100,8 @@ namespace Elevator.scripts
         {
             // Calculate which floor we're currently on based on Y position
             // Assuming floor 0 is at Y position 0, each floor is floorHeight units apart
-            var calculatedFloor = Mathf.RoundToInt((transform.position.y - transform.localScale.y / 2f) / floorHeight);
+            var calculatedFloor = Mathf.RoundToInt(
+                (elevator.transform.position.y - elevator.transform.localScale.y / 2f) / floorHeight);
 
             // Only update if the floor has actually changed
             if (calculatedFloor != currentFloor)
@@ -131,7 +133,7 @@ namespace Elevator.scripts
             // {
             //     var objectName = (ObjectNames)eventData.Data;
             //     if (objectName == ObjectNames.Elevator) 
-            //         print("player called elevator" + transform.position);
+            //         print("player called elevator" + elevator.transform.position);
             //
             //     return;
             // }
