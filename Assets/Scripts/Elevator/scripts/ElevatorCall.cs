@@ -14,24 +14,26 @@ namespace Elevator.scripts
 
         private void Start()
         {
-            var elevator = GameObject.FindGameObjectWithTag("Elevator");
+            var elevator = GameObject.FindWithTag("Elevator Entrance");
             print($"Elevator found? {elevator.gameObject.name}");
 
             if (elevator) _controller = elevator.GetComponent<ElevatorController>();
-            _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+            _playerTransform = GameObject.FindWithTag("Player").transform;
 
-            Notify(GameEvents.EnterElevator);
+            // Notify(GameEvents.EnterElevator);
         }
 
         private void Update()
         {
+            if (!_playerTransform) return;
+
             var distanceToElevator = Vector3.Distance(_playerTransform.position, transform.position);
 
-            if (!Input.GetKeyDown(KeyCode.X) || !(distanceToElevator < minDistanceForCall))
-                return;
-
-            if (_areDoorsOpen) Notify(GameEvents.EnterElevator);
-            else _controller.CallElevator(transform.position.y);
+            if (Input.GetKeyDown(KeyCode.X) && distanceToElevator <= minDistanceForCall)
+            {
+                if (_areDoorsOpen) Notify(GameEvents.EnterElevator);
+                else _controller.CallElevator(transform.position.y);
+            }
         }
 
         public void OnNotify(GameEventData eventData)

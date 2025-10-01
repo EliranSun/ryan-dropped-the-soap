@@ -75,9 +75,14 @@ namespace Elevator.scripts
 
         private void SetActiveLayer(BuildingLayerType targetLayer)
         {
-            if (_currentActiveLayer == targetLayer) return;
+            // if (_currentActiveLayer == targetLayer)
+            //     return;
 
+            var layerObject = layers.GetLayer(targetLayer);
             // Fade out current layer and fade in target layer
+            // var layerObject = layers.GetLayer(layerType);
+            layerObject.SetActive(true);
+
             StartCoroutine(FadeOutLayer(layers.GetLayer(_currentActiveLayer)));
             StartCoroutine(FadeInLayer(layers.GetLayer(targetLayer)));
             _currentActiveLayer = targetLayer;
@@ -134,8 +139,8 @@ namespace Elevator.scripts
         private IEnumerator FadeOutLayer(GameObject layer)
         {
             var spriteRenderers = GetAllSpriteRenderers(layer);
-
             var colliders = layer.GetComponentsInChildren<Collider2D>();
+
             foreach (var col in colliders) col.enabled = false;
 
             if (spriteRenderers.Count == 0) yield break;
@@ -155,8 +160,8 @@ namespace Elevator.scripts
         private IEnumerator FadeInLayer(GameObject layer)
         {
             var spriteRenderers = GetAllSpriteRenderers(layer);
-
             var colliders = layer.GetComponentsInChildren<Collider2D>();
+
             foreach (var col in colliders) col.enabled = true;
 
             if (spriteRenderers.Count == 0)
