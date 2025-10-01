@@ -29,10 +29,17 @@ namespace Common.scripts
 
         private void Update()
         {
-            if (_stopAtY != 0 && direction == Direction.Down && transform.position.y <= _stopAtY)
+            if (_stopAtY == 0)
                 return;
 
-            if (!IsTransitioning) MoveCamera();
+            if (direction == Direction.Down && transform.position.y <= _stopAtY)
+                return;
+
+            if (direction == Direction.Up && transform.position.y >= _stopAtY)
+                return;
+
+            if (!IsTransitioning)
+                MoveCamera();
         }
 
         private void MoveCamera()
@@ -125,6 +132,47 @@ namespace Common.scripts
         public void SetTransitionCurve(AnimationCurve curve)
         {
             transitionCurve = curve ?? AnimationCurve.EaseInOut(0, 0, 1, 1);
+        }
+
+        /// <summary>
+        ///     Skips the camera pan entirely and gives the player immediate control.
+        ///     Useful for testing or when you want to bypass the intro camera animation.
+        /// </summary>
+        /// <param name="player">The player GameObject to center the camera on</param>
+        public void SkipCameraPanAndEnablePlayer(GameObject player)
+        {
+            if (player == null)
+            {
+                Debug.LogWarning("Player GameObject is null. Cannot skip camera pan.");
+                return;
+            }
+
+            // Reset transition state
+            IsTransitioning = false;
+            _stopAtY = 0;
+
+            // Stop any existing transition
+            if (_transitionCoroutine != null)
+            {
+                StopCoroutine(_transitionCoroutine);
+                _transitionCoroutine = null;
+            }
+
+
+            // Position camera at player's center
+            var playerPosition = player.transform.position;
+            transform.position = new Vector3(playerPosition.x, playerPosition.y, transform.position.z);
+
+            // Parent camera to player for follow behavior
+            transform.parent = player.transform;
+
+            // Notify that player movement should be enabled
+            Notify(GameEvents.EnablePlayerMovement);
+
+            // Also notify that camera transition ended (in case other systems are listening)
+            Notify(GameEvents.CameraTransitionEnded);
+
+            Debug.Log("Camera pan skipped - Player control enabled immediately");
         }
     }
 }

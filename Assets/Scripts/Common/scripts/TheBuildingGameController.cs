@@ -11,20 +11,14 @@ namespace Common.scripts
 
         private void Start()
         {
-            if (skipTitle)
-            {
-                StartGame();
-                // EnablePlayerControl();
-                return;
-            }
-
-            Notify(GameEvents.DisablePlayerMovement);
+            if (skipTitle) StartGame();
+            else Notify(GameEvents.DisablePlayerMovement);
         }
 
         public void StartGame()
         {
             mainTitle.SetActive(false);
-            mainCamera.GetComponent<CameraPan>().GoToGroundFloor();
+            mainCamera.GetComponent<CameraPan>().SkipCameraPanAndEnablePlayer(player);
         }
 
         public void OnNotify(GameEventData eventData)

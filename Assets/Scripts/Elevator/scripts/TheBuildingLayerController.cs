@@ -75,16 +75,21 @@ namespace Elevator.scripts
 
         private void SetActiveLayer(BuildingLayerType targetLayer)
         {
-            // if (_currentActiveLayer == targetLayer)
-            //     return;
-
-            var layerObject = layers.GetLayer(targetLayer);
-            // Fade out current layer and fade in target layer
-            // var layerObject = layers.GetLayer(layerType);
-            layerObject.SetActive(true);
-
             StartCoroutine(FadeOutLayer(layers.GetLayer(_currentActiveLayer)));
             StartCoroutine(FadeInLayer(layers.GetLayer(targetLayer)));
+            StartCoroutine(UpdateLayersActiveState(targetLayer));
+        }
+
+        private IEnumerator UpdateLayersActiveState(BuildingLayerType targetLayer)
+        {
+            yield return new WaitForEndOfFrame();
+
+            foreach (BuildingLayerType layerType in Enum.GetValues(typeof(BuildingLayerType)))
+            {
+                var obj = layers.GetLayer(layerType);
+                obj.SetActive(layerType == targetLayer);
+            }
+
             _currentActiveLayer = targetLayer;
         }
 
@@ -103,6 +108,10 @@ namespace Elevator.scripts
 
             switch (interactedObject)
             {
+                case ObjectNames.BuildingExit:
+                    SetActiveLayer(BuildingLayerType.Outside);
+                    break;
+
                 case ObjectNames.BuildingEntrance:
                     SetActiveLayer(BuildingLayerType.InBuilding);
                     break;
@@ -115,9 +124,12 @@ namespace Elevator.scripts
                     SetActiveLayer(BuildingLayerType.InBuilding);
                     break;
 
-                // TODO: Confusing. That's the exit object trigger
-                case ObjectNames.Elevator:
+                case ObjectNames.ElevatorExitDoors:
                     SetActiveLayer(BuildingLayerType.InBuilding);
+                    break;
+
+                case ObjectNames.ElevatorEnterDoors:
+                    SetActiveLayer(BuildingLayerType.Elevator);
                     break;
             }
         }
@@ -139,9 +151,9 @@ namespace Elevator.scripts
         private IEnumerator FadeOutLayer(GameObject layer)
         {
             var spriteRenderers = GetAllSpriteRenderers(layer);
-            var colliders = layer.GetComponentsInChildren<Collider2D>();
-
-            foreach (var col in colliders) col.enabled = false;
+            // var colliders = layer.GetComponentsInChildren<Collider2D>();
+            //
+            // foreach (var col in colliders) col.enabled = false;
 
             if (spriteRenderers.Count == 0) yield break;
 
@@ -160,9 +172,9 @@ namespace Elevator.scripts
         private IEnumerator FadeInLayer(GameObject layer)
         {
             var spriteRenderers = GetAllSpriteRenderers(layer);
-            var colliders = layer.GetComponentsInChildren<Collider2D>();
-
-            foreach (var col in colliders) col.enabled = true;
+            // var colliders = layer.GetComponentsInChildren<Collider2D>();
+            //
+            // foreach (var col in colliders) col.enabled = true;
 
             if (spriteRenderers.Count == 0)
                 yield break;

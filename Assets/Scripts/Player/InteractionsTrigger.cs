@@ -20,61 +20,65 @@ namespace Player
                 Notify(GameEvents.PlayerInteraction, _interactedObjectName);
         }
 
-        private void OnCollisionEnter2D(Collision2D other)
-        {
-            InstructBasedOnTag(other.gameObject);
-        }
-
-        private void OnCollisionExit2D(Collision2D other)
-        {
-            ResetText(other.gameObject);
-        }
-
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            InstructBasedOnTag(other.gameObject);
-        }
-
         private void OnTriggerExit2D(Collider2D other)
         {
-            ResetText(other.gameObject);
+            ResetText();
         }
 
-        private void ResetText(GameObject other)
+        private void OnTriggerStay2D(Collider2D other)
         {
-            if (other.CompareTag("Apartment Door") ||
-                other.CompareTag("Door") ||
-                other.CompareTag("Building Entrance") ||
-                other.CompareTag("Elevator") ||
-                other.CompareTag("Staircase Entrance") ||
-                other.CompareTag("NPC"))
-            {
-                interactionText.text = "";
-                _interactedObjectName = ObjectNames.None;
-            }
+            if (other.CompareTag("Player") ||
+                other.CompareTag("Ground") ||
+                other.CompareTag("Untagged"))
+                return;
+
+            InstructBasedOnTag(other.gameObject.tag);
         }
 
-        private void InstructBasedOnTag(GameObject other)
+        private void ResetText()
         {
-            switch (other.tag)
+            print($"Reset Text: {interactionText.text}");
+            interactionText.text = "";
+            _interactedObjectName = ObjectNames.None;
+        }
+
+        private void InstructBasedOnTag(string tagName)
+        {
+            print($"InstructBasedOnTag: {tagName}");
+
+            switch (tagName)
             {
                 case "Building Entrance":
                     interactionText.text = "Press X to ENTER";
                     _interactedObjectName = ObjectNames.BuildingEntrance;
                     break;
 
-                case "Door":
+                case "Building Exit":
+                    interactionText.text = "EXIT";
+                    _interactedObjectName = ObjectNames.BuildingExit;
+                    break;
+
+                case "Building Entrance Doors":
                     interactionText.text = "OPEN";
                     _interactedObjectName = ObjectNames.BuildingEntranceDoors;
+                    break;
+
+                case "Door":
+                    interactionText.text = "OPEN";
                     break;
 
                 case "Item":
                     interactionText.text = "OBSERVE";
                     break;
 
+                case "Elevator Exit":
+                    interactionText.text = "EXIT";
+                    _interactedObjectName = ObjectNames.ElevatorExitDoors;
+                    break;
+
                 case "Elevator Entrance":
-                    interactionText.text = "EXIT ELEVATOR";
-                    _interactedObjectName = ObjectNames.Elevator;
+                    interactionText.text = "ENTER";
+                    _interactedObjectName = ObjectNames.ElevatorEnterDoors;
                     break;
 
                 case "Staircase Entrance":
@@ -83,7 +87,7 @@ namespace Player
                     break;
 
                 case "Staircase Exit":
-                    interactionText.text = "EXIT STAIRCASE";
+                    interactionText.text = "EXIT";
                     _interactedObjectName = ObjectNames.StaircaseExit;
                     break;
 

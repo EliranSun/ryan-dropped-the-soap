@@ -23,7 +23,6 @@ namespace Elevator.scripts
         [SerializeField] private int currentFloor;
         [SerializeField] private float floorHeight;
         [SerializeField] private float minYToStop;
-        [SerializeField] private GameObject[] children;
         [SerializeField] private TextMeshPro[] apartmentNumbers;
         [SerializeField] private GameObject[] panelNumbers;
 

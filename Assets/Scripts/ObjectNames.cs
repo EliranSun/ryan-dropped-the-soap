@@ -6,9 +6,11 @@ namespace Object.Scripts
     public enum ObjectNames
     {
         None,
-        BuildingEntranceDoors,
+        BuildingExit,
         BuildingEntrance,
-        Elevator,
+        BuildingEntranceDoors,
+        ElevatorEnterDoors,
+        ElevatorExitDoors,
         StaircaseEntrance,
         StaircaseExit
     }

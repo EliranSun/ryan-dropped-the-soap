@@ -5,7 +5,7 @@ namespace Common.scripts
 {
     public class SceneChangeOnTrigger : MonoBehaviour
     {
-        [SerializeField] private Object sceneAsset;
+        [SerializeField] private UnityEngine.Object sceneAsset;
         private string _sceneName;
 
         private void OnMouseDown()

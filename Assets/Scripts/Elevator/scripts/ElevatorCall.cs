@@ -8,8 +8,8 @@ namespace Elevator.scripts
         [SerializeField] private float minDistanceForCall = 4f;
         [SerializeField] private TextMeshPro currentElevatorFloorIndication;
         [SerializeField] private GameObject doors;
+        [SerializeField] private ElevatorController controller;
         private bool _areDoorsOpen;
-        private ElevatorController _controller;
         private Transform _playerTransform;
 
         private void Start()
@@ -17,7 +17,6 @@ namespace Elevator.scripts
             var elevator = GameObject.FindWithTag("Elevator Entrance");
             print($"Elevator found? {elevator.gameObject.name}");
 
-            if (elevator) _controller = elevator.GetComponent<ElevatorController>();
             _playerTransform = GameObject.FindWithTag("Player").transform;
 
             // Notify(GameEvents.EnterElevator);
@@ -32,7 +31,7 @@ namespace Elevator.scripts
             if (Input.GetKeyDown(KeyCode.X) && distanceToElevator <= minDistanceForCall)
             {
                 if (_areDoorsOpen) Notify(GameEvents.EnterElevator);
-                else _controller.CallElevator(transform.position.y);
+                else controller.CallElevator(transform.position.y);
             }
         }
 
