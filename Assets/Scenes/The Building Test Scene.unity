@@ -1039,6 +1039,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1681089805582334029}
     - target: {fileID: 5219581391847585710, guid: 609b1f35e8dc57c4993a46a526bfe903, type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 944560125}
+    - target: {fileID: 5219581391847585710, guid: 609b1f35e8dc57c4993a46a526bfe903, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -1153,6 +1157,10 @@ PrefabInstance:
       propertyPath: controller
       value: 
       objectReference: {fileID: 1681089805582334029}
+    - target: {fileID: 5219581391847585710, guid: 609b1f35e8dc57c4993a46a526bfe903, type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 944560125}
     - target: {fileID: 5219581391847585710, guid: 609b1f35e8dc57c4993a46a526bfe903, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -1314,7 +1322,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1681089805387102776, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
       propertyPath: currentFloor
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1681089805387102776, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
       propertyPath: elevatorSpeed
@@ -2190,8 +2198,8 @@ GameObject:
   - component: {fileID: 542953919}
   - component: {fileID: 542953920}
   m_Layer: 0
-  m_Name: new elevator
-  m_TagString: Elevator Entrance
+  m_Name: Elevator Doors
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2357,6 +2365,7 @@ MonoBehaviour:
   currentElevatorFloorIndication: {fileID: 1321137668}
   doors: {fileID: 1298910408}
   controller: {fileID: 1681089805582334029}
+  playerTransform: {fileID: 944560125}
 --- !u!1001 &555777867
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5138,14 +5147,14 @@ MonoBehaviour:
   observers:
     m_PersistentCalls:
       m_Calls: []
-  outsideZoom: 25
-  insideBuildingZoom: 20
-  insideElevatorZoom: 10
-  insideStaircaseZoom: 15
+  outsideZoom: 13
+  insideBuildingZoom: 12
+  insideElevatorZoom: 8
+  insideStaircaseZoom: 12
   delay: 0
-  speed: 3
-  startSize: 25
-  endSize: 25
+  speed: 1
+  startSize: 14
+  endSize: 13
   isActiveByTrigger: 0
   target: {fileID: 0}
 --- !u!114 &1387538230
@@ -5483,7 +5492,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1444872401170620559, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -9
       objectReference: {fileID: 0}
     - target: {fileID: 1444872401170620559, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
       propertyPath: m_LocalRotation.w
@@ -8997,6 +9006,10 @@ PrefabInstance:
       propertyPath: controller
       value: 
       objectReference: {fileID: 1681089805582334029}
+    - target: {fileID: 5219581391847585710, guid: 609b1f35e8dc57c4993a46a526bfe903, type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 944560125}
     - target: {fileID: 5219581391847585710, guid: 609b1f35e8dc57c4993a46a526bfe903, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.size
       value: 2

@@ -22,15 +22,15 @@ namespace Player
         private void Awake()
         {
             // If there is an instance, and it's not this one, destroy this one
-            if (Instance != null && Instance != this)
-            {
-                Destroy(gameObject);
-                return;
-            }
-
-            // Set the instance and make it persistent
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
+            // if (Instance != null && Instance != this)
+            // {
+            //     Destroy(gameObject);
+            //     return;
+            // }
+            //
+            // // Set the instance and make it persistent
+            // Instance = this;
+            // DontDestroyOnLoad(gameObject);
 
             if (resetPlayerPrefs) PlayerPrefs.DeleteAll();
             // ChangeScene();

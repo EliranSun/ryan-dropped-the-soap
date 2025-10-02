@@ -9,24 +9,12 @@ namespace Elevator.scripts
         [SerializeField] private TextMeshPro currentElevatorFloorIndication;
         [SerializeField] private GameObject doors;
         [SerializeField] private ElevatorController controller;
+        [SerializeField] private Transform playerTransform;
         private bool _areDoorsOpen;
-        private Transform _playerTransform;
-
-        private void Start()
-        {
-            var elevator = GameObject.FindWithTag("Elevator Entrance");
-            print($"Elevator found? {elevator.gameObject.name}");
-
-            _playerTransform = GameObject.FindWithTag("Player").transform;
-
-            // Notify(GameEvents.EnterElevator);
-        }
 
         private void Update()
         {
-            if (!_playerTransform) return;
-
-            var distanceToElevator = Vector3.Distance(_playerTransform.position, transform.position);
+            var distanceToElevator = Vector3.Distance(playerTransform.position, transform.position);
 
             if (Input.GetKeyDown(KeyCode.X) && distanceToElevator <= minDistanceForCall)
             {
