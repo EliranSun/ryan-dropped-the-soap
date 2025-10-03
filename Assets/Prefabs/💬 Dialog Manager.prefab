@@ -560,8 +560,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbe6cafc6d88ae945a7e008a528a147c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _defaultCutoffFrequency: 22000
-  _minCutoffFrequency: 500
+  defaultCutoffFrequency: 22000
+  minCutoffFrequency: 500
 --- !u!169 &5231037459656969654
 AudioLowPassFilter:
   m_ObjectHideFlags: 0
@@ -1091,7 +1091,7 @@ GameObject:
   - component: {fileID: 6799798692436265581}
   - component: {fileID: 6535512598348505234}
   m_Layer: 0
-  m_Name: Dialog actors faces controller
+  m_Name: Actor Faces Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,5 +1,6 @@
 using System;
 using Dialog.Scripts;
+using Expressions;
 using UnityEngine;
 
 namespace Dialog
@@ -39,23 +40,10 @@ namespace Dialog
     }
 
     [Serializable]
-    public enum Reaction
-    {
-        Neutral,
-        Happy,
-        Sad,
-        Anger,
-        Fear,
-        Disgust,
-        Love,
-        Hate
-    }
-
-    [Serializable]
     public class EmotionalReactionLine
     {
-        public Reaction reaction;
         public NarrationDialogLine line;
+        public Expression reaction;
     }
 
     [Serializable]
@@ -172,6 +160,9 @@ namespace Dialog
         public Sprite overlayImageSprite;
 
         public VoicedLine[] voicedLines;
+        public ActorName actorName;
+        public Expression actorReaction;
+
         public NarrationDialogLine nextDialogueLine;
         public PlayerChoice[] playerOptions;
         public EmotionalReactionLine[] playerReactions;
@@ -181,10 +172,8 @@ namespace Dialog
 
         public float wait = 0.5f;
 
-        public ActorName actorName;
         public GameEvents actionBeforeLine;
         public GameEvents actionAfterLine;
-        public Reaction actorReaction;
 
         public float angerLevel;
 

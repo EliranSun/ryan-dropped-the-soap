@@ -1,22 +1,34 @@
 ﻿using System;
 
-namespace Mini_Games.Lockpick
+namespace Expressions
 {
     [Serializable]
-    public enum ExpressionEnum
+    public enum Expression
     {
         Blank,
+
+        // 1.
         Sternness,
         Indignation,
         Anger,
         Rage,
+
+        // 2.
         Disdain,
         Aversion,
         Disgust,
         Revulsion,
+
+        // 4.
         Concern,
         Anxiety,
         Fear,
-        Terror
+        Terror,
+
+        // 5.
+        Satisfaction,
+        Amusement,
+        Joy,
+        Laughter
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Dialog;
 using Dialog.Scripts;
+using Expressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,7 +14,7 @@ namespace Mini_Games.Flirt.scripts
     internal class SpriteEmotion
     {
         public Sprite sprite;
-        public Reaction reaction;
+        public Expression reaction;
     }
 
 

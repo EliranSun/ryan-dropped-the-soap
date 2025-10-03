@@ -18,7 +18,7 @@ namespace Mini_Games.Lockpick
         [SerializeField] private Image[] gridImages;
         [SerializeField] private Image[] progressBar;
 
-        private ExpressionEnum _activeExpression;
+        private Expressions.Expression _activeExpression;
         private bool _hasMouseMoved;
         private bool _isActive;
         private Vector3 _previousMousePosition;
@@ -121,14 +121,14 @@ namespace Mini_Games.Lockpick
         ///     Returns a random expression from the Expression enum
         /// </summary>
         /// <returns>A random Expression enum value</returns>
-        private static ExpressionEnum GetRandomExpression()
+        private static Expressions.Expression GetRandomExpression()
         {
-            var values = Enum.GetValues(typeof(ExpressionEnum));
+            var values = Enum.GetValues(typeof(Expressions.Expression));
             var random = new Random();
-            return (ExpressionEnum)values.GetValue(random.Next(values.Length));
+            return (Expressions.Expression)values.GetValue(random.Next(values.Length));
         }
 
-        private void SetActiveExpression(ExpressionEnum expression)
+        private void SetActiveExpression(Expressions.Expression expression)
         {
             _activeExpression = expression;
             // expressionText.text = ExpressionTranslations.GetHebrewTranslation(expression);

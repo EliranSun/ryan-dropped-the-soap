@@ -4,7 +4,7 @@ namespace Mini_Games.Lockpick
 {
     public class Expression : MonoBehaviour
     {
-        [SerializeField] public ExpressionEnum expression;
-        [SerializeField] public ExpressionEnum[] matchingExpressions;
+        [SerializeField] public Expressions.Expression expression;
+        [SerializeField] public Expressions.Expression[] matchingExpressions;
     }
 }

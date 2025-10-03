@@ -10,24 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
-  m_Name: Charlotte -
+  m_Name: 2. charlotte - give me a hand
   m_EditorClassIdentifier: 
   playerName: 
   waitBeforeLine: 0
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
-  voicedLines: []
-  nextDialogueLine: {fileID: 0}
+  voicedLines:
+  - text: "Just moving in, huh? Lovely to meet you, neighbor! Sorry to rush you like
+      this, but\u2026 could you give me a hand?"
+    translation: 
+    clip: {fileID: 8300000, guid: b130d1573c6f518439cff2a1e723991e, type: 3}
+    gender: 0
+  actorName: 1
+  actorReaction: 13
+  nextDialogueLine: {fileID: 11400000, guid: b5249211b7762a24dabf84bb5afa837b, type: 2}
   playerOptions: []
   playerReactions: []
   conditionalNextLines: []
   randomizedDialogLines: []
   objectReferringDialogLines: []
   wait: 0.5
-  actorName: 0
   actionBeforeLine: 0
   actionAfterLine: 0
-  actorReaction: 0
   angerLevel: 0
   toggleLineCondition: {fileID: 0}
   lineCondition:

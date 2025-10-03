@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Dialog;
+using Expressions;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,8 +11,16 @@ namespace stacy
     [Serializable]
     public class ActorReactionImage
     {
-        public Reaction reaction;   
+        public Expression reaction;
         public Sprite image;
+    }
+
+    [Serializable]
+    public class ActorConfig
+    {
+        public ActorName actorName;
+        public List<ActorReactionImage> reactions;
+        public bool isLeftSide;
     }
 
     public class DialogActorsFaceController : MonoBehaviour
@@ -21,10 +30,8 @@ namespace stacy
         [SerializeField] private GameObject leftSideContainer;
         [SerializeField] private GameObject rightSideContainer;
 
-        [SerializeField] private List<ActorReactionImage> stacyReactions;
-        [SerializeField] private List<ActorReactionImage> oldManReactions;
-        [SerializeField] private List<ActorReactionImage> zekeReactions;
-        [SerializeField] private List<ActorReactionImage> charlotteReactions;
+        [SerializeField] private List<ActorConfig> actorConfigs;
+        [SerializeField] private Sprite charlotteBody;
 
 
         private void Start()
@@ -43,49 +50,55 @@ namespace stacy
 
                 if (dialogLine.actorName == ActorName.None)
                 {
-                    leftSideImage.sprite = null;
-                    rightSideImage.sprite = null;
-                    leftSideContainer.SetActive(false);
-                    rightSideContainer.SetActive(false);
+                    ClearAllActors();
                     return;
                 }
 
-                if (dialogLine.actorName == ActorName.Stacy)
-                {
-                    var reaction = stacyReactions.First(stacy => stacy.reaction == dialogLine.actorReaction);
-                    rightSideImage.sprite = reaction.image;
-                    rightSideContainer.SetActive(true);
-                }
-
-                if (dialogLine.actorName == ActorName.OldMan)
-                {
-                    var reaction = oldManReactions.First(stacy => stacy.reaction == dialogLine.actorReaction);
-                    leftSideImage.sprite = reaction.image;
-                    leftSideContainer.SetActive(true);
-                }
-
-                if (dialogLine.actorName == ActorName.Zeke)
-                {
-                    var reaction = zekeReactions.First(stacy => stacy.reaction == dialogLine.actorReaction);
-                    leftSideImage.sprite = reaction.image;
-                    leftSideContainer.SetActive(true);
-                }
-
-                if (dialogLine.actorName == ActorName.Charlotte)
-                {
-                    var reaction = charlotteReactions.First(a => a.reaction == dialogLine.actorReaction);
-                    rightSideImage.sprite = reaction.image;
-                    rightSideContainer.SetActive(true);
-                }
+                SetActorReaction(dialogLine.actorName, dialogLine.actorReaction);
             }
 
             if (eventData.Name == GameEvents.LineNarrationEnd)
             {
-                leftSideImage.sprite = null;
-                rightSideImage.sprite = null;
-                leftSideContainer.SetActive(false);
-                rightSideContainer.SetActive(false);
+                ClearAllActors();
             }
+        }
+
+        private void SetActorReaction(ActorName actorName, Expression reaction)
+        {
+            var actorConfig = actorConfigs.FirstOrDefault(config => config.actorName == actorName);
+            if (actorConfig == null) return;
+
+            var reactionImage = actorConfig.reactions.FirstOrDefault(r => r.reaction == reaction);
+            if (reactionImage == null) return;
+
+            if (actorConfig.isLeftSide)
+            {
+                leftSideImage.sprite = reactionImage.image;
+                // Resize the image to match the sprite dimensions
+                if (reactionImage.image != null)
+                {
+                    leftSideImage.rectTransform.sizeDelta = new Vector2(reactionImage.image.rect.width, reactionImage.image.rect.height);
+                }
+                leftSideContainer.SetActive(true);
+            }
+            else
+            {
+                rightSideImage.sprite = reactionImage.image;
+                // Resize the image to match the sprite dimensions
+                if (reactionImage.image != null)
+                {
+                    rightSideImage.rectTransform.sizeDelta = new Vector2(reactionImage.image.rect.width, reactionImage.image.rect.height);
+                }
+                rightSideContainer.SetActive(true);
+            }
+        }
+
+        private void ClearAllActors()
+        {
+            leftSideImage.sprite = null;
+            rightSideImage.sprite = null;
+            leftSideContainer.SetActive(false);
+            rightSideContainer.SetActive(false);
         }
     }
 }
