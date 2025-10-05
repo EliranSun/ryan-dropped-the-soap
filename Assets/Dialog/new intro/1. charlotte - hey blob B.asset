@@ -10,28 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
-  m_Name: 1. charlotte - hey blob
+  m_Name: 1. charlotte - hey blob B
   m_EditorClassIdentifier: 
   playerName: 
   waitBeforeLine: 0
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
   voicedLines:
-  - text: "Hey! Yeah, you\u2014the blob down there! Up here!"
+  - text: "Yeah, you\u2014the blob down there!"
     translation: 
-    clip: {fileID: 8300000, guid: 5e23a6a730821ff4195928714ff8bdfa, type: 3}
+    clip: {fileID: 8300000, guid: 09493a74b83c8443daac8a1b77fbc61a, type: 3}
     gender: 0
-  nextDialogueLine: {fileID: 11400000, guid: f47ab2d51381c534287f389c78ad8237, type: 2}
+  actorName: 1
+  actorReaction: 0
+  nextDialogueLine: {fileID: 11400000, guid: 97545b64345ea412796d09eac79f05de, type: 2}
   playerOptions: []
   playerReactions: []
   conditionalNextLines: []
   randomizedDialogLines: []
   objectReferringDialogLines: []
   wait: 0.5
-  actorName: 1
   actionBeforeLine: 0
   actionAfterLine: 0
-  actorReaction: 0
   angerLevel: 0
   toggleLineCondition: {fileID: 0}
   lineCondition:
