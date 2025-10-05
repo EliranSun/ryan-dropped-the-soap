@@ -4108,9 +4108,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55095b8bfb8bf4929b569258478ba832, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 1387538226}
+  player: {fileID: 1277082892}
   actors:
   - actorName: 1
     actor: {fileID: 1425454221}
+  minZoom: 5
+  maxZoom: 25
+  zoomSpeed: 2
+  minDistance: 2
+  maxDistance: 120
+  enableDynamicZoom: 0
 --- !u!1001 &1277082891
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5416,6 +5424,18 @@ PrefabInstance:
     - target: {fileID: 135852353291703077, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 1274032175}
+    - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: OnNotify
+      objectReference: {fileID: 0}
+    - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: Dialog.ZoomActorByLine, DialogAssembly
       objectReference: {fileID: 0}
     - target: {fileID: 1311371035374852291, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       propertyPath: finalState.dialogLineToPlay
