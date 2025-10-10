@@ -3786,7 +3786,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1150925022}
   m_CullTransparentMesh: 1
---- !u!1 &1244371771
+--- !u!1 &1156574680
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3794,23 +3794,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1244371772}
-  - component: {fileID: 1244371774}
-  - component: {fileID: 1244371773}
+  - component: {fileID: 1156574681}
+  - component: {fileID: 1156574683}
+  - component: {fileID: 1156574682}
   m_Layer: 5
-  m_Name: Charlotte Body
+  m_Name: Body Image Container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &1244371772
+--- !u!224 &1156574681
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1244371771}
+  m_GameObject: {fileID: 1156574680}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
@@ -3820,16 +3820,16 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 731.19, y: -418.08}
+  m_AnchoredPosition: {x: 733.9, y: -416.59}
   m_SizeDelta: {x: 208, y: 347}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1244371773
+--- !u!114 &1156574682
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1244371771}
+  m_GameObject: {fileID: 1156574680}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -3843,7 +3843,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1e1e1ee8c011e45dda5943f4c8cf6aaa, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3853,13 +3853,13 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!222 &1244371774
+--- !u!222 &1156574683
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1244371771}
+  m_GameObject: {fileID: 1156574680}
   m_CullTransparentMesh: 1
 --- !u!1 &1249775380
 GameObject:
@@ -4119,6 +4119,31 @@ MonoBehaviour:
   minDistance: 2
   maxDistance: 120
   enableDynamicZoom: 0
+  resetDuration: 1
+  resetCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &1277082891
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5437,6 +5462,10 @@ PrefabInstance:
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
       value: Dialog.ZoomActorByLine, DialogAssembly
       objectReference: {fileID: 0}
+    - target: {fileID: 829160473841595206, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: m_Name
+      value: right side
+      objectReference: {fileID: 0}
     - target: {fileID: 1311371035374852291, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       propertyPath: finalState.dialogLineToPlay
       value: 
@@ -5490,6 +5519,14 @@ PrefabInstance:
       value: "\U0001F4AC Dialog Controller"
       objectReference: {fileID: 0}
     - target: {fileID: 6535512598348505234, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: actorBody
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6535512598348505234, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: bodyContainer
+      value: 
+      objectReference: {fileID: 1156574682}
+    - target: {fileID: 6535512598348505234, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       propertyPath: charlotteBody
       value: 
       objectReference: {fileID: 21300000, guid: 1e1e1ee8c011e45dda5943f4c8cf6aaa, type: 3}
@@ -5501,6 +5538,10 @@ PrefabInstance:
       propertyPath: charlotteReactions.Array.size
       value: 17
       objectReference: {fileID: 0}
+    - target: {fileID: 6535512598348505234, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: actorConfigs.Array.data[0].actorBody
+      value: 
+      objectReference: {fileID: 21300000, guid: 1e1e1ee8c011e45dda5943f4c8cf6aaa, type: 3}
     - target: {fileID: 6535512598348505234, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       propertyPath: actorConfigs.Array.data[0].actorName
       value: 1
@@ -5769,6 +5810,18 @@ PrefabInstance:
       propertyPath: actorConfigs.Array.data[0].reactions.Array.data[16].reaction
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 6799798692436265581, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799798692436265581, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799798692436265581, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7785975423134745563, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5818,7 +5871,7 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 504394712129451356, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       insertIndex: 1
-      addedObject: {fileID: 1244371772}
+      addedObject: {fileID: 1156574681}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2966023187645510561, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       insertIndex: -1

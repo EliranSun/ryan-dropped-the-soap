@@ -18,20 +18,20 @@ namespace stacy
     [Serializable]
     public class ActorConfig
     {
+        public bool isLeftSide;
+        public Sprite actorBody;
         public ActorName actorName;
         public List<ActorReactionImage> reactions;
-        public bool isLeftSide;
     }
 
     public class DialogActorsFaceController : MonoBehaviour
     {
         [SerializeField] private Image leftSideImage;
         [SerializeField] private Image rightSideImage;
+        [SerializeField] private Image bodyContainer;
         [SerializeField] private GameObject leftSideContainer;
         [SerializeField] private GameObject rightSideContainer;
-
         [SerializeField] private List<ActorConfig> actorConfigs;
-        [SerializeField] private Sprite charlotteBody;
 
 
         private void Start()
@@ -58,9 +58,7 @@ namespace stacy
             }
 
             if (eventData.Name == GameEvents.LineNarrationEnd)
-            {
                 ClearAllActors();
-            }
         }
 
         private void SetActorReaction(ActorName actorName, Expression reaction)
@@ -71,14 +69,16 @@ namespace stacy
             var reactionImage = actorConfig.reactions.FirstOrDefault(r => r.reaction == reaction);
             if (reactionImage == null) return;
 
+            bodyContainer.sprite = actorConfig.actorBody;
+            bodyContainer.color = new Color(1, 1, 1, 1);
+
             if (actorConfig.isLeftSide)
             {
                 leftSideImage.sprite = reactionImage.image;
                 // Resize the image to match the sprite dimensions
                 if (reactionImage.image != null)
-                {
-                    leftSideImage.rectTransform.sizeDelta = new Vector2(reactionImage.image.rect.width, reactionImage.image.rect.height);
-                }
+                    leftSideImage.rectTransform.sizeDelta = new Vector2(reactionImage.image.rect.width,
+                        reactionImage.image.rect.height);
                 leftSideContainer.SetActive(true);
             }
             else
@@ -86,9 +86,8 @@ namespace stacy
                 rightSideImage.sprite = reactionImage.image;
                 // Resize the image to match the sprite dimensions
                 if (reactionImage.image != null)
-                {
-                    rightSideImage.rectTransform.sizeDelta = new Vector2(reactionImage.image.rect.width, reactionImage.image.rect.height);
-                }
+                    rightSideImage.rectTransform.sizeDelta = new Vector2(reactionImage.image.rect.width,
+                        reactionImage.image.rect.height);
                 rightSideContainer.SetActive(true);
             }
         }
@@ -97,6 +96,8 @@ namespace stacy
         {
             leftSideImage.sprite = null;
             rightSideImage.sprite = null;
+            bodyContainer.sprite = null;
+            bodyContainer.color = new Color(1, 1, 1, 0);
             leftSideContainer.SetActive(false);
             rightSideContainer.SetActive(false);
         }

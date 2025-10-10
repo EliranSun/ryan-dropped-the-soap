@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 
@@ -25,8 +26,11 @@ namespace Dialog
         [SerializeField] private float minDistance = 2f;
         [SerializeField] private float maxDistance = 10f;
         [SerializeField] private bool enableDynamicZoom;
-        private bool _isZooming;
+        [SerializeField] private float resetDuration = 1f;
+        [SerializeField] private AnimationCurve resetCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
 
+        private bool _isZooming;
+        private Coroutine _resetCoroutine;
         private float _targetZoom;
 
         private void Start()
@@ -55,7 +59,25 @@ namespace Dialog
                 if (actors.Any(actor => actor.actorName == actorName)) enableDynamicZoom = true;
             }
 
-            if (eventData.Name == GameEvents.LineNarrationEnd) enableDynamicZoom = false;
+            if (eventData.Name == GameEvents.LineNarrationEnd)
+            {
+                var currentDialogProp = eventData.Data.GetType().GetProperty("_currentDialogue");
+                if (currentDialogProp == null)
+                    return;
+
+                var currentDialog = (NarrationDialogLine)currentDialogProp.GetValue(eventData.Data);
+                var nextDialogLine = currentDialog.nextDialogueLine;
+                if (nextDialogLine == null)
+                {
+                    enableDynamicZoom = false;
+
+                    // Stop any existing reset coroutine
+                    if (_resetCoroutine != null) StopCoroutine(_resetCoroutine);
+
+                    // Start the smooth camera reset coroutine
+                    _resetCoroutine = StartCoroutine(ResetCameraToCenter());
+                }
+            }
         }
 
         /// <summary>
@@ -63,32 +85,19 @@ namespace Dialog
         /// </summary>
         private void UpdateDynamicZoom()
         {
-            if (actors[0]?.actor == null) return;
+            if (actors[0]?.actor == null)
+                return;
 
             // Calculate distance between player and first actor
             var distance = Vector3.Distance(player.transform.position, actors[0].actor.transform.position);
 
-            // Calculate target zoom based on distance
-            // Clamp distance to our min/max range for consistent zoom behavior
-            var clampedDistance = Mathf.Clamp(distance, minDistance, maxDistance);
+            mainCamera.orthographicSize =
+                Mathf.Lerp(mainCamera.orthographicSize, distance, zoomSpeed * Time.deltaTime);
 
-            // Map distance to zoom level (closer = more zoomed in, farther = more zoomed out)
-            var normalizedDistance = (clampedDistance - minDistance) / (maxDistance - minDistance);
-            print($"Normalized distance: {normalizedDistance} max: {maxZoom} min: {minZoom} max: {minDistance}");
-
-            _targetZoom = Mathf.Lerp(maxZoom, minZoom, normalizedDistance);
-
-            // Smoothly transition to target zoom
-            if (Mathf.Abs(mainCamera.orthographicSize - _targetZoom) > 0.1f)
-            {
-                mainCamera.orthographicSize =
-                    Mathf.Lerp(mainCamera.orthographicSize, _targetZoom, zoomSpeed * Time.deltaTime);
-                _isZooming = true;
-            }
-            else
-            {
-                _isZooming = false;
-            }
+            // Position the camera between the player and the actor, but maintain original Z
+            var targetPos = Vector3.Lerp(player.transform.position, actors[0].actor.transform.position, 0.5f);
+            targetPos.z = mainCamera.transform.position.z;
+            mainCamera.transform.position = targetPos;
         }
 
         /// <summary>
@@ -131,6 +140,43 @@ namespace Dialog
         public bool IsZooming()
         {
             return _isZooming;
+        }
+
+        /// <summary>
+        ///     Smoothly resets the camera position to center (0,0) over time
+        /// </summary>
+        /// <returns>Coroutine enumerator</returns>
+        private IEnumerator ResetCameraToCenter()
+        {
+            if (mainCamera == null) yield break;
+
+            var startPosition = mainCamera.transform.position;
+            var targetPosition = new Vector3(0, 0, startPosition.z); // Keep original Z position
+            var startZoom = mainCamera.orthographicSize;
+            var targetZoom = _targetZoom; // Reset to original zoom level
+
+            var elapsedTime = 0f;
+
+            while (elapsedTime < resetDuration)
+            {
+                elapsedTime += Time.deltaTime;
+                var progress = elapsedTime / resetDuration;
+                var curveValue = resetCurve.Evaluate(progress);
+
+                // Smoothly interpolate position
+                mainCamera.transform.position = Vector3.Lerp(startPosition, targetPosition, curveValue);
+
+                // Smoothly interpolate zoom
+                mainCamera.orthographicSize = Mathf.Lerp(startZoom, targetZoom, curveValue);
+
+                yield return null;
+            }
+
+            // Ensure final position is exact
+            mainCamera.transform.position = targetPosition;
+            mainCamera.orthographicSize = targetZoom;
+
+            _resetCoroutine = null;
         }
     }
 }
