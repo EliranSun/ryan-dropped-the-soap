@@ -9,7 +9,7 @@ namespace Elevator.scripts
         {
             if (other.gameObject.CompareTag("Elevator Floor Trigger"))
             {
-                var floorNumber = other.gameObject.GetComponent<ObjectIndexController>().ObjectNumber;
+                var floorNumber = other.gameObject.GetComponent<FloorIndexController>().ObjectNumber;
                 Notify(GameEvents.FloorChange, floorNumber);
             }
         }

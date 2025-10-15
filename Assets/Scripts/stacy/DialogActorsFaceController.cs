@@ -38,6 +38,7 @@ namespace stacy
         {
             leftSideContainer.SetActive(false);
             rightSideContainer.SetActive(false);
+            ClearAllActors();
         }
 
         public void OnNotify(GameEventData eventData)

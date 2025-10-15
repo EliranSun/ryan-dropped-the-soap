@@ -37,15 +37,12 @@ namespace Player
 
         private void ResetText()
         {
-            print($"Reset Text: {interactionText.text}");
             interactionText.text = "";
             _interactedObjectName = ObjectNames.None;
         }
 
         private void InstructBasedOnTag(string tagName)
         {
-            print($"InstructBasedOnTag: {tagName}");
-
             switch (tagName)
             {
                 case "Building Entrance":

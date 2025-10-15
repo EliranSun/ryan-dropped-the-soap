@@ -19,7 +19,7 @@ namespace Object.Scripts
         private void Start()
         {
             for (var i = 0; i < children.Length; i++)
-                children[i].GetComponent<ObjectIndexController>().UpdateFloorNumber(i + 1);
+                children[i].GetComponent<FloorIndexController>().UpdateFloorNumber(i + 1);
         }
 
         private void Update()
@@ -76,7 +76,7 @@ namespace Object.Scripts
                 newFloorNumber = lowestFloor - 1;
             }
 
-            child.GetComponent<ObjectIndexController>().UpdateFloorNumber(newFloorNumber);
+            child.GetComponent<FloorIndexController>().UpdateFloorNumber(newFloorNumber);
         }
 
         private int GetHighestFloorNumber()
@@ -84,7 +84,7 @@ namespace Object.Scripts
             var highest = 0;
             foreach (var child in children)
             {
-                var controller = child.GetComponent<ObjectIndexController>();
+                var controller = child.GetComponent<FloorIndexController>();
                 if (controller != null)
                 {
                     var floorText = controller.GetFloorNumberText();
@@ -101,7 +101,7 @@ namespace Object.Scripts
             var lowest = int.MaxValue;
             foreach (var child in children)
             {
-                var controller = child.GetComponent<ObjectIndexController>();
+                var controller = child.GetComponent<FloorIndexController>();
                 if (controller != null)
                 {
                     var floorText = controller.GetFloorNumberText();

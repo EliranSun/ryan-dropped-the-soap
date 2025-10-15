@@ -1,25 +1,24 @@
 using System;
 using System.Linq;
-using common.scripts;
 using Player;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 namespace Elevator.scripts
 {
     [RequireComponent(typeof(Collider2D))]
+    [RequireComponent(typeof(AudioSource))]
     public class DoorController : ObserverSubject
     {
         [SerializeField] private TextMeshPro doorNumberTextMeshPro;
-        [SerializeField] private TransitionController transitionImage;
         [SerializeField] private Transform playerTransform;
-        [SerializeField] private GameObject[] doors;
         [SerializeField] private FloorData floorData;
-        [SerializeField] private AudioClip knockSound;
         [SerializeField] public int doorNumber;
-        // [SerializeField] public GameObject npcAtDoor;
         [SerializeField] private bool isDoorOpen;
+        [SerializeField] private AudioClip[] knockSounds;
+        [SerializeField] private GameObject[] doors;
         private AudioSource _audioSource;
         private bool _isPlayerInsideApartment = true;
         private bool _isPlayerOnDoor;
@@ -39,27 +38,10 @@ namespace Elevator.scripts
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.X))
+            if (Input.GetKeyDown(KeyCode.X) && _isPlayerOnDoor)
             {
-                print($"Is player on door? {_isPlayerOnDoor}; is door open? {isDoorOpen}");
-
-                if (!_isPlayerOnDoor || !isDoorOpen)
-                    return;
-
-                var location = doorNumber switch
-                {
-                    var n when n == floorData.PlayerApartmentNumber => Location.PlayerApartment,
-                    var n when n == floorData.ZekeApartmentNumber => Location.ZekeApartment,
-                    var n when n == floorData.StacyApartmentNumber => Location.StacyApartment,
-                    _ => Location.EmptyApartment
-                };
-
-                print(location);
-
-                PlayerPrefs.SetInt("ExitFromApartment", doorNumber);
-
-                Notify(GameEvents.ChangePlayerLocation,
-                    _isPlayerInsideApartment ? Location.Hallway : location);
+                if (isDoorOpen) EnterApartment();
+                else KnockOnDoor();
             }
         }
 
@@ -74,6 +56,30 @@ namespace Elevator.scripts
         private void OnTriggerExit2D(Collider2D other)
         {
             if (other.CompareTag("Player")) _isPlayerOnDoor = false;
+        }
+
+        private void EnterApartment()
+        {
+            var location = doorNumber switch
+            {
+                var n when n == floorData.PlayerApartmentNumber => Location.PlayerApartment,
+                var n when n == floorData.ZekeApartmentNumber => Location.ZekeApartment,
+                var n when n == floorData.StacyApartmentNumber => Location.StacyApartment,
+                _ => Location.EmptyApartment
+            };
+
+            print(location);
+
+            PlayerPrefs.SetInt("ExitFromApartment", doorNumber);
+
+            Notify(GameEvents.ChangePlayerLocation,
+                _isPlayerInsideApartment ? Location.Hallway : location);
+        }
+
+        private void KnockOnDoor()
+        {
+            _audioSource.PlayOneShot(knockSounds[Random.Range(0, knockSounds.Length)]);
+            TriggerKnockOnNpcDoor();
         }
 
         private void HandlePlayerApartmentDoorClick()
@@ -122,17 +128,7 @@ namespace Elevator.scripts
                 if (!isDoor)
                     return;
 
-                if (doorNumber == floorData.PlayerApartmentNumber)
-                {
-                    HandlePlayerApartmentDoorClick();
-                    return;
-                }
-
-                if (isDoorOpen)
-                    return;
-
-                _audioSource.PlayOneShot(knockSound);
-                TriggerKnockOnNpcDoor();
+                if (doorNumber == floorData.PlayerApartmentNumber) HandlePlayerApartmentDoorClick();
             }
         }
 
