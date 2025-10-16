@@ -165,7 +165,6 @@ namespace Elevator.scripts
         public void SetDoorNumber(string newDoorNumber)
         {
             doorNumberTextMeshPro.text = newDoorNumber;
-            print($"Setting door number?? {int.Parse(newDoorNumber)}");
             doorNumber = int.Parse(newDoorNumber);
         }
 

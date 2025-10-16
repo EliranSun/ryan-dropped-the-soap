@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Object.Scripts
+namespace Elevator.scripts
 {
     public class TargetPositionObjectWrap : MonoBehaviour
     {
