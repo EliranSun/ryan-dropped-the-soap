@@ -101,36 +101,36 @@ namespace Elevator.scripts
                 return;
             }
 
-            if (eventData.Name != GameEvents.PlayerInteraction)
-                return;
-
-            var interactedObject = (ObjectNames)eventData.Data;
-
-            switch (interactedObject)
+            if (eventData.Name == GameEvents.PlayerInteraction)
             {
-                case ObjectNames.BuildingExit:
-                    SetActiveLayer(BuildingLayerType.Outside);
-                    break;
+                var interactedObject = (ObjectNames)eventData.Data;
 
-                case ObjectNames.BuildingEntrance:
-                    SetActiveLayer(BuildingLayerType.InBuilding);
-                    break;
+                switch (interactedObject)
+                {
+                    case ObjectNames.BuildingExit:
+                        SetActiveLayer(BuildingLayerType.Outside);
+                        break;
 
-                case ObjectNames.StaircaseEntrance:
-                    SetActiveLayer(BuildingLayerType.Staircase);
-                    break;
+                    case ObjectNames.BuildingEntrance:
+                        SetActiveLayer(BuildingLayerType.InBuilding);
+                        break;
 
-                case ObjectNames.StaircaseExit:
-                    SetActiveLayer(BuildingLayerType.InBuilding);
-                    break;
+                    case ObjectNames.StaircaseEntrance:
+                        SetActiveLayer(BuildingLayerType.Staircase);
+                        break;
 
-                case ObjectNames.ElevatorExitDoors:
-                    SetActiveLayer(BuildingLayerType.InBuilding);
-                    break;
+                    case ObjectNames.StaircaseExit:
+                        SetActiveLayer(BuildingLayerType.InBuilding);
+                        break;
 
-                case ObjectNames.ElevatorEnterDoors:
-                    SetActiveLayer(BuildingLayerType.Elevator);
-                    break;
+                    case ObjectNames.ElevatorExitDoors:
+                        SetActiveLayer(BuildingLayerType.InBuilding);
+                        break;
+
+                    case ObjectNames.ElevatorEnterDoors:
+                        SetActiveLayer(BuildingLayerType.Elevator);
+                        break;
+                }
             }
         }
 

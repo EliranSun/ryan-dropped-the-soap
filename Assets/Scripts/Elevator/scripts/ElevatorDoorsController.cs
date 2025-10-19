@@ -21,7 +21,6 @@ namespace Elevator.scripts
         private BuildingController _buildingController;
 
         private float _closeLerpTime;
-        private Collider2D _collider2D;
         private bool _doorCloseCoroutineStarted;
         private bool _doorOpenCoroutineStarted;
         private bool _doorsAreOpen;
@@ -32,8 +31,6 @@ namespace Elevator.scripts
 
         private void Start()
         {
-            _collider2D = GetComponent<Collider2D>();
-
             if (rightDoorTransform) _initialPositionRight = rightDoorTransform.position;
             if (leftDoorTransform) _initialPositionLeft = leftDoorTransform.position;
 
@@ -46,7 +43,7 @@ namespace Elevator.scripts
             var playerStatesController = FindFirstObjectByType<PlayerStatesController>();
             if (playerStatesController != null) observers.AddListener(playerStatesController.OnNotify);
 
-            SetElevatorCurrentFloorNumber(floorData.elevatorFloorNumber.ToString());
+            SetElevatorCurrentFloorNumber(_buildingController.elevatorFloorNumber.ToString());
         }
 
         private void Update()
@@ -137,11 +134,6 @@ namespace Elevator.scripts
         public void SetElevatorCurrentFloorNumber(string floorNumber)
         {
             elevatorCurrentFloorNumberUI.text = floorNumber;
-        }
-
-        public void SetCurrentFloorNumber(int floorNumber)
-        {
-            floorData.currentFloorNumber = floorNumber;
         }
 
         public void OpenDoors()

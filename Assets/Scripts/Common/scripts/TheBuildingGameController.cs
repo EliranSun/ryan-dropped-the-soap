@@ -9,6 +9,9 @@ namespace Common.scripts
         [SerializeField] private Camera mainCamera;
         [SerializeField] private bool skipTitle;
 
+        [SerializeField] private int charlotteApartmentNumber = 104;
+        [SerializeField] private int playerApartmentNumber = 603;
+
         private void Start()
         {
             if (skipTitle) StartGame();

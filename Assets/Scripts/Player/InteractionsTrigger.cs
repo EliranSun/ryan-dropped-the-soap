@@ -61,7 +61,11 @@ namespace Player
                     break;
 
                 case "Door":
-                    interactionText.text = "OPEN";
+                    interactionText.text = "KNOCK";
+                    break;
+
+                case "Opened Door":
+                    interactionText.text = "ENTER";
                     break;
 
                 case "Item":

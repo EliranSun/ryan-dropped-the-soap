@@ -62,7 +62,8 @@ namespace Elevator.scripts
         {
             var location = doorNumber switch
             {
-                var n when n == floorData.PlayerApartmentNumber => Location.PlayerApartment,
+                var n when n == floorData.PlayerApartmentNumber => Location.Play 
+                erApartment,
                 var n when n == floorData.ZekeApartmentNumber => Location.ZekeApartment,
                 var n when n == floorData.StacyApartmentNumber => Location.StacyApartment,
                 _ => Location.EmptyApartment
@@ -85,8 +86,6 @@ namespace Elevator.scripts
         private void HandlePlayerApartmentDoorClick()
         {
             isDoorOpen = !isDoorOpen;
-
-            print($"Door is {isDoorOpen}");
 
             ToggleDoorState();
 

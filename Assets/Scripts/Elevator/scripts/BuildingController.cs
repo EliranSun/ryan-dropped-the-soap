@@ -38,11 +38,10 @@ namespace Elevator.scripts
         [SerializeField] private GameObject floorsContainer;
         [SerializeField] private Transform playerTransform;
 
-        // [SerializeField] private GameObject charlotte;
-        // [SerializeField] private GameObject zeke;
-        // [SerializeField] private GameObject stacy;
-
         [SerializeField] public TenantApartment[] tenants;
+
+        public int currentFloorNumber;
+        public int elevatorFloorNumber;
 
         private readonly List<GameObject> _floors = new();
         private UnityEvent<GameEventData> _floorObservers;
@@ -53,7 +52,7 @@ namespace Elevator.scripts
             _floorObservers.AddListener(OnNotify);
 
             for (var i = 2; i > -2; i--)
-                AddFloorAtBottom(floorData.currentFloorNumber + i, true);
+                AddFloorAtBottom(currentFloorNumber + i, true);
 
 
             PositionPlayerOnFloor();
@@ -63,7 +62,7 @@ namespace Elevator.scripts
         private void PositionPlayerOnFloor()
         {
             var playerPosition = _floors
-                .Find(floor => floor.name == $"Floor {floorData.currentFloorNumber}")
+                .Find(floor => floor.name == $"Floor {currentFloorNumber}")
                 .transform.position;
             if (PlayerPrefs.HasKey("ExitFromApartment"))
             {
@@ -193,16 +192,16 @@ namespace Elevator.scripts
         {
             while (true)
             {
-                if (floorData.currentFloorNumber == floorData.elevatorFloorNumber)
+                if (currentFloorNumber == elevatorFloorNumber)
                 {
                     requestedElevator.OpenDoors();
                     break;
                 }
 
-                if (floorData.elevatorFloorNumber < floorData.currentFloorNumber) floorData.elevatorFloorNumber++;
-                if (floorData.elevatorFloorNumber > floorData.currentFloorNumber) floorData.elevatorFloorNumber--;
+                if (elevatorFloorNumber < currentFloorNumber) elevatorFloorNumber++;
+                if (elevatorFloorNumber > currentFloorNumber) elevatorFloorNumber--;
 
-                requestedElevator.SetElevatorCurrentFloorNumber(floorData.elevatorFloorNumber.ToString());
+                requestedElevator.SetElevatorCurrentFloorNumber(elevatorFloorNumber.ToString());
 
                 yield return new WaitForSeconds(1f);
             }
