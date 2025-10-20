@@ -114,6 +114,7 @@ namespace Player
         private void TransformMovement()
         {
             var moveValue = _moveAction.ReadValue<Vector2>();
+            print($"Move value {moveValue.x} {moveValue.y}");
             var y = allowFlight ? moveValue.y : 0;
             transform.Translate(new Vector3(moveValue.x, y, 0) * (speed * Time.deltaTime));
 
