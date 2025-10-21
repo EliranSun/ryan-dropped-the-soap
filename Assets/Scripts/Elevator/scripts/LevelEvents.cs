@@ -31,7 +31,7 @@ namespace Elevator.scripts
 
         [SerializeField] private KillingDependents killingDependents;
 
-        [Header("Apartment")][SerializeField] private GameObject hallwayShade;
+        [Header("Apartment")] [SerializeField] private GameObject hallwayShade;
 
         // TODO: Maybe move everything related to floor to floor controller
         [SerializeField] private GameObject apartmentsShade;
@@ -65,7 +65,7 @@ namespace Elevator.scripts
             switch (eventData.Name)
             {
                 case GameEvents.TriggerAlarmClockStop:
-                    mainCamera.gameObject.GetComponent<Zoom>().endSize = 9.28f;
+                    // mainCamera.gameObject.GetComponent<Zoom>().endSize = 9.28f;
                     globalLight.intensity = 1f;
                     break;
 
@@ -148,48 +148,48 @@ namespace Elevator.scripts
                     StopAllCoroutines();
                     break;
 
-                    // case GameEvents.FreePlayerFromBox:
-                    //     playerBox.SetActive(false);
-                    //     break;
-                    //
-                    // case GameEvents.PlayerApartmentDoorOpened:
-                    //     if (npcKnockingOnPlayerApartment)
-                    //     {
-                    //         StopAllCoroutines();
-                    //         npcKnockingOnPlayerApartment.transform.position = playerApartmentHallwayDoor.transform.position;
-                    //         npcKnockingOnPlayerApartment = null;
-                    //
-                    //         if (initLine) Notify(GameEvents.TriggerSpecificDialogLine, initLine);
-                    //     }
-                    //
-                    //     break;
-                    //
-                    // case GameEvents.CharlotteGavePlayerPlant:
-                    //     _charlotteGavePlayerPlant = true;
-                    //     break;
-                    //
-                    // case GameEvents.PlayerHoldPlant:
-                    //     if (!_charlotteGavePlayerPlant)
-                    //         Notify(GameEvents.TriggerSpecificDialogLine, playerTookPlantWithoutPermission);
-                    //     break;
-                    //
-                    // case GameEvents.CharlotteWaitingTheory:
-                    //     _charlotteWaitingTheory = true;
-                    //     break;
-                    //
-                    // case GameEvents.PlayerPlacePlant:
-                    //     if (_charlotteWaitingTheory)
-                    //         Notify(GameEvents.PlayerGrowth);
-                    //     break;
-                    //
-                    // case GameEvents.PlayerGrew:
-                    //     if (!_charlotteRespondedToPlayerGrowth)
-                    //     {
-                    //         Notify(GameEvents.TriggerSpecificDialogLine, charlottePlayerGrowthLine);
-                    //         _charlotteRespondedToPlayerGrowth = true;
-                    //     }
-                    //
-                    //     break;
+                // case GameEvents.FreePlayerFromBox:
+                //     playerBox.SetActive(false);
+                //     break;
+                //
+                // case GameEvents.PlayerApartmentDoorOpened:
+                //     if (npcKnockingOnPlayerApartment)
+                //     {
+                //         StopAllCoroutines();
+                //         npcKnockingOnPlayerApartment.transform.position = playerApartmentHallwayDoor.transform.position;
+                //         npcKnockingOnPlayerApartment = null;
+                //
+                //         if (initLine) Notify(GameEvents.TriggerSpecificDialogLine, initLine);
+                //     }
+                //
+                //     break;
+                //
+                // case GameEvents.CharlotteGavePlayerPlant:
+                //     _charlotteGavePlayerPlant = true;
+                //     break;
+                //
+                // case GameEvents.PlayerHoldPlant:
+                //     if (!_charlotteGavePlayerPlant)
+                //         Notify(GameEvents.TriggerSpecificDialogLine, playerTookPlantWithoutPermission);
+                //     break;
+                //
+                // case GameEvents.CharlotteWaitingTheory:
+                //     _charlotteWaitingTheory = true;
+                //     break;
+                //
+                // case GameEvents.PlayerPlacePlant:
+                //     if (_charlotteWaitingTheory)
+                //         Notify(GameEvents.PlayerGrowth);
+                //     break;
+                //
+                // case GameEvents.PlayerGrew:
+                //     if (!_charlotteRespondedToPlayerGrowth)
+                //     {
+                //         Notify(GameEvents.TriggerSpecificDialogLine, charlottePlayerGrowthLine);
+                //         _charlotteRespondedToPlayerGrowth = true;
+                //     }
+                //
+                //     break;
             }
         }
 
@@ -263,19 +263,22 @@ namespace Elevator.scripts
 
         private IEnumerator SmoothCameraZoom(float targetSize)
         {
-            var elapsedTime = 0f;
-            var startSize = mainCamera.gameObject.GetComponent<Zoom>().endSize;
+            // TODO: Move this to camera controller + notify here
 
-            while (elapsedTime < transitionDuration)
-            {
-                elapsedTime += Time.deltaTime;
-                var t = elapsedTime / transitionDuration;
-                mainCamera.gameObject.GetComponent<Zoom>().endSize = Mathf.Lerp(startSize, targetSize, t);
-                yield return null;
-            }
-
-            // Ensure we end at exactly the target size
-            mainCamera.gameObject.GetComponent<Zoom>().endSize = targetSize;
+            // var elapsedTime = 0f;
+            // var startSize = mainCamera.gameObject.GetComponent<Zoom>().endSize;
+            //
+            // while (elapsedTime < transitionDuration)
+            // {
+            //     elapsedTime += Time.deltaTime;
+            //     var t = elapsedTime / transitionDuration;
+            //     mainCamera.gameObject.GetComponent<Zoom>().endSize = Mathf.Lerp(startSize, targetSize, t);
+            //     yield return null;
+            // }
+            //
+            // // Ensure we end at exactly the target size
+            // mainCamera.gameObject.GetComponent<Zoom>().endSize = targetSize;
+            yield break;
         }
     }
 }

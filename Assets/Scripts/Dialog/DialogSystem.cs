@@ -103,9 +103,10 @@ namespace Dialog.Scripts
                     LevelManager.RestartLevel();
                     break;
 
-                case GameEvents.ZoomOut:
-                    Zoom.Instance.endSize = 40;
-                    break;
+                // TODO: Script structure makes this difficult, refactor to Notify
+                // case GameEvents.ZoomOut:
+                //     Zoom.Instance.endSize = 40;
+                //     break;
             }
         }
 
@@ -114,7 +115,7 @@ namespace Dialog.Scripts
             _audioSource.Stop();
             StopAllCoroutines();
             UpdateDialogState(line);
-            
+
             // TODO: action before line should occur before waitBeforeLine
             Invoke(nameof(ReadCurrentLine), line.waitBeforeLine);
         }

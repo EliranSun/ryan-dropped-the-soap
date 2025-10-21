@@ -72,15 +72,11 @@ namespace Player
             var placePlayerAtElevator = PlayerPrefs.GetInt("PlacePlayerAtElevator");
             var currentSceneName = SceneManager.GetActiveScene().name;
 
-            print("currentSceneName: " + currentSceneName);
-            print("placePlayerAtElevator: " + placePlayerAtElevator);
-
             if (placePlayerAtElevator == 1 && currentSceneName == "hallway scene")
-            {
                 transform.position = new Vector2(0, transform.position.y);
-                mainCamera.GetComponent<Zoom>().startSize = 5;
-                mainCamera.GetComponent<Zoom>().endSize = 10;
-            }
+            // TODO: REfactor to NOTIFY
+            // mainCamera.GetComponent<Zoom>().startSize = 5;
+            // mainCamera.GetComponent<Zoom>().endSize = 10;
         }
 
         private void SetPlayerBoxState()

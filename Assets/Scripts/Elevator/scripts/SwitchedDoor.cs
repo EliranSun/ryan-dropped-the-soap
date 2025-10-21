@@ -1,4 +1,5 @@
 using Object.Scripts;
+using Player;
 using UnityEngine;
 
 namespace Elevator.scripts
@@ -14,17 +15,17 @@ namespace Elevator.scripts
         {
             if (data.Name == GameEvents.PlayerInteraction)
             {
-                var interactedObjectName = (ObjectNames)data.Data;
-                if (interactedObjectName == ObjectNames.None)
+                var interactedObject = (Interaction)data.Data;
+                if (interactedObject.objectName == ObjectNames.None)
                     return;
 
-                if (interactedObjectName == initDoor.GetComponent<ObjectName>().objectName)
+                if (interactedObject.objectName == initDoor.GetComponent<ObjectName>().objectName)
                 {
                     initDoor.SetActive(false);
                     alternateDoor.SetActive(true);
                 }
 
-                if (interactedObjectName == alternateDoor.GetComponent<ObjectName>().objectName)
+                if (interactedObject.objectName == alternateDoor.GetComponent<ObjectName>().objectName)
                 {
                     initDoor.SetActive(true);
                     alternateDoor.SetActive(false);

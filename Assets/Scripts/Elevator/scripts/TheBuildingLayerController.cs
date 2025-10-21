@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Object.Scripts;
+using Player;
 using UnityEngine;
 
 namespace Elevator.scripts
@@ -103,9 +104,9 @@ namespace Elevator.scripts
 
             if (eventData.Name == GameEvents.PlayerInteraction)
             {
-                var interactedObject = (ObjectNames)eventData.Data;
+                var interactedObject = (Interaction)eventData.Data;
 
-                switch (interactedObject)
+                switch (interactedObject.objectName)
                 {
                     case ObjectNames.BuildingExit:
                         SetActiveLayer(BuildingLayerType.Outside);

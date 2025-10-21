@@ -129,15 +129,6 @@ namespace Elevator.scripts
 
         public void OnNotify(GameEventData eventData)
         {
-            // if (eventData.Name == GameEvents.PlayerInteraction)
-            // {
-            //     var objectName = (ObjectNames)eventData.Data;
-            //     if (objectName == ObjectNames.Elevator) 
-            //         print("player called elevator" + elevator.transform.position);
-            //
-            //     return;
-            // }
-
             if (eventData.Name == GameEvents.FloorChange)
             {
                 var floorNumber = (int)eventData.Data;

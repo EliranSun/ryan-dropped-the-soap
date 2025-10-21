@@ -1,13 +1,22 @@
+using System;
 using Object.Scripts;
 using TMPro;
 using UnityEngine;
 
 namespace Player
 {
+    [Serializable]
+    public class Interaction
+    {
+        public int objectId;
+        public ObjectNames objectName;
+    }
+
     public class InteractionsTrigger : ObserverSubject
     {
         [SerializeField] private TextMeshPro interactionText;
         private ObjectNames _interactedObjectName;
+        private int _interactedObjectNameId;
 
         private void Start()
         {
@@ -17,7 +26,16 @@ namespace Player
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.X) && _interactedObjectName != ObjectNames.None)
-                Notify(GameEvents.PlayerInteraction, _interactedObjectName);
+            {
+                print($"Notifying player interaction with {_interactedObjectName}");
+                var interaction = new Interaction
+                {
+                    objectId = _interactedObjectNameId,
+                    objectName = _interactedObjectName
+                };
+
+                Notify(GameEvents.PlayerInteraction, interaction);
+            }
         }
 
         private void OnTriggerExit2D(Collider2D other)
@@ -32,7 +50,7 @@ namespace Player
                 other.CompareTag("Untagged"))
                 return;
 
-            InstructBasedOnTag(other.gameObject.tag);
+            InstructBasedOnTag(other.gameObject);
         }
 
         private void ResetText()
@@ -41,8 +59,9 @@ namespace Player
             _interactedObjectName = ObjectNames.None;
         }
 
-        private void InstructBasedOnTag(string tagName)
+        private void InstructBasedOnTag(GameObject interactedGameObject)
         {
+            var tagName = interactedGameObject.tag;
             switch (tagName)
             {
                 case "Building Entrance":
@@ -62,6 +81,8 @@ namespace Player
 
                 case "Door":
                     interactionText.text = "KNOCK";
+                    _interactedObjectNameId = interactedGameObject.GetInstanceID();
+                    _interactedObjectName = ObjectNames.ApartmentDoor;
                     break;
 
                 case "Opened Door":

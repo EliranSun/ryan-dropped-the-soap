@@ -12,17 +12,23 @@ namespace camera.scripts
         [SerializeField] private float orthographicSizeElevator = 6f;
         [SerializeField] private float distanceThreshold = 7f;
         [SerializeField] private float yOffset = 1f;
-        private Camera _camera;
+        private UnityEngine.Camera _camera;
         private float _sizeVelocity;
         private Vector3 _targetPosition;
         private Vector3 _velocity = Vector3.zero;
 
         private void Start()
         {
-            _camera = Camera.main;
-            _camera.transform.position = new Vector3(playerTransform.position.x, playerTransform.position.y + yOffset,
-                _camera.transform.position.z);
-            _camera.orthographicSize = orthographicSizePlayer;
+            _camera = UnityEngine.Camera.main;
+            if (_camera)
+            {
+                _camera.transform.position = new Vector3(
+                    playerTransform.position.x,
+                    playerTransform.position.y + yOffset,
+                    _camera.transform.position.z
+                );
+                _camera.orthographicSize = orthographicSizePlayer;
+            }
         }
 
         private void FixedUpdate()
