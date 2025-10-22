@@ -76,7 +76,9 @@ namespace Elevator.scripts
 
         private void SetActiveLayer(BuildingLayerType targetLayer)
         {
-            StartCoroutine(FadeOutLayer(layers.GetLayer(_currentActiveLayer)));
+            if (_currentActiveLayer != targetLayer)
+                StartCoroutine(FadeOutLayer(layers.GetLayer(_currentActiveLayer)));
+
             StartCoroutine(FadeInLayer(layers.GetLayer(targetLayer)));
             StartCoroutine(UpdateLayersActiveState(targetLayer));
         }
@@ -96,6 +98,14 @@ namespace Elevator.scripts
 
         public void OnNotify(GameEventData eventData)
         {
+            if (eventData.Name == GameEvents.ChangeActiveLayer)
+            {
+                var newLayer = (BuildingLayerType)eventData.Data;
+                // if (newLayer != _currentActiveLayer)
+                SetActiveLayer(newLayer);
+                return;
+            }
+
             if (eventData.Name == GameEvents.EnterElevator)
             {
                 SetActiveLayer(BuildingLayerType.Elevator);
@@ -151,6 +161,8 @@ namespace Elevator.scripts
 
         private IEnumerator FadeOutLayer(GameObject layer)
         {
+            print($"Fade out {layer}");
+
             var spriteRenderers = GetAllSpriteRenderers(layer);
             // var colliders = layer.GetComponentsInChildren<Collider2D>();
             //
@@ -172,6 +184,10 @@ namespace Elevator.scripts
 
         private IEnumerator FadeInLayer(GameObject layer)
         {
+            // yield return new WaitForSeconds(1);
+
+            print($"Fade in {layer}");
+
             var spriteRenderers = GetAllSpriteRenderers(layer);
             // var colliders = layer.GetComponentsInChildren<Collider2D>();
             //

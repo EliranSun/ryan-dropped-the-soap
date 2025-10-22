@@ -20,7 +20,7 @@ namespace Elevator.scripts
         [SerializeField] private float apartmentsPanelMoveSpeed = 1;
         [SerializeField] private float elevatorSpeed = 0.1f;
         [SerializeField] public int currentFloor;
-        [SerializeField] private float floorHeight;
+        [SerializeField] public float floorHeight;
         [SerializeField] private float minYToStop;
         [SerializeField] private bool restoreElevatorFloor = true;
         [SerializeField] private TextMeshPro[] apartmentNumbers;

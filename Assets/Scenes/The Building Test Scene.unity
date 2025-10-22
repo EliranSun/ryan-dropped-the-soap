@@ -1387,6 +1387,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc1c9fc25a6a1dc48839d2719b4bea40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: ElevatorScriptsAssembly::ApartmentsController
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 394857707}
+        m_TargetAssemblyTypeName: Common.scripts.TheBuildingGameController, CommonScriptsAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   floorData: {fileID: 11400000, guid: 0d331cf434876ec44a2376c813275b06, type: 2}
   doors:
   - {fileID: 1919645676}
@@ -1460,12 +1475,27 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2044988167}
+        m_TargetAssemblyTypeName: Elevator.scripts.TheBuildingLayerController, ElevatorScriptsAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   mainTitle: {fileID: 8274259420403304857}
   player: {fileID: 1277082892}
   mainCamera: {fileID: 1387538226}
+  floorData: {fileID: 11400000, guid: 0d331cf434876ec44a2376c813275b06, type: 2}
+  breakIntoCharlotteApartmentLine: {fileID: 0}
+  elevatorController: {fileID: 1681089805582334029}
+  playerCurrentLayer: 1
+  playerCurrentFloor: 10
   skipTitle: 1
-  charlotteApartmentNumber: 104
-  playerApartmentNumber: 603
 --- !u!50 &405052053
 Rigidbody2D:
   serializedVersion: 5
@@ -2789,6 +2819,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2db49caffd55684b85590c7422aa470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &845262059
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 845262060}
+  - component: {fileID: 845262061}
+  m_Layer: 0
+  m_Name: "\u2699 Mini Games Controller"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &845262060
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845262059}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1489072768}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &845262061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845262059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1868e5c444810449a7ce770c621ebd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MiniGamesScriptAssembly::MiniGamesController
+  lockPickMiniGameContainer: {fileID: 2128605261}
 --- !u!1 &930278414
 GameObject:
   m_ObjectHideFlags: 0
@@ -5544,12 +5619,13 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1506753256}
-  - {fileID: 1086972807}
   - {fileID: 394857706}
-  - {fileID: 1444872401504002810}
-  - {fileID: 354514854}
   - {fileID: 2044988166}
+  - {fileID: 354514854}
+  - {fileID: 1444872401504002810}
+  - {fileID: 1506753256}
+  - {fileID: 845262060}
+  - {fileID: 1086972807}
   - {fileID: 1722928867}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9174,9 +9250,10 @@ Transform:
   m_Children:
   - {fileID: 1612350819}
   - {fileID: 944560125}
-  - {fileID: 1397438330}
+  - {fileID: 2128605262}
   - {fileID: 1785156866}
   - {fileID: 1978461028}
+  - {fileID: 1397438330}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2025283905
@@ -9820,6 +9897,73 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3226369460472793839, guid: 0db3790db5893df46a0e5394bb319971, type: 3}
   m_PrefabInstance: {fileID: 2125356938}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2128605260
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1984375131}
+    m_Modifications:
+    - target: {fileID: 437806947362673425, guid: bdb3da2e9981ac841aecd05ca80176cf, type: 3}
+      propertyPath: m_Name
+      value: Lock Pick Mini Game
+      objectReference: {fileID: 0}
+    - target: {fileID: 7923797199446450865, guid: bdb3da2e9981ac841aecd05ca80176cf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 134.6568
+      objectReference: {fileID: 0}
+    - target: {fileID: 7923797199446450865, guid: bdb3da2e9981ac841aecd05ca80176cf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 97.77855
+      objectReference: {fileID: 0}
+    - target: {fileID: 7923797199446450865, guid: bdb3da2e9981ac841aecd05ca80176cf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7923797199446450865, guid: bdb3da2e9981ac841aecd05ca80176cf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7923797199446450865, guid: bdb3da2e9981ac841aecd05ca80176cf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7923797199446450865, guid: bdb3da2e9981ac841aecd05ca80176cf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7923797199446450865, guid: bdb3da2e9981ac841aecd05ca80176cf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7923797199446450865, guid: bdb3da2e9981ac841aecd05ca80176cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7923797199446450865, guid: bdb3da2e9981ac841aecd05ca80176cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7923797199446450865, guid: bdb3da2e9981ac841aecd05ca80176cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bdb3da2e9981ac841aecd05ca80176cf, type: 3}
+--- !u!1 &2128605261 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 437806947362673425, guid: bdb3da2e9981ac841aecd05ca80176cf, type: 3}
+  m_PrefabInstance: {fileID: 2128605260}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2128605262 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7923797199446450865, guid: bdb3da2e9981ac841aecd05ca80176cf, type: 3}
+  m_PrefabInstance: {fileID: 2128605260}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2129415373 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5219581391847585710, guid: 609b1f35e8dc57c4993a46a526bfe903, type: 3}
@@ -9909,8 +10053,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  elevatorAudioSource: {fileID: 0}
   elevatorButtonsController: {fileID: 2068066598}
+  elevatorAudioSource: {fileID: 0}
   elevatorMovingSound: {fileID: 0}
   elevatorReachedFloorSound: {fileID: 0}
   elevator: {fileID: 111358515}

@@ -1,11 +1,12 @@
 using System;
+using Dialog;
 using Object.Scripts;
 using Player;
 using UnityEngine;
 
 namespace Elevator.scripts
 {
-    public class ApartmentsController : MonoBehaviour
+    public class ApartmentsController : ObserverSubject
     {
         [SerializeField] private FloorData floorData;
         [SerializeField] private DoorController[] doors;
@@ -23,9 +24,14 @@ namespace Elevator.scripts
                     var doorNumber = door ? door.doorNumber : -1;
 
                     if (doorNumber == floorData.CharlotteApartmentNumber)
+                    {
                         print("Knock on Charlotte");
+                        Notify(GameEvents.KnockOnNpcDoor, ActorName.Charlotte);
+                    }
                     else
+                    {
                         print($"Knock on vacant apartment {doorNumber}");
+                    }
                 }
             }
         }

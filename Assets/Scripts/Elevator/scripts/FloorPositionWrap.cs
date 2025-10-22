@@ -3,7 +3,7 @@ using UnityEngine.Serialization;
 
 namespace Elevator.scripts
 {
-    public class TargetPositionObjectWrap : MonoBehaviour
+    public class FloorPositionWrap : MonoBehaviour
     {
         [FormerlySerializedAs("player")] [SerializeField]
         private GameObject target;
@@ -24,10 +24,18 @@ namespace Elevator.scripts
 
         private void Update()
         {
-            _yDirection = target.transform.position.y - _previousYPosition;
-            _previousYPosition = target.transform.position.y;
+            var targetYPosition = target.transform.position.y;
+            _yDirection = targetYPosition - _previousYPosition;
+            
+            // Detect large position jumps (teleports)
+            if (Mathf.Abs(_yDirection) > childHeight * 2)
+            {
+                RepositionFloorsAroundTarget(targetYPosition);
+            }
+            
+            _previousYPosition = targetYPosition;
 
-            if (target.transform.position.y < stopWrapBelowY)
+            if (targetYPosition < stopWrapBelowY)
                 return;
 
             HandleObjectRepositioning();
@@ -38,6 +46,7 @@ namespace Elevator.scripts
             var highestChild = GetExtremeObject(children, true);
             var lowestChild = GetExtremeObject(children, false);
 
+            print($"Direction: {_yDirection}");
             if (_yDirection > 0) // up
             {
                 // Check if camera's bottom edge passed the top of the lowest child
@@ -51,6 +60,30 @@ namespace Elevator.scripts
                 var cameraTopEdge = mainCamera.transform.position.y + mainCamera.orthographicSize;
                 if (cameraTopEdge < highestChild.transform.position.y - childHeight)
                     WrapObject(highestChild, lowestChild.transform.position.y - childHeight);
+            }
+        }
+
+        private void RepositionFloorsAroundTarget(float targetY)
+        {
+            // Calculate the floor number at target position
+            int baseFloorNumber = Mathf.RoundToInt(targetY / childHeight);
+            
+            // Distribute floors around the target
+            int floorsBelow = children.Length / 2;
+            
+            for (int i = 0; i < children.Length; i++)
+            {
+                int floorOffset = i - floorsBelow;
+                float newY = (baseFloorNumber + floorOffset) * childHeight;
+                int newFloorNumber = baseFloorNumber + floorOffset;
+                
+                children[i].transform.position = new Vector3(
+                    children[i].transform.position.x,
+                    newY,
+                    children[i].transform.position.z
+                );
+                
+                children[i].GetComponent<FloorIndexController>().UpdateFloorNumber(newFloorNumber);
             }
         }
 

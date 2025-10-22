@@ -233,5 +233,6 @@
 
     CameraTransitionEnded,
     DisablePlayerMovement,
-    EnablePlayerMovement
+    EnablePlayerMovement,
+    ChangeActiveLayer
 }
