@@ -7,57 +7,69 @@ namespace Elevator.scripts
 {
     public class ElevatorController : ObserverSubject
     {
+        [SerializeField] private ElevatorButtonsController elevatorButtonsController;
         [SerializeField] private AudioSource elevatorAudioSource;
         [SerializeField] private AudioClip elevatorMovingSound;
         [SerializeField] private AudioClip elevatorReachedFloorSound;
         [SerializeField] private GameObject elevator;
         [SerializeField] private ElevatorShake shakeableCamera;
-        [SerializeField] private TextMeshPro floorText;
-        [SerializeField] private TextMeshPro desiredFloorText;
         [SerializeField] private GameObject exit;
         [SerializeField] private GameObject shaftLight;
         [SerializeField] private float debounce = 3f;
         [SerializeField] private float lightLoop = 3f;
         [SerializeField] private float apartmentsPanelMoveSpeed = 1;
         [SerializeField] private float elevatorSpeed = 0.1f;
-        [SerializeField] private int currentFloor;
+        [SerializeField] public int currentFloor;
         [SerializeField] private float floorHeight;
         [SerializeField] private float minYToStop;
         [SerializeField] private bool restoreElevatorFloor = true;
         [SerializeField] private TextMeshPro[] apartmentNumbers;
         [SerializeField] private GameObject[] panelNumbers;
 
-        private int _desiredFloor;
+        public int desiredFloor;
+        public bool isFloorMoving;
+        private Rigidbody2D _elevatorRigidbody;
         private bool _hasReachedYTarget = true; // Track if we've reached the yTarget to prevent multiple notifications
         private Vector3 _initLightPosition;
-        private bool _isFloorMoving;
         private float _yTarget;
 
         private void Start()
         {
+            // Get and configure Rigidbody2D
+            _elevatorRigidbody = elevator.GetComponent<Rigidbody2D>();
+            _elevatorRigidbody.bodyType = RigidbodyType2D.Kinematic;
+            _elevatorRigidbody.gravityScale = 0f;
+
             var storedCurrentFloor = PlayerPrefs.GetInt("currentFloor");
             if (storedCurrentFloor != 0 && restoreElevatorFloor)
                 currentFloor = storedCurrentFloor;
 
-            if (floorText)
-                floorText.text = currentFloor.ToString();
 
-            elevator.transform.position = new Vector3(
+            // Set initial position using Rigidbody2D
+            var initialPosition = new Vector2(
                 elevator.transform.position.x,
-                CalculateElevatorYPosition(currentFloor),
-                elevator.transform.position.z
+                CalculateElevatorYPosition(currentFloor)
             );
-            _yTarget = elevator.transform.position.y;
+            _elevatorRigidbody.position = initialPosition;
+            _yTarget = initialPosition.y;
 
             Notify(GameEvents.FloorChange, currentFloor);
         }
 
         private void Update()
         {
-            if (Mathf.Abs(_yTarget - elevator.transform.position.y) > minYToStop)
+            if (Input.GetKeyDown(KeyCode.X) && !isFloorMoving)
+                // if (floorData) floorData.playerExitElevator = true;
+                Notify(GameEvents.ChangePlayerLocation, Location.Hallway);
+        }
+
+        private void FixedUpdate()
+        {
+            if (Mathf.Abs(_yTarget - _elevatorRigidbody.position.y) > minYToStop)
             {
-                var direction = _yTarget > elevator.transform.position.y ? Vector3.up : Vector3.down;
-                elevator.transform.Translate(direction * (Time.deltaTime * elevatorSpeed));
+                var direction = _yTarget > _elevatorRigidbody.position.y ? Vector2.up : Vector2.down;
+                var newPosition = _elevatorRigidbody.position + direction * (Time.fixedDeltaTime * elevatorSpeed);
+                _elevatorRigidbody.MovePosition(newPosition);
 
                 // Update floor number based on current position
                 UpdateFloorBasedOnPosition();
@@ -71,26 +83,13 @@ namespace Elevator.scripts
                 _hasReachedYTarget = true;
                 OnReachFloor();
             }
-
-            if (Input.GetKeyDown(KeyCode.X) && !_isFloorMoving)
-                // if (floorData) floorData.playerExitElevator = true;
-                Notify(GameEvents.ChangePlayerLocation, Location.Hallway);
-
-            // if (_isFloorMoving)
-            // {
-            //     var y = (_desiredFloor < currentFloor ? -elevatorSpeed : elevatorSpeed) * Time.deltaTime;
-            //     transform.Translate(0, y, 0);
-            //
-            //     // Update floor number based on current position during movement
-            //     UpdateFloorBasedOnPosition();
-            // }
         }
 
         private float CalculateElevatorYPosition(int floorNumber)
         {
             // Assuming floor 0 is at Y position 0, calculate position for current floor
             // return floorNumber * floorHeight + elevator.transform.localScale.y / 2f;
-            return floorNumber * floorHeight + elevator.transform.localScale.y * 2;
+            return floorNumber * floorHeight + 5;
         }
 
         /// <summary>
@@ -110,7 +109,8 @@ namespace Elevator.scripts
                 PlayerPrefs.SetInt("currentFloor", currentFloor);
 
                 // Update floor display
-                if (floorText) floorText.text = currentFloor.ToString();
+                if (elevatorButtonsController.floorText)
+                    elevatorButtonsController.floorText.text = currentFloor.ToString();
 
                 // Update apartment numbers
                 for (var i = 0; i < apartmentNumbers.Length; i++)
@@ -136,7 +136,10 @@ namespace Elevator.scripts
                 PlayerPrefs.SetInt("currentFloor", currentFloor);
 
                 Notify(GameEvents.FloorChange, currentFloor);
-                floorText.text = $"{currentFloor}";
+
+                if (elevatorButtonsController.floorText)
+                    elevatorButtonsController.floorText.text = $"{currentFloor}";
+
                 for (var i = 0; i < apartmentNumbers.Length; i++)
                 {
                     var apt = apartmentNumbers[i];
@@ -155,21 +158,9 @@ namespace Elevator.scripts
                 StopElevator();
 
             if (eventData.Name == GameEvents.ResumeElevator)
-                GoToFloor(_desiredFloor);
+                GoToFloor(desiredFloor);
         }
 
-        private void UpdateFloor(int floorNumber)
-        {
-            if (_isFloorMoving)
-                return;
-
-            desiredFloorText.text = desiredFloorText.text == "00" // init state
-                ? $"{floorNumber}"
-                : $"{desiredFloorText.text}{floorNumber}";
-
-
-            _desiredFloor = int.Parse(desiredFloorText.text);
-        }
 
         public void CallElevator(float yPosition)
         {
@@ -181,10 +172,10 @@ namespace Elevator.scripts
 
         public void GoToFloor(int floorNumber)
         {
-            _desiredFloor = floorNumber;
-            CallElevator(CalculateElevatorYPosition(_desiredFloor));
+            desiredFloor = floorNumber;
+            CallElevator(CalculateElevatorYPosition(desiredFloor));
 
-            if (_isFloorMoving)
+            if (isFloorMoving)
             {
                 // If we are already moving, update the shake amount for the new destination.
                 shakeableCamera.Shake(Mathf.Abs(floorNumber - currentFloor));
@@ -208,9 +199,9 @@ namespace Elevator.scripts
                 elevatorAudioSource.Play();
             }
 
-            _isFloorMoving = true;
+            isFloorMoving = true;
 
-            while (currentFloor != _desiredFloor)
+            while (currentFloor != desiredFloor)
                 yield return new WaitForSeconds(0.5f);
 
             StopElevator();
@@ -221,7 +212,7 @@ namespace Elevator.scripts
         {
             StopAllCoroutines();
 
-            _isFloorMoving = false;
+            isFloorMoving = false;
             Invoke(nameof(OpenDoors), 1);
 
             if (elevatorAudioSource)
@@ -254,26 +245,6 @@ namespace Elevator.scripts
                 shaftLight.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(0, 0);
                 shaftLight.transform.position = _initLightPosition;
             }
-        }
-
-        public void OnElevatorButtonClick(string buttonNumberString)
-        {
-            if (buttonNumberString == "go")
-            {
-                GoToFloor(_desiredFloor);
-                return;
-            }
-
-            if (buttonNumberString == "reset")
-            {
-                desiredFloorText.text = "00";
-                return;
-            }
-
-            int.TryParse(buttonNumberString, out var buttonNumber);
-
-            print("Button number clicked: " + buttonNumber);
-            UpdateFloor(buttonNumber);
         }
     }
 }

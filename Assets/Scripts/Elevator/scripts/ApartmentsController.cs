@@ -7,6 +7,7 @@ namespace Elevator.scripts
 {
     public class ApartmentsController : MonoBehaviour
     {
+        [SerializeField] private FloorData floorData;
         [SerializeField] private DoorController[] doors;
 
         public void OnNotify(GameEventData data)
@@ -20,7 +21,11 @@ namespace Elevator.scripts
                     // Find the door whose instanceID matches doorId
                     var door = Array.Find(doors, d => d.gameObject.GetInstanceID() == doorId);
                     var doorNumber = door ? door.doorNumber : -1;
-                    print($"Knock on apartment {doorNumber}");
+
+                    if (doorNumber == floorData.CharlotteApartmentNumber)
+                        print("Knock on Charlotte");
+                    else
+                        print($"Knock on vacant apartment {doorNumber}");
                 }
             }
         }
