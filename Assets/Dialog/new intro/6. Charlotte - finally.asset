@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
+  m_Name: 6. Charlotte - finally
+  m_EditorClassIdentifier: 
+  playerName: 
+  waitBeforeLine: 3
+  mandatoryPlayerChoice: 1
+  overlayImageSprite: {fileID: 0}
+  voicedLines:
+  - text: "Finally. Took you long enough \u2014 I started to plan my escape route
+      without you, haha"
+    translation: 
+    clip: {fileID: 8300000, guid: 4c8488c198e5a714a8c48d6aa026f788, type: 3}
+    gender: 0
+  actorName: 1
+  actorReaction: 14
+  nextDialogueLine: {fileID: 0}
+  playerOptions:
+  - text: Sorry
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 3d524237a3db16e4a87791f2ad27991b, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: OK
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 10d02067f0fe82e42a14bbd27cc5d48a, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: Tenth floor?
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 3d524237a3db16e4a87791f2ad27991b, type: 2}
+    actionAfterPlayerChoice: 0
+  playerReactions: []
+  conditionalNextLines: []
+  randomizedDialogLines: []
+  objectReferringDialogLines: []
+  wait: 0.5
+  actionBeforeLine: 0
+  actionAfterLine: 0
+  angerLevel: 0
+  toggleLineCondition: {fileID: 0}
+  lineCondition:
+    condition: 0
+    isMet: 0
+  blurAudio: 1
+  actionNumberData: 0

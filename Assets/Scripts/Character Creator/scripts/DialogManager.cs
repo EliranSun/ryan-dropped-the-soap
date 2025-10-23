@@ -430,7 +430,7 @@ namespace Character_Creator.scripts
         // TODO: Controller support
         private void AdvanceDialogOnClick()
         {
-            if (Input.GetKeyDown(KeyCode.N))
+            if (Input.GetKeyDown(KeyCode.N) && _currentDialogue)
             {
                 narratorText.text = "";
                 _audioSource.Stop();

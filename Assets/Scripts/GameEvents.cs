@@ -234,5 +234,7 @@
     CameraTransitionEnded,
     DisablePlayerMovement,
     EnablePlayerMovement,
-    ChangeActiveLayer
+    ChangeActiveLayer,
+
+    TriggerLockPickMiniGame
 }

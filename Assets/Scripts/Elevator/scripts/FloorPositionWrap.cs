@@ -46,7 +46,6 @@ namespace Elevator.scripts
             var highestChild = GetExtremeObject(children, true);
             var lowestChild = GetExtremeObject(children, false);
 
-            print($"Direction: {_yDirection}");
             if (_yDirection > 0) // up
             {
                 // Check if camera's bottom edge passed the top of the lowest child

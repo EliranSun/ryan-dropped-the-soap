@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
+  m_Name: 9. Charlotte - that's the point
+  m_EditorClassIdentifier: 
+  playerName: 
+  waitBeforeLine: 0
+  mandatoryPlayerChoice: 1
+  overlayImageSprite: {fileID: 0}
+  voicedLines:
+  - text: "Not exactly. If I could do it myself I wouldn\u2019t need you. That\u2019s
+      the point."
+    translation: 
+    clip: {fileID: 8300000, guid: 915d9dbfb962a0644a74968981c4c91e, type: 3}
+    gender: 0
+  actorName: 1
+  actorReaction: 13
+  nextDialogueLine: {fileID: 11400000, guid: 10d02067f0fe82e42a14bbd27cc5d48a, type: 2}
+  playerOptions: []
+  playerReactions: []
+  conditionalNextLines: []
+  randomizedDialogLines: []
+  objectReferringDialogLines: []
+  wait: 0.5
+  actionBeforeLine: 0
+  actionAfterLine: 0
+  angerLevel: 0
+  toggleLineCondition: {fileID: 0}
+  lineCondition:
+    condition: 0
+    isMet: 0
+  blurAudio: 1
+  actionNumberData: 0

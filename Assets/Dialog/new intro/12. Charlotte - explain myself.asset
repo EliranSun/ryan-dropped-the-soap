@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
+  m_Name: 12. Charlotte - explain myself
+  m_EditorClassIdentifier: 
+  playerName: 
+  waitBeforeLine: 0
+  mandatoryPlayerChoice: 1
+  overlayImageSprite: {fileID: 0}
+  voicedLines:
+  - text: "You know\u2014so I can explain this little art form in a way that actually
+      makes sense to you."
+    translation: 
+    clip: {fileID: 8300000, guid: 90b78ba0d0ef17a4c9044896e115e2af, type: 3}
+    gender: 0
+  actorName: 1
+  actorReaction: 13
+  nextDialogueLine: {fileID: 0}
+  playerOptions:
+  - text: I'm a poet
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: b1244c49d64c48c41837c1f07ac79933, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: I'm a realist
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: d9d401f93614a3e49a4e582070752cb1, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: I'm an architect
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: f9564257f05feb044be4cc64efc3ee9a, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: I'm an empath
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000}
+    actionAfterPlayerChoice: 0
+  - text: Can't describe
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 5c9daae633e852f4383eff6bc28b8a08, type: 2}
+    actionAfterPlayerChoice: 0
+  playerReactions: []
+  conditionalNextLines: []
+  randomizedDialogLines: []
+  objectReferringDialogLines: []
+  wait: 0.5
+  actionBeforeLine: 0
+  actionAfterLine: 0
+  angerLevel: 0
+  toggleLineCondition: {fileID: 0}
+  lineCondition:
+    condition: 0
+    isMet: 0
+  blurAudio: 1
+  actionNumberData: 0

@@ -6,6 +6,13 @@ using UnityEngine;
 
 namespace Elevator.scripts
 {
+    [Serializable]
+    public class DoorInfo
+    {
+        public ActorName residentName;
+        public GameObject door;
+    }
+
     public class ApartmentsController : ObserverSubject
     {
         [SerializeField] private FloorData floorData;
@@ -26,7 +33,11 @@ namespace Elevator.scripts
                     if (doorNumber == floorData.CharlotteApartmentNumber)
                     {
                         print("Knock on Charlotte");
-                        Notify(GameEvents.KnockOnNpcDoor, ActorName.Charlotte);
+                        Notify(GameEvents.KnockOnNpcDoor, new DoorInfo
+                        {
+                            residentName = ActorName.Charlotte,
+                            door = door.gameObject
+                        });
                     }
                     else
                     {

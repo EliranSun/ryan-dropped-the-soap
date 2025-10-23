@@ -8,6 +8,7 @@ namespace Elevator.scripts
     {
         [SerializeField] private GameObject mainTitle;
         [SerializeField] private GameObject player;
+        [SerializeField] private GameObject charlotte;
         [SerializeField] private Camera mainCamera;
         [SerializeField] private FloorData floorData;
         [SerializeField] private NarrationDialogLine breakIntoCharlotteApartmentLine;
@@ -44,9 +45,13 @@ namespace Elevator.scripts
 
             if (eventData.Name == GameEvents.KnockOnNpcDoor)
             {
-                var actorName = (ActorName)eventData.Data;
-                if (actorName == ActorName.Charlotte && !_brokeIntoCharlotteApartment)
+                var doorInfo = (DoorInfo)eventData.Data;
+                if (doorInfo.residentName == ActorName.Charlotte && !_brokeIntoCharlotteApartment)
+                {
+                    // TODO: Position at door, so need to get the door pos here
+                    charlotte.transform.position = doorInfo.door.transform.position;
                     Notify(GameEvents.TriggerSpecificDialogLine, breakIntoCharlotteApartmentLine);
+                }
             }
         }
 

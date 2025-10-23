@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
+  m_Name: 13a. Charlotte - empath - affective
+  m_EditorClassIdentifier: 
+  playerName: 
+  waitBeforeLine: 0
+  mandatoryPlayerChoice: 1
+  overlayImageSprite: {fileID: 0}
+  voicedLines:
+  - text: "So it\u2019s like learning someone\u2019s heartbeat. You feel for the
+      rhythm, the pauses. You\u2019re not forcing it open\u2014you\u2019re listening
+      until it trusts you."
+    translation: 
+    clip: {fileID: 8300000, guid: 1b9dfc7b66f48824e9b75dc98cc7286a, type: 3}
+    gender: 0
+  actorName: 1
+  actorReaction: 0
+  nextDialogueLine: {fileID: 11400000, guid: 1c48b67e68dfc1c429c4395cfea31bb2, type: 2}
+  playerOptions: []
+  playerReactions: []
+  conditionalNextLines: []
+  randomizedDialogLines: []
+  objectReferringDialogLines: []
+  wait: 0.5
+  actionBeforeLine: 0
+  actionAfterLine: 0
+  angerLevel: 0
+  toggleLineCondition: {fileID: 0}
+  lineCondition:
+    condition: 0
+    isMet: 0
+  blurAudio: 1
+  actionNumberData: 0

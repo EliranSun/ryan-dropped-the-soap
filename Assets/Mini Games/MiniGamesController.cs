@@ -2,27 +2,19 @@ using UnityEngine;
 
 namespace Mini_Games
 {
-    public class MiniGamesController : MonoBehaviour
+    public class MiniGamesController : ObserverSubject
     {
         [SerializeField] private GameObject lockPickMiniGameContainer;
 
         private void Start()
         {
-            lockPickMiniGameContainer.SetActive(false);
+            // lockPickMiniGameContainer.SetActive(false);
         }
 
         public void OnNotify(GameEventData eventData)
         {
-            if (eventData.Name == GameEvents.MiniGameStart)
-            {
-                var miniGameName = (MiniGameName)eventData.Data;
-                switch (miniGameName)
-                {
-                    case MiniGameName.LockPick:
-                        lockPickMiniGameContainer.SetActive(true);
-                        break;
-                }
-            }
+            if (eventData.Name == GameEvents.TriggerLockPickMiniGame)
+                Notify(GameEvents.StartMiniGames, MiniGameName.LockPick);
         }
     }
 }
