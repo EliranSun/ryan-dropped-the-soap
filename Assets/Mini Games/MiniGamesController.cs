@@ -6,10 +6,6 @@ namespace Mini_Games
     {
         [SerializeField] private GameObject lockPickMiniGameContainer;
 
-        private void Start()
-        {
-            // lockPickMiniGameContainer.SetActive(false);
-        }
 
         public void OnNotify(GameEventData eventData)
         {

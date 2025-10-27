@@ -23,6 +23,11 @@ namespace Mini_Games
         [SerializeField] public GameObject winState;
         [SerializeField] public GameObject loseState;
 
+        [Header("Sound")] [SerializeField] private AudioSource audioSource;
+        [SerializeField] private AudioClip soundtrack;
+        [SerializeField] private AudioClip winSound;
+        [SerializeField] private AudioClip loseSound;
+
         [Header("Animation Settings")] [SerializeField]
         private float animationDuration = 1f;
 
@@ -60,8 +65,6 @@ namespace Mini_Games
 
         private void UpdateTimer()
         {
-            print("Update timer>?");
-
             _currentTime -= Time.deltaTime;
 
             var timeRemaining = Mathf.CeilToInt(_currentTime);
@@ -83,6 +86,8 @@ namespace Mini_Games
             // newPosition.z = miniGameContainer.transform.position.z;
             // miniGameContainer.transform.position = newPosition;
             Notify(GameEvents.MiniGameStart);
+            audioSource.clip = soundtrack;
+            audioSource.Play();
         }
 
         protected virtual void CloseMiniGame(bool isGameWon = false)
@@ -107,6 +112,9 @@ namespace Mini_Games
             var dialogLine = GetRandomLine(isGameWon ? DialogLineType.Good : DialogLineType.Bad);
             if (dialogLine) Notify(GameEvents.TriggerSpecificDialogLine, dialogLine);
             Notify(isGameWon ? GameEvents.MiniGameWon : GameEvents.MiniGameLost, score);
+
+            audioSource.Stop();
+            audioSource.PlayOneShot(isGameWon ? winSound : loseSound);
 
             Invoke(nameof(MiniGameCleanups), 4);
         }

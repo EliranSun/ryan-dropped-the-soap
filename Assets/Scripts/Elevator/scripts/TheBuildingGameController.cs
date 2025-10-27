@@ -9,13 +9,16 @@ namespace Elevator.scripts
         [SerializeField] private GameObject mainTitle;
         [SerializeField] private GameObject player;
         [SerializeField] private GameObject charlotte;
+        [SerializeField] private GameObject ryan;
         [SerializeField] private Camera mainCamera;
         [SerializeField] private FloorData floorData;
         [SerializeField] private NarrationDialogLine breakIntoCharlotteApartmentLine;
+        [SerializeField] private NarrationDialogLine postLockPickMiniGameLine;
         [SerializeField] private ElevatorController elevatorController;
         [SerializeField] private BuildingLayerType playerCurrentLayer;
         [SerializeField] private int playerCurrentFloor;
         [SerializeField] private bool skipTitle;
+        [SerializeField] private float ryanPostMiniGamePosition = 21.3f;
         private bool _brokeIntoCharlotteApartment;
 
         private void Start()
@@ -52,6 +55,18 @@ namespace Elevator.scripts
                     charlotte.transform.position = doorInfo.door.transform.position;
                     Notify(GameEvents.TriggerSpecificDialogLine, breakIntoCharlotteApartmentLine);
                 }
+            }
+
+            if (eventData.Name is GameEvents.MiniGameWon or GameEvents.MiniGameLost)
+            {
+                ryan.SetActive(true);
+                var newPosition = new Vector3(
+                    ryanPostMiniGamePosition,
+                    player.transform.position.y,
+                    ryan.transform.position.z
+                );
+                ryan.transform.position = newPosition;
+                Notify(GameEvents.TriggerSpecificDialogLine, postLockPickMiniGameLine);
             }
         }
 
