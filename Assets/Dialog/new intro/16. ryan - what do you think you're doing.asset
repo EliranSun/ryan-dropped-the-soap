@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 16. ryan - what do you think you're doing
   m_EditorClassIdentifier: 
   playerName: 
-  waitBeforeLine: 4
+  waitBeforeLine: 5
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
   voicedLines:
@@ -23,7 +23,7 @@ MonoBehaviour:
     gender: 0
   actorName: 4
   actorReaction: 0
-  nextDialogueLine: {fileID: 0}
+  nextDialogueLine: {fileID: 11400000, guid: bba54b649c156b34185a97c8f66a6ef7, type: 2}
   playerOptions: []
   playerReactions: []
   conditionalNextLines: []
@@ -37,5 +37,5 @@ MonoBehaviour:
   lineCondition:
     condition: 0
     isMet: 0
-  blurAudio: 1
+  blurAudio: 0
   actionNumberData: 0

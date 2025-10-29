@@ -2,19 +2,21 @@ using System.Collections.Generic;
 using Dialog;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Character_Creator.scripts
 {
     [RequireComponent(typeof(TextMeshProUGUI))]
     public class PlayerOptionsController : ObserverSubject
     {
+        [SerializeField] private Image panel;
         private readonly List<NarrationDialogLine> _nextLines = new();
         private TextMeshProUGUI _playerOptionsText;
 
         private void Start()
         {
             _playerOptionsText = GetComponent<TextMeshProUGUI>();
-            _playerOptionsText.text = "";
+            ResetOptions();
         }
 
         private void Update()
@@ -30,7 +32,8 @@ namespace Character_Creator.scripts
                     if (_nextLines[i]) nextLine = _nextLines[i];
                 }
 
-            if (keyPressed) _playerOptionsText.text = "";
+            if (keyPressed) 
+                ResetOptions();
 
             if (nextLine)
                 Notify(GameEvents.TriggerSpecificDialogLine, nextLine);
@@ -52,8 +55,7 @@ namespace Character_Creator.scripts
         {
             if (playerOptions == null || playerOptions.Length == 0) return;
 
-            _playerOptionsText.text = "";
-            _nextLines.Clear();
+            ResetOptions();
 
             // Support up to 9 options (keys 1-9)
             var maxOptions = Mathf.Min(playerOptions.Length, 9);
@@ -66,6 +68,15 @@ namespace Character_Creator.scripts
             // If there are more options than we can display, add a note
             if (playerOptions.Length > 9)
                 _playerOptionsText.text += "\n(Additional options not shown)";
+
+            panel.gameObject.SetActive(true);
+        }
+
+        private void ResetOptions()
+        {
+            _playerOptionsText.text = "";
+            _nextLines.Clear();
+            panel.gameObject.SetActive(false);
         }
     }
 }

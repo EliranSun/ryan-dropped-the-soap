@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Linq;
 using UnityEngine;
 
 namespace Dialog
@@ -29,6 +28,7 @@ namespace Dialog
         private bool _isZooming;
         private Coroutine _resetCoroutine;
         private float _targetZoom;
+        private InGameActors currentLineActor;
 
         private void Start()
         {
@@ -53,7 +53,10 @@ namespace Dialog
             {
                 var line = (NarrationDialogLine)eventData.Data;
                 var actorName = line.actorName;
-                if (actors.Any(actor => actor.actorName == actorName)) enableDynamicZoom = true;
+                var actor = Array.Find(actors, actor => actor.actorName == actorName);
+
+                currentLineActor = actor;
+                enableDynamicZoom = true;
             }
 
             if (eventData.Name == GameEvents.LineNarrationEnd)
@@ -82,17 +85,25 @@ namespace Dialog
         /// </summary>
         private void UpdateDynamicZoom()
         {
-            if (actors[0]?.actor == null)
+            var currentActor = currentLineActor.actor;
+            if (currentActor == null)
                 return;
 
             // Calculate distance between player and first actor
-            var distance = Vector3.Distance(player.transform.position, actors[0].actor.transform.position);
+            var distance = Vector3.Distance(
+                player.transform.position,
+                currentActor.transform.position
+            );
 
             mainCamera.orthographicSize =
                 Mathf.Lerp(mainCamera.orthographicSize, distance, zoomSpeed * Time.deltaTime);
 
             // Position the camera between the player and the actor, but maintain original Z
-            var targetPos = Vector3.Lerp(mainCamera.transform.position, actors[0].actor.transform.position, 0.5f);
+            var targetPos = Vector3.Lerp(
+                mainCamera.transform.position,
+                currentActor.transform.position,
+                0.5f
+            );
             targetPos.z = mainCamera.transform.position.z;
             mainCamera.transform.position = targetPos;
         }
