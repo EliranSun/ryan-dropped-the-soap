@@ -13,18 +13,42 @@ MonoBehaviour:
   m_Name: 24. ryan - how about a gun
   m_EditorClassIdentifier: 
   playerName: 
-  waitBeforeLine: 5
+  waitBeforeLine: 3
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
   voicedLines:
-  - text: Umm... what do you think you're doing?
+  - text: How about that for a misunderstanding?
     translation: 
-    clip: {fileID: 8300000, guid: 2c994c625cc48ee4bb54d947685d46a8, type: 3}
+    clip: {fileID: 8300000, guid: a2477266d02f79249b82693dd439b3a8, type: 3}
     gender: 0
   actorName: 4
   actorReaction: 0
-  nextDialogueLine: {fileID: 11400000, guid: bba54b649c156b34185a97c8f66a6ef7, type: 2}
-  playerOptions: []
+  nextDialogueLine: {fileID: 0}
+  playerOptions:
+  - text: No
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 6ad80df3e8dfdee4688ffe16c18cbbaa, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: Whoa
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 6ad80df3e8dfdee4688ffe16c18cbbaa, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: GUN
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 554c28e4188bf8d4da27bb4f9464a678, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: Fuck
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 6ad80df3e8dfdee4688ffe16c18cbbaa, type: 2}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   conditionalNextLines: []
   randomizedDialogLines: []

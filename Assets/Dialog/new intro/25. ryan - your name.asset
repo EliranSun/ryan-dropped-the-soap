@@ -13,18 +13,42 @@ MonoBehaviour:
   m_Name: 25. ryan - your name
   m_EditorClassIdentifier: 
   playerName: 
-  waitBeforeLine: 5
+  waitBeforeLine: 2
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
   voicedLines:
-  - text: Umm... what do you think you're doing?
+  - text: "Hey, what\u2019s your name?"
     translation: 
-    clip: {fileID: 8300000, guid: 2c994c625cc48ee4bb54d947685d46a8, type: 3}
+    clip: {fileID: 8300000, guid: 24dd14fc637ac424fadb4c80a1e2a7a0, type: 3}
     gender: 0
   actorName: 4
   actorReaction: 0
-  nextDialogueLine: {fileID: 11400000, guid: bba54b649c156b34185a97c8f66a6ef7, type: 2}
-  playerOptions: []
+  nextDialogueLine: {fileID: 0}
+  playerOptions:
+  - text: ...
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 393f937e341702a44abb77ceeb46faf5, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: Ryan
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 393f937e341702a44abb77ceeb46faf5, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: '{playerName}'
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 393f937e341702a44abb77ceeb46faf5, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: Why
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 393f937e341702a44abb77ceeb46faf5, type: 2}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   conditionalNextLines: []
   randomizedDialogLines: []

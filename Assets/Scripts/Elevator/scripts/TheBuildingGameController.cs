@@ -10,12 +10,15 @@ namespace Elevator.scripts
         [SerializeField] private GameObject player;
         [SerializeField] private GameObject charlotte;
         [SerializeField] private GameObject ryan;
+        [SerializeField] private GameObject gun;
         [SerializeField] private Camera mainCamera;
         [SerializeField] private FloorData floorData;
         [SerializeField] private NarrationDialogLine breakIntoCharlotteApartmentLine;
         [SerializeField] private NarrationDialogLine postLockPickMiniGameLine;
         [SerializeField] private ElevatorController elevatorController;
         [SerializeField] private BuildingLayerType playerCurrentLayer;
+        [SerializeField] private AudioSource audioSource;
+        [SerializeField] private AudioClip ryanThemeSong;
         [SerializeField] private int playerCurrentFloor;
         [SerializeField] private bool skipTitle;
         [SerializeField] private float ryanPostMiniGamePosition = 21.3f;
@@ -66,8 +69,23 @@ namespace Elevator.scripts
                     ryan.transform.position.z
                 );
                 ryan.transform.position = newPosition;
+
+                Invoke(nameof(InvokeRyanThemeSong), 5f);
                 Notify(GameEvents.TriggerSpecificDialogLine, postLockPickMiniGameLine);
             }
+
+            if (eventData.Name == GameEvents.RyanPullGun)
+            {
+                gun.SetActive(true);
+                gun.transform.parent = ryan.transform;
+                gun.transform.localPosition = new Vector2(0.666f, 0.8f);
+            }
+        }
+
+        private void InvokeRyanThemeSong()
+        {
+            audioSource.clip = ryanThemeSong;
+            audioSource.Play();
         }
 
         private void EnablePlayerControl()

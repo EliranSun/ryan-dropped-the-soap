@@ -236,5 +236,8 @@
     EnablePlayerMovement,
     ChangeActiveLayer,
 
-    TriggerLockPickMiniGame
+    TriggerLockPickMiniGame,
+
+    RyanPullGun,
+    StacyPullGun
 }

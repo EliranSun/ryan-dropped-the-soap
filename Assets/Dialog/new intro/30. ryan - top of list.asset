@@ -13,18 +13,61 @@ MonoBehaviour:
   m_Name: 30. ryan - top of list
   m_EditorClassIdentifier: 
   playerName: 
-  waitBeforeLine: 5
+  waitBeforeLine: 0
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
   voicedLines:
-  - text: Umm... what do you think you're doing?
+  - text: "And if it does\u2026 I can\u2019t help but ask\u2014what values sits on
+      top, if not those?"
     translation: 
-    clip: {fileID: 8300000, guid: 2c994c625cc48ee4bb54d947685d46a8, type: 3}
+    clip: {fileID: 8300000, guid: 4b7847a712003f841aea27f5202a4ebc, type: 3}
     gender: 0
   actorName: 4
   actorReaction: 0
-  nextDialogueLine: {fileID: 11400000, guid: bba54b649c156b34185a97c8f66a6ef7, type: 2}
-  playerOptions: []
+  nextDialogueLine: {fileID: 0}
+  playerOptions:
+  - text: What
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000}
+    actionAfterPlayerChoice: 0
+  - text: Creativity
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 04c935cbc138e4d44b296999bde280cc, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: Freedom
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 04c935cbc138e4d44b296999bde280cc, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: Family
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 04c935cbc138e4d44b296999bde280cc, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: Fame
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 04c935cbc138e4d44b296999bde280cc, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: I don't know.
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 12d7f77a286d92d4ea716431a646f964, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: It does not exist.
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 12d7f77a286d92d4ea716431a646f964, type: 2}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   conditionalNextLines: []
   randomizedDialogLines: []

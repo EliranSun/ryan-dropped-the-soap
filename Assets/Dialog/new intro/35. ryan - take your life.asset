@@ -13,18 +13,49 @@ MonoBehaviour:
   m_Name: 35. ryan - take your life
   m_EditorClassIdentifier: 
   playerName: 
-  waitBeforeLine: 5
+  waitBeforeLine: 0
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
   voicedLines:
-  - text: Umm... what do you think you're doing?
+  - text: "If nothing\u2019s sacred, then why not take your life away from you, right
+      now?"
     translation: 
-    clip: {fileID: 8300000, guid: 2c994c625cc48ee4bb54d947685d46a8, type: 3}
+    clip: {fileID: 8300000, guid: 1c214ee0fa8c1244097b3bdc5e6e69bb, type: 3}
     gender: 0
   actorName: 4
   actorReaction: 0
-  nextDialogueLine: {fileID: 11400000, guid: bba54b649c156b34185a97c8f66a6ef7, type: 2}
-  playerOptions: []
+  nextDialogueLine: {fileID: 0}
+  playerOptions:
+  - text: NO
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: dcfa750bc6c795c43802a640886c6aa7, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: Don't
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: dcfa750bc6c795c43802a640886c6aa7, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: Hold on
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: dcfa750bc6c795c43802a640886c6aa7, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: Please
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: dcfa750bc6c795c43802a640886c6aa7, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: OK
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: dcfa750bc6c795c43802a640886c6aa7, type: 2}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   conditionalNextLines: []
   randomizedDialogLines: []

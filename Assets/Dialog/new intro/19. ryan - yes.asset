@@ -13,18 +13,36 @@ MonoBehaviour:
   m_Name: 19. ryan - yes
   m_EditorClassIdentifier: 
   playerName: 
-  waitBeforeLine: 5
+  waitBeforeLine: 0
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
   voicedLines:
-  - text: Umm... what do you think you're doing?
+  - text: Yes.
     translation: 
-    clip: {fileID: 8300000, guid: 2c994c625cc48ee4bb54d947685d46a8, type: 3}
+    clip: {fileID: 8300000, guid: 37dd7f3cf29fcf34a844e0d5c8fa4ea0, type: 3}
     gender: 0
   actorName: 4
   actorReaction: 0
-  nextDialogueLine: {fileID: 11400000, guid: bba54b649c156b34185a97c8f66a6ef7, type: 2}
-  playerOptions: []
+  nextDialogueLine: {fileID: 0}
+  playerOptions:
+  - text: Help
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000}
+    actionAfterPlayerChoice: 0
+  - text: Charlotte
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 6b6098d30226a934285757920caaa91e, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: No
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000}
+    actionAfterPlayerChoice: 0
   playerReactions: []
   conditionalNextLines: []
   randomizedDialogLines: []

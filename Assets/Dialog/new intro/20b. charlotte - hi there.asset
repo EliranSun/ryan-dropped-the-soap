@@ -13,17 +13,17 @@ MonoBehaviour:
   m_Name: 20b. charlotte - hi there
   m_EditorClassIdentifier: 
   playerName: 
-  waitBeforeLine: 5
+  waitBeforeLine: 0
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
   voicedLines:
-  - text: Umm... what do you think you're doing?
+  - text: "Hi there! I\u2019m Charlotte! What did you say earlier about this apartment?"
     translation: 
-    clip: {fileID: 8300000, guid: 2c994c625cc48ee4bb54d947685d46a8, type: 3}
+    clip: {fileID: 8300000, guid: e07bc8a0dec3c974e85547130794106d, type: 3}
     gender: 0
-  actorName: 4
-  actorReaction: 0
-  nextDialogueLine: {fileID: 11400000, guid: bba54b649c156b34185a97c8f66a6ef7, type: 2}
+  actorName: 1
+  actorReaction: 1
+  nextDialogueLine: {fileID: 11400000, guid: ff3e52c7f42104f43970f1099d151ac7, type: 2}
   playerOptions: []
   playerReactions: []
   conditionalNextLines: []
