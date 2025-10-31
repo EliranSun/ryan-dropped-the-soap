@@ -1,9 +1,10 @@
 using System;
 using Character_Creator.scripts;
+using Dialog.Scripts;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Dialog.Scripts
+namespace Dialog
 {
     [Serializable]
     public class PlayerMiniGameChoice
@@ -36,6 +37,13 @@ namespace Dialog.Scripts
 
         public void OnNotify(GameEventData gameEventData)
         {
+            if (gameEventData.Name == GameEvents.ThoughtDrop)
+            {
+                var text = (string)gameEventData.Data;
+                print($"ThoughtManager OnNotify: {text}");
+                Notify(GameEvents.ThoughtDrop, text);
+            }
+
             if (gameEventData.Name is GameEvents.LineNarrationEnd or GameEvents.AddThoughts)
             {
                 PlayerChoice[] playerOptionsValue = null;
@@ -122,11 +130,17 @@ namespace Dialog.Scripts
             if (dropThoughtFromAbove)
                 thought.transform.position += new Vector3(xPosition, randomHeight, 0);
 
+            var draggableThought = thought.GetComponent<DraggableObject>();
+            draggableThought.observers.AddListener(data => OnNotify(new GameEventData(data.Name, text)));
+
             var thoughtComponent = thought.GetComponent<Thought>();
             thoughtComponent.SetThought(text);
             thoughtComponent.SetNextLine(nextLine);
-            if (score != 0) thoughtComponent.SetThoughtScore(score);
-            if (lastPlayerDataType != PlayerDataEnum.None) thoughtComponent.SetChoicePlayerDataType(lastPlayerDataType);
+
+            if (score != 0)
+                thoughtComponent.SetThoughtScore(score);
+            if (lastPlayerDataType != PlayerDataEnum.None)
+                thoughtComponent.SetChoicePlayerDataType(lastPlayerDataType);
         }
 
         private void Speak()

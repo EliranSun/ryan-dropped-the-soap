@@ -239,5 +239,8 @@
     TriggerLockPickMiniGame,
 
     RyanPullGun,
-    StacyPullGun
+    StacyPullGun,
+
+    ThoughtDrag,
+    ThoughtDrop
 }

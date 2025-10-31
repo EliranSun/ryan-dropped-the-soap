@@ -15,7 +15,8 @@ namespace Mini_Games
         Organize,
         File,
         Lunch,
-        LockPick
+        LockPick,
+        Shout
     }
 
     public class MiniGamesManager : MiniGame

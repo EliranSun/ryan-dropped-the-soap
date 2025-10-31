@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace Dialog.Scripts
+namespace Dialog
 {
     public class Thought : MonoBehaviour
     {
