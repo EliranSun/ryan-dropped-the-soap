@@ -131,7 +131,9 @@ namespace Dialog
                 thought.transform.position += new Vector3(xPosition, randomHeight, 0);
 
             var draggableThought = thought.GetComponent<DraggableObject>();
-            draggableThought.observers.AddListener(data => OnNotify(new GameEventData(data.Name, text)));
+            draggableThought.observers.AddListener(data =>
+                OnNotify(new GameEventData(data.Name, new { text, score })));
+            draggableThought.destroyOnDrop = true;
 
             var thoughtComponent = thought.GetComponent<Thought>();
             thoughtComponent.SetThought(text);

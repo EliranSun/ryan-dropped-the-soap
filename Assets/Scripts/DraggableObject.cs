@@ -4,8 +4,15 @@ public class DraggableObject : ObserverSubject
 {
     [SerializeField] private GameEvents onDragEvent;
     [SerializeField] private GameEvents onDropEvent;
-    [SerializeField] private bool _is3D = false;
+    [SerializeField] private bool _is3D;
     [SerializeField] private LayerMask draggableLayerMask = -1; // Which layers can be dragged
+    public bool destroyOnDrop;
+    private Collider2D _collider2D;
+
+    // Manual input handling
+    private Collider _collider3D;
+    private Vector3 _dragOffset;
+    private Plane _dragPlane;
 
     private bool _isDragging;
     private bool _isSticky;
@@ -16,12 +23,6 @@ public class DraggableObject : ObserverSubject
 
     // 3D components
     private Rigidbody _rigidbody3D;
-    private Plane _dragPlane;
-    private Vector3 _dragOffset;
-
-    // Manual input handling
-    private Collider _collider3D;
-    private Collider2D _collider2D;
 
     private void Start()
     {
@@ -73,13 +74,27 @@ public class DraggableObject : ObserverSubject
         if (_isDragging)
         {
             if (_is3D)
-            {
                 Handle3DDragging();
-            }
             else
-            {
                 Handle2DDragging();
-            }
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (_is3D && collision.relativeVelocity.magnitude > 15f)
+        {
+            if (_isSticky) return;
+            _isDragging = false;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (!_is3D && collision.relativeVelocity.magnitude > 15f)
+        {
+            if (_isSticky) return;
+            _isDragging = false;
         }
     }
 
@@ -87,17 +102,11 @@ public class DraggableObject : ObserverSubject
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (IsMouseOverThisObject())
-            {
-                StartDragging();
-            }
+            if (IsMouseOverThisObject()) StartDragging();
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            if (_isDragging)
-            {
-                StopDragging();
-            }
+            if (_isDragging) StopDragging();
         }
     }
 
@@ -105,45 +114,41 @@ public class DraggableObject : ObserverSubject
     {
         if (_is3D)
         {
-            Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
-            RaycastHit[] hits = Physics.RaycastAll(ray, Mathf.Infinity, draggableLayerMask);
+            var ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
+            var hits = Physics.RaycastAll(ray, Mathf.Infinity, draggableLayerMask);
 
             // Check if this object is the closest draggable object
-            float closestDistance = Mathf.Infinity;
+            var closestDistance = Mathf.Infinity;
             GameObject closestDraggable = null;
 
-            foreach (RaycastHit hit in hits)
-            {
+            foreach (var hit in hits)
                 if (hit.collider.GetComponent<DraggableObject>() != null && hit.distance < closestDistance)
                 {
                     closestDistance = hit.distance;
                     closestDraggable = hit.collider.gameObject;
                 }
-            }
 
             return closestDraggable == gameObject;
         }
         else
         {
             Vector2 mouseWorldPos = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D[] hits = Physics2D.RaycastAll(mouseWorldPos, Vector2.zero, 0f, draggableLayerMask);
+            var hits = Physics2D.RaycastAll(mouseWorldPos, Vector2.zero, 0f, draggableLayerMask);
 
             // Check if this object is the topmost draggable object (highest sorting order or closest to camera)
-            float closestZ = Mathf.Infinity;
+            var closestZ = Mathf.Infinity;
             GameObject closestDraggable = null;
 
-            foreach (RaycastHit2D hit in hits)
-            {
+            foreach (var hit in hits)
                 if (hit.collider.GetComponent<DraggableObject>() != null)
                 {
-                    float zPos = hit.collider.transform.position.z;
+                    var zPos = hit.collider.transform.position.z;
                     if (zPos < closestZ) // In 2D, smaller Z values are closer to camera
                     {
                         closestZ = zPos;
                         closestDraggable = hit.collider.gameObject;
                     }
                 }
-            }
 
             return closestDraggable == gameObject;
         }
@@ -160,13 +165,13 @@ public class DraggableObject : ObserverSubject
                 Notify(onDragEvent);
 
                 // Create a plane that is perpendicular to the camera view
-                Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
+                var ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
                 _dragPlane = new Plane(_mainCamera.transform.forward, transform.position);
 
                 // Calculate the offset from the hit point to the object's position
-                if (_dragPlane.Raycast(ray, out float distance))
+                if (_dragPlane.Raycast(ray, out var distance))
                 {
-                    Vector3 hitPoint = ray.GetPoint(distance);
+                    var hitPoint = ray.GetPoint(distance);
                     _dragOffset = transform.position - hitPoint;
                 }
             }
@@ -186,6 +191,8 @@ public class DraggableObject : ObserverSubject
     {
         _isDragging = false;
         Notify(onDropEvent);
+
+        if (destroyOnDrop) Destroy(gameObject);
     }
 
     private void Handle2DDragging()
@@ -204,31 +211,13 @@ public class DraggableObject : ObserverSubject
     {
         if (_rigidbody3D)
         {
-            Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
-            if (_dragPlane.Raycast(ray, out float distance))
+            var ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
+            if (_dragPlane.Raycast(ray, out var distance))
             {
-                Vector3 targetPosition = ray.GetPoint(distance) + _dragOffset;
+                var targetPosition = ray.GetPoint(distance) + _dragOffset;
                 // _rigidbody3D.MovePosition(targetPosition);
                 transform.position = targetPosition;
             }
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (!_is3D && collision.relativeVelocity.magnitude > 15f)
-        {
-            if (_isSticky) return;
-            _isDragging = false;
-        }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (_is3D && collision.relativeVelocity.magnitude > 15f)
-        {
-            if (_isSticky) return;
-            _isDragging = false;
         }
     }
 
