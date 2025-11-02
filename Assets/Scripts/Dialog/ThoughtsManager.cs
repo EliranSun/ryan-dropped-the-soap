@@ -38,11 +38,7 @@ namespace Dialog
         public void OnNotify(GameEventData gameEventData)
         {
             if (gameEventData.Name == GameEvents.ThoughtDrop)
-            {
-                var text = (string)gameEventData.Data;
-                print($"ThoughtManager OnNotify: {text}");
-                Notify(GameEvents.ThoughtDrop, text);
-            }
+                Notify(GameEvents.ThoughtDrop, gameEventData.Data);
 
             if (gameEventData.Name is GameEvents.LineNarrationEnd or GameEvents.AddThoughts)
             {

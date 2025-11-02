@@ -55,8 +55,8 @@ namespace Mini_Games.Shout
             switch (thoughtText.Length)
             {
                 case < 10: Instantiate(thoughtBlocks[0]); break;
-                case >= 10 and < 20: Instantiate(thoughtBlocks[1]); break;
-                case >= 20 and < 30: Instantiate(thoughtBlocks[2]); break;
+                case < 20: Instantiate(thoughtBlocks[1]); break;
+                case < 30: Instantiate(thoughtBlocks[2]); break;
                 case >= 30: Instantiate(thoughtBlocks[3]); break;
             }
         }
