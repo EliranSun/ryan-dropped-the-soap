@@ -1565,7 +1565,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -5828,6 +5828,18 @@ PrefabInstance:
     - target: {fileID: 3649217369669204024, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       propertyPath: m_margin.z
       value: 1226.7423
+      objectReference: {fileID: 0}
+    - target: {fileID: 3649217369669204024, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: ea0ee502e7129a74585160758210758c, type: 2}
+    - target: {fileID: 3649217369669204024, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -2591375499062566650, guid: ea0ee502e7129a74585160758210758c, type: 2}
+    - target: {fileID: 3649217369669204024, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6535512598348505234, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       propertyPath: actorBody
@@ -10780,11 +10792,15 @@ PrefabInstance:
     - target: {fileID: 4430898230651894821, guid: bdb3da2e9981ac841aecd05ca80176cf, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: 11400000, guid: ea0ee502e7129a74585160758210758c, type: 2}
     - target: {fileID: 4430898230651894821, guid: bdb3da2e9981ac841aecd05ca80176cf, type: 3}
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 4430898230651894821, guid: bdb3da2e9981ac841aecd05ca80176cf, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4610185680908107287, guid: bdb3da2e9981ac841aecd05ca80176cf, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -10824,11 +10840,15 @@ PrefabInstance:
     - target: {fileID: 5465760478243828814, guid: bdb3da2e9981ac841aecd05ca80176cf, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: 11400000, guid: ea0ee502e7129a74585160758210758c, type: 2}
     - target: {fileID: 5465760478243828814, guid: bdb3da2e9981ac841aecd05ca80176cf, type: 3}
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 5465760478243828814, guid: bdb3da2e9981ac841aecd05ca80176cf, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5500406949139272498, guid: bdb3da2e9981ac841aecd05ca80176cf, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -10944,11 +10964,15 @@ PrefabInstance:
     - target: {fileID: 7591678715972868977, guid: bdb3da2e9981ac841aecd05ca80176cf, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: 11400000, guid: ea0ee502e7129a74585160758210758c, type: 2}
     - target: {fileID: 7591678715972868977, guid: bdb3da2e9981ac841aecd05ca80176cf, type: 3}
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 7591678715972868977, guid: bdb3da2e9981ac841aecd05ca80176cf, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7674246266904229873, guid: bdb3da2e9981ac841aecd05ca80176cf, type: 3}
       propertyPath: m_SizeDelta.x
       value: 99
@@ -11763,8 +11787,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Character Selection Screen
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ea0ee502e7129a74585160758210758c, type: 2}
+  m_sharedMaterial: {fileID: -2591375499062566650, guid: ea0ee502e7129a74585160758210758c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
