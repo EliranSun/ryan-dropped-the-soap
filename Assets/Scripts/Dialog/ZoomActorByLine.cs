@@ -21,14 +21,15 @@ namespace Dialog
         private float maxZoom = 15f;
 
         [SerializeField] private float zoomSpeed = 2f;
-        [SerializeField] private bool enableDynamicZoom;
         [SerializeField] private float resetDuration = 1f;
         [SerializeField] private AnimationCurve resetCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
+        private readonly float minZoom = 5f;
+        private InGameActors _currentLineActor;
 
+        private bool _enableDynamicZoom;
         private bool _isZooming;
         private Coroutine _resetCoroutine;
         private float _targetZoom;
-        private InGameActors currentLineActor;
 
         private void Start()
         {
@@ -41,7 +42,7 @@ namespace Dialog
 
         private void Update()
         {
-            if (!enableDynamicZoom || actors == null || actors.Length == 0 || player == null)
+            if (!_enableDynamicZoom || actors == null || actors.Length == 0)
                 return;
 
             UpdateDynamicZoom();
@@ -55,8 +56,8 @@ namespace Dialog
                 var actorName = line.actorName;
                 var actor = Array.Find(actors, actor => actor.actorName == actorName);
 
-                currentLineActor = actor;
-                enableDynamicZoom = true;
+                _currentLineActor = actor;
+                _enableDynamicZoom = true;
             }
 
             if (eventData.Name == GameEvents.LineNarrationEnd)
@@ -67,9 +68,10 @@ namespace Dialog
 
                 var currentDialog = (NarrationDialogLine)currentDialogProp.GetValue(eventData.Data);
                 var nextDialogLine = currentDialog.nextDialogueLine;
-                if (nextDialogLine == null)
+
+                if (nextDialogLine == null && currentDialog.playerOptions.Length == 0)
                 {
-                    enableDynamicZoom = false;
+                    _enableDynamicZoom = false;
 
                     // Stop any existing reset coroutine
                     if (_resetCoroutine != null) StopCoroutine(_resetCoroutine);
@@ -85,7 +87,7 @@ namespace Dialog
         /// </summary>
         private void UpdateDynamicZoom()
         {
-            var currentActor = currentLineActor.actor;
+            var currentActor = _currentLineActor.actor;
             if (currentActor == null)
                 return;
 
@@ -95,17 +97,25 @@ namespace Dialog
                 currentActor.transform.position
             );
 
-            mainCamera.orthographicSize =
-                Mathf.Lerp(mainCamera.orthographicSize, distance, zoomSpeed * Time.deltaTime);
+            mainCamera.orthographicSize = Mathf.Lerp(
+                mainCamera.orthographicSize,
+                Mathf.Clamp(distance * 0.8f, minZoom, maxZoom),
+                zoomSpeed * Time.deltaTime
+            );
 
             // Position the camera between the player and the actor, but maintain original Z
-            var targetPos = Vector3.Lerp(
-                mainCamera.transform.position,
+            var midpoint = Vector3.Lerp(
+                player.transform.position,
                 currentActor.transform.position,
                 0.5f
             );
-            targetPos.z = mainCamera.transform.position.z;
-            mainCamera.transform.position = targetPos;
+
+            midpoint.z = mainCamera.transform.position.z;
+            mainCamera.transform.position = Vector3.Lerp(
+                mainCamera.transform.position,
+                midpoint,
+                zoomSpeed * Time.deltaTime
+            );
         }
 
         /// <summary>

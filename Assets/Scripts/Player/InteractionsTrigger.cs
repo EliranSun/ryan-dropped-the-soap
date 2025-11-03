@@ -20,7 +20,7 @@ namespace Player
 
         private void Start()
         {
-            interactionText.text = "";
+            if (interactionText) interactionText.text = "";
         }
 
         private void Update()
