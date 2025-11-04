@@ -23,32 +23,51 @@ namespace Elevator.scripts
             if (data.Name is GameEvents.UnlockRyanApartment or GameEvents.UnlockCharlotteApartment)
             {
                 var door = FindNpcDoor(floorData.CharlotteApartmentNumber);
-                door.SetActive(false);
+                door.OpenNpcDoor();
             }
 
             if (data.Name == GameEvents.PlayerInteraction)
             {
                 var interactedObject = (Interaction)data.Data;
+                var doorId = interactedObject.objectId;
+
                 if (interactedObject.objectName == ObjectNames.ApartmentDoor)
                 {
-                    var door = FindNpcDoor(floorData.CharlotteApartmentNumber);
-                    Notify(GameEvents.KnockOnNpcDoor, new DoorInfo
-                    {
-                        residentName = ActorName.Charlotte,
-                        door = door.gameObject
-                    });
+                    var door = CompareNpcDoor(doorId, floorData.CharlotteApartmentNumber);
+                    if (door != null)
+                        Notify(GameEvents.KnockOnNpcDoor, new DoorInfo
+                        {
+                            residentName = ActorName.Charlotte,
+                            door = door.gameObject
+                        });
                 }
             }
         }
 
-        private GameObject FindNpcDoor(int npcDoorNumber)
+        private DoorController CompareNpcDoor(int doorId, int npcDoorNumber)
         {
             // Find the door whose instanceID matches doorId
+            var door = Array.Find(doors, d =>
+                d.gameObject.GetInstanceID() == doorId
+            );
+
+            if (door.doorNumber == npcDoorNumber)
+            {
+                print($"Match id {doorId} to NPC door number {door.doorNumber}");
+                return door;
+            }
+
+            print($"Did not find NPC door for id {doorId}");
+            return null;
+        }
+
+        private DoorController FindNpcDoor(int npcDoorNumber)
+        {
             var door = Array.Find(doors, d =>
                 d.gameObject.GetComponent<DoorController>().doorNumber == npcDoorNumber
             );
 
-            if (door.doorNumber == npcDoorNumber) return door.gameObject;
+            if (door.doorNumber == npcDoorNumber) return door;
 
             print($"Knock on vacant apartment {door.doorNumber}");
             return null;

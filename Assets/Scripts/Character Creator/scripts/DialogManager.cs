@@ -384,12 +384,12 @@ namespace Character_Creator.scripts
             _audioSource.pitch = 3;
         }
 
-        public void NormalSpeedDialog()
+        private void NormalSpeedDialog()
         {
             _audioSource.pitch = 1;
         }
 
-        public void UpdateDialogState(NarrationDialogLine nextLineObject)
+        private void UpdateDialogState(NarrationDialogLine nextLineObject)
         {
             _currentDialogue = nextLineObject;
         }
@@ -436,7 +436,12 @@ namespace Character_Creator.scripts
                 _audioSource.Stop();
                 _audioSource.clip = null;
 
-                // PostDialogAdvanceActions();
+                Notify(GameEvents.LineNarrationEnd, new
+                {
+                    _currentDialogue.actorName,
+                    _currentDialogue.playerOptions,
+                    _currentDialogue
+                });
 
                 if (_currentDialogue.randomizedDialogLines.Length > 0)
                 {
@@ -447,12 +452,6 @@ namespace Character_Creator.scripts
                     return;
                 }
 
-                Notify(GameEvents.LineNarrationEnd, new
-                {
-                    _currentDialogue.actorName,
-                    _currentDialogue.playerOptions,
-                    _currentDialogue
-                });
 
                 if (_currentDialogue.nextDialogueLine)
                 {

@@ -47,7 +47,7 @@ namespace Elevator.scripts
 
         public void OnNotify(GameEventData eventData)
         {
-            // TODO: Handling need to be more specific, this might be any transition
+            print($"Game Controller + {eventData.Name}");
             if (eventData.Name == GameEvents.CameraTransitionEnded)
                 Invoke(nameof(EnablePlayerControl), 1);
 

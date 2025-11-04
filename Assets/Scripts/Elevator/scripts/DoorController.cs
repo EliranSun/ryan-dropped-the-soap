@@ -68,7 +68,7 @@ namespace Elevator.scripts
                 _ => Location.EmptyApartment
             };
 
-            print(location);
+            print($"Enter/Exit apartment {doorNumber}, {location}");
 
             PlayerPrefs.SetInt("ExitFromApartment", doorNumber);
 
@@ -120,13 +120,15 @@ namespace Elevator.scripts
 
             if (eventData.Name == GameEvents.ClickOnItem)
             {
-                var isDoor = ((string)eventData.Data).ToLower().Contains("inside door") ||
-                             ((string)eventData.Data).ToLower().Contains("hallway door");
+                var isDoor =
+                    ((string)eventData.Data).ToLower().Contains("inside door") ||
+                    ((string)eventData.Data).ToLower().Contains("hallway door");
 
                 if (!isDoor)
                     return;
 
-                if (doorNumber == floorData.PlayerApartmentNumber) HandlePlayerApartmentDoorClick();
+                if (doorNumber == floorData.PlayerApartmentNumber)
+                    HandlePlayerApartmentDoorClick();
             }
         }
 
