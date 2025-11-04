@@ -18,7 +18,9 @@ namespace Elevator.scripts
         [SerializeField] private ElevatorController elevatorController;
         [SerializeField] private BuildingLayerType playerCurrentLayer;
         [SerializeField] private AudioSource audioSource;
+        [SerializeField] private AudioSource soundEffectAudioSource;
         [SerializeField] private AudioClip ryanThemeSong;
+        [SerializeField] private AudioClip unlockApartmentSound;
         [SerializeField] private int playerCurrentFloor;
         [SerializeField] private bool skipTitle;
         [SerializeField] private float ryanPostMiniGamePosition = 21.3f;
@@ -78,6 +80,17 @@ namespace Elevator.scripts
             {
                 gun.SetActive(true);
                 gun.transform.parent = ryan.transform;
+                gun.transform.localPosition = new Vector2(0.666f, 0.8f);
+            }
+
+            if (eventData.Name == GameEvents.UnlockRyanApartment)
+                if (unlockApartmentSound && soundEffectAudioSource)
+                    soundEffectAudioSource.PlayOneShot(unlockApartmentSound);
+
+            if (eventData.Name == GameEvents.RyanGivePlayerGun)
+            {
+                gun.SetActive(true);
+                gun.transform.parent = player.transform;
                 gun.transform.localPosition = new Vector2(0.666f, 0.8f);
             }
         }

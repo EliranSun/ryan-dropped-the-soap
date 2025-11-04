@@ -242,5 +242,9 @@
     StacyPullGun,
 
     ThoughtDrag,
-    ThoughtDrop
+    ThoughtDrop,
+    
+    RyanGivePlayerGun,
+    UnlockCharlotteApartment,
+    UnlockRyanApartment,
 }

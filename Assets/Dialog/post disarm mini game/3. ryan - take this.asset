@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
-  m_Name: 1b. charlotte - long time no see
+  m_Name: 3. ryan - take this
   m_EditorClassIdentifier: 
   playerName: 
-  waitBeforeLine: 0
+  waitBeforeLine: 2
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
   voicedLines:
-  - text: "Hi there, I\u2019m Charlotte, nice to meet you! long time no see! In order
-      for this to be WAY more friendly, please tell me your name. Is that OK?"
-    translation: 
-    clip: {fileID: 8300000, guid: b0a6e1192705e9e409966fc593a33640, type: 3}
+  - text: OK, fine. Here, take this
+    translation: "\u05D8\u05D5\u05D1 \u05D1\u05E1\u05D3\u05E8. \u05E7\u05D7 \u05D0\u05EA
+      \u05D6\u05D4"
+    clip: {fileID: 8300000, guid: c8380c25f3b1b46dbbb19db6949f7ce4, type: 3}
     gender: 0
-  actorName: 1
-  actorReaction: 16
-  nextDialogueLine: {fileID: 11400000, guid: 7242f3343e4704d84ae5e12a0ad7a8c5, type: 2}
+  actorName: 4
+  actorReaction: 0
+  nextDialogueLine: {fileID: 11400000, guid: 34cd8213dd0c6451fa9474ae2e0d23c7, type: 2}
   playerOptions: []
   playerReactions: []
   conditionalNextLines: []
@@ -32,7 +32,7 @@ MonoBehaviour:
   objectReferringDialogLines: []
   wait: 0.5
   actionBeforeLine: 0
-  actionAfterLine: 0
+  actionAfterLine: 193
   angerLevel: 0
   toggleLineCondition: {fileID: 0}
   lineCondition:

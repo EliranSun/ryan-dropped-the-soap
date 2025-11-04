@@ -10,44 +10,39 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
-  m_Name: 39. charlotte - disarm him
+  m_Name: 4. charlotte - most certainly
   m_EditorClassIdentifier: 
   playerName: 
   waitBeforeLine: 0
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
   voicedLines:
-  - text: Quick, disarm him!
+  - text: "OK. Now can you PLEASE open this door, and I\u2019ll show you this is
+      most certainly is NOT your apartment?"
     translation: 
-    clip: {fileID: 8300000, guid: 2b6ed3837ec4a644faccad29896300b7, type: 3}
+    clip: {fileID: 8300000, guid: cc4804988ad7c44f0ad4080607fc9956, type: 3}
     gender: 0
   actorName: 1
-  actorReaction: 2
+  actorReaction: 6
   nextDialogueLine: {fileID: 0}
   playerOptions:
-  - text: Disarm
+  - text: What
     type: 0
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 11400000, guid: fb58b3cf9fccd3a46984bca137da754a, type: 2}
+    next: {fileID: 11400000, guid: d6b174b17c7784635a22c18a3ba7a837, type: 2}
     actionAfterPlayerChoice: 0
-  - text: Disarm clumsily
+  - text: Wait
     type: 0
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 11400000, guid: 1474e471c4658aa468aef94df6d7a302, type: 2}
-    actionAfterPlayerChoice: 0
-  - text: Refuse
-    type: 0
-    choiceDataType: 0
-    choiceDataOption: 0
-    next: {fileID: 11400000, guid: 1474e471c4658aa468aef94df6d7a302, type: 2}
+    next: {fileID: 11400000, guid: d6b174b17c7784635a22c18a3ba7a837, type: 2}
     actionAfterPlayerChoice: 0
   - text: ...
     type: 0
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 11400000, guid: 1474e471c4658aa468aef94df6d7a302, type: 2}
+    next: {fileID: 11400000, guid: d6b174b17c7784635a22c18a3ba7a837, type: 2}
     actionAfterPlayerChoice: 0
   playerReactions: []
   conditionalNextLines: []

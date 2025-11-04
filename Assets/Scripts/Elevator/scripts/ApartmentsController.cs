@@ -20,31 +20,38 @@ namespace Elevator.scripts
 
         public void OnNotify(GameEventData data)
         {
+            if (data.Name is GameEvents.UnlockRyanApartment or GameEvents.UnlockCharlotteApartment)
+            {
+                var door = FindNpcDoor(floorData.CharlotteApartmentNumber);
+                door.SetActive(false);
+            }
+
             if (data.Name == GameEvents.PlayerInteraction)
             {
                 var interactedObject = (Interaction)data.Data;
                 if (interactedObject.objectName == ObjectNames.ApartmentDoor)
                 {
-                    var doorId = interactedObject.objectId;
-                    // Find the door whose instanceID matches doorId
-                    var door = Array.Find(doors, d => d.gameObject.GetInstanceID() == doorId);
-                    var doorNumber = door ? door.doorNumber : -1;
-
-                    if (doorNumber == floorData.CharlotteApartmentNumber)
+                    var door = FindNpcDoor(floorData.CharlotteApartmentNumber);
+                    Notify(GameEvents.KnockOnNpcDoor, new DoorInfo
                     {
-                        print("Knock on Charlotte");
-                        Notify(GameEvents.KnockOnNpcDoor, new DoorInfo
-                        {
-                            residentName = ActorName.Charlotte,
-                            door = door.gameObject
-                        });
-                    }
-                    else
-                    {
-                        print($"Knock on vacant apartment {doorNumber}");
-                    }
+                        residentName = ActorName.Charlotte,
+                        door = door.gameObject
+                    });
                 }
             }
+        }
+
+        private GameObject FindNpcDoor(int npcDoorNumber)
+        {
+            // Find the door whose instanceID matches doorId
+            var door = Array.Find(doors, d =>
+                d.gameObject.GetComponent<DoorController>().doorNumber == npcDoorNumber
+            );
+
+            if (door.doorNumber == npcDoorNumber) return door.gameObject;
+
+            print($"Knock on vacant apartment {door.doorNumber}");
+            return null;
         }
     }
 }
