@@ -216,6 +216,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c99047920ed84adf894b38dfacf89d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: NpcAssembly::npc.NpcScriptableMovement
+  observers:
+    m_PersistentCalls:
+      m_Calls: []
   speed: 10
   distanceToChangePoint: 1.1
   playerTransform: {fileID: 0}
@@ -223,7 +226,9 @@ MonoBehaviour:
   distanceToPlayer: 4
   isRigidBodyMovement: 1
   avoidPlayer: 0
+  actorName: 4
+  apartmentsController: {fileID: 0}
   isMovementWobbly: 1
-  pointsOfInterest: []
   wobbleAmplitudeDegrees: 7
   wobbleFrequency: 8
+  pointsOfInterest: []

@@ -1,4 +1,7 @@
 using System;
+using Character_Creator.scripts;
+using Dialog;
+using Elevator.scripts;
 using UnityEngine;
 
 namespace npc
@@ -19,6 +22,8 @@ namespace npc
         [SerializeField] private float distanceToPlayer = 4f;
         [SerializeField] private bool isRigidBodyMovement = true;
         [SerializeField] private bool avoidPlayer;
+        [SerializeField] private ActorName actorName;
+        [SerializeField] private ApartmentsController apartmentsController;
 
         [Header("Wobbly Movement")] [SerializeField]
         private bool isMovementWobbly;
@@ -152,6 +157,18 @@ namespace npc
                 var pointOfInterest = (GameObject)eventData.Data;
                 if (pointOfInterest != null)
                     ReplacePointOfInterest(pointOfInterest.transform);
+            }
+
+            if (eventData.Name == GameEvents.NpcGoToApartment)
+            {
+                var dialogProperties = DialogHelper.GetDialogNotificationProperties(eventData);
+                if (dialogProperties.ActorName == actorName)
+                {
+                    // TODO: I don't like that npc scriptable movement which is specific per NPC 
+                    // knows about apartment controller, but we need a callback here
+                    var door = apartmentsController.FindNpcDoor(dialogProperties.ActionNumber);
+                    AddPointOfInterest(door.gameObject.transform);
+                }
             }
         }
 

@@ -243,10 +243,12 @@
 
     ThoughtDrag,
     ThoughtDrop,
-    
+
     RyanGivePlayerGun,
     UnlockCharlotteApartment,
     UnlockRyanApartment,
-    
+
     NpcAtPointOfInterest,
+    NpcGoToApartment,
+    NpcEnterApartment
 }

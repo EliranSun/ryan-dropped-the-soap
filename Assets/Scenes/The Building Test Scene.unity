@@ -210,7 +210,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1820758853}
-  - {fileID: 1783641137}
   - {fileID: 2071457680}
   - {fileID: 1656186786}
   - {fileID: 2048837979}
@@ -5709,7 +5708,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.size
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[3].m_Target
@@ -5730,7 +5729,11 @@ PrefabInstance:
     - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[7].m_Target
       value: 
-      objectReference: {fileID: 394857707}
+      objectReference: {fileID: 1923945594}
+    - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[8].m_Target
+      value: 
+      objectReference: {fileID: 2044988167}
     - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
       value: 2
@@ -5745,6 +5748,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[7].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[8].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
@@ -5768,6 +5775,10 @@ PrefabInstance:
       value: OnNotify
       objectReference: {fileID: 0}
     - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[8].m_MethodName
+      value: OnNotify
+      objectReference: {fileID: 0}
+    - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
       value: Dialog.ZoomActorByLine, DialogAssembly
       objectReference: {fileID: 0}
@@ -5785,7 +5796,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[7].m_TargetAssemblyTypeName
-      value: Elevator.scripts.TheBuildingGameController, ElevatorScriptsAssembly
+      value: npc.NpcScriptableMovement, NpcAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[8].m_TargetAssemblyTypeName
+      value: Elevator.scripts.TheBuildingLayerController, ElevatorScriptsAssembly
       objectReference: {fileID: 0}
     - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -5803,6 +5818,10 @@ PrefabInstance:
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[7].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[8].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 829160473841595206, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       propertyPath: m_Name
       value: right side
@@ -5810,7 +5829,7 @@ PrefabInstance:
     - target: {fileID: 1311371035374852291, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       propertyPath: finalState.dialogLineToPlay
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 34cd8213dd0c6451fa9474ae2e0d23c7, type: 2}
     - target: {fileID: 1311371035374852291, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       propertyPath: requiredStatesForScene.Array.size
       value: 0
@@ -8561,6 +8580,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1783641137}
   - {fileID: 1923945592}
   - {fileID: 1005683116}
   - {fileID: 1594088370}
@@ -8833,7 +8853,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 29905566}
+    m_TransformParent: {fileID: 1733212577}
     m_Modifications:
     - target: {fileID: 1572359318330684820, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
       propertyPath: lines.Array.size
@@ -8847,13 +8867,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: "\U0001F7E4 Charlotte"
       objectReference: {fileID: 0}
+    - target: {fileID: 3930049543282524055, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4060874364467996741, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 33.67
+      value: 29.8
       objectReference: {fileID: 0}
     - target: {fileID: 4060874364467996741, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.21000004
+      value: 54.9
       objectReference: {fileID: 0}
     - target: {fileID: 4060874364467996741, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9434,7 +9458,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4324626027531163527, guid: 6ead8ccdeafcfc143bbe37d66c9da038, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4324626027531163527, guid: 6ead8ccdeafcfc143bbe37d66c9da038, type: 3}
       propertyPath: m_TagString
@@ -9442,11 +9466,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5068561749819198608, guid: 6ead8ccdeafcfc143bbe37d66c9da038, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 20.5
       objectReference: {fileID: 0}
     - target: {fileID: 5068561749819198608, guid: 6ead8ccdeafcfc143bbe37d66c9da038, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 55.3
       objectReference: {fileID: 0}
     - target: {fileID: 5068561749819198608, guid: 6ead8ccdeafcfc143bbe37d66c9da038, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9484,6 +9508,10 @@ PrefabInstance:
       propertyPath: playerTransform
       value: 
       objectReference: {fileID: 944560125}
+    - target: {fileID: 8731023049634414500, guid: 6ead8ccdeafcfc143bbe37d66c9da038, type: 3}
+      propertyPath: apartmentsController
+      value: 
+      objectReference: {fileID: 354514855}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9499,6 +9527,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4324626027531163527, guid: 6ead8ccdeafcfc143bbe37d66c9da038, type: 3}
   m_PrefabInstance: {fileID: 1923945591}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1923945594 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8731023049634414500, guid: 6ead8ccdeafcfc143bbe37d66c9da038, type: 3}
+  m_PrefabInstance: {fileID: 1923945591}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1923945593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c99047920ed84adf894b38dfacf89d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: NpcAssembly::npc.NpcScriptableMovement
 --- !u!1 &1967140692
 GameObject:
   m_ObjectHideFlags: 0
@@ -9926,10 +9965,13 @@ MonoBehaviour:
     inBuildingLayer: {fileID: 1733212576}
     staircaseLayer: {fileID: 1110011516}
     elevatorLayer: {fileID: 68195309}
+    apartmentsLayer: {fileID: 1331987160}
   mainCamera: {fileID: 1387538226}
   skyColor: {r: 0.54901963, g: 0.8039216, b: 1, a: 0}
   halfDarkHalfSkyColor: {r: 0.17542896, g: 0.351417, b: 0.4867924, a: 0}
   fullDarkColor: {r: 0, g: 0, b: 0, a: 0}
+  ryanNpc: {fileID: 1923945593}
+  charlotteNpc: {fileID: 1425454221}
 --- !u!1 &2048837978
 GameObject:
   m_ObjectHideFlags: 0

@@ -28,6 +28,8 @@ namespace Elevator.scripts
 
         private void Start()
         {
+            Invoke(nameof(PositionActorsTest), 1);
+
             if (skipTitle) StartGame();
             else Notify(GameEvents.DisablePlayerMovement);
             Notify(GameEvents.ChangeActiveLayer, playerCurrentLayer);
@@ -39,6 +41,20 @@ namespace Elevator.scripts
             }
         }
 
+        private void PositionActorsTest()
+        {
+            charlotte.transform.position = new Vector3(
+                charlotte.transform.position.x,
+                player.transform.position.y,
+                charlotte.transform.position.z
+            );
+            ryan.transform.position = new Vector3(
+                ryan.transform.position.x,
+                player.transform.position.y,
+                ryan.transform.position.z
+            );
+        }
+
         public void StartGame()
         {
             mainTitle.SetActive(false);
@@ -47,7 +63,6 @@ namespace Elevator.scripts
 
         public void OnNotify(GameEventData eventData)
         {
-            print($"Game Controller + {eventData.Name}");
             if (eventData.Name == GameEvents.CameraTransitionEnded)
                 Invoke(nameof(EnablePlayerControl), 1);
 

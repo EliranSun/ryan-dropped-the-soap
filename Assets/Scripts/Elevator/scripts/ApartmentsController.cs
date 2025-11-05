@@ -31,7 +31,7 @@ namespace Elevator.scripts
                 var interactedObject = (Interaction)data.Data;
                 var doorId = interactedObject.objectId;
 
-                if (interactedObject.objectName == ObjectNames.ApartmentEntrance)
+                if (interactedObject.objectName == ObjectNames.ApartmentDoor)
                 {
                     var door = CompareNpcDoor(doorId, floorData.CharlotteApartmentNumber);
                     if (door != null)
@@ -61,7 +61,7 @@ namespace Elevator.scripts
             return null;
         }
 
-        private DoorController FindNpcDoor(int npcDoorNumber)
+        public DoorController FindNpcDoor(int npcDoorNumber)
         {
             var door = Array.Find(doors, d =>
                 d.gameObject.GetComponent<DoorController>().doorNumber == npcDoorNumber
