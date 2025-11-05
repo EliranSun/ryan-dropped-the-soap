@@ -13,6 +13,7 @@ namespace Object.Scripts
         ElevatorExitDoors,
         StaircaseEntrance,
         StaircaseExit,
-        ApartmentDoor
+        ApartmentEntrance,
+        ApartmentExit
     }
 }

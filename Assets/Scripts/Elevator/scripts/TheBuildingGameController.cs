@@ -57,6 +57,7 @@ namespace Elevator.scripts
                 if (doorInfo.residentName == ActorName.Charlotte && !_brokeIntoCharlotteApartment)
                 {
                     // TODO: Position at door, so need to get the door pos here
+                    charlotte.SetActive(true);
                     charlotte.transform.position = doorInfo.door.transform.position;
                     Notify(GameEvents.TriggerSpecificDialogLine, breakIntoCharlotteApartmentLine);
                 }

@@ -82,7 +82,7 @@ namespace Player
                 case "Door":
                     interactionText.text = "KNOCK";
                     _interactedObjectNameId = interactedGameObject.GetInstanceID();
-                    _interactedObjectName = ObjectNames.ApartmentDoor;
+                    _interactedObjectName = ObjectNames.ApartmentEntrance;
                     break;
 
                 case "Opened Door":

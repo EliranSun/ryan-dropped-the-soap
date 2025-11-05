@@ -5709,7 +5709,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.size
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[3].m_Target
@@ -5728,6 +5728,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 354514855}
     - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[7].m_Target
+      value: 
+      objectReference: {fileID: 394857707}
+    - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
       value: 2
       objectReference: {fileID: 0}
@@ -5737,6 +5741,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[6].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[7].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
@@ -5756,6 +5764,10 @@ PrefabInstance:
       value: OnNotify
       objectReference: {fileID: 0}
     - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[7].m_MethodName
+      value: OnNotify
+      objectReference: {fileID: 0}
+    - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
       value: Dialog.ZoomActorByLine, DialogAssembly
       objectReference: {fileID: 0}
@@ -5772,6 +5784,10 @@ PrefabInstance:
       value: Elevator.scripts.ApartmentsController, ElevatorScriptsAssembly
       objectReference: {fileID: 0}
     - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[7].m_TargetAssemblyTypeName
+      value: Elevator.scripts.TheBuildingGameController, ElevatorScriptsAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
@@ -5781,6 +5797,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[6].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 529015297834931371, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[7].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 829160473841595206, guid: 531fc0d072f178a418099be637aca04e, type: 3}
@@ -8875,6 +8895,10 @@ PrefabInstance:
       propertyPath: pointsOfInterest.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7336793025691390500, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9381,6 +9405,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1733212577}
     m_Modifications:
     - target: {fileID: 126620749961980982, guid: 6ead8ccdeafcfc143bbe37d66c9da038, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 126620749961980982, guid: 6ead8ccdeafcfc143bbe37d66c9da038, type: 3}
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
@@ -9392,6 +9420,10 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 1553486943568565142, guid: 6ead8ccdeafcfc143bbe37d66c9da038, type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 944560125}
     - target: {fileID: 4324626027531163527, guid: 6ead8ccdeafcfc143bbe37d66c9da038, type: 3}
       propertyPath: m_Name
       value: "\U0001F535 Ryan"
@@ -9448,13 +9480,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8731023049634414500, guid: 6ead8ccdeafcfc143bbe37d66c9da038, type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 944560125}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4324626027531163527, guid: 6ead8ccdeafcfc143bbe37d66c9da038, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1923945597}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ead8ccdeafcfc143bbe37d66c9da038, type: 3}
 --- !u!4 &1923945592 stripped
 Transform:
@@ -9466,19 +9499,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4324626027531163527, guid: 6ead8ccdeafcfc143bbe37d66c9da038, type: 3}
   m_PrefabInstance: {fileID: 1923945591}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1923945597
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1923945593}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08ed81895a08a0942975e119b35594ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: CommonScriptsAssembly::common.scripts.SpriteLookAtPlayer
-  playerTransform: {fileID: 944560125}
 --- !u!1 &1967140692
 GameObject:
   m_ObjectHideFlags: 0

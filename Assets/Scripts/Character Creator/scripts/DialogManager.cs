@@ -436,6 +436,9 @@ namespace Character_Creator.scripts
                 _audioSource.Stop();
                 _audioSource.clip = null;
 
+                if (_currentDialogue.actionAfterLine != GameEvents.None)
+                    TriggerAnAct(_currentDialogue.actionAfterLine);
+
                 Notify(GameEvents.LineNarrationEnd, new
                 {
                     _currentDialogue.actorName,
@@ -451,7 +454,6 @@ namespace Character_Creator.scripts
                     Invoke(nameof(ReadCurrentLine), _currentDialogue.waitBeforeLine);
                     return;
                 }
-
 
                 if (_currentDialogue.nextDialogueLine)
                 {

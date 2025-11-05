@@ -247,4 +247,6 @@
     RyanGivePlayerGun,
     UnlockCharlotteApartment,
     UnlockRyanApartment,
+    
+    NpcAtPointOfInterest,
 }

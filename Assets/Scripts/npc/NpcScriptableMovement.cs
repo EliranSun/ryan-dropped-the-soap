@@ -6,7 +6,7 @@ namespace npc
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(SpriteRenderer))]
-    public class NpcScriptableMovement : MonoBehaviour
+    public class NpcScriptableMovement : ObserverSubject
     {
         private static readonly int IsWalking = Animator.StringToHash("IsWalking");
 
@@ -19,7 +19,15 @@ namespace npc
         [SerializeField] private float distanceToPlayer = 4f;
         [SerializeField] private bool isRigidBodyMovement = true;
         [SerializeField] private bool avoidPlayer;
-        [SerializeField] private Transform[] pointsOfInterest;
+
+        [Header("Wobbly Movement")] [SerializeField]
+        private bool isMovementWobbly;
+
+        [SerializeField] private float wobbleAmplitudeDegrees = 7f; // max lean angle
+        [SerializeField] private float wobbleFrequency = 1f; // cycles per second
+
+        [Header("Points of interest")] [SerializeField]
+        private Transform[] pointsOfInterest;
 
         private Animator _animator;
         private int _currentPointOfInterestIndex;
@@ -28,6 +36,7 @@ namespace npc
         private Rigidbody2D _rigidBody2D;
         private SpriteRenderer _spriteRenderer;
         private Vector2 _targetPosition;
+        private float _wobbleTime;
 
         private void Start()
         {
@@ -53,6 +62,7 @@ namespace npc
                 {
                     _animator.SetBool(IsWalking, false);
                     _isWalking = false;
+                    Notify(GameEvents.NpcAtPointOfInterest);
                 }
 
                 return;
@@ -74,6 +84,25 @@ namespace npc
             if (other.gameObject.CompareTag("Ground")) _isJumping = false;
         }
 
+        private void WobbleForward(Vector2 direction)
+        {
+            // Flip sprite based on direction
+            _spriteRenderer.flipX = direction.x > 0;
+
+            // Advance wobble timer
+            _wobbleTime += Time.deltaTime;
+
+            // Compute wobble angle: oscillate between straight (0) and leaning forward (+/- amplitude)
+            // Use Abs(sin) so it goes: straight -> lean -> straight -> lean ... in the move direction
+            var leanSign = direction.x >= 0 ? -1f : 1f; // keep same handedness as previous implementation
+            var wobblePhase = Mathf.Abs(Mathf.Sin(_wobbleTime * Mathf.PI * 2f * wobbleFrequency));
+            var angleZ = leanSign * wobbleAmplitudeDegrees * wobblePhase;
+
+            // Apply explicit rotation (no accumulation) and move forward
+            transform.rotation = Quaternion.Euler(0f, 0f, angleZ);
+            transform.Translate(new Vector3(direction.x, 0f, 0f) * (speed * Time.deltaTime));
+        }
+
         private void SetNextPointOfInterest()
         {
             if (pointsOfInterest == null || pointsOfInterest.Length == 0) return;
@@ -86,10 +115,9 @@ namespace npc
             var direction = (pointsOfInterest[0].transform.position - transform.position).normalized;
             var distanceFromPlayer = Vector2.Distance(transform.position, playerTransform.position);
 
-            if (isRigidBodyMovement)
-                RigidBodyMovement(direction, distanceFromPlayer);
-            else
-                TransformMovement(direction);
+            if (isMovementWobbly) WobbleForward(direction);
+            else if (isRigidBodyMovement) RigidBodyMovement(direction, distanceFromPlayer);
+            else TransformMovement(direction);
         }
 
         private void RigidBodyMovement(Vector2 direction, float distanceFromPlayer)

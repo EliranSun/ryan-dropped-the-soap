@@ -12,6 +12,9 @@ GameObject:
   - component: {fileID: 126620749961980982}
   - component: {fileID: 5275205805284438401}
   - component: {fileID: 146189068317118084}
+  - component: {fileID: 1553486943568565142}
+  - component: {fileID: 8505212804050565049}
+  - component: {fileID: 8731023049634414500}
   m_Layer: 12
   m_Name: "\U0001F535 Ryan"
   m_TagString: NPC
@@ -165,3 +168,62 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1553486943568565142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4324626027531163527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08ed81895a08a0942975e119b35594ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: CommonScriptsAssembly::common.scripts.SpriteLookAtPlayer
+  playerTransform: {fileID: 0}
+  facingRightByDefault: 0
+--- !u!95 &8505212804050565049
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4324626027531163527}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8731023049634414500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4324626027531163527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c99047920ed84adf894b38dfacf89d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: NpcAssembly::npc.NpcScriptableMovement
+  speed: 10
+  distanceToChangePoint: 1.1
+  playerTransform: {fileID: 0}
+  jumpForce: 20
+  distanceToPlayer: 4
+  isRigidBodyMovement: 1
+  avoidPlayer: 0
+  isMovementWobbly: 1
+  pointsOfInterest: []
+  wobbleAmplitudeDegrees: 7
+  wobbleFrequency: 8

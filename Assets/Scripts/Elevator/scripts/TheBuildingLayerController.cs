@@ -12,7 +12,8 @@ namespace Elevator.scripts
         Outside,
         InBuilding,
         Staircase,
-        Elevator
+        Elevator,
+        Apartment
     }
 
     [Serializable]
@@ -22,6 +23,7 @@ namespace Elevator.scripts
         [SerializeField] private GameObject inBuildingLayer;
         [SerializeField] private GameObject staircaseLayer;
         [SerializeField] private GameObject elevatorLayer;
+        [SerializeField] private GameObject apartmentsLayer;
 
         public GameObject GetLayer(BuildingLayerType layerType)
         {
@@ -31,6 +33,7 @@ namespace Elevator.scripts
                 BuildingLayerType.InBuilding => inBuildingLayer,
                 BuildingLayerType.Staircase => staircaseLayer,
                 BuildingLayerType.Elevator => elevatorLayer,
+                BuildingLayerType.Apartment => apartmentsLayer,
                 _ => throw new ArgumentOutOfRangeException(nameof(layerType), layerType, null)
             };
         }
@@ -140,6 +143,10 @@ namespace Elevator.scripts
 
                     case ObjectNames.ElevatorEnterDoors:
                         SetActiveLayer(BuildingLayerType.Elevator);
+                        break;
+
+                    case ObjectNames.ApartmentEntrance:
+                        SetActiveLayer(BuildingLayerType.Apartment);
                         break;
                 }
             }

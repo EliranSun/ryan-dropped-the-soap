@@ -195,7 +195,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6850179438922891831, guid: e353ef99cd15a914d936e254978559b3, type: 3}
       propertyPath: speed
-      value: 7
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6850179438922891831, guid: e353ef99cd15a914d936e254978559b3, type: 3}
       propertyPath: jumpForce
@@ -207,11 +207,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6850179438922891831, guid: e353ef99cd15a914d936e254978559b3, type: 3}
       propertyPath: distanceToChangePoint
-      value: 1
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 6850179438922891831, guid: e353ef99cd15a914d936e254978559b3, type: 3}
       propertyPath: pointsOfInterest.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6999263780196100403, guid: e353ef99cd15a914d936e254978559b3, type: 3}
       propertyPath: m_FlipX
@@ -322,6 +322,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 0}
+  facingRightByDefault: 0
 --- !u!114 &1572359318330684820
 MonoBehaviour:
   m_ObjectHideFlags: 0
