@@ -137,7 +137,7 @@ namespace Elevator.scripts
             floor.transform.SetParent(floorsContainer.transform);
             floor.name = $"Floor {floorNumber}";
             var floorController = floor.GetComponent<FloorController>();
-            floorController.SetFloorNumber(floorNumber, this);
+            floorController.SetFloorNumber(floorNumber);
             floorController.SetObserver(_floorObservers);
 
             if (direction == FloorDirection.Bottom)

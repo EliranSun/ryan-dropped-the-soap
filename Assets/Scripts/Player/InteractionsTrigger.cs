@@ -64,6 +64,11 @@ namespace Player
             var tagName = interactedGameObject.tag;
             switch (tagName)
             {
+                case "Building Entrance Doors":
+                    interactionText.text = "OPEN";
+                    _interactedObjectName = ObjectNames.BuildingEntranceDoors;
+                    break;
+
                 case "Building Entrance":
                     interactionText.text = "Press X to ENTER";
                     _interactedObjectName = ObjectNames.BuildingEntrance;
@@ -74,33 +79,30 @@ namespace Player
                     _interactedObjectName = ObjectNames.BuildingExit;
                     break;
 
-                case "Building Entrance Doors":
-                    interactionText.text = "OPEN";
-                    _interactedObjectName = ObjectNames.BuildingEntranceDoors;
-                    break;
-
-                case "Door":
+                case "Apartment Door":
                     interactionText.text = "KNOCK";
                     _interactedObjectNameId = interactedGameObject.GetInstanceID();
                     _interactedObjectName = ObjectNames.ApartmentDoor;
                     break;
 
-                case "Opened Door":
-                    interactionText.text = "ENTER";
+                case "Apartment Entrance":
+                    interactionText.text = "Enter";
+                    _interactedObjectName = ObjectNames.ApartmentEntrance;
                     break;
 
-                case "Item":
-                    interactionText.text = "OBSERVE";
-                    break;
-
-                case "Elevator Exit":
-                    interactionText.text = "EXIT";
-                    _interactedObjectName = ObjectNames.ElevatorExitDoors;
+                case "Apartment Exit":
+                    interactionText.text = "Exit";
+                    _interactedObjectName = ObjectNames.ApartmentExit;
                     break;
 
                 case "Elevator Entrance":
                     interactionText.text = "ENTER";
                     _interactedObjectName = ObjectNames.ElevatorEnterDoors;
+                    break;
+
+                case "Elevator Exit":
+                    interactionText.text = "EXIT";
+                    _interactedObjectName = ObjectNames.ElevatorExitDoors;
                     break;
 
                 case "Staircase Entrance":
@@ -113,8 +115,8 @@ namespace Player
                     _interactedObjectName = ObjectNames.StaircaseExit;
                     break;
 
-                case "Apartment Door":
-                    interactionText.text = "KNOCK";
+                case "Item":
+                    interactionText.text = "OBSERVE";
                     break;
 
                 case "NPC":

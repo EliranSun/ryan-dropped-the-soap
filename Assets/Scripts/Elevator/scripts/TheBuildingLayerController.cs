@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Character_Creator.scripts;
-using Dialog;
 using Object.Scripts;
 using Player;
 using UnityEngine;
@@ -49,16 +47,14 @@ namespace Elevator.scripts
         [SerializeField] private Color skyColor;
         [SerializeField] private Color halfDarkHalfSkyColor;
         [SerializeField] private Color fullDarkColor;
-        [SerializeField] private GameObject ryanNpc;
-        [SerializeField] private GameObject charlotteNpc;
 
         private BuildingLayerType _currentActiveLayer;
 
         private void Start()
         {
             // Initialize all layers and set the initial layer as active
-            // InitializeAllLayers();
-            // SetActiveLayer(initialLayer);
+            InitializeAllLayers();
+            SetActiveLayer(initialLayer);
         }
 
         private void InitializeAllLayers()
@@ -119,12 +115,17 @@ namespace Elevator.scripts
                 return;
             }
 
-            if (eventData.Name == GameEvents.NpcEnterApartment)
-            {
-                var dialogProperties = DialogHelper.GetDialogNotificationProperties(eventData);
-                if (dialogProperties.ActorName == ActorName.Ryan)
-                    ryanNpc.transform.parent = layers.GetLayer(BuildingLayerType.Apartment).transform;
-            }
+            // TODO: Move to appropriate place
+            // if (eventData.Name == GameEvents.NpcEnterApartment)
+            // {
+            //     var dialogProperties = DialogHelper.GetDialogNotificationProperties(eventData);
+            //
+            //     if (dialogProperties.ActorName == ActorName.Ryan)
+            //     {
+            //         ryanNpc.transform.parent = layers.GetLayer(BuildingLayerType.Apartment).transform;
+            //         charlotteNpc.transform.parent = layers.GetLayer(BuildingLayerType.Apartment).transform;
+            //     }
+            // }
 
             if (eventData.Name == GameEvents.PlayerInteraction)
             {

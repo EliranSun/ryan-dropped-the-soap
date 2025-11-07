@@ -1,4 +1,3 @@
-using Dialog;
 using Player;
 using UnityEngine;
 
@@ -6,50 +5,27 @@ namespace Elevator.scripts
 {
     public class ApartmentController : ObserverSubject
     {
-        public int floorNumber;
-        public int apartmentNumber;
         [SerializeField] private DoorController door;
-        [SerializeField] public GameObject[] tenants;
-        public BuildingController buildingController;
-        public GameObject prefab;
-        public bool isPopulated;
-        public NarrationDialogLine narrationLine;
+        private int _apartmentNumber;
+        private int _floorNumber;
 
-        public void SetData(int floorNum, int apartmentNum, BuildingController buildingControl)
+        public void SetData(int floorNum, int apartmentNum)
         {
-            floorNumber = floorNum;
-            apartmentNumber = apartmentNum;
-            buildingController = buildingControl;
+            _floorNumber = floorNum;
+            _apartmentNumber = apartmentNum;
 
             door.SetDoorNumber($"{floorNum}{apartmentNum}");
 
-            if (buildingController.tenants is not { Length: > 0 }) return;
-
-            foreach (var tenant in buildingController.tenants)
-                if (tenant.floorNumber == floorNumber && tenant.apartmentNumber == apartmentNumber)
-                    if (tenant.name is Tenant.Zeke or Tenant.Stacy)
-                    {
-                        if (tenant.tenantPrefab)
-                        {
-                            tenant.tenantPrefab.transform.position = transform.position;
-                            tenant.tenantPrefab.SetActive(true);
-                        }
-
-                        if (tenant.apartmentContents)
-                        {
-                            tenant.apartmentContents.SetActive(true);
-                            tenant.apartmentContents.transform.position = transform.position;
-                        }
-
-                        tenant.currentApartmentNumber = floorNumber * 10 + apartmentNumber;
-                        tenant.door = door.gameObject;
-                    }
+            // TODO: Refactor to match new building
+            // if (tenant.floorNumber == _floorNumber && tenant.apartmentNumber == _apartmentNumber)
+            // {
+            //     
+            // }
         }
 
         public void OnNotify(GameEventData eventData)
         {
             if (eventData.Name == GameEvents.ClickOnItem)
-                // SceneManager.LoadScene("3a. building front scene");
                 Notify(GameEvents.ChangePlayerLocation, Location.BuildingFrontView);
         }
     }

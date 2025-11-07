@@ -3,10 +3,13 @@ using UnityEngine;
 
 namespace Elevator.scripts
 {
-    public class FloorIndexController : MonoBehaviour
+    // TODO: Should replace FloorController
+    public class FloorWrapController : MonoBehaviour
     {
         [SerializeField] private TextMeshPro floorNumberText;
+        [SerializeField] private GameObject stairs;
         [SerializeField] private GameObject[] doors;
+        [SerializeField] private GameObject[] apartments;
         public int ObjectNumber { get; private set; }
 
         public void UpdateFloorNumber(int floorNumber)
@@ -23,6 +26,7 @@ namespace Elevator.scripts
             {
                 var doorNumber = floorNumber * 100 + i + 1;
                 doors[i].GetComponent<DoorController>().SetDoorNumber(doorNumber.ToString());
+                apartments[i].GetComponent<ApartmentController>().SetData(floorNumber, doorNumber);
             }
         }
 

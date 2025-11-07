@@ -18,7 +18,9 @@ namespace Elevator.scripts
         [SerializeField] public int doorNumber;
         [SerializeField] private bool isDoorOpen;
         [SerializeField] private AudioClip[] knockSounds;
-        [SerializeField] private GameObject[] doors;
+        [SerializeField] private GameObject door;
+        [SerializeField] private GameObject entrance;
+
         private AudioSource _audioSource;
         private bool _isPlayerInsideApartment = true;
         private bool _isPlayerOnDoor;
@@ -117,7 +119,6 @@ namespace Elevator.scripts
                 ToggleDoorState();
             }
 
-
             if (eventData.Name == GameEvents.ClickOnItem)
             {
                 var isDoor =
@@ -170,13 +171,13 @@ namespace Elevator.scripts
 
         private void ToggleDoorState()
         {
-            // if (npcAtDoor) npcAtDoor.SetActive(isDoorOpen);
+            door.GetComponent<SpriteRenderer>().enabled = !isDoorOpen;
 
-            foreach (var door in doors)
-            {
-                door.GetComponent<SpriteRenderer>().enabled = !isDoorOpen;
-                if (doorNumberTextMeshPro) doorNumberTextMeshPro.enabled = !isDoorOpen;
-            }
+            door.GetComponent<Collider2D>().enabled = !isDoorOpen;
+            entrance.GetComponent<Collider2D>().enabled = isDoorOpen;
+
+            if (doorNumberTextMeshPro)
+                doorNumberTextMeshPro.enabled = !isDoorOpen;
         }
     }
 }

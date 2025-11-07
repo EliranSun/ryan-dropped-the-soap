@@ -19,20 +19,17 @@ namespace Elevator.scripts
         private void Start()
         {
             for (var i = 0; i < children.Length; i++)
-                children[i].GetComponent<FloorIndexController>().UpdateFloorNumber(i + 1);
+                children[i].GetComponent<FloorWrapController>().UpdateFloorNumber(i + 1);
         }
 
         private void Update()
         {
             var targetYPosition = target.transform.position.y;
             _yDirection = targetYPosition - _previousYPosition;
-            
+
             // Detect large position jumps (teleports)
-            if (Mathf.Abs(_yDirection) > childHeight * 2)
-            {
-                RepositionFloorsAroundTarget(targetYPosition);
-            }
-            
+            if (Mathf.Abs(_yDirection) > childHeight * 2) RepositionFloorsAroundTarget(targetYPosition);
+
             _previousYPosition = targetYPosition;
 
             if (targetYPosition < stopWrapBelowY)
@@ -65,24 +62,24 @@ namespace Elevator.scripts
         private void RepositionFloorsAroundTarget(float targetY)
         {
             // Calculate the floor number at target position
-            int baseFloorNumber = Mathf.RoundToInt(targetY / childHeight);
-            
+            var baseFloorNumber = Mathf.RoundToInt(targetY / childHeight);
+
             // Distribute floors around the target
-            int floorsBelow = children.Length / 2;
-            
-            for (int i = 0; i < children.Length; i++)
+            var floorsBelow = children.Length / 2;
+
+            for (var i = 0; i < children.Length; i++)
             {
-                int floorOffset = i - floorsBelow;
-                float newY = (baseFloorNumber + floorOffset) * childHeight;
-                int newFloorNumber = baseFloorNumber + floorOffset;
-                
+                var floorOffset = i - floorsBelow;
+                var newY = (baseFloorNumber + floorOffset) * childHeight;
+                var newFloorNumber = baseFloorNumber + floorOffset;
+
                 children[i].transform.position = new Vector3(
                     children[i].transform.position.x,
                     newY,
                     children[i].transform.position.z
                 );
-                
-                children[i].GetComponent<FloorIndexController>().UpdateFloorNumber(newFloorNumber);
+
+                children[i].GetComponent<FloorWrapController>().UpdateFloorNumber(newFloorNumber);
             }
         }
 
@@ -108,7 +105,7 @@ namespace Elevator.scripts
                 newFloorNumber = lowestFloor - 1;
             }
 
-            child.GetComponent<FloorIndexController>().UpdateFloorNumber(newFloorNumber);
+            child.GetComponent<FloorWrapController>().UpdateFloorNumber(newFloorNumber);
         }
 
         private int GetHighestFloorNumber()
@@ -116,7 +113,7 @@ namespace Elevator.scripts
             var highest = 0;
             foreach (var child in children)
             {
-                var controller = child.GetComponent<FloorIndexController>();
+                var controller = child.GetComponent<FloorWrapController>();
                 if (controller != null)
                 {
                     var floorText = controller.GetFloorNumberText();
@@ -133,7 +130,7 @@ namespace Elevator.scripts
             var lowest = int.MaxValue;
             foreach (var child in children)
             {
-                var controller = child.GetComponent<FloorIndexController>();
+                var controller = child.GetComponent<FloorWrapController>();
                 if (controller != null)
                 {
                     var floorText = controller.GetFloorNumberText();

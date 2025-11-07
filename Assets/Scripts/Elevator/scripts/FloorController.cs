@@ -17,16 +17,15 @@ namespace Elevator.scripts
                 Notify(GameEvents.FloorChange, floorNumber);
         }
 
-        public void SetFloorNumber(int newFloorNumber, BuildingController _buildingController)
+        public void SetFloorNumber(int newFloorNumber)
         {
             floorNumber = newFloorNumber;
-            buildingController = _buildingController;
 
             if (floorNumberText)
                 floorNumberText.text = floorNumber.ToString();
 
             for (var i = 0; i <= apartments.Length - 1; i++)
-                apartments[i].SetData(floorNumber, i, buildingController);
+                apartments[i].SetData(floorNumber, i);
         }
 
         public void SetObserver(UnityEvent<GameEventData> observer)
