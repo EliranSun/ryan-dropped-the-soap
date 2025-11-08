@@ -88,7 +88,7 @@ namespace Npc
             if (!_apartment.door) return;
             var doorController = _apartment.door.GetComponent<DoorController>();
 
-            doorController.OpenNpcDoor();
+            doorController.OpenDoor();
 
             if (knockOnDoorLines.Length > 1)
                 Notify(GameEvents.TriggerSpecificDialogLine, knockOnDoorLines[1]);

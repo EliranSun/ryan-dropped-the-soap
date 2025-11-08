@@ -77,7 +77,7 @@ namespace Elevator.scripts
                 }
 
                 var apartmentDoorPosition = tenant.door.transform.position;
-                tenant.door.GetComponent<DoorController>().OpenNpcDoor();
+                tenant.door.GetComponent<DoorController>().OpenDoor();
                 playerPosition.x = apartmentDoorPosition.x;
                 PlayerPrefs.DeleteKey("ExitFromApartment");
             }

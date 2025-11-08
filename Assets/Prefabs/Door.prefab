@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8790365631613370147}
   m_Layer: 0
   m_Name: door frame
-  m_TagString: Door Entrance
+  m_TagString: Apartment Entrance
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -298,11 +298,12 @@ MonoBehaviour:
   floorData: {fileID: 0}
   doorNumber: 0
   isDoorOpen: 0
+  isPlayerApartment: 0
+  door: {fileID: 8217100731081042057}
+  entrance: {fileID: 6901329108500437783}
   knockSounds:
   - {fileID: 8300000, guid: 1c9c36f43daf74648b66f66905279b19, type: 3}
   - {fileID: 8300000, guid: 6a07596ef46440745aee0547582091a5, type: 3}
-  door: {fileID: 8217100731081042057}
-  entrance: {fileID: 6901329108500437783}
 --- !u!82 &5100940597016007740
 AudioSource:
   m_ObjectHideFlags: 0

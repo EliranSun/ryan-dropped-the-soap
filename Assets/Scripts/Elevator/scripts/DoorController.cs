@@ -16,12 +16,13 @@ namespace Elevator.scripts
         [SerializeField] private Transform playerTransform;
         [SerializeField] private FloorData floorData;
         [SerializeField] public int doorNumber;
-        [SerializeField] private bool isDoorOpen;
-        [SerializeField] private AudioClip[] knockSounds;
+        [SerializeField] private bool isPlayerApartment;
         [SerializeField] private GameObject door;
         [SerializeField] private GameObject entrance;
+        [SerializeField] private AudioClip[] knockSounds;
 
         private AudioSource _audioSource;
+        private bool _isDoorOpen;
         private bool _isPlayerInsideApartment = true;
         private bool _isPlayerOnDoor;
         private GameObject[] _objectsInsideApartment = { };
@@ -29,7 +30,6 @@ namespace Elevator.scripts
         private void Start()
         {
             _audioSource = GetComponent<AudioSource>();
-            ToggleDoorState();
 
             _isPlayerInsideApartment =
                 SceneManager.GetActiveScene().name.ToLower().Contains("apartment");
@@ -42,7 +42,9 @@ namespace Elevator.scripts
         {
             if (Input.GetKeyDown(KeyCode.X) && _isPlayerOnDoor)
             {
-                if (isDoorOpen) EnterApartment();
+                print($"Is door open? {_isDoorOpen}; Is player apartment? {isPlayerApartment}");
+                // if (isDoorOpen) EnterApartment();
+                if (isPlayerApartment) OpenDoor();
                 else KnockOnDoor();
             }
         }
@@ -62,20 +64,20 @@ namespace Elevator.scripts
 
         private void EnterApartment()
         {
-            var location = doorNumber switch
-            {
-                var n when n == floorData.PlayerApartmentNumber => Location.PlayerApartment,
-                var n when n == floorData.ZekeApartmentNumber => Location.ZekeApartment,
-                var n when n == floorData.StacyApartmentNumber => Location.StacyApartment,
-                _ => Location.EmptyApartment
-            };
-
-            print($"Enter/Exit apartment {doorNumber}, {location}");
-
-            PlayerPrefs.SetInt("ExitFromApartment", doorNumber);
-
-            Notify(GameEvents.ChangePlayerLocation,
-                _isPlayerInsideApartment ? Location.Hallway : location);
+            // var location = doorNumber switch
+            // {
+            //     var n when n == floorData.PlayerApartmentNumber => Location.PlayerApartment,
+            //     var n when n == floorData.ZekeApartmentNumber => Location.ZekeApartment,
+            //     var n when n == floorData.StacyApartmentNumber => Location.StacyApartment,
+            //     _ => Location.EmptyApartment
+            // };
+            //
+            // print($"Enter/Exit apartment {doorNumber}, {location}");
+            //
+            // PlayerPrefs.SetInt("ExitFromApartment", doorNumber);
+            //
+            // Notify(GameEvents.ChangePlayerLocation,
+            //     _isPlayerInsideApartment ? Location.Hallway : location);
         }
 
         private void KnockOnDoor()
@@ -86,11 +88,11 @@ namespace Elevator.scripts
 
         private void HandlePlayerApartmentDoorClick()
         {
-            isDoorOpen = !isDoorOpen;
+            _isDoorOpen = !_isDoorOpen;
 
             ToggleDoorState();
 
-            Notify(isDoorOpen
+            Notify(_isDoorOpen
                 ? GameEvents.PlayerApartmentDoorOpened
                 : GameEvents.PlayerApartmentDoorClosed);
         }
@@ -111,31 +113,30 @@ namespace Elevator.scripts
             buildingController.OnNotify(new GameEventData(GameEvents.KnockOnNpcDoor, doorNumber));
         }
 
-        public void OnNotify(GameEventData eventData)
+        // public void OnNotify(GameEventData eventData)
+        // {
+        //     if (eventData.Name == GameEvents.OpenNpcDoor)
+        //     {
+        //         isDoorOpen = true;
+        //         ToggleDoorState();
+        //     }
+        //
+        //     if (eventData.Name == GameEvents.ClickOnItem)
+        //     {
+        //         var isDoor =
+        //             ((string)eventData.Data).ToLower().Contains("inside door") ||
+        //             ((string)eventData.Data).ToLower().Contains("hallway door");
+        //
+        //         if (!isDoor)
+        //             return;
+        //
+        //         if (doorNumber == floorData.PlayerApartmentNumber)
+        //             HandlePlayerApartmentDoorClick();
+        //     }
+        // }
+
+        public void OpenDoor()
         {
-            if (eventData.Name == GameEvents.OpenNpcDoor)
-            {
-                isDoorOpen = true;
-                ToggleDoorState();
-            }
-
-            if (eventData.Name == GameEvents.ClickOnItem)
-            {
-                var isDoor =
-                    ((string)eventData.Data).ToLower().Contains("inside door") ||
-                    ((string)eventData.Data).ToLower().Contains("hallway door");
-
-                if (!isDoor)
-                    return;
-
-                if (doorNumber == floorData.PlayerApartmentNumber)
-                    HandlePlayerApartmentDoorClick();
-            }
-        }
-
-        public void OpenNpcDoor()
-        {
-            isDoorOpen = true;
             ToggleDoorState();
         }
 
@@ -171,13 +172,13 @@ namespace Elevator.scripts
 
         private void ToggleDoorState()
         {
-            door.GetComponent<SpriteRenderer>().enabled = !isDoorOpen;
-
-            door.GetComponent<Collider2D>().enabled = !isDoorOpen;
-            entrance.GetComponent<Collider2D>().enabled = isDoorOpen;
+            _isDoorOpen = !_isDoorOpen;
+            door.GetComponent<SpriteRenderer>().enabled = !_isDoorOpen;
+            door.GetComponent<Collider2D>().enabled = !_isDoorOpen;
+            entrance.GetComponent<Collider2D>().enabled = _isDoorOpen;
 
             if (doorNumberTextMeshPro)
-                doorNumberTextMeshPro.enabled = !isDoorOpen;
+                doorNumberTextMeshPro.enabled = !_isDoorOpen;
         }
     }
 }

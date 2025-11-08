@@ -10,7 +10,7 @@ namespace Elevator.scripts
     public enum BuildingLayerType
     {
         Outside,
-        InBuilding,
+        Hallway,
         Staircase,
         Elevator,
         Apartment
@@ -30,7 +30,7 @@ namespace Elevator.scripts
             return layerType switch
             {
                 BuildingLayerType.Outside => outsideLayer,
-                BuildingLayerType.InBuilding => inBuildingLayer,
+                BuildingLayerType.Hallway => inBuildingLayer,
                 BuildingLayerType.Staircase => staircaseLayer,
                 BuildingLayerType.Elevator => elevatorLayer,
                 BuildingLayerType.Apartment => apartmentsLayer,
@@ -138,7 +138,7 @@ namespace Elevator.scripts
                         break;
 
                     case ObjectNames.BuildingEntrance:
-                        SetActiveLayer(BuildingLayerType.InBuilding);
+                        SetActiveLayer(BuildingLayerType.Hallway);
                         break;
 
                     case ObjectNames.StaircaseEntrance:
@@ -146,11 +146,11 @@ namespace Elevator.scripts
                         break;
 
                     case ObjectNames.StaircaseExit:
-                        SetActiveLayer(BuildingLayerType.InBuilding);
+                        SetActiveLayer(BuildingLayerType.Hallway);
                         break;
 
                     case ObjectNames.ElevatorExitDoors:
-                        SetActiveLayer(BuildingLayerType.InBuilding);
+                        SetActiveLayer(BuildingLayerType.Hallway);
                         break;
 
                     case ObjectNames.ElevatorEnterDoors:
@@ -159,6 +159,10 @@ namespace Elevator.scripts
 
                     case ObjectNames.ApartmentEntrance:
                         SetActiveLayer(BuildingLayerType.Apartment);
+                        break;
+
+                    case ObjectNames.ApartmentExit:
+                        SetActiveLayer(BuildingLayerType.Hallway);
                         break;
                 }
             }

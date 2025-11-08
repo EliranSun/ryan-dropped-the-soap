@@ -23,7 +23,7 @@ namespace Elevator.scripts
             if (data.Name is GameEvents.UnlockRyanApartment or GameEvents.UnlockCharlotteApartment)
             {
                 var door = FindNpcDoor(floorData.CharlotteApartmentNumber);
-                if (door) door.OpenNpcDoor();
+                if (door) door.OpenDoor();
             }
 
             if (data.Name == GameEvents.PlayerInteraction)
