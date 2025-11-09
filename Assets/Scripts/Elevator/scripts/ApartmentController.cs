@@ -14,7 +14,7 @@ namespace Elevator.scripts
             _floorNumber = floorNum;
             _apartmentNumber = apartmentNum;
 
-            door.SetDoorNumber($"{floorNum}{apartmentNum}");
+            // door.SetDoorNumber($"{floorNum}{apartmentNum}");
 
             // TODO: Refactor to match new building
             // if (tenant.floorNumber == _floorNumber && tenant.apartmentNumber == _apartmentNumber)

@@ -623,6 +623,7 @@ GameObject:
   - component: {fileID: 2952461668344497362}
   - component: {fileID: 5442334933714138023}
   - component: {fileID: 1194270399006278426}
+  - component: {fileID: 4184302327878310789}
   m_Layer: 11
   m_Name: Elevator
   m_TagString: Elevator
@@ -934,6 +935,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &4184302327878310789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6707060983621058362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 646115750b7c6f747a3a20d631de081f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ElevatorScriptsAssembly::ElevatorButtonsController
+  elevatorController: {fileID: 0}
+  floorText: {fileID: 8603247664402314439}
+  desiredFloorText: {fileID: 5347976652840370573}
 --- !u!1001 &5319632857278488809
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1000,3 +1016,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6391578295090640834, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
   m_PrefabInstance: {fileID: 5319632857278488809}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5347976652840370573 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 280619043318571364, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+  m_PrefabInstance: {fileID: 5319632857278488809}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8603247664402314439 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4519293837821875246, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+  m_PrefabInstance: {fileID: 5319632857278488809}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -1,33 +1,37 @@
 using System.Collections;
-using Player;
-using TMPro;
 using UnityEngine;
 
 namespace Elevator.scripts
 {
     public class ElevatorController : ObserverSubject
     {
-        [SerializeField] private ElevatorButtonsController elevatorButtonsController;
-        [SerializeField] private AudioSource elevatorAudioSource;
-        [SerializeField] private AudioClip elevatorMovingSound;
-        [SerializeField] private AudioClip elevatorReachedFloorSound;
-        [SerializeField] private GameObject elevator;
-        [SerializeField] private ElevatorShake shakeableCamera;
-        [SerializeField] private GameObject exit;
-        [SerializeField] private GameObject shaftLight;
-        [SerializeField] private float debounce = 3f;
-        [SerializeField] private float lightLoop = 3f;
-        [SerializeField] private float apartmentsPanelMoveSpeed = 1;
-        [SerializeField] private float elevatorSpeed = 0.1f;
-        [SerializeField] public int currentFloor;
-        [SerializeField] public float floorHeight;
-        [SerializeField] private float minYToStop;
-        [SerializeField] private bool restoreElevatorFloor = true;
-        [SerializeField] private TextMeshPro[] apartmentNumbers;
-        [SerializeField] private GameObject[] panelNumbers;
+        [Header("Essentials")] [SerializeField]
+        private GameObject elevator;
 
+        [SerializeField] private GameObject exit;
+        [SerializeField] public float floorHeight;
+        [SerializeField] public int currentFloor;
         public int desiredFloor;
         public bool isFloorMoving;
+
+        [Header("Sound")] [SerializeField] private AudioSource elevatorAudioSource;
+        [SerializeField] private AudioClip elevatorMovingSound;
+        [SerializeField] private AudioClip elevatorReachedFloorSound;
+
+        [Header("Player interaction")] [SerializeField]
+        private ElevatorButtonsController elevatorButtonsController;
+
+        [Header("Configuration")] [SerializeField]
+        private bool restoreElevatorFloor = true;
+
+        [SerializeField] private float elevatorSpeed = 0.1f;
+        [SerializeField] private float minYToStop;
+
+        [Header("Animation")] [SerializeField] private GameObject shaftLight;
+
+        [SerializeField] private float lightLoop = 3f;
+        [SerializeField] private ElevatorShake shakeableCamera;
+
         private Rigidbody2D _elevatorRigidbody;
         private bool _hasReachedYTarget = true; // Track if we've reached the yTarget to prevent multiple notifications
         private Vector3 _initLightPosition;
@@ -56,20 +60,21 @@ namespace Elevator.scripts
             Notify(GameEvents.FloorChange, currentFloor);
         }
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.X) && !isFloorMoving)
-                // if (floorData) floorData.playerExitElevator = true;
-                Notify(GameEvents.ChangePlayerLocation, Location.Hallway);
-        }
+        // private void Update()
+        // {
+        //     if (Input.GetKeyDown(KeyCode.X) && !isFloorMoving)
+        //         // if (floorData) floorData.playerExitElevator = true;
+        //         Notify(GameEvents.ChangePlayerLocation, Location.Hallway);
+        // }
 
-        private void FixedUpdate()
+        private void Update()
         {
             if (Mathf.Abs(_yTarget - _elevatorRigidbody.position.y) > minYToStop)
             {
                 var direction = _yTarget > _elevatorRigidbody.position.y ? Vector2.up : Vector2.down;
                 var newPosition = _elevatorRigidbody.position + direction * (Time.fixedDeltaTime * elevatorSpeed);
                 _elevatorRigidbody.MovePosition(newPosition);
+                print($"Elevator moving... {newPosition}");
 
                 // Update floor number based on current position
                 UpdateFloorBasedOnPosition();
@@ -79,7 +84,7 @@ namespace Elevator.scripts
             }
             else if (!_hasReachedYTarget)
             {
-                // Elevator has reached the yTarget destination
+                print("Elevator has reached the yTarget destination");
                 _hasReachedYTarget = true;
                 OnReachFloor();
             }
@@ -109,15 +114,8 @@ namespace Elevator.scripts
                 PlayerPrefs.SetInt("currentFloor", currentFloor);
 
                 // Update floor display
-                if (elevatorButtonsController.floorText)
+                if (elevatorButtonsController && elevatorButtonsController.floorText)
                     elevatorButtonsController.floorText.text = currentFloor.ToString();
-
-                // Update apartment numbers
-                for (var i = 0; i < apartmentNumbers.Length; i++)
-                {
-                    var apt = apartmentNumbers[i];
-                    apt.text = $"{currentFloor}0{i + 1}";
-                }
 
                 // Notify other systems of floor change
                 Notify(GameEvents.FloorChange, currentFloor);
@@ -139,12 +137,6 @@ namespace Elevator.scripts
 
                 if (elevatorButtonsController.floorText)
                     elevatorButtonsController.floorText.text = $"{currentFloor}";
-
-                for (var i = 0; i < apartmentNumbers.Length; i++)
-                {
-                    var apt = apartmentNumbers[i];
-                    apt.text = $"{currentFloor}0{i + 1}";
-                }
             }
 
 
@@ -165,7 +157,7 @@ namespace Elevator.scripts
         public void CallElevator(float yPosition)
         {
             exit.SetActive(false);
-            print("Should go to " + yPosition);
+            print($"Should go to Y {yPosition}. Current Y: {elevator.transform.position.y}");
             _yTarget = yPosition; // height to reach floor as this is the middle of the floor
             _hasReachedYTarget = false; // Reset flag when setting new target
         }

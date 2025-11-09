@@ -5,8 +5,8 @@ namespace Elevator.scripts
 {
     public class FloorPositionWrap : MonoBehaviour
     {
-        [FormerlySerializedAs("player")] [SerializeField]
-        private GameObject target;
+        [FormerlySerializedAs("target")] [SerializeField]
+        private GameObject player;
 
         [SerializeField] private Camera mainCamera;
         [SerializeField] private float childHeight = 9.6f;
@@ -24,7 +24,7 @@ namespace Elevator.scripts
 
         private void Update()
         {
-            var targetYPosition = target.transform.position.y;
+            var targetYPosition = player.transform.position.y;
             _yDirection = targetYPosition - _previousYPosition;
 
             // Detect large position jumps (teleports)
