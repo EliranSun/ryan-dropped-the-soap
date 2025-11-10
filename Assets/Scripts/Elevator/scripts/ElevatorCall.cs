@@ -17,10 +17,9 @@ namespace Elevator.scripts
             var distanceToElevator = Vector3.Distance(playerTransform.position, transform.position);
 
             if (Input.GetKeyDown(KeyCode.X) && distanceToElevator <= minDistanceForCall)
-            {
-                if (_areDoorsOpen) Notify(GameEvents.EnterElevator);
-                else controller.CallElevator(transform.position.y);
-            }
+                // Notify(GameEvents.EnterElevator);
+                if (!_areDoorsOpen)
+                    controller.CallElevator(transform.position.y);
         }
 
         public void OnNotify(GameEventData eventData)
@@ -28,6 +27,7 @@ namespace Elevator.scripts
             if (eventData.Name == GameEvents.FloorChange)
             {
                 var floorNumber = (int)eventData.Data;
+                gameObject.tag = "Elevator Doors";
                 currentElevatorFloorIndication.text = floorNumber.ToString();
             }
 
@@ -38,6 +38,7 @@ namespace Elevator.scripts
                 if (distanceToSelf <= 1)
                 {
                     if (doors) doors.gameObject.SetActive(false);
+                    gameObject.tag = "Elevator Entrance";
                     _areDoorsOpen = true;
                 }
             }

@@ -5,14 +5,25 @@ namespace Elevator.scripts
 {
     public class ElevatorController : ObserverSubject
     {
-        [Header("Essentials")] [SerializeField]
-        private GameObject elevator;
+        [Header("Essentials")]
+        // [SerializeField] private GameObject elevator;
+        [SerializeField]
+        private GameObject[] elevatorContents;
+
+        // moving the elevator via transform causes jitter
+        [SerializeField] private Rigidbody2D elevatorRigidbody2D;
 
         [SerializeField] private GameObject exit;
         [SerializeField] public float floorHeight;
         [SerializeField] public int currentFloor;
         public int desiredFloor;
         public bool isFloorMoving;
+
+        [Header("Configuration")] [SerializeField]
+        private bool saveLastElevatorFloor = true;
+
+        [SerializeField] private float elevatorSpeed = 10f;
+        [SerializeField] private float stopThresholdY;
 
         [Header("Sound")] [SerializeField] private AudioSource elevatorAudioSource;
         [SerializeField] private AudioClip elevatorMovingSound;
@@ -21,41 +32,33 @@ namespace Elevator.scripts
         [Header("Player interaction")] [SerializeField]
         private ElevatorButtonsController elevatorButtonsController;
 
-        [Header("Configuration")] [SerializeField]
-        private bool restoreElevatorFloor = true;
-
-        [SerializeField] private float elevatorSpeed = 0.1f;
-        [SerializeField] private float minYToStop;
-
         [Header("Animation")] [SerializeField] private GameObject shaftLight;
 
         [SerializeField] private float lightLoop = 3f;
         [SerializeField] private ElevatorShake shakeableCamera;
 
-        private Rigidbody2D _elevatorRigidbody;
         private bool _hasReachedYTarget = true; // Track if we've reached the yTarget to prevent multiple notifications
         private Vector3 _initLightPosition;
-        private float _yTarget;
+        private float _targetYPosition;
 
         private void Start()
         {
             // Get and configure Rigidbody2D
-            _elevatorRigidbody = elevator.GetComponent<Rigidbody2D>();
-            _elevatorRigidbody.bodyType = RigidbodyType2D.Kinematic;
-            _elevatorRigidbody.gravityScale = 0f;
+            elevatorRigidbody2D.bodyType = RigidbodyType2D.Kinematic;
+            elevatorRigidbody2D.gravityScale = 0f;
 
             var storedCurrentFloor = PlayerPrefs.GetInt("currentFloor");
-            if (storedCurrentFloor != 0 && restoreElevatorFloor)
+            if (storedCurrentFloor != 0 && saveLastElevatorFloor)
                 currentFloor = storedCurrentFloor;
 
 
             // Set initial position using Rigidbody2D
             var initialPosition = new Vector2(
-                elevator.transform.position.x,
+                elevatorRigidbody2D.transform.position.x,
                 CalculateElevatorYPosition(currentFloor)
             );
-            _elevatorRigidbody.position = initialPosition;
-            _yTarget = initialPosition.y;
+            elevatorRigidbody2D.position = initialPosition;
+            _targetYPosition = initialPosition.y;
 
             Notify(GameEvents.FloorChange, currentFloor);
         }
@@ -69,12 +72,12 @@ namespace Elevator.scripts
 
         private void Update()
         {
-            if (Mathf.Abs(_yTarget - _elevatorRigidbody.position.y) > minYToStop)
+            if (Mathf.Abs(_targetYPosition - elevatorRigidbody2D.position.y) > stopThresholdY)
             {
-                var direction = _yTarget > _elevatorRigidbody.position.y ? Vector2.up : Vector2.down;
-                var newPosition = _elevatorRigidbody.position + direction * (Time.fixedDeltaTime * elevatorSpeed);
-                _elevatorRigidbody.MovePosition(newPosition);
-                print($"Elevator moving... {newPosition}");
+                var direction = _targetYPosition > elevatorRigidbody2D.position.y ? Vector2.up : Vector2.down;
+                var newPosition = elevatorRigidbody2D.position + direction * (Time.fixedDeltaTime * elevatorSpeed);
+                elevatorRigidbody2D.MovePosition(newPosition);
+                print($"Elevator moving to {_targetYPosition}... current: {newPosition}");
 
                 // Update floor number based on current position
                 UpdateFloorBasedOnPosition();
@@ -94,7 +97,7 @@ namespace Elevator.scripts
         {
             // Assuming floor 0 is at Y position 0, calculate position for current floor
             // return floorNumber * floorHeight + elevator.transform.localScale.y / 2f;
-            return floorNumber * floorHeight + 5;
+            return floorNumber * floorHeight;
         }
 
         /// <summary>
@@ -104,13 +107,15 @@ namespace Elevator.scripts
         {
             // Calculate which floor we're currently on based on Y position
             // Assuming floor 0 is at Y position 0, each floor is floorHeight units apart
-            var calculatedFloor = Mathf.RoundToInt(
-                (elevator.transform.position.y - elevator.transform.localScale.y / 2f) / floorHeight);
+            var targetFloorNumber = Mathf.RoundToInt(
+                (elevatorRigidbody2D.transform.position.y - elevatorRigidbody2D.transform.localScale.y / 2f) /
+                floorHeight
+            );
 
             // Only update if the floor has actually changed
-            if (calculatedFloor != currentFloor)
+            if (targetFloorNumber != currentFloor)
             {
-                currentFloor = calculatedFloor;
+                currentFloor = targetFloorNumber;
                 PlayerPrefs.SetInt("currentFloor", currentFloor);
 
                 // Update floor display
@@ -151,14 +156,25 @@ namespace Elevator.scripts
 
             if (eventData.Name == GameEvents.ResumeElevator)
                 GoToFloor(desiredFloor);
+
+            if (eventData.Name == GameEvents.EnterElevator)
+                OnElevatorEnter();
         }
 
 
         public void CallElevator(float yPosition)
         {
+            print($"Should go to Y {yPosition}. Current Y: {elevatorRigidbody2D.position.y}");
+
             exit.SetActive(false);
-            print($"Should go to Y {yPosition}. Current Y: {elevator.transform.position.y}");
-            _yTarget = yPosition; // height to reach floor as this is the middle of the floor
+            elevatorRigidbody2D.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+
+            foreach (var collider2d in elevatorRigidbody2D.gameObject.GetComponents<Collider2D>())
+                collider2d.enabled = false;
+            foreach (var content in elevatorContents)
+                content.SetActive(false);
+
+            _targetYPosition = yPosition; // height to reach floor as this is the middle of the floor
             _hasReachedYTarget = false; // Reset flag when setting new target
         }
 
@@ -174,13 +190,13 @@ namespace Elevator.scripts
                 return;
             }
 
-            StartCoroutine(InsideElevatorMove());
+            StartCoroutine(MoveElevator());
             // StartCoroutine(MoveApartmentsGrid());
             shakeableCamera.Shake(Mathf.Abs(floorNumber - currentFloor));
             shaftLight.SetActive(false);
         }
 
-        private IEnumerator InsideElevatorMove()
+        private IEnumerator MoveElevator()
         {
             Notify(GameEvents.ElevatorMoving);
 
@@ -224,9 +240,20 @@ namespace Elevator.scripts
 
         private void OnReachFloor()
         {
+            Debug.Log($"OnReachFloor reached destination: {_targetYPosition}");
+            Notify(GameEvents.ElevatorReachedFloor, _targetYPosition);
+        }
+
+        public void OnElevatorEnter()
+        {
             exit.SetActive(true);
-            Debug.Log($"OnReachFloor reached destination: {_yTarget}");
-            Notify(GameEvents.ElevatorReachedFloor, _yTarget);
+
+            elevatorRigidbody2D.gameObject.GetComponent<SpriteRenderer>().enabled = true;
+
+            foreach (var collider2d in elevatorRigidbody2D.gameObject.GetComponents<Collider2D>())
+                collider2d.enabled = true;
+            foreach (var content in elevatorContents)
+                content.SetActive(true);
         }
 
         private IEnumerator ControlShaftLight()

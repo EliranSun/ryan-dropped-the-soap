@@ -86,13 +86,17 @@ namespace Player
                     break;
 
                 case "Apartment Entrance":
-                    interactionText.text = "Enter";
+                    interactionText.text = "ENTER";
                     _interactedObjectName = ObjectNames.ApartmentEntrance;
                     break;
 
                 case "Apartment Exit":
                     interactionText.text = "Exit";
                     _interactedObjectName = ObjectNames.ApartmentExit;
+                    break;
+
+                case "Elevator Doors":
+                    interactionText.text = "CALL";
                     break;
 
                 case "Elevator Entrance":

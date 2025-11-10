@@ -39,7 +39,7 @@ namespace Elevator.scripts
         }
     }
 
-    public class TheBuildingLayerController : MonoBehaviour
+    public class TheBuildingLayerController : ObserverSubject
     {
         [SerializeField] private BuildingLayerType initialLayer = BuildingLayerType.Outside;
         [SerializeField] private BuildingLayers layers;
@@ -155,6 +155,7 @@ namespace Elevator.scripts
 
                     case ObjectNames.ElevatorEnterDoors:
                         SetActiveLayer(BuildingLayerType.Elevator);
+                        Notify(GameEvents.EnterElevator);
                         break;
 
                     case ObjectNames.ApartmentEntrance:
