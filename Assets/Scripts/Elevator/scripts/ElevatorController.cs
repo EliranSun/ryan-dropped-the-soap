@@ -15,8 +15,9 @@ namespace Elevator.scripts
 
         [SerializeField] private GameObject exit;
         [SerializeField] public float floorHeight;
+
         [SerializeField] public int currentFloor;
-        public int desiredFloor;
+        public int targetFloor;
         public bool isFloorMoving;
 
         [Header("Configuration")] [SerializeField]
@@ -80,7 +81,7 @@ namespace Elevator.scripts
                 print($"Elevator moving to {_targetYPosition}... current: {newPosition}");
 
                 // Update floor number based on current position
-                UpdateFloorBasedOnPosition();
+                UpdateFloorNumber();
 
                 // Mark that we're moving towards target
                 _hasReachedYTarget = false;
@@ -97,13 +98,14 @@ namespace Elevator.scripts
         {
             // Assuming floor 0 is at Y position 0, calculate position for current floor
             // return floorNumber * floorHeight + elevator.transform.localScale.y / 2f;
-            return floorNumber * floorHeight;
+            print($"Summoned from floor {floorNumber}. Should go to Y: {floorNumber * floorHeight}");
+            return floorNumber * floorHeight + 5;
         }
 
         /// <summary>
         ///     Updates the current floor number based on the elevator's Y position
         /// </summary>
-        private void UpdateFloorBasedOnPosition()
+        private void UpdateFloorNumber()
         {
             // Calculate which floor we're currently on based on Y position
             // Assuming floor 0 is at Y position 0, each floor is floorHeight units apart
@@ -155,16 +157,16 @@ namespace Elevator.scripts
                 StopElevator();
 
             if (eventData.Name == GameEvents.ResumeElevator)
-                GoToFloor(desiredFloor);
+                GoToFloor(targetFloor);
 
             if (eventData.Name == GameEvents.EnterElevator)
                 OnElevatorEnter();
         }
 
 
-        public void CallElevator(float yPosition)
+        public void CallElevator(int floorNumber)
         {
-            print($"Should go to Y {yPosition}. Current Y: {elevatorRigidbody2D.position.y}");
+            print($"Should go to floor {floorNumber}. Current Y: {elevatorRigidbody2D.position.y}");
 
             exit.SetActive(false);
             elevatorRigidbody2D.gameObject.GetComponent<SpriteRenderer>().enabled = false;
@@ -174,14 +176,14 @@ namespace Elevator.scripts
             foreach (var content in elevatorContents)
                 content.SetActive(false);
 
-            _targetYPosition = yPosition; // height to reach floor as this is the middle of the floor
-            _hasReachedYTarget = false; // Reset flag when setting new target
+            _targetYPosition = CalculateElevatorYPosition(floorNumber);
+            _hasReachedYTarget = false;
         }
 
         public void GoToFloor(int floorNumber)
         {
-            desiredFloor = floorNumber;
-            CallElevator(CalculateElevatorYPosition(desiredFloor));
+            targetFloor = floorNumber;
+            CallElevator(targetFloor);
 
             if (isFloorMoving)
             {
@@ -209,7 +211,7 @@ namespace Elevator.scripts
 
             isFloorMoving = true;
 
-            while (currentFloor != desiredFloor)
+            while (currentFloor != targetFloor)
                 yield return new WaitForSeconds(0.5f);
 
             StopElevator();
@@ -240,8 +242,8 @@ namespace Elevator.scripts
 
         private void OnReachFloor()
         {
-            Debug.Log($"OnReachFloor reached destination: {_targetYPosition}");
-            Notify(GameEvents.ElevatorReachedFloor, _targetYPosition);
+            Debug.Log($"OnReachFloor reached destination: {targetFloor}");
+            Notify(GameEvents.ElevatorReachedFloor, targetFloor);
         }
 
         public void OnElevatorEnter()

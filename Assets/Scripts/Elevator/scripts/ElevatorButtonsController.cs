@@ -25,14 +25,14 @@ namespace Elevator.scripts
                 : $"{desiredFloorText.text}{floorNumber}";
 
 
-            elevatorController.desiredFloor = int.Parse(desiredFloorText.text);
+            elevatorController.targetFloor = int.Parse(desiredFloorText.text);
         }
 
         public void OnElevatorButtonClick(string buttonNumberString)
         {
             if (buttonNumberString == "go")
             {
-                elevatorController.GoToFloor(elevatorController.desiredFloor);
+                elevatorController.GoToFloor(elevatorController.targetFloor);
                 return;
             }
 

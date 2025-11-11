@@ -19,7 +19,7 @@ namespace Elevator.scripts
         private void Start()
         {
             for (var i = 0; i < children.Length; i++)
-                children[i].GetComponent<FloorWrapController>().UpdateFloorNumber(i + 1);
+                children[i].GetComponent<FloorController>().UpdateFloorNumber(i + 1);
         }
 
         private void Update()
@@ -79,7 +79,7 @@ namespace Elevator.scripts
                     children[i].transform.position.z
                 );
 
-                children[i].GetComponent<FloorWrapController>().UpdateFloorNumber(newFloorNumber);
+                children[i].GetComponent<FloorController>().UpdateFloorNumber(newFloorNumber);
             }
         }
 
@@ -105,7 +105,7 @@ namespace Elevator.scripts
                 newFloorNumber = lowestFloor - 1;
             }
 
-            child.GetComponent<FloorWrapController>().UpdateFloorNumber(newFloorNumber);
+            child.GetComponent<FloorController>().UpdateFloorNumber(newFloorNumber);
         }
 
         private int GetHighestFloorNumber()
@@ -113,7 +113,7 @@ namespace Elevator.scripts
             var highest = 0;
             foreach (var child in children)
             {
-                var controller = child.GetComponent<FloorWrapController>();
+                var controller = child.GetComponent<FloorController>();
                 if (controller != null)
                 {
                     var floorText = controller.GetFloorNumberText();
@@ -130,7 +130,7 @@ namespace Elevator.scripts
             var lowest = int.MaxValue;
             foreach (var child in children)
             {
-                var controller = child.GetComponent<FloorWrapController>();
+                var controller = child.GetComponent<FloorController>();
                 if (controller != null)
                 {
                     var floorText = controller.GetFloorNumberText();

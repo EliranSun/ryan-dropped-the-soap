@@ -136,7 +136,7 @@ namespace Elevator.scripts
             var floor = Instantiate(floorPrefab, new Vector3(0, yPosition, 0), Quaternion.identity);
             floor.transform.SetParent(floorsContainer.transform);
             floor.name = $"Floor {floorNumber}";
-            var floorController = floor.GetComponent<FloorController>();
+            var floorController = floor.GetComponent<DeprecatedFloorController>();
             floorController.SetFloorNumber(floorNumber);
             floorController.SetObserver(_floorObservers);
 

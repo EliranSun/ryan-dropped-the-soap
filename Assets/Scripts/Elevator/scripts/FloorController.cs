@@ -1,58 +1,43 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Elevator.scripts
 {
-    public class FloorController : ObserverSubject
+    public class FloorController : MonoBehaviour
     {
-        public int floorNumber;
         [SerializeField] private TextMeshPro floorNumberText;
-        [SerializeField] public BuildingController buildingController;
+        [SerializeField] private TextMeshPro stairsFloorNumberText;
+        [SerializeField] private DoorController[] doors;
         [SerializeField] private ApartmentController[] apartments;
+        public int ObjectNumber { get; private set; }
 
-        private void OnTriggerEnter2D(Collider2D other)
+        public void UpdateFloorNumber(int floorNumber)
         {
-            if (other.gameObject.CompareTag("Player"))
-                Notify(GameEvents.FloorChange, floorNumber);
+            ObjectNumber = floorNumber;
+
+            var floorNumberLabel = GetFloorNumberLabel(floorNumber);
+
+            floorNumberText.text = floorNumberLabel;
+            stairsFloorNumberText.text = floorNumberLabel;
+
+            for (var i = 0; i < doors.Length; i++)
+            {
+                var doorNumber = floorNumber * 100 + i + 1;
+                doors[i].SetDoorNumber(doorNumber.ToString());
+                apartments[i].SetData(floorNumber, doorNumber);
+            }
         }
 
-        public void SetFloorNumber(int newFloorNumber)
+        private string GetFloorNumberLabel(int floorNumber)
         {
-            floorNumber = newFloorNumber;
-
-            if (floorNumberText)
-                floorNumberText.text = floorNumber.ToString();
-
-            for (var i = 0; i <= apartments.Length - 1; i++)
-                apartments[i].SetData(floorNumber, i);
+            return floorNumber < 10
+                ? "0" + floorNumber
+                : floorNumber.ToString();
         }
 
-        public void SetObserver(UnityEvent<GameEventData> observer)
+        public string GetFloorNumberText()
         {
-            observers = observer;
-        }
-
-        private void PopulateApartments()
-        {
-            // for (var i = 0; i < apartments.Length - 1; i++)
-            //     apartments[i].SetData(floorNumber, i);
-
-            // (var apartment in apartments)
-            //     // var floor = _floors.Find(f =>
-            //     //     f.GetComponent<FloorController>().floorNumber == significantApartment.floorNumber);
-            //     // if (floor == null) continue;
-            //     // var apartment = floor.GetComponent<FloorController>().apartments
-            //     //     .First(apartment => apartment.apartmentNumber == significantApartment.apartmentNumber);
-            //     if (apartment.prefab != null && !apartment.isPopulated)
-            //     {
-            //         // Instantiate(significantApartment.prefab, apartment.prefab.transform);
-            //         // apartments should already be in scene, for making triggers and connections easier
-            //         // significantApartment.prefab.transform.position = apartment.prefab.transform.position;
-            //         // significantApartment.prefab.SetActive(true);
-            //         // apartment.isPopulated = true;
-            //
-            //     }
+            return ObjectNumber.ToString();
         }
     }
 }

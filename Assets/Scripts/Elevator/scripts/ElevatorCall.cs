@@ -5,6 +5,7 @@ namespace Elevator.scripts
 {
     public class ElevatorCall : ObserverSubject
     {
+        [SerializeField] private int floorNumber;
         [SerializeField] private float minDistanceForCall = 4f;
         [SerializeField] private TextMeshPro currentElevatorFloorIndication;
         [SerializeField] private GameObject doors;
@@ -14,12 +15,14 @@ namespace Elevator.scripts
 
         private void Update()
         {
-            var distanceToElevator = Vector3.Distance(playerTransform.position, transform.position);
+            var distanceToElevator = Vector3.Distance(
+                playerTransform.position,
+                transform.position
+            );
 
             if (Input.GetKeyDown(KeyCode.X) && distanceToElevator <= minDistanceForCall)
-                // Notify(GameEvents.EnterElevator);
                 if (!_areDoorsOpen)
-                    controller.CallElevator(transform.position.y);
+                    controller.CallElevator(floorNumber);
         }
 
         public void OnNotify(GameEventData eventData)
@@ -33,9 +36,8 @@ namespace Elevator.scripts
 
             if (eventData.Name == GameEvents.ElevatorReachedFloor)
             {
-                var elevatorYPosition = (float)eventData.Data;
-                var distanceToSelf = Mathf.Abs(elevatorYPosition - transform.position.y);
-                if (distanceToSelf <= 1)
+                var elevatorFloor = (int)eventData.Data;
+                if (elevatorFloor == floorNumber)
                 {
                     if (doors) doors.gameObject.SetActive(false);
                     gameObject.tag = "Elevator Entrance";

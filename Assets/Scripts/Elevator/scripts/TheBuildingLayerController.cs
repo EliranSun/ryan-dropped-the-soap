@@ -19,21 +19,21 @@ namespace Elevator.scripts
     [Serializable]
     public class BuildingLayers
     {
-        [SerializeField] private GameObject outsideLayer;
-        [SerializeField] private GameObject inBuildingLayer;
-        [SerializeField] private GameObject staircaseLayer;
-        [SerializeField] private GameObject elevatorLayer;
-        [SerializeField] private GameObject apartmentsLayer;
+        [SerializeField] private GameObject[] outsideLayers;
+        [SerializeField] private GameObject[] inBuildingLayers;
+        [SerializeField] private GameObject[] staircaseLayers;
+        [SerializeField] private GameObject[] elevatorLayers;
+        [SerializeField] private GameObject[] apartmentsLayers;
 
-        public GameObject GetLayer(BuildingLayerType layerType)
+        public GameObject[] GetLayer(BuildingLayerType layerType)
         {
             return layerType switch
             {
-                BuildingLayerType.Outside => outsideLayer,
-                BuildingLayerType.Hallway => inBuildingLayer,
-                BuildingLayerType.Staircase => staircaseLayer,
-                BuildingLayerType.Elevator => elevatorLayer,
-                BuildingLayerType.Apartment => apartmentsLayer,
+                BuildingLayerType.Outside => outsideLayers,
+                BuildingLayerType.Hallway => inBuildingLayers,
+                BuildingLayerType.Staircase => staircaseLayers,
+                BuildingLayerType.Elevator => elevatorLayers,
+                BuildingLayerType.Apartment => apartmentsLayers,
                 _ => throw new ArgumentOutOfRangeException(nameof(layerType), layerType, null)
             };
         }
@@ -62,16 +62,19 @@ namespace Elevator.scripts
             // Set all layers active and fade them out, except the initial layer
             foreach (BuildingLayerType layerType in Enum.GetValues(typeof(BuildingLayerType)))
             {
-                var layerObject = layers.GetLayer(layerType);
-                layerObject.SetActive(true);
+                var layersObject = layers.GetLayer(layerType);
+
+                foreach (var layerObject in layersObject)
+                    layerObject.SetActive(true);
+
 
                 if (layerType != initialLayer)
                 {
-                    StartCoroutine(FadeOutLayer(layerObject));
+                    StartCoroutine(FadeOutLayers(layersObject));
                 }
                 else
                 {
-                    StartCoroutine(FadeInLayer(layerObject));
+                    StartCoroutine(FadeInLayers(layersObject));
                     _currentActiveLayer = layerType;
                 }
             }
@@ -80,9 +83,9 @@ namespace Elevator.scripts
         private void SetActiveLayer(BuildingLayerType targetLayer)
         {
             if (_currentActiveLayer != targetLayer)
-                StartCoroutine(FadeOutLayer(layers.GetLayer(_currentActiveLayer)));
+                StartCoroutine(FadeOutLayers(layers.GetLayer(_currentActiveLayer)));
 
-            StartCoroutine(FadeInLayer(layers.GetLayer(targetLayer)));
+            StartCoroutine(FadeInLayers(layers.GetLayer(targetLayer)));
             StartCoroutine(UpdateLayersActiveState(targetLayer));
         }
 
@@ -92,8 +95,8 @@ namespace Elevator.scripts
 
             foreach (BuildingLayerType layerType in Enum.GetValues(typeof(BuildingLayerType)))
             {
-                var obj = layers.GetLayer(layerType);
-                obj.SetActive(layerType == targetLayer);
+                var objs = layers.GetLayer(layerType);
+                foreach (var obj in objs) obj.SetActive(layerType == targetLayer);
             }
 
             _currentActiveLayer = targetLayer;
@@ -183,14 +186,16 @@ namespace Elevator.scripts
             }
         }
 
-        private IEnumerator FadeOutLayer(GameObject layer)
+        private IEnumerator FadeOutLayers(GameObject[] layerObjects)
         {
-            print($"Fade out {layer}");
+            if (layerObjects == null || layerObjects.Length == 0) yield break;
 
-            var spriteRenderers = GetAllSpriteRenderers(layer);
-            // var colliders = layer.GetComponentsInChildren<Collider2D>();
-            //
-            // foreach (var col in colliders) col.enabled = false;
+            var spriteRenderers = new List<SpriteRenderer>();
+            foreach (var obj in layerObjects)
+            {
+                if (obj == null) continue;
+                spriteRenderers.AddRange(GetAllSpriteRenderers(obj));
+            }
 
             if (spriteRenderers.Count == 0) yield break;
 
@@ -206,19 +211,18 @@ namespace Elevator.scripts
             }
         }
 
-        private IEnumerator FadeInLayer(GameObject layer)
+        private IEnumerator FadeInLayers(GameObject[] layerObjects)
         {
-            // yield return new WaitForSeconds(1);
+            if (layerObjects == null || layerObjects.Length == 0) yield break;
 
-            print($"Fade in {layer}");
+            var spriteRenderers = new List<SpriteRenderer>();
+            foreach (var obj in layerObjects)
+            {
+                if (obj == null) continue;
+                spriteRenderers.AddRange(GetAllSpriteRenderers(obj));
+            }
 
-            var spriteRenderers = GetAllSpriteRenderers(layer);
-            // var colliders = layer.GetComponentsInChildren<Collider2D>();
-            //
-            // foreach (var col in colliders) col.enabled = true;
-
-            if (spriteRenderers.Count == 0)
-                yield break;
+            if (spriteRenderers.Count == 0) yield break;
 
             var currentAlpha = spriteRenderers[0].color.a;
 
