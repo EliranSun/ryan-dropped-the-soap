@@ -41,12 +41,13 @@ namespace Elevator.scripts
 
     public class TheBuildingLayerController : ObserverSubject
     {
-        [SerializeField] private BuildingLayerType initialLayer = BuildingLayerType.Outside;
-        [SerializeField] private BuildingLayers layers;
+        [SerializeField] private GameObject player;
         [SerializeField] private Camera mainCamera;
         [SerializeField] private Color skyColor;
         [SerializeField] private Color halfDarkHalfSkyColor;
         [SerializeField] private Color fullDarkColor;
+        [SerializeField] private BuildingLayerType initialLayer = BuildingLayerType.Outside;
+        [SerializeField] private BuildingLayers layers;
 
         private BuildingLayerType _currentActiveLayer;
 
@@ -146,10 +147,13 @@ namespace Elevator.scripts
 
                     case ObjectNames.StaircaseEntrance:
                         SetActiveLayer(BuildingLayerType.Staircase);
+                        var staircaseX = layers.GetLayer(BuildingLayerType.Staircase)[0].transform.position.x;
+                        mainCamera.GetComponent<CameraObjectFollow>().LockX(staircaseX);
                         break;
 
                     case ObjectNames.StaircaseExit:
                         SetActiveLayer(BuildingLayerType.Hallway);
+                        mainCamera.GetComponent<CameraObjectFollow>().UnlockX();
                         break;
 
                     case ObjectNames.ElevatorExitDoors:
@@ -158,6 +162,9 @@ namespace Elevator.scripts
 
                     case ObjectNames.ElevatorEnterDoors:
                         SetActiveLayer(BuildingLayerType.Elevator);
+                        var elevatorX = layers.GetLayer(BuildingLayerType.Elevator)[0].transform.position.x;
+                        mainCamera.GetComponent<CameraObjectFollow>().LockX(elevatorX);
+                        // mainCamera.GetComponent<Zoom>().LockX(elevatorX);
                         Notify(GameEvents.EnterElevator);
                         break;
 

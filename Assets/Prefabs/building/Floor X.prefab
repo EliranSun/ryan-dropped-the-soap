@@ -400,6 +400,7 @@ MonoBehaviour:
   observers:
     m_PersistentCalls:
       m_Calls: []
+  floorNumber: 0
   minDistanceForCall: 5
   currentElevatorFloorIndication: {fileID: 5305686902603930396}
   doors: {fileID: 8900197581193488979}
@@ -681,7 +682,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.57
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
   m_ApplyToSortingLayers: 00000000d5e98f1d8d2b6244b1ee193869a5f0e1
@@ -1342,7 +1343,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.57
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
   m_ApplyToSortingLayers: 00000000d5e98f1d8d2b6244b1ee193869a5f0e1
@@ -1917,7 +1918,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floorNumberText: {fileID: 1807189050261994506}
-  stairs: {fileID: 4627611111728986559}
+  stairsFloorNumberText: {fileID: 0}
   doors:
   - {fileID: 771575383296234952}
   - {fileID: 3299820444579598858}
@@ -2520,6 +2521,18 @@ PrefabInstance:
       value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 6284004548980049784, guid: 93113192ca9dc29439644b5c5a093346, type: 3}
+      propertyPath: m_margin.w
+      value: 1.0470672
+      objectReference: {fileID: 0}
+    - target: {fileID: 6284004548980049784, guid: 93113192ca9dc29439644b5c5a093346, type: 3}
+      propertyPath: m_margin.y
+      value: 0.2617669
+      objectReference: {fileID: 0}
+    - target: {fileID: 6284004548980049784, guid: 93113192ca9dc29439644b5c5a093346, type: 3}
+      propertyPath: m_margin.z
+      value: 0.14397
+      objectReference: {fileID: 0}
+    - target: {fileID: 6284004548980049784, guid: 93113192ca9dc29439644b5c5a093346, type: 3}
       propertyPath: m_fontAsset
       value: 
       objectReference: {fileID: 11400000, guid: ea0ee502e7129a74585160758210758c, type: 2}
@@ -2857,11 +2870,6 @@ PrefabInstance:
 --- !u!4 &2573487833581457323 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5712837753126681851, guid: 0db3790db5893df46a0e5394bb319971, type: 3}
-  m_PrefabInstance: {fileID: 7853941469712216912}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &4627611111728986559 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3226369460472793839, guid: 0db3790db5893df46a0e5394bb319971, type: 3}
   m_PrefabInstance: {fileID: 7853941469712216912}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8297936156283653683

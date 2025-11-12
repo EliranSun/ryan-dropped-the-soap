@@ -11,6 +11,7 @@ namespace Object.Scripts
         [SerializeField] private float yOffset;
         [SerializeField] private bool lockZ;
         [SerializeField] private bool lockY;
+        [SerializeField] private bool lockX;
         [SerializeField] private int centerOnObjectDelay;
         [SerializeField] private int transitionDuration = 5;
         [SerializeField] private bool catchUpMode;
@@ -20,6 +21,7 @@ namespace Object.Scripts
         private bool _isActive;
         private bool _isCatchingUp;
         private Vector3 _lastTargetPosition;
+        private float _lockedX;
 
         private Camera _mainCamera;
 
@@ -30,6 +32,7 @@ namespace Object.Scripts
         {
             _mainCamera = GetComponent<Camera>();
             _initialZ = transform.position.z;
+            _lockedX = transform.position.x;
             _lastTargetPosition = target ? target.position : Vector3.zero;
 
             if (centerOnObjectDelay > 0) Invoke(nameof(CenterOnObject), centerOnObjectDelay);
@@ -43,6 +46,8 @@ namespace Object.Scripts
             {
                 var targetPos = target.position;
                 targetPos.y += yOffset;
+                if (lockX) targetPos.x = _lockedX;
+                else if (!_centerOnObject) targetPos.x += xOffset;
                 if (lockZ) targetPos.z = _initialZ;
                 if (lockY) targetPos.y = yOffset;
 
@@ -70,9 +75,8 @@ namespace Object.Scripts
 
             var newPosition = target.position;
             newPosition.y += yOffset;
-
-            if (!_centerOnObject)
-                newPosition.x += xOffset;
+            if (lockX) newPosition.x = _lockedX;
+            else if (!_centerOnObject) newPosition.x += xOffset;
 
             if (lockZ) newPosition.z = _initialZ;
             if (lockY) newPosition.y = yOffset;
@@ -97,6 +101,8 @@ namespace Object.Scripts
             _isActive = true;
             var newPosition = target.position;
             newPosition.y += yOffset;
+            if (lockX) newPosition.x = _lockedX;
+            else if (!_centerOnObject) newPosition.x += xOffset;
             if (lockZ) newPosition.z = _initialZ;
             if (lockY) newPosition.y = yOffset;
             StartCoroutine(SmoothCameraTransition(newPosition));
@@ -115,6 +121,8 @@ namespace Object.Scripts
                 // Update target position to account for object movement
                 var currentTargetPosition = target.position;
                 currentTargetPosition.y += yOffset;
+                if (lockX) currentTargetPosition.x = _lockedX;
+                else if (!_centerOnObject) currentTargetPosition.x += xOffset;
                 if (lockZ) currentTargetPosition.z = _initialZ;
                 if (lockY) currentTargetPosition.y = yOffset;
 
@@ -129,6 +137,8 @@ namespace Object.Scripts
             // Final position should be the current target position
             var finalPosition = target.position;
             finalPosition.y += yOffset;
+            if (lockX) finalPosition.x = _lockedX;
+            else if (!_centerOnObject) finalPosition.x += xOffset;
             if (lockZ) finalPosition.z = _initialZ;
             if (lockY) finalPosition.y = yOffset;
 
@@ -138,12 +148,26 @@ namespace Object.Scripts
 
         public void OnNotify(GameEventData eventData)
         {
-            StopAllCoroutines();
-            _centerOnObject = false;
+            if (eventData.Name == GameEvents.LineNarrationEnd)
+            {
+                StopAllCoroutines();
+                _centerOnObject = false;
 
-            // start a new, fast smooth transition
-            transitionDuration = 2;
-            StartCoroutine(SmoothCameraTransition(target.position));
+                // start a new, fast smooth transition
+                transitionDuration = 2;
+                StartCoroutine(SmoothCameraTransition(target.position));
+            }
+        }
+
+        public void LockX(float xPosition)
+        {
+            _lockedX = xPosition;
+            lockX = true;
+        }
+
+        public void UnlockX()
+        {
+            lockX = false;
         }
     }
 }

@@ -62,6 +62,8 @@ namespace Elevator.scripts
             _targetYPosition = initialPosition.y;
 
             Notify(GameEvents.FloorChange, currentFloor);
+
+            ToggleElevator(false);
         }
 
         // private void Update()
@@ -167,17 +169,21 @@ namespace Elevator.scripts
         public void CallElevator(int floorNumber)
         {
             print($"Should go to floor {floorNumber}. Current Y: {elevatorRigidbody2D.position.y}");
-
-            exit.SetActive(false);
-            elevatorRigidbody2D.gameObject.GetComponent<SpriteRenderer>().enabled = false;
-
-            foreach (var collider2d in elevatorRigidbody2D.gameObject.GetComponents<Collider2D>())
-                collider2d.enabled = false;
-            foreach (var content in elevatorContents)
-                content.SetActive(false);
-
+            ToggleElevator(false);
             _targetYPosition = CalculateElevatorYPosition(floorNumber);
             _hasReachedYTarget = false;
+        }
+
+        private void ToggleElevator(bool newState)
+        {
+            exit.SetActive(newState);
+            elevatorRigidbody2D.gameObject.GetComponent<SpriteRenderer>().enabled = newState;
+
+            foreach (var collider2d in elevatorRigidbody2D.gameObject.GetComponents<Collider2D>())
+                collider2d.enabled = newState;
+
+            foreach (var content in elevatorContents)
+                content.SetActive(newState);
         }
 
         public void GoToFloor(int floorNumber)
@@ -246,16 +252,10 @@ namespace Elevator.scripts
             Notify(GameEvents.ElevatorReachedFloor, targetFloor);
         }
 
-        public void OnElevatorEnter()
+        private void OnElevatorEnter()
         {
-            exit.SetActive(true);
-
-            elevatorRigidbody2D.gameObject.GetComponent<SpriteRenderer>().enabled = true;
-
-            foreach (var collider2d in elevatorRigidbody2D.gameObject.GetComponents<Collider2D>())
-                collider2d.enabled = true;
-            foreach (var content in elevatorContents)
-                content.SetActive(true);
+            // Might want to expand this method, otherwise it's just a wrapper
+            ToggleElevator(true);
         }
 
         private IEnumerator ControlShaftLight()

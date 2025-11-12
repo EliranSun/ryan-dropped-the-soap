@@ -9,17 +9,20 @@ namespace Camera.scripts
     {
         private const float Tolerance = 0.01f;
 
-        [SerializeField] private float outsideZoom = 25;
-        [SerializeField] private float insideBuildingZoom = 18;
-        [SerializeField] private float insideElevatorZoom = 8;
-        [SerializeField] private float insideStaircaseZoom = 8;
+        [Header("Settings")] [SerializeField] private float delay;
 
-        [SerializeField] private float delay;
         [SerializeField] private float speed = 1;
         [SerializeField] public float startSize = 1;
         [SerializeField] public float endSize = 6;
         [SerializeField] private bool isActiveByTrigger;
         [SerializeField] private Transform target;
+
+        [Header("Layers")] [SerializeField] private float outsideZoom = 25;
+
+        [SerializeField] private float insideBuildingZoom = 18;
+        [SerializeField] private float insideElevatorZoom = 14;
+        [SerializeField] private float insideStaircaseZoom = 10;
+
         private Vector3 _initialCameraPosition;
         private bool _isActive;
         private UnityEngine.Camera _mainCamera;
