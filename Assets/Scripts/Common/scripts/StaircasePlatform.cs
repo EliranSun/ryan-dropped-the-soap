@@ -5,6 +5,7 @@ namespace Common.scripts
     public class StaircasePlatform : MonoBehaviour
     {
         [SerializeField] private bool isUpperTrigger;
+        [SerializeField] private bool allowDropdown;
 
         private void Update()
         {
@@ -12,7 +13,7 @@ namespace Common.scripts
                 Input.GetKeyDown(KeyCode.S) ||
                 Input.GetKeyDown(KeyCode.DownArrow);
 
-            if (downKeyDown)
+            if (downKeyDown && allowDropdown)
                 transform.parent.GetComponent<Collider2D>().enabled = false;
         }
 
@@ -21,7 +22,5 @@ namespace Common.scripts
             if (other.CompareTag("Player"))
                 transform.parent.GetComponent<Collider2D>().enabled = isUpperTrigger;
         }
-        
-         
     }
 }

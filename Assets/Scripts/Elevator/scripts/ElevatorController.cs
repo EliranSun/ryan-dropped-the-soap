@@ -18,6 +18,7 @@ namespace Elevator.scripts
 
         [SerializeField] public int currentFloor;
         public int targetFloor;
+        [SerializeField] private float floorsStartAtY = 30f;
         public bool isFloorMoving;
 
         [Header("Configuration")] [SerializeField]
@@ -98,10 +99,10 @@ namespace Elevator.scripts
 
         private float CalculateElevatorYPosition(int floorNumber)
         {
-            // Assuming floor 0 is at Y position 0, calculate position for current floor
-            // return floorNumber * floorHeight + elevator.transform.localScale.y / 2f;
-            print($"Summoned from floor {floorNumber}. Should go to Y: {floorNumber * floorHeight}");
-            return floorNumber * floorHeight + 5;
+            // Assuming floor 0 is at Y position floorsStartAtY, calculate position for current floor
+            var newFloorNumber = floorNumber * floorHeight + floorsStartAtY;
+            print($"Summoned from floor {floorNumber}. Should go to Y: {newFloorNumber}");
+            return newFloorNumber;
         }
 
         /// <summary>
@@ -110,11 +111,10 @@ namespace Elevator.scripts
         private void UpdateFloorNumber()
         {
             // Calculate which floor we're currently on based on Y position
-            // Assuming floor 0 is at Y position 0, each floor is floorHeight units apart
-            var targetFloorNumber = Mathf.RoundToInt(
-                (elevatorRigidbody2D.transform.position.y - elevatorRigidbody2D.transform.localScale.y / 2f) /
-                floorHeight
-            );
+            // Assuming floor 0 is at Y position floorsStartAtY, each floor is floorHeight units apart
+            var elevatorBottomY = elevatorRigidbody2D.transform.position.y -
+                                  elevatorRigidbody2D.transform.localScale.y / 2f;
+            var targetFloorNumber = Mathf.RoundToInt((elevatorBottomY - floorsStartAtY) / floorHeight);
 
             // Only update if the floor has actually changed
             if (targetFloorNumber != currentFloor)

@@ -7,6 +7,7 @@ namespace Elevator.scripts
     {
         [SerializeField] private TextMeshPro floorNumberText;
         [SerializeField] private TextMeshPro stairsFloorNumberText;
+        [SerializeField] private ElevatorCall elevatorCallController;
         [SerializeField] private DoorController[] doors;
         [SerializeField] private ApartmentController[] apartments;
         public int ObjectNumber { get; private set; }
@@ -19,6 +20,10 @@ namespace Elevator.scripts
 
             floorNumberText.text = floorNumberLabel;
             stairsFloorNumberText.text = floorNumberLabel;
+
+            print($"Updating elevator controller with floor {floorNumber}");
+
+            elevatorCallController.UpdateFloorNumber(floorNumber);
 
             for (var i = 0; i < doors.Length; i++)
             {

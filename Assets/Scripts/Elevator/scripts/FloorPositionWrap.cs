@@ -28,7 +28,8 @@ namespace Elevator.scripts
             _yDirection = targetYPosition - _previousYPosition;
 
             // Detect large position jumps (teleports)
-            if (Mathf.Abs(_yDirection) > childHeight * 2) RepositionFloorsAroundTarget(targetYPosition);
+            if (Mathf.Abs(_yDirection) > childHeight * 2)
+                RepositionFloorsAroundTarget(targetYPosition);
 
             _previousYPosition = targetYPosition;
 

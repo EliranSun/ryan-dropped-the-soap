@@ -45,5 +45,10 @@ namespace Elevator.scripts
                 }
             }
         }
+
+        public void UpdateFloorNumber(int newFloorNumber)
+        {
+            floorNumber = newFloorNumber;
+        }
     }
 }
