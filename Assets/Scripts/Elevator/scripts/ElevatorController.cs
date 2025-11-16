@@ -15,11 +15,10 @@ namespace Elevator.scripts
 
         [SerializeField] private GameObject exit;
         [SerializeField] public float floorHeight;
-
         [SerializeField] public int currentFloor;
-        public int targetFloor;
         [SerializeField] private float floorsStartAtY = 30f;
         public bool isFloorMoving;
+        public int targetFloor;
 
         [Header("Configuration")] [SerializeField]
         private bool saveLastElevatorFloor = true;
@@ -172,6 +171,7 @@ namespace Elevator.scripts
             ToggleElevator(false);
             _targetYPosition = CalculateElevatorYPosition(floorNumber);
             _hasReachedYTarget = false;
+            targetFloor = floorNumber;
         }
 
         private void ToggleElevator(bool newState)

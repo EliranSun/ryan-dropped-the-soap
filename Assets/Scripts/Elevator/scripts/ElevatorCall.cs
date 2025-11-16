@@ -37,12 +37,12 @@ namespace Elevator.scripts
             if (eventData.Name == GameEvents.ElevatorReachedFloor)
             {
                 var elevatorFloor = (int)eventData.Data;
-                if (elevatorFloor == floorNumber)
-                {
-                    if (doors) doors.gameObject.SetActive(false);
-                    gameObject.tag = "Elevator Entrance";
-                    _areDoorsOpen = true;
-                }
+                print($"Elevator reached floor {elevatorFloor}. Reporting from floor {floorNumber}");
+                var isSameFloor = elevatorFloor == floorNumber;
+
+                if (doors) doors.gameObject.SetActive(!isSameFloor);
+                gameObject.tag = isSameFloor ? "Elevator Entrance" : "Elevator Doors";
+                _areDoorsOpen = isSameFloor;
             }
         }
 

@@ -437,6 +437,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor X Layers (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6570392161300564937, guid: 624f343c6c984467bb513b4d9ba292d2, type: 3}
+      propertyPath: m_Name
+      value: Elevator Doors Floor Y
+      objectReference: {fileID: 0}
     - target: {fileID: 7307035154413899633, guid: 624f343c6c984467bb513b4d9ba292d2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1055,6 +1059,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor X Layers (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6570392161300564937, guid: 624f343c6c984467bb513b4d9ba292d2, type: 3}
+      propertyPath: m_Name
+      value: Elevator Doors Floor Z
+      objectReference: {fileID: 0}
     - target: {fileID: 7307035154413899633, guid: 624f343c6c984467bb513b4d9ba292d2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1448,39 +1456,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 9.557682, y: 10.186924}
   m_EdgeRadius: 0
---- !u!1 &1063775966
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1063775967}
-  m_Layer: 0
-  m_Name: "\U0001F6D7 Elevator"
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1063775967
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1063775966}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 100, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1390773743}
-  - {fileID: 1953231572}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1073909095
 GameObject:
   m_ObjectHideFlags: 0
@@ -1795,6 +1770,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4898517464040498023, guid: faa81e396984842c8891689497d1c93e, type: 3}
+      propertyPath: m_Name
+      value: Elevator Doors Entrance
+      objectReference: {fileID: 0}
     - target: {fileID: 7084341641715079016, guid: faa81e396984842c8891689497d1c93e, type: 3}
       propertyPath: m_LocalScale.x
       value: 100
@@ -2070,7 +2049,7 @@ GameObject:
   - component: {fileID: 1390773743}
   - component: {fileID: 1390773744}
   m_Layer: 3
-  m_Name: Controller
+  m_Name: Elevator Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2085,11 +2064,11 @@ Transform:
   m_GameObject: {fileID: 1390773742}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 100, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1063775967}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1390773744
 MonoBehaviour:
@@ -2106,7 +2085,43 @@ MonoBehaviour:
   observers:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 2038810561}
+        m_TargetAssemblyTypeName: Elevator.scripts.ElevatorCall, ElevatorScriptsAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1699412805}
+        m_TargetAssemblyTypeName: Elevator.scripts.ElevatorCall, ElevatorScriptsAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1448878793}
+        m_TargetAssemblyTypeName: Elevator.scripts.ElevatorCall, ElevatorScriptsAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1180778542}
         m_TargetAssemblyTypeName: Elevator.scripts.ElevatorCall, ElevatorScriptsAssembly
         m_MethodName: OnNotify
         m_Mode: 0
@@ -2128,6 +2143,7 @@ MonoBehaviour:
   floorHeight: 22.4
   currentFloor: 3
   targetFloor: 0
+  floorsStartAtY: 30
   isFloorMoving: 0
   saveLastElevatorFloor: 1
   elevatorSpeed: 10
@@ -2475,7 +2491,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1063775967}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1444872401170620559, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2483,7 +2499,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1444872401170620559, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4
+      value: 104
       objectReference: {fileID: 0}
     - target: {fileID: 1444872401170620559, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2553,11 +2569,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
---- !u!4 &1953231572 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1444872401170620559, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
-  m_PrefabInstance: {fileID: 1953231571}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1953231573 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4184302327878310789, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
@@ -2996,6 +3007,17 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2038810561 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2384008382518555077, guid: faa81e396984842c8891689497d1c93e, type: 3}
+  m_PrefabInstance: {fileID: 1238522437}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2db49caffd55684b85590c7422aa470, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2098312212 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3446461660069568364, guid: 624f343c6c984467bb513b4d9ba292d2, type: 3}
@@ -3048,6 +3070,10 @@ PrefabInstance:
     - target: {fileID: 4381010506902884469, guid: 624f343c6c984467bb513b4d9ba292d2, type: 3}
       propertyPath: m_Name
       value: Floor X Layers
+      objectReference: {fileID: 0}
+    - target: {fileID: 6570392161300564937, guid: 624f343c6c984467bb513b4d9ba292d2, type: 3}
+      propertyPath: m_Name
+      value: Elevator Doors Floor X
       objectReference: {fileID: 0}
     - target: {fileID: 7307035154413899633, guid: 624f343c6c984467bb513b4d9ba292d2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3115,8 +3141,9 @@ SceneRoots:
   m_Roots:
   - {fileID: 615562658}
   - {fileID: 98334716}
+  - {fileID: 1390773743}
+  - {fileID: 1953231571}
   - {fileID: 903418957}
   - {fileID: 1988839511}
-  - {fileID: 1063775967}
   - {fileID: 1509183732}
   - {fileID: 426842666}
