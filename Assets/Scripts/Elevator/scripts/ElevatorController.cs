@@ -99,7 +99,7 @@ namespace Elevator.scripts
         private float CalculateElevatorYPosition(int floorNumber)
         {
             // Assuming floor 0 is at Y position floorsStartAtY, calculate position for current floor
-            var newFloorNumber = floorNumber * floorHeight + floorsStartAtY;
+            var newFloorNumber = (floorNumber - 1) * floorHeight + floorsStartAtY;
             print($"Summoned from floor {floorNumber}. Should go to Y: {newFloorNumber}");
             return newFloorNumber;
         }
