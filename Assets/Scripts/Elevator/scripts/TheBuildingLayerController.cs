@@ -101,6 +101,8 @@ namespace Elevator.scripts
             }
 
             _currentActiveLayer = targetLayer;
+
+            Notify(GameEvents.LayerChange, targetLayer);
         }
 
         public void OnNotify(GameEventData eventData)

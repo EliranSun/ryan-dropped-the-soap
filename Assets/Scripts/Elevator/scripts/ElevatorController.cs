@@ -14,10 +14,11 @@ namespace Elevator.scripts
         [SerializeField] private Rigidbody2D elevatorRigidbody2D;
 
         [SerializeField] private GameObject exit;
+        [SerializeField] private GameObject elevatorPanel;
         [SerializeField] public float floorHeight;
         [SerializeField] public int currentFloor;
         [SerializeField] private float floorsStartAtY = 30f;
-        public bool isFloorMoving;
+        public bool isElevatorMoving;
         public int targetFloor;
 
         [Header("Configuration")] [SerializeField]
@@ -40,6 +41,7 @@ namespace Elevator.scripts
 
         private bool _hasReachedYTarget = true; // Track if we've reached the yTarget to prevent multiple notifications
         private Vector3 _initLightPosition;
+        private bool _isPlayerInElevator;
         private float _targetYPosition;
 
         private void Start()
@@ -66,15 +68,19 @@ namespace Elevator.scripts
             ToggleElevator(false);
         }
 
-        // private void Update()
-        // {
-        //     if (Input.GetKeyDown(KeyCode.X) && !isFloorMoving)
-        //         // if (floorData) floorData.playerExitElevator = true;
-        //         Notify(GameEvents.ChangePlayerLocation, Location.Hallway);
-        // }
-
         private void Update()
         {
+            if (Input.GetKeyDown(KeyCode.E))
+                ToggleElevator(true);
+
+            if (!elevatorRigidbody2D) return;
+
+            if (elevatorPanel)
+            {
+                var panelPosition = elevatorRigidbody2D.transform.position + Vector3.up * 1f;
+                elevatorPanel.transform.position = panelPosition;
+            }
+
             if (Mathf.Abs(_targetYPosition - elevatorRigidbody2D.position.y) > stopThresholdY)
             {
                 var direction = _targetYPosition > elevatorRigidbody2D.position.y ? Vector2.up : Vector2.down;
@@ -135,6 +141,13 @@ namespace Elevator.scripts
 
         public void OnNotify(GameEventData eventData)
         {
+            if (eventData.Name == GameEvents.LayerChange)
+            {
+                var layerName = (BuildingLayerType)eventData.Data;
+                _isPlayerInElevator = layerName == BuildingLayerType.Elevator;
+                ToggleElevator(_isPlayerInElevator);
+            }
+
             if (eventData.Name == GameEvents.FloorChange)
             {
                 var floorNumber = (int)eventData.Data;
@@ -168,7 +181,9 @@ namespace Elevator.scripts
         public void CallElevator(int floorNumber)
         {
             print($"Should go to floor {floorNumber}. Current Y: {elevatorRigidbody2D.position.y}");
-            ToggleElevator(false);
+            if (!_isPlayerInElevator)
+                ToggleElevator(false);
+
             _targetYPosition = CalculateElevatorYPosition(floorNumber);
             _hasReachedYTarget = false;
             targetFloor = floorNumber;
@@ -191,7 +206,7 @@ namespace Elevator.scripts
             targetFloor = floorNumber;
             CallElevator(targetFloor);
 
-            if (isFloorMoving)
+            if (isElevatorMoving)
             {
                 // If we are already moving, update the shake amount for the new destination.
                 shakeableCamera.Shake(Mathf.Abs(floorNumber - currentFloor));
@@ -202,6 +217,7 @@ namespace Elevator.scripts
             // StartCoroutine(MoveApartmentsGrid());
             shakeableCamera.Shake(Mathf.Abs(floorNumber - currentFloor));
             shaftLight.SetActive(false);
+            exit.SetActive(false);
         }
 
         private IEnumerator MoveElevator()
@@ -215,7 +231,7 @@ namespace Elevator.scripts
                 elevatorAudioSource.Play();
             }
 
-            isFloorMoving = true;
+            isElevatorMoving = true;
 
             while (currentFloor != targetFloor)
                 yield return new WaitForSeconds(0.5f);
@@ -228,7 +244,7 @@ namespace Elevator.scripts
         {
             StopAllCoroutines();
 
-            isFloorMoving = false;
+            isElevatorMoving = false;
             Invoke(nameof(OpenDoors), 1);
 
             if (elevatorAudioSource)
@@ -244,17 +260,20 @@ namespace Elevator.scripts
         private void OpenDoors()
         {
             shaftLight.SetActive(true);
+            exit.SetActive(true);
         }
 
         private void OnReachFloor()
         {
             Debug.Log($"OnReachFloor reached destination: {targetFloor}");
+            isElevatorMoving = false;
             Notify(GameEvents.ElevatorReachedFloor, targetFloor);
         }
 
         private void OnElevatorEnter()
         {
             // Might want to expand this method, otherwise it's just a wrapper
+            _isPlayerInElevator = true;
             ToggleElevator(true);
         }
 

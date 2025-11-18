@@ -250,5 +250,7 @@
 
     NpcAtPointOfInterest,
     NpcGoToApartment,
-    NpcEnterApartment
+    NpcEnterApartment,
+
+    LayerChange
 }

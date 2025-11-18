@@ -1,4 +1,5 @@
 using System;
+using Elevator.scripts;
 using Object.Scripts;
 using Player;
 using UnityEngine;
@@ -94,6 +95,13 @@ namespace Camera.scripts
 
         public void OnNotify(GameEventData eventData)
         {
+            if (eventData.Name == GameEvents.LayerChange)
+            {
+                var layerName = (BuildingLayerType)eventData.Data;
+                if (layerName == BuildingLayerType.Elevator)
+                    endSize = insideElevatorZoom;
+            }
+
             if (eventData.Name == GameEvents.ZoomStart)
             {
                 _isActive = true;

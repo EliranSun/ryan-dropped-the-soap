@@ -1,0 +1,796 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6366847750373700755
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1070236006157004289}
+  - component: {fileID: 2900050011452392934}
+  m_Layer: 3
+  m_Name: Elevator Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1070236006157004289
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6366847750373700755}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 268287077059061896}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2900050011452392934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6366847750373700755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 119e772f973fe664984576c87c62d41d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ElevatorScriptsAssembly::Elevator.scripts.ElevatorController
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Elevator.scripts.ElevatorCall, ElevatorScriptsAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Elevator.scripts.ElevatorCall, ElevatorScriptsAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Elevator.scripts.ElevatorCall, ElevatorScriptsAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Elevator.scripts.ElevatorCall, ElevatorScriptsAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  elevatorContents:
+  - {fileID: 1956579450362559799}
+  - {fileID: 7214218335818565306}
+  - {fileID: 5567025717867883858}
+  - {fileID: 4966054241818034257}
+  elevatorRigidbody2D: {fileID: 6852447067537507302}
+  exit: {fileID: 1956579450362559799}
+  elevatorPanel: {fileID: 4966054241818034257}
+  floorHeight: 22.4
+  currentFloor: 0
+  floorsStartAtY: 30
+  isFloorMoving: 0
+  targetFloor: 0
+  saveLastElevatorFloor: 0
+  elevatorSpeed: 10
+  stopThresholdY: 0.3
+  elevatorAudioSource: {fileID: 0}
+  elevatorMovingSound: {fileID: 0}
+  elevatorReachedFloorSound: {fileID: 0}
+  elevatorButtonsController: {fileID: 8474523361218911097}
+  shaftLight: {fileID: 8788071223395473315}
+  lightLoop: 3
+  shakeableCamera: {fileID: 6839828907862030109}
+--- !u!1 &7196132778983060201
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 268287077059061896}
+  m_Layer: 0
+  m_Name: Elevator Wrapper
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &268287077059061896
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7196132778983060201}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 104, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1070236006157004289}
+  - {fileID: 7693011706418792990}
+  - {fileID: 6595267803693932659}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &3634514830435220956
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 268287077059061896}
+    m_Modifications:
+    - target: {fileID: 3759721001450846, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 86112357048334157, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: m_SortingOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 150658907485794523, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: m_SortingOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 333329491006961726, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8474523361218911097}
+    - target: {fileID: 333329491006961726, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Elevator.scripts.ElevatorButtonsController, ElevatorScriptsAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 499453965190413074, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 965556716677806689, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8474523361218911097}
+    - target: {fileID: 965556716677806689, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Elevator.scripts.ElevatorButtonsController, ElevatorScriptsAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 1149402527969188699, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: m_SortingOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1976146148864443380, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: m_SortingOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2046536654680722281, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8474523361218911097}
+    - target: {fileID: 2046536654680722281, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Elevator.scripts.ElevatorButtonsController, ElevatorScriptsAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 2284849713631373104, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8474523361218911097}
+    - target: {fileID: 2284849713631373104, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Elevator.scripts.ElevatorButtonsController, ElevatorScriptsAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 2442832270901515562, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8474523361218911097}
+    - target: {fileID: 2442832270901515562, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Elevator.scripts.ElevatorButtonsController, ElevatorScriptsAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411156651791481297, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3477524598877513256, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8474523361218911097}
+    - target: {fileID: 3477524598877513256, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Elevator.scripts.ElevatorButtonsController, ElevatorScriptsAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 4123896647079388097, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127549096014069278, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4235444413063168754, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4320628782579516931, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8474523361218911097}
+    - target: {fileID: 4320628782579516931, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Elevator.scripts.ElevatorButtonsController, ElevatorScriptsAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 4423647189223210921, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8474523361218911097}
+    - target: {fileID: 4423647189223210921, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Elevator.scripts.ElevatorButtonsController, ElevatorScriptsAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 4735578582697911738, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4765430455713652526, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: m_SortingOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4832786766486963015, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8474523361218911097}
+    - target: {fileID: 4832786766486963015, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Elevator.scripts.ElevatorButtonsController, ElevatorScriptsAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 5376827674808810691, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5595175141179786656, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5941795233190203626, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5990992218014150196, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: m_SortingOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6025808340480091257, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8474523361218911097}
+    - target: {fileID: 6025808340480091257, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Elevator.scripts.ElevatorButtonsController, ElevatorScriptsAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 6139305402541766344, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6347548092004855318, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: m_SortingOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6354098183147180519, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391578295090640834, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391578295090640834, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391578295090640834, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391578295090640834, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391578295090640834, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391578295090640834, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391578295090640834, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391578295090640834, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391578295090640834, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391578295090640834, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6475127823121055832, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8474523361218911097}
+    - target: {fileID: 6475127823121055832, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Elevator.scripts.ElevatorButtonsController, ElevatorScriptsAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 8097494508704096069, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8155660466289714558, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: m_SortingOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8171387163288605920, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8474523361218911097}
+    - target: {fileID: 8171387163288605920, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Elevator.scripts.ElevatorButtonsController, ElevatorScriptsAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 8332024478066791908, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: m_SortingOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8546314761805512077, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: m_Name
+      value: Panel buttons (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8546314761805512077, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8708947964432035482, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8948908005685580105, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: m_SortingOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8978995756300504550, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: m_SortingOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9131704982860770345, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: m_SortingOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9146381331178107951, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+--- !u!114 &920883002840902130 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4519293837821875246, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+  m_PrefabInstance: {fileID: 3634514830435220956}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3572645825828641976 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 280619043318571364, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+  m_PrefabInstance: {fileID: 3634514830435220956}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &4966054241818034257 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8546314761805512077, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+  m_PrefabInstance: {fileID: 3634514830435220956}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7693011706418792990 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6391578295090640834, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
+  m_PrefabInstance: {fileID: 3634514830435220956}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5731444967679000828
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 268287077059061896}
+    m_Modifications:
+    - target: {fileID: 775358090705806254, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8474523361218911097}
+    - target: {fileID: 775358090705806254, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnElevatorButtonClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 775358090705806254, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Elevator.scripts.ElevatorButtonsController, ElevatorScriptsAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 860491158910369735, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: m_SortingOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1157257518468407473, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8474523361218911097}
+    - target: {fileID: 1157257518468407473, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnElevatorButtonClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 1157257518468407473, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Elevator.scripts.ElevatorButtonsController, ElevatorScriptsAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 1252092498137700139, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1252092498137700139, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1280188591657242367, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: m_SortingOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1444872401170620559, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1444872401170620559, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1444872401170620559, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1444872401170620559, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1444872401170620559, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1444872401170620559, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1444872401170620559, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1444872401170620559, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1444872401170620559, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1444872401170620559, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1895128293392401552, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8474523361218911097}
+    - target: {fileID: 1895128293392401552, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnElevatorButtonClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 1895128293392401552, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Elevator.scripts.ElevatorButtonsController, ElevatorScriptsAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 1943134224047951581, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: m_SortingOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3839579229672746255, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: m_SortingOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3883168910599352736, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: m_SortingOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3992850822303059136, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: m_SortingOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4086375315571848201, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8474523361218911097}
+    - target: {fileID: 4086375315571848201, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnElevatorButtonClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 4086375315571848201, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Elevator.scripts.ElevatorButtonsController, ElevatorScriptsAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 4106605689318770071, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: m_SortingOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184302327878310789, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: floorText
+      value: 
+      objectReference: {fileID: 920883002840902130}
+    - target: {fileID: 4184302327878310789, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: desiredFloorText
+      value: 
+      objectReference: {fileID: 3572645825828641976}
+    - target: {fileID: 4184302327878310789, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: elevatorController
+      value: 
+      objectReference: {fileID: 2900050011452392934}
+    - target: {fileID: 4211549513507370253, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: m_SortingOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4950996758416464520, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8474523361218911097}
+    - target: {fileID: 4950996758416464520, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnElevatorButtonClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 4950996758416464520, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Elevator.scripts.ElevatorButtonsController, ElevatorScriptsAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 5053142566810074034, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: m_SortingOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5235283572258690595, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5251988116712429476, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: m_SortingOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459522304975622194, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: m_SortingOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5580831309216159959, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8474523361218911097}
+    - target: {fileID: 5580831309216159959, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnElevatorButtonClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 5580831309216159959, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Elevator.scripts.ElevatorButtonsController, ElevatorScriptsAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 5709802752918494203, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5962642305579410205, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: m_SortingOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6101537950003461579, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: m_Name
+      value: Dino Floor change detector
+      objectReference: {fileID: 0}
+    - target: {fileID: 6176092984008452992, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8474523361218911097}
+    - target: {fileID: 6176092984008452992, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnElevatorButtonClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 6176092984008452992, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Elevator.scripts.ElevatorButtonsController, ElevatorScriptsAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 6225746356144834521, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8474523361218911097}
+    - target: {fileID: 6225746356144834521, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnElevatorButtonClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 6225746356144834521, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Elevator.scripts.ElevatorButtonsController, ElevatorScriptsAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 6251698868213956530, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6251698868213956530, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707060983621058362, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: m_Name
+      value: Elevator
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707060983621058362, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7509065080011929027, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8474523361218911097}
+    - target: {fileID: 7509065080011929027, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnElevatorButtonClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 7509065080011929027, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Elevator.scripts.ElevatorButtonsController, ElevatorScriptsAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 8225496078266377962, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8474523361218911097}
+    - target: {fileID: 8225496078266377962, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnElevatorButtonClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 8225496078266377962, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Elevator.scripts.ElevatorButtonsController, ElevatorScriptsAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 8408451712940597056, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8474523361218911097}
+    - target: {fileID: 8408451712940597056, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnElevatorButtonClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 8408451712940597056, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Elevator.scripts.ElevatorButtonsController, ElevatorScriptsAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 8759932097035126465, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8474523361218911097}
+    - target: {fileID: 8759932097035126465, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnElevatorButtonClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 8759932097035126465, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Elevator.scripts.ElevatorButtonsController, ElevatorScriptsAssembly
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+--- !u!1 &1956579450362559799 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6101537950003461579, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+  m_PrefabInstance: {fileID: 5731444967679000828}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5567025717867883858 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 200448330324487598, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+  m_PrefabInstance: {fileID: 5731444967679000828}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6595267803693932659 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1444872401170620559, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+  m_PrefabInstance: {fileID: 5731444967679000828}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6839828907862030109 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1252522912853096417, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+  m_PrefabInstance: {fileID: 5731444967679000828}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d2f179aea6b4c03980522d6625d2cca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!50 &6852447067537507302 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 1194270399006278426, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+  m_PrefabInstance: {fileID: 5731444967679000828}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7214218335818565306 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3140173934899906118, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+  m_PrefabInstance: {fileID: 5731444967679000828}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8474523361218911097 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4184302327878310789, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+  m_PrefabInstance: {fileID: 5731444967679000828}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 646115750b7c6f747a3a20d631de081f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ElevatorScriptsAssembly::ElevatorButtonsController
+--- !u!1 &8788071223395473315 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3927049692476921695, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+  m_PrefabInstance: {fileID: 5731444967679000828}
+  m_PrefabAsset: {fileID: 0}

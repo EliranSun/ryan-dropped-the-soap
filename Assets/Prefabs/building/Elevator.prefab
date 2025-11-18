@@ -617,12 +617,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1444872401170620559}
   - component: {fileID: 6251698868213956530}
-  - component: {fileID: 1252522912853096417}
   - component: {fileID: 4569423992774249617}
   - component: {fileID: 4405038158850565131}
   - component: {fileID: 2952461668344497362}
   - component: {fileID: 5442334933714138023}
   - component: {fileID: 1194270399006278426}
+  - component: {fileID: 1252522912853096417}
   - component: {fileID: 4184302327878310789}
   m_Layer: 11
   m_Name: Elevator
@@ -645,7 +645,6 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 9045960941356110140}
-  - {fileID: 1252092498137700139}
   - {fileID: 411874158159900488}
   - {fileID: 8367209497795610452}
   m_Father: {fileID: 0}
@@ -708,22 +707,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1252522912853096417
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6707060983621058362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d2f179aea6b4c03980522d6625d2cca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainCamera: {fileID: 0}
-  shakeDuration: 0
-  shakeAmount: 0.01
-  decreaseFactor: 1
 --- !u!61 &4569423992774249617
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -935,6 +918,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1252522912853096417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6707060983621058362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d2f179aea6b4c03980522d6625d2cca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
+  shakeDuration: 0
+  shakeAmount: 0.01
+  decreaseFactor: 1
 --- !u!114 &4184302327878310789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -948,93 +947,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: ElevatorScriptsAssembly::ElevatorButtonsController
   elevatorController: {fileID: 0}
-  floorText: {fileID: 8603247664402314439}
-  desiredFloorText: {fileID: 5347976652840370573}
---- !u!1001 &5319632857278488809
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1444872401170620559}
-    m_Modifications:
-    - target: {fileID: 499453965190413074, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6391578295090640834, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.04
-      objectReference: {fileID: 0}
-    - target: {fileID: 6391578295090640834, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.94
-      objectReference: {fileID: 0}
-    - target: {fileID: 6391578295090640834, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6391578295090640834, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6391578295090640834, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6391578295090640834, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6391578295090640834, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6391578295090640834, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6391578295090640834, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6391578295090640834, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8546314761805512077, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
-      propertyPath: m_Name
-      value: Panel buttons
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
---- !u!4 &1252092498137700139 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6391578295090640834, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
-  m_PrefabInstance: {fileID: 5319632857278488809}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5347976652840370573 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 280619043318571364, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
-  m_PrefabInstance: {fileID: 5319632857278488809}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &8603247664402314439 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4519293837821875246, guid: 1edec57efc917684f8c612a2d2c5a2b2, type: 3}
-  m_PrefabInstance: {fileID: 5319632857278488809}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  floorText: {fileID: 0}
+  desiredFloorText: {fileID: 0}

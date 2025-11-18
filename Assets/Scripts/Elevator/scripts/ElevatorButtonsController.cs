@@ -17,13 +17,12 @@ namespace Elevator.scripts
 
         private void UpdateFloor(int floorNumber)
         {
-            if (elevatorController.isFloorMoving)
+            if (elevatorController.isElevatorMoving)
                 return;
 
             desiredFloorText.text = desiredFloorText.text == "00" // init state
                 ? $"{floorNumber}"
                 : $"{desiredFloorText.text}{floorNumber}";
-
 
             elevatorController.targetFloor = int.Parse(desiredFloorText.text);
         }
@@ -46,6 +45,12 @@ namespace Elevator.scripts
 
             print("Button number clicked: " + buttonNumber);
             UpdateFloor(buttonNumber);
+        }
+
+        public void OnNotify(GameEventData eventData)
+        {
+            if (eventData.Name == GameEvents.ElevatorReachedFloor)
+                desiredFloorText.text = "00";
         }
     }
 }
