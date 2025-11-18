@@ -105,7 +105,7 @@ namespace Elevator.scripts
         private float CalculateElevatorYPosition(int floorNumber)
         {
             // Assuming floor 0 is at Y position floorsStartAtY, calculate position for current floor
-            var newFloorNumber = (floorNumber - 1) * floorHeight + floorsStartAtY;
+            var newFloorNumber = floorNumber * floorHeight + floorsStartAtY;
             print($"Summoned from floor {floorNumber}. Should go to Y: {newFloorNumber}");
             return newFloorNumber;
         }
@@ -207,15 +207,13 @@ namespace Elevator.scripts
             CallElevator(targetFloor);
 
             if (isElevatorMoving)
-            {
                 // If we are already moving, update the shake amount for the new destination.
-                shakeableCamera.Shake(Mathf.Abs(floorNumber - currentFloor));
+                // shakeableCamera.Shake(Mathf.Abs(floorNumber - currentFloor));
                 return;
-            }
 
             StartCoroutine(MoveElevator());
             // StartCoroutine(MoveApartmentsGrid());
-            shakeableCamera.Shake(Mathf.Abs(floorNumber - currentFloor));
+            // shakeableCamera.Shake(Mathf.Abs(floorNumber - currentFloor));
             shaftLight.SetActive(false);
             exit.SetActive(false);
         }

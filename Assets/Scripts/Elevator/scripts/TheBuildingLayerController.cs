@@ -154,11 +154,12 @@ namespace Elevator.scripts
                         break;
 
                     case ObjectNames.StaircaseExit:
-                        SetActiveLayer(BuildingLayerType.Hallway);
                         mainCamera.GetComponent<CameraObjectFollow>().UnlockX();
+                        SetActiveLayer(BuildingLayerType.Hallway);
                         break;
 
                     case ObjectNames.ElevatorExitDoors:
+                        mainCamera.GetComponent<CameraObjectFollow>().UnlockX();
                         SetActiveLayer(BuildingLayerType.Hallway);
                         break;
 
