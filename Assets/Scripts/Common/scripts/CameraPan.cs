@@ -119,7 +119,8 @@ namespace Common.scripts
         public void StartSmoothTransition(Direction newDirection, float newSpeed)
         {
             // Stop any existing transition
-            if (_transitionCoroutine != null) StopCoroutine(_transitionCoroutine);
+            if (_transitionCoroutine != null)
+                StopCoroutine(_transitionCoroutine);
 
             _transitionCoroutine = StartCoroutine(SmoothTransition(newDirection, newSpeed));
         }

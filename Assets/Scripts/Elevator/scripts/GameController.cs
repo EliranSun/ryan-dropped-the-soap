@@ -1,10 +1,12 @@
 using Common.scripts;
 using Dialog;
+using Object.Scripts;
 using UnityEngine;
+using Direction = Common.scripts.Direction;
 
 namespace Elevator.scripts
 {
-    public class TheBuildingGameController : ObserverSubject
+    public class GameController : ObserverSubject
     {
         [SerializeField] private GameObject mainTitle;
         [SerializeField] private GameObject player;
@@ -15,8 +17,10 @@ namespace Elevator.scripts
         [SerializeField] private FloorData floorData;
         [SerializeField] private NarrationDialogLine breakIntoCharlotteApartmentLine;
         [SerializeField] private NarrationDialogLine postLockPickMiniGameLine;
+
         [SerializeField] private ElevatorController elevatorController;
-        [SerializeField] private BuildingLayerType playerCurrentLayer;
+
+        // [SerializeField] private BuildingLayerType playerCurrentLayer;
         [SerializeField] private AudioSource audioSource;
         [SerializeField] private AudioSource soundEffectAudioSource;
         [SerializeField] private AudioClip ryanThemeSong;
@@ -28,17 +32,26 @@ namespace Elevator.scripts
 
         private void Start()
         {
-            Invoke(nameof(PositionActorsTest), 1);
+            // Invoke(nameof(PositionActorsTest), 1);
 
-            if (skipTitle) StartGame();
-            else Notify(GameEvents.DisablePlayerMovement);
-            Notify(GameEvents.ChangeActiveLayer, playerCurrentLayer);
-
-            if (playerCurrentLayer == BuildingLayerType.Hallway && playerCurrentFloor != 0)
+            if (skipTitle)
             {
-                var y = (playerCurrentFloor - 1) * elevatorController.floorHeight + 5;
-                player.transform.position = new Vector3(0, y, player.transform.position.z);
+                StartGame();
             }
+            else
+            {
+                Notify(GameEvents.DisablePlayerMovement);
+                mainCamera.transform.parent = null;
+                mainCamera.GetComponent<CameraObjectFollow>().enabled = false;
+                // mainCamera.GetComponent<Zoom>().enabled = false;
+                mainCamera.GetComponent<CameraPan>().StartSmoothTransition(Direction.Up, 1);
+            }
+
+            // if (playerCurrentLayer == BuildingLayerType.Hallway && playerCurrentFloor != 0)
+            // {
+            //     var y = (playerCurrentFloor - 1) * elevatorController.floorHeight + 5;
+            //     player.transform.position = new Vector3(0, y, player.transform.position.z);
+            // }
         }
 
         private void PositionActorsTest()

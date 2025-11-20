@@ -128,7 +128,7 @@ namespace Character_Creator.scripts
                 .Replace("{playerName}", PlayerData.GetPlayerName())
                 .Replace("{partnerName}", PlayerData.GetPartnerName());
 
-            narratorText.isRightToLeftText = line.translation != "";
+            narratorText.isRightToLeftText = !string.IsNullOrEmpty(line.translation);
             print("narratorText.isRightToLeftText " + narratorText.isRightToLeftText);
 
             // Unity messes up Hebrew characters even with RTL enabled, so 
