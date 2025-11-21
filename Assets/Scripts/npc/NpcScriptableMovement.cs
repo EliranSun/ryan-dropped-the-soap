@@ -22,16 +22,19 @@ namespace npc
         [SerializeField] private float distanceToPlayer = 4f;
         [SerializeField] private bool isRigidBodyMovement = true;
         [SerializeField] private bool avoidPlayer;
+        [SerializeField] private bool loopPointsOfInterest = true;
         [SerializeField] private ActorName actorName;
         [SerializeField] private ApartmentsController apartmentsController;
 
-        [Header("Wobbly Movement")] [SerializeField]
+        [Header("Wobbly Movement")]
+        [SerializeField]
         private bool isMovementWobbly;
 
         [SerializeField] private float wobbleAmplitudeDegrees = 7f; // max lean angle
         [SerializeField] private float wobbleFrequency = 1f; // cycles per second
 
-        [Header("Points of interest")] [SerializeField]
+        [Header("Points of interest")]
+        [SerializeField]
         private Transform[] pointsOfInterest;
 
         private Animator _animator;
@@ -58,7 +61,8 @@ namespace npc
                 _currentPointOfInterestIndex >= pointsOfInterest.Length)
                 return;
 
-            var distance = Vector2.Distance(transform.position, pointsOfInterest[0].transform.position);
+            var currentPoint = pointsOfInterest[_currentPointOfInterestIndex];
+            var distance = Vector2.Distance(transform.position, currentPoint.position);
 
             if (distance <= distanceToChangePoint)
             {
@@ -67,6 +71,15 @@ namespace npc
                 {
                     _animator.SetBool(IsWalking, false);
                     _isWalking = false;
+                    _currentPointOfInterestIndex++;
+
+                    if (loopPointsOfInterest)
+                        _currentPointOfInterestIndex %= pointsOfInterest.Length;
+                    else if (_currentPointOfInterestIndex >= pointsOfInterest.Length)
+                        // _currentPointOfInterestIndex = pointsOfInterest.Length - 1;
+                        return;
+
+                    SetNextPointOfInterest();
                     Notify(GameEvents.NpcAtPointOfInterest);
                 }
 
@@ -80,8 +93,6 @@ namespace npc
             }
 
             HandleMovement();
-            // SetNextPointOfInterest();
-            // _currentPointOfInterestIndex = (_currentPointOfInterestIndex + 1) % pointsOfInterest.Length;
         }
 
         private void OnCollisionEnter2D(Collision2D other)
@@ -117,26 +128,29 @@ namespace npc
 
         private void HandleMovement()
         {
-            var direction = (pointsOfInterest[0].transform.position - transform.position).normalized;
-            var distanceFromPlayer = Vector2.Distance(transform.position, playerTransform.position);
+            var direction = (_targetPosition - (Vector2)transform.position).normalized;
 
             if (isMovementWobbly) WobbleForward(direction);
-            else if (isRigidBodyMovement) RigidBodyMovement(direction, distanceFromPlayer);
+            else if (isRigidBodyMovement) RigidBodyMovement(direction);
             else TransformMovement(direction);
         }
 
-        private void RigidBodyMovement(Vector2 direction, float distanceFromPlayer)
+        private void RigidBodyMovement(Vector2 direction)
         {
             _spriteRenderer.flipX = direction.x > 0;
             _rigidBody2D.linearVelocityX = direction.x * speed;
 
-            if (avoidPlayer && _isWalking && !_isJumping && Mathf.Abs(distanceFromPlayer) < distanceToPlayer)
+            if (avoidPlayer && _isWalking && !_isJumping)
             {
-                // avoid player by jumping over them.
-                // of course, the optimal solution would be to prevent collision,
-                // but this solution might be more fun.
-                _rigidBody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-                _isJumping = true;
+                var distanceFromPlayer = Vector2.Distance(transform.position, playerTransform.position);
+                if (Mathf.Abs(distanceFromPlayer) < distanceToPlayer)
+                {
+                    // avoid player by jumping over them.
+                    // of course, the optimal solution would be to prevent collision,
+                    // but this solution might be more fun.
+                    _rigidBody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                    _isJumping = true;
+                }
             }
         }
 

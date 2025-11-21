@@ -1,8 +1,6 @@
 using Common.scripts;
 using Dialog;
-using Object.Scripts;
 using UnityEngine;
-using Direction = Common.scripts.Direction;
 
 namespace Elevator.scripts
 {
@@ -35,18 +33,13 @@ namespace Elevator.scripts
             // Invoke(nameof(PositionActorsTest), 1);
 
             if (skipTitle)
-            {
                 StartGame();
-            }
             else
-            {
                 Notify(GameEvents.DisablePlayerMovement);
-                mainCamera.transform.parent = null;
-                mainCamera.GetComponent<CameraObjectFollow>().enabled = false;
-                // mainCamera.GetComponent<Zoom>().enabled = false;
-                mainCamera.GetComponent<CameraPan>().StartSmoothTransition(Direction.Up, 1);
-            }
-
+            // mainCamera.transform.parent = null;
+            // mainCamera.GetComponent<CameraObjectFollow>().enabled = false;
+            // mainCamera.GetComponent<CameraPan>().StartSmoothTransition(Direction.Up, 1);
+            // mainCamera.GetComponent<Zoom>().enabled = false;
             // if (playerCurrentLayer == BuildingLayerType.Hallway && playerCurrentFloor != 0)
             // {
             //     var y = (playerCurrentFloor - 1) * elevatorController.floorHeight + 5;
