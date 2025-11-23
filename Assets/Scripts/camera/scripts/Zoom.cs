@@ -52,7 +52,7 @@ namespace Camera.scripts
                 _initialCameraPosition = _mainCamera.transform.position;
             }
 
-            if (isZoomReached()) Notify(GameEvents.ZoomChangeEnd);
+            if (IsZoomReached()) Notify(GameEvents.ZoomChangeEnd);
         }
 
         private void Update()
@@ -64,7 +64,7 @@ namespace Camera.scripts
             if (isActiveByTrigger && !_isActive) return;
 
             // Check if zoom is complete
-            if (isZoomReached() ||
+            if (IsZoomReached() ||
                 Vector3.Distance(_mainCamera.transform.position, _targetPosition) < Tolerance)
             {
                 Notify(GameEvents.ZoomChangeEnd);
@@ -93,14 +93,32 @@ namespace Camera.scripts
             }
         }
 
+        private void SetZoomBasedOnLayer(BuildingLayerType layerName)
+        {
+            switch (layerName)
+            {
+                case BuildingLayerType.Hallway:
+                    endSize = insideBuildingZoom;
+                    break;
+
+                case BuildingLayerType.Outside:
+                    endSize = outsideZoom;
+                    break;
+
+                case BuildingLayerType.Staircase:
+                    endSize = insideStaircaseZoom;
+                    break;
+
+                case BuildingLayerType.Elevator:
+                    endSize = insideElevatorZoom;
+                    break;
+            }
+        }
+
         public void OnNotify(GameEventData eventData)
         {
             if (eventData.Name == GameEvents.LayerChange)
-            {
-                var layerName = (BuildingLayerType)eventData.Data;
-                if (layerName == BuildingLayerType.Elevator)
-                    endSize = insideElevatorZoom;
-            }
+                SetZoomBasedOnLayer((BuildingLayerType)eventData.Data);
 
             if (eventData.Name == GameEvents.ZoomStart)
             {
@@ -115,28 +133,22 @@ namespace Camera.scripts
 
                 switch (interactedObject.objectName)
                 {
-                    case ObjectNames.BuildingEntrance:
-                        endSize = insideBuildingZoom;
-                        break;
-
                     case ObjectNames.BuildingExit:
-                        endSize = outsideZoom;
+                        SetZoomBasedOnLayer(BuildingLayerType.Outside);
                         break;
 
                     case ObjectNames.StaircaseEntrance:
-                        endSize = insideStaircaseZoom;
-                        break;
-
-                    case ObjectNames.StaircaseExit:
-                        endSize = insideBuildingZoom;
+                        SetZoomBasedOnLayer(BuildingLayerType.Staircase);
                         break;
 
                     case ObjectNames.ElevatorEnterDoors:
-                        endSize = insideElevatorZoom;
+                        SetZoomBasedOnLayer(BuildingLayerType.Elevator);
                         break;
 
+                    case ObjectNames.StaircaseExit:
+                    case ObjectNames.BuildingEntrance:
                     case ObjectNames.ElevatorExitDoors:
-                        endSize = insideBuildingZoom;
+                        SetZoomBasedOnLayer(BuildingLayerType.Hallway);
                         break;
                 }
             }
@@ -152,7 +164,7 @@ namespace Camera.scripts
             }
         }
 
-        private bool isZoomReached()
+        private bool IsZoomReached()
         {
             return Math.Abs(_mainCamera.orthographicSize - endSize) < Tolerance;
         }
