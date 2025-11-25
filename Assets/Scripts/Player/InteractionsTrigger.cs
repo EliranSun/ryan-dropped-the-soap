@@ -1,5 +1,4 @@
 using System;
-using Object.Scripts;
 using TMPro;
 using UnityEngine;
 
@@ -45,6 +44,7 @@ namespace Player
 
         private void OnTriggerStay2D(Collider2D other)
         {
+            print($"Triggered by {other.gameObject}");
             if (other.CompareTag("Player") ||
                 other.CompareTag("Ground") ||
                 other.CompareTag("Untagged"))
@@ -125,6 +125,8 @@ namespace Player
 
                 case "NPC":
                     interactionText.text = "TALK";
+                    _interactedObjectName = ObjectNames.Npc;
+                    _interactedObjectNameId = interactedGameObject.GetInstanceID();
                     break;
             }
         }

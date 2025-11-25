@@ -1,20 +1,18 @@
 ﻿using System;
 
-namespace Object.Scripts
+[Serializable]
+public enum ObjectNames
 {
-    [Serializable]
-    public enum ObjectNames
-    {
-        None,
-        BuildingExit,
-        BuildingEntrance,
-        BuildingEntranceDoors,
-        ElevatorEnterDoors,
-        ElevatorExitDoors,
-        StaircaseEntrance,
-        StaircaseExit,
-        ApartmentDoor, // door closed
-        ApartmentEntrance, // door open
-        ApartmentExit
-    }
+    None,
+    BuildingExit,
+    BuildingEntrance,
+    BuildingEntranceDoors,
+    ElevatorEnterDoors,
+    ElevatorExitDoors,
+    StaircaseEntrance,
+    StaircaseExit,
+    ApartmentDoor, // door closed
+    ApartmentEntrance, // door open
+    ApartmentExit,
+    Npc
 }

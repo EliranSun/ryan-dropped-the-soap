@@ -27,6 +27,11 @@ namespace Dialog
                 if (itemName == gameObject.name)
                     InvokeLine();
             }
+
+            if (eventData.Name == GameEvents.PlayerInteraction)
+            {
+                // var instanceId = (Interaction)eventData.Data;
+            }
         }
     }
 }
