@@ -32,6 +32,8 @@ namespace Dialog
 
             _image.color = Color.clear;
         }
+        
+        // 5, 1, 3, 4, 2
 
         public void OnNotify(GameEventData gameEventData)
         {
