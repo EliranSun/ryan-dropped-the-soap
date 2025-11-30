@@ -79,11 +79,12 @@ namespace Player
                     _interactedObjectName = ObjectNames.BuildingExit;
                     break;
 
-                case "Apartment Door":
-                    interactionText.text = "KNOCK";
-                    _interactedObjectNameId = interactedGameObject.GetInstanceID();
-                    _interactedObjectName = ObjectNames.ApartmentDoor;
-                    break;
+                // case "Apartment Door":
+                //     // var doorController = interactedGameObject.GetComponent<>();
+                //     interactionText.text = "KNOCK";
+                //     _interactedObjectNameId = interactedGameObject.GetInstanceID();
+                //     _interactedObjectName = ObjectNames.ApartmentDoor;
+                //     break;
 
                 case "Apartment Entrance":
                     interactionText.text = "ENTER";

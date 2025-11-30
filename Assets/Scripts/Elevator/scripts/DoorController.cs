@@ -13,6 +13,7 @@ namespace Elevator.scripts
     public class DoorController : ObserverSubject
     {
         [SerializeField] private TextMeshPro doorNumberTextMeshPro;
+        [SerializeField] private TextMeshPro instructionsTextMeshPro;
         [SerializeField] private Transform playerTransform;
         [SerializeField] private FloorData floorData;
         [SerializeField] public int doorNumber;
@@ -36,6 +37,8 @@ namespace Elevator.scripts
 
             var playerStatesController = FindFirstObjectByType<PlayerStatesController>();
             if (playerStatesController != null) observers.AddListener(playerStatesController.OnNotify);
+
+            if (instructionsTextMeshPro) instructionsTextMeshPro.text = "";
         }
 
         private void Update()
@@ -51,15 +54,32 @@ namespace Elevator.scripts
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.CompareTag("Player")) _isPlayerOnDoor = true;
-
-            // if (other.CompareTag("NPC"))
-            //     MoveObjectToLinkedDoor(other.transform);
+            if (other.CompareTag("Player"))
+            {
+                _isPlayerOnDoor = true;
+                if (instructionsTextMeshPro)
+                    instructionsTextMeshPro.text = isPlayerApartment
+                        ? _isDoorOpen ? "CLOSE" : "OPEN"
+                        : "KNOCK";
+            }
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            if (other.CompareTag("Player")) _isPlayerOnDoor = false;
+            if (other.CompareTag("Player"))
+            {
+                _isPlayerOnDoor = false;
+                if (instructionsTextMeshPro) instructionsTextMeshPro.text = "";
+            }
+        }
+
+        public void OnNotify(GameEventData eventData)
+        {
+            if (eventData.Name == GameEvents.OpenNpcDoor)
+            {
+                var openDoorNumber = (int)eventData.Data;
+                if (openDoorNumber == doorNumber) OpenDoor();
+            }
         }
 
         private void EnterApartment()
@@ -86,31 +106,32 @@ namespace Elevator.scripts
             TriggerKnockOnNpcDoor();
         }
 
-        private void HandlePlayerApartmentDoorClick()
-        {
-            _isDoorOpen = !_isDoorOpen;
-
-            ToggleDoorState();
-
-            Notify(_isDoorOpen
-                ? GameEvents.PlayerApartmentDoorOpened
-                : GameEvents.PlayerApartmentDoorClosed);
-        }
+        // private void HandlePlayerApartmentDoorClick()
+        // {
+        //     _isDoorOpen = !_isDoorOpen;
+        //
+        //     ToggleDoorState();
+        //
+        //     Notify(_isDoorOpen
+        //         ? GameEvents.PlayerApartmentDoorOpened
+        //         : GameEvents.PlayerApartmentDoorClosed);
+        // }
 
 
         private void TriggerKnockOnNpcDoor()
         {
             // this is needed because doors are dynamically instantiated and are not connected to 
             // anything outside floors, like NPCs
-            var building = GameObject.Find("🏢 Building controller");
-            if (!building)
-                return;
+            // var building = GameObject.Find("🏢 Building controller");
+            // if (!building)
+            //     return;
 
-            var buildingController = building.GetComponent<BuildingController>();
-            if (!buildingController)
-                return;
+            // var buildingController = building.GetComponent<BuildingController>();
+            // if (!buildingController)
+            //     return;
 
-            buildingController.OnNotify(new GameEventData(GameEvents.KnockOnNpcDoor, doorNumber));
+            // buildingController.OnNotify(new GameEventData(GameEvents.KnockOnNpcDoor, doorNumber));
+            Notify(GameEvents.KnockOnNpcDoor, doorNumber);
         }
 
         // public void OnNotify(GameEventData eventData)
@@ -137,6 +158,7 @@ namespace Elevator.scripts
 
         public void OpenDoor()
         {
+            if (_isDoorOpen) return;
             ToggleDoorState();
         }
 
@@ -173,12 +195,20 @@ namespace Elevator.scripts
         private void ToggleDoorState()
         {
             _isDoorOpen = !_isDoorOpen;
-            door.GetComponent<SpriteRenderer>().enabled = !_isDoorOpen;
-            door.GetComponent<Collider2D>().enabled = !_isDoorOpen;
-            entrance.GetComponent<Collider2D>().enabled = _isDoorOpen;
+            // TODO: flip door from each side
+            var spriteRenderer = door.GetComponent<SpriteRenderer>();
+            if (spriteRenderer != null)
+                spriteRenderer.flipX = _isDoorOpen;
+            transform.Translate(new Vector2(_isDoorOpen ? 4 : -4, 0));
+            var nonTriggerCollider = door.GetComponents<Collider2D>().FirstOrDefault(c => !c.isTrigger);
+            if (nonTriggerCollider != null)
+                nonTriggerCollider.enabled = !_isDoorOpen;
 
-            if (doorNumberTextMeshPro)
-                doorNumberTextMeshPro.enabled = !_isDoorOpen;
+            // door.GetComponent<SpriteRenderer>().enabled = !_isDoorOpen;
+            // entrance.GetComponent<Collider2D>().enabled = _isDoorOpen;
+
+            // if (doorNumberTextMeshPro)
+            //     doorNumberTextMeshPro.enabled = !_isDoorOpen;
         }
     }
 }

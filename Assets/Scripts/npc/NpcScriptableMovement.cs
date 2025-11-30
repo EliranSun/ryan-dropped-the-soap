@@ -3,6 +3,7 @@ using Character_Creator.scripts;
 using Dialog;
 using Elevator.scripts;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace npc
 {
@@ -23,18 +24,17 @@ namespace npc
         [SerializeField] private bool isRigidBodyMovement = true;
         [SerializeField] private bool avoidPlayer;
         [SerializeField] private bool loopPointsOfInterest = true;
+        [SerializeField] private float restBetweenPoints = 4;
         [SerializeField] private ActorName actorName;
         [SerializeField] private ApartmentsController apartmentsController;
 
-        [Header("Wobbly Movement")]
-        [SerializeField]
+        [Header("Wobbly Movement")] [SerializeField]
         private bool isMovementWobbly;
 
         [SerializeField] private float wobbleAmplitudeDegrees = 7f; // max lean angle
         [SerializeField] private float wobbleFrequency = 1f; // cycles per second
 
-        [Header("Points of interest")]
-        [SerializeField]
+        [Header("Points of interest")] [SerializeField]
         private Transform[] pointsOfInterest;
 
         private Animator _animator;
@@ -62,13 +62,15 @@ namespace npc
                 return;
 
             var currentPoint = pointsOfInterest[_currentPointOfInterestIndex];
-            var distance = Vector2.Distance(transform.position, currentPoint.position);
+            // var distance = Vector2.Distance(transform.position, currentPoint.position);
+            var distance = Mathf.Abs(transform.position.x - currentPoint.position.x);
 
+            print($"Distance to point: {distance}; need to be lower than: {distanceToChangePoint}");
             if (distance <= distanceToChangePoint)
             {
-                // reached point
                 if (_isWalking)
                 {
+                    print("Scriptable Movement: Reached point, stopping");
                     _animator.SetBool(IsWalking, false);
                     _isWalking = false;
                     _currentPointOfInterestIndex++;
@@ -80,6 +82,8 @@ namespace npc
                         return;
 
                     SetNextPointOfInterest();
+                    Invoke(nameof(SetNextPointOfInterest),
+                        Random.Range(restBetweenPoints - 1f, restBetweenPoints + 1f));
                     Notify(GameEvents.NpcAtPointOfInterest);
                 }
 
@@ -103,7 +107,7 @@ namespace npc
         private void WobbleForward(Vector2 direction)
         {
             // Flip sprite based on direction
-            _spriteRenderer.flipX = direction.x > 0;
+            _spriteRenderer.flipX = direction.x <= 0;
 
             // Advance wobble timer
             _wobbleTime += Time.deltaTime;
@@ -201,7 +205,7 @@ namespace npc
             UpdatePointsOfInterest(newPointsOfInterest);
         }
 
-        private void ReplacePointOfInterest(Transform newPointOfInterest)
+        public void ReplacePointOfInterest(Transform newPointOfInterest)
         {
             // Create a new array with just the new point
             var newPointsOfInterest = new[] { newPointOfInterest };
