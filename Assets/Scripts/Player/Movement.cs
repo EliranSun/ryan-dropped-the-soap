@@ -27,6 +27,7 @@ namespace Player
 
         private InputAction _moveAction;
         private Rigidbody2D _rigidbody2D;
+        private Coroutine _wobblyMovementCoroutine;
 
         private void Awake()
         {
@@ -43,7 +44,7 @@ namespace Player
             _rigidbody2D = GetComponent<Rigidbody2D>();
             // spriteRenderer = GetComponent<SpriteRenderer>();
 
-            if (addWobblyMovement) StartCoroutine(WobblyMovement());
+            if (addWobblyMovement) StartWobblyMovementIfNeeded();
 
             if (allowFlight) _rigidbody2D.gravityScale = 0f;
         }
@@ -89,14 +90,14 @@ namespace Player
                     return;
 
                 _isMoving = true;
-                if (addWobblyMovement) StartCoroutine(WobblyMovement());
+                if (_isMoving && addWobblyMovement) StartWobblyMovementIfNeeded();
             }
             else if (_isMoving)
             {
                 _rigidbody2D.linearVelocity = new Vector2(0, _rigidbody2D.linearVelocity.y);
                 _isMoving = false;
                 transform.rotation = Quaternion.identity;
-                StopAllCoroutines();
+                StopWobblyMovement();
             }
 
             if (_isOnGround && (Input.GetKeyDown(KeyCode.W) ||
@@ -114,6 +115,21 @@ namespace Player
             var y = allowFlight ? moveValue.y : 0;
             transform.Translate(new Vector3(moveValue.x, y, 0) * (speed * Time.deltaTime));
 
+            if (Mathf.Abs(moveValue.x) > 0.01f)
+            {
+                if (!_isMoving)
+                {
+                    _isMoving = true;
+                    if (addWobblyMovement) StartWobblyMovementIfNeeded();
+                }
+            }
+            else if (_isMoving)
+            {
+                _isMoving = false;
+                transform.rotation = Quaternion.identity;
+                StopWobblyMovement();
+            }
+
             if (allowFlight) return;
 
             var jumpPressed =
@@ -127,7 +143,7 @@ namespace Player
                 _rigidbody2D.AddForce(force, ForceMode2D.Impulse);
             }
 
-            if (moveValue.x == 0) return;
+            if (Mathf.Abs(moveValue.x) < 0.01f) return;
 
             if (_flipEnabled && spriteRenderer)
                 spriteRenderer.flipX = moveValue.x < 0;
@@ -170,7 +186,9 @@ namespace Player
             while (true)
                 if (_isMoving)
                 {
-                    var direction = Mathf.Sign(_rigidbody2D.linearVelocity.x);
+                    var moveValue = _moveAction.ReadValue<Vector2>();
+                    var direction = Mathf.Sign(moveValue.x);
+
                     transform.Rotate(new Vector3(0, 0, -5f * direction));
                     yield return new WaitForSeconds(0.2f);
                     transform.Rotate(new Vector3(0, 0, 5f * direction));
@@ -209,6 +227,12 @@ namespace Player
                 if (bodyValue)
                     spriteRenderer = bodyValue.GetComponent<SpriteRenderer>();
             }
+
+            if (eventData.Name == GameEvents.PlayerControlNpc)
+            {
+                addWobblyMovement = true;
+                if (_isMoving) StartWobblyMovementIfNeeded();
+            }
         }
 
         public void SlowDown()
@@ -219,6 +243,19 @@ namespace Player
         public void NormalSpeed()
         {
             speed *= 4;
+        }
+
+        private void StartWobblyMovementIfNeeded()
+        {
+            if (_wobblyMovementCoroutine != null) return;
+            _wobblyMovementCoroutine = StartCoroutine(WobblyMovement());
+        }
+
+        private void StopWobblyMovement()
+        {
+            if (_wobblyMovementCoroutine == null) return;
+            StopCoroutine(_wobblyMovementCoroutine);
+            _wobblyMovementCoroutine = null;
         }
     }
 }

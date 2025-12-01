@@ -18,16 +18,20 @@ MonoBehaviour:
   overlayImageSprite: {fileID: 0}
   voicedLines:
   - text: yes?
+    translation: 
     clip: {fileID: 8300000, guid: 49d096fc87cd1d84a8c29560a068da97, type: 3}
     gender: 0
+  actorName: 3
+  actorReaction: 0
+  nextDialogueLine: {fileID: 0}
   playerOptions:
-  - text: HELLO
+  - text: Hello
     type: 0
     choiceDataType: 0
     choiceDataOption: 0
     next: {fileID: 11400000, guid: 3256de1c8ef8e9e43b3fc43b655bc35a, type: 2}
     actionAfterPlayerChoice: 0
-  - text: HI
+  - text: Hi
     type: 0
     choiceDataType: 0
     choiceDataOption: 0
@@ -37,19 +41,25 @@ MonoBehaviour:
     type: 0
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 11400000, guid: d1ccfd6418f0f6a49b43e795ec1d0449, type: 2}
+    next: {fileID: 11400000, guid: 488654abc175fb4419e9d69c7d0d5c84, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: Hey
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 3256de1c8ef8e9e43b3fc43b655bc35a, type: 2}
     actionAfterPlayerChoice: 0
   playerReactions: []
-  nextDialogueLine: {fileID: 0}
+  conditionalNextLines: []
   randomizedDialogLines: []
   objectReferringDialogLines: []
   wait: 0
-  actorName: 3
   actionBeforeLine: 0
   actionAfterLine: 0
-  actorReaction: 0
   angerLevel: 0
   toggleLineCondition: {fileID: 0}
   lineCondition:
     condition: 0
     isMet: 0
+  blurAudio: 0
+  actionNumberData: 0

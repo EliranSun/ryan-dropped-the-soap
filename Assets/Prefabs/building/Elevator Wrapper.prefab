@@ -95,18 +95,31 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8474523361218911097}
+        m_TargetAssemblyTypeName: Elevator.scripts.ElevatorButtonsController, ElevatorScriptsAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   elevatorContents:
   - {fileID: 1956579450362559799}
   - {fileID: 7214218335818565306}
   - {fileID: 5567025717867883858}
   - {fileID: 4966054241818034257}
+  - {fileID: 8048331822119507744}
   elevatorRigidbody2D: {fileID: 6852447067537507302}
-  exit: {fileID: 1956579450362559799}
+  exit: {fileID: 8048331822119507744}
   elevatorPanel: {fileID: 4966054241818034257}
   floorHeight: 22.4
   currentFloor: 0
   floorsStartAtY: 30
-  isFloorMoving: 0
+  isElevatorMoving: 0
   targetFloor: 0
   saveLastElevatorFloor: 0
   elevatorSpeed: 10
@@ -776,6 +789,11 @@ Rigidbody2D:
 --- !u!1 &7214218335818565306 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3140173934899906118, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
+  m_PrefabInstance: {fileID: 5731444967679000828}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8048331822119507744 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2322526941205419996, guid: 0fdc62abc4283f04488a0df9d2c94b19, type: 3}
   m_PrefabInstance: {fileID: 5731444967679000828}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &8474523361218911097 stripped

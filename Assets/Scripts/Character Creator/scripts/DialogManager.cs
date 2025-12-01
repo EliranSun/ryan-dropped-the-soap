@@ -118,6 +118,7 @@ namespace Character_Creator.scripts
 
             var line = GetLineByGender(_currentDialogue);
 
+
             if (line == null)
             {
                 OnDialogEnd();
@@ -190,7 +191,9 @@ namespace Character_Creator.scripts
             if (_currentDialogue.toggleLineCondition)
                 _currentDialogue.toggleLineCondition.lineCondition.isMet = true;
 
-            PostDialogAdvanceActions();
+            // TODO: This is handled via pressing N, although partial. Need to check it does not 
+            // break anything
+            // PostDialogAdvanceActions();
         }
 
         private void PostDialogAdvanceActions()

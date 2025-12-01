@@ -252,5 +252,7 @@
     NpcGoToApartment,
     NpcEnterApartment,
 
-    LayerChange
+    LayerChange,
+
+    PlayerControlNpc
 }

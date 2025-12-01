@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Dialog
 {
     [Serializable]
-    internal class InGameActors
+    public class InGameActors
     {
         public ActorName actorName;
         public GameObject actor;

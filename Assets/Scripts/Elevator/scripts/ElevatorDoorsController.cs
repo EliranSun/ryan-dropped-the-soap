@@ -17,7 +17,6 @@ namespace Elevator.scripts
         [SerializeField] private float delayBeforeOpening = 2f;
         [SerializeField] private float delayBeforeClosing = 2f;
         [SerializeField] private TextMeshPro elevatorCurrentFloorNumberUI;
-        [SerializeField] private FloorData floorData;
         private BuildingController _buildingController;
 
         private float _closeLerpTime;
@@ -37,13 +36,13 @@ namespace Elevator.scripts
             _doorsAreOpen = false;
 
             // TODO: Better than hardcoded string
-            _buildingController = GameObject.Find("🏢 Building controller").GetComponent<BuildingController>();
+            // _buildingController = GameObject.Find("🏢 Building controller").GetComponent<BuildingController>();
 
             // Add player as observer
             var playerStatesController = FindFirstObjectByType<PlayerStatesController>();
             if (playerStatesController != null) observers.AddListener(playerStatesController.OnNotify);
 
-            SetElevatorCurrentFloorNumber(_buildingController.elevatorFloorNumber.ToString());
+            // SetElevatorCurrentFloorNumber(_buildingController.elevatorFloorNumber.ToString());
         }
 
         private void Update()

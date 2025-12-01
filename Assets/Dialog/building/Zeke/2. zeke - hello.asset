@@ -18,32 +18,48 @@ MonoBehaviour:
   overlayImageSprite: {fileID: 0}
   voicedLines:
   - text: Oh, hello. Uh... can I help you with something?
+    translation: 
     clip: {fileID: 8300000, guid: 221db13fc72f0504da5d9a8422c3dbe2, type: 3}
     gender: 0
+  actorName: 3
+  actorReaction: 0
+  nextDialogueLine: {fileID: 0}
   playerOptions:
-  - text: HELLO
+  - text: Hello
     type: 0
     choiceDataType: 0
     choiceDataOption: 0
     next: {fileID: 11400000, guid: eccdd595060c718469ce33cad85cef4e, type: 2}
     actionAfterPlayerChoice: 0
-  - text: HAVE PROBLEM
+  - text: I have a problem
     type: 0
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 11400000, guid: d1ccfd6418f0f6a49b43e795ec1d0449, type: 2}
+    next: {fileID: 11400000, guid: 488654abc175fb4419e9d69c7d0d5c84, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: Wanted to say HI
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 488654abc175fb4419e9d69c7d0d5c84, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: Didn't expect you to answer
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 488654abc175fb4419e9d69c7d0d5c84, type: 2}
     actionAfterPlayerChoice: 0
   playerReactions: []
-  nextDialogueLine: {fileID: 0}
+  conditionalNextLines: []
   randomizedDialogLines: []
   objectReferringDialogLines: []
   wait: 0
-  actorName: 3
   actionBeforeLine: 0
   actionAfterLine: 0
-  actorReaction: 0
   angerLevel: 0
   toggleLineCondition: {fileID: 0}
   lineCondition:
     condition: 0
     isMet: 0
+  blurAudio: 0
+  actionNumberData: 0
