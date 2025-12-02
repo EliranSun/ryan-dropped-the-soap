@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Elevator.scripts
 {
-    public class ElevatorCall : ObserverSubject
+    public class ElevatorCall : MonoBehaviour
     {
         [SerializeField] private int floorNumber;
         [SerializeField] private float minDistanceForCall = 4f;

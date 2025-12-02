@@ -11,6 +11,7 @@ namespace Player
         [SerializeField] private float jumpForce = 20f;
         [SerializeField] private GameObject headGameObject;
         [SerializeField] private GameObject hairGameObject;
+        [SerializeField] private Camera mainCamera;
         [SerializeField] private bool isRigidBodyMovement = true;
         [SerializeField] private bool addWobblyMovement;
         [SerializeField] public SpriteRenderer spriteRenderer;
@@ -112,8 +113,9 @@ namespace Player
         private void TransformMovement()
         {
             var moveValue = _moveAction.ReadValue<Vector2>();
-            var y = allowFlight ? moveValue.y : 0;
-            transform.Translate(new Vector3(moveValue.x, y, 0) * (speed * Time.deltaTime));
+            // var y = allowFlight ? moveValue.y : 0;
+            transform.Translate(new Vector3(moveValue.x, 0, moveValue.y) * (speed * Time.deltaTime));
+            // mainCamera.transform.Translate(new Vector3(0, 0, moveValue.y));
 
             if (Mathf.Abs(moveValue.x) > 0.01f)
             {
@@ -132,16 +134,16 @@ namespace Player
 
             if (allowFlight) return;
 
-            var jumpPressed =
-                Input.GetKeyDown(KeyCode.W) ||
-                Input.GetKeyDown(KeyCode.UpArrow) ||
-                Input.GetButtonDown("Jump");
-
-            if (_isOnGround && jumpPressed)
-            {
-                var force = Vector2.up * jumpForce;
-                _rigidbody2D.AddForce(force, ForceMode2D.Impulse);
-            }
+            // var jumpPressed =
+            //     Input.GetKeyDown(KeyCode.W) ||
+            //     Input.GetKeyDown(KeyCode.UpArrow) ||
+            //     Input.GetButtonDown("Jump");
+            //
+            // if (_isOnGround && jumpPressed)
+            // {
+            //     var force = Vector2.up * jumpForce;
+            //     _rigidbody2D.AddForce(force, ForceMode2D.Impulse);
+            // }
 
             if (Mathf.Abs(moveValue.x) < 0.01f) return;
 

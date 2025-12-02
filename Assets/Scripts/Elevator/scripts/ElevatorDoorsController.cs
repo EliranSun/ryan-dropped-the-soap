@@ -8,7 +8,6 @@ namespace Elevator.scripts
     [RequireComponent(typeof(Collider2D))]
     public class ElevatorDoorsController : ObserverSubject
     {
-        [SerializeField] private Transform doorsOpenPosition;
         [SerializeField] private Transform leftDoorTransform;
         [SerializeField] private Transform rightDoorTransform;
         [SerializeField] private Transform playerTransform;
@@ -16,8 +15,9 @@ namespace Elevator.scripts
         [SerializeField] private float timeToOpen = 1.5f;
         [SerializeField] private float delayBeforeOpening = 2f;
         [SerializeField] private float delayBeforeClosing = 2f;
+
         [SerializeField] private TextMeshPro elevatorCurrentFloorNumberUI;
-        private BuildingController _buildingController;
+        // private BuildingController _buildingController;
 
         private float _closeLerpTime;
         private bool _doorCloseCoroutineStarted;
@@ -71,14 +71,11 @@ namespace Elevator.scripts
             if (!itemName.ToLower().Contains("elevator")) return;
 
             if (_doorsAreOpen)
-            {
                 // FIXME: This won't work as well since player scene is determined via PlayerStatesController
                 // SceneManager.LoadScene("inside elevator");
                 Notify(GameEvents.ChangePlayerLocation, Location.Elevator);
-                return;
-            }
 
-            StartCoroutine(_buildingController.CallElevator(this));
+            // StartCoroutine(_buildingController.CallElevator(this));
         }
 
         private IEnumerator OpenDoorsWithDelay()

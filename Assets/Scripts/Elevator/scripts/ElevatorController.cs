@@ -65,13 +65,13 @@ namespace Elevator.scripts
 
             Notify(GameEvents.FloorChange, currentFloor);
 
-            ToggleElevator(false);
+            // ToggleElevator(false);
         }
 
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.E))
-                ToggleElevator(true);
+                ToggleElevator(true); // testing
 
             if (!elevatorRigidbody2D) return;
 
