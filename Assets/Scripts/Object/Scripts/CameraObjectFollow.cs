@@ -164,13 +164,13 @@ namespace Object.Scripts
             _lockedX = xPosition;
             lockX = true;
             // TODO: When is active, object follow lag behind on elevator change
-            _isActive = false;
+            // _isActive = false;
         }
 
         public void UnlockX()
         {
             lockX = false;
-            _isActive = true;
+            // _isActive = true;
         }
     }
 }

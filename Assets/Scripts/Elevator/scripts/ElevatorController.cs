@@ -65,13 +65,13 @@ namespace Elevator.scripts
 
             Notify(GameEvents.FloorChange, currentFloor);
 
-            // ToggleElevator(false);
+            ToggleElevator(false);
         }
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.E))
-                ToggleElevator(true); // testing
+            // if (Input.GetKeyDown(KeyCode.E))
+            //     ToggleElevator(true); // testing
 
             if (!elevatorRigidbody2D) return;
 
@@ -104,8 +104,8 @@ namespace Elevator.scripts
 
         private float CalculateElevatorYPosition(int floorNumber)
         {
-            // Assuming floor 0 is at Y position floorsStartAtY, calculate position for current floor
-            var newFloorNumber = floorNumber * floorHeight + floorsStartAtY;
+            // Assuming floor 0 is at Y position floorsStartAtY, calculate position for the current floor
+            var newFloorNumber = floorNumber * floorHeight + floorsStartAtY - 1.5f;
             print($"Summoned from floor {floorNumber}. Should go to Y: {newFloorNumber}");
             return newFloorNumber;
         }

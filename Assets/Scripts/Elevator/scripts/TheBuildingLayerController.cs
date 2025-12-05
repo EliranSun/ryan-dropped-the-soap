@@ -41,7 +41,6 @@ namespace Elevator.scripts
 
     public class TheBuildingLayerController : ObserverSubject
     {
-        [SerializeField] private GameObject player;
         [SerializeField] private Camera mainCamera;
         [SerializeField] private Color skyColor;
         [SerializeField] private Color halfDarkHalfSkyColor;
@@ -92,6 +91,9 @@ namespace Elevator.scripts
 
         private IEnumerator UpdateLayersActiveState(BuildingLayerType targetLayer)
         {
+            _currentActiveLayer = targetLayer;
+            Notify(GameEvents.LayerChange, targetLayer);
+
             yield return new WaitForEndOfFrame();
 
             foreach (BuildingLayerType layerType in Enum.GetValues(typeof(BuildingLayerType)))
@@ -99,10 +101,6 @@ namespace Elevator.scripts
                 var objs = layers.GetLayer(layerType);
                 foreach (var obj in objs) obj.SetActive(layerType == targetLayer);
             }
-
-            _currentActiveLayer = targetLayer;
-
-            Notify(GameEvents.LayerChange, targetLayer);
         }
 
         public void OnNotify(GameEventData eventData)

@@ -13,6 +13,7 @@ namespace Elevator.scripts
         [SerializeField] private Transform playerTransform;
         private bool _areDoorsOpen;
 
+
         private void Update()
         {
             var distanceToElevator = Vector3.Distance(
@@ -29,26 +30,32 @@ namespace Elevator.scripts
         {
             if (eventData.Name == GameEvents.FloorChange)
             {
-                var floorNumber = (int)eventData.Data;
+                var nextFloorNumber = (int)eventData.Data;
+                print($"{gameObject.name} Current floor number {nextFloorNumber}");
                 gameObject.tag = "Elevator Doors";
-                currentElevatorFloorIndication.text = floorNumber.ToString();
+                currentElevatorFloorIndication.text = nextFloorNumber.ToString();
+                ChangeDoorsState(nextFloorNumber);
             }
 
             if (eventData.Name == GameEvents.ElevatorReachedFloor)
             {
                 var elevatorFloor = (int)eventData.Data;
                 print($"Elevator reached floor {elevatorFloor}. Reporting from floor {floorNumber}");
-                var isSameFloor = elevatorFloor == floorNumber;
-
-                if (doors) doors.gameObject.SetActive(!isSameFloor);
-                gameObject.tag = isSameFloor ? "Elevator Entrance" : "Elevator Doors";
-                _areDoorsOpen = isSameFloor;
+                ChangeDoorsState(elevatorFloor);
             }
         }
 
         public void UpdateFloorNumber(int newFloorNumber)
         {
             floorNumber = newFloorNumber;
+        }
+
+        private void ChangeDoorsState(int elevatorFloorNumber)
+        {
+            var isSameFloor = elevatorFloorNumber == floorNumber;
+            if (doors) doors.gameObject.SetActive(!isSameFloor);
+            gameObject.tag = isSameFloor ? "Elevator Entrance" : "Elevator Doors";
+            _areDoorsOpen = isSameFloor;
         }
     }
 }

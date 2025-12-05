@@ -65,7 +65,7 @@ namespace npc
             // var distance = Vector2.Distance(transform.position, currentPoint.position);
             var distance = Mathf.Abs(transform.position.x - currentPoint.position.x);
 
-            print($"Distance to point: {distance}; need to be lower than: {distanceToChangePoint}");
+            // print($"Distance to point: {distance}; need to be lower than: {distanceToChangePoint}");
             if (distance <= distanceToChangePoint)
             {
                 if (_isWalking)

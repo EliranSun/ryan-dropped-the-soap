@@ -11,7 +11,7 @@ namespace Elevator.scripts
 
         private void Start()
         {
-            if (floorText)
+            if (floorText && elevatorController)
                 floorText.text = elevatorController.currentFloor.ToString();
         }
 
@@ -20,9 +20,10 @@ namespace Elevator.scripts
             if (elevatorController.isElevatorMoving)
                 return;
 
-            desiredFloorText.text = desiredFloorText.text == "00" // init state
-                ? $"{floorNumber}"
-                : $"{desiredFloorText.text}{floorNumber}";
+            if (desiredFloorText)
+                desiredFloorText.text = desiredFloorText.text == "00" // init state
+                    ? $"{floorNumber}"
+                    : $"{desiredFloorText.text}{floorNumber}";
 
             elevatorController.targetFloor = int.Parse(desiredFloorText.text);
         }

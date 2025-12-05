@@ -38,8 +38,8 @@ namespace Npc
             {
                 var actorNameProperty = eventData.Data.GetType().GetProperty("actorName");
                 if (actorNameProperty == null) return;
-
                 var actorName = (ActorName)actorNameProperty.GetValue(eventData.Data);
+
                 if (IsActorMatchingTenant(actorName))
                     gameObject.SetActive(false);
             }
