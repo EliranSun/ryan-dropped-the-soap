@@ -19,7 +19,8 @@ namespace Mini_Games
         Shout
     }
 
-    public class MiniGamesManager : ObserverSubject
+    // TODO: Strange that Mini games manager is also a mini game
+    public class MiniGamesManager : MiniGame
     {
         [Header("Mini Games Manager")] private const float BrightnessDecrease = 0.1f;
         private const float BrightnessIncrease = 0.1f;
@@ -88,7 +89,7 @@ namespace Mini_Games
             {
                 inGameInstructionsText.text = selectedInstruction + "!";
                 TriggerMiniGame(selectedInstruction);
-                // StartMiniGame(); // counts down
+                StartMiniGame();
             }
             else
             {
