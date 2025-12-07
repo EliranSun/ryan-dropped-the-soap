@@ -104,12 +104,12 @@ namespace Character_Creator.scripts
             return source.pitch < 0f;
         }
 
-        private IEnumerator CheckAudioEnd()
-        {
-            yield return new WaitWhile(() => _audioSource.isPlaying);
-
-            Invoke(nameof(OnDialogEnd), _currentDialogue.wait);
-        }
+        // private IEnumerator CheckAudioEnd()
+        // {
+        // yield return new WaitWhile(() => _audioSource.isPlaying);
+        //
+        // Invoke(nameof(OnDialogEnd), _currentDialogue.wait);
+        // }
 
         private void ReadCurrentLine()
         {
@@ -153,7 +153,7 @@ namespace Character_Creator.scripts
                 _audioSource.clip = line.clip;
                 _audioSource.Play();
                 Notify(GameEvents.LineNarrationStart, _currentDialogue);
-                StartCoroutine(CheckAudioEnd());
+                // StartCoroutine(CheckAudioEnd());
             }
             else
             {
@@ -455,17 +455,14 @@ namespace Character_Creator.scripts
                     UpdateDialogState(_currentDialogue.randomizedDialogLines[randomIndex]);
                     TriggerAnAct(_currentDialogue.actionBeforeLine);
                     Invoke(nameof(ReadCurrentLine), _currentDialogue.waitBeforeLine);
-                    return;
                 }
-
-                if (_currentDialogue.nextDialogueLine)
+                else if (_currentDialogue.nextDialogueLine)
                 {
                     UpdateDialogState(_currentDialogue.nextDialogueLine);
                     TriggerAnAct(_currentDialogue.actionBeforeLine);
                     Invoke(nameof(ReadCurrentLine), _currentDialogue.waitBeforeLine);
                 }
-
-                if (_currentDialogue.conditionalNextLines.Length > 0)
+                else if (_currentDialogue.conditionalNextLines.Length > 0)
                 {
                     var nextLine =
                         _currentDialogue.conditionalNextLines.First(line =>
@@ -477,6 +474,10 @@ namespace Character_Creator.scripts
                         TriggerAnAct(_currentDialogue.actionBeforeLine);
                         Invoke(nameof(ReadCurrentLine), _currentDialogue.waitBeforeLine);
                     }
+                }
+                else
+                {
+                    _currentDialogue = null;
                 }
             }
         }

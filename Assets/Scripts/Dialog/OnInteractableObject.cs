@@ -1,5 +1,6 @@
 using System;
 using Dialog;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -14,6 +15,7 @@ namespace Character_Creator.scripts
     {
         Click,
         Move,
+        Keyboard,
         Both
     }
 
@@ -47,11 +49,21 @@ namespace Character_Creator.scripts
         private InteractableObjectType interactableObjectType;
 
         [SerializeField] private GameEvents gameEvent;
+        [SerializeField] private TextMeshPro instruction;
         [SerializeField] private NarrationDialogLine[] dialogLine;
         [SerializeField] private InteractionType interactionType;
         [SerializeField] private bool repeatLastInteraction = true;
         [SerializeField] private bool repeatAllInteractions;
         private int _interactionCount;
+
+        private void Update()
+        {
+            if (interactionType == InteractionType.Keyboard && Input.GetKeyDown(KeyCode.X))
+            {
+                print($"PRESS ON {gameObject.name}");
+                TriggerInteraction();
+            }
+        }
 
         private void OnMouseDown()
         {
@@ -59,7 +71,31 @@ namespace Character_Creator.scripts
                 return;
 
             print($"CLICK ON {gameObject.name}");
+            TriggerInteraction();
+        }
 
+        private void OnTriggerEnter(Collider other)
+        {
+            if (interactionType == InteractionType.Move)
+                _interactionCount++;
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            print($"OnTriggerEnter2D {gameObject.name}");
+            if (instruction)
+                instruction.text = "TALK";
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            print($"OnTriggerExit2D {gameObject.name}");
+            if (instruction)
+                instruction.text = "";
+        }
+
+        private void TriggerInteraction()
+        {
             Notify(gameEvent, new InteractionData(
                 gameObject.name,
                 interactableObjectName,
@@ -80,11 +116,6 @@ namespace Character_Creator.scripts
             }
 
             _interactionCount++;
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if (interactionType == InteractionType.Move) _interactionCount++;
         }
 
         public void OnNotify(GameEventData gameEventData)

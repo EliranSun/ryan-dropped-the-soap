@@ -1,7 +1,7 @@
 using System;
+using System.Collections;
 using System.Linq;
 using Dialog;
-using Dialog.Scripts;
 using Expressions;
 using TMPro;
 using UnityEngine;
@@ -27,7 +27,21 @@ namespace Mini_Games.Flirt.scripts
         [SerializeField] private SpriteEmotion[] actorSpriteEmotions;
         [SerializeField] private TextMeshProUGUI scoreTextContainer;
         [SerializeField] private Image characterImageContainer;
+        [SerializeField] private GameObject[] flirtableNpcs;
+        [SerializeField] private Color highlightColor = new(1f, 1f, 0.5f, 1f); // Yellow-ish highlight
+        [SerializeField] private float pulseSpeed = 2f; // Speed of the pulsing effect
+        [SerializeField] private float pulseScaleMin = 1f; // Minimum scale (normal size)
+        [SerializeField] private float pulseScaleMax = 1.15f; // Maximum scale (15% larger)
+        private Coroutine[] _highlightCoroutines;
         private int _initResponsesCounter;
+        private SpriteRenderer[] _npcSpriteRenderers;
+        private Vector3[] _originalScales;
+
+        private void Start()
+        {
+            // isGameActive = true;
+            // StartMiniGame();
+        }
 
         public override void OnNotify(GameEventData eventData)
         {
@@ -42,6 +56,7 @@ namespace Mini_Games.Flirt.scripts
                 case GameEvents.MiniGameIndicationTrigger when
                     (MiniGameName)eventData.Data == MiniGameName.Flirt:
                     isGameActive = true;
+                    StartHighlightingNpcs();
                     break;
             }
 
@@ -102,9 +117,80 @@ namespace Mini_Games.Flirt.scripts
             scoreTextContainer.text = score.ToString();
         }
 
+        private void StartHighlightingNpcs()
+        {
+            if (flirtableNpcs == null || flirtableNpcs.Length == 0)
+                return;
+
+            // Initialize arrays
+            _highlightCoroutines = new Coroutine[flirtableNpcs.Length];
+            _originalScales = new Vector3[flirtableNpcs.Length];
+            _npcSpriteRenderers = new SpriteRenderer[flirtableNpcs.Length];
+
+            // Start highlighting coroutine for each NPC
+            for (var i = 0; i < flirtableNpcs.Length; i++)
+                if (flirtableNpcs[i] != null)
+                {
+                    _originalScales[i] = flirtableNpcs[i].transform.localScale;
+                    _npcSpriteRenderers[i] = flirtableNpcs[i].GetComponent<SpriteRenderer>();
+                    _highlightCoroutines[i] = StartCoroutine(HighlightNpcCoroutine(i));
+                }
+        }
+
+        private void StopHighlightingNpcs()
+        {
+            if (_highlightCoroutines == null)
+                return;
+
+            // Stop all highlighting coroutines
+            for (var i = 0; i < _highlightCoroutines.Length; i++)
+            {
+                if (_highlightCoroutines[i] != null) StopCoroutine(_highlightCoroutines[i]);
+
+                // Reset scale and color
+                if (flirtableNpcs != null && i < flirtableNpcs.Length && flirtableNpcs[i] != null)
+                {
+                    flirtableNpcs[i].transform.localScale = _originalScales[i];
+                    if (_npcSpriteRenderers[i] != null) _npcSpriteRenderers[i].color = Color.white;
+                }
+            }
+        }
+
+        private IEnumerator HighlightNpcCoroutine(int npcIndex)
+        {
+            if (npcIndex >= flirtableNpcs.Length || flirtableNpcs[npcIndex] == null)
+                yield break;
+
+            var npc = flirtableNpcs[npcIndex];
+            var spriteRenderer = _npcSpriteRenderers[npcIndex];
+            var originalScale = _originalScales[npcIndex];
+            var originalColor = spriteRenderer != null ? spriteRenderer.color : Color.white;
+
+            var time = 0f;
+
+            while (true)
+            {
+                time += Time.deltaTime * pulseSpeed;
+
+                // Calculate pulsing scale using sine wave
+                var scaleFactor = Mathf.Lerp(pulseScaleMin, pulseScaleMax, (Mathf.Sin(time) + 1f) / 2f);
+                npc.transform.localScale = originalScale * scaleFactor;
+
+                // Calculate flashing color using sine wave
+                if (spriteRenderer != null)
+                {
+                    var colorIntensity = (Mathf.Sin(time * 1.5f) + 1f) / 2f; // Slightly faster color pulse
+                    spriteRenderer.color = Color.Lerp(originalColor, highlightColor, colorIntensity);
+                }
+
+                yield return null;
+            }
+        }
+
         private void EndGame()
         {
             print($"Closing the game with score {score}");
+            StopHighlightingNpcs();
             CloseMiniGame(score > 0);
         }
 

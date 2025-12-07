@@ -86,8 +86,11 @@ namespace Mini_Games
             // newPosition.z = miniGameContainer.transform.position.z;
             // miniGameContainer.transform.position = newPosition;
             Notify(GameEvents.MiniGameStart);
-            audioSource.clip = soundtrack;
-            audioSource.Play();
+            if (audioSource)
+            {
+                audioSource.clip = soundtrack;
+                audioSource.Play();
+            }
         }
 
         protected virtual void CloseMiniGame(bool isGameWon = false)
@@ -113,8 +116,11 @@ namespace Mini_Games
             if (dialogLine) Notify(GameEvents.TriggerSpecificDialogLine, dialogLine);
             Notify(isGameWon ? GameEvents.MiniGameWon : GameEvents.MiniGameLost, score);
 
-            audioSource.Stop();
-            audioSource.PlayOneShot(isGameWon ? winSound : loseSound);
+            if (audioSource)
+            {
+                audioSource.Stop();
+                audioSource.PlayOneShot(isGameWon ? winSound : loseSound);
+            }
 
             Invoke(nameof(MiniGameCleanups), 4);
         }

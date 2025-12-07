@@ -19,7 +19,7 @@ namespace Mini_Games
         Shout
     }
 
-    public class MiniGamesManager : MiniGame
+    public class MiniGamesManager : ObserverSubject
     {
         [Header("Mini Games Manager")] private const float BrightnessDecrease = 0.1f;
         private const float BrightnessIncrease = 0.1f;
@@ -29,6 +29,7 @@ namespace Mini_Games
         private const int BossOfficeScore = -100;
         [SerializeField] private float currentScore;
         [SerializeField] private int pointsPerGame = 10;
+        [SerializeField] private bool areGamesRandomized;
         [SerializeField] private GameObject player;
         [SerializeField] private MiniGameName[] instructions;
         [SerializeField] private Slider scoreSlider;
@@ -41,6 +42,7 @@ namespace Mini_Games
         [SerializeField] private GameObject badEndingTrigger;
         [SerializeField] private GameObject goodEndingTrigger;
         private bool _isMiniGameInitiated;
+        private int _miniGamesIndex;
 
         private void Start()
         {
@@ -57,7 +59,7 @@ namespace Mini_Games
             if (goodEndingTrigger) goodEndingTrigger.SetActive(false);
         }
 
-        private void SetRandomInstruction()
+        private void SetNextInstruction()
         {
             if (instructions == null || instructions.Length == 0)
             {
@@ -67,8 +69,18 @@ namespace Mini_Games
 
             inGameInstructions.SetActive(true);
 
-            var randomIndex = Random.Range(0, instructions.Length);
-            var selectedInstruction = instructions[randomIndex];
+
+            var selectedInstruction = areGamesRandomized
+                ? instructions[Random.Range(0, instructions.Length)]
+                : instructions[_miniGamesIndex];
+
+            _miniGamesIndex += 1;
+
+            if (_miniGamesIndex > instructions.Length && !areGamesRandomized)
+            {
+                print("MOving on");
+                return;
+            }
 
             print($"Selected instruction: {selectedInstruction} in game instructions: {inGameInstructions}");
 
@@ -84,12 +96,12 @@ namespace Mini_Games
             }
         }
 
-        public override void OnNotify(GameEventData eventData)
+        public void OnNotify(GameEventData eventData)
         {
-            base.OnNotify(eventData);
+            // base.OnNotify(eventData);
 
             if (eventData.Name == GameEvents.StartMiniGames)
-                Invoke(nameof(SetRandomInstruction), initiateMiniGameDelay);
+                Invoke(nameof(SetNextInstruction), initiateMiniGameDelay);
 
             // if (eventData.Name == GameEvents.ThoughtScoreChange)
             // {
@@ -187,7 +199,7 @@ namespace Mini_Games
                 return;
             }
 
-            SetRandomInstruction();
+            SetNextInstruction();
         }
 
         private static Color DecreaseBrightness(Color currentColor)
