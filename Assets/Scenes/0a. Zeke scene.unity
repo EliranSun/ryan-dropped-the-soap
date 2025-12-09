@@ -3254,7 +3254,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 20
+  m_SortingOrder: 12
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -4754,7 +4754,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2.78, y: -20.56}
+  m_AnchoredPosition: {x: 2.7799988, y: -20.56}
   m_SizeDelta: {x: 99, y: 133}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &567279233
@@ -8931,16 +8931,121 @@ MonoBehaviour:
   - initPartnerExpression: {fileID: 21300000, guid: 308f2e455544235439b373c3b5f862b9, type: 3}
     choiceText: Give me a kiss
     playerResponses:
-    - response: KISS
-      partnerResponseExpression: {fileID: 21300000, guid: 4de449f542632d44496a13fb84e92937, type: 3}
     - response: AVOID
       partnerResponseExpression: {fileID: 21300000, guid: e1f94a02c0f653146b6af98100d2f684, type: 3}
+    - response: KISS
+      partnerResponseExpression: {fileID: 21300000, guid: 4de449f542632d44496a13fb84e92937, type: 3}
   - initPartnerExpression: {fileID: 21300000, guid: 9dd494e9e76ee5443865ffb3f9fba1fd, type: 3}
     choiceText: I need a hug
     playerResponses:
+    - response: AVOID
+      partnerResponseExpression: {fileID: 21300000, guid: 61459187faac45842ab2e1f5fa7dcdfe, type: 3}
     - response: HUG
       partnerResponseExpression: {fileID: 21300000, guid: 308f2e455544235439b373c3b5f862b9, type: 3}
+  - initPartnerExpression: {fileID: 21300000, guid: 48790084d05d62d4491496f2aa53840b, type: 3}
+    choiceText: Should we try for a kid?
+    playerResponses:
     - response: AVOID
+      partnerResponseExpression: {fileID: 21300000, guid: 308f2e455544235439b373c3b5f862b9, type: 3}
+    - response: OK
+      partnerResponseExpression: {fileID: 21300000, guid: 61459187faac45842ab2e1f5fa7dcdfe, type: 3}
+  - initPartnerExpression: {fileID: 21300000, guid: 48790084d05d62d4491496f2aa53840b, type: 3}
+    choiceText: Let's have sex
+    playerResponses:
+    - response: AVOID
+      partnerResponseExpression: {fileID: 21300000, guid: 308f2e455544235439b373c3b5f862b9, type: 3}
+    - response: OK
+      partnerResponseExpression: {fileID: 21300000, guid: 61459187faac45842ab2e1f5fa7dcdfe, type: 3}
+  - initPartnerExpression: {fileID: 21300000, guid: 9dd494e9e76ee5443865ffb3f9fba1fd, type: 3}
+    choiceText: Do you even love me anymore?
+    playerResponses:
+    - response: NO
+      partnerResponseExpression: {fileID: 21300000, guid: 308f2e455544235439b373c3b5f862b9, type: 3}
+    - response: YES
+      partnerResponseExpression: {fileID: 21300000, guid: 61459187faac45842ab2e1f5fa7dcdfe, type: 3}
+  - initPartnerExpression: {fileID: 21300000, guid: 9dd494e9e76ee5443865ffb3f9fba1fd, type: 3}
+    choiceText: We don't make love anymore
+    playerResponses:
+    - response: SO
+      partnerResponseExpression: {fileID: 21300000, guid: 308f2e455544235439b373c3b5f862b9, type: 3}
+    - response: OK
+      partnerResponseExpression: {fileID: 21300000, guid: 61459187faac45842ab2e1f5fa7dcdfe, type: 3}
+  - initPartnerExpression: {fileID: 21300000, guid: 9dd494e9e76ee5443865ffb3f9fba1fd, type: 3}
+    choiceText: Are you cheating on me?
+    playerResponses:
+    - response: SO
+      partnerResponseExpression: {fileID: 21300000, guid: 308f2e455544235439b373c3b5f862b9, type: 3}
+    - response: OK
+      partnerResponseExpression: {fileID: 21300000, guid: 61459187faac45842ab2e1f5fa7dcdfe, type: 3}
+  - initPartnerExpression: {fileID: 21300000, guid: 9dd494e9e76ee5443865ffb3f9fba1fd, type: 3}
+    choiceText: What do you want for dinner?
+    playerResponses:
+    - response: SO
+      partnerResponseExpression: {fileID: 21300000, guid: 308f2e455544235439b373c3b5f862b9, type: 3}
+    - response: OK
+      partnerResponseExpression: {fileID: 21300000, guid: 61459187faac45842ab2e1f5fa7dcdfe, type: 3}
+  - initPartnerExpression: {fileID: 21300000, guid: 9dd494e9e76ee5443865ffb3f9fba1fd, type: 3}
+    choiceText: Can you take out the trash?
+    playerResponses:
+    - response: SO
+      partnerResponseExpression: {fileID: 21300000, guid: 308f2e455544235439b373c3b5f862b9, type: 3}
+    - response: OK
+      partnerResponseExpression: {fileID: 21300000, guid: 61459187faac45842ab2e1f5fa7dcdfe, type: 3}
+  - initPartnerExpression: {fileID: 21300000, guid: 9dd494e9e76ee5443865ffb3f9fba1fd, type: 3}
+    choiceText: Are you cheating on me?
+    playerResponses:
+    - response: SO
+      partnerResponseExpression: {fileID: 21300000, guid: 308f2e455544235439b373c3b5f862b9, type: 3}
+    - response: OK
+      partnerResponseExpression: {fileID: 21300000, guid: 61459187faac45842ab2e1f5fa7dcdfe, type: 3}
+  - initPartnerExpression: {fileID: 21300000, guid: 9dd494e9e76ee5443865ffb3f9fba1fd, type: 3}
+    choiceText: Let's do something nice
+    playerResponses:
+    - response: SO
+      partnerResponseExpression: {fileID: 21300000, guid: 308f2e455544235439b373c3b5f862b9, type: 3}
+    - response: OK
+      partnerResponseExpression: {fileID: 21300000, guid: 61459187faac45842ab2e1f5fa7dcdfe, type: 3}
+  - initPartnerExpression: {fileID: 21300000, guid: 9dd494e9e76ee5443865ffb3f9fba1fd, type: 3}
+    choiceText: Are you cheating on me?
+    playerResponses:
+    - response: SO
+      partnerResponseExpression: {fileID: 21300000, guid: 308f2e455544235439b373c3b5f862b9, type: 3}
+    - response: OK
+      partnerResponseExpression: {fileID: 21300000, guid: 61459187faac45842ab2e1f5fa7dcdfe, type: 3}
+  - initPartnerExpression: {fileID: 21300000, guid: 9dd494e9e76ee5443865ffb3f9fba1fd, type: 3}
+    choiceText: Are you cheating on me?
+    playerResponses:
+    - response: SO
+      partnerResponseExpression: {fileID: 21300000, guid: 308f2e455544235439b373c3b5f862b9, type: 3}
+    - response: OK
+      partnerResponseExpression: {fileID: 21300000, guid: 61459187faac45842ab2e1f5fa7dcdfe, type: 3}
+  - initPartnerExpression: {fileID: 21300000, guid: 9dd494e9e76ee5443865ffb3f9fba1fd, type: 3}
+    choiceText: What happened to us?
+    playerResponses:
+    - response: SO
+      partnerResponseExpression: {fileID: 21300000, guid: 308f2e455544235439b373c3b5f862b9, type: 3}
+    - response: OK
+      partnerResponseExpression: {fileID: 21300000, guid: 61459187faac45842ab2e1f5fa7dcdfe, type: 3}
+  - initPartnerExpression: {fileID: 21300000, guid: 9dd494e9e76ee5443865ffb3f9fba1fd, type: 3}
+    choiceText: Hold my hand
+    playerResponses:
+    - response: SO
+      partnerResponseExpression: {fileID: 21300000, guid: 308f2e455544235439b373c3b5f862b9, type: 3}
+    - response: OK
+      partnerResponseExpression: {fileID: 21300000, guid: 61459187faac45842ab2e1f5fa7dcdfe, type: 3}
+  - initPartnerExpression: {fileID: 21300000, guid: 9dd494e9e76ee5443865ffb3f9fba1fd, type: 3}
+    choiceText: Can you hold me?
+    playerResponses:
+    - response: SO
+      partnerResponseExpression: {fileID: 21300000, guid: 308f2e455544235439b373c3b5f862b9, type: 3}
+    - response: OK
+      partnerResponseExpression: {fileID: 21300000, guid: 61459187faac45842ab2e1f5fa7dcdfe, type: 3}
+  - initPartnerExpression: {fileID: 21300000, guid: 9dd494e9e76ee5443865ffb3f9fba1fd, type: 3}
+    choiceText: I am depressed
+    playerResponses:
+    - response: SO
+      partnerResponseExpression: {fileID: 21300000, guid: 308f2e455544235439b373c3b5f862b9, type: 3}
+    - response: OK
       partnerResponseExpression: {fileID: 21300000, guid: 61459187faac45842ab2e1f5fa7dcdfe, type: 3}
 --- !u!1 &1023654548
 GameObject:
@@ -10533,7 +10638,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.32156864}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -11095,7 +11200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.32156864}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -11420,6 +11525,81 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1345764924}
+  m_CullTransparentMesh: 1
+--- !u!1 &1356190222
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1356190223}
+  - component: {fileID: 1356190225}
+  - component: {fileID: 1356190224}
+  m_Layer: 5
+  m_Name: Player Body Image (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1356190223
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356190222}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1519435904}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -397, y: -55.91}
+  m_SizeDelta: {x: 404, y: 355}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1356190224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356190222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 2a5b2e30482e54548b4772c72b2e9601, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1356190225
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356190222}
   m_CullTransparentMesh: 1
 --- !u!1 &1361233470
 GameObject:
@@ -12581,6 +12761,8 @@ RectTransform:
   m_Children:
   - {fileID: 1345764925}
   - {fileID: 567279232}
+  - {fileID: 1356190223}
+  - {fileID: 1763980334}
   - {fileID: 515358114}
   - {fileID: 787886804}
   - {fileID: 294460167}
@@ -12655,7 +12837,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 40
+  m_SortingOrder: 100
   m_TargetDisplay: 0
 --- !u!1 &1519897732
 GameObject:
@@ -12798,7 +12980,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.32156864}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -15090,6 +15272,81 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1763980333
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1763980334}
+  - component: {fileID: 1763980336}
+  - component: {fileID: 1763980335}
+  m_Layer: 5
+  m_Name: Player Expression Image (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1763980334
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1763980333}
+  m_LocalRotation: {x: 0, y: 0, z: 0.024519417, w: 0.9996994}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1519435904}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 2.81}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -395.7, y: -32}
+  m_SizeDelta: {x: 406, y: 406}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1763980335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1763980333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: b4ee95c6c5401974586ac09805d07348, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1763980336
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1763980333}
+  m_CullTransparentMesh: 1
 --- !u!1 &1769223157 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2239556681016677361, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
@@ -15325,8 +15582,8 @@ Transform:
   m_GameObject: {fileID: 1798053901}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -66.3, z: 0}
-  m_LocalScale: {x: 568.43, y: 319.74188, z: 355.26874}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 600.00006, y: 337.50003, z: 375}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1519435904}
@@ -15379,7 +15636,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 18
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.454902, g: 0.45098042, b: 0.3647059, a: 0.9372549}
+  m_Color: {r: 0.28930807, g: 0.28930807, b: 0.28930807, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
