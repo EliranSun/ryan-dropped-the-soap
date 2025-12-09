@@ -20,36 +20,44 @@ namespace Mini_Games
     }
 
     // TODO: Strange that Mini games manager is also a mini game
-    public class MiniGamesManager : MiniGame
+    public class MiniGamesManager : ObserverSubject
     {
-        [Header("Mini Games Manager")] private const float BrightnessDecrease = 0.1f;
+        private const int GamesWinScore = 100;
+        private const int GamesLoseScore = -100;
+
+
+        [Header("Side Effects - should move to another class")]
+        private const float BrightnessDecrease = 0.1f;
+
         private const float BrightnessIncrease = 0.1f;
         private const float MinMoveSpeed = 2f; // Minimum move speed to ensure player can still move
         private const float MaxMoveSpeed = 15f; // Maximum move speed to prevent too fast movement
-        private const int BestEmployeeScore = 100;
-        private const int BossOfficeScore = -100;
-        [SerializeField] private float currentScore;
-        [SerializeField] private int pointsPerGame = 10;
-        [SerializeField] private bool areGamesRandomized;
-        [SerializeField] private GameObject player;
+
+        [Header("Settings")] [SerializeField] private bool areGamesRandomized;
+
+        [SerializeField] private int defaultScorePerGame = 10;
+        [SerializeField] private int initiateMiniGameDelay = 3;
+        [SerializeField] private TextMeshProUGUI inGameInstructionsText;
         [SerializeField] private MiniGameName[] instructions;
         [SerializeField] private Slider scoreSlider;
         [SerializeField] private GameObject scoreWrapper;
-        [SerializeField] private TextMeshProUGUI inGameInstructionsText;
         [SerializeField] private GameObject inGameInstructions;
-        [SerializeField] private int initiateMiniGameDelay = 3;
+        [SerializeField] private GameObject player;
         [SerializeField] private NarrationDialogLine goodEndingDialogLine;
         [SerializeField] private NarrationDialogLine badEndingDialogLine;
         [SerializeField] private GameObject badEndingTrigger;
         [SerializeField] private GameObject goodEndingTrigger;
+
         private bool _isMiniGameInitiated;
         private int _miniGamesIndex;
+
+        private int _score;
 
         private void Start()
         {
             scoreSlider.minValue = -100;
             scoreSlider.maxValue = 100;
-            scoreSlider.value = currentScore;
+            scoreSlider.value = _score;
 
             // set color to half the brightness of player sprite
             var playerSprite = player.GetComponent<SpriteRenderer>();
@@ -89,7 +97,7 @@ namespace Mini_Games
             {
                 inGameInstructionsText.text = selectedInstruction + "!";
                 TriggerMiniGame(selectedInstruction);
-                StartMiniGame();
+                // StartMiniGame(); FIXME
             }
             else
             {
@@ -118,7 +126,7 @@ namespace Mini_Games
             {
                 var gameScore = (int)eventData.Data;
                 print($"GAME WON WITH {gameScore}");
-                currentScore += gameScore != 0 ? gameScore : pointsPerGame;
+                _score += gameScore != 0 ? gameScore : defaultScorePerGame;
                 _isMiniGameInitiated = false;
                 inGameInstructionsText.text = "GOOD EMPLOYEE";
                 // CloseMiniGame();
@@ -131,7 +139,7 @@ namespace Mini_Games
                 // TODO: Fixed score vs. outcome score. which is better
                 var gameScore = (int)eventData.Data;
                 print($"GAME LOST WITH {gameScore}");
-                currentScore += gameScore != 0 ? gameScore : -pointsPerGame;
+                _score += gameScore != 0 ? gameScore : -defaultScorePerGame;
                 _isMiniGameInitiated = false;
                 inGameInstructionsText.text = "BAD EMPLOYEE";
                 // CloseMiniGame();
@@ -158,7 +166,7 @@ namespace Mini_Games
             var playerSprite = player.GetComponent<SpriteRenderer>();
             var playerMovement = player.GetComponent<WobblyMovement>();
 
-            if (currentScore < scoreSlider.value)
+            if (_score < scoreSlider.value)
             {
                 // lower = towards boss office end scene, this makes zeke happy
                 playerSprite.color = IncreaseBrightness(playerSprite.color);
@@ -175,15 +183,15 @@ namespace Mini_Games
                 playerMovement.moveSpeed = Mathf.Max(playerMovement.moveSpeed, MinMoveSpeed);
             }
 
-            scoreSlider.value = currentScore;
+            scoreSlider.value = _score;
 
             Notify(GameEvents.ResetThoughtsAndSayings);
 
-            if (currentScore is >= BestEmployeeScore or <= BossOfficeScore)
+            if (_score is >= GamesWinScore or <= GamesLoseScore)
             {
                 Notify(GameEvents.StopMusic);
 
-                var isGoodEnding = currentScore >= BestEmployeeScore;
+                var isGoodEnding = _score >= GamesWinScore;
 
                 if (badEndingTrigger) badEndingTrigger.SetActive(!isGoodEnding);
                 if (goodEndingTrigger) goodEndingTrigger.SetActive(isGoodEnding);

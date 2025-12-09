@@ -1881,7 +1881,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 294460169}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1023119864}
+        m_TargetAssemblyTypeName: Mini_Games.Flirt.scripts.AttendPartnerMiniGame,
+          MiniGamesScriptAssembly
+        m_MethodName: OnChoiceB
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &294460169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6123,6 +6136,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 716598052}
+  - component: {fileID: 716598054}
   - component: {fileID: 716598053}
   m_Layer: 0
   m_Name: "\U0001F3B1 Zeke Mini Games"
@@ -6253,39 +6267,117 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  miniGameName: 0
-  timerTextContainer: {fileID: 1526414645}
-  timer: 5
-  mainCamera: {fileID: 0}
-  miniGameContainer: {fileID: 0}
-  hideOnStart: {fileID: 0}
-  inGameTrigger: {fileID: 0}
-  winState: {fileID: 0}
-  loseState: {fileID: 0}
-  audioSource: {fileID: 0}
-  soundtrack: {fileID: 0}
-  winSound: {fileID: 0}
-  loseSound: {fileID: 0}
-  animationDuration: 1
-  jumpHeight: 0.5
-  shakeIntensity: 0.2
-  dialogLines: []
   score: 0
-  isGameActive: 0
-  currentScore: 0
-  pointsPerGame: 15
   areGamesRandomized: 0
-  player: {fileID: 392735297}
+  defaultScorePerGame: 10
+  initiateMiniGameDelay: 3
+  inGameInstructionsText: {fileID: 524733621}
   instructions: 0000000001000000020000000300000004000000
   scoreSlider: {fileID: 2020364341}
   scoreWrapper: {fileID: 1184234874}
-  inGameInstructionsText: {fileID: 524733621}
   inGameInstructions: {fileID: 1220970306}
-  initiateMiniGameDelay: 3
+  player: {fileID: 392735297}
   goodEndingDialogLine: {fileID: 11400000, guid: 101a1794db5022d40a6593f313b32c08, type: 2}
   badEndingDialogLine: {fileID: 11400000, guid: 51c341dbc84f9494b9f3e3d60ee98483, type: 2}
   badEndingTrigger: {fileID: 1665240340}
   goodEndingTrigger: {fileID: 0}
+--- !u!82 &716598054
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716598051}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &722562498
 GameObject:
   m_ObjectHideFlags: 0
@@ -7250,7 +7342,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 787886806}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1023119864}
+        m_TargetAssemblyTypeName: Mini_Games.Flirt.scripts.AttendPartnerMiniGame,
+          MiniGamesScriptAssembly
+        m_MethodName: OnChoiceA
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &787886806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8914,139 +9019,179 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30614edacceadb1438afd31c76b19da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: MiniGamesScriptAssembly::AttendPartnerMiniGame
+  observers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 716598053}
+        m_TargetAssemblyTypeName: Mini_Games.MiniGamesManager, MiniGamesScriptAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   partnerBody: {fileID: 21300000, guid: 1e1e1ee8c011e45dda5943f4c8cf6aaa, type: 3}
   partnerRequest: {fileID: 515358115}
-  choiceA: {fileID: 787886805}
-  choiceB: {fileID: 294460168}
+  audioSource: {fileID: 716598054}
+  choiceAButton: {fileID: 787886805}
+  choiceBButton: {fileID: 294460168}
   partnerBodyImage: {fileID: 1345764926}
   partnerExpressionImage: {fileID: 567279233}
   partnerChoices:
   - initPartnerExpression: {fileID: 21300000, guid: 48790084d05d62d4491496f2aa53840b, type: 3}
     choiceText: Let's go on a date
+    choiceAudio: {fileID: 8300000, guid: 1a5cf90f1fa189f48ba9173acf54f5dc, type: 3}
     playerResponses:
     - response: NO
       partnerResponseExpression: {fileID: 21300000, guid: 1a114b5980fd07546a91de3941d8000e, type: 3}
+      isPositive: 0
     - response: OK
       partnerResponseExpression: {fileID: 21300000, guid: e22bef5e890a22048a2753eb0700f019, type: 3}
+      isPositive: 0
   - initPartnerExpression: {fileID: 21300000, guid: 308f2e455544235439b373c3b5f862b9, type: 3}
     choiceText: Give me a kiss
+    choiceAudio: {fileID: 8300000, guid: f41431dbb3fe77d49bb5e2a9c21a2106, type: 3}
     playerResponses:
     - response: AVOID
       partnerResponseExpression: {fileID: 21300000, guid: e1f94a02c0f653146b6af98100d2f684, type: 3}
+      isPositive: 0
     - response: KISS
       partnerResponseExpression: {fileID: 21300000, guid: 4de449f542632d44496a13fb84e92937, type: 3}
+      isPositive: 0
   - initPartnerExpression: {fileID: 21300000, guid: 9dd494e9e76ee5443865ffb3f9fba1fd, type: 3}
     choiceText: I need a hug
+    choiceAudio: {fileID: 8300000, guid: 45f3be985bdd01145827ae2dbca9a158, type: 3}
     playerResponses:
     - response: AVOID
       partnerResponseExpression: {fileID: 21300000, guid: 61459187faac45842ab2e1f5fa7dcdfe, type: 3}
+      isPositive: 0
     - response: HUG
       partnerResponseExpression: {fileID: 21300000, guid: 308f2e455544235439b373c3b5f862b9, type: 3}
+      isPositive: 0
   - initPartnerExpression: {fileID: 21300000, guid: 48790084d05d62d4491496f2aa53840b, type: 3}
     choiceText: Should we try for a kid?
+    choiceAudio: {fileID: 8300000, guid: 36850eb6383c8924da14473af8b551a8, type: 3}
     playerResponses:
     - response: AVOID
-      partnerResponseExpression: {fileID: 21300000, guid: 308f2e455544235439b373c3b5f862b9, type: 3}
+      partnerResponseExpression: {fileID: 21300000, guid: 9dd494e9e76ee5443865ffb3f9fba1fd, type: 3}
+      isPositive: 0
     - response: OK
-      partnerResponseExpression: {fileID: 21300000, guid: 61459187faac45842ab2e1f5fa7dcdfe, type: 3}
+      partnerResponseExpression: {fileID: 21300000, guid: 308f2e455544235439b373c3b5f862b9, type: 3}
+      isPositive: 0
   - initPartnerExpression: {fileID: 21300000, guid: 48790084d05d62d4491496f2aa53840b, type: 3}
     choiceText: Let's have sex
+    choiceAudio: {fileID: 8300000, guid: bc46c84230481a64d9ec83343e382b1e, type: 3}
     playerResponses:
     - response: AVOID
-      partnerResponseExpression: {fileID: 21300000, guid: 308f2e455544235439b373c3b5f862b9, type: 3}
-    - response: OK
       partnerResponseExpression: {fileID: 21300000, guid: 61459187faac45842ab2e1f5fa7dcdfe, type: 3}
+      isPositive: 0
+    - response: OK
+      partnerResponseExpression: {fileID: 21300000, guid: 308f2e455544235439b373c3b5f862b9, type: 3}
+      isPositive: 0
   - initPartnerExpression: {fileID: 21300000, guid: 9dd494e9e76ee5443865ffb3f9fba1fd, type: 3}
     choiceText: Do you even love me anymore?
+    choiceAudio: {fileID: 8300000, guid: 7b96138cf5048854d97dc5b07f4cc1c7, type: 3}
     playerResponses:
     - response: NO
-      partnerResponseExpression: {fileID: 21300000, guid: 308f2e455544235439b373c3b5f862b9, type: 3}
+      partnerResponseExpression: {fileID: 21300000, guid: aae28ccb189128c4db4a90f60f0c6db3, type: 3}
+      isPositive: 0
     - response: YES
-      partnerResponseExpression: {fileID: 21300000, guid: 61459187faac45842ab2e1f5fa7dcdfe, type: 3}
+      partnerResponseExpression: {fileID: 21300000, guid: 3ec95753dd0a1f2408042585c64697c1, type: 3}
+      isPositive: 0
   - initPartnerExpression: {fileID: 21300000, guid: 9dd494e9e76ee5443865ffb3f9fba1fd, type: 3}
     choiceText: We don't make love anymore
+    choiceAudio: {fileID: 8300000, guid: 3d233ee9d88f29f45b42766bc0eee0ea, type: 3}
     playerResponses:
     - response: SO
       partnerResponseExpression: {fileID: 21300000, guid: 308f2e455544235439b373c3b5f862b9, type: 3}
+      isPositive: 0
     - response: OK
       partnerResponseExpression: {fileID: 21300000, guid: 61459187faac45842ab2e1f5fa7dcdfe, type: 3}
+      isPositive: 0
   - initPartnerExpression: {fileID: 21300000, guid: 9dd494e9e76ee5443865ffb3f9fba1fd, type: 3}
     choiceText: Are you cheating on me?
+    choiceAudio: {fileID: 8300000, guid: 24a7947e91bc05149a1746e26fe67067, type: 3}
     playerResponses:
     - response: SO
       partnerResponseExpression: {fileID: 21300000, guid: 308f2e455544235439b373c3b5f862b9, type: 3}
+      isPositive: 0
     - response: OK
       partnerResponseExpression: {fileID: 21300000, guid: 61459187faac45842ab2e1f5fa7dcdfe, type: 3}
+      isPositive: 0
   - initPartnerExpression: {fileID: 21300000, guid: 9dd494e9e76ee5443865ffb3f9fba1fd, type: 3}
     choiceText: What do you want for dinner?
+    choiceAudio: {fileID: 8300000, guid: a3f58956712e5e14d823531042a7a024, type: 3}
     playerResponses:
     - response: SO
       partnerResponseExpression: {fileID: 21300000, guid: 308f2e455544235439b373c3b5f862b9, type: 3}
+      isPositive: 0
     - response: OK
       partnerResponseExpression: {fileID: 21300000, guid: 61459187faac45842ab2e1f5fa7dcdfe, type: 3}
+      isPositive: 0
   - initPartnerExpression: {fileID: 21300000, guid: 9dd494e9e76ee5443865ffb3f9fba1fd, type: 3}
     choiceText: Can you take out the trash?
+    choiceAudio: {fileID: 8300000, guid: 009da9126a268514e818a15a5aab989f, type: 3}
     playerResponses:
     - response: SO
       partnerResponseExpression: {fileID: 21300000, guid: 308f2e455544235439b373c3b5f862b9, type: 3}
+      isPositive: 0
     - response: OK
       partnerResponseExpression: {fileID: 21300000, guid: 61459187faac45842ab2e1f5fa7dcdfe, type: 3}
-  - initPartnerExpression: {fileID: 21300000, guid: 9dd494e9e76ee5443865ffb3f9fba1fd, type: 3}
-    choiceText: Are you cheating on me?
-    playerResponses:
-    - response: SO
-      partnerResponseExpression: {fileID: 21300000, guid: 308f2e455544235439b373c3b5f862b9, type: 3}
-    - response: OK
-      partnerResponseExpression: {fileID: 21300000, guid: 61459187faac45842ab2e1f5fa7dcdfe, type: 3}
+      isPositive: 0
   - initPartnerExpression: {fileID: 21300000, guid: 9dd494e9e76ee5443865ffb3f9fba1fd, type: 3}
     choiceText: Let's do something nice
+    choiceAudio: {fileID: 8300000, guid: 6be9d82b5c9b25e43a2240db8c6e8ef9, type: 3}
     playerResponses:
     - response: SO
       partnerResponseExpression: {fileID: 21300000, guid: 308f2e455544235439b373c3b5f862b9, type: 3}
+      isPositive: 0
     - response: OK
       partnerResponseExpression: {fileID: 21300000, guid: 61459187faac45842ab2e1f5fa7dcdfe, type: 3}
-  - initPartnerExpression: {fileID: 21300000, guid: 9dd494e9e76ee5443865ffb3f9fba1fd, type: 3}
-    choiceText: Are you cheating on me?
-    playerResponses:
-    - response: SO
-      partnerResponseExpression: {fileID: 21300000, guid: 308f2e455544235439b373c3b5f862b9, type: 3}
-    - response: OK
-      partnerResponseExpression: {fileID: 21300000, guid: 61459187faac45842ab2e1f5fa7dcdfe, type: 3}
-  - initPartnerExpression: {fileID: 21300000, guid: 9dd494e9e76ee5443865ffb3f9fba1fd, type: 3}
-    choiceText: Are you cheating on me?
-    playerResponses:
-    - response: SO
-      partnerResponseExpression: {fileID: 21300000, guid: 308f2e455544235439b373c3b5f862b9, type: 3}
-    - response: OK
-      partnerResponseExpression: {fileID: 21300000, guid: 61459187faac45842ab2e1f5fa7dcdfe, type: 3}
+      isPositive: 0
   - initPartnerExpression: {fileID: 21300000, guid: 9dd494e9e76ee5443865ffb3f9fba1fd, type: 3}
     choiceText: What happened to us?
+    choiceAudio: {fileID: 8300000, guid: 2c826f0d1ef547443992f0da23b8406a, type: 3}
     playerResponses:
     - response: SO
       partnerResponseExpression: {fileID: 21300000, guid: 308f2e455544235439b373c3b5f862b9, type: 3}
+      isPositive: 0
     - response: OK
       partnerResponseExpression: {fileID: 21300000, guid: 61459187faac45842ab2e1f5fa7dcdfe, type: 3}
+      isPositive: 0
   - initPartnerExpression: {fileID: 21300000, guid: 9dd494e9e76ee5443865ffb3f9fba1fd, type: 3}
     choiceText: Hold my hand
+    choiceAudio: {fileID: 8300000, guid: 3455c34c0f9b97d4e9f560d6f694d742, type: 3}
     playerResponses:
     - response: SO
       partnerResponseExpression: {fileID: 21300000, guid: 308f2e455544235439b373c3b5f862b9, type: 3}
+      isPositive: 0
     - response: OK
       partnerResponseExpression: {fileID: 21300000, guid: 61459187faac45842ab2e1f5fa7dcdfe, type: 3}
+      isPositive: 0
   - initPartnerExpression: {fileID: 21300000, guid: 9dd494e9e76ee5443865ffb3f9fba1fd, type: 3}
     choiceText: Can you hold me?
+    choiceAudio: {fileID: 8300000, guid: 3455c34c0f9b97d4e9f560d6f694d742, type: 3}
     playerResponses:
     - response: SO
       partnerResponseExpression: {fileID: 21300000, guid: 308f2e455544235439b373c3b5f862b9, type: 3}
+      isPositive: 0
     - response: OK
       partnerResponseExpression: {fileID: 21300000, guid: 61459187faac45842ab2e1f5fa7dcdfe, type: 3}
+      isPositive: 0
   - initPartnerExpression: {fileID: 21300000, guid: 9dd494e9e76ee5443865ffb3f9fba1fd, type: 3}
     choiceText: I am depressed
+    choiceAudio: {fileID: 8300000, guid: 525ddbd9280c79748a36d408ac00c1b4, type: 3}
     playerResponses:
     - response: SO
       partnerResponseExpression: {fileID: 21300000, guid: 308f2e455544235439b373c3b5f862b9, type: 3}
+      isPositive: 0
     - response: OK
       partnerResponseExpression: {fileID: 21300000, guid: 61459187faac45842ab2e1f5fa7dcdfe, type: 3}
+      isPositive: 0
 --- !u!1 &1023654548
 GameObject:
   m_ObjectHideFlags: 0

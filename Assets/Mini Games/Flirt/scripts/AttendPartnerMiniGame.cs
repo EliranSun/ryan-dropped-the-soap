@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -32,6 +33,7 @@ namespace Mini_Games.Flirt.scripts
     {
         public string response;
         public Sprite partnerResponseExpression;
+        public bool isPositive;
     }
 
     [Serializable]
@@ -43,32 +45,47 @@ namespace Mini_Games.Flirt.scripts
         public PlayerResponse[] playerResponses;
     }
 
-    public class AttendPartnerMiniGame : MonoBehaviour
+    public class AttendPartnerMiniGame : ObserverSubject
     {
         [SerializeField] private Sprite partnerBody;
         [SerializeField] private TextMeshProUGUI partnerRequest;
-        [SerializeField] private Button choiceA;
-        [SerializeField] private Button choiceB;
+        [SerializeField] private AudioSource audioSource;
+
+        [FormerlySerializedAs("choiceA")] [SerializeField]
+        private Button choiceAButton;
+
+        [FormerlySerializedAs("choiceB")] [SerializeField]
+        private Button choiceBButton;
+
         [SerializeField] private Image partnerBodyImage;
         [SerializeField] private Image partnerExpressionImage;
         [SerializeField] private PartnerChoice[] partnerChoices;
+
+        private PartnerChoice _currentChoice;
 
         private void Start()
         {
             partnerBodyImage.sprite = partnerBody;
             if (partnerChoices == null || partnerChoices.Length == 0) return;
 
-            var choice = partnerChoices[Random.Range(0, partnerChoices.Length)];
+            _currentChoice = partnerChoices[Random.Range(0, partnerChoices.Length)];
 
-            partnerRequest.text = choice.choiceText;
-            if (choice.initPartnerExpression != null)
-                partnerExpressionImage.sprite = choice.initPartnerExpression;
+            partnerRequest.text = _currentChoice.choiceText;
+            if (audioSource)
+            {
+                audioSource.clip = _currentChoice.choiceAudio;
+                audioSource.Play();
+            }
 
-            if (choice.playerResponses == null || choice.playerResponses.Length == 0) return;
-            SetButtonText(choiceA, choice.playerResponses[0].response);
+            if (_currentChoice.initPartnerExpression != null)
+                partnerExpressionImage.sprite = _currentChoice.initPartnerExpression;
 
-            if (choice.playerResponses.Length > 1)
-                SetButtonText(choiceB, choice.playerResponses[1].response);
+            if (_currentChoice.playerResponses == null || _currentChoice.playerResponses.Length == 0)
+                return;
+
+            Button[] choiceButtons = { choiceAButton, choiceBButton };
+            for (var i = 0; i < _currentChoice.playerResponses.Length && i < choiceButtons.Length; i++)
+                SetButtonText(choiceButtons[i], _currentChoice.playerResponses[i].response);
         }
 
         private static void SetButtonText(Button button, string text)
@@ -77,6 +94,33 @@ namespace Mini_Games.Flirt.scripts
 
             var label = button.GetComponentInChildren<TextMeshProUGUI>();
             if (label != null) label.text = text;
+        }
+
+        public void OnChoiceA()
+        {
+            ChangePartnerResponse(0);
+        }
+
+        public void OnChoiceB()
+        {
+            ChangePartnerResponse(1);
+        }
+
+        private void ChangePartnerResponse(int choiceIndex)
+        {
+            if (_currentChoice is { playerResponses: { Length: > 0 } })
+            {
+                // For choice A, use the first player response (index 0)
+                var response = _currentChoice.playerResponses[choiceIndex];
+                if (response != null && response.partnerResponseExpression != null)
+                {
+                    partnerExpressionImage.sprite = response.partnerResponseExpression;
+                    partnerRequest.text = response.isPositive ? "!!!" : "...";
+
+                    if (response.isPositive) Notify(GameEvents.MiniGameWon, 1);
+                    else Notify(GameEvents.MiniGameLost, 0);
+                }
+            }
         }
     }
 }
