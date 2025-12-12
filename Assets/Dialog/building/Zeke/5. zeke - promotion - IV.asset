@@ -10,50 +10,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
-  m_Name: 1. zeke - yes
+  m_Name: 5. zeke - promotion - IV
   m_EditorClassIdentifier: 
   playerName: 
-  waitBeforeLine: 2
+  waitBeforeLine: 0
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
   voicedLines:
-  - text: yes?
+  - text: And I REALLY hope I get it. It's a big deal!
     translation: 
-    clip: {fileID: 8300000, guid: 49d096fc87cd1d84a8c29560a068da97, type: 3}
+    clip: {fileID: 8300000, guid: eada94b1ad8eb3942aebea67af8737bb, type: 3}
     gender: 0
   actorName: 3
   actorReaction: 0
   nextDialogueLine: {fileID: 0}
   playerOptions:
-  - text: Hello
+  - text: Promotions are great. Good luck
     type: 0
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 11400000, guid: 3256de1c8ef8e9e43b3fc43b655bc35a, type: 2}
+    next: {fileID: 11400000, guid: 34a827313e76d89459a201db4dc3d1a8, type: 2}
     actionAfterPlayerChoice: 0
-  - text: Just wanted to say hi
+  - text: Why do you care about promotions
     type: 0
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 11400000, guid: 3256de1c8ef8e9e43b3fc43b655bc35a, type: 2}
-    actionAfterPlayerChoice: 0
-  - text: Hey
-    type: 0
-    choiceDataType: 0
-    choiceDataOption: 0
-    next: {fileID: 11400000, guid: 3256de1c8ef8e9e43b3fc43b655bc35a, type: 2}
-    actionAfterPlayerChoice: 0
-  - text: I'm new here
-    type: 0
-    choiceDataType: 0
-    choiceDataOption: 0
-    next: {fileID: 11400000, guid: 8c3aeab484b9ff045b48cd12887dcba9, type: 2}
-    actionAfterPlayerChoice: 0
-  - text: Just moved in
-    type: 0
-    choiceDataType: 0
-    choiceDataOption: 0
-    next: {fileID: 11400000, guid: 8c3aeab484b9ff045b48cd12887dcba9, type: 2}
+    next: {fileID: 11400000, guid: 383de1ceceb314f48affe8fd40cac7f9, type: 2}
     actionAfterPlayerChoice: 0
   playerReactions: []
   conditionalNextLines: []

@@ -10,50 +10,38 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
-  m_Name: 1. zeke - yes
+  m_Name: 3b. zeke - running late
   m_EditorClassIdentifier: 
   playerName: 
-  waitBeforeLine: 2
+  waitBeforeLine: 0
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
   voicedLines:
-  - text: yes?
+  - text: Umm... did you need anything else? I'm actually running late for work.
     translation: 
-    clip: {fileID: 8300000, guid: 49d096fc87cd1d84a8c29560a068da97, type: 3}
+    clip: {fileID: 8300000, guid: 6562b04fbaa14fa49943331f72c650c5, type: 3}
     gender: 0
   actorName: 3
   actorReaction: 0
   nextDialogueLine: {fileID: 0}
   playerOptions:
-  - text: Hello
+  - text: Isn't it too early for work?
     type: 0
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 11400000, guid: 3256de1c8ef8e9e43b3fc43b655bc35a, type: 2}
+    next: {fileID: 11400000, guid: c7831b7a80451f64aba0933cd32148a1, type: 2}
     actionAfterPlayerChoice: 0
-  - text: Just wanted to say hi
+  - text: Why do you care about work
     type: 0
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 11400000, guid: 3256de1c8ef8e9e43b3fc43b655bc35a, type: 2}
+    next: {fileID: 11400000, guid: 844840555ce62f84f83243fef96d77a1, type: 2}
     actionAfterPlayerChoice: 0
-  - text: Hey
+  - text: "Oh sorry, I\u2019ll let you on your way then."
     type: 0
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 11400000, guid: 3256de1c8ef8e9e43b3fc43b655bc35a, type: 2}
-    actionAfterPlayerChoice: 0
-  - text: I'm new here
-    type: 0
-    choiceDataType: 0
-    choiceDataOption: 0
-    next: {fileID: 11400000, guid: 8c3aeab484b9ff045b48cd12887dcba9, type: 2}
-    actionAfterPlayerChoice: 0
-  - text: Just moved in
-    type: 0
-    choiceDataType: 0
-    choiceDataOption: 0
-    next: {fileID: 11400000, guid: 8c3aeab484b9ff045b48cd12887dcba9, type: 2}
+    next: {fileID: 11400000, guid: 26ac575cd2525b94cbdf1115bc5e80b8, type: 2}
     actionAfterPlayerChoice: 0
   playerReactions: []
   conditionalNextLines: []

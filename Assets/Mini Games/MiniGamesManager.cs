@@ -1,7 +1,9 @@
 using System;
+using System.Collections;
 using Dialog;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -10,6 +12,8 @@ namespace Mini_Games
     [Serializable]
     public enum MiniGameName
     {
+        Neglect,
+        Attend,
         Reply,
         Flirt,
         Organize,
@@ -38,6 +42,7 @@ namespace Mini_Games
         [SerializeField] private int defaultScorePerGame = 10;
         [SerializeField] private int initiateMiniGameDelay = 3;
         [SerializeField] private TextMeshProUGUI inGameInstructionsText;
+        [SerializeField] private GameObject[] lives;
         [SerializeField] private MiniGameName[] instructions;
         [SerializeField] private Slider scoreSlider;
         [SerializeField] private GameObject scoreWrapper;
@@ -49,8 +54,8 @@ namespace Mini_Games
         [SerializeField] private GameObject goodEndingTrigger;
 
         private bool _isMiniGameInitiated;
+        private int _livesCount;
         private int _miniGamesIndex;
-
         private int _score;
 
         private void Start()
@@ -66,6 +71,8 @@ namespace Mini_Games
             if (inGameInstructions) inGameInstructions.SetActive(false);
             if (badEndingTrigger) badEndingTrigger.SetActive(false);
             if (goodEndingTrigger) goodEndingTrigger.SetActive(false);
+
+            _livesCount = lives.Length;
         }
 
         private void SetNextInstruction()
@@ -77,7 +84,6 @@ namespace Mini_Games
             }
 
             inGameInstructions.SetActive(true);
-
 
             var selectedInstruction = areGamesRandomized
                 ? instructions[Random.Range(0, instructions.Length)]
@@ -96,8 +102,7 @@ namespace Mini_Games
             if (inGameInstructions != null && inGameInstructions.activeInHierarchy)
             {
                 inGameInstructionsText.text = selectedInstruction + "!";
-                TriggerMiniGame(selectedInstruction);
-                // StartMiniGame(); FIXME
+                StartCoroutine(TriggerMiniGameDelayed(selectedInstruction));
             }
             else
             {
@@ -125,32 +130,59 @@ namespace Mini_Games
             if (eventData.Name == GameEvents.MiniGameWon)
             {
                 var gameScore = (int)eventData.Data;
-                print($"GAME WON WITH {gameScore}");
+
                 _score += gameScore != 0 ? gameScore : defaultScorePerGame;
+
                 _isMiniGameInitiated = false;
                 inGameInstructionsText.text = "GOOD EMPLOYEE";
-                // CloseMiniGame();
                 Notify(GameEvents.SlowDownMusic);
                 Invoke(nameof(OnMiniGameEnd), 2f);
             }
 
             if (eventData.Name == GameEvents.MiniGameLost)
             {
+                LoseLife();
+
                 // TODO: Fixed score vs. outcome score. which is better
                 var gameScore = (int)eventData.Data;
-                print($"GAME LOST WITH {gameScore}");
                 _score += gameScore != 0 ? gameScore : -defaultScorePerGame;
                 _isMiniGameInitiated = false;
                 inGameInstructionsText.text = "BAD EMPLOYEE";
-                // CloseMiniGame();
                 Notify(GameEvents.SpeedUpMusic);
                 Invoke(nameof(OnMiniGameEnd), 2f);
             }
         }
 
+        private void LoseLife()
+        {
+            if (lives.Length == 0)
+                return;
+
+            _livesCount--;
+
+            if (_livesCount <= 0)
+                // restart scene
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+            // Fix: Only set the last remaining active life to false when losing a life
+            for (var i = lives.Length - 1; i >= 0; i--)
+                if (lives[i].activeSelf)
+                {
+                    lives[i].SetActive(false);
+                    break;
+                }
+        }
+
         private void CloseInstruction()
         {
             inGameInstructions.SetActive(false);
+        }
+
+        private IEnumerator TriggerMiniGameDelayed(MiniGameName miniGameNameName)
+        {
+            yield return new WaitForSeconds(2f);
+            inGameInstructions.SetActive(false);
+            TriggerMiniGame(miniGameNameName);
         }
 
         private void TriggerMiniGame(MiniGameName miniGameNameName)

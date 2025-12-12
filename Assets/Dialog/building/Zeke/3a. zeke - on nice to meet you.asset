@@ -10,50 +10,38 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
-  m_Name: 1. zeke - yes
+  m_Name: 3a. zeke - on nice to meet you
   m_EditorClassIdentifier: 
   playerName: 
-  waitBeforeLine: 2
+  waitBeforeLine: 0
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
   voicedLines:
-  - text: yes?
+  - text: Oh, hello. Nice to meet you. I'm Zeke
     translation: 
-    clip: {fileID: 8300000, guid: 49d096fc87cd1d84a8c29560a068da97, type: 3}
+    clip: {fileID: 8300000, guid: e8c5dacb36480c34d85d13c7fbf80f4f, type: 3}
     gender: 0
   actorName: 3
   actorReaction: 0
   nextDialogueLine: {fileID: 0}
   playerOptions:
-  - text: Hello
+  - text: I'm Eliran
     type: 0
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 11400000, guid: 3256de1c8ef8e9e43b3fc43b655bc35a, type: 2}
+    next: {fileID: 11400000, guid: 09f24b01647d7454abac1f9ad559a730, type: 2}
     actionAfterPlayerChoice: 0
-  - text: Just wanted to say hi
+  - text: I'm Or
     type: 0
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 11400000, guid: 3256de1c8ef8e9e43b3fc43b655bc35a, type: 2}
+    next: {fileID: 11400000}
     actionAfterPlayerChoice: 0
-  - text: Hey
+  - text: I'm... TBD
     type: 0
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 11400000, guid: 3256de1c8ef8e9e43b3fc43b655bc35a, type: 2}
-    actionAfterPlayerChoice: 0
-  - text: I'm new here
-    type: 0
-    choiceDataType: 0
-    choiceDataOption: 0
-    next: {fileID: 11400000, guid: 8c3aeab484b9ff045b48cd12887dcba9, type: 2}
-    actionAfterPlayerChoice: 0
-  - text: Just moved in
-    type: 0
-    choiceDataType: 0
-    choiceDataOption: 0
-    next: {fileID: 11400000, guid: 8c3aeab484b9ff045b48cd12887dcba9, type: 2}
+    next: {fileID: 11400000}
     actionAfterPlayerChoice: 0
   playerReactions: []
   conditionalNextLines: []
