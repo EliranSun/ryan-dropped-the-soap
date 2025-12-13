@@ -20,7 +20,8 @@ namespace Mini_Games
         File,
         Lunch,
         LockPick,
-        Shout
+        Shout,
+        Snooze
     }
 
     // TODO: Strange that Mini games manager is also a mini game
@@ -52,11 +53,12 @@ namespace Mini_Games
         [SerializeField] private NarrationDialogLine badEndingDialogLine;
         [SerializeField] private GameObject badEndingTrigger;
         [SerializeField] private GameObject goodEndingTrigger;
-
         private bool _isMiniGameInitiated;
         private int _livesCount;
         private int _miniGamesIndex;
         private int _score;
+
+        private MiniGameName _selectedInstruction;
 
         private void Start()
         {
@@ -83,26 +85,23 @@ namespace Mini_Games
                 return;
             }
 
-            inGameInstructions.SetActive(true);
-
-            var selectedInstruction = areGamesRandomized
-                ? instructions[Random.Range(0, instructions.Length)]
-                : instructions[_miniGamesIndex];
-
-            _miniGamesIndex += 1;
-
             if (_miniGamesIndex > instructions.Length && !areGamesRandomized)
             {
                 print("MOving on");
                 return;
             }
 
-            print($"Selected instruction: {selectedInstruction} in game instructions: {inGameInstructions}");
+            _selectedInstruction = GetNextMiniGameName();
+            Notify(GameEvents.MiniGameStart, _selectedInstruction);
+
+            inGameInstructions.SetActive(true);
+
+            print($"Selected instruction: {_selectedInstruction} in game instructions: {inGameInstructions}");
 
             if (inGameInstructions != null && inGameInstructions.activeInHierarchy)
             {
-                inGameInstructionsText.text = selectedInstruction + "!";
-                StartCoroutine(TriggerMiniGameDelayed(selectedInstruction));
+                inGameInstructionsText.text = _selectedInstruction + "!";
+                StartCoroutine(TriggerMiniGameDelayed(_selectedInstruction));
             }
             else
             {
@@ -110,19 +109,16 @@ namespace Mini_Games
             }
         }
 
+        private MiniGameName GetNextMiniGameName()
+        {
+            return areGamesRandomized
+                ? instructions[Random.Range(0, instructions.Length)]
+                : instructions[_miniGamesIndex];
+        }
+
         public void OnNotify(GameEventData eventData)
         {
-            // base.OnNotify(eventData);
-
-            if (eventData.Name == GameEvents.StartMiniGames)
-                Invoke(nameof(SetNextInstruction), initiateMiniGameDelay);
-
-            // if (eventData.Name == GameEvents.ThoughtScoreChange)
-            // {
-            //     var newScore = (int)eventData.Data;
-            //     print("@@@@@@@ SCORE CHANGE: " + newScore);
-            //     currentScore += newScore * 3;
-            // }
+            if (eventData.Name == GameEvents.StartMiniGames) Invoke(nameof(SetNextInstruction), initiateMiniGameDelay);
 
             if (eventData.Name == GameEvents.MiniGameStart && !_isMiniGameInitiated)
                 _isMiniGameInitiated = true;
@@ -192,6 +188,10 @@ namespace Mini_Games
 
         private void OnMiniGameEnd()
         {
+            Notify(GameEvents.MiniGameEnded, instructions[_miniGamesIndex]);
+
+            _miniGamesIndex += 1;
+
             print("OnMiniGameEnd");
             CloseInstruction();
 

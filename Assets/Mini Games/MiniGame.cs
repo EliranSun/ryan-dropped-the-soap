@@ -85,7 +85,7 @@ namespace Mini_Games
             // var newPosition = mainCamera.transform.position;
             // newPosition.z = miniGameContainer.transform.position.z;
             // miniGameContainer.transform.position = newPosition;
-            Notify(GameEvents.MiniGameStart);
+
             if (audioSource)
             {
                 audioSource.clip = soundtrack;

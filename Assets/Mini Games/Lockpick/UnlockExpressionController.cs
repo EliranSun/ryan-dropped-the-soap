@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Expressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -8,17 +9,26 @@ using Random = System.Random;
 
 namespace Mini_Games.Lockpick
 {
-    public class UnlockExpressionController : MiniGame, IPointerClickHandler
+    [Serializable]
+    public class ExpressionVisual
+    {
+        public Image expressionImage;
+        public Expression expression;
+        public Expression[] matchingExpressions;
+    }
+
+    public class UnlockExpressionController : ObserverSubject, IPointerClickHandler
     {
         [Header("Expression Lock Pick Mini Game")] [SerializeField]
         private int gridSize = 3;
 
+        [SerializeField] private GameObject gameContainer;
         [SerializeField] private TextMeshProUGUI expressionText;
         [SerializeField] private Image initExpression;
-        [SerializeField] private Image[] gridImages;
+        [SerializeField] private ExpressionVisual[] gridImages;
         [SerializeField] private Image[] progressBar;
 
-        private Expressions.Expression _activeExpression;
+        private Expression _activeExpression;
         private bool _hasMouseMoved;
         private bool _isActive;
         private Vector3 _previousMousePosition;
@@ -27,10 +37,12 @@ namespace Mini_Games.Lockpick
 
         private void Start()
         {
+            gameContainer.SetActive(false);
+
             initExpression.gameObject.SetActive(true);
 
             foreach (var image in gridImages)
-                image.gameObject.SetActive(false);
+                image.expressionImage.gameObject.SetActive(false);
 
             // Initialize mouse tracking
             _previousMousePosition = Input.mousePosition;
@@ -39,11 +51,8 @@ namespace Mini_Games.Lockpick
             SetActiveExpression(GetRandomExpression());
         }
 
-        protected override void Update()
+        private void Update()
         {
-            // Call the parent Update method to handle timer logic
-            base.Update();
-
             // Check for first mouse movement
             if (!_hasMouseMoved)
             {
@@ -78,16 +87,11 @@ namespace Mini_Games.Lockpick
             {
                 // win state
                 StopAllCoroutines();
-                base.CloseMiniGame(true);
+                gameContainer.SetActive(true);
             }
         }
 
-        /// <summary>
-        ///     Gets the expression clicked based on pointer event data
-        /// </summary>
-        /// <param name="eventData">The pointer event data from OnPointerClick</param>
-        /// <returns>The name of the clicked expression GameObject, or empty string if none found</returns>
-        private Expression GetClickedExpression(PointerEventData eventData)
+        private ExpressionVisual GetClickedExpression(PointerEventData eventData)
         {
             if (gridImages == null || gridImages.Length == 0)
                 return null;
@@ -107,28 +111,24 @@ namespace Mini_Games.Lockpick
 
             // Ensure the target index is within bounds and return the GameObject name
             if (targetIndex >= 0 && targetIndex < gridImages.Length && gridImages[targetIndex] != null)
-                return gridImages[targetIndex].gameObject.GetComponent<Expression>();
+                return gridImages[targetIndex];
 
             return null;
         }
 
-        private bool IsCorrectExpression(Expression clickedExpression)
+        private bool IsCorrectExpression(ExpressionVisual clickedExpression)
         {
             return clickedExpression.matchingExpressions.Contains(_activeExpression);
         }
 
-        /// <summary>
-        ///     Returns a random expression from the Expression enum
-        /// </summary>
-        /// <returns>A random Expression enum value</returns>
-        private static Expressions.Expression GetRandomExpression()
+        private static Expression GetRandomExpression()
         {
-            var values = Enum.GetValues(typeof(Expressions.Expression));
+            var values = Enum.GetValues(typeof(Expression));
             var random = new Random();
-            return (Expressions.Expression)values.GetValue(random.Next(values.Length));
+            return (Expression)values.GetValue(random.Next(values.Length));
         }
 
-        private void SetActiveExpression(Expressions.Expression expression)
+        private void SetActiveExpression(Expression expression)
         {
             _activeExpression = expression;
             // expressionText.text = ExpressionTranslations.GetHebrewTranslation(expression);
@@ -137,13 +137,10 @@ namespace Mini_Games.Lockpick
 
         private void OnFirstMouseMove()
         {
-            if (!_isActive)
-            {
-                _isActive = true;
-                initExpression.gameObject.SetActive(false);
-                foreach (var image in gridImages)
-                    image.gameObject.SetActive(true);
-            }
+            if (!_isActive) _isActive = true;
+            // initExpression.gameObject.SetActive(false);
+            // foreach (var image in gridImages)
+            //     image.gameObject.SetActive(true);
         }
 
         private void UpdateImageOpacity()
@@ -169,7 +166,7 @@ namespace Mini_Games.Lockpick
                 for (var i = 0; i < gridImages.Length; i++)
                     if (gridImages[i] != null)
                     {
-                        var color = gridImages[i].color;
+                        var color = gridImages[i].expressionImage.color;
 
                         if (i == targetIndex)
                         {
@@ -186,8 +183,18 @@ namespace Mini_Games.Lockpick
                             if (color.a < 0.1f) color.a = 0f;
                         }
 
-                        gridImages[i].color = color;
+                        gridImages[i].expressionImage.color = color;
                     }
+        }
+
+        public void OnNotify(GameEventData eventData)
+        {
+            if (eventData.Name == GameEvents.MiniGameIndicationTrigger)
+            {
+                var eventMiniGameName = (MiniGameName)eventData.Data;
+                if (eventMiniGameName == MiniGameName.LockPick)
+                    gameContainer.SetActive(true);
+            }
         }
     }
 }

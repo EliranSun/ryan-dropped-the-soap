@@ -254,5 +254,8 @@
 
     LayerChange,
 
-    PlayerControlNpc
+    PlayerControlNpc,
+
+    MiniGameEnded,
+    AdvanceTime
 }
