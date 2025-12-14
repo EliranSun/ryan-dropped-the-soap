@@ -33,6 +33,7 @@ namespace Mini_Games.Flirt.scripts
         [SerializeField] private float pulseSpeed = 2f; // Speed of the pulsing effect
         [SerializeField] private float pulseScaleMin = 1f; // Minimum scale (normal size)
         [SerializeField] private float pulseScaleMax = 1.15f; // Maximum scale (15% larger)
+        private PlayerMiniGameChoice[] _currentChoices;
         private Coroutine[] _highlightCoroutines;
         private int _initResponsesCounter;
         private SpriteRenderer[] _npcSpriteRenderers;
@@ -105,6 +106,12 @@ namespace Mini_Games.Flirt.scripts
 
         public void OnButtonChoice(int choiceIndex)
         {
+            var choice = _currentChoices[choiceIndex];
+            score = choice.score;
+            Notify(score > 0 ? GameEvents.MiniGameWon : GameEvents.MiniGameLost, score);
+            Notify(GameEvents.TriggerSpecificDialogLine, choice.actorLine);
+
+            Invoke(nameof(EndGame), 3);
         }
 
         protected override void StartMiniGame()
@@ -115,17 +122,13 @@ namespace Mini_Games.Flirt.scripts
             base.StartMiniGame();
 
             // Randomly select 4 choices from the available choices
-            var randomChoices = GetRandomChoices(choices, choiceButtons.Length);
+            _currentChoices = GetRandomChoices(choices, choiceButtons.Length);
 
             InitActorResponse();
 
-            // Notify(GameEvents.AddThoughts, new ThoughtChoice
-            // {
-            //     choices = randomChoices
-            // });
             for (var i = 0; i <= choiceButtons.Length - 1; i++)
             {
-                var choice = randomChoices[i];
+                var choice = _currentChoices[i];
                 choiceButtons[i].GetComponentInChildren<TextMeshProUGUI>()
                     .text = choice.text;
             }
