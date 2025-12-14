@@ -114,6 +114,8 @@ namespace Mini_Games
 
             var dialogLine = GetRandomLine(isGameWon ? DialogLineType.Good : DialogLineType.Bad);
             if (dialogLine) Notify(GameEvents.TriggerSpecificDialogLine, dialogLine);
+
+            print($"Mini game won? {isGameWon} with score {score}");
             Notify(isGameWon ? GameEvents.MiniGameWon : GameEvents.MiniGameLost, score);
 
             if (audioSource)

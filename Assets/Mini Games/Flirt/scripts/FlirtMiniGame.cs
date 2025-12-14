@@ -21,6 +21,7 @@ namespace Mini_Games.Flirt.scripts
     public class FlirtMiniGame : MiniGame
     {
         [SerializeField] private ActorName actorName = ActorName.Morgan;
+        [SerializeField] private Button[] choiceButtons;
         [SerializeField] private NarrationDialogLine[] initialResponses;
         [SerializeField] private NarrationDialogLine emptyResponse;
         [SerializeField] private PlayerMiniGameChoice[] choices;
@@ -53,10 +54,14 @@ namespace Mini_Games.Flirt.scripts
                     isGameActive = false;
                     break;
 
-                case GameEvents.MiniGameIndicationTrigger when
-                    (MiniGameName)eventData.Data == MiniGameName.Flirt:
-                    isGameActive = true;
-                    StartHighlightingNpcs();
+                case GameEvents.MiniGameIndicationTrigger:
+                    var miniGameName = (MiniGameName)eventData.Data;
+                    if (miniGameName is MiniGameName.Flirt or MiniGameName.Avoid)
+                    {
+                        isGameActive = true;
+                        StartHighlightingNpcs();
+                    }
+
                     break;
             }
 
@@ -98,6 +103,10 @@ namespace Mini_Games.Flirt.scripts
             }
         }
 
+        public void OnButtonChoice(int choiceIndex)
+        {
+        }
+
         protected override void StartMiniGame()
         {
             if (!isGameActive)
@@ -106,14 +115,21 @@ namespace Mini_Games.Flirt.scripts
             base.StartMiniGame();
 
             // Randomly select 4 choices from the available choices
-            var randomChoices = GetRandomChoices(choices, 4);
+            var randomChoices = GetRandomChoices(choices, choiceButtons.Length);
 
             InitActorResponse();
 
-            Notify(GameEvents.AddThoughts, new ThoughtChoice
+            // Notify(GameEvents.AddThoughts, new ThoughtChoice
+            // {
+            //     choices = randomChoices
+            // });
+            for (var i = 0; i <= choiceButtons.Length - 1; i++)
             {
-                choices = randomChoices
-            });
+                var choice = randomChoices[i];
+                choiceButtons[i].GetComponentInChildren<TextMeshProUGUI>()
+                    .text = choice.text;
+            }
+
             scoreTextContainer.text = score.ToString();
         }
 

@@ -30,6 +30,18 @@ namespace Mini_Games
      * ...
      * 18:00 - talk with boss
      * 20:00 - wife not at home, commit suicide
+     * TODO: This can be elevated by a series of choices:
+     * - Zeke first sees a note from why stating: "I can't take this anymore" with her ring on the table
+     * - He then is standing for a couple of seconds starting, then a series of choices for the player
+     * - What should I do next? STARE | PUNCH THE WALL | BURN THE PAPER | CRY
+     * - after choosing each one, the other choices remains. when there's nothing left,
+     * - Cry: there were no tears left. There is nothing left for me
+     * - Should I do it? YES | NO
+     * - Choosing NO will reset the options, until the player chooses yes, then
+     * - scene change to like john locke suicide, with shadow then Zeke's figure, hung
+     *
+     *
+     *
      *
      * after the suicide,
      * Zeke: What the fuck what that...?

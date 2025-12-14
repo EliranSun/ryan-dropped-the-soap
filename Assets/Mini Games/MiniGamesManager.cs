@@ -21,7 +21,10 @@ namespace Mini_Games
         Lunch,
         LockPick,
         Shout,
-        Snooze
+        Snooze,
+        SurpassFeelings,
+        DetectFeelings,
+        Avoid
     }
 
     // TODO: Strange that Mini games manager is also a mini game
@@ -125,6 +128,7 @@ namespace Mini_Games
 
             if (eventData.Name == GameEvents.MiniGameWon)
             {
+                print("GAME WON");
                 var gameScore = (int)eventData.Data;
 
                 _score += gameScore != 0 ? gameScore : defaultScorePerGame;
@@ -137,6 +141,7 @@ namespace Mini_Games
 
             if (eventData.Name == GameEvents.MiniGameLost)
             {
+                print("GAME LOST");
                 LoseLife();
 
                 // TODO: Fixed score vs. outcome score. which is better

@@ -22,9 +22,11 @@ namespace Mini_Games.Lockpick
         [Header("Expression Lock Pick Mini Game")] [SerializeField]
         private int gridSize = 3;
 
+        [SerializeField] private MiniGameName miniGameName;
         [SerializeField] private GameObject gameContainer;
         [SerializeField] private TextMeshProUGUI expressionText;
         [SerializeField] private Image initExpression;
+        [SerializeField] private Expression targetExpression;
         [SerializeField] private ExpressionVisual[] gridImages;
         [SerializeField] private Image[] progressBar;
 
@@ -48,7 +50,8 @@ namespace Mini_Games.Lockpick
             _previousMousePosition = Input.mousePosition;
             _hasMouseMoved = false;
 
-            SetActiveExpression(GetRandomExpression());
+            if (miniGameName is MiniGameName.LockPick)
+                SetActiveExpression(GetRandomExpression());
         }
 
         private void Update()
@@ -69,26 +72,38 @@ namespace Mini_Games.Lockpick
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (_progressBarIndex >= progressBar.Length) return;
-
-            // Get the clicked expression name
             var clickedExpression = GetClickedExpression(eventData);
-            var isCorrect = IsCorrectExpression(clickedExpression);
-            Debug.Log($"Clicked expression: {clickedExpression}; is correct? {isCorrect}");
-
-            if (!isCorrect)
-                return;
-
-            SetActiveExpression(GetRandomExpression());
-            progressBar[_progressBarIndex].color = Color.black;
-            _progressBarIndex++;
-
-            if (_progressBarIndex >= progressBar.Length)
+            if (miniGameName == MiniGameName.LockPick)
             {
-                // win state
-                StopAllCoroutines();
-                gameContainer.SetActive(true);
+                if (_progressBarIndex >= progressBar.Length) return;
+
+                // Get the clicked expression name
+                var isCorrect = IsCorrectExpression(clickedExpression);
+                Debug.Log($"Clicked expression: {clickedExpression}; is correct? {isCorrect}");
+
+                if (!isCorrect)
+                    return;
+
+                SetActiveExpression(GetRandomExpression());
+                progressBar[_progressBarIndex].color = Color.black;
+                _progressBarIndex++;
+
+                if (_progressBarIndex >= progressBar.Length)
+                    FinishGame(true);
             }
+
+            if (miniGameName is MiniGameName.SurpassFeelings)
+                FinishGame(clickedExpression.expression == targetExpression);
+        }
+
+        private void FinishGame(bool isWin)
+        {
+            // win state
+            StopAllCoroutines();
+            gameContainer.SetActive(false);
+
+            if (isWin) Notify(GameEvents.MiniGameWon, 1);
+            else Notify(GameEvents.MiniGameLost, 0);
         }
 
         private ExpressionVisual GetClickedExpression(PointerEventData eventData)
@@ -131,16 +146,17 @@ namespace Mini_Games.Lockpick
         private void SetActiveExpression(Expression expression)
         {
             _activeExpression = expression;
-            // expressionText.text = ExpressionTranslations.GetHebrewTranslation(expression);
             expressionText.text = expression.ToString().ToUpper();
+            if (miniGameName is MiniGameName.SurpassFeelings or MiniGameName.DetectFeelings)
+                expressionText.color = _activeExpression == targetExpression ? Color.darkGreen : Color.darkRed;
         }
 
         private void OnFirstMouseMove()
         {
             if (!_isActive) _isActive = true;
-            // initExpression.gameObject.SetActive(false);
-            // foreach (var image in gridImages)
-            //     image.gameObject.SetActive(true);
+            initExpression.gameObject.SetActive(false);
+            foreach (var image in gridImages)
+                image.expressionImage.gameObject.SetActive(true);
         }
 
         private void UpdateImageOpacity()
@@ -173,7 +189,12 @@ namespace Mini_Games.Lockpick
                             // Lerp towards full opacity for the target image
                             color.a = Mathf.Lerp(color.a, 1f, Time.deltaTime * 8f);
                             // Snap to 1 when close enough
-                            if (color.a > 0.9f) color.a = 1f;
+                            if (color.a > 0.9f)
+                            {
+                                color.a = 1f;
+                                // TODO: Separate concern
+                                SetActiveExpression(gridImages[i].expression);
+                            }
                         }
                         else
                         {
@@ -192,7 +213,7 @@ namespace Mini_Games.Lockpick
             if (eventData.Name == GameEvents.MiniGameIndicationTrigger)
             {
                 var eventMiniGameName = (MiniGameName)eventData.Data;
-                if (eventMiniGameName == MiniGameName.LockPick)
+                if (eventMiniGameName == miniGameName)
                     gameContainer.SetActive(true);
             }
         }
