@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
+  m_Name: 2. zeke - what should i do
+  m_EditorClassIdentifier: DialogAssembly::Dialog.NarrationDialogLine
+  playerName: 
+  waitBeforeLine: 0
+  mandatoryPlayerChoice: 1
+  overlayImageSprite: {fileID: 0}
+  voicedLines:
+  - text: ...what should I do?
+    translation: 
+    clip: {fileID: 8300000, guid: e40d688b6ce60124a97bcc322548f88d, type: 3}
+    gender: 0
+  actorName: 3
+  actorReaction: 0
+  nextDialogueLine: {fileID: 0}
+  playerOptions:
+  - text: Stare at a blank spot
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 48c27bb0284ec034bbac76237bffb7f7, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: Punch a wall
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 48c27bb0284ec034bbac76237bffb7f7, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: Go to sleep
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 48c27bb0284ec034bbac76237bffb7f7, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: Talk to wife
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 8c89ba4c3ab048e48a56a3afa6af785d, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: Talk to a friend
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: a0e39e6da7b626941bd0817617675382, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: Meditate
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 48c27bb0284ec034bbac76237bffb7f7, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: Talk to mom
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: a993724cc216b50439be3c178bb3dbfb, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: Talk to dad
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 8f6ef4c3f9d4f924eb2c9ad69b17bdbf, type: 2}
+    actionAfterPlayerChoice: 0
+  - text: ...
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 11400000, guid: 48c27bb0284ec034bbac76237bffb7f7, type: 2}
+    actionAfterPlayerChoice: 0
+  playerReactions: []
+  conditionalNextLines: []
+  randomizedDialogLines: []
+  objectReferringDialogLines: []
+  wait: 0.5
+  actionBeforeLine: 205
+  actionAfterLine: 0
+  toggleLineCondition: {fileID: 0}
+  lineCondition:
+    condition: 0
+    isMet: 0
+  blurLevel: 0.7
+  blurAudio: 0
+  actionNumberData: 0

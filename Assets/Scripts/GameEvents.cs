@@ -263,5 +263,7 @@
     ZekeBadEmployeeEnding,
     ZekePositionHome,
 
-    StopDialogLine
+    StopDialogLine,
+
+    ZekeReadWifeNote
 }

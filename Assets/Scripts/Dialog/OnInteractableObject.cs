@@ -49,16 +49,18 @@ namespace Character_Creator.scripts
         private InteractableObjectType interactableObjectType;
 
         [SerializeField] private GameEvents gameEvent;
+        [SerializeField] private string instructionText;
         [SerializeField] private TextMeshPro instruction;
         [SerializeField] private NarrationDialogLine[] dialogLine;
         [SerializeField] private InteractionType interactionType;
         [SerializeField] private bool repeatLastInteraction = true;
         [SerializeField] private bool repeatAllInteractions;
         private int _interactionCount;
+        private bool _isTriggered;
 
         private void Update()
         {
-            if (interactionType == InteractionType.Keyboard && Input.GetKeyDown(KeyCode.X))
+            if (Input.GetKeyDown(KeyCode.X) && interactionType == InteractionType.Keyboard && _isTriggered)
             {
                 print($"PRESS ON {gameObject.name}");
                 TriggerInteraction();
@@ -76,19 +78,20 @@ namespace Character_Creator.scripts
 
         private void OnTriggerEnter(Collider other)
         {
-            if (interactionType == InteractionType.Move)
-                _interactionCount++;
+            if (interactionType == InteractionType.Move) _interactionCount++;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            _isTriggered = true;
             print($"OnTriggerEnter2D {gameObject.name}");
             if (instruction)
-                instruction.text = "TALK";
+                instruction.text = string.IsNullOrEmpty(instructionText) ? "TALK" : instructionText;
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
+            _isTriggered = false;
             print($"OnTriggerExit2D {gameObject.name}");
             if (instruction)
                 instruction.text = "";

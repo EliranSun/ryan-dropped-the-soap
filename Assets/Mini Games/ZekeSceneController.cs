@@ -75,10 +75,12 @@ namespace Mini_Games
     public class ZekeSceneController : ObserverSubject
     {
         [SerializeField] private NarrationDialogLine sceneStartLine;
+        [SerializeField] private NarrationDialogLine zekeFirstQuestion;
         [SerializeField] private TextMeshProUGUI dayTimeTextMesh;
         [SerializeField] private GameObject charlotte;
         [SerializeField] private GameObject noteOnTable;
-        [SerializeField] private GameObject suicideCutscene;
+        [SerializeField] private GameObject suicideCutsceneWrapper;
+        [SerializeField] private GameObject preSuicideChoices;
         [SerializeField] private GameObject noteCutscene;
         [SerializeField] private GameObject player;
         [SerializeField] private int deadlineDays = 2;
@@ -94,8 +96,10 @@ namespace Mini_Games
 
         private void Start()
         {
+            // noteOnTable.SetActive(false);
+            // preSuicideChoices.SetActive(false);
             _deadlineTime = CalcDeadline();
-            // Notify(GameEvents.TriggerSpecificDialogLine, sceneStartLine);
+            Notify(GameEvents.TriggerSpecificDialogLine, zekeFirstQuestion);
             PositionPlayerAt(LocationName.Home);
         }
 
@@ -106,6 +110,12 @@ namespace Mini_Games
 
         public void OnNotify(GameEventData eventData)
         {
+            if (eventData.Name == GameEvents.ZekeReadWifeNote)
+            {
+                noteCutscene.SetActive(true);
+                Invoke(nameof(LoadSuicideScene), 5);
+            }
+
             if (eventData.Name == GameEvents.ZekeGoodEmployeeEnding)
             {
                 _currentTimeInMinutes = _deadlineTime;
@@ -140,6 +150,12 @@ namespace Mini_Games
                 _currentMiniGamePosition = location.transform.position;
                 player.transform.position = _currentMiniGamePosition;
             }
+        }
+
+        private void LoadSuicideScene()
+        {
+            noteCutscene.SetActive(false);
+            suicideCutsceneWrapper.SetActive(true);
         }
 
         private void FinalGoodEmployeeSequence()
