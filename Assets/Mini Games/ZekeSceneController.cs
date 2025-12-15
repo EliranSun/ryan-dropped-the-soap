@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Dialog;
 using TMPro;
 using UnityEngine;
 
@@ -73,6 +74,7 @@ namespace Mini_Games
 
     public class ZekeSceneController : ObserverSubject
     {
+        [SerializeField] private NarrationDialogLine sceneStartLine;
         [SerializeField] private TextMeshProUGUI dayTimeTextMesh;
         [SerializeField] private GameObject charlotte;
         [SerializeField] private GameObject noteOnTable;
@@ -93,6 +95,8 @@ namespace Mini_Games
         private void Start()
         {
             _deadlineTime = CalcDeadline();
+            // Notify(GameEvents.TriggerSpecificDialogLine, sceneStartLine);
+            PositionPlayerAt(LocationName.Home);
         }
 
         private int CalcDeadline()
@@ -105,9 +109,10 @@ namespace Mini_Games
             if (eventData.Name == GameEvents.ZekeGoodEmployeeEnding)
             {
                 _currentTimeInMinutes = _deadlineTime;
+
                 SetClock();
-                var location = locations.First(item => item.location == LocationName.BossOffice);
-                player.transform.position = location.transform.position;
+                PositionPlayerAt(LocationName.BossOffice);
+
                 charlotte.SetActive(false);
                 noteOnTable.SetActive(true);
             }
@@ -140,14 +145,19 @@ namespace Mini_Games
         private void FinalGoodEmployeeSequence()
         {
             Notify(GameEvents.StopDialogLine);
-            var location = locations.First(item => item.location == LocationName.Home);
-            player.transform.position = location.transform.position;
+            PositionPlayerAt(LocationName.Home);
         }
 
         private void AdvanceTime(int minutes)
         {
             _currentTimeInMinutes += minutes;
             SetClock();
+        }
+
+        private void PositionPlayerAt(LocationName locationName)
+        {
+            var location = locations.First(item => item.location == locationName);
+            player.transform.position = location.transform.position;
         }
 
         private void SetClock()

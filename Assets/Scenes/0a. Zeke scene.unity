@@ -6432,7 +6432,7 @@ PrefabInstance:
     - target: {fileID: 2598299574820255891, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: finalState.dialogLineToPlay
       value: 
-      objectReference: {fileID: 11400000, guid: 46854847e02f1e94a977d188d13cd75f, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 2968641989831547413, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -6746,9 +6746,6 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5769146421933612997, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       insertIndex: 0
-      addedObject: {fileID: 1516234368}
-    - targetCorrespondingSourceObject: {fileID: 5769146421933612997, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
-      insertIndex: 1
       addedObject: {fileID: 716598052}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2239556681016677361, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
@@ -11257,6 +11254,7 @@ GameObject:
   - component: {fileID: 971582311}
   - component: {fileID: 971582310}
   - component: {fileID: 971582312}
+  - component: {fileID: 971582313}
   m_Layer: 0
   m_Name: table with paper and ring
   m_TagString: Untagged
@@ -11367,7 +11365,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -11383,6 +11381,29 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 6.4, y: 6.4}
   m_EdgeRadius: 0
+--- !u!114 &971582313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 971582309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b15b47ad22222ad4ca3d6e88e90e36ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DialogAssembly::Character_Creator.scripts.OnInteractableObject
+  observers:
+    m_PersistentCalls:
+      m_Calls: []
+  interactableObjectName: 0
+  interactableObjectType: 0
+  gameEvent: 0
+  instruction: {fileID: 0}
+  dialogLine: []
+  interactionType: 0
+  repeatLastInteraction: 1
+  repeatAllInteractions: 0
 --- !u!1 &980824119
 GameObject:
   m_ObjectHideFlags: 0
@@ -16329,14 +16350,14 @@ Transform:
   m_GameObject: {fileID: 1516234367}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1649258550}
   - {fileID: 615838326}
   - {fileID: 2035125780}
-  m_Father: {fileID: 548751243}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1516234369
 MonoBehaviour:
@@ -16377,6 +16398,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  sceneStartLine: {fileID: 11400000, guid: 46854847e02f1e94a977d188d13cd75f, type: 2}
   dayTimeTextMesh: {fileID: 7683045198244030642}
   charlotte: {fileID: 866547518}
   noteOnTable: {fileID: 971582309}
@@ -29595,6 +29617,7 @@ SceneRoots:
   - {fileID: 937176694}
   - {fileID: 7615624741908061924}
   - {fileID: 1218222515}
+  - {fileID: 1516234368}
   - {fileID: 548751242}
   - {fileID: 619399802}
   - {fileID: 1078176052}
