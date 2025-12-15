@@ -50,7 +50,7 @@ namespace Mini_Games
      */
 
     [Serializable]
-    public enum MiniGameLocation
+    public enum LocationName
     {
         OfficeOpenSpace,
         BossOffice,
@@ -58,10 +58,17 @@ namespace Mini_Games
     }
 
     [Serializable]
-    public class MiniGamePosition
+    public class MiniGameLocation
     {
         public MiniGameName name;
-        public Transform position;
+        public LocationName location;
+    }
+
+    [Serializable]
+    public class Location
+    {
+        public Transform transform;
+        public LocationName location;
     }
 
     public class ClockifiedMiniGames : MonoBehaviour
@@ -71,7 +78,8 @@ namespace Mini_Games
         [SerializeField] private int deadlineDays = 2;
         [SerializeField] private int deadlineHour = 18;
         [SerializeField] private float advanceIntervalInSeconds;
-        [SerializeField] private MiniGamePosition[] miniGameLocations;
+        [SerializeField] private MiniGameLocation[] miniGameLocations;
+        [SerializeField] private Location[] locations;
         private readonly string[] _dayNames = { "Sunday", "Monday", "Tuesday" };
 
         private Vector2 _currentMiniGamePosition;
@@ -90,6 +98,12 @@ namespace Mini_Games
 
         public void OnNotify(GameEventData eventData)
         {
+            if (eventData.Name == GameEvents.ZekeGoodEmployeeEnding)
+            {
+                var location = locations.First(item => item.location == LocationName.BossOffice);
+                player.transform.position = location.transform.position;
+            }
+
             if (eventData.Name is GameEvents.MiniGameStart or GameEvents.StartMiniGames)
             {
                 var isFirstTime = eventData.Name == GameEvents.StartMiniGames;
@@ -99,10 +113,12 @@ namespace Mini_Games
 
                 var miniGameName = (MiniGameName)eventData.Data;
                 var currentMiniGame = miniGameLocations.First(item => item.name == miniGameName);
-                if (_currentMiniGamePosition == (Vector2)currentMiniGame.position.transform.position)
+                var location = locations.First(item => item.location == currentMiniGame.location);
+
+                if (_currentMiniGamePosition == (Vector2)location.transform.position)
                     return;
 
-                _currentMiniGamePosition = currentMiniGame.position.transform.position;
+                _currentMiniGamePosition = location.transform.position;
                 player.transform.position = _currentMiniGamePosition;
             }
         }

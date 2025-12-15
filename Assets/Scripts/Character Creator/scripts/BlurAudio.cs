@@ -59,8 +59,8 @@ namespace Character_Creator.scripts
                 var narrationDialogLine = gameEventData.Data as NarrationDialogLine;
                 if (narrationDialogLine == null) return;
 
-                if (narrationDialogLine.angerLevel > 0)
-                    ApplyBlurEffect(narrationDialogLine.angerLevel);
+                if (narrationDialogLine.blurLevel > 0)
+                    ApplyBlurEffect(narrationDialogLine.blurLevel);
 
                 print($"Blur audio for {narrationDialogLine.name}? {narrationDialogLine.blurAudio}");
                 if (narrationDialogLine.blurAudio)

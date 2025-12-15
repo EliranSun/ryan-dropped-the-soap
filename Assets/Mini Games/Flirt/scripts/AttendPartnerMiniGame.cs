@@ -51,6 +51,7 @@ namespace Mini_Games.Flirt.scripts
         [SerializeField] private Sprite partnerBody;
         [SerializeField] private TextMeshProUGUI partnerRequest;
         [SerializeField] private AudioSource audioSource;
+        [SerializeField] private GameObject gameContainer;
 
         [FormerlySerializedAs("choiceA")] [SerializeField]
         private Button choiceAButton;
@@ -66,7 +67,7 @@ namespace Mini_Games.Flirt.scripts
 
         private void Start()
         {
-            gameObject.SetActive(false);
+            gameContainer.SetActive(false);
         }
 
         private static void SetButtonText(Button button, string text)
@@ -122,12 +123,12 @@ namespace Mini_Games.Flirt.scripts
 
         private void EndGame()
         {
-            gameObject.SetActive(false);
+            gameContainer.SetActive(false);
         }
 
         private void StartGame()
         {
-            gameObject.SetActive(true);
+            gameContainer.SetActive(true);
             partnerBodyImage.sprite = partnerBody;
             if (partnerChoices == null || partnerChoices.Length == 0) return;
 

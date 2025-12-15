@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
+  m_Name: 3. boss - another reason
+  m_EditorClassIdentifier: DialogAssembly::Dialog.NarrationDialogLine
+  playerName: 
+  waitBeforeLine: 0
+  mandatoryPlayerChoice: 1
+  overlayImageSprite: {fileID: 0}
+  voicedLines:
+  - text: Well, I called you into my office for another reason, actually.
+    translation: 
+    clip: {fileID: 8300000, guid: db94fab0db5c753439c73b915848282f, type: 3}
+    gender: 0
+  actorName: 0
+  actorReaction: 0
+  nextDialogueLine: {fileID: 11400000, guid: c5fc7b8b727b3e640b8cf2a503e14584, type: 2}
+  playerOptions: []
+  playerReactions: []
+  conditionalNextLines: []
+  randomizedDialogLines: []
+  objectReferringDialogLines: []
+  wait: 0.5
+  actionBeforeLine: 0
+  actionAfterLine: 0
+  angerLevel: 0
+  toggleLineCondition: {fileID: 0}
+  lineCondition:
+    condition: 0
+    isMet: 0
+  blurAudio: 0
+  actionNumberData: 0

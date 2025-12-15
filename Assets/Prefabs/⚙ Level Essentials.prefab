@@ -152,6 +152,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4591641922074850420}
   - component: {fileID: 1676544239519199644}
+  - component: {fileID: 845743173494813390}
   m_Layer: 0
   m_Name: "\U0001F4E3 BG Music"
   m_TagString: Untagged
@@ -271,6 +272,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &845743173494813390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1338710738119981748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf782a8dc5150e9448766b8032caab23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _delay: 0
+  _changeSpeedFactor: 0.05
+  _minPitch: 0.5
+  _maxPitch: 1.5
 --- !u!1 &1473975366150542738
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,13 +381,6 @@ MonoBehaviour:
   hallwayBoundaries: {fileID: 0}
   sfxAudioSource: {fileID: 0}
   knockingSound: {fileID: 0}
-  floorData: {fileID: 0}
-  npcKnockingOnPlayerApartment: {fileID: 0}
-  playerApartmentHallwayDoor: {fileID: 0}
-  initLine: {fileID: 0}
-  playerTookPlantWithoutPermission: {fileID: 0}
-  charlottePlayerGrowthLine: {fileID: 0}
-  playerBox: {fileID: 0}
 --- !u!114 &6858920165759656711
 MonoBehaviour:
   m_ObjectHideFlags: 0

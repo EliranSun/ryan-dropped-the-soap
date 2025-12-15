@@ -10,7 +10,7 @@ namespace Mini_Games.Snooze
         [SerializeField] private int startTimeInMinutes = 23 * 60 + 30; // 23:30
         [SerializeField] private int wakeUpTime = 8 * 60; // 8:00
         [SerializeField] private float clockSpeedInSeconds;
-
+        [SerializeField] private GameObject gameContainer;
         [SerializeField] private Sprite asleepFace;
         [SerializeField] private Sprite awakeFace;
         [SerializeField] private Image faceImage;
@@ -27,7 +27,7 @@ namespace Mini_Games.Snooze
             instructionText.text = $"I need to wake up exactly at {GetTimeString(wakeUpTime)}...";
             StartCoroutine(AdvanceTime());
 
-            gameObject.SetActive(false);
+            gameContainer.SetActive(false);
         }
 
         private void SetTime()
@@ -86,7 +86,7 @@ namespace Mini_Games.Snooze
             else
                 Notify(GameEvents.MiniGameLost, 0);
 
-            gameObject.SetActive(false);
+            gameContainer.SetActive(false);
         }
     }
 }

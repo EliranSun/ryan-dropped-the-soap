@@ -27,6 +27,12 @@ namespace Mini_Games
         Avoid
     }
 
+    public enum PlayStyle
+    {
+        ScoreBased,
+        InstructionBased
+    }
+
     // TODO: Strange that Mini games manager is also a mini game
     public class MiniGamesManager : ObserverSubject
     {
@@ -45,13 +51,19 @@ namespace Mini_Games
 
         [SerializeField] private int defaultScorePerGame = 10;
         [SerializeField] private int initiateMiniGameDelay = 3;
+        [SerializeField] private int loopThroughInstructionsCount;
+        [SerializeField] private PlayStyle playStyle;
         [SerializeField] private TextMeshProUGUI inGameInstructionsText;
+        [SerializeField] private string winGameText;
+        [SerializeField] private string loseGameText;
+        [SerializeField] private GameEvents endEvent;
         [SerializeField] private GameObject[] lives;
         [SerializeField] private MiniGameName[] instructions;
         [SerializeField] private Slider scoreSlider;
         [SerializeField] private GameObject scoreWrapper;
         [SerializeField] private GameObject inGameInstructions;
         [SerializeField] private GameObject player;
+        [SerializeField] private NarrationDialogLine endingDialogLine;
         [SerializeField] private NarrationDialogLine goodEndingDialogLine;
         [SerializeField] private NarrationDialogLine badEndingDialogLine;
         [SerializeField] private GameObject badEndingTrigger;
@@ -134,7 +146,7 @@ namespace Mini_Games
                 _score += gameScore != 0 ? gameScore : defaultScorePerGame;
 
                 _isMiniGameInitiated = false;
-                inGameInstructionsText.text = "GOOD EMPLOYEE";
+                inGameInstructionsText.text = winGameText;
                 Notify(GameEvents.SlowDownMusic);
                 Invoke(nameof(OnMiniGameEnd), 2f);
             }
@@ -148,7 +160,7 @@ namespace Mini_Games
                 var gameScore = (int)eventData.Data;
                 _score += gameScore != 0 ? gameScore : -defaultScorePerGame;
                 _isMiniGameInitiated = false;
-                inGameInstructionsText.text = "BAD EMPLOYEE";
+                inGameInstructionsText.text = loseGameText;
                 Notify(GameEvents.SpeedUpMusic);
                 Invoke(nameof(OnMiniGameEnd), 2f);
             }
@@ -224,20 +236,22 @@ namespace Mini_Games
 
             Notify(GameEvents.ResetThoughtsAndSayings);
 
-            if (_score is >= GamesWinScore or <= GamesLoseScore)
+            var isFinished = playStyle == PlayStyle.ScoreBased
+                ? _score is >= GamesWinScore or <= GamesLoseScore
+                : _miniGamesIndex >= instructions.Length - 1;
+
+            if (isFinished)
             {
                 Notify(GameEvents.StopMusic);
 
-                var isGoodEnding = _score >= GamesWinScore;
+                // var isGoodEnding = _score >= GamesWinScore;
+                //
+                // if (badEndingTrigger) badEndingTrigger.SetActive(!isGoodEnding);
+                // if (goodEndingTrigger) goodEndingTrigger.SetActive(isGoodEnding);
+                //
+                Notify(GameEvents.TriggerSpecificDialogLine, endingDialogLine);
 
-                if (badEndingTrigger) badEndingTrigger.SetActive(!isGoodEnding);
-                if (goodEndingTrigger) goodEndingTrigger.SetActive(isGoodEnding);
-
-                Notify(GameEvents.TriggerSpecificDialogLine,
-                    isGoodEnding
-                        ? goodEndingDialogLine
-                        : badEndingDialogLine);
-
+                Notify(endEvent);
                 CloseInstruction();
                 StopAllCoroutines();
                 scoreWrapper.SetActive(false);

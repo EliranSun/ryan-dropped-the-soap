@@ -2,6 +2,7 @@ using System;
 using Dialog.Scripts;
 using Expressions;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Dialog
 {
@@ -175,11 +176,11 @@ namespace Dialog
         public GameEvents actionBeforeLine;
         public GameEvents actionAfterLine;
 
-        public float angerLevel;
 
         public NarrationDialogLine toggleLineCondition;
         public LineCondition lineCondition;
 
+        [FormerlySerializedAs("angerLevel")] public float blurLevel;
         public bool blurAudio;
 
         // TODO: Make it generic?

@@ -108,7 +108,7 @@ namespace Mini_Games.Flirt.scripts
         {
             var choice = _currentChoices[choiceIndex];
             score = choice.score;
-            Notify(score > 0 ? GameEvents.MiniGameWon : GameEvents.MiniGameLost, score);
+            // Notify(score > 0 ? GameEvents.MiniGameWon : GameEvents.MiniGameLost, score);
             Notify(GameEvents.TriggerSpecificDialogLine, choice.actorLine);
 
             Invoke(nameof(EndGame), 3);

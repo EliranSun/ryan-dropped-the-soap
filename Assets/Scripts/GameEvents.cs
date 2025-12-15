@@ -257,5 +257,8 @@
     PlayerControlNpc,
 
     MiniGameEnded,
-    AdvanceTime
+    AdvanceTime,
+
+    ZekeGoodEmployeeEnding,
+    ZekeBadEmployeeEnding
 }

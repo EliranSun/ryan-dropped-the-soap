@@ -18,9 +18,9 @@ public class SpriteColorController : MonoBehaviour
             var narrationDialogLine = gameEventData.Data as NarrationDialogLine;
             if (narrationDialogLine == null) return;
 
-            print("angerLevel: " + narrationDialogLine.angerLevel);
+            print("angerLevel: " + narrationDialogLine.blurLevel);
 
-            StepTowardsColor(color, narrationDialogLine.angerLevel);
+            StepTowardsColor(color, narrationDialogLine.blurLevel);
         }
     }
 }
