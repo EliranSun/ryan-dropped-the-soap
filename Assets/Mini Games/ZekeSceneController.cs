@@ -71,13 +71,13 @@ namespace Mini_Games
         public LocationName location;
     }
 
-    public class ClockifiedMiniGames : ObserverSubject
+    public class ZekeSceneController : ObserverSubject
     {
         [SerializeField] private TextMeshProUGUI dayTimeTextMesh;
-
-        // TODO: Setting the scene/actors should be in another class
         [SerializeField] private GameObject charlotte;
         [SerializeField] private GameObject noteOnTable;
+        [SerializeField] private GameObject suicideCutscene;
+        [SerializeField] private GameObject noteCutscene;
         [SerializeField] private GameObject player;
         [SerializeField] private int deadlineDays = 2;
         [SerializeField] private int deadlineHour = 18;

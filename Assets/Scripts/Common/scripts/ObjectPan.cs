@@ -21,7 +21,7 @@ namespace common.scripts
         Human
     }
 
-    public class ObjectsAutoMove : MonoBehaviour
+    public class ObjectPan : MonoBehaviour
 
     {
         [SerializeField] private Direction direction;
