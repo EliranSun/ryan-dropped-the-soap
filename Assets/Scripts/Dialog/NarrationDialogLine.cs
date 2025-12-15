@@ -176,7 +176,6 @@ namespace Dialog
         public GameEvents actionBeforeLine;
         public GameEvents actionAfterLine;
 
-
         public NarrationDialogLine toggleLineCondition;
         public LineCondition lineCondition;
 

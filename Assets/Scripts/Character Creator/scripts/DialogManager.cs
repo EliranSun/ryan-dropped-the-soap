@@ -326,6 +326,11 @@ namespace Character_Creator.scripts
 
             switch (gameEventData.Name)
             {
+                case GameEvents.StopDialogLine:
+                case GameEvents.KillDialog:
+                    KillDialog();
+                    break;
+
                 case GameEvents.TriggerSpecificDialogLine:
                 case GameEvents.EnteredMuseum:
                     TriggerLine((NarrationDialogLine)gameEventData.Data);
@@ -364,10 +369,6 @@ namespace Character_Creator.scripts
                     var interactionData = (InteractionData)gameEventData.Data;
                     InteractionStateService.Instance.SetCurrentInteraction(interactionData);
                     TriggerLine(interactionData.DialogLine, false);
-                    break;
-
-                case GameEvents.KillDialog:
-                    KillDialog();
                     break;
             }
         }

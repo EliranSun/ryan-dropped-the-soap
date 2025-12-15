@@ -238,7 +238,7 @@ namespace Mini_Games
 
             var isFinished = playStyle == PlayStyle.ScoreBased
                 ? _score is >= GamesWinScore or <= GamesLoseScore
-                : _miniGamesIndex >= instructions.Length - 1;
+                : _miniGamesIndex > instructions.Length - 1;
 
             if (isFinished)
             {
@@ -249,9 +249,10 @@ namespace Mini_Games
                 // if (badEndingTrigger) badEndingTrigger.SetActive(!isGoodEnding);
                 // if (goodEndingTrigger) goodEndingTrigger.SetActive(isGoodEnding);
                 //
-                Notify(GameEvents.TriggerSpecificDialogLine, endingDialogLine);
 
                 Notify(endEvent);
+                Notify(GameEvents.TriggerSpecificDialogLine, endingDialogLine);
+
                 CloseInstruction();
                 StopAllCoroutines();
                 scoreWrapper.SetActive(false);

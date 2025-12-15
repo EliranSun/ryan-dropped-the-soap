@@ -260,5 +260,8 @@
     AdvanceTime,
 
     ZekeGoodEmployeeEnding,
-    ZekeBadEmployeeEnding
+    ZekeBadEmployeeEnding,
+    ZekePositionHome,
+
+    StopDialogLine
 }

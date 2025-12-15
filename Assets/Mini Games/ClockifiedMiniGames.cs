@@ -71,9 +71,13 @@ namespace Mini_Games
         public LocationName location;
     }
 
-    public class ClockifiedMiniGames : MonoBehaviour
+    public class ClockifiedMiniGames : ObserverSubject
     {
         [SerializeField] private TextMeshProUGUI dayTimeTextMesh;
+
+        // TODO: Setting the scene/actors should be in another class
+        [SerializeField] private GameObject charlotte;
+        [SerializeField] private GameObject noteOnTable;
         [SerializeField] private GameObject player;
         [SerializeField] private int deadlineDays = 2;
         [SerializeField] private int deadlineHour = 18;
@@ -100,8 +104,18 @@ namespace Mini_Games
         {
             if (eventData.Name == GameEvents.ZekeGoodEmployeeEnding)
             {
+                _currentTimeInMinutes = _deadlineTime;
+                SetClock();
                 var location = locations.First(item => item.location == LocationName.BossOffice);
                 player.transform.position = location.transform.position;
+                charlotte.SetActive(false);
+                noteOnTable.SetActive(true);
+            }
+
+            if (eventData.Name == GameEvents.ZekePositionHome)
+            {
+                AdvanceTime(2 * 60);
+                Invoke(nameof(FinalGoodEmployeeSequence), 2);
             }
 
             if (eventData.Name is GameEvents.MiniGameStart or GameEvents.StartMiniGames)
@@ -123,10 +137,21 @@ namespace Mini_Games
             }
         }
 
+        private void FinalGoodEmployeeSequence()
+        {
+            Notify(GameEvents.StopDialogLine);
+            var location = locations.First(item => item.location == LocationName.Home);
+            player.transform.position = location.transform.position;
+        }
+
         private void AdvanceTime(int minutes)
         {
             _currentTimeInMinutes += minutes;
+            SetClock();
+        }
 
+        private void SetClock()
+        {
             var dayNameIndex = _currentTimeInMinutes / 1440;
             if (dayNameIndex >= _dayNames.Length)
                 return;
@@ -135,7 +160,6 @@ namespace Mini_Games
             var hours = dayTime / 60;
             var minutesInDay = dayTime % 60;
             var hoursLeft = (_deadlineTime - _currentTimeInMinutes) / 60;
-
             dayTimeTextMesh.text =
                 $"{_dayNames[dayNameIndex]}, {hours:D2}:{minutesInDay:D2}; {hoursLeft}h left";
         }

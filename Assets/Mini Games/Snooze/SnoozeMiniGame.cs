@@ -42,8 +42,6 @@ namespace Mini_Games.Snooze
             var minutes = dayWrap % 60;
             var minutesFormatted = minutes < 10 ? $"0{minutes}" : minutes.ToString();
 
-            print($"Time {hour}:{minutes}; {timeInMinutes}");
-
             return $"{hour}:{minutesFormatted}";
         }
 
