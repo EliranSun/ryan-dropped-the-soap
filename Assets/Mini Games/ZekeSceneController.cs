@@ -91,8 +91,8 @@ namespace Mini_Games
         [SerializeField] private float advanceIntervalInSeconds;
         [SerializeField] private MiniGameLocation[] miniGameLocations;
         [SerializeField] private Location[] locations;
+        private readonly List<string> _choicesMade = new();
         private readonly string[] _dayNames = { "Sunday", "Monday", "Tuesday" };
-        private List<string> _choicesMade = new();
         private Vector2 _currentMiniGamePosition;
         private int _currentTimeInMinutes = 9 * 60; // "Sunday, 8:00"
         private int _deadlineTime;
@@ -114,7 +114,7 @@ namespace Mini_Games
         {
             switch (eventData.Name)
             {
-                case GameEvents.ZekeSuicidePanEnd:
+                case GameEvents.NextScene:
                     Invoke(nameof(ChangeScene), 5f);
                     break;
 
@@ -128,7 +128,7 @@ namespace Mini_Games
                     print($"CHOICES MADE {_choicesMade.Count}");
 
                     if (choice.actionAfterPlayerChoice == GameEvents.ResetSuicideChoices)
-                        _choicesMade = new List<string>();
+                        _choicesMade.RemoveAt(0);
 
                     if (choice.actionAfterPlayerChoice == GameEvents.TriggerZekeSuicide)
                     {
@@ -136,7 +136,7 @@ namespace Mini_Games
                         break;
                     }
 
-                    if (_choicesMade.Count >= 1)
+                    if (_choicesMade.Count >= 3)
                         Invoke(nameof(TriggerLastQuestion), 0.5f);
 
                     if (choice.text != "...")
@@ -152,13 +152,7 @@ namespace Mini_Games
                     break;
 
                 case GameEvents.ZekeGoodEmployeeEnding:
-                    _currentTimeInMinutes = _deadlineTime;
 
-                    SetClock();
-                    PositionPlayerAt(LocationName.BossOffice);
-
-                    charlotte.SetActive(false);
-                    noteOnTable.SetActive(true);
                     break;
 
                 case GameEvents.ZekePositionHome:
@@ -169,7 +163,14 @@ namespace Mini_Games
                 case GameEvents.MiniGameStart or GameEvents.StartMiniGames:
                 {
                     var isFirstTime = eventData.Name == GameEvents.StartMiniGames;
-                    AdvanceTime(isFirstTime ? 60 : 120);
+
+                    AdvanceTime(isFirstTime ? 60 : 5 * 60);
+
+                    if (_currentTimeInMinutes >= _deadlineTime)
+                    {
+                        GoodEmployeeEnding();
+                        break;
+                    }
 
                     if (isFirstTime) return;
 
@@ -187,9 +188,21 @@ namespace Mini_Games
             }
         }
 
+        private void GoodEmployeeEnding()
+        {
+            Notify(GameEvents.EndMiniGames);
+            _currentTimeInMinutes = _deadlineTime;
+
+            SetClock();
+            PositionPlayerAt(LocationName.BossOffice);
+
+            charlotte.SetActive(false);
+            noteOnTable.SetActive(true);
+        }
+
         private void ChangeScene()
         {
-            SceneManager.LoadScene("CORE test");
+            SceneManager.LoadScene("Scenes/Post zeke suicide");
         }
 
         private void TriggerMorganContactCharlotte()
@@ -207,8 +220,9 @@ namespace Mini_Games
             _suicideChoicesStarted = true;
 
             noteCutscene.SetActive(false);
+            noteOnTable.SetActive(false);
 
-            PositionPlayerAt(LocationName.Home);
+            // PositionPlayerAt(LocationName.Home);
 
             Notify(GameEvents.StopMusic);
             Notify(GameEvents.TriggerSpecificDialogLine, zekeFirstQuestion);

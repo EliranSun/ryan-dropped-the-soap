@@ -80,7 +80,7 @@ namespace stacy
                 if (reactionImage.image != null)
                     leftSideImage.rectTransform.sizeDelta = new Vector2(reactionImage.image.rect.width,
                         reactionImage.image.rect.height);
-                leftSideContainer.SetActive(true);
+                // leftSideContainer.SetActive(true);
             }
             else
             {
@@ -89,7 +89,7 @@ namespace stacy
                 if (reactionImage.image != null)
                     rightSideImage.rectTransform.sizeDelta = new Vector2(reactionImage.image.rect.width,
                         reactionImage.image.rect.height);
-                rightSideContainer.SetActive(true);
+                // rightSideContainer.SetActive(true);
             }
         }
 

@@ -21,13 +21,12 @@ namespace Mini_Games.Snooze
         [SerializeField] private AudioClip winStateAudio;
         private bool _isSnoozeHit;
 
-        private void Start()
+        private void StartGame()
         {
             faceImage.sprite = asleepFace;
             instructionText.text = $"I need to wake up exactly at {GetTimeString(wakeUpTime)}...";
             StartCoroutine(AdvanceTime());
-
-            gameContainer.SetActive(false);
+            gameContainer.SetActive(true);
         }
 
         private void SetTime()
@@ -74,17 +73,29 @@ namespace Mini_Games.Snooze
             if (adjustedTime > wakeUpTime) instructionText.text = "FUCK!!!!!!!!!!!";
             if (adjustedTime < wakeUpTime) instructionText.text = "What is the meaning of my life...?";
 
-            OnGameEnd(isSuccess);
+            StartCoroutine(OnGameEnd(isSuccess));
         }
 
-        private void OnGameEnd(bool isSuccess)
+        private IEnumerator OnGameEnd(bool isSuccess)
         {
+            yield return new WaitForSeconds(2);
+
             if (isSuccess)
                 Notify(GameEvents.MiniGameWon, 1);
             else
                 Notify(GameEvents.MiniGameLost, 0);
 
             gameContainer.SetActive(false);
+        }
+
+        public void OnNotify(GameEventData eventData)
+        {
+            if (eventData.Name == GameEvents.MiniGameIndicationTrigger)
+            {
+                var eventMiniGameName = (MiniGameName)eventData.Data;
+                if (eventMiniGameName == MiniGameName.Snooze)
+                    StartGame();
+            }
         }
     }
 }

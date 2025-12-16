@@ -13,20 +13,29 @@ MonoBehaviour:
   m_Name: boss - desk - bad - what the hell is this
   m_EditorClassIdentifier: 
   playerName: 
-  waitBeforeLine: 0
+  waitBeforeLine: 2
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
   voicedLines:
   - text: Zeke what the hell is that on your desk?
+    translation: 
     clip: {fileID: 8300000, guid: 7d08ee6dd15ee2e4c8453c29112013c3, type: 3}
     gender: 0
+  actorName: 0
+  actorReaction: 0
+  nextDialogueLine: {fileID: 0}
   playerOptions: []
   playerReactions: []
-  nextDialogueLine: {fileID: 0}
+  conditionalNextLines: []
   randomizedDialogLines: []
   objectReferringDialogLines: []
   wait: 0.5
-  actorName: 0
   actionBeforeLine: 0
   actionAfterLine: 0
-  actorReaction: 0
+  toggleLineCondition: {fileID: 0}
+  lineCondition:
+    condition: 0
+    isMet: 0
+  blurLevel: 0
+  blurAudio: 0
+  actionNumberData: 0

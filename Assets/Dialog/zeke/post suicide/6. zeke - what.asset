@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
+  m_Name: 6. zeke - what
+  m_EditorClassIdentifier: DialogAssembly::Dialog.NarrationDialogLine
+  playerName: 
+  waitBeforeLine: 0
+  mandatoryPlayerChoice: 1
+  overlayImageSprite: {fileID: 0}
+  voicedLines:
+  - text: What?
+    translation: 
+    clip: {fileID: 8300000, guid: edf5bfcf5d0370b42933a8aacf6ef2a8, type: 3}
+    gender: 0
+  actorName: 3
+  actorReaction: 0
+  nextDialogueLine: {fileID: 11400000, guid: 6d6f257f7225de648b5ff46923d3aa3f, type: 2}
+  playerOptions: []
+  playerReactions: []
+  conditionalNextLines: []
+  randomizedDialogLines: []
+  objectReferringDialogLines: []
+  wait: 0.5
+  actionBeforeLine: 0
+  actionAfterLine: 0
+  toggleLineCondition: {fileID: 0}
+  lineCondition:
+    condition: 0
+    isMet: 0
+  blurLevel: 0
+  blurAudio: 0
+  actionNumberData: 0

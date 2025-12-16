@@ -267,5 +267,10 @@
 
     ZekeReadWifeNote,
     ResetSuicideChoices,
-    ZekeSuicidePanEnd
+    ZekeSuicidePanEnd,
+
+    EndMiniGames,
+
+    SwitchToPlayerSprite,
+    QuitGame
 }

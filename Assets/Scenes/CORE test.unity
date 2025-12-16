@@ -9821,6 +9821,22 @@ PrefabInstance:
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[6].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 751552579483620586, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 698
+      objectReference: {fileID: 0}
+    - target: {fileID: 751552579483620586, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -450
+      objectReference: {fileID: 0}
+    - target: {fileID: 1051814540347006973, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: m_text
+      value: (N)ext dialog; (X) to interact
+      objectReference: {fileID: 0}
+    - target: {fileID: 1051814540347006973, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: m_margin.z
+      value: 265.51758
+      objectReference: {fileID: 0}
     - target: {fileID: 2966023187645510561, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       propertyPath: m_Name
       value: "\U0001F4AC Dialog Manager"
@@ -9829,6 +9845,10 @@ PrefabInstance:
       propertyPath: actorConfigs.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6535512598348505234, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: actorConfigs.Array.data[0].actorBody
+      value: 
+      objectReference: {fileID: 21300000, guid: a92958e5ef1074da096f6d7161296030, type: 3}
     - target: {fileID: 6535512598348505234, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       propertyPath: actorConfigs.Array.data[0].actorName
       value: 3
@@ -9840,7 +9860,31 @@ PrefabInstance:
     - target: {fileID: 6535512598348505234, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       propertyPath: actorConfigs.Array.data[0].reactions.Array.data[0].image
       value: 
-      objectReference: {fileID: 21300000, guid: a92958e5ef1074da096f6d7161296030, type: 3}
+      objectReference: {fileID: 0}
+    - target: {fileID: 6552197201826513969, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: -1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6552197201826513969, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6552197201826513969, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6552197201826513969, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 750
+      objectReference: {fileID: 0}
+    - target: {fileID: 6552197201826513969, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -260
+      objectReference: {fileID: 0}
+    - target: {fileID: 6552197201826513969, guid: 531fc0d072f178a418099be637aca04e, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7427798059684481015, guid: 531fc0d072f178a418099be637aca04e, type: 3}
       propertyPath: player
       value: 

@@ -44,7 +44,7 @@ namespace Mini_Games
         private const float BrightnessDecrease = 0.1f;
 
         private const float BrightnessIncrease = 0.1f;
-        private const float MinMoveSpeed = 2f; // Minimum move speed to ensure player can still move
+        private const float MinMoveSpeed = 5f; // Minimum move speed to ensure player can still move
         private const float MaxMoveSpeed = 15f; // Maximum move speed to prevent too fast movement
 
         [Header("Settings")] [SerializeField] private bool areGamesRandomized;
@@ -60,16 +60,20 @@ namespace Mini_Games
         [SerializeField] private GameObject[] lives;
         [SerializeField] private MiniGameName[] instructions;
         [SerializeField] private Slider scoreSlider;
+        [SerializeField] private GameObject allGamesContainer;
         [SerializeField] private GameObject scoreWrapper;
         [SerializeField] private GameObject inGameInstructions;
         [SerializeField] private GameObject player;
         [SerializeField] private NarrationDialogLine endingDialogLine;
         [SerializeField] private NarrationDialogLine goodEndingDialogLine;
         [SerializeField] private NarrationDialogLine badEndingDialogLine;
+        [SerializeField] private NarrationDialogLine miniGameWonDialogLine;
+        [SerializeField] private NarrationDialogLine miniGameLostDialogLine;
         [SerializeField] private GameObject badEndingTrigger;
         [SerializeField] private GameObject goodEndingTrigger;
         private bool _isMiniGameInitiated;
         private int _livesCount;
+        private bool _miniGamesEnded;
         private int _miniGamesIndex;
         private int _score;
 
@@ -133,37 +137,59 @@ namespace Mini_Games
 
         public void OnNotify(GameEventData eventData)
         {
-            if (eventData.Name == GameEvents.StartMiniGames) Invoke(nameof(SetNextInstruction), initiateMiniGameDelay);
+            if (_miniGamesEnded) return;
 
-            if (eventData.Name == GameEvents.MiniGameStart && !_isMiniGameInitiated)
-                _isMiniGameInitiated = true;
-
-            if (eventData.Name == GameEvents.MiniGameWon)
+            switch (eventData.Name)
             {
-                print("GAME WON");
-                var gameScore = (int)eventData.Data;
+                case GameEvents.StartMiniGames:
+                    Invoke(nameof(SetNextInstruction), initiateMiniGameDelay);
+                    break;
 
-                _score += gameScore != 0 ? gameScore : defaultScorePerGame;
+                case GameEvents.EndMiniGames:
+                    EndMiniGames();
+                    break;
 
-                _isMiniGameInitiated = false;
-                inGameInstructionsText.text = winGameText;
-                Notify(GameEvents.SlowDownMusic);
-                Invoke(nameof(OnMiniGameEnd), 2f);
+                case GameEvents.MiniGameStart when !_isMiniGameInitiated:
+                    _isMiniGameInitiated = true;
+                    break;
+
+                case GameEvents.MiniGameWon:
+                {
+                    print("GAME WON");
+                    var gameScore = (int)eventData.Data;
+
+                    _score += gameScore != 0 ? gameScore : defaultScorePerGame;
+
+                    _isMiniGameInitiated = false;
+                    inGameInstructionsText.text = winGameText;
+                    StartCoroutine(MiniGameEndDialog(miniGameWonDialogLine));
+                    Notify(GameEvents.SlowDownMusic);
+                    Invoke(nameof(OnMiniGameEnd), 2f);
+                    break;
+                }
+
+                case GameEvents.MiniGameLost:
+                {
+                    print("GAME LOST");
+                    LoseLife();
+
+                    // TODO: Fixed score vs. outcome score. which is better
+                    var gameScore = (int)eventData.Data;
+                    _score += gameScore != 0 ? gameScore : -defaultScorePerGame;
+                    _isMiniGameInitiated = false;
+                    inGameInstructionsText.text = loseGameText;
+                    StartCoroutine(MiniGameEndDialog(miniGameLostDialogLine));
+                    Notify(GameEvents.SpeedUpMusic);
+                    Invoke(nameof(OnMiniGameEnd), 2f);
+                    break;
+                }
             }
+        }
 
-            if (eventData.Name == GameEvents.MiniGameLost)
-            {
-                print("GAME LOST");
-                LoseLife();
-
-                // TODO: Fixed score vs. outcome score. which is better
-                var gameScore = (int)eventData.Data;
-                _score += gameScore != 0 ? gameScore : -defaultScorePerGame;
-                _isMiniGameInitiated = false;
-                inGameInstructionsText.text = loseGameText;
-                Notify(GameEvents.SpeedUpMusic);
-                Invoke(nameof(OnMiniGameEnd), 2f);
-            }
+        private IEnumerator MiniGameEndDialog(NarrationDialogLine line)
+        {
+            yield return new WaitForSeconds(2);
+            Notify(GameEvents.TriggerSpecificDialogLine, line);
         }
 
         private void LoseLife()
@@ -219,7 +245,7 @@ namespace Mini_Games
             {
                 // lower = towards boss office end scene, this makes zeke happy
                 playerSprite.color = IncreaseBrightness(playerSprite.color);
-                playerMovement.moveSpeed += 2f;
+                playerMovement.moveSpeed += 1f;
                 // Clamp move speed to maximum value
                 playerMovement.moveSpeed = Mathf.Min(playerMovement.moveSpeed, MaxMoveSpeed);
             }
@@ -227,7 +253,7 @@ namespace Mini_Games
             {
                 // higher = towards perfect employee end scene, this makes zeke depressed
                 playerSprite.color = DecreaseBrightness(playerSprite.color);
-                playerMovement.moveSpeed -= 2f;
+                playerMovement.moveSpeed -= 1f;
                 // Clamp move speed to minimum value
                 playerMovement.moveSpeed = Mathf.Max(playerMovement.moveSpeed, MinMoveSpeed);
             }
@@ -236,31 +262,37 @@ namespace Mini_Games
 
             Notify(GameEvents.ResetThoughtsAndSayings);
 
-            var isFinished = playStyle == PlayStyle.ScoreBased
-                ? _score is >= GamesWinScore or <= GamesLoseScore
-                : _miniGamesIndex > instructions.Length - 1;
+            if (playStyle == PlayStyle.InstructionBased && _miniGamesIndex > instructions.Length - 1)
+                _miniGamesIndex = 0;
 
-            if (isFinished)
+            if (playStyle == PlayStyle.ScoreBased && _score is >= GamesWinScore or <= GamesLoseScore)
             {
-                Notify(GameEvents.StopMusic);
-
-                // var isGoodEnding = _score >= GamesWinScore;
-                //
-                // if (badEndingTrigger) badEndingTrigger.SetActive(!isGoodEnding);
-                // if (goodEndingTrigger) goodEndingTrigger.SetActive(isGoodEnding);
-                //
-
-                Notify(endEvent);
-                Notify(GameEvents.TriggerSpecificDialogLine, endingDialogLine);
-
-                CloseInstruction();
-                StopAllCoroutines();
-                scoreWrapper.SetActive(false);
-
+                EndMiniGames();
                 return;
             }
 
             SetNextInstruction();
+        }
+
+        private void EndMiniGames()
+        {
+            _miniGamesEnded = true;
+            Notify(GameEvents.StopMusic);
+
+            // var isGoodEnding = _score >= GamesWinScore;
+            //
+            // if (badEndingTrigger) badEndingTrigger.SetActive(!isGoodEnding);
+            // if (goodEndingTrigger) goodEndingTrigger.SetActive(isGoodEnding);
+            //
+
+            Notify(endEvent);
+            Notify(GameEvents.TriggerSpecificDialogLine, endingDialogLine);
+
+            CloseInstruction();
+            StopAllCoroutines();
+
+            scoreWrapper.SetActive(false);
+            allGamesContainer.SetActive(false);
         }
 
         private static Color DecreaseBrightness(Color currentColor)
