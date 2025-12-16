@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eca747a5470cb2f499faedcbf54b6d17, type: 3}
-  m_Name: 2. zeke - what should i do - wife
+  m_Name: 7. morgan - just to be sure
   m_EditorClassIdentifier: DialogAssembly::Dialog.NarrationDialogLine
   playerName: 
-  waitBeforeLine: 1
+  waitBeforeLine: 0
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
   voicedLines:
-  - text: "She doesn\u2019t want me anymore"
+  - text: You know, just to be sure
     translation: 
-    clip: {fileID: 8300000, guid: 68bba3885fdfa824a92bfb5eedcfad6c, type: 3}
+    clip: {fileID: 8300000, guid: 7389a2399f7d29047bf9bb951023dd31, type: 3}
     gender: 0
-  actorName: 3
+  actorName: 2
   actorReaction: 0
-  nextDialogueLine: {fileID: 11400000, guid: 48c27bb0284ec034bbac76237bffb7f7, type: 2}
+  nextDialogueLine: {fileID: 11400000, guid: 3b91f6e3175f8d44aabebb1894d6a2d4, type: 2}
   playerOptions: []
   playerReactions: []
   conditionalNextLines: []
@@ -36,6 +36,6 @@ MonoBehaviour:
   lineCondition:
     condition: 0
     isMet: 0
-  blurLevel: 0.7
+  blurLevel: 0
   blurAudio: 0
   actionNumberData: 0

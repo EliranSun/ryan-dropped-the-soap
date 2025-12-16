@@ -1003,7 +1003,7 @@ GameObject:
   - component: {fileID: 84558382}
   - component: {fileID: 84558384}
   m_Layer: 0
-  m_Name: image
+  m_Name: Suicide Image Pan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1025,7 +1025,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 860, y: 0}
+  m_AnchoredPosition: {x: 850, y: 0}
   m_SizeDelta: {x: 1259, y: 512}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &84558382
@@ -1079,9 +1079,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: CommonScriptsAssembly::common.scripts.ObjectsAutoMove
   direction: 2
-  speed: 3
-  stopAtX: -174
+  speed: 4
+  stopAtX: 860
+  shouldStopAtX: 1
   start: 0
+  startOnEnable: 1
+  reachTargetOnTime: 0
 --- !u!1 &132434919
 GameObject:
   m_ObjectHideFlags: 0
@@ -2846,6 +2849,11 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &298099689 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4013329035585380117, guid: 7b9a51ca1d790714d8dc8d0b7fe9f5e0, type: 3}
+  m_PrefabInstance: {fileID: 7683045198244030641}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &300227019 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4334348217509044246, guid: bdb3da2e9981ac841aecd05ca80176cf, type: 3}
@@ -5128,7 +5136,10 @@ MonoBehaviour:
   direction: 2
   speed: 1
   stopAtX: 0
+  shouldStopAtX: 0
   start: 1
+  startOnEnable: 0
+  reachTargetOnTime: 0
 --- !u!212 &458689105
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6436,6 +6447,30 @@ PrefabInstance:
     - target: {fileID: 2239556681016677361, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2494335540582346915, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2494335540582346915, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1516234369}
+    - target: {fileID: 2494335540582346915, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2494335540582346915, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: OnNotify
+      objectReference: {fileID: 0}
+    - target: {fileID: 2494335540582346915, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Mini_Games.ZekeSceneController, MiniGamesScriptAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 2494335540582346915, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2598299574820255891, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: finalState.dialogLineToPlay
@@ -8648,7 +8683,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 160387897}
-  - {fileID: 1327348436}
   - {fileID: 1184234878}
   - {fileID: 425386311}
   - {fileID: 262691552}
@@ -10346,7 +10380,10 @@ MonoBehaviour:
   direction: 2
   speed: 1
   stopAtX: 0
+  shouldStopAtX: 0
   start: 1
+  startOnEnable: 0
+  reachTargetOnTime: 0
 --- !u!1 &872909248
 GameObject:
   m_ObjectHideFlags: 0
@@ -11364,142 +11401,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!1 &960700997
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 960700998}
-  - component: {fileID: 960701000}
-  - component: {fileID: 960700999}
-  m_Layer: 5
-  m_Name: Text (TMP)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &960700998
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 960700997}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1815557548}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 500, y: -260}
-  m_SizeDelta: {x: 700, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &960700999
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 960700997}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: ...
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ea0ee502e7129a74585160758210758c, type: 2}
-  m_sharedMaterial: {fileID: -2591375499062566650, guid: ea0ee502e7129a74585160758210758c, type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
-  m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
-  m_textAlignment: 65535
-  m_characterSpacing: 0
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_linkedTextComponent: {fileID: 0}
-  parentLinkedComponent: {fileID: 0}
-  m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_EmojiFallbackSupport: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
-  m_isCullingEnabled: 0
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_IsTextObjectScaleStatic: 0
-  m_VertexBufferAutoSizeReduction: 0
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_baseMaterial: {fileID: 0}
-  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &960701000
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 960700997}
-  m_CullTransparentMesh: 1
 --- !u!1 &971582309
 GameObject:
   m_ObjectHideFlags: 0
@@ -14792,7 +14693,10 @@ MonoBehaviour:
   direction: 2
   speed: 1
   stopAtX: 0
+  shouldStopAtX: 0
   start: 1
+  startOnEnable: 0
+  reachTargetOnTime: 0
 --- !u!1 &1304866752
 GameObject:
   m_ObjectHideFlags: 0
@@ -15081,7 +14985,7 @@ GameObject:
   - component: {fileID: 1327348438}
   - component: {fileID: 1327348437}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: The Clock Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15100,7 +15004,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1331436794}
-  m_Father: {fileID: 716598052}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -16128,7 +16032,10 @@ MonoBehaviour:
   direction: 2
   speed: 1
   stopAtX: 0
+  shouldStopAtX: 0
   start: 1
+  startOnEnable: 0
+  reachTargetOnTime: 0
 --- !u!212 &1451419421
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16820,13 +16727,27 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1565312876}
+        m_TargetAssemblyTypeName: common.scripts.MusicController, CommonScriptsAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   sceneStartLine: {fileID: 11400000, guid: 46854847e02f1e94a977d188d13cd75f, type: 2}
   zekeFirstQuestion: {fileID: 11400000, guid: 48c27bb0284ec034bbac76237bffb7f7, type: 2}
-  dayTimeTextMesh: {fileID: 7683045198244030642}
+  zekeLastQuestion: {fileID: 11400000, guid: 2b9423abbe1f270449b5f832b46d3389, type: 2}
+  morganContactCharlotte: {fileID: 11400000, guid: 5452427f76deea542a54a23500305381, type: 2}
+  theClock: {fileID: 298099689}
   charlotte: {fileID: 866547518}
   noteOnTable: {fileID: 971582309}
   suicideCutsceneWrapper: {fileID: 697517911}
-  preSuicideChoices: {fileID: 1815557547}
+  preSuicideChoices: {fileID: 0}
   noteCutscene: {fileID: 297206966}
   player: {fileID: 392735297}
   deadlineDays: 2
@@ -19566,7 +19487,10 @@ MonoBehaviour:
   direction: 2
   speed: 1
   stopAtX: 0
+  shouldStopAtX: 0
   start: 1
+  startOnEnable: 0
+  reachTargetOnTime: 0
 --- !u!1 &1734589534
 GameObject:
   m_ObjectHideFlags: 0
@@ -20778,7 +20702,7 @@ GameObject:
   - component: {fileID: 1815557550}
   - component: {fileID: 1815557549}
   m_Layer: 5
-  m_Name: Pre Suicide Choices
+  m_Name: Pre Suicide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20797,7 +20721,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 792130231}
-  - {fileID: 960700998}
   m_Father: {fileID: 1516234368}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -23494,7 +23417,10 @@ MonoBehaviour:
   direction: 2
   speed: 2
   stopAtX: 0
+  shouldStopAtX: 0
   start: 1
+  startOnEnable: 0
+  reachTargetOnTime: 0
 --- !u!212 &1996311697
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -29581,17 +29507,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b9a51ca1d790714d8dc8d0b7fe9f5e0, type: 3}
---- !u!114 &7683045198244030642 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3689455242182218592, guid: 7b9a51ca1d790714d8dc8d0b7fe9f5e0, type: 3}
-  m_PrefabInstance: {fileID: 7683045198244030641}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &7702356864919259161
 GameObject:
   m_ObjectHideFlags: 0
@@ -30147,6 +30062,7 @@ SceneRoots:
   - {fileID: 7615624741908061924}
   - {fileID: 1218222515}
   - {fileID: 1516234368}
+  - {fileID: 1327348436}
   - {fileID: 548751242}
   - {fileID: 619399802}
   - {fileID: 1078176052}

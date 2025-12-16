@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace common.scripts
@@ -7,27 +5,27 @@ namespace common.scripts
     [RequireComponent(typeof(AudioSource))]
     public class MusicController : MonoBehaviour
     {
-        private AudioSource audioSource;
         [SerializeField] private float _delay;
         [SerializeField] private float _changeSpeedFactor;
         [SerializeField] private float _minPitch;
         [SerializeField] private float _maxPitch;
+        private AudioSource _audioSource;
 
         private void Awake()
         {
-            audioSource = GetComponent<AudioSource>();
+            _audioSource = GetComponent<AudioSource>();
         }
 
         private void Start()
         {
-            audioSource.Stop();
+            _audioSource.Stop();
             Invoke(nameof(PlayMusic), _delay);
         }
 
         private void PlayMusic()
         {
-            audioSource.time = 0;
-            audioSource.Play();
+            _audioSource.time = 0;
+            _audioSource.Play();
         }
 
         public void OnNotify(GameEventData eventData)
@@ -35,19 +33,19 @@ namespace common.scripts
             switch (eventData.Name)
             {
                 case GameEvents.SlowDownMusic:
-                    audioSource.pitch = Mathf.Max(audioSource.pitch - _changeSpeedFactor, _minPitch);
+                    _audioSource.pitch = Mathf.Max(_audioSource.pitch - _changeSpeedFactor, _minPitch);
                     break;
 
                 case GameEvents.SpeedUpMusic:
-                    audioSource.pitch = Mathf.Min(audioSource.pitch + _changeSpeedFactor, _maxPitch);
+                    _audioSource.pitch = Mathf.Min(_audioSource.pitch + _changeSpeedFactor, _maxPitch);
                     break;
 
                 case GameEvents.StopMusic:
-                    audioSource.Stop();
+                    _audioSource.Stop();
                     break;
 
                 case GameEvents.StartMusic:
-                    audioSource.Play();
+                    _audioSource.Play();
                     break;
             }
         }

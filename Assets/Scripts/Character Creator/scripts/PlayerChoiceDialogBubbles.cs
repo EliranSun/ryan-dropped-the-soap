@@ -1,7 +1,8 @@
-using Character_Creator.scripts;
+using Dialog;
+using Dialog.Scripts;
 using UnityEngine;
 
-namespace Dialog.Scripts
+namespace Character_Creator.scripts
 {
     public class PlayerChoiceDialogBubbles : ObserverSubject
     {

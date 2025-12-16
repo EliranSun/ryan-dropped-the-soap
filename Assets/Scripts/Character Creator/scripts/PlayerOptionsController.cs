@@ -11,6 +11,7 @@ namespace Character_Creator.scripts
     {
         [SerializeField] private Image panel;
         private readonly List<NarrationDialogLine> _nextLines = new();
+        private PlayerChoice[] _currentChoices;
         private TextMeshProUGUI _playerOptionsText;
 
         private void Start()
@@ -23,20 +24,24 @@ namespace Character_Creator.scripts
         {
             NarrationDialogLine nextLine = null;
             var keyPressed = false;
+            PlayerChoice choice = null;
 
             // Check for numeric key presses from 1 to 9
             for (var i = 0; i < Mathf.Min(_nextLines.Count, 9); i++)
                 if (Input.GetKeyDown(KeyCode.Alpha1 + i))
                 {
                     keyPressed = true;
+                    if (_currentChoices[i] != null) choice = _currentChoices[i];
                     if (_nextLines[i]) nextLine = _nextLines[i];
                 }
 
-            if (keyPressed) 
+            if (keyPressed)
+            {
+                Notify(GameEvents.PlayerChoice, choice);
                 ResetOptions();
+            }
 
-            if (nextLine)
-                Notify(GameEvents.TriggerSpecificDialogLine, nextLine);
+            if (nextLine) Notify(GameEvents.TriggerSpecificDialogLine, nextLine);
         }
 
         public void OnNotify(GameEventData eventData)
@@ -58,6 +63,7 @@ namespace Character_Creator.scripts
             ResetOptions();
 
             // Support up to 9 options (keys 1-9)
+            _currentChoices = playerOptions;
             var maxOptions = Mathf.Min(playerOptions.Length, 9);
             for (var i = 0; i < maxOptions; i++)
             {

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 4. zeke - should i do it
   m_EditorClassIdentifier: DialogAssembly::Dialog.NarrationDialogLine
   playerName: 
-  waitBeforeLine: 0
+  waitBeforeLine: 2
   mandatoryPlayerChoice: 1
   overlayImageSprite: {fileID: 0}
   voicedLines:
@@ -29,20 +29,20 @@ MonoBehaviour:
     type: 0
     choiceDataType: 0
     choiceDataOption: 0
-    next: {fileID: 0}
-    actionAfterPlayerChoice: 0
+    next: {fileID: 11400000, guid: 48c27bb0284ec034bbac76237bffb7f7, type: 2}
+    actionAfterPlayerChoice: 208
   - text: YES
     type: 0
     choiceDataType: 0
     choiceDataOption: 0
     next: {fileID: 0}
-    actionAfterPlayerChoice: 0
+    actionAfterPlayerChoice: 108
   playerReactions: []
   conditionalNextLines: []
   randomizedDialogLines: []
   objectReferringDialogLines: []
   wait: 0.5
-  actionBeforeLine: 205
+  actionBeforeLine: 0
   actionAfterLine: 0
   toggleLineCondition: {fileID: 0}
   lineCondition:

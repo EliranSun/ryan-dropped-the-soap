@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Dialog;
 using TMPro;
@@ -76,7 +77,9 @@ namespace Mini_Games
     {
         [SerializeField] private NarrationDialogLine sceneStartLine;
         [SerializeField] private NarrationDialogLine zekeFirstQuestion;
-        [SerializeField] private TextMeshProUGUI dayTimeTextMesh;
+        [SerializeField] private NarrationDialogLine zekeLastQuestion;
+        [SerializeField] private NarrationDialogLine morganContactCharlotte;
+        [SerializeField] private GameObject theClock;
         [SerializeField] private GameObject charlotte;
         [SerializeField] private GameObject noteOnTable;
         [SerializeField] private GameObject suicideCutsceneWrapper;
@@ -89,18 +92,19 @@ namespace Mini_Games
         [SerializeField] private MiniGameLocation[] miniGameLocations;
         [SerializeField] private Location[] locations;
         private readonly string[] _dayNames = { "Sunday", "Monday", "Tuesday" };
-
+        private List<string> _choicesMade = new();
         private Vector2 _currentMiniGamePosition;
         private int _currentTimeInMinutes = 9 * 60; // "Sunday, 8:00"
         private int _deadlineTime;
+        private bool _suicideChoicesStarted;
 
         private void Start()
         {
             // noteOnTable.SetActive(false);
             // preSuicideChoices.SetActive(false);
             _deadlineTime = CalcDeadline();
-            Notify(GameEvents.TriggerSpecificDialogLine, zekeFirstQuestion);
-            PositionPlayerAt(LocationName.Home);
+            // Invoke(nameof(SetSuicideQuestionsScene), 1);
+            Invoke(nameof(SetSuicideScene), 1);
         }
 
         private int CalcDeadline()
@@ -110,52 +114,142 @@ namespace Mini_Games
 
         public void OnNotify(GameEventData eventData)
         {
-            if (eventData.Name == GameEvents.ZekeReadWifeNote)
+            switch (eventData.Name)
             {
-                noteCutscene.SetActive(true);
-                Invoke(nameof(LoadSuicideScene), 5);
-            }
+                case GameEvents.PlayerChoice:
+                {
+                    if (!_suicideChoicesStarted) break;
 
-            if (eventData.Name == GameEvents.ZekeGoodEmployeeEnding)
-            {
-                _currentTimeInMinutes = _deadlineTime;
+                    AdvanceTime(8 * 60);
 
-                SetClock();
-                PositionPlayerAt(LocationName.BossOffice);
+                    var choice = (PlayerChoice)eventData.Data;
+                    print($"CHOICES MADE {_choicesMade.Count}");
 
-                charlotte.SetActive(false);
-                noteOnTable.SetActive(true);
-            }
+                    if (choice.actionAfterPlayerChoice == GameEvents.ResetSuicideChoices)
+                        _choicesMade = new List<string>();
 
-            if (eventData.Name == GameEvents.ZekePositionHome)
-            {
-                AdvanceTime(2 * 60);
-                Invoke(nameof(FinalGoodEmployeeSequence), 2);
-            }
+                    if (choice.actionAfterPlayerChoice == GameEvents.TriggerZekeSuicide)
+                    {
+                        SetSuicideScene();
+                        break;
+                    }
 
-            if (eventData.Name is GameEvents.MiniGameStart or GameEvents.StartMiniGames)
-            {
-                var isFirstTime = eventData.Name == GameEvents.StartMiniGames;
-                AdvanceTime(isFirstTime ? 60 : 120);
+                    if (_choicesMade.Count >= 1)
+                        Invoke(nameof(TriggerLastQuestion), 0.5f);
 
-                if (isFirstTime) return;
+                    if (choice.text != "...")
+                        if (!_choicesMade.Contains(choice.text))
+                            _choicesMade.Add(choice.text);
 
-                var miniGameName = (MiniGameName)eventData.Data;
-                var currentMiniGame = miniGameLocations.First(item => item.name == miniGameName);
-                var location = locations.First(item => item.location == currentMiniGame.location);
+                    break;
+                }
 
-                if (_currentMiniGamePosition == (Vector2)location.transform.position)
-                    return;
+                case GameEvents.ZekeReadWifeNote:
+                    noteCutscene.SetActive(true);
+                    Invoke(nameof(SetSuicideQuestionsScene), 5);
+                    break;
 
-                _currentMiniGamePosition = location.transform.position;
-                player.transform.position = _currentMiniGamePosition;
+                case GameEvents.ZekeGoodEmployeeEnding:
+                    _currentTimeInMinutes = _deadlineTime;
+
+                    SetClock();
+                    PositionPlayerAt(LocationName.BossOffice);
+
+                    charlotte.SetActive(false);
+                    noteOnTable.SetActive(true);
+                    break;
+
+                case GameEvents.ZekePositionHome:
+                    AdvanceTime(2 * 60);
+                    Invoke(nameof(FinalGoodEmployeeSequence), 2);
+                    break;
+
+                case GameEvents.MiniGameStart or GameEvents.StartMiniGames:
+                {
+                    var isFirstTime = eventData.Name == GameEvents.StartMiniGames;
+                    AdvanceTime(isFirstTime ? 60 : 120);
+
+                    if (isFirstTime) return;
+
+                    var miniGameName = (MiniGameName)eventData.Data;
+                    var currentMiniGame = miniGameLocations.First(item => item.name == miniGameName);
+                    var location = locations.First(item => item.location == currentMiniGame.location);
+
+                    if (_currentMiniGamePosition == (Vector2)location.transform.position)
+                        return;
+
+                    _currentMiniGamePosition = location.transform.position;
+                    player.transform.position = _currentMiniGamePosition;
+                    break;
+                }
             }
         }
 
-        private void LoadSuicideScene()
+        private void TriggerMorganContactCharlotte()
         {
+            Notify(GameEvents.TriggerSpecificDialogLine, morganContactCharlotte);
+        }
+
+        private void TriggerLastQuestion()
+        {
+            Notify(GameEvents.TriggerSpecificDialogLine, zekeLastQuestion);
+        }
+
+        private void SetSuicideQuestionsScene()
+        {
+            _suicideChoicesStarted = true;
+
             noteCutscene.SetActive(false);
+
+            PositionPlayerAt(LocationName.Home);
+
+            Notify(GameEvents.StopMusic);
+            Notify(GameEvents.TriggerSpecificDialogLine, zekeFirstQuestion);
+
+            PositionClockAtCenter();
+        }
+
+        private void SetSuicideScene()
+        {
+            _suicideChoicesStarted = false;
             suicideCutsceneWrapper.SetActive(true);
+            TriggerMorganContactCharlotte();
+        }
+
+        private void PositionClockAtCenter()
+        {
+            // Calculate the center of the screen in world coordinates and set theClock to that position
+            var canvas = theClock.GetComponentInParent<Canvas>();
+            if (canvas != null && canvas.renderMode != RenderMode.WorldSpace)
+            {
+                // For Screen Space overlay or camera
+                var screenCenter = new Vector2(Screen.width / 2f, Screen.height / 2f);
+                var rectTransform = theClock.GetComponent<RectTransform>();
+                if (rectTransform == null)
+                    return;
+
+                RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                    rectTransform.parent as RectTransform,
+                    screenCenter,
+                    canvas.renderMode == RenderMode.ScreenSpaceCamera ? canvas.worldCamera : null,
+                    out var localPoint);
+                rectTransform.anchoredPosition = localPoint;
+                // Optionally center align text
+                var textMesh = theClock.GetComponent<TextMeshProUGUI>();
+                if (textMesh != null)
+                    textMesh.alignment = TextAlignmentOptions.Center;
+            }
+            else
+            {
+                // For WorldSpace or fallback
+                var worldCenter = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2f, Screen.height / 2f,
+                    Mathf.Abs(Camera.main.transform.position.z)));
+                theClock.transform.position = new Vector3(worldCenter.x, worldCenter.y, theClock.transform.position.z);
+
+                var textMesh = theClock.GetComponent<TextMeshProUGUI>();
+                if (textMesh != null)
+                    textMesh.alignment = TextAlignmentOptions.Center;
+            }
         }
 
         private void FinalGoodEmployeeSequence()
@@ -186,8 +280,9 @@ namespace Mini_Games
             var hours = dayTime / 60;
             var minutesInDay = dayTime % 60;
             var hoursLeft = (_deadlineTime - _currentTimeInMinutes) / 60;
-            dayTimeTextMesh.text =
-                $"{_dayNames[dayNameIndex]}, {hours:D2}:{minutesInDay:D2}; {hoursLeft}h left";
+            var theClockTextMesh = theClock.GetComponent<TextMeshProUGUI>();
+            theClockTextMesh.text = $"{_dayNames[dayNameIndex]}, {hours:D2}:{minutesInDay:D2}";
+            if (!_suicideChoicesStarted) theClockTextMesh.text += $"; {hoursLeft}h left";
         }
     }
 }
