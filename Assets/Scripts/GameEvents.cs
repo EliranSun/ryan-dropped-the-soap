@@ -266,5 +266,6 @@
     StopDialogLine,
 
     ZekeReadWifeNote,
-    ResetSuicideChoices
+    ResetSuicideChoices,
+    ZekeSuicidePanEnd
 }

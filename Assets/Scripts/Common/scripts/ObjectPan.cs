@@ -22,7 +22,7 @@ namespace common.scripts
         PanImageSlow
     }
 
-    public class ObjectPan : MonoBehaviour
+    public class ObjectPan : ObserverSubject
 
     {
         [SerializeField] private Direction direction;
@@ -32,6 +32,7 @@ namespace common.scripts
         [SerializeField] public bool start;
         [SerializeField] public bool startOnEnable;
         [SerializeField] public float reachTargetOnTime;
+        [SerializeField] private GameEvents onReachStopEvent;
 
         private float _currentSpeed;
         private float _halfWidth;
@@ -68,7 +69,10 @@ namespace common.scripts
 
 
                 if (reachedStop)
+                {
+                    Notify(onReachStopEvent);
                     return;
+                }
             }
 
             // print($"{gameObject.name} DIR {direction}; x: {transform.position.x}; stop at: {stopAtX}");

@@ -4,6 +4,7 @@ using System.Linq;
 using Dialog;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Mini_Games
 {
@@ -83,7 +84,6 @@ namespace Mini_Games
         [SerializeField] private GameObject charlotte;
         [SerializeField] private GameObject noteOnTable;
         [SerializeField] private GameObject suicideCutsceneWrapper;
-        [SerializeField] private GameObject preSuicideChoices;
         [SerializeField] private GameObject noteCutscene;
         [SerializeField] private GameObject player;
         [SerializeField] private int deadlineDays = 2;
@@ -100,11 +100,9 @@ namespace Mini_Games
 
         private void Start()
         {
-            // noteOnTable.SetActive(false);
-            // preSuicideChoices.SetActive(false);
+            noteOnTable.SetActive(false);
             _deadlineTime = CalcDeadline();
-            // Invoke(nameof(SetSuicideQuestionsScene), 1);
-            Invoke(nameof(SetSuicideScene), 1);
+            Notify(GameEvents.TriggerSpecificDialogLine, sceneStartLine);
         }
 
         private int CalcDeadline()
@@ -116,6 +114,10 @@ namespace Mini_Games
         {
             switch (eventData.Name)
             {
+                case GameEvents.ZekeSuicidePanEnd:
+                    Invoke(nameof(ChangeScene), 5f);
+                    break;
+
                 case GameEvents.PlayerChoice:
                 {
                     if (!_suicideChoicesStarted) break;
@@ -183,6 +185,11 @@ namespace Mini_Games
                     break;
                 }
             }
+        }
+
+        private void ChangeScene()
+        {
+            SceneManager.LoadScene("CORE test");
         }
 
         private void TriggerMorganContactCharlotte()
