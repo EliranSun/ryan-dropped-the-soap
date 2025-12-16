@@ -260,9 +260,9 @@ namespace Character_Creator.scripts
         {
             switch (action)
             {
-                case GameEvents.NextScene:
-                    Invoke(nameof(LoadNextScene), 4f);
-                    break;
+                // case GameEvents.NextScene:
+                //     Invoke(nameof(LoadNextScene), 4f);
+                //     break;
 
                 case GameEvents.None:
                     break;

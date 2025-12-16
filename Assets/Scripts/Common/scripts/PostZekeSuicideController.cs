@@ -13,7 +13,7 @@ namespace Common.scripts
             switch (eventData.Name)
             {
                 case GameEvents.NextScene:
-                    SceneManager.LoadScene("Scenes/CORE test");
+                    SceneManager.LoadScene("CORE test");
                     break;
 
                 case GameEvents.QuitGame:
