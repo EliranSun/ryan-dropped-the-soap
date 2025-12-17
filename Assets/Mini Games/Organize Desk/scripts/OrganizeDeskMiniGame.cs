@@ -90,9 +90,6 @@ namespace Mini_Games.Organize_Desk.scripts
         {
             base.OnNotify(gameEvent);
 
-            if (gameEvent.Name == GameEvents.MiniGameIndicationTrigger)
-                isGameActive = (MiniGameName)gameEvent.Data == MiniGameName.Organize;
-
             if (gameEvent.Name == GameEvents.DeskItemsChanged)
             {
                 var gameObjectRef = gameEvent.Data as GameObject;
@@ -120,9 +117,6 @@ namespace Mini_Games.Organize_Desk.scripts
 
         protected override void StartMiniGame()
         {
-            if (!isGameActive)
-                return;
-
             base.StartMiniGame();
             PlaceItemsRandomlyOnScreen();
         }

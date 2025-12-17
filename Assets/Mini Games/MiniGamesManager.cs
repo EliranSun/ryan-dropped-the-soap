@@ -1,10 +1,10 @@
 using System;
 using System.Collections;
 using Dialog;
+using Mini_Games.Organize_Desk.scripts;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 namespace Mini_Games
@@ -33,13 +33,16 @@ namespace Mini_Games
         InstructionBased
     }
 
+    // Two ways to deal with the clock & mini-games:
+
+    // 1.   -> Clock -> Time -> Mini game
+
+    // 2.   -> Clock -> Time
+    //      -> Mini game order
+
     // TODO: Strange that Mini games manager is also a mini game
     public class MiniGamesManager : ObserverSubject
     {
-        private const int GamesWinScore = 100;
-        private const int GamesLoseScore = -100;
-
-
         [Header("Side Effects - should move to another class")]
         private const float BrightnessDecrease = 0.1f;
 
@@ -49,7 +52,6 @@ namespace Mini_Games
 
         [Header("Settings")] [SerializeField] private bool areGamesRandomized;
 
-        [SerializeField] private int defaultScorePerGame = 10;
         [SerializeField] private int initiateMiniGameDelay = 3;
         [SerializeField] private int loopThroughInstructionsCount;
         [SerializeField] private PlayStyle playStyle;
@@ -58,10 +60,9 @@ namespace Mini_Games
         [SerializeField] private string loseGameText;
         [SerializeField] private GameEvents endEvent;
         [SerializeField] private GameObject[] lives;
+        [SerializeField] private MiniGame[] miniGames;
         [SerializeField] private MiniGameName[] instructions;
-        [SerializeField] private Slider scoreSlider;
         [SerializeField] private GameObject allGamesContainer;
-        [SerializeField] private GameObject scoreWrapper;
         [SerializeField] private GameObject inGameInstructions;
         [SerializeField] private GameObject player;
         [SerializeField] private NarrationDialogLine endingDialogLine;
@@ -69,29 +70,27 @@ namespace Mini_Games
         [SerializeField] private NarrationDialogLine badEndingDialogLine;
         [SerializeField] private NarrationDialogLine miniGameWonDialogLine;
         [SerializeField] private NarrationDialogLine miniGameLostDialogLine;
-        [SerializeField] private GameObject badEndingTrigger;
-        [SerializeField] private GameObject goodEndingTrigger;
+
+        [Header("Sound")] [SerializeField] private AudioSource audioSource;
+        [SerializeField] private AudioClip soundtrack;
+        [SerializeField] private AudioClip winSound;
+        [SerializeField] private AudioClip loseSound;
+
+        [SerializeField] public TypedDialogLine[] dialogLines;
+
         private bool _isMiniGameInitiated;
         private int _livesCount;
         private bool _miniGamesEnded;
         private int _miniGamesIndex;
-        private int _score;
-
         private MiniGameName _selectedInstruction;
 
         private void Start()
         {
-            scoreSlider.minValue = -100;
-            scoreSlider.maxValue = 100;
-            scoreSlider.value = _score;
-
             // set color to half the brightness of player sprite
             var playerSprite = player.GetComponent<SpriteRenderer>();
             playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 1f);
 
             if (inGameInstructions) inGameInstructions.SetActive(false);
-            if (badEndingTrigger) badEndingTrigger.SetActive(false);
-            if (goodEndingTrigger) goodEndingTrigger.SetActive(false);
 
             _livesCount = lives.Length;
         }
@@ -156,10 +155,6 @@ namespace Mini_Games
                 case GameEvents.MiniGameWon:
                 {
                     print("GAME WON");
-                    var gameScore = (int)eventData.Data;
-
-                    _score += gameScore != 0 ? gameScore : defaultScorePerGame;
-
                     _isMiniGameInitiated = false;
                     inGameInstructionsText.text = winGameText;
                     StartCoroutine(MiniGameEndDialog(miniGameWonDialogLine));
@@ -173,9 +168,6 @@ namespace Mini_Games
                     print("GAME LOST");
                     LoseLife();
 
-                    // TODO: Fixed score vs. outcome score. which is better
-                    var gameScore = (int)eventData.Data;
-                    _score += gameScore != 0 ? gameScore : -defaultScorePerGame;
                     _isMiniGameInitiated = false;
                     inGameInstructionsText.text = loseGameText;
                     StartCoroutine(MiniGameEndDialog(miniGameLostDialogLine));
@@ -229,49 +221,45 @@ namespace Mini_Games
             Notify(GameEvents.MiniGameIndicationTrigger, miniGameNameName);
         }
 
-        private void OnMiniGameEnd()
+        private void OnMiniGameEnd(bool isWin)
         {
             Notify(GameEvents.MiniGameEnded, instructions[_miniGamesIndex]);
 
             _miniGamesIndex += 1;
 
-            print("OnMiniGameEnd");
             CloseInstruction();
 
-            var playerSprite = player.GetComponent<SpriteRenderer>();
-            var playerMovement = player.GetComponent<WobblyMovement>();
-
-            if (_score < scoreSlider.value)
-            {
-                // lower = towards boss office end scene, this makes zeke happy
-                playerSprite.color = IncreaseBrightness(playerSprite.color);
-                playerMovement.moveSpeed += 1f;
-                // Clamp move speed to maximum value
-                playerMovement.moveSpeed = Mathf.Min(playerMovement.moveSpeed, MaxMoveSpeed);
-            }
-            else
-            {
-                // higher = towards perfect employee end scene, this makes zeke depressed
-                playerSprite.color = DecreaseBrightness(playerSprite.color);
-                playerMovement.moveSpeed -= 1f;
-                // Clamp move speed to minimum value
-                playerMovement.moveSpeed = Mathf.Max(playerMovement.moveSpeed, MinMoveSpeed);
-            }
-
-            scoreSlider.value = _score;
+            if (isWin) LighterPlayer();
+            else HeavierPlayer();
 
             Notify(GameEvents.ResetThoughtsAndSayings);
 
             if (playStyle == PlayStyle.InstructionBased && _miniGamesIndex > instructions.Length - 1)
                 _miniGamesIndex = 0;
 
-            if (playStyle == PlayStyle.ScoreBased && _score is >= GamesWinScore or <= GamesLoseScore)
-            {
-                EndMiniGames();
-                return;
-            }
-
             SetNextInstruction();
+        }
+
+        private void LighterPlayer()
+        {
+            var playerSprite = player.GetComponent<SpriteRenderer>();
+            var playerMovement = player.GetComponent<WobblyMovement>();
+            // lower = towards boss office end scene, this makes zeke happy
+            playerSprite.color = IncreaseBrightness(playerSprite.color);
+            playerMovement.moveSpeed += 1f;
+            // Clamp move speed to maximum value
+            playerMovement.moveSpeed = Mathf.Min(playerMovement.moveSpeed, MaxMoveSpeed);
+        }
+
+        private void HeavierPlayer()
+        {
+            var playerSprite = player.GetComponent<SpriteRenderer>();
+            var playerMovement = player.GetComponent<WobblyMovement>();
+            // higher = towards perfect employee end scene, this makes zeke depressed
+            playerSprite.color = DecreaseBrightness(playerSprite.color);
+            playerMovement.moveSpeed -= 1f;
+            // Clamp move speed to minimum value
+            playerMovement.moveSpeed = Mathf.Max(playerMovement.moveSpeed, MinMoveSpeed);
         }
 
         private void EndMiniGames()
@@ -291,7 +279,6 @@ namespace Mini_Games
             CloseInstruction();
             StopAllCoroutines();
 
-            scoreWrapper.SetActive(false);
             allGamesContainer.SetActive(false);
         }
 
@@ -313,6 +300,20 @@ namespace Mini_Games
                 Mathf.Min(currentColor.b + BrightnessIncrease, 1f),
                 currentColor.a
             );
+        }
+
+        public NarrationDialogLine GetRandomLine(DialogLineType type)
+        {
+            // Filter lines by type
+            var filteredLines = Array.FindAll(dialogLines, line => line.type == type);
+
+            // If no lines of this type, return null
+            if (filteredLines.Length == 0)
+                return null;
+
+            // Return a random line of the specified type
+            var randomIndex = Random.Range(0, filteredLines.Length);
+            return filteredLines[randomIndex].dialogLine;
         }
     }
 }

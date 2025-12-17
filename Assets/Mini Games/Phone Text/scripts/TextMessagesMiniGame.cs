@@ -140,30 +140,10 @@ namespace Mini_Games.Phone_Text.scripts
             {
                 case GameEvents.PlayerClickOnChoice:
                 {
-                    if (!isGameActive)
-                        return;
-
                     var choiceData = (EnrichedPlayerChoice)eventData.Data;
                     _nextTextMessage = choiceData.OriginalInteraction.DialogLine.voicedLines[0].text;
                     CreateTextMessage(choiceData.Choice, playerTextMessagesContainer);
                     Invoke(nameof(CreateTextMessageFromNext), 1.6f);
-                    break;
-                }
-                case GameEvents.ThoughtScoreChange:
-                {
-                    if (!isGameActive)
-                        return;
-
-                    var newScore = (int)eventData.Data;
-                    if (newScore != 0)
-                    {
-                        score = newScore;
-                        scoreTextContainer.text = score.ToString();
-
-                        // if (score is <= 0 or >= 100)
-                        Invoke(nameof(EndGame), 3);
-                    }
-
                     break;
                 }
 
@@ -198,10 +178,7 @@ namespace Mini_Games.Phone_Text.scripts
         {
             base.StartMiniGame(); // Call the base class method to start the timer
 
-            isGameActive = true;
             miniGameContainer.SetActive(true);
-
-            scoreTextContainer.text = score.ToString();
 
             CreateRandomTextMessage(textMessagesContainer);
             CreateTextMessage("?", textMessagesContainer);
@@ -320,7 +297,7 @@ namespace Mini_Games.Phone_Text.scripts
 
         private void EndGame()
         {
-            CloseMiniGame(score > 0);
+            CloseMiniGame(true);
         }
 
         protected override void CloseMiniGame(bool isGameWon = false)

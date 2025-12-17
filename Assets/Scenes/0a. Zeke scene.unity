@@ -1254,30 +1254,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   miniGameName: 4
-  timerTextContainer: {fileID: 1983947901}
-  timer: 5
-  mainCamera: {fileID: 937176691}
   miniGameContainer: {fileID: 980824119}
-  hideOnStart: {fileID: 0}
   inGameTrigger: {fileID: 1874680888}
-  winState: {fileID: 0}
-  loseState: {fileID: 0}
-  audioSource: {fileID: 0}
-  soundtrack: {fileID: 0}
-  winSound: {fileID: 0}
-  loseSound: {fileID: 0}
-  animationDuration: 1
-  jumpHeight: 0.5
-  shakeIntensity: 0.2
-  dialogLines:
-  - dialogLine: {fileID: 11400000, guid: 2daf0fa43cea9c84ca073bb51a8a005a, type: 2}
-    type: 1
-  - dialogLine: {fileID: 11400000, guid: c38ed7c69dea7e94581d5b16c28742c4, type: 2}
-    type: 1
-  - dialogLine: {fileID: 11400000, guid: 91c56c5f294e8df44872e3b0e821b77e, type: 2}
-    type: 0
-  score: 0
-  isGameActive: 0
   items:
   - {fileID: 5044103681791229065, guid: f00ff7fe488c98b4eb8d1bac5025e38b, type: 3}
   - {fileID: 8297794796849318199, guid: 47af48e2f11c6cc4c8ca190d3927bd22, type: 3}
@@ -2542,17 +2520,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7923797199446450865, guid: bdb3da2e9981ac841aecd05ca80176cf, type: 3}
   m_PrefabInstance: {fileID: 262691551}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &262691553 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4326589389549004331, guid: bdb3da2e9981ac841aecd05ca80176cf, type: 3}
-  m_PrefabInstance: {fileID: 262691551}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75d08dce0ab62480a9ed5cfd9147d215, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &271715009
 GameObject:
   m_ObjectHideFlags: 0
@@ -8745,43 +8712,6 @@ MonoBehaviour:
   observers:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 987681573}
-        m_TargetAssemblyTypeName: Mini_Games.Phone_Text.scripts.TextMessagesMiniGame,
-          MiniGamesScriptAssembly
-        m_MethodName: OnNotify
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 716598053}
-        m_TargetAssemblyTypeName: Mini_Games.MiniGamesManager, MiniGamesScriptAssembly
-        m_MethodName: OnNotify
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 4398517612832477636}
-        m_TargetAssemblyTypeName: Dialog.Scripts.ThoughtsManager, DialogAssembly
-        m_MethodName: OnNotify
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 740530430}
         m_TargetAssemblyTypeName: Character_Creator.scripts.DialogueManager, CharacterCreatorScriptsAssembly
         m_MethodName: OnNotify
@@ -8806,32 +8736,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 146850970}
-        m_TargetAssemblyTypeName: Mini_Games.Organize_Desk.scripts.OrganizeDeskMiniGame,
-          MiniGamesScriptAssembly
-        m_MethodName: OnNotify
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1023119864}
-        m_TargetAssemblyTypeName: Mini_Games.Flirt.scripts.AttendPartnerMiniGame,
-          MiniGamesScriptAssembly
-        m_MethodName: OnNotify
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1516234369}
         m_TargetAssemblyTypeName: Mini_Games.ClockifiedMiniGames, MiniGamesScriptAssembly
         m_MethodName: OnNotify
@@ -8844,58 +8748,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 262691553}
-        m_TargetAssemblyTypeName: Mini_Games.Lockpick.UnlockExpressionController,
-          MiniGamesScriptAssembly
-        m_MethodName: OnNotify
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 4326589387855193891}
-        m_TargetAssemblyTypeName: Mini_Games.Lockpick.UnlockExpressionController,
-          MiniGamesScriptAssembly
-        m_MethodName: OnNotify
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 343127461}
-        m_TargetAssemblyTypeName: Mini_Games.Flirt.scripts.FlirtMiniGame, MiniGamesScriptAssembly
-        m_MethodName: OnNotify
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 425386312}
-        m_TargetAssemblyTypeName: Mini_Games.Snooze.SnoozeMiniGame, MiniGamesScriptAssembly
-        m_MethodName: OnNotify
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   areGamesRandomized: 0
-  defaultScorePerGame: 10
   initiateMiniGameDelay: 1
   loopThroughInstructionsCount: 0
   playStyle: 1
@@ -8907,10 +8760,8 @@ MonoBehaviour:
   - {fileID: 1278733214}
   - {fileID: 1523534601}
   - {fileID: 1318899602}
-  instructions: 040000000c0000000a0000000000000009000000
-  scoreSlider: {fileID: 2020364341}
+  instructions: 030000000c000000040000000a000000000000000900000009000000
   allGamesContainer: {fileID: 1258261328}
-  scoreWrapper: {fileID: 1184234874}
   inGameInstructions: {fileID: 65086717}
   player: {fileID: 392735297}
   endingDialogLine: {fileID: 11400000, guid: d17938d52cbc0ff4ba052c5565274435, type: 2}
@@ -8918,8 +8769,11 @@ MonoBehaviour:
   badEndingDialogLine: {fileID: 0}
   miniGameWonDialogLine: {fileID: 11400000, guid: f3c3088c549514b438db7b14985efdc6, type: 2}
   miniGameLostDialogLine: {fileID: 11400000, guid: c891871a4df34d64d82b795242508a96, type: 2}
-  badEndingTrigger: {fileID: 0}
-  goodEndingTrigger: {fileID: 0}
+  audioSource: {fileID: 0}
+  soundtrack: {fileID: 0}
+  winSound: {fileID: 0}
+  loseSound: {fileID: 0}
+  dialogLines: []
 --- !u!82 &716598054
 AudioSource:
   m_ObjectHideFlags: 0
@@ -11753,28 +11607,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   miniGameName: 2
-  timerTextContainer: {fileID: 468551041}
-  timer: 10
-  mainCamera: {fileID: 937176691}
   miniGameContainer: {fileID: 1855517037}
-  hideOnStart: {fileID: 0}
   inGameTrigger: {fileID: 0}
-  winState: {fileID: 0}
-  loseState: {fileID: 0}
-  audioSource: {fileID: 0}
-  soundtrack: {fileID: 0}
-  winSound: {fileID: 0}
-  loseSound: {fileID: 0}
-  animationDuration: 1
-  jumpHeight: 0.5
-  shakeIntensity: 0.2
-  dialogLines:
-  - dialogLine: {fileID: 11400000, guid: 1f7babafd51f143d0918fef80e437708, type: 2}
-    type: 0
-  - dialogLine: {fileID: 11400000, guid: b6993880a9dd0de45a0596faf5a36a15, type: 2}
-    type: 1
-  score: -50
-  isGameActive: 0
   messageSpacing: 10
   textMessage: {fileID: 7534888376776156627, guid: 235e0efa8c7889b4d98fe2fca23a5f9c, type: 3}
   textMessagesContainer: {fileID: 1305133460}
@@ -14340,6 +14174,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1491976368216711760}
   - {fileID: 160387897}
   - {fileID: 1184234878}
   - {fileID: 425386311}
@@ -14347,7 +14182,6 @@ Transform:
   - {fileID: 7923797200031851449}
   - {fileID: 146850969}
   - {fileID: 987681572}
-  - {fileID: 1491976368216711760}
   - {fileID: 378191819}
   - {fileID: 1023119863}
   - {fileID: 65086718}
@@ -26232,7 +26066,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5828489970865199747, guid: 60580c399cfcaba4383037606e1fabe0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7507872295625324427, guid: 60580c399cfcaba4383037606e1fabe0, type: 3}
       propertyPath: m_AnchorMax.x

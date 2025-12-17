@@ -18,15 +18,16 @@ namespace Mini_Games.Flirt.scripts
     }
 
 
-    public class FlirtMiniGame : MiniGame
+    public class EngageMiniGame : MiniGame
     {
-        [SerializeField] private ActorName actorName = ActorName.Morgan;
+        [Header("Engage Mini Game")] [SerializeField]
+        private ActorName actorName = ActorName.Morgan;
+
         [SerializeField] private Button[] choiceButtons;
         [SerializeField] private NarrationDialogLine[] initialResponses;
         [SerializeField] private NarrationDialogLine emptyResponse;
         [SerializeField] private PlayerMiniGameChoice[] choices;
         [SerializeField] private SpriteEmotion[] actorSpriteEmotions;
-        [SerializeField] private TextMeshProUGUI scoreTextContainer;
         [SerializeField] private Image characterImageContainer;
         [SerializeField] private GameObject[] flirtableNpcs;
         [SerializeField] private Color highlightColor = new(1f, 1f, 0.5f, 1f); // Yellow-ish highlight
@@ -39,35 +40,18 @@ namespace Mini_Games.Flirt.scripts
         private SpriteRenderer[] _npcSpriteRenderers;
         private Vector3[] _originalScales;
 
-        private void Start()
-        {
-            // isGameActive = true;
-            // StartMiniGame();
-        }
-
         public override void OnNotify(GameEventData eventData)
         {
             base.OnNotify(eventData);
 
             switch (eventData.Name)
             {
-                case GameEvents.MiniGameClosed:
-                    isGameActive = false;
-                    break;
-
                 case GameEvents.MiniGameIndicationTrigger:
                     var miniGameName = (MiniGameName)eventData.Data;
-                    if (miniGameName is MiniGameName.Flirt or MiniGameName.Avoid)
-                    {
-                        isGameActive = true;
-                        StartHighlightingNpcs();
-                    }
+                    if (miniGameName is MiniGameName.Flirt or MiniGameName.Avoid) StartHighlightingNpcs();
 
                     break;
             }
-
-            if (!isGameActive)
-                return;
 
             switch (eventData.Name)
             {
@@ -87,38 +71,18 @@ namespace Mini_Games.Flirt.scripts
 
                     characterImageContainer.sprite = reaction.sprite;
                     break;
-
-                case GameEvents.ThoughtScoreChange:
-                    var newScore = (int)eventData.Data;
-                    if (newScore != 0)
-                    {
-                        score = newScore;
-                        print($"Flirt mini game new score: {newScore}");
-                        scoreTextContainer.text = score.ToString();
-
-                        if (score is <= 0 or >= 100)
-                            Invoke(nameof(EndGame), 2);
-                    }
-
-                    break;
             }
         }
 
         public void OnButtonChoice(int choiceIndex)
         {
             var choice = _currentChoices[choiceIndex];
-            score = choice.score;
-            // Notify(score > 0 ? GameEvents.MiniGameWon : GameEvents.MiniGameLost, score);
             Notify(GameEvents.TriggerSpecificDialogLine, choice.actorLine);
-
             Invoke(nameof(EndGame), 3);
         }
 
         protected override void StartMiniGame()
         {
-            if (!isGameActive)
-                return;
-
             base.StartMiniGame();
 
             // Randomly select 4 choices from the available choices
@@ -132,8 +96,6 @@ namespace Mini_Games.Flirt.scripts
                 choiceButtons[i].GetComponentInChildren<TextMeshProUGUI>()
                     .text = choice.text;
             }
-
-            scoreTextContainer.text = score.ToString();
         }
 
         private void StartHighlightingNpcs()
@@ -208,9 +170,8 @@ namespace Mini_Games.Flirt.scripts
 
         private void EndGame()
         {
-            print($"Closing the game with score {score}");
             StopHighlightingNpcs();
-            CloseMiniGame(score > 0);
+            CloseMiniGame(true);
         }
 
         private void InitActorResponse()
