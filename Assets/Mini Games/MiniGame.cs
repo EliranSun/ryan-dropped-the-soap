@@ -8,6 +8,7 @@ namespace Mini_Games
         [Header("Mini Game Settings")] [SerializeField]
         private MiniGameName miniGameName;
 
+        [SerializeField] public string instructions;
         [SerializeField] public GameObject miniGameContainer;
         [SerializeField] public GameObject inGameTrigger;
 

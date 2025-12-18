@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1989622303144670099}
   - component: {fileID: 6781893463494850445}
   - component: {fileID: 3689455242182218592}
+  - component: {fileID: 1042595884408320855}
   m_Layer: 5
   m_Name: The Clock
   m_TagString: Untagged
@@ -136,3 +137,15 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1042595884408320855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4013329035585380117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28c2e33f2bad0a946a8fa3152f27fe7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MiniGamesScriptAssembly::TheClockController

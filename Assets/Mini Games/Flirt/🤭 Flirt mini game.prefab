@@ -1038,26 +1038,84 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  score: 50
-  timer: 5
-  actorName: 2
-  initialResponses: []
-  emptyResponse: {fileID: 0}
-  choices: []
-  actorSpriteEmotions:
-  - sprite: {fileID: 0}
-    reaction: 0
-  - sprite: {fileID: 0}
-    reaction: 0
-  - sprite: {fileID: 0}
-    reaction: 0
-  - sprite: {fileID: 0}
-    reaction: 0
-  scoreTextContainer: {fileID: 0}
-  timerTextContainer: {fileID: 0}
-  characterImageContainer: {fileID: 0}
+  miniGameName: 3
+  instructions: Flirt!
   miniGameContainer: {fileID: 3414940175581099051}
   inGameTrigger: {fileID: 0}
+  actorName: 2
+  choiceButtons: []
+  initialResponses:
+  - {fileID: 11400000, guid: 3871e9fcd05d6ec4a8af84f241567f0e, type: 2}
+  - {fileID: 11400000, guid: 3e500000a785d8f4bbe26473264162ad, type: 2}
+  - {fileID: 11400000, guid: f4955d0ad6d208a4cbe04d446088d3c5, type: 2}
+  - {fileID: 11400000, guid: a3f04318455f0de46ae6b4f855cd044b, type: 2}
+  - {fileID: 11400000, guid: a3f04318455f0de46ae6b4f855cd044b, type: 2}
+  - {fileID: 11400000, guid: ee0dad3938e729b4dbe59dc02a21778f, type: 2}
+  - {fileID: 11400000, guid: fd5e3064691d2214fb23938783b116ba, type: 2}
+  - {fileID: 11400000, guid: 481f932d448fd3d48a177c085e28efe9, type: 2}
+  - {fileID: 11400000, guid: 7d930ebe7dd5f9847891bce822e3e19a, type: 2}
+  - {fileID: 11400000, guid: 3136a85c680713b44a6457afa830d942, type: 2}
+  - {fileID: 11400000, guid: 83c602b5266f6b743a7921387de0887e, type: 2}
+  - {fileID: 11400000, guid: 9a37fa150f0aaca4dbde1f6cd46cf872, type: 2}
+  emptyResponse: {fileID: 11400000, guid: eab5875d77674fe44afe947342ebc069, type: 2}
+  choices:
+  - text: Hi
+    score: -5
+    actorLine: {fileID: 11400000, guid: 3871e9fcd05d6ec4a8af84f241567f0e, type: 2}
+  - text: Bye
+    score: 20
+    actorLine: {fileID: 11400000, guid: 247821548a9caf3408c6c07cb99a4119, type: 2}
+  - text: You look lovely
+    score: -20
+    actorLine: {fileID: 11400000, guid: 5230dacb0e67441cbb1743aea81ed1f2, type: 2}
+  - text: Oh never mind
+    score: 20
+    actorLine: {fileID: 11400000, guid: 247821548a9caf3408c6c07cb99a4119, type: 2}
+  - text: Morgan, beautiful name
+    score: -10
+    actorLine: {fileID: 11400000, guid: 41a50fb27eaf94fe7a64e43fe80d34a6, type: 2}
+  - text: About these files...
+    score: 20
+    actorLine: {fileID: 11400000, guid: 093d52be7f988480e9ffd2d2dde76415, type: 2}
+  - text: Coffee
+    score: -5
+    actorLine: {fileID: 11400000, guid: d847f7f0ee63842419f8fcaf7604c19e, type: 2}
+  - text: Beer
+    score: -20
+    actorLine: {fileID: 11400000, guid: 6dbc01a561a5e4b7a843a4b0581ee4eb, type: 2}
+  - text: Pizza
+    score: 30
+    actorLine: {fileID: 11400000, guid: b498c2a917e484bea803142002d49f07, type: 2}
+  - text: Books
+    score: -40
+    actorLine: {fileID: 11400000, guid: 39a1e74e484684d98893c528f1daa049, type: 2}
+  actorSpriteEmotions:
+  - sprite: {fileID: 21300000, guid: a6c03e25b90e345e6a88178bf3dec0fd, type: 3}
+    reaction: 0
+  - sprite: {fileID: 21300000, guid: 3d8d949700e0e49ce9711b9804d8fb65, type: 3}
+    reaction: 1
+  - sprite: {fileID: 21300000, guid: a6c03e25b90e345e6a88178bf3dec0fd, type: 3}
+    reaction: 2
+  - sprite: {fileID: 21300000, guid: 4cfc18f4575ea4a5f9e6fba2512a6ade, type: 3}
+    reaction: 3
+  - sprite: {fileID: 21300000, guid: 4cfc18f4575ea4a5f9e6fba2512a6ade, type: 3}
+    reaction: 4
+  - sprite: {fileID: 21300000, guid: 4cfc18f4575ea4a5f9e6fba2512a6ade, type: 3}
+    reaction: 5
+  - sprite: {fileID: 21300000, guid: ce63cd04014f64739916933145f2b420, type: 3}
+    reaction: 6
+  - sprite: {fileID: 21300000, guid: 4cfc18f4575ea4a5f9e6fba2512a6ade, type: 3}
+    reaction: 7
+  characterImageContainer: {fileID: 0}
+  flirtableNpcs:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  highlightColor: {r: 1, g: 0.9503341, b: 0.6509804, a: 1}
+  pulseSpeed: 2
+  pulseScaleMin: 1
+  pulseScaleMax: 1.15
 --- !u!1 &6525035962147319412
 GameObject:
   m_ObjectHideFlags: 0
@@ -1220,6 +1278,9 @@ SpriteRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1241,6 +1302,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 18

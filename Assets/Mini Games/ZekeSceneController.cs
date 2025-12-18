@@ -121,9 +121,6 @@ namespace Mini_Games
                 case GameEvents.PlayerChoice:
                 {
                     if (!_suicideChoicesStarted) break;
-
-                    AdvanceTime(8 * 60);
-
                     var choice = (PlayerChoice)eventData.Data;
                     print($"CHOICES MADE {_choicesMade.Count}");
 
@@ -156,33 +153,29 @@ namespace Mini_Games
                     break;
 
                 case GameEvents.ZekePositionHome:
-                    AdvanceTime(2 * 60);
                     Invoke(nameof(FinalGoodEmployeeSequence), 2);
                     break;
 
                 case GameEvents.MiniGameStart or GameEvents.StartMiniGames:
                 {
-                    var isFirstTime = eventData.Name == GameEvents.StartMiniGames;
-
-                    AdvanceTime(isFirstTime ? 60 : 5 * 60);
-
-                    if (_currentTimeInMinutes >= _deadlineTime)
-                    {
-                        GoodEmployeeEnding();
-                        break;
-                    }
-
-                    if (isFirstTime) return;
-
-                    var miniGameName = (MiniGameName)eventData.Data;
-                    var currentMiniGame = miniGameLocations.First(item => item.name == miniGameName);
-                    var location = locations.First(item => item.location == currentMiniGame.location);
-
-                    if (_currentMiniGamePosition == (Vector2)location.transform.position)
-                        return;
-
-                    _currentMiniGamePosition = location.transform.position;
-                    player.transform.position = _currentMiniGamePosition;
+                    // var isFirstTime = eventData.Name == GameEvents.StartMiniGames;
+                    // if (_currentTimeInMinutes >= _deadlineTime)
+                    // {
+                    //     GoodEmployeeEnding();
+                    //     break;
+                    // }
+                    //
+                    // if (isFirstTime) return;
+                    //
+                    // var miniGameName = (MiniGameName)eventData.Data;
+                    // var currentMiniGame = miniGameLocations.First(item => item.name == miniGameName);
+                    // var location = locations.First(item => item.location == currentMiniGame.location);
+                    //
+                    // if (_currentMiniGamePosition == (Vector2)location.transform.position)
+                    //     return;
+                    //
+                    // _currentMiniGamePosition = location.transform.position;
+                    // player.transform.position = _currentMiniGamePosition;
                     break;
                 }
             }
@@ -193,7 +186,6 @@ namespace Mini_Games
             Notify(GameEvents.EndMiniGames);
             _currentTimeInMinutes = _deadlineTime;
 
-            SetClock();
             PositionPlayerAt(LocationName.BossOffice);
 
             charlotte.SetActive(false);
@@ -279,31 +271,10 @@ namespace Mini_Games
             PositionPlayerAt(LocationName.Home);
         }
 
-        private void AdvanceTime(int minutes)
-        {
-            _currentTimeInMinutes += minutes;
-            SetClock();
-        }
-
         private void PositionPlayerAt(LocationName locationName)
         {
             var location = locations.First(item => item.location == locationName);
             player.transform.position = location.transform.position;
-        }
-
-        private void SetClock()
-        {
-            var dayNameIndex = _currentTimeInMinutes / 1440;
-            if (dayNameIndex >= _dayNames.Length)
-                return;
-
-            var dayTime = _currentTimeInMinutes % 1440;
-            var hours = dayTime / 60;
-            var minutesInDay = dayTime % 60;
-            var hoursLeft = (_deadlineTime - _currentTimeInMinutes) / 60;
-            var theClockTextMesh = theClock.GetComponent<TextMeshProUGUI>();
-            theClockTextMesh.text = $"{_dayNames[dayNameIndex]}, {hours:D2}:{minutesInDay:D2}";
-            if (!_suicideChoicesStarted) theClockTextMesh.text += $"; {hoursLeft}h left";
         }
     }
 }

@@ -52,18 +52,25 @@ namespace Mini_Games
 
         [Header("Settings")] [SerializeField] private bool areGamesRandomized;
 
+        [SerializeField] private TheClockController clockController;
+        [SerializeField] private MiniGameSchedule miniGamesSchedule;
+
+
         [SerializeField] private int initiateMiniGameDelay = 3;
         [SerializeField] private int loopThroughInstructionsCount;
+
         [SerializeField] private PlayStyle playStyle;
-        [SerializeField] private TextMeshProUGUI inGameInstructionsText;
+
+        // [SerializeField] private TextMeshProUGUI inGameInstructionsText;
+        [SerializeField] private MiniGameInstruction miniGameInstructions;
         [SerializeField] private string winGameText;
         [SerializeField] private string loseGameText;
         [SerializeField] private GameEvents endEvent;
         [SerializeField] private GameObject[] lives;
-        [SerializeField] private MiniGame[] miniGames;
-        [SerializeField] private MiniGameName[] instructions;
+
+
+        // [SerializeField] private MiniGameName[] instructions;
         [SerializeField] private GameObject allGamesContainer;
-        [SerializeField] private GameObject inGameInstructions;
         [SerializeField] private GameObject player;
         [SerializeField] private NarrationDialogLine endingDialogLine;
         [SerializeField] private NarrationDialogLine goodEndingDialogLine;
@@ -77,33 +84,32 @@ namespace Mini_Games
         [SerializeField] private AudioClip loseSound;
 
         [SerializeField] public TypedDialogLine[] dialogLines;
+        private TextMeshProUGUI _inGameInstructionsTextMesh;
 
         private bool _isMiniGameInitiated;
         private int _livesCount;
         private bool _miniGamesEnded;
         private int _miniGamesIndex;
-        private MiniGameName _selectedInstruction;
+        private string _selectedInstruction;
 
         private void Start()
         {
             // set color to half the brightness of player sprite
             var playerSprite = player.GetComponent<SpriteRenderer>();
             playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 1f);
-
-            if (inGameInstructions) inGameInstructions.SetActive(false);
-
             _livesCount = lives.Length;
+            // clockController.Pause();
         }
 
         private void SetNextInstruction()
         {
-            if (instructions == null || instructions.Length == 0)
+            if (miniGamesSchedule.entries == null || miniGamesSchedule.entries.Count == 0)
             {
                 print("Instructions array is empty or null!");
                 return;
             }
 
-            if (_miniGamesIndex > instructions.Length && !areGamesRandomized)
+            if (_miniGamesIndex > miniGamesSchedule.entries.Count && !areGamesRandomized)
             {
                 print("MOving on");
                 return;
@@ -112,26 +118,19 @@ namespace Mini_Games
             _selectedInstruction = GetNextMiniGameName();
             Notify(GameEvents.MiniGameStart, _selectedInstruction);
 
-            inGameInstructions.SetActive(true);
-
-            print($"Selected instruction: {_selectedInstruction} in game instructions: {inGameInstructions}");
-
-            if (inGameInstructions != null && inGameInstructions.activeInHierarchy)
-            {
-                inGameInstructionsText.text = _selectedInstruction + "!";
-                StartCoroutine(TriggerMiniGameDelayed(_selectedInstruction));
-            }
-            else
-            {
-                print("inGameInstructions error!");
-            }
+            miniGameInstructions.SetInstructions(_selectedInstruction);
         }
 
-        private MiniGameName GetNextMiniGameName()
+        private string GetNextMiniGameName()
         {
-            return areGamesRandomized
-                ? instructions[Random.Range(0, instructions.Length)]
-                : instructions[_miniGamesIndex];
+            var miniGameSchedule = areGamesRandomized
+                ? miniGamesSchedule.entries[Random.Range(0, miniGamesSchedule.entries.Count)]
+                : miniGamesSchedule.entries[_miniGamesIndex];
+
+            if (miniGameSchedule != null)
+                return miniGameSchedule.miniGame.GetComponent<MiniGame>().instructions;
+
+            return "";
         }
 
         public void OnNotify(GameEventData eventData)
@@ -156,7 +155,7 @@ namespace Mini_Games
                 {
                     print("GAME WON");
                     _isMiniGameInitiated = false;
-                    inGameInstructionsText.text = winGameText;
+                    _inGameInstructionsTextMesh.text = winGameText;
                     StartCoroutine(MiniGameEndDialog(miniGameWonDialogLine));
                     Notify(GameEvents.SlowDownMusic);
                     Invoke(nameof(OnMiniGameEnd), 2f);
@@ -169,7 +168,7 @@ namespace Mini_Games
                     LoseLife();
 
                     _isMiniGameInitiated = false;
-                    inGameInstructionsText.text = loseGameText;
+                    _inGameInstructionsTextMesh.text = loseGameText;
                     StartCoroutine(MiniGameEndDialog(miniGameLostDialogLine));
                     Notify(GameEvents.SpeedUpMusic);
                     Invoke(nameof(OnMiniGameEnd), 2f);
@@ -204,15 +203,9 @@ namespace Mini_Games
                 }
         }
 
-        private void CloseInstruction()
-        {
-            inGameInstructions.SetActive(false);
-        }
-
         private IEnumerator TriggerMiniGameDelayed(MiniGameName miniGameNameName)
         {
             yield return new WaitForSeconds(2f);
-            inGameInstructions.SetActive(false);
             TriggerMiniGame(miniGameNameName);
         }
 
@@ -223,18 +216,16 @@ namespace Mini_Games
 
         private void OnMiniGameEnd(bool isWin)
         {
-            Notify(GameEvents.MiniGameEnded, instructions[_miniGamesIndex]);
+            Notify(GameEvents.MiniGameEnded, miniGamesSchedule.entries[_miniGamesIndex]);
 
             _miniGamesIndex += 1;
-
-            CloseInstruction();
 
             if (isWin) LighterPlayer();
             else HeavierPlayer();
 
             Notify(GameEvents.ResetThoughtsAndSayings);
 
-            if (playStyle == PlayStyle.InstructionBased && _miniGamesIndex > instructions.Length - 1)
+            if (playStyle == PlayStyle.InstructionBased && _miniGamesIndex > miniGamesSchedule.entries.Count - 1)
                 _miniGamesIndex = 0;
 
             SetNextInstruction();
@@ -276,7 +267,6 @@ namespace Mini_Games
             Notify(endEvent);
             Notify(GameEvents.TriggerSpecificDialogLine, endingDialogLine);
 
-            CloseInstruction();
             StopAllCoroutines();
 
             allGamesContainer.SetActive(false);
