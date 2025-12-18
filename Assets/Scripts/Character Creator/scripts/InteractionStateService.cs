@@ -1,3 +1,5 @@
+using Dialog;
+
 namespace Character_Creator.scripts
 {
     public class InteractionStateService

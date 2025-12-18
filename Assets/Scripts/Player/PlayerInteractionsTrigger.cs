@@ -1,4 +1,5 @@
 using System;
+using interactions;
 using TMPro;
 using UnityEngine;
 
@@ -11,8 +12,9 @@ namespace Player
         public ObjectNames objectName;
     }
 
-    public class InteractionsTrigger : ObserverSubject
+    public class PlayerInteractionsTrigger : ObserverSubject
     {
+        [SerializeField] private InteractionSystem interactionSystem;
         [SerializeField] private TextMeshPro interactionText;
         private ObjectNames _interactedObjectName;
         private int _interactedObjectNameId;
@@ -34,6 +36,19 @@ namespace Player
                 };
 
                 Notify(GameEvents.PlayerInteraction, interaction);
+            }
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.TryGetComponent(out InteractableObject provider))
+            {
+                var context = interactionSystem.interactionContext;
+                var interaction = provider.GetInteraction(context);
+                // interactionSystem.Request(interaction);
+
+                if (interaction != ObjectInteractionType.None)
+                    interactionText.text = interaction.ToString();
             }
         }
 
@@ -123,11 +138,11 @@ namespace Player
                     interactionText.text = "OBSERVE";
                     break;
 
-                case "NPC":
-                    interactionText.text = "TALK";
-                    _interactedObjectName = ObjectNames.Npc;
-                    _interactedObjectNameId = interactedGameObject.GetInstanceID();
-                    break;
+                // case "NPC":
+                //     interactionText.text = "TALK";
+                //     _interactedObjectName = ObjectNames.Npc;
+                //     _interactedObjectNameId = interactedGameObject.GetInstanceID();
+                //     break;
             }
         }
     }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Dialog;
+using interactions;
 using Mini_Games.Organize_Desk.scripts;
 using TMPro;
 using UnityEngine;
@@ -9,6 +10,24 @@ using Random = UnityEngine.Random;
 
 namespace Mini_Games
 {
+    [CreateAssetMenu(menuName = "Mini Game/Active Condition")]
+    public class MiniGameActiveCondition : InteractionCondition
+    {
+        public override bool Evaluate(InteractionContext context)
+        {
+            return context.isMiniGameActive;
+        }
+    }
+
+    [CreateAssetMenu(menuName = "Mini Game/Inactive Condition")]
+    public class MiniGameInactiveCondition : InteractionCondition
+    {
+        public override bool Evaluate(InteractionContext context)
+        {
+            return !context.isMiniGameActive;
+        }
+    }
+
     [Serializable]
     public enum MiniGameName
     {
@@ -54,7 +73,7 @@ namespace Mini_Games
 
         [SerializeField] private TheClockController clockController;
         [SerializeField] private MiniGameSchedule miniGamesSchedule;
-
+        [SerializeField] private InteractionSystem interactionSystem;
 
         [SerializeField] private int initiateMiniGameDelay = 3;
         [SerializeField] private int loopThroughInstructionsCount;
@@ -111,13 +130,15 @@ namespace Mini_Games
 
             if (_miniGamesIndex > miniGamesSchedule.entries.Count && !areGamesRandomized)
             {
-                print("MOving on");
+                print("Moving on");
+                interactionSystem.interactionContext.isMiniGameActive = false;
                 return;
             }
 
             _selectedInstruction = GetNextMiniGameName();
             Notify(GameEvents.MiniGameStart, _selectedInstruction);
 
+            interactionSystem.interactionContext.isMiniGameActive = true;
             miniGameInstructions.SetInstructions(_selectedInstruction);
         }
 

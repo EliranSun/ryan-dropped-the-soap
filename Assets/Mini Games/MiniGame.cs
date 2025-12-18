@@ -1,4 +1,4 @@
-using Character_Creator.scripts;
+using Dialog;
 using UnityEngine;
 
 namespace Mini_Games

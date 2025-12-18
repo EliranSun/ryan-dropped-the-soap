@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using interactions;
 using UnityEngine;
 using Enumerable = System.Linq.Enumerable;
 
@@ -67,7 +68,7 @@ namespace Character_Creator.scripts
                     _instances.Add(instance);
                     _angles.Add(angle);
 
-                    var interactable = instance.GetComponent<OnInteractableObject>();
+                    var interactable = instance.GetComponent<InteractableObject>();
                     if (interactable == null)
                     {
                         Debug.LogError(

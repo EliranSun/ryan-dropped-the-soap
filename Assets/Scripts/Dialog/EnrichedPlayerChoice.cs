@@ -1,7 +1,25 @@
-using Character_Creator.scripts;
-
-namespace Dialog.Scripts
+namespace Dialog
 {
+    public class InteractionData
+    {
+        public readonly NarrationDialogLine DialogLine;
+        public readonly InteractableObjectName InteractableObjectName;
+        public readonly InteractableObjectType InteractableObjectType;
+        public readonly string Name;
+
+        public InteractionData(
+            string gameObjectName,
+            InteractableObjectName interactableObjectName,
+            InteractableObjectType type,
+            NarrationDialogLine dialogLine)
+        {
+            Name = gameObjectName;
+            DialogLine = dialogLine;
+            InteractableObjectName = interactableObjectName;
+            InteractableObjectType = type;
+        }
+    }
+
     public class EnrichedPlayerChoice
     {
         public EnrichedPlayerChoice(string choice, InteractionData originalInteraction)

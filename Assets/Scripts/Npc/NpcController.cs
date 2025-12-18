@@ -19,12 +19,6 @@ namespace Npc
         [FormerlySerializedAs("_doorNumber")] [SerializeField]
         private int tenantDoorNumber;
 
-        private NpcScriptableMovement _scriptableMovement;
-
-        private void Start()
-        {
-            _scriptableMovement = GetComponent<NpcScriptableMovement>();
-        }
 
         public void OnNotify(GameEventData eventData)
         {
@@ -43,13 +37,6 @@ namespace Npc
                 if (IsActorMatchingTenant(actorName))
                     gameObject.SetActive(false);
             }
-
-            // if (eventData.Name == GameEvents.OpenNpcDoor)
-            // var actionData = eventData.Data.GetType().GetProperty("actionNumberData");
-            // if (actionData == null) return;
-            //
-            // var doorNumber = (int)actionData.GetValue(eventData.Data);
-            // if (IsEligibleForDoorOpen(doorNumber)) Invoke(nameof(NpcOpenDoor), 1f);
         }
 
         private bool IsActorMatchingTenant(ActorName actorName)

@@ -1,5 +1,4 @@
 using System;
-using Character_Creator.scripts;
 using Dialog.Scripts;
 using UnityEngine;
 using Random = UnityEngine.Random;

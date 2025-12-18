@@ -1,4 +1,4 @@
-using Dialog.Scripts;
+using Dialog;
 using UnityEngine;
 
 namespace Object.Scripts

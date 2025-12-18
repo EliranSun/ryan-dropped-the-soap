@@ -13,7 +13,7 @@ namespace Mini_Games
         public GameObject miniGame;
     }
 
-    [CreateAssetMenu(menuName = "Game/Daily MiniGame Schedule")]
+    [CreateAssetMenu(menuName = "Mini Game/Daily MiniGame Schedule")]
     public class MiniGameSchedule : ScriptableObject
     {
         public List<ScheduledMiniGame> entries;
