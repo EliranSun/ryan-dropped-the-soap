@@ -8,6 +8,7 @@ namespace Mini_Games
     [RequireComponent(typeof(TextMeshProUGUI))]
     public class TheClockController : MonoBehaviour
     {
+        [SerializeField] private float tickIntervalInSeconds = 1;
         private TextMeshProUGUI _clockTextMesh;
 
         public DateTime CurrentTime { get; set; } = new(2024, 12, 29, 7, 0, 0);
@@ -17,7 +18,7 @@ namespace Mini_Games
         private void Start()
         {
             _clockTextMesh = GetComponent<TextMeshProUGUI>();
-            StartCoroutine(Tick());
+            SetClockString();
         }
 
         public event Action<DateTime> OnTimeReached;
@@ -26,10 +27,8 @@ namespace Mini_Games
         {
             while (!IsPaused)
             {
-                yield return new WaitForSeconds(1);
+                yield return new WaitForSeconds(tickIntervalInSeconds);
                 AdvanceInMinutes(1);
-                SetClockString();
-                print($"tick {IsPaused}");
             }
         }
 
@@ -42,6 +41,7 @@ namespace Mini_Games
                 return;
 
             CurrentTime += delta;
+            SetClockString();
             OnTimeReached?.Invoke(CurrentTime);
         }
 
@@ -55,19 +55,27 @@ namespace Mini_Games
             IsPaused = false;
         }
 
+        public void StartTick()
+        {
+            StopAllCoroutines();
+            Resume();
+            StartCoroutine(Tick());
+        }
+
+        public void SetClockInterval(float interval)
+        {
+            tickIntervalInSeconds = interval;
+        }
+
         private void SetClockString()
         {
             _clockTextMesh.text = CurrentTime.ToString("dddd HH:mm");
-            // if (dayNameIndex >= _dayNames.Length)
-            //     return;
-            //
-            // var dayTime = _currentTimeInMinutes % 1440;
-            // var hours = dayTime / 60;
-            // var minutesInDay = dayTime % 60;
-            // var hoursLeft = (_deadlineTime - _currentTimeInMinutes) / 60;
-            // var theClockTextMesh = theClock.GetComponent<TextMeshProUGUI>();
-            // theClockTextMesh.text = $"{_dayNames[dayNameIndex]}, {hours:D2}:{minutesInDay:D2}";
-            // if (!_suicideChoicesStarted) theClockTextMesh.text += $"; {hoursLeft}h left";
+        }
+
+        public void OnNotify(GameEventData eventData)
+        {
+            if (eventData.Name == GameEvents.LineNarrationEnd)
+                AdvanceInMinutes(2);
         }
     }
 }

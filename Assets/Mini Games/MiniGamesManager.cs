@@ -117,7 +117,6 @@ namespace Mini_Games
             var playerSprite = player.GetComponent<SpriteRenderer>();
             playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 1f);
             _livesCount = lives.Length;
-            // clockController.Pause();
         }
 
         private void SetNextInstruction()
@@ -130,7 +129,7 @@ namespace Mini_Games
 
             if (_miniGamesIndex > miniGamesSchedule.entries.Count && !areGamesRandomized)
             {
-                print("Moving on");
+                print("MOVING ON");
                 interactionSystem.interactionContext.isMiniGameActive = false;
                 return;
             }
@@ -140,6 +139,15 @@ namespace Mini_Games
 
             interactionSystem.interactionContext.isMiniGameActive = true;
             miniGameInstructions.SetInstructions(_selectedInstruction);
+
+            clockController.StartTick();
+            clockController.OnTimeReached += OnTimeReachedHandler;
+        }
+
+        private void OnTimeReachedHandler(DateTime currentTime)
+        {
+            if (currentTime.Hour % 2 == 0 && currentTime.Minute == 0)
+                OnMiniGameEnd(false);
         }
 
         private string GetNextMiniGameName()
@@ -172,29 +180,29 @@ namespace Mini_Games
                     _isMiniGameInitiated = true;
                     break;
 
-                case GameEvents.MiniGameWon:
-                {
-                    print("GAME WON");
-                    _isMiniGameInitiated = false;
-                    _inGameInstructionsTextMesh.text = winGameText;
-                    StartCoroutine(MiniGameEndDialog(miniGameWonDialogLine));
-                    Notify(GameEvents.SlowDownMusic);
-                    Invoke(nameof(OnMiniGameEnd), 2f);
-                    break;
-                }
-
-                case GameEvents.MiniGameLost:
-                {
-                    print("GAME LOST");
-                    LoseLife();
-
-                    _isMiniGameInitiated = false;
-                    _inGameInstructionsTextMesh.text = loseGameText;
-                    StartCoroutine(MiniGameEndDialog(miniGameLostDialogLine));
-                    Notify(GameEvents.SpeedUpMusic);
-                    Invoke(nameof(OnMiniGameEnd), 2f);
-                    break;
-                }
+                // case GameEvents.MiniGameWon:
+                // {
+                //     print("GAME WON");
+                //     _isMiniGameInitiated = false;
+                //     _inGameInstructionsTextMesh.text = winGameText;
+                //     StartCoroutine(MiniGameEndDialog(miniGameWonDialogLine));
+                //     Notify(GameEvents.SlowDownMusic);
+                //     StartCoroutine(DelayedMiniGameEnd(true));
+                //     break;
+                // }
+                //
+                // case GameEvents.MiniGameLost:
+                // {
+                //     print("GAME LOST");
+                //     LoseLife();
+                //
+                //     _isMiniGameInitiated = false;
+                //     _inGameInstructionsTextMesh.text = loseGameText;
+                //     StartCoroutine(MiniGameEndDialog(miniGameLostDialogLine));
+                //     Notify(GameEvents.SpeedUpMusic);
+                //     StartCoroutine(DelayedMiniGameEnd(false));
+                //     break;
+                // }
             }
         }
 
@@ -202,6 +210,12 @@ namespace Mini_Games
         {
             yield return new WaitForSeconds(2);
             Notify(GameEvents.TriggerSpecificDialogLine, line);
+        }
+
+        private IEnumerator DelayedMiniGameEnd(bool isWin)
+        {
+            yield return new WaitForSeconds(2f);
+            OnMiniGameEnd(isWin);
         }
 
         private void LoseLife()
@@ -241,8 +255,15 @@ namespace Mini_Games
 
             _miniGamesIndex += 1;
 
-            if (isWin) LighterPlayer();
-            else HeavierPlayer();
+            if (isWin)
+            {
+                LighterPlayer();
+            }
+            else
+            {
+                HeavierPlayer();
+                LoseLife();
+            }
 
             Notify(GameEvents.ResetThoughtsAndSayings);
 

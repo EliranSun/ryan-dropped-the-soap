@@ -45,7 +45,7 @@ namespace Player
             {
                 var context = interactionSystem.interactionContext;
                 var interaction = provider.GetInteraction(context);
-                // interactionSystem.Request(interaction);
+                interactionSystem.Request(interaction);
 
                 if (interaction != ObjectInteractionType.None)
                     interactionText.text = interaction.ToString();

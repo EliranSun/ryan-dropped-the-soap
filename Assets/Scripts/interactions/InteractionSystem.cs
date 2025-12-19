@@ -6,8 +6,8 @@ namespace interactions
     [Serializable]
     public class InteractionContext
     {
-        // public MiniGameName miniGameName;
         public bool isMiniGameActive;
+        public bool isGoodEmployeeFlow;
     }
 
     public class InteractionSystem : MonoBehaviour
@@ -17,6 +17,10 @@ namespace interactions
         public void Request(ObjectInteractionType objectInteractionType)
         {
             print("InteractionSystem request: " + objectInteractionType);
+            if (interactionContext.isMiniGameActive && interactionContext.isGoodEmployeeFlow)
+            {
+                // trigger mini game
+            }
         }
     }
 }

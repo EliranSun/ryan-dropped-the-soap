@@ -6508,7 +6508,7 @@ PrefabInstance:
     - target: {fileID: 3560832367629595899, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1331436797}
     - target: {fileID: 3560832367629595899, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[4].m_Target
       value: 
@@ -6587,7 +6587,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3560832367629595899, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
-      value: Dialog.Scripts.ThoughtsManager, DialogAssembly
+      value: Mini_Games.TheClockController, MiniGamesScriptAssembly
       objectReference: {fileID: 0}
     - target: {fileID: 3560832367629595899, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
@@ -6600,6 +6600,10 @@ PrefabInstance:
     - target: {fileID: 3560832367629595899, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[6].m_TargetAssemblyTypeName
       value: Character_Creator.scripts.PlayerOptionsController, CharacterCreatorScriptsAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 3560832367629595899, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
+      propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_IntArgument
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3560832367629595899, guid: 6805369ce9f2ba54c824881a8eea571b, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -18743,8 +18747,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: MiniGamesScriptAssembly::InteractionSystem
   interactionContext:
-    IsMiniGameActive: 0
-    IsWifeNeglected: 0
+    isMiniGameActive: 0
+    isGoodEmployeeFlow: 0
 --- !u!1 &1695868101
 GameObject:
   m_ObjectHideFlags: 0
@@ -23001,7 +23005,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: DialogAssembly::Character_Creator.scripts.OnInteractableObject
   observers:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 740530430}
+        m_TargetAssemblyTypeName: Character_Creator.scripts.DialogueManager, CharacterCreatorScriptsAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   interactionTextMesh: {fileID: 1718436961}
   playerInteractionType: 2
   npcInteractionOptions:
@@ -23009,9 +23025,11 @@ MonoBehaviour:
     condition: {fileID: 11400000, guid: b08a0e803d3415b4a9ecbbb0ddebfe54, type: 2}
   - interaction: 6
     condition: {fileID: 11400000, guid: 91f191d933cded241865c9a543f58978, type: 2}
-  dialogLine: []
-  repeatLastInteraction: 1
-  repeatAllInteractions: 0
+  dialogLine:
+  - {fileID: 11400000, guid: 3871e9fcd05d6ec4a8af84f241567f0e, type: 2}
+  - {fileID: 11400000, guid: 3e500000a785d8f4bbe26473264162ad, type: 2}
+  repeatLastInteraction: 0
+  repeatAllInteractions: 1
 --- !u!1001 &1955784461
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27583,6 +27601,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1327348436}
     m_Modifications:
+    - target: {fileID: 1042595884408320855, guid: 7b9a51ca1d790714d8dc8d0b7fe9f5e0, type: 3}
+      propertyPath: tickIntervalInSeconds
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 1989622303144670099, guid: 7b9a51ca1d790714d8dc8d0b7fe9f5e0, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -28060,13 +28082,13 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 937176694}
+  - {fileID: 1327348436}
   - {fileID: 1685448555}
   - {fileID: 716598052}
   - {fileID: 7615624741908061924}
   - {fileID: 1218222515}
   - {fileID: 1516234368}
   - {fileID: 1184234878}
-  - {fileID: 1327348436}
   - {fileID: 548751242}
   - {fileID: 619399802}
   - {fileID: 1078176052}
