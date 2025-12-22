@@ -272,5 +272,7 @@
     EndMiniGames,
 
     SwitchToPlayerSprite,
-    QuitGame
+    QuitGame,
+
+    PlayerInteractionRequest
 }

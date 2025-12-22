@@ -29,12 +29,13 @@ namespace interactions
     [Serializable]
     public class InteractionOption
     {
+        public bool toggle;
         public ObjectInteractionType interaction;
         public InteractionCondition condition;
 
         public bool IsValid(InteractionContext context)
         {
-            return condition.Evaluate(context);
+            return condition.Evaluate(context, toggle);
         }
     }
 
@@ -133,6 +134,13 @@ namespace interactions
 
         public void OnNotify(GameEventData gameEventData)
         {
+            if (gameEventData.Name == GameEvents.PlayerInteractionRequest)
+            {
+                var requestType = (ObjectInteractionType)gameEventData.Data;
+                if (requestType == ObjectInteractionType.Talk)
+                    Notify(GameEvents.TriggerSpecificDialogLine, dialogLine[0]);
+            }
+
             // switch (gameEventData.Name)
             // {
             //     case GameEvents.ArmchairChosen:

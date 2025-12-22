@@ -16,6 +16,7 @@ namespace Player
     {
         [SerializeField] private InteractionSystem interactionSystem;
         [SerializeField] private TextMeshPro interactionText;
+        private ObjectInteractionType _currentInteraction = ObjectInteractionType.None;
         private ObjectNames _interactedObjectName;
         private int _interactedObjectNameId;
 
@@ -26,16 +27,23 @@ namespace Player
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.X) && _interactedObjectName != ObjectNames.None)
+            if (Input.GetKeyDown(KeyCode.X))
             {
-                print($"Notifying player interaction with {_interactedObjectName}");
-                var interaction = new Interaction
+                if (_currentInteraction != ObjectInteractionType.None)
                 {
-                    objectId = _interactedObjectNameId,
-                    objectName = _interactedObjectName
-                };
+                    interactionSystem.Request(_currentInteraction);
+                }
+                else if (_interactedObjectName != ObjectNames.None)
+                {
+                    print($"Notifying player interaction with {_interactedObjectName}");
+                    var interaction = new Interaction
+                    {
+                        objectId = _interactedObjectNameId,
+                        objectName = _interactedObjectName
+                    };
 
-                Notify(GameEvents.PlayerInteraction, interaction);
+                    Notify(GameEvents.PlayerInteraction, interaction);
+                }
             }
         }
 
@@ -45,10 +53,12 @@ namespace Player
             {
                 var context = interactionSystem.interactionContext;
                 var interaction = provider.GetInteraction(context);
-                interactionSystem.Request(interaction);
 
                 if (interaction != ObjectInteractionType.None)
+                {
+                    _currentInteraction = interaction;
                     interactionText.text = interaction.ToString();
+                }
             }
         }
 

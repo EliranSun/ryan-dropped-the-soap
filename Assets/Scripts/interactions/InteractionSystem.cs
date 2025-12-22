@@ -10,17 +10,13 @@ namespace interactions
         public bool isGoodEmployeeFlow;
     }
 
-    public class InteractionSystem : MonoBehaviour
+    public class InteractionSystem : ObserverSubject
     {
         [SerializeField] public InteractionContext interactionContext;
 
         public void Request(ObjectInteractionType objectInteractionType)
         {
-            print("InteractionSystem request: " + objectInteractionType);
-            if (interactionContext.isMiniGameActive && interactionContext.isGoodEmployeeFlow)
-            {
-                // trigger mini game
-            }
+            Notify(GameEvents.PlayerInteractionRequest, objectInteractionType);
         }
     }
 }

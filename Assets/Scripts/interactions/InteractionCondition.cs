@@ -4,6 +4,6 @@ namespace interactions
 {
     public abstract class InteractionCondition : ScriptableObject
     {
-        public abstract bool Evaluate(InteractionContext context);
+        public abstract bool Evaluate(InteractionContext context, bool toggle);
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Linq;
 using Dialog;
 using interactions;
 using Mini_Games.Organize_Desk.scripts;
@@ -10,27 +11,10 @@ using Random = UnityEngine.Random;
 
 namespace Mini_Games
 {
-    [CreateAssetMenu(menuName = "Mini Game/Active Condition")]
-    public class MiniGameActiveCondition : InteractionCondition
-    {
-        public override bool Evaluate(InteractionContext context)
-        {
-            return context.isMiniGameActive;
-        }
-    }
-
-    [CreateAssetMenu(menuName = "Mini Game/Inactive Condition")]
-    public class MiniGameInactiveCondition : InteractionCondition
-    {
-        public override bool Evaluate(InteractionContext context)
-        {
-            return !context.isMiniGameActive;
-        }
-    }
-
     [Serializable]
     public enum MiniGameName
     {
+        None,
         Neglect,
         Attend,
         Reply,
@@ -52,7 +36,14 @@ namespace Mini_Games
         InstructionBased
     }
 
-    // Two ways to deal with the clock & mini-games:
+    [Serializable]
+    public class MiniGameObject
+    {
+        public MiniGameName miniGameName;
+        public GameObject gameObject;
+    }
+
+// Two ways to deal with the clock & mini-games:
 
     // 1.   -> Clock -> Time -> Mini game
 
@@ -69,15 +60,17 @@ namespace Mini_Games
         private const float MinMoveSpeed = 5f; // Minimum move speed to ensure player can still move
         private const float MaxMoveSpeed = 15f; // Maximum move speed to prevent too fast movement
 
-        [Header("Settings")] [SerializeField] private bool areGamesRandomized;
 
+        [SerializeField] private MiniGameObject[] miniGames;
         [SerializeField] private TheClockController clockController;
         [SerializeField] private MiniGameSchedule miniGamesSchedule;
+        [SerializeField] private ScheduledMiniGame scheduledMiniGame;
         [SerializeField] private InteractionSystem interactionSystem;
 
         [SerializeField] private int initiateMiniGameDelay = 3;
         [SerializeField] private int loopThroughInstructionsCount;
 
+        [Header("Settings")] [SerializeField] private bool areGamesRandomized;
         [SerializeField] private PlayStyle playStyle;
 
         // [SerializeField] private TextMeshProUGUI inGameInstructionsText;
@@ -156,8 +149,15 @@ namespace Mini_Games
                 ? miniGamesSchedule.entries[Random.Range(0, miniGamesSchedule.entries.Count)]
                 : miniGamesSchedule.entries[_miniGamesIndex];
 
+            // SIDE EFFECT!
+            scheduledMiniGame = miniGameSchedule;
+
             if (miniGameSchedule != null)
-                return miniGameSchedule.miniGame.GetComponent<MiniGame>().instructions;
+            {
+                var miniGame = miniGames.First(item => item.miniGameName == miniGameSchedule.miniGameName);
+                // TODO: should be on the scriptable object data?
+                return miniGame.gameObject.GetComponent<MiniGame>().instructions;
+            }
 
             return "";
         }
@@ -178,6 +178,17 @@ namespace Mini_Games
 
                 case GameEvents.MiniGameStart when !_isMiniGameInitiated:
                     _isMiniGameInitiated = true;
+                    break;
+
+                case GameEvents.PlayerInteractionRequest:
+                    var requestType = (ObjectInteractionType)eventData.Data;
+                    if (requestType == scheduledMiniGame.interactionType)
+                    {
+                        print("OPEN MINI GAME");
+                        var miniGame = miniGames.First(item => item.miniGameName == scheduledMiniGame.miniGameName);
+                        miniGame.gameObject.SetActive(true);
+                    }
+
                     break;
 
                 // case GameEvents.MiniGameWon:
@@ -270,7 +281,16 @@ namespace Mini_Games
             if (playStyle == PlayStyle.InstructionBased && _miniGamesIndex > miniGamesSchedule.entries.Count - 1)
                 _miniGamesIndex = 0;
 
+            CloseMiniGame();
             SetNextInstruction();
+        }
+
+        private void CloseMiniGame()
+        {
+            print("CLOSE MINI GAME");
+            var miniGame = miniGames.First(item => item.miniGameName == scheduledMiniGame.miniGameName);
+            miniGame.gameObject.SetActive(false);
+            scheduledMiniGame = null;
         }
 
         private void LighterPlayer()

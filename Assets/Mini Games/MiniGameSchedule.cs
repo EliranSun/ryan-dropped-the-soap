@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using interactions;
 using UnityEngine;
 
 namespace Mini_Games
@@ -9,8 +10,8 @@ namespace Mini_Games
     {
         public int hour;
         public int minute;
+        public ObjectInteractionType interactionType;
         public MiniGameName miniGameName;
-        public GameObject miniGame;
     }
 
     [CreateAssetMenu(menuName = "Mini Game/Daily MiniGame Schedule")]
