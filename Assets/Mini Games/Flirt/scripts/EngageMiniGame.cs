@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Dialog;
 using Expressions;
@@ -20,20 +22,28 @@ namespace Mini_Games.Flirt.scripts
 
     public class EngageMiniGame : MiniGame
     {
-        [Header("Engage Mini Game")] [SerializeField]
-        private ActorName actorName = ActorName.Morgan;
+        [Header("Actor")] [SerializeField] private ActorName actorName = ActorName.Morgan;
 
-        [SerializeField] private Button[] choiceButtons;
-        [SerializeField] private NarrationDialogLine[] initialResponses;
-        [SerializeField] private NarrationDialogLine emptyResponse;
-        [SerializeField] private PlayerMiniGameChoice[] choices;
-        [SerializeField] private SpriteEmotion[] actorSpriteEmotions;
         [SerializeField] private Image characterImageContainer;
         [SerializeField] private GameObject[] flirtableNpcs;
-        [SerializeField] private Color highlightColor = new(1f, 1f, 0.5f, 1f); // Yellow-ish highlight
+        [SerializeField] private SpriteEmotion[] actorSpriteEmotions;
+        [SerializeField] private TextMeshProUGUI actorScoreTextMesh;
+
+        [Header("Dialog")] [SerializeField] private Button[] choiceButtons;
+
+        [SerializeField] private NarrationDialogLine[] initialResponses;
+        [SerializeField] private NarrationDialogLine defaultLineResponse;
+        [SerializeField] private PlayerMiniGameChoice[] choices;
+
+        [Header("UI")] [SerializeField] private Color highlightColor = new(1f, 1f, 0.5f, 1f); // Yellow-ish highlight
+
         [SerializeField] private float pulseSpeed = 2f; // Speed of the pulsing effect
         [SerializeField] private float pulseScaleMin = 1f; // Minimum scale (normal size)
         [SerializeField] private float pulseScaleMax = 1.15f; // Maximum scale (15% larger)
+
+        // should be a different domain
+        private readonly Dictionary<ActorName, float> _actorScores = new() { { ActorName.Morgan, 0 } };
+
         private PlayerMiniGameChoice[] _currentChoices;
         private Coroutine[] _highlightCoroutines;
         private int _initResponsesCounter;
@@ -56,15 +66,17 @@ namespace Mini_Games.Flirt.scripts
 
             switch (eventData.Name)
             {
-                case GameEvents.MiniGameIndicationTrigger:
-                    var miniGameName = (MiniGameName)eventData.Data;
-                    if (miniGameName is MiniGameName.Flirt or MiniGameName.Avoid) StartHighlightingNpcs();
-
+                case GameEvents.MiniGameStart:
+                    PopulateChoiceButtons();
+                    ToggleChoiceButtons(true);
                     break;
-            }
 
-            switch (eventData.Name)
-            {
+                case GameEvents.MiniGameIndicationTrigger:
+                    var miniGameNameTrigger = (MiniGameName)eventData.Data;
+                    if (miniGameNameTrigger is MiniGameName.Flirt or MiniGameName.Avoid)
+                        StartHighlightingNpcs();
+                    break;
+
                 case GameEvents.FlirtGameStart:
                     EndGame();
                     StartMiniGame();
@@ -87,19 +99,41 @@ namespace Mini_Games.Flirt.scripts
         public void OnButtonChoice(int choiceIndex)
         {
             var choice = _currentChoices[choiceIndex];
+            UpdateActorScore(choice.score);
             Notify(GameEvents.TriggerSpecificDialogLine, choice.actorLine);
             Invoke(nameof(EndGame), 3);
+        }
+
+        private void UpdateActorScore(float score)
+        {
+            if (actorScoreTextMesh)
+            {
+                _actorScores[actorName] += score;
+                actorScoreTextMesh.SetText(_actorScores[actorName].ToString(CultureInfo.InvariantCulture));
+            }
         }
 
         protected override void StartMiniGame()
         {
             base.StartMiniGame();
+            InitActorResponse();
+            ToggleChoiceButtons(false);
+            // PopulateChoiceButtons();
+        }
 
+        private void ToggleChoiceButtons(bool enable)
+        {
+            for (var i = 0; i <= choiceButtons.Length - 1; i++)
+            {
+                var button = choiceButtons[i].gameObject;
+                button.SetActive(enable);
+            }
+        }
+
+        private void PopulateChoiceButtons()
+        {
             // Randomly select 4 choices from the available choices
             _currentChoices = GetRandomChoices(choices, choiceButtons.Length);
-
-            InitActorResponse();
-
             for (var i = 0; i <= choiceButtons.Length - 1; i++)
             {
                 var choice = _currentChoices[i];
@@ -186,7 +220,7 @@ namespace Mini_Games.Flirt.scripts
 
         private void InitActorResponse()
         {
-            var response = emptyResponse;
+            var response = defaultLineResponse;
             if (_initResponsesCounter <= initialResponses.Length - 1)
                 response = initialResponses[_initResponsesCounter];
 

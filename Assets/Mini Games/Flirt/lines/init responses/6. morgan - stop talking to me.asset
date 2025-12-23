@@ -18,15 +18,24 @@ MonoBehaviour:
   overlayImageSprite: {fileID: 0}
   voicedLines:
   - text: Stop talking to me.
+    translation: 
     clip: {fileID: 8300000, guid: d9e4b63d54f72fe499e9946f56db8105, type: 3}
     gender: 0
+  actorName: 2
+  actorReaction: 3
+  nextDialogueLine: {fileID: 0}
   playerOptions: []
   playerReactions: []
-  nextDialogueLine: {fileID: 0}
+  conditionalNextLines: []
   randomizedDialogLines: []
   objectReferringDialogLines: []
   wait: 0.5
-  actorName: 2
   actionBeforeLine: 0
-  actionAfterLine: 0
-  actorReaction: 3
+  actionAfterLine: 94
+  toggleLineCondition: {fileID: 0}
+  lineCondition:
+    condition: 0
+    isMet: 0
+  blurLevel: -0.46
+  blurAudio: 0
+  actionNumberData: 0

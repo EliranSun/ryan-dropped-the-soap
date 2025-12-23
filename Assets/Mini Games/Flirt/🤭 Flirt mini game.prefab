@@ -1774,12 +1774,15 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  miniGameName: 3
+  miniGameName: 4
   instructions: Flirt!
   miniGameContainer: {fileID: 3414940175581099051}
-  inGameTrigger: {fileID: 0}
   actorName: 2
-  choiceButtons: []
+  choiceButtons:
+  - {fileID: 4715033789272508924}
+  - {fileID: 4277214574005087277}
+  - {fileID: 8745957910599765054}
+  - {fileID: 4789095508883114665}
   initialResponses:
   - {fileID: 11400000, guid: 3871e9fcd05d6ec4a8af84f241567f0e, type: 2}
   - {fileID: 11400000, guid: 3e500000a785d8f4bbe26473264162ad, type: 2}

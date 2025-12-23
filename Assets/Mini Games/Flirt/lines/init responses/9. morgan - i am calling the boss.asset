@@ -18,15 +18,24 @@ MonoBehaviour:
   overlayImageSprite: {fileID: 0}
   voicedLines:
   - text: I am calling the boss
+    translation: 
     clip: {fileID: 8300000, guid: ceab2fd0c66348a4c9721943002bdb50, type: 3}
     gender: 0
+  actorName: 2
+  actorReaction: 7
+  nextDialogueLine: {fileID: 0}
   playerOptions: []
   playerReactions: []
-  nextDialogueLine: {fileID: 0}
+  conditionalNextLines: []
   randomizedDialogLines: []
   objectReferringDialogLines: []
   wait: 0.5
-  actorName: 2
   actionBeforeLine: 0
-  actionAfterLine: 0
-  actorReaction: 7
+  actionAfterLine: 94
+  toggleLineCondition: {fileID: 0}
+  lineCondition:
+    condition: 0
+    isMet: 0
+  blurLevel: -0.46
+  blurAudio: 0
+  actionNumberData: 0
