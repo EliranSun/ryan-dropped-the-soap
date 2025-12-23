@@ -6,11 +6,12 @@ namespace Mini_Games
     public class MiniGame : ObserverSubject
     {
         [Header("Mini Game Settings")] [SerializeField]
-        private MiniGameName miniGameName;
+        public MiniGameName miniGameName;
 
         [SerializeField] public string instructions;
+
         [SerializeField] public GameObject miniGameContainer;
-        [SerializeField] public GameObject inGameTrigger;
+        // [SerializeField] public GameObject inGameTrigger;
 
         protected virtual void StartMiniGame()
         {
@@ -49,8 +50,8 @@ namespace Mini_Games
                     var interactionData = eventData.Data as InteractionData;
                     if (interactionData == null) return;
 
-                    if (interactionData.Name == inGameTrigger.gameObject.name)
-                        StartMiniGame();
+                    // if (interactionData.Name == inGameTrigger.gameObject.name)
+                    //     StartMiniGame();
                     break;
             }
         }

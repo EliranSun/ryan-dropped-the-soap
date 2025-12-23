@@ -40,6 +40,16 @@ namespace Mini_Games.Flirt.scripts
         private SpriteRenderer[] _npcSpriteRenderers;
         private Vector3[] _originalScales;
 
+        private void OnEnable()
+        {
+            StartMiniGame();
+        }
+
+        private void OnDisable()
+        {
+            EndGame();
+        }
+
         public override void OnNotify(GameEventData eventData)
         {
             base.OnNotify(eventData);

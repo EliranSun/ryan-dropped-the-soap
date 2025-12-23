@@ -18,15 +18,24 @@ MonoBehaviour:
   overlayImageSprite: {fileID: 0}
   voicedLines:
   - text: Hey...
+    translation: 
     clip: {fileID: 8300000, guid: 92d661277b6f0a243b058cd905d897ad, type: 3}
     gender: 0
+  actorName: 2
+  actorReaction: 0
+  nextDialogueLine: {fileID: 0}
   playerOptions: []
   playerReactions: []
-  nextDialogueLine: {fileID: 0}
+  conditionalNextLines: []
   randomizedDialogLines: []
   objectReferringDialogLines: []
   wait: 0.5
-  actorName: 2
   actionBeforeLine: 0
   actionAfterLine: 0
-  actorReaction: 1
+  toggleLineCondition: {fileID: 0}
+  lineCondition:
+    condition: 0
+    isMet: 0
+  blurLevel: 0
+  blurAudio: 0
+  actionNumberData: 0

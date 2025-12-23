@@ -29,13 +29,18 @@ namespace interactions
     [Serializable]
     public class InteractionOption
     {
-        public bool toggle;
         public ObjectInteractionType interaction;
-        public InteractionCondition condition;
+        public InteractionCondition[] conditions;
 
         public bool IsValid(InteractionContext context)
         {
-            return condition.Evaluate(context, toggle);
+            foreach (var condition in conditions)
+            {
+                var isValid = condition.Evaluate(context);
+                if (!isValid) return false;
+            }
+
+            return true;
         }
     }
 
@@ -102,8 +107,14 @@ namespace interactions
         public ObjectInteractionType GetInteraction(InteractionContext context)
         {
             foreach (var option in npcInteractionOptions)
-                if (option.IsValid(context))
+            {
+                var optionValidity = option.IsValid(context);
+                if (optionValidity)
+                {
+                    print($"Return {option.interaction}");
                     return option.interaction;
+                }
+            }
 
             return ObjectInteractionType.None;
         }

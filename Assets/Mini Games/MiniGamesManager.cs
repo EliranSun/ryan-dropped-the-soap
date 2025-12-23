@@ -64,7 +64,6 @@ namespace Mini_Games
         [SerializeField] private MiniGameObject[] miniGames;
         [SerializeField] private TheClockController clockController;
         [SerializeField] private MiniGameSchedule miniGamesSchedule;
-        [SerializeField] private ScheduledMiniGame scheduledMiniGame;
         [SerializeField] private InteractionSystem interactionSystem;
 
         [SerializeField] private int initiateMiniGameDelay = 3;
@@ -102,6 +101,7 @@ namespace Mini_Games
         private int _livesCount;
         private bool _miniGamesEnded;
         private int _miniGamesIndex;
+        private ScheduledMiniGame _scheduledMiniGame;
         private string _selectedInstruction;
 
         private void Start()
@@ -123,18 +123,28 @@ namespace Mini_Games
             if (_miniGamesIndex > miniGamesSchedule.entries.Count && !areGamesRandomized)
             {
                 print("MOVING ON");
-                interactionSystem.interactionContext.isMiniGameActive = false;
+                UpdateInteractions(MiniGameName.None);
                 return;
             }
 
-            _selectedInstruction = GetNextMiniGameName();
-            Notify(GameEvents.MiniGameStart, _selectedInstruction);
+            var nextMiniGame = GetNextMiniGame();
+            _selectedInstruction = nextMiniGame.instructions;
 
-            interactionSystem.interactionContext.isMiniGameActive = true;
+            Notify(GameEvents.MiniGameStart, _selectedInstruction);
+            UpdateInteractions(nextMiniGame == null
+                ? MiniGameName.None
+                : nextMiniGame.miniGameName);
+
             miniGameInstructions.SetInstructions(_selectedInstruction);
 
             clockController.StartTick();
             clockController.OnTimeReached += OnTimeReachedHandler;
+        }
+
+        private void UpdateInteractions(MiniGameName miniGameName)
+        {
+            interactionSystem.interactionContext.miniGameName = miniGameName.ToString();
+            interactionSystem.interactionContext.isMiniGameActive = miniGameName != MiniGameName.None;
         }
 
         private void OnTimeReachedHandler(DateTime currentTime)
@@ -143,23 +153,23 @@ namespace Mini_Games
                 OnMiniGameEnd(false);
         }
 
-        private string GetNextMiniGameName()
+        private MiniGame GetNextMiniGame()
         {
             var miniGameSchedule = areGamesRandomized
                 ? miniGamesSchedule.entries[Random.Range(0, miniGamesSchedule.entries.Count)]
                 : miniGamesSchedule.entries[_miniGamesIndex];
 
             // SIDE EFFECT!
-            scheduledMiniGame = miniGameSchedule;
+            _scheduledMiniGame = miniGameSchedule;
 
             if (miniGameSchedule != null)
             {
                 var miniGame = miniGames.First(item => item.miniGameName == miniGameSchedule.miniGameName);
                 // TODO: should be on the scriptable object data?
-                return miniGame.gameObject.GetComponent<MiniGame>().instructions;
+                return miniGame.gameObject.GetComponent<MiniGame>();
             }
 
-            return "";
+            return null;
         }
 
         public void OnNotify(GameEventData eventData)
@@ -182,10 +192,10 @@ namespace Mini_Games
 
                 case GameEvents.PlayerInteractionRequest:
                     var requestType = (ObjectInteractionType)eventData.Data;
-                    if (requestType == scheduledMiniGame.interactionType)
+                    if (requestType == _scheduledMiniGame.interactionType)
                     {
                         print("OPEN MINI GAME");
-                        var miniGame = miniGames.First(item => item.miniGameName == scheduledMiniGame.miniGameName);
+                        var miniGame = miniGames.First(item => item.miniGameName == _scheduledMiniGame.miniGameName);
                         miniGame.gameObject.SetActive(true);
                     }
 
@@ -288,9 +298,9 @@ namespace Mini_Games
         private void CloseMiniGame()
         {
             print("CLOSE MINI GAME");
-            var miniGame = miniGames.First(item => item.miniGameName == scheduledMiniGame.miniGameName);
+            var miniGame = miniGames.First(item => item.miniGameName == _scheduledMiniGame.miniGameName);
             miniGame.gameObject.SetActive(false);
-            scheduledMiniGame = null;
+            _scheduledMiniGame = null;
         }
 
         private void LighterPlayer()

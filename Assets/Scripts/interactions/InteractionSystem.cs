@@ -6,6 +6,7 @@ namespace interactions
     [Serializable]
     public class InteractionContext
     {
+        public string miniGameName;
         public bool isMiniGameActive;
         public bool isGoodEmployeeFlow;
     }

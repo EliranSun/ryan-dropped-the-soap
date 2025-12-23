@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1534024270785354282}
   - component: {fileID: 4407372583461346933}
   - component: {fileID: 3784975481260642261}
+  - component: {fileID: 882743414509528910}
   m_Layer: 3
   m_Name: "\u26AB Player - Zeke"
   m_TagString: Player
@@ -214,3 +215,20 @@ MonoBehaviour:
   scaleMax: 1.01
   breathAmount: 0.01
   waitBetweenBreathes: 3
+--- !u!114 &882743414509528910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3348968098915818707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4f6fc64f4c2949a686a7dee622ad06b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PlayerScriptsAssembly::Player.InteractionsTrigger
+  observers:
+    m_PersistentCalls:
+      m_Calls: []
+  interactionSystem: {fileID: 0}
+  interactionText: {fileID: 0}
