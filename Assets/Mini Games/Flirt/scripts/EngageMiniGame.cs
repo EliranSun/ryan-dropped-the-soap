@@ -20,6 +20,12 @@ namespace Mini_Games.Flirt.scripts
         public Expression reaction;
     }
 
+    [Serializable]
+    public class ActorLines
+    {
+        public ActorName actorName;
+        public NarrationDialogLine[] lines;
+    }
 
     public class EngageMiniGame : MiniGame
     {
@@ -32,7 +38,7 @@ namespace Mini_Games.Flirt.scripts
 
         [Header("Dialog")] [SerializeField] private Button[] choiceButtons;
 
-        [SerializeField] private NarrationDialogLine[] initialResponses;
+        [SerializeField] private List<ActorLines> initialResponses = new();
         [SerializeField] private NarrationDialogLine defaultLineResponse;
         [SerializeField] private PlayerMiniGameChoice[] choices;
 
@@ -229,8 +235,8 @@ namespace Mini_Games.Flirt.scripts
         private void InitActorResponse()
         {
             var response = defaultLineResponse;
-            if (_initResponsesCounter <= initialResponses.Length - 1)
-                response = initialResponses[_initResponsesCounter];
+            if (_initResponsesCounter <= initialResponses.Count - 1)
+                response = initialResponses.Find(item => item.actorName == actorName).lines[_initResponsesCounter];
 
             Notify(GameEvents.TriggerSpecificDialogLine, response);
             _initResponsesCounter++;
@@ -245,7 +251,7 @@ namespace Mini_Games.Flirt.scripts
             // Create a copy of the available choices to avoid modifying the original array
             var choicesCopy = availableChoices.ToArray();
 
-            // Shuffle the array using Fisher-Yates algorithm
+            // Shuffle the array using Fisher-Yates algorithm:O
             for (var i = choicesCopy.Length - 1; i > 0; i--)
             {
                 var randomIndex = Random.Range(0, i + 1);
