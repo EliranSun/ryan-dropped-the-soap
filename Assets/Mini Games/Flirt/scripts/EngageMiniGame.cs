@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Linq;
 using Dialog;
 using Expressions;
+using interactions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -66,6 +67,12 @@ namespace Mini_Games.Flirt.scripts
 
             switch (eventData.Name)
             {
+                case GameEvents.PlayerInteractionRequest:
+                    var interaction = (ObjectInteractionType)eventData.Data;
+                    if (interaction == ObjectInteractionType.Flirt)
+                        StartMiniGame();
+                    break;
+
                 case GameEvents.MiniGameStart:
                     PopulateChoiceButtons();
                     ToggleChoiceButtons(true);
@@ -86,7 +93,8 @@ namespace Mini_Games.Flirt.scripts
                     var dialogLine = eventData.Data as NarrationDialogLine;
 
                     if (!dialogLine) return;
-                    if (dialogLine.actorName != actorName) return;
+                    if (dialogLine.actorName != actorName)
+                        return;
 
                     var reaction = actorSpriteEmotions.First(x =>
                         x.reaction == dialogLine.actorReaction);

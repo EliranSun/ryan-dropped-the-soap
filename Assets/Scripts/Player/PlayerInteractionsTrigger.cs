@@ -47,12 +47,7 @@ namespace Player
             }
         }
 
-        private void OnTriggerExit2D(Collider2D other)
-        {
-            ResetText();
-        }
-
-        private void OnTriggerStay2D(Collider2D other)
+        private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.TryGetComponent(out InteractableObject provider))
             {
@@ -65,7 +60,15 @@ namespace Player
                     interactionText.text = interaction.ToString();
                 }
             }
+        }
 
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            ResetText();
+        }
+
+        private void OnTriggerStay2D(Collider2D other)
+        {
             if (other.CompareTag("Player") ||
                 other.CompareTag("Ground") ||
                 other.CompareTag("Untagged"))
