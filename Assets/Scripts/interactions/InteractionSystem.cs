@@ -15,9 +15,9 @@ namespace interactions
     {
         [SerializeField] public InteractionContext interactionContext;
 
-        public void Request(ObjectInteractionType objectInteractionType)
+        public void Request(ActorInteraction actorInteraction)
         {
-            Notify(GameEvents.PlayerInteractionRequest, objectInteractionType);
+            Notify(GameEvents.PlayerInteractionRequest, actorInteraction);
         }
     }
 }

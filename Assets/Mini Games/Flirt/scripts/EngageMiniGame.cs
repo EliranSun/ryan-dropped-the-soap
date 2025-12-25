@@ -24,22 +24,21 @@ namespace Mini_Games.Flirt.scripts
     public class ActorLines
     {
         public ActorName actorName;
+        public NarrationDialogLine defaultLine;
         public NarrationDialogLine[] lines;
+        public Image characterImageContainer;
     }
 
     public class EngageMiniGame : MiniGame
     {
-        [Header("Actor")] [SerializeField] private ActorName actorName = ActorName.Morgan;
+        [Header("Actors")] [SerializeField] private GameObject[] flirtableNpcs;
 
-        [SerializeField] private Image characterImageContainer;
-        [SerializeField] private GameObject[] flirtableNpcs;
         [SerializeField] private SpriteEmotion[] actorSpriteEmotions;
         [SerializeField] private TextMeshProUGUI actorScoreTextMesh;
 
         [Header("Dialog")] [SerializeField] private Button[] choiceButtons;
 
-        [SerializeField] private List<ActorLines> initialResponses = new();
-        [SerializeField] private NarrationDialogLine defaultLineResponse;
+        [SerializeField] private List<ActorLines> actorsLines = new();
         [SerializeField] private PlayerMiniGameChoice[] choices;
 
         [Header("UI")] [SerializeField] private Color highlightColor = new(1f, 1f, 0.5f, 1f); // Yellow-ish highlight
@@ -50,6 +49,7 @@ namespace Mini_Games.Flirt.scripts
 
         // should be a different domain
         private readonly Dictionary<ActorName, float> _actorScores = new() { { ActorName.Morgan, 0 } };
+        private ActorName _currentActor;
 
         private PlayerMiniGameChoice[] _currentChoices;
         private Coroutine[] _highlightCoroutines;
@@ -74,9 +74,9 @@ namespace Mini_Games.Flirt.scripts
             switch (eventData.Name)
             {
                 case GameEvents.PlayerInteractionRequest:
-                    var interaction = (ObjectInteractionType)eventData.Data;
-                    if (interaction == ObjectInteractionType.Flirt)
-                        StartMiniGame();
+                    var interaction = (ActorInteraction)eventData.Data;
+                    if (interaction.type == ObjectInteractionType.Flirt)
+                        StartMiniGame(interaction.actorName);
                     break;
 
                 case GameEvents.MiniGameStart:
@@ -99,13 +99,13 @@ namespace Mini_Games.Flirt.scripts
                     var dialogLine = eventData.Data as NarrationDialogLine;
 
                     if (!dialogLine) return;
-                    if (dialogLine.actorName != actorName)
+                    if (dialogLine.actorName != _currentActor)
                         return;
 
                     var reaction = actorSpriteEmotions.First(x =>
                         x.reaction == dialogLine.actorReaction);
 
-                    characterImageContainer.sprite = reaction.sprite;
+                    // characterImageContainer.sprite = reaction.sprite;
                     break;
             }
         }
@@ -122,14 +122,15 @@ namespace Mini_Games.Flirt.scripts
         {
             if (actorScoreTextMesh)
             {
-                _actorScores[actorName] += score;
-                actorScoreTextMesh.SetText(_actorScores[actorName].ToString(CultureInfo.InvariantCulture));
+                _actorScores[_currentActor] += score;
+                actorScoreTextMesh.SetText(_actorScores[_currentActor].ToString(CultureInfo.InvariantCulture));
             }
         }
 
-        protected override void StartMiniGame()
+        private void StartMiniGame(ActorName actorName)
         {
             base.StartMiniGame();
+            _currentActor = actorName;
             InitActorResponse();
             ToggleChoiceButtons(false);
             // PopulateChoiceButtons();
@@ -234,9 +235,10 @@ namespace Mini_Games.Flirt.scripts
 
         private void InitActorResponse()
         {
-            var response = defaultLineResponse;
-            if (_initResponsesCounter <= initialResponses.Count - 1)
-                response = initialResponses.Find(item => item.actorName == actorName).lines[_initResponsesCounter];
+            var actorLines = actorsLines.Find(item => item.actorName == _currentActor);
+            var response = actorLines.defaultLine;
+            if (_initResponsesCounter <= actorLines.lines.Length - 1)
+                response = actorLines.lines[_initResponsesCounter];
 
             Notify(GameEvents.TriggerSpecificDialogLine, response);
             _initResponsesCounter++;

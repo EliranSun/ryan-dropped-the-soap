@@ -16,7 +16,7 @@ namespace Player
     {
         [SerializeField] private InteractionSystem interactionSystem;
         [SerializeField] private TextMeshPro interactionText;
-        private ObjectInteractionType _currentInteraction = ObjectInteractionType.None;
+        private ActorInteraction _currentInteraction;
         private ObjectNames _interactedObjectName;
         private int _interactedObjectNameId;
 
@@ -29,7 +29,7 @@ namespace Player
         {
             if (Input.GetKeyDown(KeyCode.X))
             {
-                if (_currentInteraction != ObjectInteractionType.None)
+                if (_currentInteraction != null)
                 {
                     interactionSystem.Request(_currentInteraction);
                 }
@@ -49,37 +49,41 @@ namespace Player
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            print($"Enter {other.gameObject}");
+
             if (other.TryGetComponent(out InteractableObject provider))
             {
                 var context = interactionSystem.interactionContext;
                 var interaction = provider.GetInteraction(context);
 
-                if (interaction != ObjectInteractionType.None)
+                if (interaction != null)
                 {
                     _currentInteraction = interaction;
-                    interactionText.text = interaction.ToString();
+                    interactionText.text = interaction.type.ToString();
                 }
             }
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            ResetText();
+            print($"Exit {other.gameObject}");
+            ResetInteraction();
         }
 
-        private void OnTriggerStay2D(Collider2D other)
-        {
-            if (other.CompareTag("Player") ||
-                other.CompareTag("Ground") ||
-                other.CompareTag("Untagged"))
-                return;
+        // private void OnTriggerStay2D(Collider2D other)
+        // {
+        //     if (other.CompareTag("Player") ||
+        //         other.CompareTag("Ground") ||
+        //         other.CompareTag("Untagged"))
+        //         return;
+        //
+        //     InstructBasedOnTag(other.gameObject);
+        // }
 
-            InstructBasedOnTag(other.gameObject);
-        }
-
-        private void ResetText()
+        private void ResetInteraction()
         {
             interactionText.text = "";
+            _currentInteraction = null;
             _interactedObjectName = ObjectNames.None;
         }
 

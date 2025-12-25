@@ -25,10 +25,23 @@ namespace interactions
         Talk
     }
 
+    [Serializable]
+    public class ActorInteraction
+    {
+        public ObjectInteractionType type;
+        public ActorName actorName;
+
+        public ActorInteraction(ActorName actorName, ObjectInteractionType type)
+        {
+            this.actorName = actorName;
+            this.type = type;
+        }
+    }
 
     [Serializable]
     public class InteractionOption
     {
+        public ActorName actorName;
         public ObjectInteractionType interaction;
         public InteractionCondition[] conditions;
 
@@ -64,11 +77,11 @@ namespace interactions
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.X) && playerInteractionType == PlayerInteractionType.Keyboard && _isTriggered)
-            {
-                print($"PRESS ON {gameObject.name}");
-                TriggerInteraction();
-            }
+            // if (Input.GetKeyDown(KeyCode.X) && playerInteractionType == PlayerInteractionType.Keyboard && _isTriggered)
+            // {
+            //     print($"PRESS ON {gameObject.name}");
+            //     TriggerInteraction();
+            // }
         }
 
         private void OnMouseDown()
@@ -98,13 +111,12 @@ namespace interactions
         private void OnTriggerExit2D(Collider2D other)
         {
             _isTriggered = false;
-            print($"OnTriggerExit2D {gameObject.name}");
             if (interactionTextMesh)
                 interactionTextMesh.text = "";
         }
 
 
-        public ObjectInteractionType GetInteraction(InteractionContext context)
+        public ActorInteraction GetInteraction(InteractionContext context)
         {
             foreach (var option in npcInteractionOptions)
             {
@@ -112,11 +124,11 @@ namespace interactions
                 if (optionValidity)
                 {
                     print($"Return {option.interaction}");
-                    return option.interaction;
+                    return new ActorInteraction(option.actorName, option.interaction);
                 }
             }
 
-            return ObjectInteractionType.None;
+            return null;
         }
 
         private void TriggerInteraction()
@@ -147,8 +159,8 @@ namespace interactions
         {
             if (gameEventData.Name == GameEvents.PlayerInteractionRequest)
             {
-                var requestType = (ObjectInteractionType)gameEventData.Data;
-                if (requestType == ObjectInteractionType.Talk)
+                var requestType = (ActorInteraction)gameEventData.Data;
+                if (requestType.type == ObjectInteractionType.Talk)
                     Notify(GameEvents.TriggerSpecificDialogLine, dialogLine[0]);
             }
 
