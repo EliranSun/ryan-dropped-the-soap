@@ -21,12 +21,21 @@ namespace Mini_Games.Flirt.scripts
     }
 
     [Serializable]
+    public class LineResponse
+    {
+        public NarrationDialogLine line;
+        public PlayerMiniGameChoice[] choices;
+    }
+
+    [Serializable]
     public class ActorLines
     {
         public ActorName actorName;
-        public NarrationDialogLine defaultLine;
-        public NarrationDialogLine[] lines;
         public Image characterImageContainer;
+        public NarrationDialogLine line;
+
+        public PlayerMiniGameChoice[] choices; // public LineResponse defaultLine;
+        // public LineResponse[] lines;
     }
 
     public class EngageMiniGame : MiniGame
@@ -39,7 +48,7 @@ namespace Mini_Games.Flirt.scripts
         [Header("Dialog")] [SerializeField] private Button[] choiceButtons;
 
         [SerializeField] private List<ActorLines> actorsLines = new();
-        [SerializeField] private PlayerMiniGameChoice[] choices;
+        // [SerializeField] private PlayerMiniGameChoice[] choices;
 
         [Header("UI")] [SerializeField] private Color highlightColor = new(1f, 1f, 0.5f, 1f); // Yellow-ish highlight
 
@@ -54,6 +63,7 @@ namespace Mini_Games.Flirt.scripts
         private PlayerMiniGameChoice[] _currentChoices;
         private Coroutine[] _highlightCoroutines;
         private int _initResponsesCounter;
+        private LineResponse _npcCurrentLine;
         private SpriteRenderer[] _npcSpriteRenderers;
         private Vector3[] _originalScales;
 
@@ -148,13 +158,13 @@ namespace Mini_Games.Flirt.scripts
         private void PopulateChoiceButtons()
         {
             // Randomly select 4 choices from the available choices
-            _currentChoices = GetRandomChoices(choices, choiceButtons.Length);
-            for (var i = 0; i <= choiceButtons.Length - 1; i++)
-            {
-                var choice = _currentChoices[i];
-                choiceButtons[i].GetComponentInChildren<TextMeshProUGUI>()
-                    .text = choice.text;
-            }
+            // _currentChoices = GetRandomChoices(_npcCurrentLine.choices, choiceButtons.Length);
+            // for (var i = 0; i <= choiceButtons.Length - 1; i++)
+            // {
+            //     var choice = _currentChoices[i];
+            //     choiceButtons[i].GetComponentInChildren<TextMeshProUGUI>()
+            //         .text = choice.text;
+            // }
         }
 
         private void StartHighlightingNpcs()
@@ -236,11 +246,11 @@ namespace Mini_Games.Flirt.scripts
         private void InitActorResponse()
         {
             var actorLines = actorsLines.Find(item => item.actorName == _currentActor);
-            var response = actorLines.defaultLine;
-            if (_initResponsesCounter <= actorLines.lines.Length - 1)
-                response = actorLines.lines[_initResponsesCounter];
+            // _npcCurrentLine = actorLines.defaultLine;
+            // if (_initResponsesCounter <= actorLines.lines.Length - 1)
+            //     _npcCurrentLine = actorLines.lines[_initResponsesCounter];
 
-            Notify(GameEvents.TriggerSpecificDialogLine, response);
+            Notify(GameEvents.TriggerSpecificDialogLine, _npcCurrentLine.line);
             _initResponsesCounter++;
         }
 

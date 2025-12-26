@@ -354,10 +354,10 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1897008761664938726, guid: cf1c3616d61571f4bb49e7d1448ba09f, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1066760097}
+      addedObject: {fileID: 2126514214}
     - targetCorrespondingSourceObject: {fileID: 1897008761664938726, guid: cf1c3616d61571f4bb49e7d1448ba09f, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2126514214}
+      addedObject: {fileID: 1066760097}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf1c3616d61571f4bb49e7d1448ba09f, type: 3}
 --- !u!4 &445831801 stripped
@@ -450,7 +450,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2039618433887362380, guid: 531fc0d072f178a418099be637aca04e, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 531fc0d072f178a418099be637aca04e, type: 3}
@@ -795,10 +796,10 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4060874364467996741, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1512722173}
+      addedObject: {fileID: 1127906427}
     - targetCorrespondingSourceObject: {fileID: 4060874364467996741, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1127906427}
+      addedObject: {fileID: 1512722173}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c02f8698ac7b5d4bb2031001e5af780, type: 3}
 --- !u!4 &920839601 stripped
@@ -1213,14 +1214,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: InteractionScriptAssembly::interactions.InteractableObject
   observers:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 485978657}
+        m_TargetAssemblyTypeName: Character_Creator.scripts.DialogueManager, CharacterCreatorScriptsAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  actorName: 1
   interactionTextMesh: {fileID: 1512722174}
   playerInteractionType: 2
-  npcInteractionOptions:
-  - interaction: 1
-    conditions:
-    - {fileID: 11400000, guid: f49901e846d7b4546a27e59b4c086294, type: 2}
-  dialogLine: []
+  npcInteractionOption:
+    interaction: 1
+    conditions: []
+  dialogLine:
+  - {fileID: 11400000, guid: 8a265633a8539e14a8dba78a71726acb, type: 2}
   repeatLastInteraction: 1
   repeatAllInteractions: 0
 --- !u!1 &1201365387
@@ -1549,6 +1563,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 617806365517851854, guid: 60580c399cfcaba4383037606e1fabe0, type: 3}
+      propertyPath: actorsLines.Array.data[0].line
+      value: 
+      objectReference: {fileID: 11400000, guid: 0808da3c34edfe44b8591992c9b05417, type: 2}
+    - target: {fileID: 617806365517851854, guid: 60580c399cfcaba4383037606e1fabe0, type: 3}
       propertyPath: actorsLines.Array.data[0].actorName
       value: 1
       objectReference: {fileID: 0}
@@ -1564,6 +1582,22 @@ PrefabInstance:
       propertyPath: actorsLines.Array.data[1].defaultLine
       value: 
       objectReference: {fileID: 11400000, guid: 3871e9fcd05d6ec4a8af84f241567f0e, type: 2}
+    - target: {fileID: 617806365517851854, guid: 60580c399cfcaba4383037606e1fabe0, type: 3}
+      propertyPath: actorsLines.Array.data[0].defaultLine.line
+      value: 
+      objectReference: {fileID: 11400000, guid: 867493a7154214bcb804aeff438b3595, type: 2}
+    - target: {fileID: 617806365517851854, guid: 60580c399cfcaba4383037606e1fabe0, type: 3}
+      propertyPath: actorsLines.Array.data[0].lines.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 617806365517851854, guid: 60580c399cfcaba4383037606e1fabe0, type: 3}
+      propertyPath: actorsLines.Array.data[1].defaultLine.line
+      value: 
+      objectReference: {fileID: 11400000, guid: 97545b64345ea412796d09eac79f05de, type: 2}
+    - target: {fileID: 617806365517851854, guid: 60580c399cfcaba4383037606e1fabe0, type: 3}
+      propertyPath: actorsLines.Array.data[1].lines.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 617806365517851854, guid: 60580c399cfcaba4383037606e1fabe0, type: 3}
       propertyPath: observers.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1801,14 +1835,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: InteractionScriptAssembly::interactions.InteractableObject
   observers:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 485978657}
+        m_TargetAssemblyTypeName: Character_Creator.scripts.DialogueManager, CharacterCreatorScriptsAssembly
+        m_MethodName: OnNotify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  actorName: 2
   interactionTextMesh: {fileID: 1512722174}
   playerInteractionType: 2
-  npcInteractionOptions:
-  - interaction: 1
-    conditions:
-    - {fileID: 11400000, guid: f49901e846d7b4546a27e59b4c086294, type: 2}
-  dialogLine: []
+  npcInteractionOption:
+    interaction: 1
+    conditions: []
+  dialogLine:
+  - {fileID: 11400000, guid: 3871e9fcd05d6ec4a8af84f241567f0e, type: 2}
   repeatLastInteraction: 1
   repeatAllInteractions: 0
 --- !u!61 &2126514216

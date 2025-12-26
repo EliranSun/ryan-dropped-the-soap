@@ -41,7 +41,6 @@ namespace interactions
     [Serializable]
     public class InteractionOption
     {
-        public ActorName actorName;
         public ObjectInteractionType interaction;
         public InteractionCondition[] conditions;
 
@@ -61,9 +60,10 @@ namespace interactions
     [RequireComponent(typeof(Collider2D))]
     public class InteractableObject : ObserverSubject
     {
+        [SerializeField] private ActorName actorName;
         [SerializeField] private TextMeshPro interactionTextMesh;
         [SerializeField] private PlayerInteractionType playerInteractionType;
-        [SerializeField] private InteractionOption[] npcInteractionOptions;
+        [SerializeField] private InteractionOption npcInteractionOption;
         [SerializeField] private NarrationDialogLine[] dialogLine;
         [SerializeField] private bool repeatLastInteraction = true;
         [SerializeField] private bool repeatAllInteractions;
@@ -118,14 +118,11 @@ namespace interactions
 
         public ActorInteraction GetInteraction(InteractionContext context)
         {
-            foreach (var option in npcInteractionOptions)
+            var optionValidity = npcInteractionOption.IsValid(context);
+            if (optionValidity)
             {
-                var optionValidity = option.IsValid(context);
-                if (optionValidity)
-                {
-                    print($"Return {option.interaction}");
-                    return new ActorInteraction(option.actorName, option.interaction);
-                }
+                print($"Return {npcInteractionOption.interaction}");
+                return new ActorInteraction(actorName, npcInteractionOption.interaction);
             }
 
             return null;
@@ -159,8 +156,12 @@ namespace interactions
         {
             if (gameEventData.Name == GameEvents.PlayerInteractionRequest)
             {
-                var requestType = (ActorInteraction)gameEventData.Data;
-                if (requestType.type == ObjectInteractionType.Talk)
+                var request = (ActorInteraction)gameEventData.Data;
+                //  
+                if (
+                    request.type == ObjectInteractionType.Flirt &&
+                    request.actorName == actorName
+                )
                     Notify(GameEvents.TriggerSpecificDialogLine, dialogLine[0]);
             }
 

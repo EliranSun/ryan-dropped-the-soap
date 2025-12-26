@@ -22,7 +22,7 @@ namespace Player
 
         private void Start()
         {
-            if (interactionText) interactionText.text = "";
+            ResetInteraction();
         }
 
         private void Update()
@@ -56,11 +56,11 @@ namespace Player
                 var context = interactionSystem.interactionContext;
                 var interaction = provider.GetInteraction(context);
 
-                if (interaction != null)
-                {
-                    _currentInteraction = interaction;
-                    interactionText.text = interaction.type.ToString();
-                }
+                if (interaction == null || interaction.type == ObjectInteractionType.None)
+                    return;
+
+                _currentInteraction = interaction;
+                interactionText.text = interaction.type.ToString();
             }
         }
 
@@ -82,7 +82,7 @@ namespace Player
 
         private void ResetInteraction()
         {
-            interactionText.text = "";
+            if (interactionText) interactionText.text = "";
             _currentInteraction = null;
             _interactedObjectName = ObjectNames.None;
         }

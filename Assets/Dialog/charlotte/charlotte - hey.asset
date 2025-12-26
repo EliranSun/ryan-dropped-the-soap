@@ -18,8 +18,12 @@ MonoBehaviour:
   overlayImageSprite: {fileID: 0}
   voicedLines:
   - text: Hey
+    translation: 
     clip: {fileID: 8300000, guid: 556f25d657c72ee4b975090f2a437a27, type: 3}
     gender: 0
+  actorName: 1
+  actorReaction: 0
+  nextDialogueLine: {fileID: 0}
   playerOptions:
   - text: Who are you again?
     type: 0
@@ -45,19 +49,23 @@ MonoBehaviour:
     choiceDataOption: 0
     next: {fileID: 0}
     actionAfterPlayerChoice: 0
+  - text: Bye
+    type: 0
+    choiceDataType: 0
+    choiceDataOption: 0
+    next: {fileID: 0}
+    actionAfterPlayerChoice: 0
   playerReactions: []
-  nextDialogueLine: {fileID: 0}
+  conditionalNextLines: []
   randomizedDialogLines: []
   objectReferringDialogLines: []
   wait: 0.5
-  actorName: 1
   actionBeforeLine: 0
   actionAfterLine: 0
-  actorReaction: 0
-  angerLevel: 0
   toggleLineCondition: {fileID: 0}
   lineCondition:
     condition: 0
     isMet: 0
+  blurLevel: 0
   blurAudio: 0
   actionNumberData: 0
