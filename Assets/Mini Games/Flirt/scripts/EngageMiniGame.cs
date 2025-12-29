@@ -31,11 +31,15 @@ namespace Mini_Games.Flirt.scripts
     public class ActorLines
     {
         public ActorName actorName;
-        public Image characterImageContainer;
         public NarrationDialogLine line;
-
         public PlayerMiniGameChoice[] choices; // public LineResponse defaultLine;
-        // public LineResponse[] lines;
+    }
+
+    [Serializable]
+    public class Actor
+    {
+        public ActorName actorName;
+        public Image characterImageContainer;
     }
 
     public class EngageMiniGame : MiniGame
@@ -46,6 +50,8 @@ namespace Mini_Games.Flirt.scripts
         [SerializeField] private TextMeshProUGUI actorScoreTextMesh;
 
         [Header("Dialog")] [SerializeField] private Button[] choiceButtons;
+
+        [SerializeField] private Actor[] actors;
 
         [SerializeField] private List<ActorLines> actorsLines = new();
         // [SerializeField] private PlayerMiniGameChoice[] choices;
@@ -158,13 +164,13 @@ namespace Mini_Games.Flirt.scripts
         private void PopulateChoiceButtons()
         {
             // Randomly select 4 choices from the available choices
-            // _currentChoices = GetRandomChoices(_npcCurrentLine.choices, choiceButtons.Length);
-            // for (var i = 0; i <= choiceButtons.Length - 1; i++)
-            // {
-            //     var choice = _currentChoices[i];
-            //     choiceButtons[i].GetComponentInChildren<TextMeshProUGUI>()
-            //         .text = choice.text;
-            // }
+            _currentChoices = GetRandomChoices(_npcCurrentLine.choices, choiceButtons.Length);
+            for (var i = 0; i <= choiceButtons.Length - 1; i++)
+            {
+                var choice = _currentChoices[i];
+                choiceButtons[i].GetComponentInChildren<TextMeshProUGUI>()
+                    .text = choice.text;
+            }
         }
 
         private void StartHighlightingNpcs()
@@ -246,11 +252,11 @@ namespace Mini_Games.Flirt.scripts
         private void InitActorResponse()
         {
             var actorLines = actorsLines.Find(item => item.actorName == _currentActor);
-            // _npcCurrentLine = actorLines.defaultLine;
+
             // if (_initResponsesCounter <= actorLines.lines.Length - 1)
             //     _npcCurrentLine = actorLines.lines[_initResponsesCounter];
 
-            Notify(GameEvents.TriggerSpecificDialogLine, _npcCurrentLine.line);
+            Notify(GameEvents.TriggerSpecificDialogLine, actorLines.line);
             _initResponsesCounter++;
         }
 

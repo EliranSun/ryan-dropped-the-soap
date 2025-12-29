@@ -195,7 +195,8 @@ namespace Mini_Games
                     if (requestType == _scheduledMiniGame.interactionType)
                     {
                         print("OPEN MINI GAME");
-                        var miniGame = miniGames.First(item => item.miniGameName == _scheduledMiniGame.miniGameName);
+                        var miniGame = miniGames.First(item =>
+                            item.miniGameName == _scheduledMiniGame.miniGameName);
                         miniGame.gameObject.SetActive(true);
                     }
 

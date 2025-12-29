@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Dialog;
 using TMPro;
 using UnityEngine;
@@ -48,6 +49,7 @@ namespace interactions
         {
             foreach (var condition in conditions)
             {
+                if (condition == null) return true;
                 var isValid = condition.Evaluate(context);
                 if (!isValid) return false;
             }
@@ -63,7 +65,7 @@ namespace interactions
         [SerializeField] private ActorName actorName;
         [SerializeField] private TextMeshPro interactionTextMesh;
         [SerializeField] private PlayerInteractionType playerInteractionType;
-        [SerializeField] private InteractionOption npcInteractionOption;
+        [SerializeField] private InteractionOption[] npcInteractionOptions;
         [SerializeField] private NarrationDialogLine[] dialogLine;
         [SerializeField] private bool repeatLastInteraction = true;
         [SerializeField] private bool repeatAllInteractions;
@@ -118,14 +120,13 @@ namespace interactions
 
         public ActorInteraction GetInteraction(InteractionContext context)
         {
-            var optionValidity = npcInteractionOption.IsValid(context);
-            if (optionValidity)
-            {
-                print($"Return {npcInteractionOption.interaction}");
-                return new ActorInteraction(actorName, npcInteractionOption.interaction);
-            }
-
-            return null;
+            return (
+                    from option in npcInteractionOptions
+                    let optionValidity = option.IsValid(context)
+                    where optionValidity
+                    select new ActorInteraction(actorName, option.interaction)
+                )
+                .FirstOrDefault();
         }
 
         private void TriggerInteraction()
