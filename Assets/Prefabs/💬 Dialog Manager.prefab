@@ -1466,7 +1466,13 @@ MonoBehaviour:
   bodyContainer: {fileID: 9151016104914059083}
   leftSideContainer: {fileID: 5957746536045446642}
   rightSideContainer: {fileID: 829160473841595206}
-  actorConfigs: []
+  actorConfigs:
+  - isLeftSide: 0
+    actorBody: {fileID: 0}
+    actorName: 0
+    reactions:
+    - reaction: 0
+      image: {fileID: 0}
 --- !u!1 &8827183897921687268
 GameObject:
   m_ObjectHideFlags: 0

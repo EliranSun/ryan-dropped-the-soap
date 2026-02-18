@@ -139,11 +139,13 @@ MonoBehaviour:
   miniGameName: 0
   partnerBody: {fileID: 21300000, guid: 1e1e1ee8c011e45dda5943f4c8cf6aaa, type: 3}
   partnerRequest: {fileID: 3693847806518697876}
-  gameContainer: {fileID: 3286382929603072255}
+  gameContainer: {fileID: 409114051878799776}
   choiceAButton: {fileID: 5048248406379574140}
   choiceBButton: {fileID: 7763106500967755294}
+  playerWrapper: {fileID: 0}
   partnerBodyImage: {fileID: 8990223116515829730}
   partnerExpressionImage: {fileID: 8889109706845414378}
+  responseResultImageContainer: {fileID: 0}
   partnerChoices:
   - initPartnerExpression: {fileID: 21300000, guid: 48790084d05d62d4491496f2aa53840b, type: 3}
     choiceText: Let's go on a date
@@ -151,9 +153,11 @@ MonoBehaviour:
     playerResponses:
     - response: NO
       partnerResponseExpression: {fileID: 21300000, guid: 1a114b5980fd07546a91de3941d8000e, type: 3}
+      responseResultImage: {fileID: 0}
       isAttentive: 0
     - response: OK
       partnerResponseExpression: {fileID: 21300000, guid: e22bef5e890a22048a2753eb0700f019, type: 3}
+      responseResultImage: {fileID: 0}
       isAttentive: 1
   - initPartnerExpression: {fileID: 21300000, guid: 308f2e455544235439b373c3b5f862b9, type: 3}
     choiceText: Give me a kiss
@@ -161,9 +165,11 @@ MonoBehaviour:
     playerResponses:
     - response: AVOID
       partnerResponseExpression: {fileID: 21300000, guid: e1f94a02c0f653146b6af98100d2f684, type: 3}
+      responseResultImage: {fileID: 0}
       isAttentive: 0
     - response: KISS
       partnerResponseExpression: {fileID: 21300000, guid: 4de449f542632d44496a13fb84e92937, type: 3}
+      responseResultImage: {fileID: 21300000, guid: aa57e7aa349356a498f4c20b6cdd06af, type: 3}
       isAttentive: 1
   - initPartnerExpression: {fileID: 21300000, guid: 9dd494e9e76ee5443865ffb3f9fba1fd, type: 3}
     choiceText: I need a hug
@@ -171,9 +177,11 @@ MonoBehaviour:
     playerResponses:
     - response: AVOID
       partnerResponseExpression: {fileID: 21300000, guid: 61459187faac45842ab2e1f5fa7dcdfe, type: 3}
+      responseResultImage: {fileID: 0}
       isAttentive: 0
     - response: HUG
       partnerResponseExpression: {fileID: 21300000, guid: 308f2e455544235439b373c3b5f862b9, type: 3}
+      responseResultImage: {fileID: 21300000, guid: 85baec38896f5a14ba016cce9cf7fcb8, type: 3}
       isAttentive: 1
   - initPartnerExpression: {fileID: 21300000, guid: 48790084d05d62d4491496f2aa53840b, type: 3}
     choiceText: Should we try for a kid?
@@ -181,9 +189,11 @@ MonoBehaviour:
     playerResponses:
     - response: AVOID
       partnerResponseExpression: {fileID: 21300000, guid: 9dd494e9e76ee5443865ffb3f9fba1fd, type: 3}
+      responseResultImage: {fileID: 0}
       isAttentive: 0
     - response: OK
       partnerResponseExpression: {fileID: 21300000, guid: e22bef5e890a22048a2753eb0700f019, type: 3}
+      responseResultImage: {fileID: 0}
       isAttentive: 1
   - initPartnerExpression: {fileID: 21300000, guid: 48790084d05d62d4491496f2aa53840b, type: 3}
     choiceText: Let's have sex
@@ -191,9 +201,11 @@ MonoBehaviour:
     playerResponses:
     - response: AVOID
       partnerResponseExpression: {fileID: 21300000, guid: 61459187faac45842ab2e1f5fa7dcdfe, type: 3}
+      responseResultImage: {fileID: 0}
       isAttentive: 0
     - response: OK
       partnerResponseExpression: {fileID: 21300000, guid: 308f2e455544235439b373c3b5f862b9, type: 3}
+      responseResultImage: {fileID: 0}
       isAttentive: 1
   - initPartnerExpression: {fileID: 21300000, guid: 9dd494e9e76ee5443865ffb3f9fba1fd, type: 3}
     choiceText: Do you even love me anymore?
@@ -201,9 +213,11 @@ MonoBehaviour:
     playerResponses:
     - response: NO
       partnerResponseExpression: {fileID: 21300000, guid: aae28ccb189128c4db4a90f60f0c6db3, type: 3}
+      responseResultImage: {fileID: 0}
       isAttentive: 0
     - response: YES
       partnerResponseExpression: {fileID: 21300000, guid: 3ec95753dd0a1f2408042585c64697c1, type: 3}
+      responseResultImage: {fileID: 0}
       isAttentive: 1
   - initPartnerExpression: {fileID: 21300000, guid: 9dd494e9e76ee5443865ffb3f9fba1fd, type: 3}
     choiceText: We don't make love anymore
@@ -211,9 +225,11 @@ MonoBehaviour:
     playerResponses:
     - response: SO
       partnerResponseExpression: {fileID: 21300000, guid: e1f94a02c0f653146b6af98100d2f684, type: 3}
+      responseResultImage: {fileID: 0}
       isAttentive: 0
     - response: OK
       partnerResponseExpression: {fileID: 21300000, guid: 61459187faac45842ab2e1f5fa7dcdfe, type: 3}
+      responseResultImage: {fileID: 0}
       isAttentive: 0
   - initPartnerExpression: {fileID: 21300000, guid: 9dd494e9e76ee5443865ffb3f9fba1fd, type: 3}
     choiceText: Are you cheating on me?
@@ -221,9 +237,11 @@ MonoBehaviour:
     playerResponses:
     - response: NO
       partnerResponseExpression: {fileID: 21300000, guid: 1a114b5980fd07546a91de3941d8000e, type: 3}
+      responseResultImage: {fileID: 0}
       isAttentive: 1
     - response: YES
       partnerResponseExpression: {fileID: 21300000, guid: b6dbb8e4f4a9be6469b30f117e4e04cc, type: 3}
+      responseResultImage: {fileID: 0}
       isAttentive: 0
   - initPartnerExpression: {fileID: 21300000, guid: 9dd494e9e76ee5443865ffb3f9fba1fd, type: 3}
     choiceText: What do you want for dinner?
@@ -231,9 +249,11 @@ MonoBehaviour:
     playerResponses:
     - response: DONT CARE
       partnerResponseExpression: {fileID: 21300000, guid: 61459187faac45842ab2e1f5fa7dcdfe, type: 3}
+      responseResultImage: {fileID: 0}
       isAttentive: 0
     - response: DONT KNOW
       partnerResponseExpression: {fileID: 21300000, guid: 1a114b5980fd07546a91de3941d8000e, type: 3}
+      responseResultImage: {fileID: 0}
       isAttentive: 0
   - initPartnerExpression: {fileID: 21300000, guid: 9dd494e9e76ee5443865ffb3f9fba1fd, type: 3}
     choiceText: Can you take out the trash?
@@ -241,9 +261,11 @@ MonoBehaviour:
     playerResponses:
     - response: NO
       partnerResponseExpression: {fileID: 21300000, guid: 61459187faac45842ab2e1f5fa7dcdfe, type: 3}
+      responseResultImage: {fileID: 0}
       isAttentive: 0
     - response: OK
       partnerResponseExpression: {fileID: 21300000, guid: 48790084d05d62d4491496f2aa53840b, type: 3}
+      responseResultImage: {fileID: 0}
       isAttentive: 1
   - initPartnerExpression: {fileID: 21300000, guid: 9dd494e9e76ee5443865ffb3f9fba1fd, type: 3}
     choiceText: Let's do something nice
@@ -251,9 +273,11 @@ MonoBehaviour:
     playerResponses:
     - response: AVOID
       partnerResponseExpression: {fileID: 21300000, guid: 1a114b5980fd07546a91de3941d8000e, type: 3}
+      responseResultImage: {fileID: 0}
       isAttentive: 0
     - response: OK
       partnerResponseExpression: {fileID: 21300000, guid: 308f2e455544235439b373c3b5f862b9, type: 3}
+      responseResultImage: {fileID: 0}
       isAttentive: 1
   - initPartnerExpression: {fileID: 21300000, guid: 9dd494e9e76ee5443865ffb3f9fba1fd, type: 3}
     choiceText: What happened to us?
@@ -261,9 +285,11 @@ MonoBehaviour:
     playerResponses:
     - response: AVOID
       partnerResponseExpression: {fileID: 21300000, guid: 1a114b5980fd07546a91de3941d8000e, type: 3}
+      responseResultImage: {fileID: 0}
       isAttentive: 0
     - response: DUNNO
       partnerResponseExpression: {fileID: 21300000, guid: fa5d33c2cf26f8546920a2b193ac955a, type: 3}
+      responseResultImage: {fileID: 0}
       isAttentive: 0
   - initPartnerExpression: {fileID: 21300000, guid: 9dd494e9e76ee5443865ffb3f9fba1fd, type: 3}
     choiceText: Hold my hand
@@ -271,9 +297,11 @@ MonoBehaviour:
     playerResponses:
     - response: AVOID
       partnerResponseExpression: {fileID: 21300000, guid: fa5d33c2cf26f8546920a2b193ac955a, type: 3}
+      responseResultImage: {fileID: 0}
       isAttentive: 0
     - response: OK
       partnerResponseExpression: {fileID: 21300000, guid: 308f2e455544235439b373c3b5f862b9, type: 3}
+      responseResultImage: {fileID: 0}
       isAttentive: 1
   - initPartnerExpression: {fileID: 21300000, guid: 9dd494e9e76ee5443865ffb3f9fba1fd, type: 3}
     choiceText: Can you hold me?
@@ -281,9 +309,11 @@ MonoBehaviour:
     playerResponses:
     - response: AVOID
       partnerResponseExpression: {fileID: 21300000, guid: aae28ccb189128c4db4a90f60f0c6db3, type: 3}
+      responseResultImage: {fileID: 0}
       isAttentive: 0
     - response: OK
       partnerResponseExpression: {fileID: 21300000, guid: 9026a4b9207a6a0459b82cdca206f859, type: 3}
+      responseResultImage: {fileID: 0}
       isAttentive: 1
   - initPartnerExpression: {fileID: 21300000, guid: 9dd494e9e76ee5443865ffb3f9fba1fd, type: 3}
     choiceText: I am depressed
@@ -291,9 +321,11 @@ MonoBehaviour:
     playerResponses:
     - response: SO
       partnerResponseExpression: {fileID: 21300000, guid: aae28ccb189128c4db4a90f60f0c6db3, type: 3}
+      responseResultImage: {fileID: 0}
       isAttentive: 0
     - response: OK
       partnerResponseExpression: {fileID: 21300000, guid: 7e78ead88376417429489ffaac9b976a, type: 3}
+      responseResultImage: {fileID: 0}
       isAttentive: 0
 --- !u!82 &5565746406113545499
 AudioSource:
@@ -1247,6 +1279,7 @@ RectTransform:
   m_Children:
   - {fileID: 8405242883515713156}
   - {fileID: 579390066507302918}
+  - {fileID: 2482076567588797600}
   - {fileID: 3589965972611254644}
   - {fileID: 7174952931945559139}
   - {fileID: 1655121664918159048}
@@ -1322,6 +1355,81 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!1 &4591253929195404687
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2482076567588797600}
+  - component: {fileID: 5766868808893343147}
+  - component: {fileID: 1640827211799632803}
+  m_Layer: 5
+  m_Name: Response Results Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &2482076567588797600
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4591253929195404687}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 4903970876382157239}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -30}
+  m_SizeDelta: {x: 200, y: 200}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &5766868808893343147
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4591253929195404687}
+  m_CullTransparentMesh: 1
+--- !u!114 &1640827211799632803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4591253929195404687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 85baec38896f5a14ba016cce9cf7fcb8, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &4644724044824498694
 GameObject:
   m_ObjectHideFlags: 0

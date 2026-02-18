@@ -3716,6 +3716,65 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1447353054}
   m_CullTransparentMesh: 1
+--- !u!1 &1473455232
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1473455234}
+  - component: {fileID: 1473455233}
+  m_Layer: 0
+  m_Name: Snooze Mini Game
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1473455233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1473455232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d10aa1402d3133c4885e074e1e16c505, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MiniGamesScriptAssembly::Mini_Games.Snooze.SnoozeMiniGame
+  observers:
+    m_PersistentCalls:
+      m_Calls: []
+  startTimeInMinutes: 1410
+  wakeUpTime: 480
+  clockSpeedInSeconds: 0
+  gameContainer: {fileID: 0}
+  asleepFace: {fileID: 0}
+  awakeFace: {fileID: 0}
+  faceImage: {fileID: 0}
+  clockTextMesh: {fileID: 0}
+  instructionText: {fileID: 0}
+  instructionAudio: {fileID: 0}
+  loseStateAudio: {fileID: 0}
+  winStateAudio: {fileID: 0}
+--- !u!4 &1473455234
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1473455232}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1307.6747, y: 512.44165, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1533895002
 GameObject:
   m_ObjectHideFlags: 0
@@ -5044,3 +5103,4 @@ SceneRoots:
   - {fileID: 1349564323}
   - {fileID: 905986330}
   - {fileID: 578639570}
+  - {fileID: 1473455234}
